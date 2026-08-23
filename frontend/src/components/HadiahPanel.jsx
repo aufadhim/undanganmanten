@@ -16,9 +16,6 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
   });
   
   const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [successMsg, setSuccessMsg] = useState('');
-  
   const [giftEnabled, setGiftEnabled] = useState(invitation?.invitationFeatures?.giftEnabled || false);
   const { toast } = useUI();
 
@@ -57,25 +54,29 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
   }
 
   function handleChange(field, value) {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const next = { ...prev, [field]: value };
+      if (onLivePreview) {
+        onLivePreview({ giftSettings: { ...invitation?.giftSettings, ...next } });
+      }
+      return next;
+    });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    setErrorMsg('');
-    setSuccessMsg('');
 
     try {
       const payload = { ...formData };
       const res = await api.patch('/invitations/me/gift-settings', payload);
-      setSuccessMsg(res.data.message || 'Pengaturan hadiah berhasil disimpan!');
+      toast.success(res.data.message || 'Pengaturan hadiah berhasil disimpan!');
       if (onUpdated && invitation) {
         onUpdated({ ...invitation, giftSettings: res.data.giftSettings });
       }
-      setTimeout(() => setSuccessMsg(''), 3000);
+      if (onLivePreview) onLivePreview(null);
     } catch (err) {
-      setErrorMsg(err.response?.data?.error || 'Gagal menyimpan pengaturan hadiah.');
+      toast.error(err.response?.data?.error || 'Gagal menyimpan pengaturan hadiah.');
     } finally {
       setLoading(false);
     }
@@ -85,18 +86,6 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
     <div className="panel-content">
       <h2 className="panel-header">Amplop Digital & Hadiah</h2>
       <p className="panel-sub">Pilih metode penerimaan kado/amplop digital. Jika opsi transfer dinonaktifkan, tamu hanya akan melihat opsi alamat fisik.</p>
-
-      {errorMsg && (
-        <div className="form-error" style={{ marginBottom: '14px', background: '#fff2f0', border: '1px solid #ffccc7', color: '#ff4d4f', padding: '8px 12px', borderRadius: '8px', fontSize: '12px' }}>
-          ⚠️ {errorMsg}
-        </div>
-      )}
-
-      {successMsg && (
-        <div style={{ marginBottom: '14px', background: '#e6f4ea', border: '1px solid #b7e1cd', color: '#137333', padding: '8px 12px', borderRadius: '8px', fontSize: '12px' }}>
-          ✅ {successMsg}
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="stack">
         <div>

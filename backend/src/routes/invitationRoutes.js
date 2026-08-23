@@ -44,6 +44,8 @@ import {
     deleteWish,
     replyWish,
     updateWish,
+    submitOwnerPreviewRsvp,
+    submitOwnerPreviewWish,
 } from '../controllers/rsvpWishController.js';
 import {
     createRundown,
@@ -125,6 +127,8 @@ router.post('/me/guests/:guestId/checkin', authenticate, checkInGuest);
 
 // ---------- RSVP & Wishes (Dashboard) ----------
 router.get('/me/rsvp-summary', authenticate, getMyRsvpSummary);
+router.post('/me/preview-rsvp', authenticate, submitOwnerPreviewRsvp);
+router.post('/me/preview-wishes', authenticate, submitOwnerPreviewWish);
 router.delete('/me/wishes/:wishId', authenticate, deleteWish);
 router.post('/me/wishes/:wishId/reply', authenticate, replyWish);
 router.patch('/me/wishes/:wishId', authenticate, updateWish);

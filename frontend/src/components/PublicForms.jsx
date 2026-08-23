@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import { QRCodeSVG } from 'qrcode.react';
+import { useUI } from '../context/UIContext.jsx';
 
 export default function PublicForms({ invitation, previewGuest, templateStyle, formType = 'all', previewMode = false }) {
   if (!invitation) return null;
@@ -30,12 +31,6 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
         </div>
       )}
 
-      {previewMode && (
-        <div style={{ padding: '10px 14px', marginBottom: 16, borderRadius: 8, background: '#fff7e6', border: '1px solid #ffd591', color: '#874d00', fontSize: 12, textAlign: 'center' }}>
-          Mode preview — RSVP dan ucapan percobaan tidak disimpan.
-        </div>
-      )}
-
       {formType !== 'wishes' && invitation.invitationFeatures?.rsvpEnabled !== false && (
         <RsvpForm slug={slug} guest={previewGuest} theme={theme} previewMode={previewMode} />
       )}
@@ -45,7 +40,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
       )}
       
       {formType !== 'rsvp' && invitation.invitationFeatures?.wishesEnabled !== false && (
-        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} previewMode={previewMode} />
+        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} previewMode={previewMode} templateStyle={templateStyle} />
       )}
 
       <style>{`
@@ -118,12 +113,13 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
 
 function RsvpForm({ slug, guest, theme, previewMode }) {
   const { t } = useTranslation();
+  const { toast } = useUI();
   const [form, setForm] = useState({ 
     name: guest?.name || '', 
     phone: guest?.phone || '', 
-    attending: guest?.attending !== false, // default true
-    guestCount: guest?.guestCount || 1, 
-    note: guest?.note || '' 
+    attending: (guest?.rsvp?.attending ?? guest?.attending) !== false, // default true
+    guestCount: guest?.rsvp?.guestCount || guest?.guestCount || 1,
+    note: guest?.rsvp?.note || guest?.note || ''
   });
   
   useEffect(() => {
@@ -131,35 +127,29 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
       setForm({
         name: guest.name || '',
         phone: guest.phone || '',
-        attending: guest.attending !== false,
-        guestCount: guest.guestCount || 1,
-        note: guest.note || ''
+        attending: (guest.rsvp?.attending ?? guest.attending) !== false,
+        guestCount: guest.rsvp?.guestCount || guest.guestCount || 1,
+        note: guest.rsvp?.note || guest.note || ''
       });
     }
   }, [guest]);
 
-  const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSent(false);
     try {
-      if (previewMode) {
-        setSent(true);
-        return;
-      }
-      const url = guest?.id ? `/invitations/public/${slug}/rsvp?g=${guest.id}` : `/invitations/public/${slug}/rsvp`;
+      const publicUrl = guest?.id ? `/invitations/public/${slug}/rsvp?g=${guest.id}` : `/invitations/public/${slug}/rsvp`;
+      const ownerUrl = guest?.id ? `/invitations/me/preview-rsvp?g=${guest.id}` : '/invitations/me/preview-rsvp';
+      const url = previewMode ? ownerUrl : publicUrl;
       await api.post(url, form);
-      setSent(true);
+      toast.success('Konfirmasi RSVP berhasil disimpan.');
       // Let TamuPanel know so dashboard updates realtime
       window.dispatchEvent(new Event('guest_updated'));
-      setTimeout(() => setSent(false), 5000); // Hide banner after 5 seconds
+      window.dispatchEvent(new Event('refresh_dashboard'));
     } catch (err) {
-      setError(err.response?.data?.error || 'Gagal mengirim RSVP');
+      toast.error(err.response?.data?.error || 'Gagal mengirim RSVP');
     } finally {
       setLoading(false);
     }
@@ -168,11 +158,6 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
   return (
     <div className="pf-glass">
       <h3 className="pf-title">RSVP</h3>
-      {sent && (
-        <div style={{ background: '#d4edda', color: '#155724', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px', textAlign: 'center', border: '1px solid #c3e6cb' }}>
-          Berhasil menyimpan konfirmasi RSVP Anda!
-        </div>
-      )}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <input className="pf-input" placeholder="Nama Lengkap" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
         <input className="pf-input" placeholder="Nomor WA (opsional)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
@@ -183,7 +168,6 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
         {form.attending && (
           <input className="pf-input" type="number" min="1" max="2" placeholder="Jumlah tamu (maks. 2 orang)" aria-label="Jumlah tamu (maksimal 2 orang)" value={form.guestCount} onChange={(e) => setForm({ ...form, guestCount: Math.min(2, Math.max(1, Number(e.target.value) || 1)) })} />
         )}
-        {error && <div style={{ color: 'red', fontSize: 13, textAlign: 'center', marginBottom: 10 }}>{error}</div>}
         <button type="submit" className="pf-btn" style={{ background: theme?.button?.primary || '#333' }} disabled={loading}>
           {loading ? 'Mengirim...' : (guest ? 'Update RSVP' : 'Kirim RSVP')}
         </button>
@@ -216,7 +200,8 @@ function GiftSection({ gift, accent }) {
   );
 }
 
-function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
+function WishesSection({ slug, initialWishes, theme, guest, previewMode, templateStyle }) {
+  const { toast } = useUI();
   const [wishes, setWishes] = useState(initialWishes || []);
   
   const guestWish = initialWishes?.find(w => w.guestId === guest?.id);
@@ -226,9 +211,7 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
     message: guestWish?.message || '' 
   });
   
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
 
   useEffect(() => {
     if (initialWishes) {
@@ -263,24 +246,10 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSent(false);
     try {
-      if (previewMode) {
-        const previewWish = {
-          id: `preview-${Date.now()}`,
-          senderName: form.senderName.trim(),
-          message: form.message.trim(),
-          guestId: guest?.id || null,
-          createdAt: new Date().toISOString(),
-          isHidden: false,
-          isPinned: false,
-        };
-        setWishes((current) => [previewWish, ...current.filter((wish) => !String(wish.id).startsWith('preview-'))]);
-        setSent(true);
-        return;
-      }
-      const url = guest?.id ? `/invitations/public/${slug}/wishes?g=${guest.id}` : `/invitations/public/${slug}/wishes`;
+      const publicUrl = guest?.id ? `/invitations/public/${slug}/wishes?g=${guest.id}` : `/invitations/public/${slug}/wishes`;
+      const ownerUrl = guest?.id ? `/invitations/me/preview-wishes?g=${guest.id}` : '/invitations/me/preview-wishes';
+      const url = previewMode ? ownerUrl : publicUrl;
       const res = await api.post(url, form);
       
       // Update local wishes state (replace if exists, otherwise prepend)
@@ -294,13 +263,13 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
         return [res.data.wish, ...prev];
       });
       
-      setSent(true);
-      setTimeout(() => setSent(false), 5000);
+      toast.success('Ucapan dan doa berhasil disimpan.');
       
       // Notify parent to refresh the wishes panel
       window.dispatchEvent(new Event('wish_added'));
+      window.dispatchEvent(new Event('refresh_dashboard'));
     } catch (err) {
-      setError(err.response?.data?.error || 'Gagal mengirim ucapan');
+      toast.error(err.response?.data?.error || 'Gagal mengirim ucapan');
     } finally {
       setLoading(false);
     }
@@ -310,26 +279,20 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
     <>
       <div className="pf-glass">
         <h3 className="pf-title">Ucapan & Doa</h3>
-        {sent && (
-          <div style={{ background: '#d4edda', color: '#155724', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px', textAlign: 'center', border: '1px solid #c3e6cb' }}>
-            Berhasil menyimpan ucapan Anda!
-          </div>
-        )}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
           <input className="pf-input" placeholder="Nama Anda" value={form.senderName} onChange={(e) => setForm({ ...form, senderName: e.target.value })} required />
           <textarea className="pf-input" placeholder="Tulis ucapan dan doa..." rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
-          {error && <div style={{ color: 'red', fontSize: 13, marginBottom: 10 }}>{error}</div>}
           <button type="submit" className="pf-btn" style={{ background: theme?.button?.primary || '#333' }} disabled={loading}>
             {loading ? 'Mengirim...' : (wishes.find(w => w.guestId === guest?.id) ? 'Update Ucapan' : 'Kirim Ucapan')}
           </button>
         </form>
       </div>
 
-      <div className="wishes-scroll-container" style={{ display: 'flex', flexDirection: 'column', gap: 16, maxHeight: '450px', overflowY: 'auto', paddingRight: '8px', paddingBottom: '20px' }}>
+      <div className={`wishes-scroll-container ${templateStyle === 'eternal' ? 'eternal-wishes-list' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 16, maxHeight: '450px', overflowY: 'auto', paddingRight: '8px', paddingBottom: '20px' }}>
         {sortedWishes.map((w) => {
           const isMine = guest && w.guestId === guest.id;
           return (
-            <div key={w.id} style={{ 
+            <div key={w.id} className={templateStyle === 'eternal' ? 'eternal-wish-card' : ''} style={{
               background: isMine ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.5)', 
               padding: '16px', 
               borderRadius: '12px', 
@@ -337,13 +300,13 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
               boxShadow: isMine ? '0 4px 12px rgba(24, 144, 255, 0.15)' : 'none'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#111', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className={templateStyle === 'eternal' ? 'eternal-wish-name' : ''} style={{ fontWeight: 'bold', fontSize: '14px', color: '#111', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   {w.senderName}
                   {isMine && <span style={{ fontSize: '10px', background: '#e6f7ff', color: '#1890ff', padding: '2px 6px', borderRadius: '4px' }}>Ucapan Anda</span>}
                   {w.isPinned && <span style={{ fontSize: 10, background: '#fffbe6', color: '#d48806', padding: '2px 6px', borderRadius: 10, border: '1px solid #ffe58f' }}>📌 Pinned</span>}
                 </div>
               </div>
-              <div style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.5 }}>{w.message}</div>
+              <div className={templateStyle === 'eternal' ? 'eternal-wish-message' : ''} style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.5 }}>{w.message}</div>
               
               {w.reply && (
                 <div style={{ background: 'rgba(0,0,0,0.03)', padding: '12px', borderRadius: '8px', marginTop: '12px', fontSize: '13px', borderLeft: '3px solid #666' }}>

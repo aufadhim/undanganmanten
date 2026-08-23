@@ -475,6 +475,46 @@
   color: #ffffff !important;
 }
 
+.eternal-wrapper .eternal-wishes-list {
+  gap: 28px !important;
+  max-height: 520px !important;
+  padding: 2px 10px 8px 0 !important;
+}
+
+.eternal-wrapper .eternal-wish-card {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border: 0 !important;
+  border-left: 2px solid var(--stone-300) !important;
+  border-radius: 0 !important;
+  padding: 26px 28px !important;
+  box-shadow: none !important;
+}
+
+.eternal-wrapper .eternal-wish-message {
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.95rem, 2.2cqw, 1.1rem) !important;
+  font-style: italic;
+  color: var(--stone-700) !important;
+  opacity: 1 !important;
+  margin-bottom: 18px;
+}
+
+.eternal-wrapper .eternal-wish-message::before,
+.eternal-wrapper .eternal-wish-message::after {
+  content: '"';
+}
+
+.eternal-wrapper .eternal-wish-name {
+  font-family: var(--font-body) !important;
+  font-size: 0.95rem !important;
+  color: var(--stone-900) !important;
+}
+
+.eternal-wrapper .eternal-wish-name::before {
+  content: '— ';
+  font-weight: 400;
+}
+
 /* ===== HERO SECTION ===== */
 .eternal-wrapper .hero-section {
   position: relative;
@@ -1901,4 +1941,3 @@ html,
   font-weight: 500;
   line-height: 1.4;
 }
-

@@ -561,7 +561,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
               gratefully accept
             </p>
           </div>
-          {(gifts?.bankName || true) && (
+          {(gifts.type === 'bank_transfer' || gifts.type === 'both' || !gifts.type) && (
             <div
               className="gift-content"
               style={{ display: "flex", justifyContent: "center" }}
@@ -660,6 +660,16 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+          {(gifts.type === 'address' || gifts.type === 'both') && (
+            <div className="gift-content" style={{ display: 'flex', justifyContent: 'center', marginTop: gifts.type === 'both' ? '24px' : 0 }}>
+              <div className="gift-card gift-address-card" style={{ background: 'rgba(255, 255, 255, 0.6)', padding: '30px', border: '1px solid var(--stone-300)', width: '100%', maxWidth: '520px', boxSizing: 'border-box', textAlign: 'center' }}>
+                <div aria-hidden="true" style={{ fontSize: '24px', marginBottom: '14px', color: 'var(--stone-700)' }}><i className="fa-solid fa-gift"></i></div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontStyle: 'italic', fontWeight: 500, margin: '0 0 14px', color: 'var(--stone-900)' }}>Kirim Bingkisan</h3>
+                <p style={{ margin: '0 0 10px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--stone-600)' }}>Alamat Pengiriman</p>
+                <p style={{ margin: 0, whiteSpace: 'pre-line', color: 'var(--stone-800)', lineHeight: 1.7 }}>{gifts.shippingAddress || 'Alamat pengiriman belum diisi.'}</p>
               </div>
             </div>
           )}

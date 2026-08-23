@@ -12,14 +12,12 @@ async function getInvitation(req) {
       userId: typeof req === 'object' ? req.userId : req,
       ...(invitationId ? { id: invitationId } : {}),
     },
+    include: { invitationFeatures: true },
     orderBy: { createdAt: 'desc' },
   });
 }
 
-// Tamu submit RSVP dari halaman publik undangan (tanpa login)
-export async function submitRsvp(req, res) {
-  try {
-    const { slug } = req.params;
+async function saveRsvp(req, res, invitation) {
     // Mendukung query parameter ?g= atau ?code=
     const guestIdParam = req.query.g || req.query.code;
 
@@ -29,11 +27,6 @@ export async function submitRsvp(req, res) {
     if (!guestPart.success) return res.status(400).json({ error: guestPart.error.issues[0].message });
     if (!rsvpPart.success) return res.status(400).json({ error: rsvpPart.error.issues[0].message });
 
-    const invitation = await prisma.invitation.findUnique({
-      where: { slug },
-      include: { invitationFeatures: true },
-    });
-    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
     if (invitation.invitationFeatures && !invitation.invitationFeatures.rsvpEnabled) {
       return res.status(403).json({ error: 'RSVP tidak diaktifkan untuk undangan ini.' });
     }
@@ -72,22 +65,26 @@ export async function submitRsvp(req, res) {
     });
 
     return res.status(201).json({ message: 'Terima kasih sudah konfirmasi kehadiran.', rsvp });
+}
+
+// Tamu submit RSVP dari halaman publik undangan (tanpa login)
+export async function submitRsvp(req, res) {
+  try {
+    const invitation = await prisma.invitation.findUnique({
+      where: { slug: req.params.slug },
+      include: { invitationFeatures: true },
+    });
+    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    return await saveRsvp(req, res, invitation);
   } catch (err) {
     console.error('Error submitRsvp:', err);
     return res.status(500).json({ error: 'Gagal menyimpan konfirmasi kehadiran.' });
   }
 }
 
-// Tamu kirim ucapan dari halaman publik undangan (tanpa login)
-export async function submitWish(req, res) {
-  try {
-    const { slug } = req.params;
-
+async function saveWish(req, res, invitation) {
     const parsed = wishSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
-
-    const invitation = await prisma.invitation.findUnique({ where: { slug } });
-    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
 
     // Profanity Filter dengan Word Boundaries agar tidak false positive
     const badWords = ['anjing', 'babi', 'bangsat', 'kontol', 'memek', 'asu', 'ngentot', 'perek', 'lonte', 'bajingan'];
@@ -132,8 +129,39 @@ export async function submitWish(req, res) {
     }
 
     return res.status(201).json({ message: 'Ucapan berhasil dikirim.', wish });
+}
+
+// Tamu kirim ucapan dari halaman publik undangan (tanpa login)
+export async function submitWish(req, res) {
+  try {
+    const invitation = await prisma.invitation.findUnique({ where: { slug: req.params.slug } });
+    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    return await saveWish(req, res, invitation);
   } catch (err) {
     console.error('Error submitWish:', err);
+    return res.status(500).json({ error: 'Gagal mengirim ucapan.' });
+  }
+}
+
+// Pemilik dapat menguji form pada draft, tetapi hanya untuk undangan miliknya sendiri.
+export async function submitOwnerPreviewRsvp(req, res) {
+  try {
+    const invitation = await getInvitation(req);
+    if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    return await saveRsvp(req, res, invitation);
+  } catch (err) {
+    console.error('Error submitOwnerPreviewRsvp:', err);
+    return res.status(500).json({ error: 'Gagal menyimpan konfirmasi kehadiran.' });
+  }
+}
+
+export async function submitOwnerPreviewWish(req, res) {
+  try {
+    const invitation = await getInvitation(req);
+    if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    return await saveWish(req, res, invitation);
+  } catch (err) {
+    console.error('Error submitOwnerPreviewWish:', err);
     return res.status(500).json({ error: 'Gagal mengirim ucapan.' });
   }
 }
