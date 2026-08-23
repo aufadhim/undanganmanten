@@ -6,10 +6,13 @@ import './styles/index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './i18n';
 
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const app = googleClientId ? (
+    <GoogleOAuthProvider clientId={googleClientId}><App /></GoogleOAuthProvider>
+) : <App />;
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID"}>
-            <App />
-        </GoogleOAuthProvider>
+        {app}
     </React.StrictMode>
 );

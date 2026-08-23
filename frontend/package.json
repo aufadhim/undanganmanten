@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build --mode production",
     "build:staging": "vite build --mode staging",
+    "test:e2e": "playwright test",
     "preview": "vite preview"
   },
   "dependencies": {

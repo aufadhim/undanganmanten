@@ -14,15 +14,17 @@ export async function sendVerificationEmail(toEmail, otp) {
   }
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `UndanganManten <${FROM_EMAIL}>`,
       to: toEmail,
       subject: 'Verifikasi Email Anda',
-      html: `<p>Kode verifikasi Anda adalah: <strong>${otp}</strong></p><p>Kode ini berlaku selama 15 menit.</p>`,
+      html: `<p>Kode verifikasi Anda adalah: <strong>${otp}</strong></p><p>Kode ini berlaku selama 10 menit.</p>`,
     });
+    if (error) throw error;
     console.log(`Email terkirim ke ${toEmail}`);
   } catch (error) {
     console.error('Gagal mengirim email verifikasi:', error);
+    throw error;
   }
 }
 
@@ -36,13 +38,15 @@ export async function sendResetPasswordEmail(toEmail, resetToken) {
   const resetUrl = `${env.frontendUrl}/reset-password?token=${resetToken}`;
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `UndanganManten <${FROM_EMAIL}>`,
       to: toEmail,
       subject: 'Reset Password Anda',
       html: `<p>Klik link berikut untuk mereset password Anda:</p><p><a href="${resetUrl}">${resetUrl}</a></p><p>Link ini berlaku selama 1 jam.</p>`,
     });
+    if (error) throw error;
   } catch (error) {
     console.error('Gagal mengirim email reset password:', error);
+    throw error;
   }
 }

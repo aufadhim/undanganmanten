@@ -18,6 +18,7 @@ export default function Signup() {
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const googleEnabled = Boolean(import.meta.env.VITE_GOOGLE_CLIENT_ID);
     const [timer, setTimer] = useState(60);
     const [canResend, setCanResend] = useState(false);
     
@@ -291,19 +292,12 @@ export default function Signup() {
                         </button>
                     </form>
 
-                    <div className="auth-or">
-                        {t('auth.or_email', 'or')}
-                    </div>
-
-                    <div style={{ marginBottom: 20 }}>
-                        <GoogleLogin
-                            onSuccess={handleGoogleSuccess}
-                            onError={() => setError(t('auth.google_fail'))}
-                            useOneTap
-                            width="100%"
-                            text="signup_with"
-                        />
-                    </div>
+                    {googleEnabled && <>
+                        <div className="auth-or">{t('auth.or_email', 'or')}</div>
+                        <div style={{ marginBottom: 20 }}>
+                            <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('auth.google_fail'))} useOneTap width="100%" text="signup_with" />
+                        </div>
+                    </>}
                     
                     <p className="auth-switch">
                         {t('auth.has_account', 'Already have an account?')} <Link to="/login">{t('auth.login_here', 'Login')}</Link>

@@ -40,7 +40,7 @@ router.delete('/delete-account', authenticate, deleteAccount);
 router.get('/me', authenticate, me);
 
 // Endpoint utilitas hanya tersedia pada development/test.
-if (!env.isProduction) {
+if (env.isTest && process.env.ALLOW_TEST_RESET === 'true') {
   router.post('/test-reset', testReset);
 }
 

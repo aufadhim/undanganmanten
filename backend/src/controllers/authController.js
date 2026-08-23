@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
 import { prisma } from '../lib/prisma.js';
 import { generateToken } from '../utils/jwt.js';
 import { deleteFolderFromR2 } from '../lib/storage.js';
@@ -12,22 +11,15 @@ import {
   resetPasswordSchema,
   changePasswordSchema,
 } from '../utils/validators.js';
+import {
+  createOtpRecord,
+  generateOTP,
+  generateResetToken,
+  hashResetToken,
+  verifyOtpRecord,
+} from '../utils/authTokens.js';
 
 const SALT_ROUNDS = 10;
-
-// Helper generate 6-digit OTP
-function generateOTP() {
-  return crypto.randomInt(100000, 1000000).toString();
-}
-
-const OTP_TTL_MS = 10 * 60 * 1000;
-const createOtpRecord = (otp) => `${otp}:${Date.now() + OTP_TTL_MS}`;
-function verifyOtpRecord(record, otp) {
-  const [storedOtp, expiresAt] = String(record || '').split(':');
-  return storedOtp === otp && Number(expiresAt) > Date.now();
-}
-
-const hashResetToken = (token) => crypto.createHash('sha256').update(token).digest('hex');
 
 // POST /api/auth/signup
 export async function signup(req, res) {
@@ -48,7 +40,7 @@ export async function signup(req, res) {
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
     const otp = generateOTP();
 
-    await prisma.user.create({
+    const createdUser = await prisma.user.create({
       data: {
         email,
         passwordHash,
@@ -58,12 +50,16 @@ export async function signup(req, res) {
     });
 
     // Kirim email verifikasi
-    if (process.env.NODE_ENV !== 'production' && email.includes('@test.com')) {
-      console.log(`[TEST MODE] OTP for ${email} is ${otp}`);
-    } else {
-      sendVerificationEmail(email, otp).catch((err) =>
-        console.error('Gagal mengirim email verifikasi:', err)
-      );
+    try {
+      if (process.env.NODE_ENV !== 'production' && email.includes('@test.com')) {
+        console.log(`[TEST MODE] OTP for ${email} is ${otp}`);
+      } else {
+        await sendVerificationEmail(email, otp);
+      }
+    } catch (emailError) {
+      await prisma.user.delete({ where: { id: createdUser.id } });
+      console.error('Signup dibatalkan karena email verifikasi gagal:', emailError);
+      return res.status(502).json({ error: 'Email verifikasi gagal dikirim. Silakan coba lagi.' });
     }
 
     return res.status(201).json({
@@ -151,9 +147,7 @@ export async function resendOtp(req, res) {
     if (process.env.NODE_ENV !== 'production' && email.includes('@test.com')) {
       console.log(`[TEST MODE] Resent OTP for ${email} is ${otp}`);
     } else {
-      sendVerificationEmail(email, otp).catch((err) =>
-        console.error('Gagal mengirim ulang OTP:', err)
-      );
+      await sendVerificationEmail(email, otp);
     }
 
     return res.json({ message: 'Kode OTP baru telah dikirim ke email Anda.' });
@@ -224,7 +218,7 @@ export async function forgotPassword(req, res) {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (user) {
-      const resetToken = crypto.randomBytes(32).toString('hex');
+      const resetToken = generateResetToken();
       const expires = new Date(Date.now() + 60 * 60 * 1000); // 1 jam
 
       await prisma.user.update({
@@ -232,9 +226,7 @@ export async function forgotPassword(req, res) {
         data: { resetPasswordToken: hashResetToken(resetToken), resetPasswordExpires: expires },
       });
 
-      sendResetPasswordEmail(email, resetToken).catch((err) =>
-        console.error('Gagal mengirim email reset password:', err)
-      );
+      await sendResetPasswordEmail(email, resetToken);
     }
 
     return res.json({
@@ -386,7 +378,7 @@ export async function me(req, res) {
 
 // POST /api/auth/test-reset
 export async function testReset(req, res) {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV !== 'test' || process.env.ALLOW_TEST_RESET !== 'true') {
     return res.status(403).json({ error: 'Not allowed in production' });
   }
 

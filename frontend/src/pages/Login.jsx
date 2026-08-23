@@ -12,6 +12,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const googleEnabled = Boolean(import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
     useEffect(() => {
         if (getToken()) {
@@ -89,18 +90,12 @@ export default function Login() {
                         </button>
                     </form>
 
-                    <div className="auth-or">
-                        {t('auth.or_email', 'or')}
-                    </div>
-
-                    <div style={{ marginBottom: 20 }}>
-                        <GoogleLogin
-                            onSuccess={handleGoogleSuccess}
-                            onError={() => setError(t('auth.google_fail'))}
-                            useOneTap
-                            width="100%"
-                        />
-                    </div>
+                    {googleEnabled && <>
+                        <div className="auth-or">{t('auth.or_email', 'or')}</div>
+                        <div style={{ marginBottom: 20 }}>
+                            <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('auth.google_fail'))} useOneTap width="100%" />
+                        </div>
+                    </>}
                     
                     <p className="auth-switch">
                         {t('auth.no_account', "Don't have an account?")} <Link to="/signup">{t('auth.register_here', 'Create account')}</Link>

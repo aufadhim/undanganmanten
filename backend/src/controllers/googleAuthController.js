@@ -3,9 +3,12 @@ import { prisma } from '../lib/prisma.js';
 import { generateToken } from '../utils/jwt.js';
 
 // Pastikan untuk menambahkan GOOGLE_CLIENT_ID di .env Anda
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID');
+const client = process.env.GOOGLE_CLIENT_ID ? new OAuth2Client(process.env.GOOGLE_CLIENT_ID) : null;
 
 export async function googleLogin(req, res) {
+  if (!client) {
+    return res.status(503).json({ error: 'Google Login belum dikonfigurasi.' });
+  }
   const { credential } = req.body;
 
   if (!credential) {
@@ -15,7 +18,7 @@ export async function googleLogin(req, res) {
   try {
     const ticket = await client.verifyIdToken({
       idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID',
+      audience: process.env.GOOGLE_CLIENT_ID,
     });
     
     const payload = ticket.getPayload();
