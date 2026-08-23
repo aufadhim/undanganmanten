@@ -30,11 +30,6 @@ export async function upsertGiftSettings(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
-    const entitlements = await getEntitlements(invitation);
-    if (!entitlements.giftEnabled) {
-      return res.status(403).json({ error: 'Amplop digital memerlukan paket Premium atau add-on Amplop Digital.' });
-    }
-
     const giftSettings = await prisma.giftSettings.upsert({
       where: { invitationId: invitation.id },
       update: parsed.data,
@@ -56,13 +51,6 @@ export async function upsertLivestreamSettings(req, res) {
 
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
-
-    const entitlements = await getEntitlements(invitation);
-    if (!entitlements.livestreamEnabled) {
-      return res.status(403).json({
-        error: 'Fitur Live Streaming hanya tersedia untuk paket PREMIUM. Silakan upgrade paket Anda.',
-      });
-    }
 
     const livestreamSettings = await prisma.livestreamSettings.upsert({
       where: { invitationId: invitation.id },
@@ -87,14 +75,6 @@ export async function updateInvitationFeatures(req, res) {
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
     const { rsvpEnabled, giftEnabled, livestreamEnabled, timelineEnabled, storyEnabled, dresscodeEnabled, rundownEnabled, igFilterEnabled } = parsed.data;
-
-    const entitlements = await getEntitlements(invitation);
-    if (giftEnabled === true && !entitlements.giftEnabled) {
-      return res.status(403).json({ error: 'Amplop digital belum termasuk dalam paket Anda.' });
-    }
-    if (livestreamEnabled === true && !entitlements.livestreamEnabled) {
-      return res.status(403).json({ error: 'Live streaming hanya tersedia untuk paket Premium.' });
-    }
 
     // Menggunakan upsert agar otomatis terbuat jika record belum ada di DB
     const features = await prisma.invitationFeatures.upsert({

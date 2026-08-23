@@ -14,8 +14,16 @@ const DEFAULT_SANDBOX_INVITATION = {
     slug: 'sandbox-demo',
     status: 'draft',
     coupleProfile: {
-        brideName: 'Wanita',
-        groomName: 'Pria',
+        brideName: 'Arunika',
+        brideFullName: 'Arunika Candramawarni',
+        brideFather: 'Adikara Wicaksana',
+        brideMother: 'Sekar Ayuningtyas',
+        bridePhoto: 'https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?q=80&w=1287&auto=format&fit=crop',
+        groomName: 'Deva',
+        groomFullName: 'Deva Nararya',
+        groomFather: 'Bramantya Narendra',
+        groomMother: 'Ratih Puspitasari',
+        groomPhoto: '/assets/eternal/images/couples/groom.webp',
     },
     themeSettings: {
         background: { enabled: false },
@@ -23,8 +31,12 @@ const DEFAULT_SANDBOX_INVITATION = {
         button: { enabled: false },
         typography: {}
     },
-    themeId: 'nisera'
+    themeId: 'eternal',
+    invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true },
+    events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
+    galleryMedia: [],
 };
+const SANDBOX_VERSION = '3';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();
@@ -35,12 +47,14 @@ export default function SandboxDashboard() {
 
     const [sandboxInvitation, setSandboxInvitation] = useState(() => {
         const saved = localStorage.getItem('sandbox_invitation');
-        if (saved) {
-            return JSON.parse(saved);
+        const savedVersion = localStorage.getItem('sandbox_version');
+        if (saved && savedVersion === SANDBOX_VERSION) {
+            const parsed = JSON.parse(saved);
+            return { ...DEFAULT_SANDBOX_INVITATION, ...parsed, themeId: urlTheme || parsed.themeId || 'eternal' };
         }
         return {
             ...DEFAULT_SANDBOX_INVITATION,
-            themeId: urlTheme || 'nisera'
+            themeId: urlTheme || 'eternal'
         };
     });
 
@@ -60,6 +74,7 @@ export default function SandboxDashboard() {
     useEffect(() => {
         // Save changes to localStorage so they persist across reloads
         localStorage.setItem('sandbox_invitation', JSON.stringify(sandboxInvitation));
+        localStorage.setItem('sandbox_version', SANDBOX_VERSION);
     }, [sandboxInvitation]);
 
     const MACRO_TABS = [
@@ -89,6 +104,7 @@ export default function SandboxDashboard() {
 
     const handleUpdateInvitation = (updatedInv) => {
         setSandboxInvitation(updatedInv);
+        setPreviewOverride(null);
     };
 
     const handleSignup = () => {
@@ -188,7 +204,13 @@ export default function SandboxDashboard() {
                     <div className={`iphone-mockup-stage preview-mode-${previewMode}`}>
                         {previewMode === 'mobile' && <div className="dynamic-island"></div>}
                         <PhonePreview
-                            invitation={previewOverride || sandboxInvitation}
+                            invitation={previewOverride ? {
+                                ...sandboxInvitation,
+                                ...previewOverride,
+                                coupleProfile: { ...sandboxInvitation.coupleProfile, ...(previewOverride.coupleProfile || {}) },
+                                themeSettings: { ...sandboxInvitation.themeSettings, ...(previewOverride.themeSettings || {}) },
+                                invitationFeatures: { ...sandboxInvitation.invitationFeatures, ...(previewOverride.invitationFeatures || {}) },
+                            } : sandboxInvitation}
                             previewMode={previewMode}
                             previewGuest={null}
                             editorPreview

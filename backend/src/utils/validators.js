@@ -85,6 +85,7 @@ export const updateThemeSettingsSchema = z.object({
   openingAnimation: z.string().max(50).optional(),
   brideBioEnabled: z.boolean().optional(),
   groomBioEnabled: z.boolean().optional(),
+  galleryLayout: z.enum(['editorial', 'grid', 'masonry', 'carousel']).optional(),
   layoutOrder: z.array(z.object({ id: z.string().max(50), enabled: z.boolean() }).passthrough()).max(50).optional(),
   mainStory: z.string().max(5000).optional(),
 });

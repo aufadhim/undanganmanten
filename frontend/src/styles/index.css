@@ -172,6 +172,8 @@ body {
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 34px;
+  overflow: hidden;
 }
 
 .slider:before {
@@ -185,6 +187,7 @@ body {
   background-color: white !important;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 50% !important;
 }
 
 input:checked + .slider {

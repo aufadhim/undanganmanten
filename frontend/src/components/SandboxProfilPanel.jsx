@@ -75,31 +75,29 @@ export default function SandboxProfilPanel({ invitation, onUpdated, onLivePrevie
 
     async function handleCroppedUpload(blob) {
         if (!cropConfig) return;
-        const { side, file } = cropConfig;
+        const { side } = cropConfig;
         
         // Tutup cropper
         setCropConfig(null);
         setUploading(side);
 
-        const formData = new FormData();
-        // Upload blob dengan nama original (atau nama baru .jpeg)
-        formData.append('photo', blob, file.name);
-        formData.append('side', side);
-
         try {
-            const res = await api.post(`/invitations/me/couple-profile/photo?side=${side}`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+            const photoDataUrl = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
             });
-
-            const updatedProfile = res.data?.coupleProfile || res.data;
+            const photoKey = side === 'bride' ? 'bridePhoto' : 'groomPhoto';
+            const updatedProfile = { ...invitation.coupleProfile, ...form, [photoKey]: photoDataUrl };
             onUpdated({
                 ...invitation,
                 coupleProfile: updatedProfile,
             });
             toast.success(`Foto ${side === 'bride' ? 'Mempelai Wanita' : 'Mempelai Pria'} berhasil diunggah!`);
         } catch (err) {
-            console.error('Error upload photo:', err);
-            toast.error(err.response?.data?.error || 'Gagal mengunggah foto.');
+            console.error('Error preview photo:', err);
+            toast.error('Gagal memproses foto untuk preview sandbox.');
         } finally {
             setUploading('');
         }

@@ -14,6 +14,20 @@
     "startBtn": "Start for Free",
     "featureBtn": "Learn More"
   },
+  "landingHero": {
+    "eyebrow": "Digital Wedding Invitation",
+    "titleBefore": "An Invitation Made to Be",
+    "titleAccent": "Opened",
+    "titleAfter": "Not One Left",
+    "titleLast": "in a Drawer.",
+    "description": "A digital invitation delivered through WhatsApp, opened from any phone, and ready for immediate replies — RSVP and wishes arrive in your dashboard.",
+    "try": "Try the Design Free",
+    "example": "View Sample Invitation",
+    "proofOneTitle": "No installation",
+    "proofOneText": "try everything in your browser",
+    "proofTwoTitle": "Live preview",
+    "proofTwoText": "see every change before checkout"
+  },
   "features": {
     "title": "Key Features",
     "subtitle": "Everything you need for a perfect invitation.",
@@ -22,7 +36,7 @@
     "f2_title": "Automated RSVP",
     "f2_desc": "Manage guest confirmations easily right from your smart dashboard.",
     "f3_title": "WhatsApp Blast",
-    "f3_desc": "Send personalized unique links to all your guests with just one click.",
+    "f3_desc": "Prepare personalized invitation links to share with each guest through WhatsApp.",
     "f4_title": "Love Story Gallery",
     "f4_desc": "Share your beautiful moments through an interactive high-resolution photo gallery."
   },
@@ -51,7 +65,7 @@
     "login_title": "Log in to your account",
     "login_sub": "Continue editing your wedding invitation.",
     "signup_title": "Create a new account",
-    "signup_sub": "Start creating your digital invitation in 5 minutes.",
+    "signup_sub": "Start building your digital invitation and preview every change in real time.",
     "verify_title": "Email Verification",
     "verify_sub": "Enter the 6-digit code sent to {{email}}.",
     "email": "Email",

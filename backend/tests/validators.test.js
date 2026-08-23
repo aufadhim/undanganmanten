@@ -44,6 +44,11 @@ test('visibilitas bio kedua mempelai menerima nilai boolean', () => {
   assert.equal(updateThemeSettingsSchema.safeParse({ brideBioEnabled: 'ya' }).success, false);
 });
 
+test('layout galeri hanya menerima pilihan yang didukung', () => {
+  assert.equal(updateThemeSettingsSchema.safeParse({ galleryLayout: 'carousel' }).success, true);
+  assert.equal(updateThemeSettingsSchema.safeParse({ galleryLayout: 'acak-sekali' }).success, false);
+});
+
 test('RSVP membatasi jumlah kehadiran maksimal dua orang', async () => {
   const { rsvpSchema } = await import('../src/utils/validators.js');
   assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 2 }).success, true);
@@ -64,6 +69,6 @@ test('hadiah mendukung beberapa rekening tervalidasi', () => {
   assert.equal(giftSettingsSchema.safeParse(value).success, true);
 });
 
-test('ucapan memiliki toggle terpisah dan opsi moderasi', () => {
-  assert.equal(invitationFeaturesSchema.safeParse({ rsvpEnabled: false, wishesEnabled: true, wishesModerationEnabled: true }).success, true);
+test('fitur ucapan tetap dikendalikan dari Susunan dan Blok', () => {
+  assert.equal(invitationFeaturesSchema.safeParse({ rsvpEnabled: false, wishesEnabled: true }).success, true);
 });

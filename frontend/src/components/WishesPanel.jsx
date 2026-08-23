@@ -174,9 +174,8 @@ export default function WishesPanel({ invitation, onUpdated }) {
     <>
       <h2 className="panel-header">{t('panels.ucapan_title') || 'Ucapan & Doa'}</h2>
       <p className="panel-sub">Sematkan doa terbaik, atau jadikan gambar untuk dipamerkan di IG Story-mu!</p>
-      <div className="section-block" style={{ marginBottom: 18 }}>
-        <label style={{ display: 'flex', gap: 8, marginBottom: 10 }}><input type="checkbox" checked={wishSettings.enabled} onChange={(e) => saveWishSettings({ ...wishSettings, enabled: e.target.checked })} /> Tampilkan form ucapan</label>
-        <label style={{ display: 'flex', gap: 8 }}><input type="checkbox" checked={wishSettings.moderation} onChange={(e) => saveWishSettings({ ...wishSettings, moderation: e.target.checked })} /> Sembunyikan ucapan baru sampai disetujui</label>
+      <div className="section-block" style={{ marginBottom: 18, fontSize: 12, color: 'var(--ink-soft)' }}>
+        Form ucapan diaktifkan melalui tab Susunan &amp; Blok. Ucapan tidak pantas otomatis ditolak sebelum tersimpan.
       </div>
 
       {wishes.length > 0 && (

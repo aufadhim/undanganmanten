@@ -14,6 +14,20 @@
     "startBtn": "Mulai Gratis Sekarang",
     "featureBtn": "Pelajari Fitur"
   },
+  "landingHero": {
+    "eyebrow": "Undangan Pernikahan Digital",
+    "titleBefore": "Undangan yang",
+    "titleAccent": "Dibuka",
+    "titleAfter": "Bukan yang Ditumpuk",
+    "titleLast": "di Laci.",
+    "description": "Undangan digital yang dikirim lewat WhatsApp, dibuka di genggaman, dan langsung bisa dibalas — RSVP dan ucapan masuk ke dashboardmu.",
+    "try": "Coba Desain Gratis",
+    "example": "Lihat Contoh Undangan",
+    "proofOneTitle": "Tanpa instalasi",
+    "proofOneText": "langsung dicoba lewat browser",
+    "proofTwoTitle": "Preview realtime",
+    "proofTwoText": "lihat perubahan sebelum membeli"
+  },
   "features": {
     "title": "Fitur Unggulan",
     "subtitle": "Semua yang Anda butuhkan untuk undangan yang sempurna.",
@@ -22,7 +36,7 @@
     "f2_title": "RSVP Otomatis",
     "f2_desc": "Kelola konfirmasi kehadiran tamu dengan mudah langsung dari dashboard pintar Anda.",
     "f3_title": "WhatsApp Blast",
-    "f3_desc": "Kirimkan link unik yang dipersonalisasi ke semua tamu Anda dengan satu kali klik.",
+    "f3_desc": "Siapkan link unik yang dipersonalisasi untuk dibagikan kepada setiap tamu melalui WhatsApp.",
     "f4_title": "Galeri Kisah Cinta",
     "f4_desc": "Bagikan momen-momen indah Anda melalui galeri foto interaktif beresolusi tinggi."
   },
@@ -51,7 +65,7 @@
     "login_title": "Masuk ke akunmu",
     "login_sub": "Lanjutkan mengedit undangan pernikahanmu.",
     "signup_title": "Buat akun baru",
-    "signup_sub": "Mulai bikin undangan digitalmu dalam 5 menit.",
+    "signup_sub": "Mulai susun undangan digitalmu dan lihat hasilnya secara realtime.",
     "verify_title": "Verifikasi Email",
     "verify_sub": "Masukkan 6 digit kode yang dikirim ke {{email}}.",
     "email": "Email",

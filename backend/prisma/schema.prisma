@@ -92,6 +92,9 @@ model ThemeSettings {
   igFilterImageUrl    String?    @map("ig_filter_image_url")
   layoutOrder         Json?      @map("layout_order")
   mainStory           String?    @map("main_story")
+  brideBioEnabled     Boolean?   @map("bride_bio_enabled")
+  groomBioEnabled     Boolean?   @map("groom_bio_enabled")
+  galleryLayout       String?    @map("gallery_layout")
   invitation          Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
 
   @@map("theme_settings")

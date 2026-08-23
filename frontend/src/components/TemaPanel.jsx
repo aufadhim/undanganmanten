@@ -21,7 +21,7 @@ const CATALOG_TEMPLATES = [
         id: 'nisera',
         name: 'Nisera',
         category: 'PREMIUM',
-        previewImg: '/assets/nisera/nisera-thumb.jpg',
+        previewImg: '/assets/nisera/nisera-aHR0cHM6Ly9tZWRpYS5rYXRzdWRvdG8uaWQvbWVkaWEvcHVibGljLzk2ODQxLzcyMzE3L3RodW1ibmFpbC90aHVtYi1sZy05NzI4NTEtMjAwMC0yMDAwLWVkOGUzYWVjODFhZGE4NDc3MzVkOGJlYi1jZjI1MjUuanBn.webp',
         description: 'Desain luxury kustom dari referensi Katsudoto dengan tata letak side-to-side klasik.'
     }
 ];

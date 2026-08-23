@@ -5,67 +5,29 @@ export default function PricingSection() {
     <section id="harga" className="pricing">
       <div className="section-head reveal">
         <div className="eyebrow center">Kartu Balasan</div>
-        <h2>Tiga Paket, Satu Kebahagiaan</h2>
+        <h2>Satu Paket Lengkap, Harga Jelas</h2>
         <p className="section-sub">Bayar sekali, undangan aktif hingga 30 hari setelah acara.</p>
       </div>
 
-        <div className="ticket-grid">
-        <div className="ticket reveal">
+        <div className="ticket-grid" style={{ maxWidth: 520, marginInline: 'auto' }}>
+        <div className="ticket highlighted reveal">
+          <div className="ticket-flag">Paket Lengkap</div>
           <div className="ticket-body">
-            <div className="ticket-name">Trial</div>
-            <div className="ticket-price">Gratis</div>
-            <div className="ticket-period">Untuk mencoba-coba</div>
-            <ul>
-              <li>Masa trial 2 hari</li>
-              <li>Hanya bisa dilihat di Preview (Tidak bisa dipublish)</li>
-              <li>Galeri maksimal 10 media</li>
-              <li>Batas undangan 10 tamu</li>
-              <li>Watermark UndanganManten</li>
-            </ul>
-          </div>
-          <div className="ticket-perf" />
-          <div className="ticket-stub">
-            <Link to="/signup" className="lp-btn-ghost full">Coba Trial</Link>
-          </div>
-        </div>
-
-        <div className="ticket highlighted reveal" style={{ transitionDelay: '0.1s' }}>
-          <div className="ticket-body">
-            <div className="ticket-name">Standard</div>
-            <div className="ticket-price">Rp79.000</div>
+            <div className="ticket-name">Undangan Digital Premium</div>
+            <div className="ticket-price">Rp119.000</div>
             <div className="ticket-period">Aktif hingga H+30</div>
             <ul>
               <li>Aktif hingga 30 hari setelah acara</li>
-              <li>Bebas Pilih Semua Tema</li>
-              <li>Maksimal 10 media galeri</li>
-              <li>RSVP Maksimal 100 Tamu</li>
-              <li>Terdapat Watermark Elegan</li>
+              <li>Semua tema dan editor realtime</li>
+              <li>Galeri foto dan video</li>
+              <li>RSVP dan daftar tamu tanpa batas</li>
+              <li>Ucapan, hadiah, dan live streaming</li>
+              <li>Tambah Buku Tamu QR Scanner: <strong>Rp20.000</strong></li>
             </ul>
           </div>
           <div className="ticket-perf" />
           <div className="ticket-stub">
-            <Link to="/signup" className="lp-btn-seal full">Pilih Standard</Link>
-          </div>
-        </div>
-
-        <div className="ticket highlighted reveal" style={{ transitionDelay: '0.2s', borderColor: 'var(--wine)' }}>
-          <div className="ticket-flag">Paling Laris</div>
-          <div className="ticket-body">
-            <div className="ticket-name">Premium</div>
-            <div className="ticket-price">Rp129.000</div>
-            <div className="ticket-period">Aktif hingga H+30</div>
-            <ul>
-              <li>Aktif hingga 30 hari setelah acara</li>
-              <li>Semua fitur Standard</li>
-              <li>Maksimal 30 media galeri</li>
-              <li>RSVP Tamu <strong>Unlimited</strong></li>
-              <li><strong>Buku Tamu QR Code Scanner</strong></li>
-              <li>Amplop digital &amp; live streaming</li>
-            </ul>
-          </div>
-          <div className="ticket-perf" />
-          <div className="ticket-stub">
-            <Link to="/signup" className="lp-btn-seal full">Pilih Premium</Link>
+            <Link to="/sandbox" className="lp-btn-seal full">Coba Dulu di Sandbox</Link>
           </div>
         </div>
       </div>

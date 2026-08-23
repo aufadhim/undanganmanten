@@ -8,7 +8,6 @@ import Footer from '../components/Footer.jsx';
 import HeroSection from '../components/landing/HeroSection.jsx';
 import HowItWorksSection from '../components/landing/HowItWorksSection.jsx';
 import FeaturesSection from '../components/landing/FeaturesSection.jsx';
-import TestimonialSection from '../components/landing/TestimonialSection.jsx';
 import ComparisonSection from '../components/landing/ComparisonSection.jsx';
 import PricingSection from '../components/landing/PricingSection.jsx';
 import FaqSection from '../components/landing/FaqSection.jsx';
@@ -56,7 +55,6 @@ export default function Landing() {
       <HeroSection setMobileMenuOpen={setMobileMenuOpen} />
       <HowItWorksSection />
       <FeaturesSection />
-      <TestimonialSection />
       <ComparisonSection />
       <PricingSection />
       <FaqSection />

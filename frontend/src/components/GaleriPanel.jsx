@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
+import { resolveImageUrl } from '../config/env.js';
 
-export default function GaleriPanel({ invitation, onUpdated }) {
+export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
   const { t } = useTranslation();
   const [media, setMedia] = useState(invitation?.galleryMedia || []);
   const [uploading, setUploading] = useState(false);
@@ -13,6 +14,7 @@ export default function GaleriPanel({ invitation, onUpdated }) {
   const [showLinkModal, setShowLinkModal] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   const [linkLoading, setLinkLoading] = useState(false);
+  const [layout, setLayout] = useState(invitation?.themeSettings?.galleryLayout || 'editorial');
 
   useEffect(() => {
     if (invitation?.galleryMedia) {
@@ -24,6 +26,20 @@ export default function GaleriPanel({ invitation, onUpdated }) {
 
   const currentPhotos = media.filter(m => m.type === 'photo').length;
   const currentVideos = media.filter(m => m.type === 'video').length;
+  const photos = media.filter(m => m.type === 'photo');
+  const videos = media.filter(m => m.type === 'video');
+
+  async function handleLayoutChange(nextLayout) {
+    setLayout(nextLayout);
+    const nextTheme = { ...(invitation.themeSettings || {}), galleryLayout: nextLayout };
+    onLivePreview?.({ themeSettings: nextTheme });
+    try {
+      const res = await api.patch('/invitations/me/theme', { galleryLayout: nextLayout });
+      onUpdated?.({ ...invitation, themeSettings: res.data.themeSettings });
+    } catch (err) {
+      setErrorMsg(err.response?.data?.error || 'Gagal menyimpan layout galeri.');
+    }
+  }
 
   async function handleBatchUpload(fileList) {
     if (!fileList || fileList.length === 0) return;
@@ -177,7 +193,7 @@ export default function GaleriPanel({ invitation, onUpdated }) {
           icon={<i className="fa-solid fa-cloud-arrow-up"></i>}
           style={{ margin: 0 }}
         >
-          {uploading ? 'Mengunggah Foto-foto...' : 'Upload Foto/Video Singkat'}
+          {uploading ? 'Mengunggah Media...' : 'Upload Foto atau Video Singkat'}
           <input
             type="file"
             accept="image/*,video/*"
@@ -220,27 +236,22 @@ export default function GaleriPanel({ invitation, onUpdated }) {
         </form>
       )}
 
-      {/* TODO: implement drag-and-drop reorder pakai endpoint PATCH /me/gallery/reorder */}
-      {/* TODO: pilihan layout (grid/masonry/carousel) - field layoutType sudah ada di data */}
+      <div className="section-block" style={{ marginBottom: 18 }}>
+        <label className="field-label">Layout Galeri Foto</label>
+        <select className="text-input" value={layout} onChange={(e) => handleLayoutChange(e.target.value)}>
+          <option value="editorial">Editorial Eternal — dua kolom berbeda</option>
+          <option value="grid">Grid Rapi — ukuran seragam</option>
+          <option value="masonry">Masonry — susunan natural</option>
+          <option value="carousel">Slideshow — geser horizontal</option>
+        </select>
+        <small style={{ color: '#777' }}>Perubahan layout langsung terlihat pada preview.</small>
+      </div>
 
+      <h3 style={{ fontSize: 14, margin: '0 0 10px' }}>Foto ({photos.length})</h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-        {media.map((item) => {
-          const ytId = item.type === 'video' && (item.url.includes('youtube.com') || item.url.includes('youtu.be')) ? getYoutubeId(item.url) : null;
-          
-          return (
+        {photos.map((item) => (
           <div key={item.id} style={{ position: 'relative' }}>
-            {item.type === 'photo' ? (
-              <img src={item.url} style={{ width: '100%', borderRadius: 8, aspectRatio: '1', objectFit: 'cover' }} alt="" />
-            ) : ytId ? (
-              <div style={{ width: '100%', aspectRatio: '1', borderRadius: 8, overflow: 'hidden', background: '#000', position: 'relative' }}>
-                <img src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} alt="Youtube Video" />
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: '#fff', fontSize: '24px' }}>
-                  <i className="fa-brands fa-youtube" style={{ color: '#ff0000' }}></i>
-                </div>
-              </div>
-            ) : (
-              <video src={item.url} style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: 8 }} />
-            )}
+            <img src={resolveImageUrl(item.url)} style={{ width: '100%', borderRadius: 8, aspectRatio: '1', objectFit: 'cover' }} alt="Foto galeri" />
             <button
               onClick={() => handleDelete(item.id)}
               style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 6, fontSize: 11, padding: '4px 8px', cursor: 'pointer' }}
@@ -248,7 +259,18 @@ export default function GaleriPanel({ invitation, onUpdated }) {
               Hapus
             </button>
           </div>
-        )})}
+        ))}
+      </div>
+
+      <h3 style={{ fontSize: 14, margin: '22px 0 10px' }}>Video ({videos.length})</h3>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {videos.map((item) => {
+          const ytId = getYoutubeId(item.url);
+          return <div key={item.id} style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 10, overflow: 'hidden', background: '#111' }}>
+            {ytId ? <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video YouTube" style={{ width: '100%', height: '100%', border: 0 }} allowFullScreen /> : <video src={resolveImageUrl(item.url)} controls preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+            <button onClick={() => handleDelete(item.id)} style={{ position: 'absolute', top: 6, right: 6, zIndex: 2, background: 'rgba(0,0,0,.7)', color: '#fff', border: 0, borderRadius: 6, padding: '5px 9px' }}>Hapus</button>
+          </div>;
+        })}
       </div>
     </>
   );

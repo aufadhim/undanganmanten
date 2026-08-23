@@ -51,7 +51,7 @@ export function UIProvider({ children }) {
   return (
     <UIContext.Provider value={{ toast, confirm }}>
       {children}
-      <ToastContainer toasts={toasts} />
+      <ToastContainer toasts={toasts} onDismiss={(id) => setToasts((prev) => prev.filter((toast) => toast.id !== id))} />
       {confirmConfig && <ConfirmModal {...confirmConfig} />}
     </UIContext.Provider>
   );

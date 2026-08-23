@@ -164,7 +164,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                     <div>
                         <div style={{ fontWeight: '600', fontSize: '14px', color: 'var(--ink)' }}>Teks Cerita Utama (Our Story)</div>
-                        <div style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>Gunakan tag HTML ringan seperti &lt;b&gt;tebal&lt;/b&gt; atau &lt;i&gt;miring&lt;/i&gt; untuk mengatur gaya ketikan. Biarkan kosong jika tidak diperlukan.</div>
+                        <div style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>Tuliskan ringkasan perjalanan kalian. Biarkan kosong jika bagian ini tidak diperlukan.</div>
                     </div>
                 </div>
                 <div className="stack">
@@ -173,7 +173,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                         rows={6} 
                         value={mainStory}
                         onChange={(e) => setMainStory(e.target.value)}
-                        placeholder="We walked our own paces, chasing <i>different dreams</i>..."
+                        placeholder="Contoh: Kami bertemu tanpa rencana, bertumbuh dalam banyak cerita, lalu memilih berjalan bersama menuju selamanya."
                     ></textarea>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button variant="primary" onClick={handleSaveMainStory} isLoading={savingMain}>
@@ -189,7 +189,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                         <div style={{ fontWeight: '600', fontSize: '14px', color: 'var(--ink)' }}>Tampilkan Timeline Perjalanan</div>
                         <div style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>Munculkan garis waktu kejadian (misal: Pertemuan Pertama, Lamaran).</div>
                     </div>
-                    <label className="switch">
+                    <label className="switch" style={{ flex: '0 0 40px', marginLeft: '16px' }}>
                         <input type="checkbox" checked={timelineEnabled} onChange={() => handleToggle('timelineEnabled', timelineEnabled)} />
                         <span className="slider round"></span>
                     </label>

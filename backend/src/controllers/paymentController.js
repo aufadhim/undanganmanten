@@ -17,13 +17,18 @@ export const PACKAGES = {
     maxGallery: 10,
   },
   PREMIUM: {
-    name: 'Paket Premium (All-Inclusive + Addons)',
-    price: 129000,
+    name: 'Undangan Digital Premium',
+    price: 119000,
     maxGallery: 30,
   }
 };
 
 export const ADDONS = {
+  QR_GUESTBOOK: {
+    id: 'QR_GUESTBOOK',
+    name: 'Add-on Buku Tamu QR Code Scanner',
+    price: 20000,
+  },
   AMPLOP_DIGITAL: {
     id: 'AMPLOP_DIGITAL',
     name: 'Add-on Amplop Digital & Hadiah',
@@ -106,9 +111,9 @@ export async function createCheckout(req, res) {
     });
     totalAmount += basePkg.price;
 
-    // 2. Add-ons Opsional (Jika memilih Paket STANDARD)
+    // 2. Add-on opsional dapat dipilih bersama paket aktif.
     const validAddons = [];
-    if (targetPackage === 'STANDARD' && Array.isArray(selectedAddons)) {
+    if (Array.isArray(selectedAddons)) {
       for (const addonKey of selectedAddons) {
         if (ADDONS[addonKey]) {
           const addonObj = ADDONS[addonKey];

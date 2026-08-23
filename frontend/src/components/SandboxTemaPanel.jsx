@@ -20,10 +20,16 @@ const CATALOG_TEMPLATES = [
         id: 'nisera',
         name: 'Nisera',
         category: 'PREMIUM',
-        previewImg: '/assets/nisera/nisera-thumb.jpg',
+        previewImg: '/assets/nisera/nisera-aHR0cHM6Ly9tZWRpYS5rYXRzdWRvdG8uaWQvbWVkaWEvcHVibGljLzk2ODQxLzcyMzE3L3RodW1ibmFpbC90aHVtYi1sZy05NzI4NTEtMjAwMC0yMDAwLWVkOGUzYWVjODFhZGE4NDc3MzVkOGJlYi1jZjI1MjUuanBn.webp',
         description: 'Desain luxury kustom dari referensi Katsudoto dengan tata letak side-to-side klasik.'
     }
 ];
+
+const SANDBOX_THEME_SETTINGS = {
+    eternal: { background: { primary: '#fafaf9', secondary: '#f5f5f4', enabled: true }, bodyText: { primary: '#292524', secondary: '#57534e', enabled: true }, button: { primary: '#292524', text: '#fafaf9', enabled: true }, typography: {} },
+    samaya: { background: { primary: '#f4f0e8', secondary: '#dfe7da', enabled: true }, bodyText: { primary: '#334238', secondary: '#667269', enabled: true }, button: { primary: '#61715f', text: '#fff', enabled: true }, typography: {} },
+    nisera: { background: { primary: '#f8f3ed', secondary: '#eaded2', enabled: true }, bodyText: { primary: '#49372f', secondary: '#7b6458', enabled: true }, button: { primary: '#7a2436', text: '#fff', enabled: true }, typography: {} },
+};
 
 export default function SandboxTemaPanel({ invitation, onUpdated }) {
     const [applyingId, setApplyingId] = useState(null);
@@ -44,7 +50,7 @@ export default function SandboxTemaPanel({ invitation, onUpdated }) {
         setApplyingId(themeId);
         // Simulate network delay
         setTimeout(() => {
-            onUpdated({ ...invitation, themeId: themeId, themeSettings: { background: { enabled: false }, bodyText: { enabled: false }, button: { enabled: false }, typography: {} } });
+            onUpdated({ ...invitation, themeId, themeSettings: SANDBOX_THEME_SETTINGS[themeId] });
             toast.success('Tema (Sandbox) berhasil diganti!');
             setApplyingId(null);
         }, 300);

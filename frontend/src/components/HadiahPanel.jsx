@@ -107,9 +107,7 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
       <h2 className="panel-header">Informasi Hadiah</h2>
       <p className="panel-sub">Hadiah sepenuhnya opsional. Detail rekening dan alamat disembunyikan sampai tamu memilih untuk melihatnya.</p>
 
-      <label style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 18 }}>
-        <input type="checkbox" checked={giftEnabled} onChange={handleToggleGift} /> Tampilkan informasi hadiah di undangan
-      </label>
+      <div className="section-block" style={{ marginBottom: 18, fontSize: 12, color: 'var(--ink-soft)' }}>Tampilan bagian hadiah diaktifkan melalui tab Susunan &amp; Blok.</div>
 
       <form onSubmit={handleSubmit} className="stack">
         <div>

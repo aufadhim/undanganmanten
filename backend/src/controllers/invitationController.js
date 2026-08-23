@@ -102,6 +102,7 @@ export async function createInvitation(req, res) {
                 giftSettings: true,
                 livestreamSettings: true,
                 guests: true,
+                orders: { where: { status: 'SUCCESS' }, select: { addons: true, status: true } },
             },
         });
 
@@ -130,6 +131,7 @@ export async function getMyInvitations(req, res) {
                 livestreamSettings: true,
                 guests: true,
                 wishes: { orderBy: { createdAt: 'desc' } },
+                orders: { where: { status: 'SUCCESS' }, select: { addons: true, status: true } },
                 _count: { select: { guests: true, wishes: true } },
             },
             orderBy: { createdAt: 'desc' },
@@ -227,6 +229,7 @@ export async function updateMyInvitation(req, res) {
                 livestreamSettings: true,
                 guests: true,
                 wishes: { orderBy: { createdAt: 'desc' } },
+                orders: { where: { status: 'SUCCESS' }, select: { addons: true, status: true } },
             },
         });
 

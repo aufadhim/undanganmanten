@@ -491,7 +491,7 @@ export default function Dashboard() {
                     />
                 )}
                 {activeTab === 'galeri' && <GaleriPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'dresscode' && <DresscodeEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
+                {activeTab === 'dresscode' && <DresscodeEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
                 {activeTab === 'hadiah' && <HadiahPanel invitation={selectedInvitation} onUpdated={(inv) => { setInvitations(invs => invs.map(i => i.id === inv.id ? inv : i)); setSelectedId(inv.id); }} onLivePreview={setPreviewOverride} />}
                 {activeTab === 'tamu' && <TamuPanel
                     invitation={selectedInvitation}

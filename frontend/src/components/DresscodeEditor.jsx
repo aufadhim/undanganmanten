@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
-export default function DresscodeEditor({ invitation, onUpdated }) {
+export default function DresscodeEditor({ invitation, onUpdated, onLivePreview }) {
     const themeSettings = invitation?.themeSettings || {};
     
     // Default structure for dresscode details
@@ -20,6 +20,10 @@ export default function DresscodeEditor({ invitation, onUpdated }) {
     );
     const [saving, setSaving] = useState(false);
     const { toast } = useUI();
+
+    useEffect(() => {
+        onLivePreview?.({ themeSettings: { ...themeSettings, dresscodeDetails: details } });
+    }, [details]);
 
     const handleSave = async () => {
         setSaving(true);

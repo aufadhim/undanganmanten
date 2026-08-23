@@ -5,6 +5,9 @@ import { useUI } from '../context/UIContext.jsx';
 
 // Palet Warna Default Bawaan Masing-masing Tema (Sebagai Acuan Undo/Reset)
 const DEFAULT_PALETTES = {
+    'eternal': { bgPrimary: '#fafaf9', bgSecondary: '#f5f5f4', textPrimary: '#292524', textSecondary: '#57534e', btnBg: '#292524', btnText: '#fafaf9' },
+    'samaya': { bgPrimary: '#f4f0e8', bgSecondary: '#dfe7da', textPrimary: '#334238', textSecondary: '#667269', btnBg: '#61715f', btnText: '#ffffff' },
+    'nisera': { bgPrimary: '#f8f3ed', bgSecondary: '#eaded2', textPrimary: '#49372f', textSecondary: '#7b6458', btnBg: '#7a2436', btnText: '#ffffff' },
     'exclusive-olan': {
         bgPrimary: '#EEE8E5',
         bgSecondary: '#E4D5C0',

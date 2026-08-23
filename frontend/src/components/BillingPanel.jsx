@@ -6,16 +6,14 @@ import { useUI } from '../context/UIContext.jsx';
 import { loadMidtransSnap } from '../utils/midtrans.js';
 
 const ADDONS_CONFIG = [
-  { id: 'AMPLOP_DIGITAL', name: 'Amplop Digital & Hadiah', price: 20000, desc: 'Rekening bank & e-wallet di undangan' },
-  { id: 'EXTRA_GUESTS_100', name: '+100 Wa Blast / Tamu Extra', price: 15000, desc: 'Tambah kuota sebar undangan' },
-  { id: 'EXTRA_GALLERY_10', name: '+10 Foto Galeri Tambahan', price: 15000, desc: 'Kapasitas foto galeri lebih luas' },
+  { id: 'QR_GUESTBOOK', name: 'Buku Tamu QR Code Scanner', price: 20000, desc: 'Check-in tamu di lokasi acara dengan QR' },
 ];
 
 export default function BillingPanel({ invitation, onUpdated }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
-  const [selectedPkg, setSelectedPkg] = useState('STANDARD');
+  const selectedPkg = 'PREMIUM';
   const [selectedAddons, setSelectedAddons] = useState([]);
   
   const { toast } = useUI();
@@ -40,10 +38,8 @@ export default function BillingPanel({ invitation, onUpdated }) {
   }
 
   // Hitung total harga checkout
-  const basePrice = selectedPkg === 'PREMIUM' ? 129000 : 79000;
-  const addonsTotal = selectedPkg === 'STANDARD'
-    ? selectedAddons.reduce((sum, id) => sum + (ADDONS_CONFIG.find((a) => a.id === id)?.price || 0), 0)
-    : 0;
+  const basePrice = 119000;
+  const addonsTotal = selectedAddons.reduce((sum, id) => sum + (ADDONS_CONFIG.find((a) => a.id === id)?.price || 0), 0);
   const grandTotal = basePrice + addonsTotal;
 
   async function handleCheckout() {
@@ -51,7 +47,7 @@ export default function BillingPanel({ invitation, onUpdated }) {
     try {
       const res = await api.post('/payments/checkout', {
         packageType: selectedPkg,
-        selectedAddons: selectedPkg === 'STANDARD' ? selectedAddons : [],
+        selectedAddons,
       });
       const { token } = res.data;
 
@@ -135,7 +131,7 @@ export default function BillingPanel({ invitation, onUpdated }) {
   return (
     <>
       <h2 className="panel-header">{t('panels.paket_title')}</h2>
-      <p className="panel-sub">Pilih paket dasar &amp; add-on opsional untuk mengaktifkan undangan Anda.</p>
+      <p className="panel-sub">Satu paket lengkap dengan add-on buku tamu QR opsional.</p>
 
       {/* Info Paket Saat Ini */}
       <div style={{ padding: 18, background: '#faf3e3', border: '1px solid #e3d6b4', borderRadius: 12, marginBottom: 24 }}>
@@ -156,59 +152,29 @@ export default function BillingPanel({ invitation, onUpdated }) {
       </div>
 
       {/* Grid Pilihan Paket Utama */}
-      <div style={{ display: 'grid', gap: 16, gridTemplateColumns: '1fr 1fr', marginBottom: 24 }}>
-        {/* Paket Standard */}
+      <div style={{ display: 'grid', gap: 16, gridTemplateColumns: '1fr', marginBottom: 24 }}>
         <div
-          onClick={() => setSelectedPkg('STANDARD')}
           style={{
-            border: `2px solid ${selectedPkg === 'STANDARD' ? '#7a2436' : '#e3d6b4'}`,
-            background: selectedPkg === 'STANDARD' ? '#fff9f0' : '#ffffff',
-            padding: 18, borderRadius: 14, cursor: 'pointer', transition: 'all 0.2s'
+            border: '2px solid #7a2436', background: '#fff9f0', padding: 18, borderRadius: 14
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h4 style={{ margin: 0, fontSize: 16, color: '#182420' }}>Paket Standard</h4>
-            <input type="radio" checked={selectedPkg === 'STANDARD'} onChange={() => setSelectedPkg('STANDARD')} />
+            <h4 style={{ margin: 0, fontSize: 16, color: '#182420' }}>Undangan Digital Premium</h4>
           </div>
-          <h3 style={{ color: '#7a2436', margin: '8px 0 12px', fontSize: 22 }}>Rp79.000</h3>
+          <h3 style={{ color: '#7a2436', margin: '8px 0 12px', fontSize: 22 }}>Rp119.000</h3>
           <ul style={{ paddingLeft: 18, fontSize: 12, color: '#5c655d', margin: 0, lineHeight: 1.6 }}>
             <li>Aktif hingga 30 hari setelah acara (H+30)</li>
             <li>Semua Tema Eksklusif Bebas Pilih</li>
             <li>Tanpa Watermark</li>
-            <li>Maksimal 10 Foto Galeri</li>
-            <li>Fitur RSVP &amp; Ucapan Tamu</li>
+            <li>Galeri foto dan video</li>
+            <li>RSVP, ucapan, hadiah, dan live streaming</li>
           </ul>
         </div>
 
-        {/* Paket Premium */}
-        <div
-          onClick={() => setSelectedPkg('PREMIUM')}
-          style={{
-            border: `2px solid ${selectedPkg === 'PREMIUM' ? '#7a2436' : '#e3d6b4'}`,
-            background: selectedPkg === 'PREMIUM' ? '#fff9f0' : '#ffffff',
-            padding: 18, borderRadius: 14, cursor: 'pointer', transition: 'all 0.2s', position: 'relative'
-          }}
-        >
-          <span style={{ position: 'absolute', top: -10, right: 14, background: '#7a2436', color: '#fff', fontSize: 10, padding: '2px 8px', borderRadius: 10, fontWeight: 700 }}>
-            BEST VALUE
-          </span>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h4 style={{ margin: 0, fontSize: 16, color: '#182420' }}>Paket Premium</h4>
-            <input type="radio" checked={selectedPkg === 'PREMIUM'} onChange={() => setSelectedPkg('PREMIUM')} />
-          </div>
-          <h3 style={{ color: '#7a2436', margin: '8px 0 12px', fontSize: 22 }}>Rp129.000</h3>
-          <ul style={{ paddingLeft: 18, fontSize: 12, color: '#5c655d', margin: 0, lineHeight: 1.6 }}>
-            <li>Aktif hingga 30 hari setelah acara (H+30)</li>
-            <li>Include Semua Fitur Standard</li>
-            <li><strong>Amplop Digital &amp; Rekening Bank Included</strong></li>
-            <li><strong>Live Streaming Links Included</strong></li>
-            <li>Maksimal 30 Foto Galeri</li>
-          </ul>
-        </div>
       </div>
 
       {/* Add-on Opsional (Khusus Paket Standard) */}
-      {selectedPkg === 'STANDARD' && (
+      {(
         <div style={{ background: '#faf3e3', padding: 18, borderRadius: 14, border: '1px dashed #e3d6b4', marginBottom: 24 }}>
           <h4 style={{ margin: '0 0 4px', fontSize: 14, color: '#182420' }}>➕ Add-On Tambahan (Opsional Ketengan)</h4>
           <p style={{ margin: '0 0 14px', fontSize: 12, color: '#5c655d' }}>Pilih fitur spesifik sesuai kebutuhan tanpa perlu bayar paket tertinggi:</p>

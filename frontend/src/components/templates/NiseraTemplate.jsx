@@ -17,10 +17,10 @@ export default function NiseraTemplate({ invitation, previewGuest, editorPreview
     const gallery = invitation.galleryMedia || [];
     const typo = theme.typography || {};
 
-    const brideName = profile.brideName || 'Annisa';
-    const groomName = profile.groomName || 'Yasera';
-    const brideFullName = profile.brideFullName || 'Annisa Salsabila';
-    const groomFullName = profile.groomFullName || 'Yasera Putra';
+    const brideName = profile.brideName || 'Arunika';
+    const groomName = profile.groomName || 'Deva';
+    const brideFullName = profile.brideFullName || 'Arunika Candramawarni';
+    const groomFullName = profile.groomFullName || 'Deva Nararya';
     const brideParents = `Putri dari ${profile.brideFather || 'Bapak'} & ${profile.brideMother || 'Ibu'}`;
     const groomParents = `Putra dari ${profile.groomFather || 'Bapak'} & ${profile.groomMother || 'Ibu'}`;
 

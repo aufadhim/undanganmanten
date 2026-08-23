@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function HeroSection({ setMobileMenuOpen }) {
+  const { t } = useTranslation();
   return (
     <section className="hero">
       <div className="hero-grain" />
@@ -8,29 +10,28 @@ export default function HeroSection({ setMobileMenuOpen }) {
         <div className="hero-copy reveal">
           <div className="eyebrow">
             <span className="eyebrow-dot" />
-            Undangan Pernikahan Digital
+            {t('landingHero.eyebrow')}
           </div>
           <h1>
-            Undangan yang <em>Dibuka</em>.<br />
-            Bukan yang Ditumpuk<br />di Laci.
+            {t('landingHero.titleBefore')} <em>{t('landingHero.titleAccent')}</em>.<br />
+            {t('landingHero.titleAfter')}<br />{t('landingHero.titleLast')}
           </h1>
           <p>
-            Undangan kertas cuma dilipat, disimpan, lalu dilupakan. Yang ini dikirim lewat WhatsApp,
-            dibuka di genggaman, dan langsung bisa dibalas — RSVP dan ucapan masuk sendiri ke dashboardmu.
+            {t('landingHero.description')}
           </p>
           <div className="hero-actions">
-            <Link to="/signup" className="lp-btn-seal lg">Buat Undangan — Gratis</Link>
-            <Link to="/sandbox" className="lp-btn-ghost lg" onClick={() => setMobileMenuOpen(false)}>Lihat Contoh Undangan</Link>
+            <Link to="/sandbox" className="lp-btn-seal lg">{t('landingHero.try')}</Link>
+            <Link to="/sandbox" className="lp-btn-ghost lg" onClick={() => setMobileMenuOpen(false)}>{t('landingHero.example')}</Link>
           </div>
           <div className="hero-proof">
             <div className="proof-stat">
-              <strong>12.482</strong>
-              <span>tamu bilang "Hadir ✓" bulan ini</span>
+              <strong>{t('landingHero.proofOneTitle')}</strong>
+              <span>{t('landingHero.proofOneText')}</span>
             </div>
             <div className="proof-divider" />
             <div className="proof-stat">
-              <strong>4 menit</strong>
-              <span>rata-rata waktu bikin undangan</span>
+              <strong>{t('landingHero.proofTwoTitle')}</strong>
+              <span>{t('landingHero.proofTwoText')}</span>
             </div>
           </div>
         </div>
@@ -41,7 +42,7 @@ export default function HeroSection({ setMobileMenuOpen }) {
             <div className="invite-card">
               <div className="invite-card-inner">
                 <div className="invite-eyebrow">Undangan Pernikahan</div>
-                <div className="invite-names">Rea &amp; David</div>
+                <div className="invite-names">Arunika &amp; Deva</div>
                 <div className="invite-line" />
                 <div className="invite-date">Sabtu, 20 Desember 2026</div>
               </div>
@@ -53,7 +54,7 @@ export default function HeroSection({ setMobileMenuOpen }) {
               <div className="phone-peek-notch" />
               <div className="phone-peek-body">
                 <div className="ppb-label">The Wedding Of</div>
-                <div className="ppb-names">Rea &amp; David</div>
+                <div className="ppb-names">Arunika &amp; Deva</div>
                 <div className="ppb-btn">Buka Undangan</div>
               </div>
             </div>

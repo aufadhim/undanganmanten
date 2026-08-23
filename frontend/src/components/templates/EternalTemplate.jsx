@@ -7,6 +7,7 @@ import FloatingMultimedia from "../FloatingMultimedia.jsx";
 import PublicForms, { GiftSection } from "../PublicForms.jsx";
 import Lightbox from "./Lightbox.jsx";
 import "../../styles/eternal-template.css";
+import { resolveImageUrl } from '../../config/env.js';
 
 export default function EternalTemplate({ invitation, previewGuest, editorPreview = false }) {
   if (!invitation) return null;
@@ -103,7 +104,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   let eventDateNum = "05";
   let eventMonth = "DECEMBER";
   let eventYear = "2026";
-  let eventLocation = "Mojosari";
+  let eventLocation = "Jakarta";
 
   if (mainEvent.date) {
     const d = new Date(mainEvent.date);
@@ -111,7 +112,10 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     eventMonth = d.toLocaleString("en-US", { month: "long" }).toUpperCase();
     eventYear = String(d.getFullYear());
   }
-  if (mainEvent.city) {
+  const addressParts = String(mainEvent.address || '').split(',').map((part) => part.trim()).filter(Boolean);
+  if (addressParts.length) {
+    eventLocation = addressParts.at(-1);
+  } else if (mainEvent.city) {
     eventLocation = mainEvent.city;
   } else if (mainEvent.locationName) {
     eventLocation = mainEvent.locationName;
@@ -191,11 +195,11 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
         </div>
 
         <div className="hero-names">
-          <h1 className="hero-name">{profile.brideName || "Aisyah"}</h1>
+          <h1 className="hero-name">{profile.brideName || "Arunika"}</h1>
           <div className="hero-divider">
             <span className="hero-ampersand">&</span>
           </div>
-          <h1 className="hero-name">{profile.groomName || "Auf"}</h1>
+          <h1 className="hero-name">{profile.groomName || "Deva"}</h1>
         </div>
 
         <div className="hero-details">
@@ -275,7 +279,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           <div className="marquee-text">
             {Array(4)
               .fill(
-                `— Love — Eternal — ${profile.brideName || "Aisyah"} — ${profile.groomName || "Auf"} — ${eventYear} `,
+                `— Love — Eternal — ${profile.brideName || "Arunika"} — ${profile.groomName || "Deva"} — ${eventYear} `,
               )
               .join("")}
           </div>
@@ -344,14 +348,14 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
             </div>
             <div className="couple-info">
               <div className="couple-names">
-                <h3 className="couple-name">{profile.brideName || "Aisyah"}</h3>
+                <h3 className="couple-name">{profile.brideName || "Arunika"}</h3>
                 <p className="couple-fullname">
-                  {profile.brideFullName || "Dewi Aisyah Romadloni"}
+                  {profile.brideFullName || "Arunika Candramawarni"}
                 </p>
               </div>
               <div className="couple-parents" style={{ fontStyle: 'italic' }}>
                 <p className="parents-names">
-                  "The dearest daughter of {profile.brideFather || "Mr. Dwipa"} &amp; {profile.brideMother || "Mrs. Yuni"}"
+                  "The dearest daughter of {profile.brideFather || "Adikara Wicaksana"} &amp; {profile.brideMother || "Sekar Ayuningtyas"}"
                 </p>
               </div>
               {settings.brideBioEnabled !== false && profile.brideBio && (
@@ -394,14 +398,14 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           <div className="couple-item groom visible">
             <div className="couple-info">
               <div className="couple-names">
-                <h3 className="couple-name">{profile.groomName || "Auf"}</h3>
+                <h3 className="couple-name">{profile.groomName || "Deva"}</h3>
                 <p className="couple-fullname">
                   {profile.groomFullName || "Agung Tri Prasetyo"}
                 </p>
               </div>
               <div className="couple-parents" style={{ fontStyle: 'italic' }}>
                 <p className="parents-names">
-                  "The devoted son of {profile.groomFather || "Alm. Mr. Palal"} &amp; {profile.groomMother || "Mrs. Supiyah"}"
+                  "The devoted son of {profile.groomFather || "Bramantya Narendra"} &amp; {profile.groomMother || "Ratih Puspitasari"}"
                 </p>
               </div>
               {settings.groomBioEnabled !== false && profile.groomBio && (
@@ -487,7 +491,9 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   };
 
   const renderGallery = () => {
-    const displayGalleries = galleries.length > 0 ? galleries : [
+    const uploadedPhotos = galleries.filter((item) => item.type !== 'video');
+    const uploadedVideos = galleries.filter((item) => item.type === 'video');
+    const displayGalleries = uploadedPhotos.length > 0 ? uploadedPhotos : [
         {url: '/assets/eternal/images/galleries/1.webp'},
         {url: '/assets/eternal/images/galleries/2.webp'},
         {url: '/assets/eternal/images/galleries/3.webp'},
@@ -497,7 +503,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
 
     return (
       <section id="gallery" className="gallery-section" key="gallery" style={{ overflow: 'hidden' }}>
-        <div className="gallery-container">
+        <div className={`gallery-container gallery-layout-${theme.galleryLayout || 'editorial'}`}>
           <div className="gallery-header-col">
             <h2 className="section-title">Our Gallery</h2>
             <p className="section-subtitle">Moments We Cherish</p>
@@ -510,18 +516,27 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           <div className="gallery-col gallery-col-up" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
             {displayGalleries.slice(0, half).map((g, i) => (
               <div className="gallery-item" key={i} onClick={() => setLightboxIndex(i)} style={{ cursor: 'pointer' }}>
-                <img src={g.url} alt="Gallery" />
+                <img src={resolveImageUrl(g.url)} alt="Gallery" />
               </div>
             ))}
           </div>
           <div className="gallery-col gallery-col-down" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
             {displayGalleries.slice(half).map((g, i) => (
               <div className="gallery-item" key={half + i} onClick={() => setLightboxIndex(half + i)} style={{ cursor: 'pointer' }}>
-                <img src={g.url} alt="Gallery" />
+                <img src={resolveImageUrl(g.url)} alt="Gallery" />
               </div>
             ))}
           </div>
         </div>
+
+        {uploadedVideos.length > 0 && <div className="gallery-video-list">
+          {uploadedVideos.map((video) => {
+            const ytMatch = video.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&/]+)/);
+            return <div className="gallery-video" key={video.id || video.url}>
+              {ytMatch ? <iframe src={`https://www.youtube.com/embed/${ytMatch[1]}`} title="Wedding video" allowFullScreen /> : <video src={resolveImageUrl(video.url)} controls preload="metadata" />}
+            </div>;
+          })}
+        </div>}
 
         {lightboxIndex !== null && (
           <Lightbox
@@ -621,7 +636,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
               marginBottom: "10px",
             }}
           >
-            {profile.brideName || "Aisyah"} &amp; {profile.groomName || "Auf"}
+            {profile.brideName || "Arunika"} &amp; {profile.groomName || "Deva"}
           </h2>
           <p
             className="footer-subtitle"
@@ -659,8 +674,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
             className="footer-copyright"
             style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}
           >
-            © 2026 {profile.brideName || "Aisyah"} &amp;{" "}
-            {profile.groomName || "Auf"}. All rights reserved.
+            © 2026 {profile.brideName || "Arunika"} &amp;{" "}
+            {profile.groomName || "Deva"}. All rights reserved.
           </p>
         </div>
       </div>
@@ -1024,7 +1039,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
             <p>Welcome to The Wedding Of</p>
           </div>
           <h1 className="cover-title">
-            {profile.brideName || "Aisyah"} &amp; {profile.groomName || "Auf"}
+            {profile.brideName || "Arunika"} &amp; {profile.groomName || "Deva"}
           </h1>
           <div
             id="coverGuest"

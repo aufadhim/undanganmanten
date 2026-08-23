@@ -130,16 +130,16 @@ async function saveWish(req, res, invitation) {
         });
       } else {
         wish = await prisma.wish.create({
-          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId, isHidden: !!invitation.invitationFeatures?.wishesModerationEnabled },
+          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId, isHidden: false },
         });
       }
     } else {
       wish = await prisma.wish.create({
-        data: { ...parsed.data, invitationId: invitation.id, isHidden: !!invitation.invitationFeatures?.wishesModerationEnabled },
+        data: { ...parsed.data, invitationId: invitation.id, isHidden: false },
       });
     }
 
-    return res.status(201).json({ message: invitation.invitationFeatures?.wishesModerationEnabled ? 'Ucapan terkirim dan menunggu persetujuan pemilik.' : 'Ucapan berhasil dikirim.', wish });
+    return res.status(201).json({ message: 'Ucapan berhasil dikirim.', wish });
 }
 
 // Tamu kirim ucapan dari halaman publik undangan (tanpa login)

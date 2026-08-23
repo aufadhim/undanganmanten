@@ -39,12 +39,12 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
     const stories = invitation.timelineStories || [];
     const quote = invitation.quoteSettings || { enabled: false };
 
-    const brideName = profile.brideName || 'Isabela';
-    const groomName = profile.groomName || 'Ismaya';
-    const brideFullName = profile.brideFullName || 'Isabela Putri Nandita';
-    const groomFullName = profile.groomFullName || 'Muhammad Ismaya Putra';
-    const brideParents = `Putri dari ${profile.brideFather || 'Bapak'} & ${profile.brideMother || 'Ibu'}`;
-    const groomParents = `Putra dari ${profile.groomFather || 'Bapak'} & ${profile.groomMother || 'Ibu'}`;
+    const brideName = profile.brideName || 'Arunika';
+    const groomName = profile.groomName || 'Deva';
+    const brideFullName = profile.brideFullName || 'Arunika Candramawarni';
+    const groomFullName = profile.groomFullName || 'Deva Nararya';
+    const brideParents = `Putri dari ${profile.brideFather || 'Adikara Wicaksana'} & ${profile.brideMother || 'Sekar Ayuningtyas'}`;
+    const groomParents = `Putra dari ${profile.groomFather || 'Bramantya Narendra'} & ${profile.groomMother || 'Ratih Puspitasari'}`;
 
     const akad = events.find((e) => e.type === 'akad') || events[0];
     const resepsi = events.find((e) => e.type === 'resepsi') || events[1];
@@ -66,8 +66,10 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
         'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800',
     ];
 
-    const galleryImages = gallery.length > 0
-        ? gallery.map((g) => getImageUrl(g.url || g.path))
+    const galleryPhotos = gallery.filter((item) => item.type !== 'video');
+    const galleryVideos = gallery.filter((item) => item.type === 'video');
+    const galleryImages = galleryPhotos.length > 0
+        ? galleryPhotos.map((g) => getImageUrl(g.url || g.path))
         : defaultGallery;
 
     // Countdown
@@ -571,7 +573,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
                         </div>
 
                         <div className="photo-body">
-                            <div className="photo-box">
+                            <div className={`photo-box gallery-layout-${theme.galleryLayout || 'editorial'}`}>
                                 {galleryImages.map((src, i) => (
                                     <div
                                         key={i}
@@ -594,6 +596,17 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
                     </div>
                 </section>
             </AnimatedSection>
+
+            {galleryVideos.length > 0 && <section style={{ padding: '40px 20px 80px', background: 'var(--background-primary)' }}>
+                <div style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gap: 24 }}>
+                    {galleryVideos.map((video) => {
+                        const match = video.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&/]+)/);
+                        return <div key={video.id || video.url} style={{ width: '100%', aspectRatio: '16 / 9', overflow: 'hidden', borderRadius: 16, background: '#111' }}>
+                            {match ? <iframe src={`https://www.youtube.com/embed/${match[1]}`} title="Wedding video" allowFullScreen style={{ width: '100%', height: '100%', border: 0 }} /> : <video src={getImageUrl(video.url)} controls preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                        </div>;
+                    })}
+                </div>
+            </section>}
 
             {/* Lightbox */}
             {lightboxIndex !== null && (
