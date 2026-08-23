@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSnowflake, faLeaf, faChampagneGlasses, faSeedling, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faSnowflake, faLeaf, faPlay } from '@fortawesome/free-solid-svg-icons';
 import '../styles/particles.css';
 
 export default function FloatingMultimedia({ invitation, isOpen, defaultColor = '#7E3942', defaultColorText = '#FFFFFF' }) {
@@ -11,7 +11,26 @@ export default function FloatingMultimedia({ invitation, isOpen, defaultColor = 
     const settings = invitation?.themeSettings || {};
 
     const musicEnabled = features.musicEnabled && settings.musicUrl;
-    const animationEnabled = features.animationEnabled && settings.animationType;
+    const visualType = ['snow', 'leaves', 'sakura'].includes(settings.animationType) ? settings.animationType : '';
+    const animationEnabled = features.animationEnabled && visualType;
+    const particles = useMemo(() => Array.from({ length: 24 }, (_, index) => {
+        const noise = (seed) => {
+            const value = Math.sin((index + 1) * seed) * 43758.5453;
+            return value - Math.floor(value);
+        };
+        return {
+            id: `${visualType || 'none'}-${index}`,
+            left: noise(12.9898) * 100,
+            duration: 18 + noise(78.233) * 16,
+            delay: -(noise(39.425) * 34),
+            size: 8 + noise(93.121) * 21,
+            opacity: 0.18 + noise(17.317) * 0.72,
+            blur: noise(51.771) < 0.28 ? 1.4 + noise(66.119) * 2.2 : noise(66.119) * 0.65,
+            swayDuration: 4.5 + noise(31.417) * 5.5,
+            sway: 18 + noise(71.113) * 52,
+            rotation: 90 + noise(27.511) * 270,
+        };
+    }), [visualType]);
 
     // Auto-play when the envelope is opened
     useEffect(() => {
@@ -60,28 +79,31 @@ export default function FloatingMultimedia({ invitation, isOpen, defaultColor = 
     function renderAnimation() {
         if (!animationEnabled) return null;
         
-        let icon = faSeedling;
-        if (settings.animationType === 'snow') icon = faSnowflake;
-        if (settings.animationType === 'leaves') icon = faLeaf;
-        if (settings.animationType === 'confetti') icon = faChampagneGlasses;
-
-        const particles = Array.from({ length: 15 }); // 15 particles
+        let icon = faLeaf;
+        if (visualType === 'snow') icon = faSnowflake;
+        if (visualType === 'leaves') icon = faLeaf;
         return (
-            <div className="floating-multimedia-container">
-                {particles.map((_, i) => (
+            <div className={`floating-multimedia-container particles-${visualType}`} aria-hidden="true">
+                {particles.map((particle) => (
                     <div 
-                        key={i} 
+                        key={particle.id}
                         className="falling-particle-wrapper"
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            animationDuration: `${Math.random() * 7 + 8}s`, // 8-15 seconds falling (sangat pelan dan santai)
-                            animationDelay: `${Math.random() * 5}s`
+                            left: `${particle.left}%`,
+                            animationDuration: `${particle.duration}s`,
+                            animationDelay: `${particle.delay}s`,
+                            opacity: particle.opacity,
+                            filter: `blur(${particle.blur}px)`,
+                            '--particle-size': `${particle.size}px`,
+                            '--particle-sway': `${particle.sway}px`,
+                            '--particle-rotation': `${particle.rotation}deg`,
+                            '--particle-rotation-start': `${particle.rotation * -0.35}deg`,
                         }}
                     >
                         <div 
                             className="falling-particle-inner"
                             style={{
-                                animationDuration: `${Math.random() * 3 + 3}s`, // 3-6 seconds swaying
+                                animationDuration: `${particle.swayDuration}s`,
                             }}
                         >
                             <FontAwesomeIcon icon={icon} />

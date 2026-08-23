@@ -11,20 +11,20 @@
 
 .falling-particle-wrapper {
     position: absolute;
-    top: -10%;
+    top: 0;
     user-select: none;
     pointer-events: none;
     z-index: 50;
-    opacity: 0.8;
     color: var(--pf-accent, #ffffff);
     animation-name: fall-y;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    will-change: top;
+    transform: translate3d(0, -15vh, 0);
+    will-change: transform;
 }
 
 .falling-particle-inner {
-    font-size: 16px;
+    font-size: var(--particle-size, 16px);
     animation-name: sway-x;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
@@ -34,18 +34,26 @@
 
 @keyframes fall-y {
     0% {
-        top: -10%;
+        transform: translate3d(0, -15vh, 0);
     }
     100% {
-        top: 110%;
+        transform: translate3d(0, 115vh, 0);
     }
 }
 
 @keyframes sway-x {
     0% {
-        transform: translate3d(-20px, 0, 0) rotate(-15deg);
+        transform: translate3d(calc(-1 * var(--particle-sway, 30px)), 0, 0) rotate(var(--particle-rotation-start, -60deg));
     }
     100% {
-        transform: translate3d(20px, 0, 0) rotate(15deg);
+        transform: translate3d(var(--particle-sway, 30px), 0, 0) rotate(var(--particle-rotation, 180deg));
     }
+}
+
+.particles-snow .falling-particle-inner { color: rgba(255, 255, 255, 0.95); }
+.particles-leaves .falling-particle-inner { color: #8a7652; }
+.particles-sakura .falling-particle-inner { color: #e9a6b2; }
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-multimedia-container { display: none; }
 }

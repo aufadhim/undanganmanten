@@ -301,7 +301,6 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
               <option value="sakura">Kelopak Bunga Sakura</option>
               <option value="snow">Hujan Salju</option>
               <option value="leaves">Daun Berguguran</option>
-              <option value="confetti">Confetti Pesta</option>
             </select>
           </div>
           )}

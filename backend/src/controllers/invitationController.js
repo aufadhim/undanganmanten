@@ -2,6 +2,7 @@ import { prisma } from '../lib/prisma.js';
 import { generateUniqueSlug } from '../utils/slug.js';
 import { createInvitationSchema, updateInvitationSchema } from '../utils/validators.js';
 import { deleteFolderFromR2 } from '../lib/storage.js';
+import { getPresetById } from '../utils/themePresets.js';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 const RESERVED_SLUGS = ['login', 'signup', 'forgot-password', 'reset-password', 'dashboard', 'sandbox', 'admin', 'terms', 'privacy', 'guide', 'tema', 'api', 'i'];
@@ -39,6 +40,7 @@ export async function createInvitation(req, res) {
             }
         }
         const { groomName, brideName, weddingDate, themeId, customSlug } = parsed.data;
+        const initialThemeSettings = getPresetById(themeId)?.settings || DEFAULT_THEME_SETTINGS;
 
         const slug = customSlug
             ? customSlug.toLowerCase()
@@ -71,7 +73,7 @@ export async function createInvitation(req, res) {
                     create: { groomName, brideName },
                 },
                 themeSettings: {
-                    create: DEFAULT_THEME_SETTINGS,
+                    create: initialThemeSettings,
                 },
                 invitationFeatures: {
                     create: {

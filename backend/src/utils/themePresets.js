@@ -3,11 +3,11 @@ export const THEME_PRESETS = [
     {
         id: 'eternal',
         name: 'Eternal',
-        previewColor: '#292524',
+        previewColor: '#fafaf9',
         settings: {
-            background: { primary: '#292524', secondary: '#1c1917', tertiary: '#fafaf9', enabled: true },
-            bodyText: { primary: '#fafaf9', secondary: '#f5f5f4', tertiary: '#292524', enabled: true },
-            button: { primary: '#fafaf9', secondary: '#292524', enabled: true },
+            background: { primary: '#fafaf9', secondary: '#f5f5f4', tertiary: '#e7e5e4', enabled: true },
+            bodyText: { primary: '#292524', secondary: '#1c1917', tertiary: '#57534e', enabled: true },
+            button: { primary: '#292524', secondary: '#57534e', text: '#fafaf9', enabled: true },
             typography: { fontHeading: 'Cormorant Garamond', fontBody: 'Montserrat' },
         },
     },
