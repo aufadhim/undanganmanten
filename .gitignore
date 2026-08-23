@@ -10,6 +10,8 @@ backend/uploads/
 !.env.example
 !frontend/.env.example
 !backend/.env.example
+!frontend/.env.production.example
+!backend/.env.production.example
 frontend/playwright-report/
 frontend/test-results/
 

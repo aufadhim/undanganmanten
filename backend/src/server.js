@@ -1,4 +1,3 @@
-import { prisma } from "./lib/prisma.js";
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
@@ -7,7 +6,9 @@ import cron from 'node-cron';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { randomUUID } from 'crypto';
 import { env } from './config/env.js';
+import { prisma } from './lib/prisma.js';
 
 import authRoutes from './routes/authRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
@@ -21,6 +22,23 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 if (env.isProduction) app.set('trust proxy', 1);
+app.disable('x-powered-by');
+
+app.use((req, res, next) => {
+  const requestId = req.headers['x-request-id'] || randomUUID();
+  req.requestId = requestId;
+  res.setHeader('x-request-id', requestId);
+  const startedAt = Date.now();
+  res.on('finish', () => {
+    if (env.isProduction) {
+      console.log(JSON.stringify({
+        type: 'http', requestId, method: req.method, path: req.originalUrl,
+        status: res.statusCode, durationMs: Date.now() - startedAt,
+      }));
+    }
+  });
+  next();
+});
 
 // 1. OOTB Auto-create folder uploads jika belum eksis
 const uploadsDir = path.join(__dirname, '../uploads');
@@ -45,6 +63,15 @@ app.use('/uploads', express.static(uploadsDir));
 // Healthcheck
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'undanganmanten-backend' });
+});
+
+app.get('/ready', async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    return res.json({ status: 'ready', database: 'ok' });
+  } catch {
+    return res.status(503).json({ status: 'not_ready', database: 'unavailable' });
+  }
 });
 
 // 3. Routes
