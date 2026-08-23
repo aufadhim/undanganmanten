@@ -141,7 +141,7 @@ export const bulkGuestSchema = z.object({
 
 export const rsvpSchema = z.object({
   attending: z.boolean(),
-  guestCount: z.coerce.number().int().min(1).max(10).default(1),
+  guestCount: z.coerce.number().int().min(1).max(2, 'Jumlah tamu maksimal 2 orang').default(1),
   note: z.string().max(500).optional(),
 });
 

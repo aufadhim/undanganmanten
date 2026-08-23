@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import { QRCodeSVG } from 'qrcode.react';
 
-export default function PublicForms({ invitation, previewGuest, templateStyle }) {
+export default function PublicForms({ invitation, previewGuest, templateStyle, formType = 'all', previewMode = false }) {
   if (!invitation) return null;
 
   const theme = invitation.themeSettings;
@@ -30,16 +30,22 @@ export default function PublicForms({ invitation, previewGuest, templateStyle })
         </div>
       )}
 
-      {invitation.invitationFeatures?.rsvpEnabled !== false && (
-        <RsvpForm slug={slug} guest={previewGuest} theme={theme} />
+      {previewMode && (
+        <div style={{ padding: '10px 14px', marginBottom: 16, borderRadius: 8, background: '#fff7e6', border: '1px solid #ffd591', color: '#874d00', fontSize: 12, textAlign: 'center' }}>
+          Mode preview — RSVP dan ucapan percobaan tidak disimpan.
+        </div>
+      )}
+
+      {formType !== 'wishes' && invitation.invitationFeatures?.rsvpEnabled !== false && (
+        <RsvpForm slug={slug} guest={previewGuest} theme={theme} previewMode={previewMode} />
       )}
       
-      {invitation.invitationFeatures?.giftEnabled && invitation.giftSettings && templateStyle !== 'eternal' && (
+      {formType === 'all' && invitation.invitationFeatures?.giftEnabled && invitation.giftSettings && templateStyle !== 'eternal' && (
         <GiftSection gift={invitation.giftSettings} accent={theme?.bodyText?.tertiary || '#000'} />
       )}
       
-      {invitation.invitationFeatures?.wishesEnabled !== false && (
-        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} />
+      {formType !== 'rsvp' && invitation.invitationFeatures?.wishesEnabled !== false && (
+        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} previewMode={previewMode} />
       )}
 
       <style>{`
@@ -110,7 +116,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle })
   );
 }
 
-function RsvpForm({ slug, guest, theme }) {
+function RsvpForm({ slug, guest, theme, previewMode }) {
   const { t } = useTranslation();
   const [form, setForm] = useState({ 
     name: guest?.name || '', 
@@ -142,6 +148,10 @@ function RsvpForm({ slug, guest, theme }) {
     setError('');
     setSent(false);
     try {
+      if (previewMode) {
+        setSent(true);
+        return;
+      }
       const url = guest?.id ? `/invitations/public/${slug}/rsvp?g=${guest.id}` : `/invitations/public/${slug}/rsvp`;
       await api.post(url, form);
       setSent(true);
@@ -171,7 +181,7 @@ function RsvpForm({ slug, guest, theme }) {
           <option value="false">Maaf, tidak bisa hadir</option>
         </select>
         {form.attending && (
-          <input className="pf-input" type="number" min="1" max="5" placeholder="Jumlah tamu" value={form.guestCount} onChange={(e) => setForm({ ...form, guestCount: e.target.value })} />
+          <input className="pf-input" type="number" min="1" max="2" placeholder="Jumlah tamu (maks. 2 orang)" aria-label="Jumlah tamu (maksimal 2 orang)" value={form.guestCount} onChange={(e) => setForm({ ...form, guestCount: Math.min(2, Math.max(1, Number(e.target.value) || 1)) })} />
         )}
         {error && <div style={{ color: 'red', fontSize: 13, textAlign: 'center', marginBottom: 10 }}>{error}</div>}
         <button type="submit" className="pf-btn" style={{ background: theme?.button?.primary || '#333' }} disabled={loading}>
@@ -206,7 +216,7 @@ function GiftSection({ gift, accent }) {
   );
 }
 
-function WishesSection({ slug, initialWishes, theme, guest }) {
+function WishesSection({ slug, initialWishes, theme, guest, previewMode }) {
   const [wishes, setWishes] = useState(initialWishes || []);
   
   const guestWish = initialWishes?.find(w => w.guestId === guest?.id);
@@ -256,6 +266,20 @@ function WishesSection({ slug, initialWishes, theme, guest }) {
     setError('');
     setSent(false);
     try {
+      if (previewMode) {
+        const previewWish = {
+          id: `preview-${Date.now()}`,
+          senderName: form.senderName.trim(),
+          message: form.message.trim(),
+          guestId: guest?.id || null,
+          createdAt: new Date().toISOString(),
+          isHidden: false,
+          isPinned: false,
+        };
+        setWishes((current) => [previewWish, ...current.filter((wish) => !String(wish.id).startsWith('preview-'))]);
+        setSent(true);
+        return;
+      }
       const url = guest?.id ? `/invitations/public/${slug}/wishes?g=${guest.id}` : `/invitations/public/${slug}/wishes`;
       const res = await api.post(url, form);
       

@@ -191,6 +191,7 @@ export default function SandboxDashboard() {
                             invitation={previewOverride || sandboxInvitation}
                             previewMode={previewMode}
                             previewGuest={null}
+                            editorPreview
                         />
                     </div>
                 </div>

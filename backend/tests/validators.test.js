@@ -38,3 +38,9 @@ test('typography menerima spacing aman dan menolak injeksi CSS', () => {
     typography: { bodyLineHeight: 4 },
   }).success, false);
 });
+
+test('RSVP membatasi jumlah kehadiran maksimal dua orang', async () => {
+  const { rsvpSchema } = await import('../src/utils/validators.js');
+  assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 2 }).success, true);
+  assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 3 }).success, false);
+});

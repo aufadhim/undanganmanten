@@ -539,7 +539,7 @@ export default function Dashboard() {
                 <div className="preview-wrapper">
                     <div className={`iphone-mockup-stage preview-mode-${previewMode}`}>
                         {previewMode === 'mobile' && <div className="dynamic-island"></div>}
-                        <PhonePreview invitation={previewOverride ? { ...selectedInvitation, ...previewOverride } : selectedInvitation} isDraft={isDraft} previewGuest={previewGuest} />
+                        <PhonePreview invitation={previewOverride ? { ...selectedInvitation, ...previewOverride } : selectedInvitation} editorPreview previewGuest={previewGuest} />
                     </div>
                 </div>
             </div>

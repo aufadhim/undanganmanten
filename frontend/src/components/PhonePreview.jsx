@@ -16,7 +16,7 @@ function parseLayoutOrder(value) {
     }
 }
 
-export default function PhonePreview({ invitation, previewGuest }) {
+export default function PhonePreview({ invitation, previewGuest, editorPreview = false }) {
     if (!invitation) return null;
 
     const profile = invitation?.coupleProfile || {};
@@ -28,11 +28,11 @@ export default function PhonePreview({ invitation, previewGuest }) {
     let template = null;
     
     if (invitation?.themeId === 'eternal') {
-        template = <EternalTemplate invitation={invitation} previewGuest={previewGuest} />;
+        template = <EternalTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
     } else if (invitation?.themeId === 'nisera') {
-        template = <NiseraTemplate invitation={invitation} previewGuest={previewGuest} />;
+        template = <NiseraTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
     } else {
-        template = <SamayaTemplate invitation={invitation} previewGuest={previewGuest} />;
+        template = <SamayaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
     }
 
     return (

@@ -8,7 +8,7 @@ import PublicForms from "../PublicForms.jsx";
 import Lightbox from "./Lightbox.jsx";
 import "../../styles/eternal-template.css";
 
-export default function EternalTemplate({ invitation, previewGuest }) {
+export default function EternalTemplate({ invitation, previewGuest, editorPreview = false }) {
   if (!invitation) return null;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -697,6 +697,7 @@ export default function EternalTemplate({ invitation, previewGuest }) {
           invitation={invitation}
           previewGuest={previewGuest}
           templateStyle="eternal"
+          previewMode={editorPreview}
         />
       </div>
     </section>

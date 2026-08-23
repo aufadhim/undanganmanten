@@ -9,7 +9,7 @@ import Lightbox from './Lightbox';
 import { resolveImageUrl } from '../../config/env.js';
 import '../../styles/samaya-template.css';
 
-export default function SamayaTemplate({ invitation, previewGuest }) {
+export default function SamayaTemplate({ invitation, previewGuest, editorPreview = false }) {
     const [isOpen, setIsOpen] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState(null);
     const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -548,6 +548,8 @@ export default function SamayaTemplate({ invitation, previewGuest }) {
                             matchedGuest={matchedGuest}
                             urlCode={urlCode}
                             templateStyle="samaya"
+                            formType="rsvp"
+                            previewMode={editorPreview}
                         />
                     </div>
 
@@ -670,6 +672,7 @@ export default function SamayaTemplate({ invitation, previewGuest }) {
                                 urlCode={urlCode}
                                 formType="wishes"
                                 templateStyle="samaya"
+                                previewMode={editorPreview}
                             />
                         </div>
                     </div>
