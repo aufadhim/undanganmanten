@@ -1,36 +1,34 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { api, clearToken, setActiveInvitationId } from '../api/client.js';
 import PhonePreview from '../components/PhonePreview.jsx';
-import TemaPanel from '../components/TemaPanel.jsx';
-import KutipanPanel from '../components/KutipanPanel.jsx';
-import WarnaPanel from '../components/WarnaPanel.jsx';
-import ProfilPanel from '../components/ProfilPanel.jsx';
-import AcaraPanel from '../components/AcaraPanel.jsx';
-import RundownEditor from '../components/RundownEditor.jsx';
-import CeritaPanel from '../components/CeritaPanel.jsx';
-import GaleriPanel from '../components/GaleriPanel.jsx';
-import TamuPanel from '../components/TamuPanel.jsx';
 import DashboardSidebar from '../components/dashboard/DashboardSidebar.jsx';
-import LivestreamEditor from '../components/LivestreamEditor.jsx';
-import HadiahPanel from '../components/HadiahPanel.jsx';
-import PengaturanPanel from '../components/PengaturanPanel.jsx';
-import BillingPanel from '../components/BillingPanel.jsx';
-import WishesPanel from '../components/WishesPanel.jsx';
-import AnalitikPanel from '../components/AnalitikPanel.jsx';
-import VisualPanel from '../components/VisualPanel.jsx';
-import TypographyPanel from '../components/TypographyPanel.jsx';
-import SusunanPanel from '../components/SusunanPanel.jsx';
-import DresscodeEditor from '../components/DresscodeEditor.jsx';
 import LangSwitcher from '../components/LangSwitcher.jsx';
-import CreateInvitationModal from '../components/CreateInvitationModal.jsx';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import DashboardOnboarding from '../components/dashboard/DashboardOnboarding.jsx';
 import { useUI } from '../context/UIContext.jsx';
 import { loadMidtransSnap } from '../utils/midtrans.js';
 
+const TemaPanel = lazy(() => import('../components/TemaPanel.jsx'));
+const KutipanPanel = lazy(() => import('../components/KutipanPanel.jsx'));
+const WarnaPanel = lazy(() => import('../components/WarnaPanel.jsx'));
+const ProfilPanel = lazy(() => import('../components/ProfilPanel.jsx'));
+const AcaraPanel = lazy(() => import('../components/AcaraPanel.jsx'));
+const RundownEditor = lazy(() => import('../components/RundownEditor.jsx'));
+const CeritaPanel = lazy(() => import('../components/CeritaPanel.jsx'));
+const GaleriPanel = lazy(() => import('../components/GaleriPanel.jsx'));
+const TamuPanel = lazy(() => import('../components/TamuPanel.jsx'));
+const LivestreamEditor = lazy(() => import('../components/LivestreamEditor.jsx'));
+const HadiahPanel = lazy(() => import('../components/HadiahPanel.jsx'));
+const PengaturanPanel = lazy(() => import('../components/PengaturanPanel.jsx'));
+const BillingPanel = lazy(() => import('../components/BillingPanel.jsx'));
+const WishesPanel = lazy(() => import('../components/WishesPanel.jsx'));
+const AnalitikPanel = lazy(() => import('../components/AnalitikPanel.jsx'));
+const VisualPanel = lazy(() => import('../components/VisualPanel.jsx'));
+const TypographyPanel = lazy(() => import('../components/TypographyPanel.jsx'));
+const SusunanPanel = lazy(() => import('../components/SusunanPanel.jsx'));
+const DresscodeEditor = lazy(() => import('../components/DresscodeEditor.jsx'));
+const CreateInvitationModal = lazy(() => import('../components/CreateInvitationModal.jsx'));
+const DashboardOnboarding = lazy(() => import('../components/dashboard/DashboardOnboarding.jsx'));
 
 // HadiahPanelPlaceholder removed
 
@@ -456,6 +454,7 @@ export default function Dashboard() {
                 )}
 
                 {/* Render Panel Berdasarkan Active Tab */}
+                <Suspense fallback={<div className="loading-screen">Memuat editor...</div>}>
                 {activeTab === 'analitik' && <AnalitikPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'tema' && <TemaPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'visual' && <VisualPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
@@ -481,7 +480,6 @@ export default function Dashboard() {
                     onUpdated={handleUpdateInvitation}
                     onSelectPreviewGuest={setPreviewGuest}
                 />}
-                {activeTab === 'analitik' && <AnalitikPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'ucapan' && <WishesPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'livestream' && <LivestreamEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'pengaturan' && (
@@ -499,6 +497,7 @@ export default function Dashboard() {
                         onCheckout={handleCheckout}
                     />
                 )}
+                </Suspense>
             </div>
 
             {/* Stage Preview HP (iPhone 17 dengan Dynamic Island) */}
