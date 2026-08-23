@@ -95,6 +95,8 @@ model ThemeSettings {
   brideBioEnabled     Boolean?   @map("bride_bio_enabled")
   groomBioEnabled     Boolean?   @map("groom_bio_enabled")
   galleryLayout       String?    @map("gallery_layout")
+  loadingAnimation    String?    @map("loading_animation")
+  closingText         String?    @map("closing_text")
   invitation          Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
 
   @@map("theme_settings")

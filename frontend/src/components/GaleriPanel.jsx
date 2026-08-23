@@ -243,6 +243,8 @@ export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
           <option value="grid">Grid Rapi — ukuran seragam</option>
           <option value="masonry">Masonry — susunan natural</option>
           <option value="carousel">Slideshow — geser horizontal</option>
+          <option value="collage">Collage — potongan dinamis</option>
+          <option value="wall">Wall Board — foto tempel dinding</option>
         </select>
         <small style={{ color: '#777' }}>Perubahan layout langsung terlihat pada preview.</small>
       </div>

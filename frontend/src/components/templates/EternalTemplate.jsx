@@ -8,8 +8,10 @@ import PublicForms, { GiftSection } from "../PublicForms.jsx";
 import Lightbox from "./Lightbox.jsx";
 import "../../styles/eternal-template.css";
 import { resolveImageUrl } from '../../config/env.js';
+import { useTranslation } from 'react-i18next';
 
 export default function EternalTemplate({ invitation, previewGuest, editorPreview = false }) {
+  const { t } = useTranslation();
   if (!invitation) return null;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -455,8 +457,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       <section id="countdown" className="countdown-section" key="countdown" style={{ padding: '5rem 0', textAlign: 'center', background: 'var(--stone-50)' }}>
         <div className="container">
           <div style={{ marginBottom: '2.5rem' }}>
-            <h2 className="section-title">Save The Date</h2>
-            <p className="section-subtitle">Menuju Hari Bahagia</p>
+            <h2 className="section-title">{t('public.save_date')}</h2>
+            <p className="section-subtitle">{t('public.toward_happy_day')}</p>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             {[
@@ -500,20 +502,26 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
         {url: '/assets/eternal/images/galleries/4.webp'}
     ];
     const half = Math.ceil(displayGalleries.length / 2);
+    const galleryLayout = theme.galleryLayout || 'editorial';
+    const usesFlatLayout = ['collage', 'wall'].includes(galleryLayout);
 
     return (
       <section id="gallery" className="gallery-section" key="gallery" style={{ overflow: 'hidden' }}>
-        <div className={`gallery-container gallery-layout-${theme.galleryLayout || 'editorial'}`}>
+        <div className={`gallery-container gallery-layout-${galleryLayout}`}>
           <div className="gallery-header-col">
-            <h2 className="section-title">Our Gallery</h2>
-            <p className="section-subtitle">Moments We Cherish</p>
+            <h2 className="section-title">{t('public.gallery')}</h2>
+            <p className="section-subtitle">{t('public.gallery_subtitle')}</p>
             <div className="event-details">
               <p className="event-description">
                 A glimpse into our beautiful journey together. Every picture tells a story of love, laughter, and a promise of forever.
               </p>
             </div>
           </div>
-          <div className="gallery-col gallery-col-up" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
+          {usesFlatLayout ? <div className="gallery-flat-layout">
+            {displayGalleries.map((g, index) => <button className="gallery-item" key={g.id || index} onClick={() => setLightboxIndex(index)}>
+              <img src={resolveImageUrl(g.url)} alt={`Gallery ${index + 1}`} />
+            </button>)}
+          </div> : <><div className="gallery-col gallery-col-up" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
             {displayGalleries.slice(0, half).map((g, i) => (
               <div className="gallery-item" key={i} onClick={() => setLightboxIndex(i)} style={{ cursor: 'pointer' }}>
                 <img src={resolveImageUrl(g.url)} alt="Gallery" />
@@ -526,7 +534,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                 <img src={resolveImageUrl(g.url)} alt="Gallery" />
               </div>
             ))}
-          </div>
+          </div></>}
         </div>
 
         {uploadedVideos.length > 0 && <div className="gallery-video-list">
@@ -577,10 +585,10 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
               marginBottom: "10px",
             }}
           >
-            Be Our Guest
+            {t('public.be_our_guest')}
           </h2>
           <p className="section-subtitle">
-            We would love to share this special day with you
+            {t('public.guest_subtitle')}
           </p>
         </div>
         <PublicForms
@@ -649,7 +657,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
               marginBottom: "30px",
             }}
           >
-            The Beginning of Forever
+            {settings.closingText || t('public.closing_default')}
           </p>
           <div
             className="footer-info"
@@ -692,8 +700,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       <section id="events" className="events-section" key="events" style={{ background: 'var(--stone-50)', padding: '2rem 0' }}>
         <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 2rem' }}>
           <div className="events-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 className="section-title">Wedding Events</h2>
-            <p className="section-subtitle">Join us in celebration</p>
+            <h2 className="section-title">{t('public.events')}</h2>
+            <p className="section-subtitle">{t('public.events_subtitle')}</p>
             <p style={{ 
               maxWidth: '600px', 
               margin: '1rem auto 0', 
@@ -790,8 +798,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       <section id="rundown" className="rundown-section" key="rundown">
         <div className="container">
           <div className="rundown-header">
-            <h2 className="section-title">Timeline</h2>
-            <p className="section-subtitle">Rundown Acara</p>
+            <h2 className="section-title">{t('public.timeline')}</h2>
+            <p className="section-subtitle">{t('public.rundown')}</p>
           </div>
           <div className="rundown-timeline">
             {displayRundowns.map((r, i) => (
@@ -1011,11 +1019,11 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
             transition: 'opacity 0.5s ease'
           }}
         >
-          <img 
-            src={settings.customLogoUrl} 
-            alt="Loading Logo" 
-            style={{ width: '120px', height: '120px', objectFit: 'contain', animation: 'musicPulse 2s infinite' }} 
-          />
+          <div className={`theme-loading-logo loading-${settings.loadingAnimation || (invitation.themeId === 'nisera' ? 'shimmer' : invitation.themeId === 'samaya' ? 'reveal' : 'breathe')}`}><img
+            src={settings.customLogoUrl}
+            alt="Loading Logo"
+            style={{ width: '120px', height: '120px', objectFit: 'contain' }}
+          /></div>
         </div>
       )}
 
@@ -1036,7 +1044,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
             </div>
           )}
           <div className="cover-subtitle">
-            <p>Welcome to The Wedding Of</p>
+            <p>{t('public.welcome_wedding')}</p>
           </div>
           <h1 className="cover-title">
             {profile.brideName || "Arunika"} &amp; {profile.groomName || "Deva"}
@@ -1059,7 +1067,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
               className="btn-primary"
               onClick={() => setIsOpen(true)}
             >
-              <span>Open Invitation</span>
+              <span>{t('public.open_invitation')}</span>
             </button>
             {/* <button id="openWithoutMusic" className="btn-secondary">
             <span>Open Invitation (Music Off)</span>

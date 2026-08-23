@@ -153,6 +153,17 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
     }
   }
 
+  async function handleLoadingAnimation(type) {
+    onLivePreview?.({ themeSettings: { ...(invitation.themeSettings || {}), loadingAnimation: type } });
+    try {
+      const res = await api.patch('/invitations/me/theme', { loadingAnimation: type });
+      onUpdated({ ...invitation, themeSettings: res.data.themeSettings });
+      toast.success('Animasi loading berhasil dipilih.');
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Gagal menyimpan animasi loading.');
+    }
+  }
+
 
   return (
     <>
@@ -337,10 +348,27 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
             {invitation?.themeSettings?.customLogoUrl && (
               <img src={invitation.themeSettings.customLogoUrl} alt="Logo" style={{ height: '60px', marginTop: '8px', objectFit: 'contain' }} />
             )}
+            <label className="field-label" style={{ marginTop: 16 }}>Gaya Animasi Loading</label>
+            <div className="loading-animation-picker">
+              {[
+                ['breathe', 'Napas Halus'], ['reveal', 'Reveal Elegan'], ['shimmer', 'Kilau Cahaya'], ['spin', 'Putar Minimal']
+              ].map(([id, label]) => <button type="button" key={id} className={`loading-animation-card ${invitation.themeSettings?.loadingAnimation === id ? 'active' : ''}`} onClick={() => handleLoadingAnimation(id)}>
+                <span className={`loading-animation-demo demo-${id}`}><span>{invitation.themeId === 'eternal' ? '∞' : invitation.themeId === 'samaya' ? '❧' : 'N'}</span></span>
+                <strong>{label}</strong>
+              </button>)}
+            </div>
             </div>
           )}
         </div>
       </div>
+      <style>{`
+        .loading-animation-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+        .loading-animation-card{border:1px solid var(--line,#ddd);background:#fff;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;color:var(--ink)}
+        .loading-animation-card.active{border:2px solid var(--wine-deep);background:#fff9f5}
+        .loading-animation-demo{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--paper,#f7f2ea);font:600 22px Fraunces,serif;overflow:hidden}
+        .demo-breathe span{animation:loadingBreathe 1.8s ease-in-out infinite}.demo-spin span{animation:loadingSpin 2s linear infinite}.demo-reveal span{animation:loadingReveal 2s ease-in-out infinite}.demo-shimmer{position:relative}.demo-shimmer:after{content:'';position:absolute;inset:-20%;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.9),transparent 70%);animation:loadingShimmer 1.8s linear infinite}
+        @keyframes loadingBreathe{50%{transform:scale(1.18);opacity:.6}}@keyframes loadingSpin{to{transform:rotate(360deg)}}@keyframes loadingReveal{0%,100%{clip-path:inset(0 50%)}50%{clip-path:inset(0)}}@keyframes loadingShimmer{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
+      `}</style>
     </>
   );
 }

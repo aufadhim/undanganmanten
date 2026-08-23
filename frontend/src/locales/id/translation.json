@@ -197,6 +197,17 @@
     "success_wish": "Ucapan berhasil dikirim!",
     "fail_wish": "Gagal mengirim ucapan.",
     "special_invite": "Kepada Yth. Bapak/Ibu/Saudara/i",
-    "open_invitation": "Buka Undangan"
+    "open_invitation": "Buka Undangan",
+    "welcome_wedding": "Selamat datang di pernikahan",
+    "events_subtitle": "Mari rayakan bersama",
+    "events_description": "Dengan bahagia kami mengundang Anda menjadi bagian dari hari istimewa kami.",
+    "toward_happy_day": "Menuju Hari Bahagia",
+    "gallery_subtitle": "Momen yang Kami Kenang",
+    "gallery_description": "Sepenggal perjalanan indah kami. Setiap foto menyimpan cerita tentang cinta, tawa, dan janji selamanya.",
+    "timeline": "Linimasa",
+    "rundown": "Rundown Acara",
+    "be_our_guest": "Jadilah Tamu Kami",
+    "guest_subtitle": "Kami ingin berbagi hari istimewa ini bersama Anda",
+    "closing_default": "Awal dari Kisah Selamanya"
   }
 }

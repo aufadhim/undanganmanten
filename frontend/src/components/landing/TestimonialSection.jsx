@@ -2,16 +2,16 @@ export default function TestimonialSection() {
   return (
     <section className="guestbook">
       <div className="section-head reveal">
-        <div className="eyebrow center">Dari Buku Tamu Kami</div>
-        <h2>Bukan Testimoni yang Dipoles</h2>
-        <p className="section-sub">Ini cuplikan asli dari kolom ucapan pengantin yang sudah pakai UndanganManten.</p>
+        <div className="eyebrow center">Cerita Pengguna</div>
+        <h2>Testimoni Pasangan</h2>
+        <p className="section-sub">Konten contoh ini dapat diganti dengan testimoni asli sebelum peluncuran.</p>
       </div>
 
       <div className="guestbook-page reveal">
         {[
-          { name: 'Rina & Aldi', date: 'Okt 2025', text: 'Tamu-tamu kami sampai kira kami sewa wedding planner mahal. Padahal isi datanya cuma 5 menit.' },
-          { name: 'Dian & Surya', date: 'Mar 2026', text: 'WA Blast-nya beneran nyata membantu. Upload daftar tamu, klik kirim, selesai — gak perlu chat satu-satu.' },
-          { name: 'Fitri & Arman', date: 'Jun 2026', text: 'Awalnya ragu karena harganya murah. Ternyata hasilnya jauh lebih rapi dari yang kami bayangkan.' },
+          { name: 'Nama Pasangan 01', date: 'Testimoni contoh', text: 'Tempat untuk testimoni asli mengenai pengalaman membuat dan membagikan undangan.' },
+          { name: 'Nama Pasangan 02', date: 'Testimoni contoh', text: 'Tempat untuk testimoni asli mengenai desain, kemudahan editor, dan respons para tamu.' },
+          { name: 'Nama Pasangan 03', date: 'Testimoni contoh', text: 'Tempat untuk testimoni asli mengenai RSVP, galeri, atau fitur lain yang paling membantu.' },
         ].map((g) => (
           <div className="signature-line" key={g.name}>
             <p className="sig-text">"{g.text}"</p>

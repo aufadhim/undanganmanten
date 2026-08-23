@@ -998,7 +998,7 @@ select {
     top: -28px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    z-index: 8000;
+    z-index: 80;
     border-bottom: 1px solid rgba(0,0,0,0.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }

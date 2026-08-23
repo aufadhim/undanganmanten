@@ -27,6 +27,7 @@ const VisualPanel = lazy(() => import('../components/VisualPanel.jsx'));
 const TypographyPanel = lazy(() => import('../components/TypographyPanel.jsx'));
 const SusunanPanel = lazy(() => import('../components/SusunanPanel.jsx'));
 const DresscodeEditor = lazy(() => import('../components/DresscodeEditor.jsx'));
+const PenutupPanel = lazy(() => import('../components/PenutupPanel.jsx'));
 const CreateInvitationModal = lazy(() => import('../components/CreateInvitationModal.jsx'));
 const DashboardOnboarding = lazy(() => import('../components/dashboard/DashboardOnboarding.jsx'));
 
@@ -300,15 +301,18 @@ export default function Dashboard() {
             { key: 'susunan', label: 'Susunan & Blok', icon: 'fa-layer-group' },
         ],
         konten: [
-            { key: 'profil', label: t('dashboard.tabs.profil') || 'Profil', icon: 'fa-user-group' },
-            { key: 'acara', label: t('dashboard.tabs.acara') || 'Acara', icon: 'fa-calendar-days' },
+            { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
+            { key: 'kutipan', label: 'Quote / Doa', icon: 'fa-book-quran' },
+            { key: 'acara', label: 'Informasi Acara & Save The Date', icon: 'fa-calendar-days' },
+            { key: 'galeri', label: 'Galeri Foto & Video', icon: 'fa-images' },
             { key: 'rundown', label: 'Rundown', icon: 'fa-clipboard-list' },
-            features.storyEnabled && { key: 'cerita', label: 'Cerita', icon: 'fa-book-open' },
+            features.storyEnabled && { key: 'cerita', label: 'Cerita Cinta', icon: 'fa-book-open' },
             features.dresscodeEnabled && { key: 'dresscode', label: 'Dresscode', icon: 'fa-shirt' },
-            { key: 'galeri', label: t('dashboard.tabs.galeri') || 'Galeri', icon: 'fa-images' },
-            { key: 'hadiah', label: 'Hadiah', icon: 'fa-gift' },
             features.livestreamEnabled && { key: 'livestream', label: 'Live Streaming', icon: 'fa-video' },
-            { key: 'kutipan', label: 'Kutipan & Doa', icon: 'fa-book-quran' },
+            { key: 'tamu', label: 'RSVP & Daftar Tamu', icon: 'fa-clipboard-check' },
+            { key: 'hadiah', label: 'Informasi Hadiah', icon: 'fa-gift' },
+            { key: 'ucapan', label: `${t('dashboard.tabs.ucapan') || 'Ucapan & Doa'}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
+            { key: 'penutup', label: 'Penutup', icon: 'fa-heart' },
         ].filter(Boolean),
         tamu: [
             { key: 'tamu', label: t('dashboard.tabs.tamu') || 'Tamu & RSVP', icon: 'fa-users' },
@@ -340,6 +344,7 @@ export default function Dashboard() {
             {showCreateModal && (
                 <CreateInvitationModal
                     selectedThemeId={selectedThemeId}
+                    isFirstInvitation={invitations.length === 0}
                     onClose={() => setShowCreateModal(false)}
                     onCreated={handleCreatedNew}
                 />
@@ -499,6 +504,7 @@ export default function Dashboard() {
                     onSelectPreviewGuest={setPreviewGuest}
                 />}
                 {activeTab === 'ucapan' && <WishesPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
+                {activeTab === 'penutup' && <PenutupPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
                 {activeTab === 'livestream' && <LivestreamEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'pengaturan' && (
                     <PengaturanPanel

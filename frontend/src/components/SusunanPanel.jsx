@@ -15,14 +15,13 @@ const DEFAULT_LAYOUT = [
     { id: 'events', label: 'Informasi Acara', icon: 'fa-calendar-days', enabled: true, nav: ['konten', 'acara'] },
     { id: 'countdown', label: 'Save The Date', icon: 'fa-clock', enabled: true, nav: ['konten', 'acara'] },
     { id: 'gallery', label: 'Galeri Foto & Video', icon: 'fa-images', enabled: true, nav: ['konten', 'galeri'] },
-    { id: 'rundown', label: 'Rundown Acara', icon: 'fa-list-ol', enabled: true, nav: ['konten', 'acara'], featureKey: 'rundownEnabled' },
+    { id: 'rundown', label: 'Rundown Acara', icon: 'fa-list-ol', enabled: true, nav: ['konten', 'rundown'], featureKey: 'rundownEnabled' },
     { id: 'story', label: 'Cerita Cinta', icon: 'fa-heart', enabled: true, nav: ['konten', 'cerita'], featureKey: 'storyEnabled' },
     { id: 'dresscode', label: 'Panduan Dresscode', icon: 'fa-shirt', enabled: true, nav: ['konten', 'dresscode'], featureKey: 'dresscodeEnabled' },
-    { id: 'livestream', label: 'Live Streaming', icon: 'fa-video', enabled: true, nav: ['tamu', 'livestream'], featureKey: 'livestreamEnabled' },
-    { id: 'igFilter', label: 'Filter Instagram', icon: 'fa-camera-retro', enabled: true, inlineEditor: 'igFilter', featureKey: 'igFilterEnabled' },
-    { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['tamu', 'tamu'], featureKey: 'rsvpEnabled' },
-    { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['tamu', 'ucapan'], featureKey: 'wishesEnabled' },
+    { id: 'livestream', label: 'Live Streaming', icon: 'fa-video', enabled: true, nav: ['konten', 'livestream'], featureKey: 'livestreamEnabled' },
+    { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['konten', 'tamu'], featureKey: 'rsvpEnabled' },
     { id: 'gift', label: 'Informasi Hadiah', icon: 'fa-gift', enabled: true, nav: ['konten', 'hadiah'], featureKey: 'giftEnabled' },
+    { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['konten', 'ucapan'], featureKey: 'wishesEnabled' },
     { id: 'footer', label: 'Penutup (Terima Kasih)', icon: 'fa-hands-praying', enabled: true }
 ];
 

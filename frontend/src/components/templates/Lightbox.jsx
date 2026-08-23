@@ -1,131 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { resolveImageUrl } from '../../config/env.js';
 
-// Fungsi utilitas untuk mendeteksi ID YouTube
-function getYoutubeId(url) {
-  if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
+function getYoutubeId(url = '') {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^#&?/]+)/);
+  return match?.[1]?.length === 11 ? match[1] : null;
 }
 
-export default function Lightbox({ mediaList, initialIndex, onClose }) {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+export default function Lightbox({ mediaList, images, initialIndex, currentIndex, onNavigate, onClose }) {
+  const normalizedMedia = useMemo(() => {
+    const source = mediaList || images || [];
+    return source.map((item) => typeof item === 'string'
+      ? { type: 'photo', url: item }
+      : { type: item.type || 'photo', url: item.url || item.path, ...item });
+  }, [mediaList, images]);
+  const [activeIndex, setActiveIndex] = useState(initialIndex ?? currentIndex ?? 0);
 
-  // Close on Escape
+  useEffect(() => setActiveIndex(initialIndex ?? currentIndex ?? 0), [initialIndex, currentIndex]);
   useEffect(() => {
-    function handleKeyDown(e) {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
-    }
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, []);
+
+  const move = (direction) => {
+    const next = (activeIndex + direction + normalizedMedia.length) % normalizedMedia.length;
+    setActiveIndex(next);
+    onNavigate?.(next);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose?.();
+      if (event.key === 'ArrowRight') move(1);
+      if (event.key === 'ArrowLeft') move(-1);
+    };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex]);
+  });
 
-  if (currentIndex === null || currentIndex < 0 || currentIndex >= mediaList.length) return null;
+  if (!normalizedMedia.length || activeIndex < 0 || activeIndex >= normalizedMedia.length) return null;
+  const current = normalizedMedia[activeIndex];
+  const youtubeId = current.type === 'video' ? getYoutubeId(current.url) : null;
 
-  const currentMedia = mediaList[currentIndex];
-  const ytId = currentMedia.type === 'video' ? getYoutubeId(currentMedia.url) : null;
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : mediaList.length - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev < mediaList.length - 1 ? prev + 1 : 0));
-  };
-
-  return (
-    <div 
-      style={{
-        position: 'fixed',
-        top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.95)',
-        zIndex: 999999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column'
-      }}
-      onClick={onClose}
-    >
-      {/* Close Button */}
-      <button 
-        onClick={onClose}
-        style={{
-          position: 'absolute',
-          top: '20px', right: '20px',
-          background: 'transparent',
-          border: 'none',
-          color: '#fff',
-          fontSize: '32px',
-          cursor: 'pointer',
-          zIndex: 10,
-        }}
-      >
-        &times;
-      </button>
-
-      {/* Main Content Area */}
-      <div 
-        style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}
-        onClick={(e) => e.stopPropagation()} // Mencegah klik di dalam area ini menutup lightbox
-      >
-        
-        {/* Prev Button */}
-        {mediaList.length > 1 && (
-          <button 
-            onClick={handlePrev}
-            style={{ position: 'absolute', left: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
-          >
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-        )}
-
-        {/* Media Viewer */}
-        <div style={{ maxWidth: '90%', maxHeight: '80%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          {currentMedia.type === 'photo' ? (
-            <img 
-              src={currentMedia.url} 
-              alt="Gallery Item" 
-              style={{ maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain', borderRadius: '8px' }} 
-            />
-          ) : ytId ? (
-            <iframe 
-              width="100%" 
-              height="100%" 
-              style={{ minWidth: '300px', width: '80vw', maxWidth: '800px', aspectRatio: '16/9', borderRadius: '8px', border: 'none' }}
-              src={`https://www.youtube.com/embed/${ytId}?autoplay=1`} 
-              title="YouTube video player" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <video 
-              src={currentMedia.url} 
-              controls 
-              autoPlay
-              style={{ maxWidth: '100%', maxHeight: '80vh', borderRadius: '8px' }} 
-            />
-          )}
+  return createPortal(
+    <div className="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau galeri" onClick={onClose}>
+      <div className="gallery-lightbox-backdrop" />
+      <div className="gallery-lightbox-shell" onClick={(event) => event.stopPropagation()}>
+        <div className="gallery-lightbox-topbar">
+          <span>{String(activeIndex + 1).padStart(2, '0')} / {String(normalizedMedia.length).padStart(2, '0')}</span>
+          <button onClick={onClose} aria-label="Tutup lightbox"><i className="fa-solid fa-xmark" /></button>
         </div>
-
-        {/* Next Button */}
-        {mediaList.length > 1 && (
-          <button 
-            onClick={handleNext}
-            style={{ position: 'absolute', right: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
-          >
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
-        )}
-
+        <div className="gallery-lightbox-stage">
+          {normalizedMedia.length > 1 && <button className="gallery-lightbox-nav previous" onClick={() => move(-1)} aria-label="Gambar sebelumnya"><i className="fa-solid fa-chevron-left" /></button>}
+          <div className="gallery-lightbox-media">
+            {current.type === 'photo' ? <img src={resolveImageUrl(current.url)} alt={current.alt || `Foto galeri ${activeIndex + 1}`} />
+              : youtubeId ? <iframe src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`} title="Wedding video" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
+              : <video src={resolveImageUrl(current.url)} controls autoPlay preload="metadata" />}
+          </div>
+          {normalizedMedia.length > 1 && <button className="gallery-lightbox-nav next" onClick={() => move(1)} aria-label="Gambar berikutnya"><i className="fa-solid fa-chevron-right" /></button>}
+        </div>
+        <div className="gallery-lightbox-caption">MOMENTS WE CHERISH</div>
       </div>
-
-      {/* Pagination Indicator */}
-      <div style={{ position: 'absolute', bottom: '30px', color: '#fff', fontSize: '14px', letterSpacing: '2px' }}>
-        {currentIndex + 1} / {mediaList.length}
-      </div>
-    </div>
+      <style>{`
+        .gallery-lightbox{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:20px;color:#fff}
+        .gallery-lightbox-backdrop{position:absolute;inset:0;background:rgba(15,13,12,.9);backdrop-filter:blur(18px)}
+        .gallery-lightbox-shell{position:relative;width:min(1120px,96vw);height:min(860px,92vh);display:flex;flex-direction:column}
+        .gallery-lightbox-topbar{display:flex;justify-content:space-between;align-items:center;padding:4px 2px 14px;font:600 12px/1 Manrope,sans-serif;letter-spacing:.16em}
+        .gallery-lightbox-topbar button,.gallery-lightbox-nav{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;backdrop-filter:blur(8px)}
+        .gallery-lightbox-topbar button{width:40px;height:40px;border-radius:50%}
+        .gallery-lightbox-stage{position:relative;flex:1;min-height:0;display:grid;place-items:center}
+        .gallery-lightbox-media{width:100%;height:100%;display:grid;place-items:center}
+        .gallery-lightbox-media img,.gallery-lightbox-media video{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+        .gallery-lightbox-media iframe{width:min(100%,960px);aspect-ratio:16/9;border:0;border-radius:8px}
+        .gallery-lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;z-index:2}
+        .gallery-lightbox-nav.previous{left:12px}.gallery-lightbox-nav.next{right:12px}
+        .gallery-lightbox-caption{text-align:center;padding-top:14px;font:500 10px/1 Manrope,sans-serif;letter-spacing:.3em;opacity:.6}
+        @media(max-width:640px){.gallery-lightbox{padding:10px}.gallery-lightbox-nav{width:40px;height:40px}.gallery-lightbox-nav.previous{left:4px}.gallery-lightbox-nav.next{right:4px}}
+      `}</style>
+    </div>, document.body
   );
 }

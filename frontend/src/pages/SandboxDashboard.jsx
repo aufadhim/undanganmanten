@@ -7,6 +7,7 @@ import { useUI } from '../context/UIContext.jsx';
 import SandboxTemaPanel from '../components/SandboxTemaPanel.jsx';
 import SandboxProfilPanel from '../components/SandboxProfilPanel.jsx';
 import SandboxWarnaPanel from '../components/SandboxWarnaPanel.jsx';
+import SandboxFeaturePanel from '../components/SandboxFeaturePanel.jsx';
 
 // Default dummy data for sandbox
 const DEFAULT_SANDBOX_INVITATION = {
@@ -36,7 +37,7 @@ const DEFAULT_SANDBOX_INVITATION = {
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
     galleryMedia: [],
 };
-const SANDBOX_VERSION = '3';
+const SANDBOX_VERSION = '4';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();
@@ -86,9 +87,23 @@ export default function SandboxDashboard() {
         desain: [
             { key: 'tema', label: 'Tema', icon: 'fa-palette' },
             { key: 'warna', label: 'Warna', icon: 'fa-fill-drip' },
+            { key: 'typography', label: 'Typography', icon: 'fa-font' },
+            { key: 'visual', label: 'Musik, Visual & Loading', icon: 'fa-music' },
+            { key: 'susunan', label: 'Susunan & Blok', icon: 'fa-layer-group' },
         ],
         konten: [
-            { key: 'profil', label: 'Profil', icon: 'fa-user-group' },
+            { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
+            { key: 'kutipan', label: 'Quote / Doa', icon: 'fa-book-quran' },
+            { key: 'acara', label: 'Informasi Acara & Save The Date', icon: 'fa-calendar-days' },
+            { key: 'galeri', label: 'Galeri Foto & Video', icon: 'fa-images' },
+            { key: 'rundown', label: 'Rundown', icon: 'fa-clipboard-list' },
+            { key: 'cerita', label: 'Cerita Cinta', icon: 'fa-book-open' },
+            { key: 'dresscode', label: 'Dresscode', icon: 'fa-shirt' },
+            { key: 'livestream', label: 'Live Streaming', icon: 'fa-video' },
+            { key: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check' },
+            { key: 'hadiah', label: 'Informasi Hadiah', icon: 'fa-gift' },
+            { key: 'ucapan', label: 'Ucapan & Doa', icon: 'fa-comment-dots' },
+            { key: 'penutup', label: 'Penutup', icon: 'fa-heart' },
         ]
     };
 
@@ -171,6 +186,9 @@ export default function SandboxDashboard() {
                 {activeTab === 'tema' && <SandboxTemaPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'warna' && <SandboxWarnaPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
                 {activeTab === 'profil' && <SandboxProfilPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
+                {!['tema', 'warna', 'profil'].includes(activeTab) && (
+                    <SandboxFeaturePanel type={activeTab} invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />
+                )}
             </div>
 
             <div className={`stage ${showMobilePreview ? 'is-mobile-preview-open' : ''}`}>

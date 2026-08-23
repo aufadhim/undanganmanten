@@ -53,6 +53,8 @@ export async function updateMyThemeSettings(req, res) {
             ...(patch.brideBioEnabled !== undefined && { brideBioEnabled: patch.brideBioEnabled }),
             ...(patch.groomBioEnabled !== undefined && { groomBioEnabled: patch.groomBioEnabled }),
             ...(patch.galleryLayout !== undefined && { galleryLayout: patch.galleryLayout }),
+            ...(patch.loadingAnimation !== undefined && { loadingAnimation: patch.loadingAnimation }),
+            ...(patch.closingText !== undefined && { closingText: patch.closingText }),
             ...(patch.layoutOrder !== undefined && { layoutOrder: patch.layoutOrder }),
             ...(patch.mainStory !== undefined && { mainStory: patch.mainStory }),
         };

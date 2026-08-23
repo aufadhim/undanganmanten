@@ -10,6 +10,7 @@ import HowItWorksSection from '../components/landing/HowItWorksSection.jsx';
 import FeaturesSection from '../components/landing/FeaturesSection.jsx';
 import ComparisonSection from '../components/landing/ComparisonSection.jsx';
 import PricingSection from '../components/landing/PricingSection.jsx';
+import TestimonialSection from '../components/landing/TestimonialSection.jsx';
 import FaqSection from '../components/landing/FaqSection.jsx';
 import CtaSection from '../components/landing/CtaSection.jsx';
 
@@ -57,6 +58,7 @@ export default function Landing() {
       <FeaturesSection />
       <ComparisonSection />
       <PricingSection />
+      <TestimonialSection />
       <FaqSection />
       <CtaSection />
       

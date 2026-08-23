@@ -197,6 +197,17 @@
     "success_wish": "Wishes sent successfully!",
     "fail_wish": "Failed to send wishes.",
     "special_invite": "Dear Mr./Mrs./Ms.",
-    "open_invitation": "Open Invitation"
+    "open_invitation": "Open Invitation",
+    "welcome_wedding": "Welcome to The Wedding Of",
+    "events_subtitle": "Join us in celebration",
+    "events_description": "We are delighted to invite you to be part of our special day.",
+    "toward_happy_day": "Towards Our Happy Day",
+    "gallery_subtitle": "Moments We Cherish",
+    "gallery_description": "A glimpse into our beautiful journey together. Every picture tells a story of love, laughter, and a promise of forever.",
+    "timeline": "Timeline",
+    "rundown": "Event Rundown",
+    "be_our_guest": "Be Our Guest",
+    "guest_subtitle": "We would love to share this special day with you",
+    "closing_default": "The Beginning of Forever"
   }
 }

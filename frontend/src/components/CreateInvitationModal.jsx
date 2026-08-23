@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 
-export default function CreateInvitationModal({ selectedThemeId, onClose, onCreated }) {
+export default function CreateInvitationModal({ selectedThemeId, onClose, onCreated, isFirstInvitation = true }) {
     const { t } = useTranslation();
     const [form, setForm] = useState({
         brideName: '',
@@ -38,7 +38,7 @@ export default function CreateInvitationModal({ selectedThemeId, onClose, onCrea
         <div className="modal-overlay">
             <div className="modal-card">
                 <div className="modal-header">
-                    <h2 className="modal-title">{t('dashboard.create_first') || 'Buat Undangan Pertamamu'}</h2>
+                    <h2 className="modal-title">{isFirstInvitation ? (t('dashboard.create_first') || 'Buat Undangan Pertamamu') : 'Buat Undangan Baru'}</h2>
                     <Button variant="ghost" size="sm" onClick={onClose} style={{ padding: '4px 8px' }}>✕</Button>
                 </div>
                 <p className="modal-subtitle">
