@@ -2,10 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { api } from '../api/client.js';
 
+export function extractGuestIdFromQr(decodedText) {
+    const value = String(decodedText || '').trim();
+    if (!value) return '';
+
+    try {
+        const url = new URL(value, window.location.origin);
+        return url.searchParams.get('checkin')?.trim() || value;
+    } catch {
+        return value;
+    }
+}
+
 export default function ScannerModal({ isOpen, onClose }) {
     const [scannedData, setScannedData] = useState(null);
     const [scanning, setScanning] = useState(true);
     const [result, setResult] = useState(null);
+    const [scanSession, setScanSession] = useState(0);
 
     useEffect(() => {
         if (!isOpen) {
@@ -23,14 +36,15 @@ export default function ScannerModal({ isOpen, onClose }) {
         scanner.render(async (decodedText) => {
             scanner.clear();
             setScanning(false);
-            setScannedData(decodedText);
+            const guestId = extractGuestIdFromQr(decodedText);
+            setScannedData(guestId);
             
             try {
-                // Lakukan HTTP Request untuk check-in ke decodedText (guestId)
-                const res = await api.post(`/invitations/me/guests/${decodedText}/checkin`);
+                if (!guestId) throw new Error('QR tamu tidak valid.');
+                const res = await api.post(`/invitations/me/guests/${encodeURIComponent(guestId)}/checkin`);
                 setResult({ success: true, data: res.data });
             } catch (err) {
-                setResult({ success: false, error: err.response?.data?.error || 'Gagal check-in tamu' });
+                setResult({ success: false, error: err.response?.data?.error || err.message || 'Gagal check-in tamu' });
             }
         }, (error) => {
             // Abaikan error background scanning
@@ -39,7 +53,7 @@ export default function ScannerModal({ isOpen, onClose }) {
         return () => {
             scanner.clear().catch(e => console.error(e));
         };
-    }, [isOpen]);
+    }, [isOpen, scanSession]);
 
     if (!isOpen) return null;
 
@@ -70,6 +84,7 @@ export default function ScannerModal({ isOpen, onClose }) {
                                 setScannedData(null);
                                 setResult(null);
                                 setScanning(true);
+                                setScanSession((session) => session + 1);
                             }}
                             style={{ padding: '8px 16px', background: '#333', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', marginTop: '16px' }}
                         >

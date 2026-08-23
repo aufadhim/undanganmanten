@@ -114,46 +114,57 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
     }
   }
 
-  // Import CSV
+  // Import CSV / Excel
   const [importing, setImporting] = useState(false);
-  function handleImportCSV(e) {
+  function normalizeGuestRows(rows) {
+    return rows.map((row) => ({
+      name: String(row.Nama || row.name || row.Name || '').trim(),
+      phone: String(row['No HP'] || row['Nomor HP'] || row.phone || row.Phone || '').trim(),
+      category: String(row.Kategori || row.category || row.Category || 'Umum').trim() || 'Umum',
+    })).filter((guest) => guest.name);
+  }
+
+  async function submitImportedGuests(rows, input) {
+    const guestsData = normalizeGuestRows(rows);
+    if (guestsData.length === 0) {
+      throw new Error('Tidak ada data valid. Gunakan header: Nama, No HP, Kategori.');
+    }
+
+    const res = await api.post('/invitations/me/guests/bulk', { guests: guestsData });
+    toast.success(res.data.message || 'Import berhasil!');
+    await loadGuests();
+    input.value = '';
+  }
+
+  async function handleImportGuests(e) {
     const file = e.target.files[0];
     if (!file) return;
 
     setImporting(true);
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        try {
-          const guestsData = results.data.map(row => ({
-            name: row.Nama || row.name || row.Name,
-            phone: row['No HP'] || row.phone || row.Phone || '',
-            category: row.Kategori || row.category || row.Category || 'Umum'
-          })).filter(g => g.name); // Hanya ambil yang ada namanya
+    try {
+      const extension = file.name.split('.').pop()?.toLowerCase();
+      let rows;
 
-          if (guestsData.length === 0) {
-            toast.error('Tidak ada data yang valid untuk diimport. Pastikan header CSV adalah: Nama, No HP, Kategori');
-            setImporting(false);
-            return;
-          }
-
-          const res = await api.post('/invitations/me/guests/bulk', { guests: guestsData });
-          toast.success(res.data.message || 'Import berhasil!');
-          loadGuests();
-        } catch (err) {
-          toast.error(err.response?.data?.error || 'Gagal mengimport tamu dari CSV.');
-        } finally {
-          setImporting(false);
-          e.target.value = null; // reset input
-        }
-      },
-      error: () => {
-        toast.error('Gagal membaca file CSV.');
-        setImporting(false);
-        e.target.value = null;
+      if (extension === 'csv') {
+        const text = await file.text();
+        const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+        if (parsed.errors.length) throw new Error(parsed.errors[0].message);
+        rows = parsed.data;
+      } else {
+        const XLSX = await import('@e965/xlsx');
+        const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array' });
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        if (!firstSheet) throw new Error('Spreadsheet tidak memiliki sheet yang dapat dibaca.');
+        rows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
       }
-    });
+
+      await submitImportedGuests(rows, e.target);
+    } catch (err) {
+      toast.error(err.response?.data?.error || err.message || 'Gagal mengimpor data tamu.');
+      e.target.value = '';
+    } finally {
+      setImporting(false);
+    }
   }
 
   // Mulai Mode Edit
@@ -320,10 +331,10 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
               padding: '12px 16px', background: '#e3f2fd', color: '#1976d2', borderRadius: '8px',
               fontWeight: 600, fontSize: '13px', cursor: 'pointer', height: '100%'
             }}>
-              {importing ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-file-csv"></i>}
-              {importing ? 'Mengimpor...' : 'Import CSV'}
+              {importing ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-file-excel"></i>}
+              {importing ? 'Mengimpor...' : 'Import CSV / Excel'}
             </div>
-            <input type="file" accept=".csv" style={{ display: 'none' }} onChange={handleImportCSV} disabled={importing} />
+            <input type="file" accept=".csv,.xls,.xlsx" style={{ display: 'none' }} onChange={handleImportGuests} disabled={importing} />
           </label>
         </div>
       </form>
