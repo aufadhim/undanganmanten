@@ -76,7 +76,9 @@ export default function Login() {
                             <span>{t('auth.password', 'Password')}</span>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
                             <div style={{ textAlign: 'right', marginTop: '4px' }}>
-                                <a href="#" style={{ color: 'var(--ink-soft)', fontSize: '12px', textDecoration: 'underline' }}>Forgot your password?</a>
+                                <Link to="/forgot-password" style={{ color: 'var(--ink-soft)', fontSize: '12px', textDecoration: 'underline' }}>
+                                    Lupa password?
+                                </Link>
                             </div>
                         </label>
 

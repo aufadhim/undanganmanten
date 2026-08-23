@@ -280,6 +280,27 @@
     font-family: 'Manrope', sans-serif;
 }
 
+.form-success {
+  padding: 12px 14px;
+  border: 1px solid #9ac6a4;
+  border-radius: 8px;
+  background: #edf8ef;
+  color: #245c31;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth-link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--auth-wine);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .auth-switch {
     margin-top: 32px;
     font-size: 13px;
