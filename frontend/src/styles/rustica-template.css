@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Jost:wght@300;400;500&display=swap');
+
+:root {
+    --rustica-bg: #FDF9F1; /* Warm Beige */
+    --rustica-surface: #F4E8D1; /* Slightly darker beige */
+    --rustica-text: #4A3B32; /* Deep Brown */
+    --rustica-accent1: #E2725B; /* Terracotta */
+    --rustica-accent2: #8A9A5B; /* Sage Green */
+}
+
+.rustica-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--rustica-bg);
+    color: var(--rustica-text);
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a3b32' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.rustica-container {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* TYPOGRAPHY */
+.rustica-font-hand {
+    font-family: 'Caveat', cursive;
+    color: var(--rustica-accent1);
+}
+
+.rustica-font-body {
+    font-family: 'Jost', sans-serif;
+}
+
+.rustica-text-center {
+    text-align: center;
+}
+
+/* BUTTONS */
+.rustica-btn {
+    background-color: var(--rustica-accent1);
+    color: #FFF;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rustica-btn:hover {
+    background-color: var(--rustica-accent2);
+}
+
+/* SECTIONS */
+.rustica-section {
+    padding: 4rem 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* CARDS */
+.rustica-card {
+    background-color: #FFF;
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: 4px 4px 0px var(--rustica-surface);
+    border: 2px solid var(--rustica-text);
+}
+
+/* INPUTS */
+.rustica-input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--rustica-text);
+    color: var(--rustica-text);
+    border-radius: 0;
+    font-family: 'Jost', sans-serif;
+    outline: none;
+    font-size: 1rem;
+}
+
+.rustica-input:focus {
+    border-color: var(--rustica-accent1);
+}

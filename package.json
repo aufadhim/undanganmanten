@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "date-fns": "^4.4.0",
+    "vite": "^8.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "playwright": "^1.62.1"
+  }
+}

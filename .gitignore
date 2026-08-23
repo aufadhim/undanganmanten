@@ -1,0 +1,17 @@
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+frontend/dist/
+backend/uploads/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+!frontend/.env.example
+!backend/.env.example
+frontend/playwright-report/
+frontend/test-results/
+
+# Referensi desain hasil unduhan; bukan bagian runtime aplikasi.
+contoh template/

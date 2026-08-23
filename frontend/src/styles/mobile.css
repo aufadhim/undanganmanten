@@ -1,0 +1,46 @@
+        @media (max-width: 900px) {
+            .dashboard {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .rail {
+                display: none;
+            }
+            .stage {
+                display: none; /* Hide stage on mobile, we can add a toggle if needed */
+            }
+            .panel {
+                flex: 1;
+                padding: 20px 16px 80px 16px; /* Space for bottom nav */
+                border-right: none;
+            }
+            .tabs {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--panel);
+                margin: 0;
+                padding: 10px;
+                border-radius: 20px 20px 0 0;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+                z-index: 50;
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+                gap: 8px;
+                border-top: 1px solid var(--line);
+            }
+            .tab {
+                flex: 0 0 auto;
+                padding: 10px 16px;
+                border-radius: 20px;
+                background: var(--paper-deep);
+            }
+            .tab.active {
+                background: var(--ink);
+                color: var(--paper);
+            }
+        }

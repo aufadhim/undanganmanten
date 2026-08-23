@@ -1,0 +1,5 @@
+{
+  "events": {
+    "crash": "sleep 1 && touch src/server.js"
+  }
+}

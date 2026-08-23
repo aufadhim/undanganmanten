@@ -1,0 +1,51 @@
+.floating-multimedia-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.falling-particle-wrapper {
+    position: absolute;
+    top: -10%;
+    user-select: none;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.8;
+    color: var(--pf-accent, #ffffff);
+    animation-name: fall-y;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: top;
+}
+
+.falling-particle-inner {
+    font-size: 16px;
+    animation-name: sway-x;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    will-change: transform;
+}
+
+@keyframes fall-y {
+    0% {
+        top: -10%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+@keyframes sway-x {
+    0% {
+        transform: translate3d(-20px, 0, 0) rotate(-15deg);
+    }
+    100% {
+        transform: translate3d(20px, 0, 0) rotate(15deg);
+    }
+}

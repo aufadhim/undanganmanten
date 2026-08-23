@@ -1,0 +1,323 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String       @id @default(uuid())
+  email                String       @unique
+  passwordHash         String       @map("password_hash")
+  phone                String?
+  createdAt            DateTime     @default(now()) @map("created_at")
+  isVerified           Boolean      @default(false) @map("is_verified")
+  resetPasswordExpires DateTime?    @map("reset_password_expires")
+  resetPasswordToken   String?      @map("reset_password_token")
+  verificationToken    String?      @map("verification_token")
+  role                 Role         @default(USER)
+  invitation           Invitation[]
+
+  @@map("users")
+}
+
+model Invitation {
+  id                 String              @id @default(uuid())
+  userId             String              @map("user_id")
+  slug               String              @unique
+  themeId            String?             @map("theme_id")
+  weddingDate        DateTime            @map("wedding_date")
+  status             InvitationStatus    @default(draft)
+  expiresAt          DateTime            @map("expires_at")
+  createdAt          DateTime            @default(now()) @map("created_at")
+  updatedAt          DateTime            @updatedAt @map("updated_at")
+  packageType        PackageType         @default(TRIAL) @map("package_type")
+  views              Int                 @default(0)
+  coupleProfile      CoupleProfile?
+  events             Event[]
+  galleryMedia       GalleryMedia[]
+  giftSettings       GiftSettings?
+  guests             Guest[]
+  invitationFeatures InvitationFeatures?
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  livestreamSettings LivestreamSettings?
+  orders             Order[]
+  quoteSettings      QuoteSettings?
+  rundowns           Rundown[]
+  themeSettings      ThemeSettings?
+  timelineStories    TimelineStory[]
+  wishes             Wish[]
+
+  @@index([expiresAt])
+  @@map("invitations")
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  invitationId    String      @map("invitation_id")
+  packageType     PackageType @map("package_type")
+  amount          Int
+  status          OrderStatus @default(PENDING)
+  midtransOrderId String      @unique @map("midtrans_order_id")
+  snapToken       String?     @map("snap_token")
+  paidAt          DateTime?   @map("paid_at")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  addons          Json?
+  invitation      Invitation  @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model ThemeSettings {
+  id                  String     @id @default(uuid())
+  invitationId        String     @unique @map("invitation_id")
+  background          Json
+  bodyText            Json       @map("body_text")
+  button              Json
+  typography          Json
+  animationType       String?    @map("animation_type")
+  customLogoUrl       String?    @map("custom_logo_url")
+  musicUrl            String?    @map("music_url")
+  waTemplate          String?    @map("wa_template")
+  dresscodeText       String?    @map("dresscode_text")
+  igFilterUrl         String?    @map("ig_filter_url")
+  coverImageUrl       String?    @map("cover_image_url")
+  coverSecondImageUrl String?    @map("cover_second_image_url")
+  coverType           String?    @map("cover_type")
+  dresscodeDetails    Json?      @map("dresscode_details")
+  igFilterImageUrl    String?    @map("ig_filter_image_url")
+  layoutOrder         Json?      @map("layout_order")
+  mainStory           String?    @map("main_story")
+  invitation          Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("theme_settings")
+}
+
+model CoupleProfile {
+  id            String     @id @default(uuid())
+  invitationId  String     @unique @map("invitation_id")
+  groomName     String     @map("groom_name")
+  groomPhoto    String?    @map("groom_photo")
+  groomFather   String?    @map("groom_father")
+  groomMother   String?    @map("groom_mother")
+  groomBio      String?    @map("groom_bio") @db.Text
+  brideName     String     @map("bride_name")
+  bridePhoto    String?    @map("bride_photo")
+  brideFather   String?    @map("bride_father")
+  brideMother   String?    @map("bride_mother")
+  brideBio      String?    @map("bride_bio") @db.Text
+  brideFullName String?    @map("bride_full_name")
+  groomFullName String?    @map("groom_full_name")
+  brideIg       String?    @map("bride_ig")
+  coupleLogoUrl String?    @map("couple_logo_url")
+  groomIg       String?    @map("groom_ig")
+  invitation    Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("couple_profiles")
+}
+
+model QuoteSettings {
+  id           String     @id @default(uuid())
+  invitationId String     @unique @map("invitation_id")
+  enabled      Boolean    @default(false)
+  religion     String     @default("islam")
+  customText   String?    @map("custom_text")
+  customSource String?    @map("custom_source")
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("quote_settings")
+}
+
+model Event {
+  id            String     @id @default(uuid())
+  invitationId  String     @map("invitation_id")
+  type          EventType
+  date          DateTime?
+  startTime     String?    @map("start_time")
+  endTime       String?    @map("end_time")
+  venueName     String?    @map("venue_name")
+  address       String?
+  lat           Float?
+  lng           Float?
+  mapStyleId    String?    @map("map_style_id")
+  googleMapsUrl String?    @map("google_maps_url")
+  invitation    Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("events")
+}
+
+model GalleryMedia {
+  id           String     @id @default(uuid())
+  invitationId String     @map("invitation_id")
+  type         MediaType
+  url          String
+  thumbnailUrl String?    @map("thumbnail_url")
+  order        Int        @default(0)
+  layoutType   String?    @map("layout_type")
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("gallery_media")
+}
+
+model TimelineStory {
+  id           String     @id @default(uuid())
+  invitationId String     @map("invitation_id")
+  title        String
+  description  String?
+  date         DateTime?
+  photoUrl     String?    @map("photo_url")
+  order        Int        @default(0)
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("timeline_stories")
+}
+
+model Guest {
+  id              String        @id @default(uuid())
+  invitationId    String        @map("invitation_id")
+  name            String
+  phone           String?
+  groupName       String?       @map("group_name")
+  inviteStatus    InviteStatus  @default(pending) @map("invite_status")
+  sentAt          DateTime?     @map("sent_at")
+  openedAt        DateTime?     @map("opened_at")
+  checkedIn       Boolean       @default(false) @map("checked_in")
+  checkedInAt     DateTime?     @map("checked_in_at")
+  customWaMessage String?       @map("custom_wa_message")
+  invitation      Invitation    @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  rsvp            RsvpResponse?
+  wishes          Wish[]
+
+  @@map("guests")
+}
+
+model RsvpResponse {
+  id         String   @id @default(uuid())
+  guestId    String   @unique @map("guest_id")
+  attending  Boolean
+  guestCount Int      @default(1) @map("guest_count")
+  note       String?
+  createdAt  DateTime @default(now()) @map("created_at")
+  guest      Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+
+  @@map("rsvp_responses")
+}
+
+model Wish {
+  id           String     @id @default(uuid())
+  invitationId String     @map("invitation_id")
+  senderName   String     @map("sender_name")
+  message      String
+  createdAt    DateTime   @default(now()) @map("created_at")
+  reply        String?
+  isHidden     Boolean    @default(false) @map("is_hidden")
+  isPinned     Boolean    @default(false) @map("is_pinned")
+  guestId      String?    @map("guest_id")
+  guest        Guest?     @relation(fields: [guestId], references: [id])
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("wishes")
+}
+
+model GiftSettings {
+  id              String     @id @default(uuid())
+  invitationId    String     @unique @map("invitation_id")
+  type            GiftType
+  bankName        String?    @map("bank_name")
+  accountNumber   String?    @map("account_number")
+  accountHolder   String?    @map("account_holder")
+  shippingAddress String?    @map("shipping_address")
+  invitation      Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("gift_settings")
+}
+
+model LivestreamSettings {
+  id            String     @id @default(uuid())
+  invitationId  String     @unique @map("invitation_id")
+  platform      String?
+  url           String?
+  coverImageUrl String?    @map("cover_image_url")
+  invitation    Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("livestream_settings")
+}
+
+model InvitationFeatures {
+  id                String     @id @default(uuid())
+  invitationId      String     @unique @map("invitation_id")
+  rsvpEnabled       Boolean    @default(true) @map("rsvp_enabled")
+  giftEnabled       Boolean    @default(true) @map("gift_enabled")
+  livestreamEnabled Boolean    @default(true) @map("livestream_enabled")
+  timelineEnabled   Boolean    @default(true) @map("timeline_enabled")
+  storyEnabled      Boolean    @default(true) @map("story_enabled")
+  animationEnabled  Boolean    @default(true) @map("animation_enabled")
+  customLogoEnabled Boolean    @default(true) @map("custom_logo_enabled")
+  musicEnabled      Boolean    @default(true) @map("music_enabled")
+  dresscodeEnabled  Boolean    @default(true) @map("dresscode_enabled")
+  igFilterEnabled   Boolean    @default(true) @map("ig_filter_enabled")
+  rundownEnabled    Boolean    @default(true) @map("rundown_enabled")
+  views             Int        @default(0)
+  invitation        Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("invitation_features")
+}
+
+model Rundown {
+  id           String     @id @default(uuid())
+  invitationId String     @map("invitation_id")
+  time         String
+  activity     String
+  order        Int        @default(0)
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@map("rundowns")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum InvitationStatus {
+  draft
+  published
+  expired
+}
+
+enum PackageType {
+  TRIAL
+  STANDARD
+  PREMIUM
+}
+
+enum OrderStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  EXPIRED
+}
+
+enum EventType {
+  akad
+  resepsi
+}
+
+enum MediaType {
+  photo
+  video
+}
+
+enum InviteStatus {
+  pending
+  sent
+  opened
+}
+
+enum GiftType {
+  bank_transfer
+  address
+  both
+}

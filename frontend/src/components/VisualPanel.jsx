@@ -1,0 +1,347 @@
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { api } from '../api/client.js';
+import Button from './ui/Button.jsx';
+import { useUI } from '../context/UIContext.jsx';
+
+export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
+  const { t } = useTranslation();
+
+  const [features, setFeatures] = useState(invitation?.invitationFeatures || {});
+  const [uploadingAsset, setUploadingAsset] = useState(false);
+  
+  const { toast } = useUI();
+
+  // Reset isi form jika user berganti pilihan undangan dari dropdown
+  useEffect(() => {
+    if (invitation) {
+      setFeatures(invitation.invitationFeatures || {});
+    }
+  }, [invitation?.id]);
+
+  useEffect(() => {
+    if (onLivePreview && features) {
+      onLivePreview({ invitationFeatures: features });
+    }
+  }, [features, onLivePreview]);
+
+  if (!invitation) return null;
+
+  async function toggleFeature(key) {
+    const newValue = !features[key];
+    // Optimistic Update (Ubah UI dulu biar responsif)
+    setFeatures((f) => ({ ...f, [key]: newValue }));
+
+    try {
+      const res = await api.patch('/invitations/me/features', {
+        invitationId: invitation.id,
+        [key]: newValue
+      });
+      onUpdated({ ...invitation, invitationFeatures: res.data.features || { ...features, [key]: newValue } });
+    } catch (err) {
+      // Revert UI ke semula jika gagal
+      setFeatures((f) => ({ ...f, [key]: !newValue }));
+      toast.error(err.response?.data?.error || 'Gagal mengubah pengaturan fitur.');
+    }
+  }
+
+  // Handler Multimedia & Asset
+  async function handleUploadAsset(e, fieldKey) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Check size limit: Max 5MB for images, Max 15MB for audio
+    const isAudio = file.type.startsWith('audio/');
+    const maxSize = isAudio ? 15 * 1024 * 1024 : 5 * 1024 * 1024;
+    
+    if (file.size > maxSize) {
+      toast.error(`Ukuran file terlalu besar. Maksimal ${isAudio ? '15MB' : '5MB'}.`);
+      return;
+    }
+
+    setUploadingAsset(true);
+    try {
+      const formData = new FormData();
+      formData.append('invitationId', invitation.id);
+      formData.append('file', file);
+
+      const uploadRes = await api.post('/themes/upload-asset', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      const url = uploadRes.data.url;
+      
+      // Update theme settings with the new url
+      await api.patch('/themes/me', {
+        invitationId: invitation.id,
+        [fieldKey]: url,
+      });
+
+      onUpdated({
+        ...invitation,
+        themeSettings: {
+          ...(invitation.themeSettings || {}),
+          [fieldKey]: url,
+        },
+      });
+
+      toast.success('Berhasil mengunggah file!');
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Gagal mengunggah file.');
+    } finally {
+      setUploadingAsset(false);
+    }
+  }
+
+  async function handleSaveAnimation(e) {
+    const animationType = e.target.value;
+    try {
+      await api.patch('/themes/me', {
+        invitationId: invitation.id,
+        animationType,
+      });
+      onUpdated({
+        ...invitation,
+        themeSettings: {
+          ...(invitation.themeSettings || {}),
+          animationType,
+        },
+      });
+      toast.success('Animasi berhasil disimpan!');
+    } catch (err) {
+      toast.error('Gagal menyimpan animasi.');
+    }
+  }
+
+  async function handleSaveOpeningAnimation(e) {
+    const openingAnimation = e.target.value;
+    try {
+      await api.patch('/themes/me', {
+        invitationId: invitation.id,
+        openingAnimation,
+      });
+      onUpdated({
+        ...invitation,
+        themeSettings: {
+          ...(invitation.themeSettings || {}),
+          openingAnimation,
+        },
+      });
+      toast.success('Animasi pembuka berhasil disimpan!');
+    } catch (err) {
+      toast.error('Gagal menyimpan animasi pembuka.');
+    }
+  }
+
+  async function handleSaveCoverType(e) {
+    const coverType = e.target.value;
+    try {
+      await api.patch('/themes/me', {
+        invitationId: invitation.id,
+        coverType,
+      });
+      onUpdated({
+        ...invitation,
+        themeSettings: {
+          ...(invitation.themeSettings || {}),
+          coverType,
+        },
+      });
+      toast.success('Jenis Cover berhasil disimpan!');
+    } catch (err) {
+      toast.error('Gagal menyimpan jenis cover.');
+    }
+  }
+
+
+  return (
+    <>
+      <h2 className="panel-header">Musik &amp; Visual Tambahan</h2>
+      <p className="panel-sub">Atur musik latar, animasi, dan logo awal pada undangan Anda.</p>
+
+      <div className="section-block">
+        <div className="section-title">Tampilan Cover Awal &amp; Tirai</div>
+        <div className="stack">
+          <div>
+            <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+              Jenis Cover
+            </label>
+            <select
+              className="text-input"
+              value={invitation?.themeSettings?.coverType === 'default' ? 'default' : 'custom'}
+              onChange={handleSaveCoverType}
+            >
+              <option value="custom">Gambar Kustom (Foto / Ilustrasi)</option>
+              <option value="default">Bawaan Template (Tanpa Cover Custom)</option>
+            </select>
+            <p style={{ fontSize: '14px', color: '#555', marginTop: '6px', lineHeight: '1.4' }}>
+              Pilih 'Gambar Kustom' jika Anda ingin mengunggah foto asli, ilustrasi full cover, atau ilustrasi syar'i.
+            </p>
+          </div>
+
+          <hr style={{ borderTop: '1px solid #eee', margin: '12px 0' }} />
+
+          {invitation?.themeSettings?.coverType !== 'default' && (
+            <>
+              <div>
+                <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+                  Gambar / Ilustrasi Tirai (Cover 1)
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleUploadAsset(e, 'coverImageUrl')}
+                  disabled={uploadingAsset}
+                  className="text-input"
+                  style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '8px', background: '#fafafa', cursor: 'pointer', fontFamily: 'inherit' }}
+                />
+                {invitation?.themeSettings?.coverImageUrl && (
+                  <img src={invitation.themeSettings.coverImageUrl} alt="Cover Tirai" style={{ height: '100px', marginTop: '8px', objectFit: 'cover', borderRadius: '8px' }} />
+                )}
+                <p style={{ fontSize: '13px', color: '#555', marginTop: '6px', lineHeight: '1.4' }}>
+                  Gambar yang akan muncul sebelum undangan dibuka (tirai awal).
+                </p>
+              </div>
+
+              <hr style={{ borderTop: '1px solid #eee', margin: '12px 0' }} />
+
+              <div>
+                <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+                  Gambar / Ilustrasi Cover Utama (Cover 2)
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleUploadAsset(e, 'coverSecondImageUrl')}
+                  disabled={uploadingAsset}
+                  className="text-input"
+                  style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '8px', background: '#fafafa', cursor: 'pointer', fontFamily: 'inherit' }}
+                />
+                {invitation?.themeSettings?.coverSecondImageUrl && (
+                  <img src={invitation.themeSettings.coverSecondImageUrl} alt="Cover Utama" style={{ height: '100px', marginTop: '8px', objectFit: 'cover', borderRadius: '8px' }} />
+                )}
+                <p style={{ fontSize: '13px', color: '#555', marginTop: '6px', lineHeight: '1.4' }}>
+                  Gambar yang akan muncul setelah tamu mengklik tombol buka undangan.
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className="section-block">
+        <div className="section-title">Multimedia &amp; Estetika</div>
+        <div className="stack">
+          
+          <div>
+            <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
+              Animasi Pembuka Sampul
+            </label>
+            <select
+              className="text-input"
+              value={invitation?.themeSettings?.openingAnimation || ''}
+              onChange={handleSaveOpeningAnimation}
+            >
+              <option value="">Slide Up (Bawaan - Terangkat ke Atas)</option>
+              <option value="fade">Fade Out (Menghilang Halus)</option>
+              <option value="zoom">Zoom Out (Membesar & Menghilang)</option>
+              <option value="slide-down">Slide Down (Turun ke Bawah)</option>
+            </select>
+          </div>
+
+          <hr style={{ borderTop: '1px solid #eee', margin: '16px 0' }} />
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <label style={{ fontSize: '14px', color: '#333', fontWeight: 600 }}>Background Music (MP3/WAV)</label>
+            <label className="switch">
+              <input type="checkbox" checked={features.musicEnabled || false} onChange={() => toggleFeature('musicEnabled')} />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          {features.musicEnabled && (
+            <div>
+            <input
+              type="file"
+              accept="audio/*"
+              onChange={(e) => handleUploadAsset(e, 'musicUrl')}
+              disabled={uploadingAsset}
+              className="text-input"
+              style={{
+                padding: '8px', 
+                border: '1px solid #ccc', 
+                borderRadius: '8px', 
+                background: '#fafafa', 
+                cursor: 'pointer',
+                fontFamily: 'inherit'
+              }}
+            />
+            {invitation?.themeSettings?.musicUrl && (
+              <audio controls src={invitation.themeSettings.musicUrl} style={{ width: '100%', height: '30px', marginTop: '8px' }} />
+            )}
+          </div>
+          )}
+
+          <hr style={{ borderTop: '1px solid #eee', margin: '16px 0' }} />
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <label style={{ fontSize: '14px', color: '#333', fontWeight: 600 }}>Animasi Visual (Daun/Salju)</label>
+            <label className="switch">
+              <input type="checkbox" checked={features.animationEnabled || false} onChange={() => toggleFeature('animationEnabled')} />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          {features.animationEnabled && (
+            <div>
+            <select
+              className="text-input"
+              value={invitation?.themeSettings?.animationType || ''}
+              onChange={handleSaveAnimation}
+            >
+              <option value="">Tidak ada animasi</option>
+              <option value="sakura">Kelopak Bunga Sakura</option>
+              <option value="snow">Hujan Salju</option>
+              <option value="leaves">Daun Berguguran</option>
+              <option value="confetti">Confetti Pesta</option>
+            </select>
+          </div>
+          )}
+
+          <hr style={{ borderTop: '1px solid #eee', margin: '16px 0' }} />
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <label style={{ fontSize: '14px', color: '#333', fontWeight: 600 }}>Custom Loading Logo</label>
+            <label className="switch">
+              <input type="checkbox" checked={features.customLogoEnabled || false} onChange={() => toggleFeature('customLogoEnabled')} />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          {features.customLogoEnabled && (
+            <div>
+              <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
+                Logo ini akan muncul saat tamu pertama kali membuka tautan (Maksimal 2MB, transparan disarankan).
+              </p>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleUploadAsset(e, 'customLogoUrl')}
+              disabled={uploadingAsset}
+              className="text-input"
+              style={{
+                padding: '8px', 
+                border: '1px solid #ccc', 
+                borderRadius: '8px', 
+                background: '#fafafa', 
+                cursor: 'pointer',
+                fontFamily: 'inherit'
+              }}
+            />
+            {invitation?.themeSettings?.customLogoUrl && (
+              <img src={invitation.themeSettings.customLogoUrl} alt="Logo" style={{ height: '60px', marginTop: '8px', objectFit: 'contain' }} />
+            )}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}

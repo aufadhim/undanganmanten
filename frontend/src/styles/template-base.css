@@ -1,0 +1,268 @@
+/* ---------- SHARED TEMPLATE BASE STYLES ---------- */
+
+.tpl-container {
+    width: 100%;
+    min-height: 100%;
+}
+
+.tpl-hero-section {
+    position: relative;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tpl-hero-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pf-accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.tpl-hero-title {
+    font-family: var(--pf-font-heading);
+    font-size: 32px;
+    color: var(--pf-accent);
+    margin: 0 0 12px 0;
+}
+
+.tpl-hero-date {
+    font-size: 12px;
+    color: var(--pf-text-secondary);
+    margin: 0;
+}
+
+/* Quote Section */
+.tpl-quote-section {
+    position: relative;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tpl-quote-text {
+    font-size: 12px;
+    color: var(--pf-text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0 0 12px 0;
+}
+
+.tpl-quote-source {
+    font-size: 11px;
+    color: var(--pf-accent);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Profile Section */
+.tpl-profile-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tpl-profile-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pf-accent);
+    font-weight: 700;
+}
+
+.tpl-profile-desc {
+    font-size: 12px;
+    color: var(--pf-text-secondary);
+    line-height: 1.6;
+    margin: 12px 0 32px 0;
+    padding: 0 10px;
+}
+
+.tpl-profile-person {
+    margin-bottom: 32px;
+}
+
+.tpl-profile-img-wrap {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--pf-bg-secondary);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.tpl-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tpl-profile-name {
+    font-family: var(--pf-font-heading);
+    font-size: 24px;
+    color: var(--pf-text-primary);
+    margin: 0 0 6px 0;
+}
+
+.tpl-profile-parents {
+    font-size: 11.5px;
+    color: var(--pf-text-secondary);
+    margin: 0 0 8px 0;
+}
+
+.tpl-profile-ig {
+    font-size: 11px;
+    color: var(--pf-accent);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    background: var(--pf-bg-primary);
+    padding: 6px 12px;
+    border-radius: 15px;
+    border: 1px solid var(--pf-accent);
+    margin-top: 8px;
+}
+
+.tpl-profile-ig i {
+    margin-right: 6px;
+}
+
+.tpl-profile-ampersand {
+    font-family: var(--pf-font-heading);
+    font-size: 32px;
+    color: var(--pf-accent);
+    margin: 10px 0;
+}
+
+/* Save the Date */
+.tpl-date-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tpl-date-title {
+    font-family: var(--pf-font-heading);
+    font-size: 22px;
+    color: var(--pf-text-primary);
+    margin: 0 0 20px 0;
+}
+
+.tpl-countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tpl-countdown-item {
+    background: var(--pf-bg-primary);
+    padding: 10px 4px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.tpl-countdown-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pf-accent);
+}
+
+.tpl-countdown-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--pf-text-secondary);
+}
+
+.tpl-calendar-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid var(--pf-accent);
+    color: var(--pf-accent);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tpl-calendar-btn i {
+    margin-right: 6px;
+}
+
+/* Events */
+.tpl-events-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.tpl-events-desc {
+    font-size: 12px;
+    color: var(--pf-text-secondary);
+    margin: 8px 0 28px 0;
+}
+
+.tpl-event-card {
+    background: var(--pf-bg-secondary);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(106,76,147,0.1);
+    text-align: center;
+}
+
+.tpl-event-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+    color: var(--pf-accent);
+}
+
+.tpl-event-title {
+    font-family: var(--pf-font-heading);
+    font-size: 20px;
+    color: var(--pf-accent);
+    margin: 0 0 6px 0;
+}
+
+.tpl-event-time {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.tpl-event-timezone {
+    font-size: 11px;
+    color: var(--pf-text-secondary);
+    margin: 0 0 10px 0;
+}
+
+.tpl-event-venue {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pf-text-primary);
+    margin: 0 0 4px 0;
+}
+
+.tpl-event-address {
+    font-size: 11px;
+    color: var(--pf-text-secondary);
+    line-height: 1.4;
+    margin: 0 0 14px 0;
+}
+
+.tpl-event-map-btn {
+    display: inline-block;
+    background: var(--pf-accent);
+    color: var(--pf-text-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.tpl-event-map-btn i {
+    margin-right: 6px;
+}
+
