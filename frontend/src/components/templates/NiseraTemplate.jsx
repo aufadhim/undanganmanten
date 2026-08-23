@@ -34,7 +34,7 @@ export default function NiseraTemplate({ invitation, previewGuest }) {
 
 
     return (
-        <div className="nisera original preset-original" style={{
+        <div className="nisera original preset-original template-wrapper-dynamic" style={{
         '--heading-family': typo.fontHeading || '"Pinyon Script", cursive',
         '--body-text-family': typo.fontBody || '"Lancelot", serif',
     }}>

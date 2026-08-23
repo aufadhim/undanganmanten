@@ -43,6 +43,20 @@ export default function PhonePreview({ invitation, previewGuest }) {
                 .split-view-container {
                     --font-heading: ${typo.fontHeading || "'Playfair Display', serif"};
                     --font-body: ${typo.fontBody || "'Manrope', sans-serif"};
+                    --typo-heading-line-height: ${typo.headingLineHeight ?? 1.15};
+                    --typo-body-line-height: ${typo.bodyLineHeight ?? 1.65};
+                    --typo-heading-letter-spacing: ${typo.headingLetterSpacing ?? 0}em;
+                    --typo-body-letter-spacing: ${typo.bodyLetterSpacing ?? 0}em;
+                }
+
+                :is(.samaya-wrapper, .nisera, .eternal-wrapper) :is(h1, h2, h3, h4, h5, h6) {
+                    line-height: var(--typo-heading-line-height) !important;
+                    letter-spacing: var(--typo-heading-letter-spacing) !important;
+                }
+
+                :is(.samaya-wrapper, .nisera, .eternal-wrapper) :is(p, li) {
+                    line-height: var(--typo-body-line-height) !important;
+                    letter-spacing: var(--typo-body-letter-spacing) !important;
                 }
                 
                 /* Layout Order & Visibility (Dynamic) */

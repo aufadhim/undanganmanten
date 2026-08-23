@@ -60,8 +60,12 @@ export const updateThemeSettingsSchema = z.object({
   button: colorCategorySchema.optional(),
   typography: z
     .object({
-      fontHeading: z.string().max(100).optional(),
-      fontBody: z.string().max(100).optional(),
+      fontHeading: z.string().max(100).regex(/^[\w\s'",.-]+$/u, 'Font heading tidak valid').optional(),
+      fontBody: z.string().max(100).regex(/^[\w\s'",.-]+$/u, 'Font body tidak valid').optional(),
+      headingLineHeight: z.number().min(0.8).max(2).optional(),
+      bodyLineHeight: z.number().min(1).max(2.5).optional(),
+      headingLetterSpacing: z.number().min(-0.08).max(0.3).optional(),
+      bodyLetterSpacing: z.number().min(-0.04).max(0.2).optional(),
     })
     .partial()
     .optional(),

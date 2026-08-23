@@ -1074,7 +1074,7 @@ export default function EternalTemplate({ invitation, previewGuest }) {
 
   return (
     <div
-      className="eternal-wrapper"
+      className="eternal-wrapper template-wrapper-dynamic"
       style={{
         "--font-display":
           theme?.typography?.fontHeading || '"Cormorant Garamond", serif',
