@@ -83,6 +83,8 @@ export const updateThemeSettingsSchema = z.object({
   coverImageUrl: z.string().max(2048).optional().or(z.literal('')),
   coverSecondImageUrl: z.string().max(2048).optional().or(z.literal('')),
   openingAnimation: z.string().max(50).optional(),
+  brideBioEnabled: z.boolean().optional(),
+  groomBioEnabled: z.boolean().optional(),
   layoutOrder: z.array(z.object({ id: z.string().max(50), enabled: z.boolean() }).passthrough()).max(50).optional(),
   mainStory: z.string().max(5000).optional(),
 });

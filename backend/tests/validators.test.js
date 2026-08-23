@@ -39,6 +39,11 @@ test('typography menerima spacing aman dan menolak injeksi CSS', () => {
   }).success, false);
 });
 
+test('visibilitas bio kedua mempelai menerima nilai boolean', () => {
+  assert.equal(updateThemeSettingsSchema.safeParse({ brideBioEnabled: true, groomBioEnabled: false }).success, true);
+  assert.equal(updateThemeSettingsSchema.safeParse({ brideBioEnabled: 'ya' }).success, false);
+});
+
 test('RSVP membatasi jumlah kehadiran maksimal dua orang', async () => {
   const { rsvpSchema } = await import('../src/utils/validators.js');
   assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 2 }).success, true);

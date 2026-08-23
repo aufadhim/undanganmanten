@@ -50,6 +50,8 @@ export async function updateMyThemeSettings(req, res) {
             ...(patch.coverImageUrl !== undefined && { coverImageUrl: patch.coverImageUrl }),
             ...(patch.coverSecondImageUrl !== undefined && { coverSecondImageUrl: patch.coverSecondImageUrl }),
             ...(patch.openingAnimation !== undefined && { openingAnimation: patch.openingAnimation }),
+            ...(patch.brideBioEnabled !== undefined && { brideBioEnabled: patch.brideBioEnabled }),
+            ...(patch.groomBioEnabled !== undefined && { groomBioEnabled: patch.groomBioEnabled }),
             ...(patch.layoutOrder !== undefined && { layoutOrder: patch.layoutOrder }),
             ...(patch.mainStory !== undefined && { mainStory: patch.mainStory }),
         };

@@ -354,7 +354,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                   "The dearest daughter of {profile.brideFather || "Mr. Dwipa"} &amp; {profile.brideMother || "Mrs. Yuni"}"
                 </p>
               </div>
-              {profile.brideBio && (
+              {settings.brideBioEnabled !== false && profile.brideBio && (
               <div className="couple-bio">
                 <p>{profile.brideBio}</p>
               </div>
@@ -404,7 +404,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                   "The devoted son of {profile.groomFather || "Alm. Mr. Palal"} &amp; {profile.groomMother || "Mrs. Supiyah"}"
                 </p>
               </div>
-              {profile.groomBio && (
+              {settings.groomBioEnabled !== false && profile.groomBio && (
               <div className="couple-bio">
                 <p>{profile.groomBio}</p>
               </div>
