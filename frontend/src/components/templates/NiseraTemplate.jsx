@@ -8,7 +8,7 @@ import PublicForms from '../PublicForms.jsx';
 import Lightbox from './Lightbox';
 import '../../styles/nisera-template.css';
 
-export default function NiseraTemplate({ invitation, previewGuest }) {
+export default function NiseraTemplate({ invitation, previewGuest, editorPreview = false }) {
     if (!invitation) return null;
 
     const theme = invitation.themeSettings || {};
@@ -1581,8 +1581,7 @@ export default function NiseraTemplate({ invitation, previewGuest }) {
 
 
         <div data-section-order="rsvp">
-
-
+          <PublicForms invitation={invitation} previewGuest={previewGuest} templateStyle="nisera" previewMode={editorPreview} />
         </div>
 
         {/* LIVE STREAMING */}
@@ -1654,7 +1653,7 @@ export default function NiseraTemplate({ invitation, previewGuest }) {
         </div>
         <div data-section-order="wedding_gift">
             {/* WEDDING GIFT */}
-            <div className="wedding-gift-wrap ">
+            <div className="wedding-gift-wrap" style={{ display: 'none' }} aria-hidden="true">
                 <div className="wedding-gift-inner">
 
                     <div className="wedding-gift-head">

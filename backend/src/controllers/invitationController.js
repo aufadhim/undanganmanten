@@ -153,7 +153,7 @@ export async function updateMyInvitation(req, res) {
         // Pastikan undangan milik user yang login
         const invitation = await prisma.invitation.findFirst({
             where: { id, userId: req.userId },
-            include: { coupleProfile: true, quoteSettings: true, events: true },
+            include: { coupleProfile: true, quoteSettings: true, events: true, giftSettings: true, livestreamSettings: true, invitationFeatures: true },
         });
 
         if (!invitation) {
@@ -188,6 +188,19 @@ export async function updateMyInvitation(req, res) {
             }
             if (!invitation.events || invitation.events.length === 0) {
                 return res.status(400).json({ error: 'Minimal harus ada 1 acara (akad/resepsi) sebelum dipublikasi.' });
+            }
+            const incompleteEvent = invitation.events.find((event) => !event.date || !event.startTime || !event.venueName || !event.address);
+            if (incompleteEvent) return res.status(400).json({ error: 'Tanggal, jam, nama lokasi, dan alamat setiap acara wajib lengkap sebelum publikasi.' });
+            if (invitation.invitationFeatures?.giftEnabled) {
+                const gift = invitation.giftSettings;
+                const needsBank = gift?.type === 'bank_transfer' || gift?.type === 'both';
+                const needsAddress = gift?.type === 'address' || gift?.type === 'both';
+                if (!gift || (needsBank && !(Array.isArray(gift.bankAccounts) ? gift.bankAccounts.length : gift.accountNumber)) || (needsAddress && !gift.shippingAddress)) {
+                    return res.status(400).json({ error: 'Lengkapi rekening/alamat hadiah atau nonaktifkan blok Hadiah sebelum publikasi.' });
+                }
+            }
+            if (invitation.invitationFeatures?.livestreamEnabled && !invitation.livestreamSettings?.url) {
+                return res.status(400).json({ error: 'Isi URL live streaming atau nonaktifkan blok Live Streaming sebelum publikasi.' });
             }
         }
 
@@ -344,6 +357,7 @@ export async function getPublicGuest(req, res) {
                 id: true,
                 name: true,
                 groupName: true,
+                paxLimit: true,
                 inviteStatus: true,
                 rsvp: { select: { attending: true, guestCount: true, note: true } },
             }
@@ -353,7 +367,11 @@ export async function getPublicGuest(req, res) {
             return res.status(404).json({ error: 'Tamu tidak ditemukan.' });
         }
 
-        return res.json({ guest: { ...guest, ...(guest.rsvp || {}), rsvp: undefined } });
+        if (guest.inviteStatus !== 'opened') {
+            await prisma.guest.update({ where: { id: guest.id }, data: { inviteStatus: 'opened', openedAt: new Date() } });
+        }
+
+        return res.json({ guest: { ...guest, inviteStatus: 'opened', ...(guest.rsvp || {}), rsvp: undefined } });
     } catch (err) {
         console.error('Error getPublicGuest:', err);
         return res.status(500).json({ error: 'Gagal mengambil data tamu.' });

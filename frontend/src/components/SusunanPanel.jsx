@@ -20,8 +20,9 @@ const DEFAULT_LAYOUT = [
     { id: 'dresscode', label: 'Panduan Dresscode', icon: 'fa-shirt', enabled: true, nav: ['konten', 'dresscode'], featureKey: 'dresscodeEnabled' },
     { id: 'livestream', label: 'Live Streaming', icon: 'fa-video', enabled: true, nav: ['tamu', 'livestream'], featureKey: 'livestreamEnabled' },
     { id: 'igFilter', label: 'Filter Instagram', icon: 'fa-camera-retro', enabled: true, inlineEditor: 'igFilter', featureKey: 'igFilterEnabled' },
-    { id: 'rsvp', label: 'RSVP & Ucapan', icon: 'fa-comment-dots', enabled: true, nav: ['tamu', 'tamu'], featureKey: 'rsvpEnabled' },
-    { id: 'gift', label: 'Hadiah / Angpao', icon: 'fa-gift', enabled: true, nav: ['tamu', 'hadiah'], featureKey: 'giftEnabled' },
+    { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['tamu', 'tamu'], featureKey: 'rsvpEnabled' },
+    { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['tamu', 'ucapan'], featureKey: 'wishesEnabled' },
+    { id: 'gift', label: 'Informasi Hadiah', icon: 'fa-gift', enabled: true, nav: ['konten', 'hadiah'], featureKey: 'giftEnabled' },
     { id: 'footer', label: 'Penutup (Terima Kasih)', icon: 'fa-hands-praying', enabled: true }
 ];
 

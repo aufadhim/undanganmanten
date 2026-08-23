@@ -21,7 +21,8 @@ export async function activateOrder(order) {
     });
     await tx.invitation.update({
       where: { id: order.invitationId },
-      data: { packageType: order.packageType, status: 'published', expiresAt },
+      // Pembayaran mengaktifkan paket; publikasi dilakukan terpisah setelah checklist konten lolos.
+      data: { packageType: order.packageType, status: 'draft', expiresAt },
     });
     await tx.invitationFeatures.upsert({
       where: { invitationId: order.invitationId },

@@ -12,7 +12,8 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
     bankName: '',
     accountNumber: '',
     accountHolder: '',
-    shippingAddress: ''
+    shippingAddress: '',
+    bankAccounts: [{ bankName: '', accountNumber: '', accountHolder: '' }]
   });
   
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,10 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
         bankName: invitation.giftSettings.bankName || '',
         accountNumber: invitation.giftSettings.accountNumber || '',
         accountHolder: invitation.giftSettings.accountHolder || '',
-        shippingAddress: invitation.giftSettings.shippingAddress || ''
+        shippingAddress: invitation.giftSettings.shippingAddress || '',
+        bankAccounts: invitation.giftSettings.bankAccounts?.length
+          ? invitation.giftSettings.bankAccounts
+          : [{ bankName: invitation.giftSettings.bankName || '', accountNumber: invitation.giftSettings.accountNumber || '', accountHolder: invitation.giftSettings.accountHolder || '' }]
       });
     }
   }, [invitation?.giftSettings]);
@@ -53,6 +57,20 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
       }
   }
 
+  function updateAccount(index, field, value) {
+    const bankAccounts = formData.bankAccounts.map((account, i) => i === index ? { ...account, [field]: value } : account);
+    handleChange('bankAccounts', bankAccounts);
+  }
+
+  function addAccount() {
+    if (formData.bankAccounts.length >= 10) return toast.error('Maksimal 10 rekening.');
+    handleChange('bankAccounts', [...formData.bankAccounts, { bankName: '', accountNumber: '', accountHolder: '' }]);
+  }
+
+  function removeAccount(index) {
+    handleChange('bankAccounts', formData.bankAccounts.filter((_, i) => i !== index));
+  }
+
   function handleChange(field, value) {
     setFormData((prev) => {
       const next = { ...prev, [field]: value };
@@ -68,7 +86,9 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
     setLoading(true);
 
     try {
-      const payload = { ...formData };
+      const bankAccounts = formData.bankAccounts.filter((a) => a.bankName.trim() && a.accountNumber.trim() && a.accountHolder.trim());
+      const primary = bankAccounts[0] || {};
+      const payload = { ...formData, bankAccounts, bankName: primary.bankName || '', accountNumber: primary.accountNumber || '', accountHolder: primary.accountHolder || '' };
       const res = await api.patch('/invitations/me/gift-settings', payload);
       toast.success(res.data.message || 'Pengaturan hadiah berhasil disimpan!');
       if (onUpdated && invitation) {
@@ -84,8 +104,12 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
 
   return (
     <div className="panel-content">
-      <h2 className="panel-header">Amplop Digital & Hadiah</h2>
-      <p className="panel-sub">Pilih metode penerimaan kado/amplop digital. Jika opsi transfer dinonaktifkan, tamu hanya akan melihat opsi alamat fisik.</p>
+      <h2 className="panel-header">Informasi Hadiah</h2>
+      <p className="panel-sub">Hadiah sepenuhnya opsional. Detail rekening dan alamat disembunyikan sampai tamu memilih untuk melihatnya.</p>
+
+      <label style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 18 }}>
+        <input type="checkbox" checked={giftEnabled} onChange={handleToggleGift} /> Tampilkan informasi hadiah di undangan
+      </label>
 
       <form onSubmit={handleSubmit} className="stack">
         <div>
@@ -108,40 +132,16 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
 
         {(formData.type === 'bank_transfer' || formData.type === 'both') && (
           <div style={{ background: '#fdfdfd', border: '1px solid var(--line)', padding: '16px', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <h4 style={{ margin: '0 0 4px', fontSize: '13px', color: 'var(--ink)' }}>Detail Transfer Bank</h4>
-            
-            <div>
-              <label className="field-label">Nama Bank / E-Wallet</label>
-              <input
-                type="text"
-                className="text-input"
-                placeholder="Misal: BCA, Mandiri, OVO, Dana"
-                value={formData.bankName}
-                onChange={(e) => handleChange('bankName', e.target.value)}
-              />
-            </div>
-            
-            <div>
-              <label className="field-label">Nomor Rekening / No. HP</label>
-              <input
-                type="text"
-                className="text-input"
-                placeholder="Misal: 1234567890"
-                value={formData.accountNumber}
-                onChange={(e) => handleChange('accountNumber', e.target.value)}
-              />
-            </div>
-            
-            <div>
-              <label className="field-label">Atas Nama (Pemilik Rekening)</label>
-              <input
-                type="text"
-                className="text-input"
-                placeholder="Misal: Budi Santoso"
-                value={formData.accountHolder}
-                onChange={(e) => handleChange('accountHolder', e.target.value)}
-              />
-            </div>
+            <h4 style={{ margin: '0 0 4px', fontSize: '13px', color: 'var(--ink)' }}>Daftar Rekening / E-Wallet</h4>
+            {formData.bankAccounts.map((account, index) => (
+              <div key={index} style={{ padding: 12, border: '1px solid var(--line)', borderRadius: 10 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}><strong>Rekening {index + 1}</strong>{formData.bankAccounts.length > 1 && <button type="button" onClick={() => removeAccount(index)} style={{ border: 0, background: 'none', color: '#c33' }}>Hapus</button>}</div>
+                <input className="text-input" placeholder="Bank / E-Wallet" value={account.bankName} onChange={(e) => updateAccount(index, 'bankName', e.target.value)} />
+                <input className="text-input" style={{ marginTop: 8 }} placeholder="Nomor rekening / No. HP" value={account.accountNumber} onChange={(e) => updateAccount(index, 'accountNumber', e.target.value)} />
+                <input className="text-input" style={{ marginTop: 8 }} placeholder="Atas nama" value={account.accountHolder} onChange={(e) => updateAccount(index, 'accountHolder', e.target.value)} />
+              </div>
+            ))}
+            <Button type="button" variant="secondary" onClick={addAccount}>+ Tambah Rekening</Button>
           </div>
         )}
 

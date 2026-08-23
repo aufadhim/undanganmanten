@@ -12,6 +12,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
   const { t } = useTranslation();
   const [guests, setGuests] = useState([]);
   const [rsvpEnabled, setRsvpEnabled] = useState(invitation?.invitationFeatures?.rsvpEnabled || false);
+  const [rsvpSettings, setRsvpSettings] = useState({ openToPublic: invitation?.rsvpOpenToPublic ?? true, deadline: invitation?.rsvpDeadline?.slice?.(0, 16) || '' });
 
   const draftKeyTamu = `draft_tamu_add_${invitation?.id}`;
   const [form, setForm, clearDraftTamu] = useFormDraft(draftKeyTamu, {
@@ -71,6 +72,14 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
           setRsvpEnabled(!checked); // revert
           toast.error(err.response?.data?.error || 'Gagal mengubah pengaturan fitur RSVP.');
       }
+  }
+
+  async function saveRsvpSettings() {
+    try {
+      const res = await api.patch(`/invitations/${invitation.id}`, { rsvpOpenToPublic: rsvpSettings.openToPublic, rsvpDeadline: rsvpSettings.deadline || null });
+      onUpdated?.(res.data.invitation || { ...invitation, rsvpOpenToPublic: rsvpSettings.openToPublic, rsvpDeadline: rsvpSettings.deadline || null });
+      toast.success('Aturan RSVP disimpan.');
+    } catch (err) { toast.error(err.response?.data?.error || 'Gagal menyimpan aturan RSVP.'); }
   }
 
   function loadGuests() {
@@ -246,6 +255,14 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
       <p className="panel-sub">
         Kelola siapa saja yang diundang, atur pesan WhatsApp (*Smart WA*), dan pantau RSVP tamu.
       </p>
+      <div className="section-block" style={{ marginBottom: 20 }}>
+        <div className="section-title">Aturan RSVP</div>
+        <label style={{ display: 'flex', gap: 8, marginBottom: 10 }}><input type="checkbox" checked={rsvpEnabled} onChange={handleToggleRsvp} /> Aktifkan RSVP</label>
+        <label style={{ display: 'flex', gap: 8, marginBottom: 10 }}><input type="checkbox" checked={rsvpSettings.openToPublic} onChange={(e) => setRsvpSettings((s) => ({ ...s, openToPublic: e.target.checked }))} /> Izinkan RSVP tanpa link pribadi</label>
+        <label className="field-label">Batas waktu RSVP (opsional)</label>
+        <input className="text-input" type="datetime-local" value={rsvpSettings.deadline} onChange={(e) => setRsvpSettings((s) => ({ ...s, deadline: e.target.value }))} />
+        <Button type="button" variant="secondary" onClick={saveRsvpSettings} style={{ marginTop: 10 }}>Simpan Aturan RSVP</Button>
+      </div>
 
       <div style={{ marginBottom: 20, display: 'flex', gap: 10 }}>
         <Button
@@ -291,7 +308,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
 
       {/* FORM TAMBAH TAMU */}
       <form onSubmit={handleAdd} className="stack" style={{ marginBottom: 20 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.5fr 1fr 1fr', gap: 10 }}>
           <input
             type="text"
             className="text-input"
@@ -318,6 +335,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
             <option value="VIP">VIP</option>
             <option value="Teman Kantor">Teman Kantor</option>
           </select>
+          <select className="text-input" value={form.paxLimit} onChange={(e) => setForm((f) => ({ ...f, paxLimit: Number(e.target.value) }))}><option value="1">Maks. 1 orang</option><option value="2">Maks. 2 orang</option></select>
         </div>
 
         <div style={{ display: 'flex', gap: 10, marginTop: 10 }}>

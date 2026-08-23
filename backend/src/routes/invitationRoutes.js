@@ -36,6 +36,7 @@ import {
     blastInvitation,
     exportGuests,
     checkInGuest,
+    undoCheckInGuest,
 } from '../controllers/guestController.js';
 import {
     submitRsvp,
@@ -124,6 +125,7 @@ router.patch('/me/guests/:guestId', authenticate, updateGuest);
 router.delete('/me/guests/:guestId', authenticate, deleteGuest);
 router.post('/me/guests/blast', authenticate, blastInvitation);
 router.post('/me/guests/:guestId/checkin', authenticate, checkInGuest);
+router.delete('/me/guests/:guestId/checkin', authenticate, undoCheckInGuest);
 
 // ---------- RSVP & Wishes (Dashboard) ----------
 router.get('/me/rsvp-summary', authenticate, getMyRsvpSummary);

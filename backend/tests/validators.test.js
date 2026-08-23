@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { loginSchema, resetPasswordSchema, signupSchema, updateThemeSettingsSchema } from '../src/utils/validators.js';
+import { giftSettingsSchema, guestSchema, invitationFeaturesSchema, loginSchema, resetPasswordSchema, signupSchema, updateInvitationSchema, updateThemeSettingsSchema } from '../src/utils/validators.js';
 import { slugify } from '../src/utils/slug.js';
 
 test('signup menolak email dan password tidak valid', () => {
@@ -43,4 +43,22 @@ test('RSVP membatasi jumlah kehadiran maksimal dua orang', async () => {
   const { rsvpSchema } = await import('../src/utils/validators.js');
   assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 2 }).success, true);
   assert.equal(rsvpSchema.safeParse({ attending: true, guestCount: 3 }).success, false);
+});
+
+test('aturan bisnis RSVP menerima deadline, mode akses, dan batas per tamu', () => {
+  assert.equal(updateInvitationSchema.safeParse({ rsvpOpenToPublic: false, rsvpDeadline: '2026-12-01T10:00:00Z' }).success, true);
+  assert.equal(guestSchema.safeParse({ name: 'Tamu', paxLimit: 2 }).success, true);
+  assert.equal(guestSchema.safeParse({ name: 'Tamu', paxLimit: 3 }).success, false);
+});
+
+test('hadiah mendukung beberapa rekening tervalidasi', () => {
+  const value = { type: 'both', shippingAddress: 'Alamat lengkap', bankAccounts: [
+    { bankName: 'BCA', accountNumber: '123', accountHolder: 'Aisyah' },
+    { bankName: 'Mandiri', accountNumber: '456', accountHolder: 'Auf' },
+  ] };
+  assert.equal(giftSettingsSchema.safeParse(value).success, true);
+});
+
+test('ucapan memiliki toggle terpisah dan opsi moderasi', () => {
+  assert.equal(invitationFeaturesSchema.safeParse({ rsvpEnabled: false, wishesEnabled: true, wishesModerationEnabled: true }).success, true);
 });

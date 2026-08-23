@@ -215,6 +215,17 @@ export default function Dashboard() {
         }
     }
 
+    async function handlePublish() {
+        if (!selectedInvitation) return;
+        setPayLoading(true);
+        try {
+            const res = await api.patch(`/invitations/${selectedInvitation.id}`, { status: 'published' });
+            handleUpdateInvitation(res.data.invitation);
+            toast.success('Undangan berhasil dipublikasikan.');
+        } catch (err) { toast.error(err.response?.data?.error || 'Undangan belum siap dipublikasikan.'); }
+        finally { setPayLoading(false); }
+    }
+
     function handleLogout() {
         clearToken();
         navigate('/login');
@@ -262,6 +273,12 @@ export default function Dashboard() {
     const isDraft = selectedInvitation?.status === 'draft' || selectedInvitation?.packageType === 'TRIAL';
 
     const features = selectedInvitation?.invitationFeatures || {};
+    const publicationChecks = selectedInvitation ? [
+        { label: 'Profil kedua mempelai', ok: !!(selectedInvitation.coupleProfile?.brideName && selectedInvitation.coupleProfile?.groomName) },
+        { label: 'Detail acara (tanggal, jam, lokasi, alamat)', ok: !!selectedInvitation.events?.length && selectedInvitation.events.every((e) => e.date && e.startTime && e.venueName && e.address) },
+        { label: 'Informasi hadiah atau blok dinonaktifkan', ok: !features.giftEnabled || !!(selectedInvitation.giftSettings && ((selectedInvitation.giftSettings.type === 'address' && selectedInvitation.giftSettings.shippingAddress) || (selectedInvitation.giftSettings.type === 'bank_transfer' && (selectedInvitation.giftSettings.bankAccounts?.length || selectedInvitation.giftSettings.accountNumber)) || (selectedInvitation.giftSettings.type === 'both' && selectedInvitation.giftSettings.shippingAddress && (selectedInvitation.giftSettings.bankAccounts?.length || selectedInvitation.giftSettings.accountNumber)))) },
+        { label: 'Live streaming atau blok dinonaktifkan', ok: !features.livestreamEnabled || !!selectedInvitation.livestreamSettings?.url },
+    ] : [];
 
     // 1. MACRO TABS untuk Sidebar
     const MACRO_TABS = [
@@ -289,13 +306,13 @@ export default function Dashboard() {
             features.storyEnabled && { key: 'cerita', label: 'Cerita', icon: 'fa-book-open' },
             features.dresscodeEnabled && { key: 'dresscode', label: 'Dresscode', icon: 'fa-shirt' },
             { key: 'galeri', label: t('dashboard.tabs.galeri') || 'Galeri', icon: 'fa-images' },
+            { key: 'hadiah', label: 'Hadiah', icon: 'fa-gift' },
             features.livestreamEnabled && { key: 'livestream', label: 'Live Streaming', icon: 'fa-video' },
             { key: 'kutipan', label: 'Kutipan & Doa', icon: 'fa-book-quran' },
         ].filter(Boolean),
         tamu: [
-            features.giftEnabled && { key: 'hadiah', label: 'Hadiah', icon: 'fa-gift' },
             { key: 'tamu', label: t('dashboard.tabs.tamu') || 'Tamu & RSVP', icon: 'fa-users' },
-            { key: 'ucapan', label: t('dashboard.tabs.ucapan') || 'Ucapan', icon: 'fa-comment-dots' },
+            { key: 'ucapan', label: `${t('dashboard.tabs.ucapan') || 'Ucapan'}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
         ].filter(Boolean),
         sistem: [
             { key: 'pengaturan', label: 'Sistem URL', icon: 'fa-gear' },
@@ -389,15 +406,16 @@ export default function Dashboard() {
                 {isDraft && (
                     <div className="payment-warning-banner">
                         <div className="payment-warning-banner-text">
-                            <strong>Undangan Masih Status Draft</strong>
-                            <p>Aktivasi sekarang agar link <code>undanganmanten.id/{selectedInvitation?.slug}</code> bisa diakses publik.</p>
+                            <strong>{selectedInvitation?.packageType === 'TRIAL' ? 'Undangan Belum Diaktivasi' : 'Undangan Belum Dipublikasikan'}</strong>
+                            <p>{selectedInvitation?.packageType === 'TRIAL' ? 'Aktivasi paket terlebih dahulu.' : 'Lengkapi checklist konten lalu publikasikan'} agar link <code>undanganmanten.id/{selectedInvitation?.slug}</code> bisa diakses publik.</p>
+                            {selectedInvitation?.packageType !== 'TRIAL' && <div style={{ marginTop: 8 }}>{publicationChecks.map((check) => <div key={check.label} style={{ fontSize: 12, color: check.ok ? '#287a46' : '#9d3b32' }}>{check.ok ? '✓' : '○'} {check.label}</div>)}</div>}
                         </div>
                         <button
                             className="btn-save"
-                            onClick={handleCheckout}
+                            onClick={selectedInvitation?.packageType === 'TRIAL' ? handleCheckout : handlePublish}
                             disabled={payLoading}
                         >
-                            {payLoading ? 'Memproses...' : 'Aktivasi / Bayar Sekarang'}
+                            {payLoading ? 'Memproses...' : selectedInvitation?.packageType === 'TRIAL' ? 'Aktivasi / Bayar Sekarang' : 'Publikasikan Undangan'}
                         </button>
                     </div>
                 )}

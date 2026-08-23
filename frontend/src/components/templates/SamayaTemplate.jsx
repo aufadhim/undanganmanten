@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useCountdown } from '../../hooks/useCountdown.js';
 import { useCalendarUrl } from '../../hooks/useCalendarUrl.js';
 import FloatingMultimedia from '../FloatingMultimedia.jsx';
-import PublicForms from '../PublicForms.jsx';
+import PublicForms, { GiftSection } from '../PublicForms.jsx';
 import Lightbox from './Lightbox';
 import { resolveImageUrl } from '../../config/env.js';
 import '../../styles/samaya-template.css';
@@ -108,7 +108,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
     }
 
     // Bank accounts
-    const bankAccounts = gifts.bankAccounts || [
+    const bankAccounts = gifts.bankAccounts?.length ? gifts.bankAccounts : [
         { bankName: 'Bank BCA', accountNumber: '1234567890', accountHolder: groomName }
     ];
 
@@ -530,7 +530,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
             )}
 
             {/* ==================== RSVP ==================== */}
-            <AnimatedSection animation="fadeUp" data-section="rsvp">
+            {invitation.invitationFeatures?.rsvpEnabled !== false && <AnimatedSection animation="fadeUp" data-section="rsvp">
                 <section className="samaya-rsvp">
                     <div className="rsvp-inner">
                         <div className="rsvp-head">
@@ -559,7 +559,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
                         <div className="orn-rsvp-1 left image-wrap"><img src="/assets/samaya/Orn-10.png" alt="" /></div>
                     </div>
                 </section>
-            </AnimatedSection>
+            </AnimatedSection>}
 
             {/* ==================== PHOTO GALLERY ==================== */}
             <AnimatedSection animation="fadeUp" data-section="gallery">
@@ -606,7 +606,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
             )}
 
             {/* ==================== WEDDING GIFT ==================== */}
-            {gifts.enabled !== false && (
+            {invitation.invitationFeatures?.giftEnabled && gifts && (
                 <AnimatedSection animation="fadeUp" data-section="gift">
                     <section className="samaya-gift">
                         <div className="gift-inner">
@@ -617,7 +617,8 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
                                 </p>
                             </div>
 
-                            <div className="gift-body-wrap">
+                            <GiftSection gift={{ ...gifts, bankAccounts }} accent="var(--text-tertiary)" />
+                            <div className="gift-body-wrap" style={{ display: 'none' }} aria-hidden="true">
                                 {bankAccounts.map((bank, idx) => (
                                     <div key={idx} className="gift-details" style={{ marginBottom: '16px' }}>
                                         <div className="gift-select-header">
@@ -656,7 +657,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
             )}
 
             {/* ==================== WEDDING WISHES ==================== */}
-            <AnimatedSection animation="fadeUp" data-section="wishes">
+            {invitation.invitationFeatures?.wishesEnabled !== false && <AnimatedSection animation="fadeUp" data-section="wishes">
                 <section className="samaya-wishes">
                     <div className="wishes-inner">
                         <div className="wishes-head">
@@ -683,7 +684,7 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
                         <div className="orn-rsvp-2 left image-wrap"><img src="/assets/samaya/Orn-12.png" alt="" /></div>
                     </div>
                 </section>
-            </AnimatedSection>
+            </AnimatedSection>}
 
             {/* ==================== FOOTNOTE / THANK YOU ==================== */}
             <AnimatedSection animation="fadeUp" data-section="thankyou">

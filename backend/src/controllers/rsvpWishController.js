@@ -30,6 +30,9 @@ async function saveRsvp(req, res, invitation) {
     if (invitation.invitationFeatures && !invitation.invitationFeatures.rsvpEnabled) {
       return res.status(403).json({ error: 'RSVP tidak diaktifkan untuk undangan ini.' });
     }
+    if (invitation.rsvpDeadline && new Date() > invitation.rsvpDeadline) {
+      return res.status(403).json({ error: 'Batas waktu RSVP telah berakhir.' });
+    }
 
     let guest = null;
 
@@ -38,6 +41,10 @@ async function saveRsvp(req, res, invitation) {
       guest = await prisma.guest.findFirst({
         where: { id: guestIdParam, invitationId: invitation.id },
       });
+    }
+
+    if (!guest && !invitation.rsvpOpenToPublic) {
+      return res.status(403).json({ error: 'RSVP hanya tersedia melalui link pribadi tamu.' });
     }
 
     // Jika tidak punya link unik, cari berdasarkan nama
@@ -58,10 +65,11 @@ async function saveRsvp(req, res, invitation) {
       });
     }
 
+    const limitedRsvp = { ...rsvpPart.data, guestCount: Math.min(rsvpPart.data.guestCount, guest.paxLimit || 2) };
     const rsvp = await prisma.rsvpResponse.upsert({
       where: { guestId: guest.id },
-      update: rsvpPart.data,
-      create: { ...rsvpPart.data, guestId: guest.id },
+      update: limitedRsvp,
+      create: { ...limitedRsvp, guestId: guest.id },
     });
 
     return res.status(201).json({ message: 'Terima kasih sudah konfirmasi kehadiran.', rsvp });
@@ -83,6 +91,9 @@ export async function submitRsvp(req, res) {
 }
 
 async function saveWish(req, res, invitation) {
+    if (invitation.invitationFeatures && !invitation.invitationFeatures.wishesEnabled) {
+      return res.status(403).json({ error: 'Ucapan tidak diaktifkan untuk undangan ini.' });
+    }
     const parsed = wishSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
 
@@ -119,22 +130,22 @@ async function saveWish(req, res, invitation) {
         });
       } else {
         wish = await prisma.wish.create({
-          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId },
+          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId, isHidden: !!invitation.invitationFeatures?.wishesModerationEnabled },
         });
       }
     } else {
       wish = await prisma.wish.create({
-        data: { ...parsed.data, invitationId: invitation.id },
+        data: { ...parsed.data, invitationId: invitation.id, isHidden: !!invitation.invitationFeatures?.wishesModerationEnabled },
       });
     }
 
-    return res.status(201).json({ message: 'Ucapan berhasil dikirim.', wish });
+    return res.status(201).json({ message: invitation.invitationFeatures?.wishesModerationEnabled ? 'Ucapan terkirim dan menunggu persetujuan pemilik.' : 'Ucapan berhasil dikirim.', wish });
 }
 
 // Tamu kirim ucapan dari halaman publik undangan (tanpa login)
 export async function submitWish(req, res) {
   try {
-    const invitation = await prisma.invitation.findUnique({ where: { slug: req.params.slug } });
+    const invitation = await prisma.invitation.findUnique({ where: { slug: req.params.slug }, include: { invitationFeatures: true } });
     if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
     return await saveWish(req, res, invitation);
   } catch (err) {

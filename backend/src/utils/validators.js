@@ -43,6 +43,8 @@ export const updateInvitationSchema = z.object({
   weddingDate: z.coerce.date().optional(),
   themeId: z.string().max(50).optional(),
   status: z.enum(['draft', 'published']).optional(),
+  rsvpDeadline: z.union([z.literal('').transform(() => null), z.coerce.date()]).optional().nullable(),
+  rsvpOpenToPublic: z.boolean().optional(),
 });
 
 const colorCategorySchema = z
@@ -133,6 +135,7 @@ export const guestSchema = z.object({
   name: z.string().trim().min(1, 'Nama tamu wajib diisi').max(120),
   phone: z.string().trim().max(30).optional(),
   groupName: z.string().trim().max(100).optional(),
+  paxLimit: z.coerce.number().int().min(1).max(2).default(2),
 });
 
 export const bulkGuestSchema = z.object({
@@ -156,6 +159,11 @@ export const giftSettingsSchema = z.object({
   accountNumber: z.string().max(100).optional(),
   accountHolder: z.string().max(150).optional(),
   shippingAddress: z.string().max(1000).optional(),
+  bankAccounts: z.array(z.object({
+    bankName: z.string().trim().min(1).max(100),
+    accountNumber: z.string().trim().min(1).max(100),
+    accountHolder: z.string().trim().min(1).max(150),
+  })).max(10).optional(),
 });
 
 // Mengizinkan string kosong "" pada URL jika user menghapus link
@@ -167,6 +175,8 @@ export const livestreamSettingsSchema = z.object({
 
 export const invitationFeaturesSchema = z.object({
   rsvpEnabled: z.boolean().optional(),
+  wishesEnabled: z.boolean().optional(),
+  wishesModerationEnabled: z.boolean().optional(),
   giftEnabled: z.boolean().optional(),
   livestreamEnabled: z.boolean().optional(),
   timelineEnabled: z.boolean().optional(),

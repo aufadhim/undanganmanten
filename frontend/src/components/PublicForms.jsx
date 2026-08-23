@@ -135,6 +135,7 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
   }, [guest]);
 
   const [loading, setLoading] = useState(false);
+  const paxLimit = guest?.paxLimit || 2;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -166,7 +167,7 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
           <option value="false">Maaf, tidak bisa hadir</option>
         </select>
         {form.attending && (
-          <input className="pf-input" type="number" min="1" max="2" placeholder="Jumlah tamu (maks. 2 orang)" aria-label="Jumlah tamu (maksimal 2 orang)" value={form.guestCount} onChange={(e) => setForm({ ...form, guestCount: Math.min(2, Math.max(1, Number(e.target.value) || 1)) })} />
+          <input className="pf-input" type="number" min="1" max={paxLimit} placeholder={`Jumlah tamu (maks. ${paxLimit} orang)`} aria-label={`Jumlah tamu (maksimal ${paxLimit} orang)`} value={form.guestCount} onChange={(e) => setForm({ ...form, guestCount: Math.min(paxLimit, Math.max(1, Number(e.target.value) || 1)) })} />
         )}
         <button type="submit" className="pf-btn" style={{ background: theme?.button?.primary || '#333' }} disabled={loading}>
           {loading ? 'Mengirim...' : (guest ? 'Update RSVP' : 'Kirim RSVP')}
@@ -176,26 +177,25 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
   );
 }
 
-function GiftSection({ gift, accent }) {
+export function GiftSection({ gift, accent }) {
+  const [visible, setVisible] = useState(null);
+  const accounts = gift.bankAccounts?.length ? gift.bankAccounts : [{ bankName: gift.bankName, accountNumber: gift.accountNumber, accountHolder: gift.accountHolder }];
   return (
     <div className="pf-glass" style={{ textAlign: 'center' }}>
-      <h3 className="pf-title">Kirim Hadiah</h3>
-      <p style={{ fontSize: 13, opacity: 0.8, marginBottom: 20, color: '#333' }}>Bagi yang ingin mengirimkan hadiah, silakan melalui:</p>
-      
+      <h3 className="pf-title">Tanda Kasih</h3>
+      <p style={{ fontSize: 13, opacity: 0.8, marginBottom: 20, color: '#333' }}>Kehadiran dan doa Anda sudah lebih dari cukup. Informasi berikut tersedia hanya bila Anda berkenan.</p>
       {(gift.type === 'bank_transfer' || gift.type === 'both') && (
-        <div style={{ background: 'rgba(255,255,255,0.8)', padding: 16, borderRadius: 12, marginBottom: 16, color: '#333' }}>
-          <div style={{ fontWeight: 600, fontSize: 15 }}>{gift.bankName}</div>
-          <div style={{ fontSize: 18, letterSpacing: '0.1em', fontFamily: 'monospace', margin: '8px 0' }}>{gift.accountNumber}</div>
-          <div style={{ fontSize: 12, opacity: 0.8 }}>a.n. {gift.accountHolder}</div>
-        </div>
+        <button className="pf-btn" type="button" onClick={() => setVisible('bank')} style={{ marginBottom: 10 }}>Lihat Informasi Rekening</button>
       )}
-      
       {(gift.type === 'address' || gift.type === 'both') && (
-        <div style={{ background: 'rgba(255,255,255,0.8)', padding: 16, borderRadius: 12, color: '#333' }}>
-          <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 8 }}>Alamat Pengiriman</div>
-          <div style={{ fontSize: 13, opacity: 0.8, lineHeight: 1.5 }}>{gift.shippingAddress}</div>
-        </div>
+        <button className="pf-btn" type="button" onClick={() => setVisible('address')}>Lihat Alamat Pengiriman</button>
       )}
+      {visible && <div role="dialog" aria-modal="true" aria-label="Informasi hadiah" onClick={() => setVisible(null)} style={{ position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(0,0,0,.55)', display: 'grid', placeItems: 'center', padding: 20 }}>
+        <div onClick={(e) => e.stopPropagation()} style={{ width: 'min(440px,100%)', maxHeight: '80vh', overflow: 'auto', background: '#fff', color: '#222', borderRadius: 18, padding: 24, textAlign: 'left' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><h3 style={{ marginTop: 0 }}>{visible === 'bank' ? 'Pilihan Rekening' : 'Alamat Pengiriman'}</h3><button type="button" onClick={() => setVisible(null)} aria-label="Tutup" style={{ border: 0, background: 'none', fontSize: 22 }}>×</button></div>
+          {visible === 'bank' ? accounts.map((account, index) => <div key={index} style={{ padding: 14, border: '1px solid #ddd', borderRadius: 12, marginBottom: 10 }}><strong>{account.bankName}</strong><div style={{ fontFamily: 'monospace', fontSize: 18, margin: '8px 0' }}>{account.accountNumber}</div><div>a.n. {account.accountHolder}</div><button type="button" onClick={() => navigator.clipboard.writeText(account.accountNumber)} style={{ marginTop: 10 }}>Salin Nomor</button></div>) : <p style={{ whiteSpace: 'pre-line', lineHeight: 1.7 }}>{gift.shippingAddress}</p>}
+        </div>
+      </div>}
     </div>
   );
 }

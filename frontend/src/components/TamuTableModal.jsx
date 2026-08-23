@@ -44,12 +44,21 @@ export default function TamuTableModal({
     if (basePhone.startsWith('0')) {
       basePhone = '62' + basePhone.substring(1);
     }
-    const invLink = `${window.location.origin}/${invitationSlug}?to=${encodeURIComponent(guest.name)}`;
+    const invLink = `${window.location.origin}/${invitationSlug}?g=${guest.id}`;
     const txt = (waTemplate || 'Halo [Nama Tamu], ini link undangan: [Link Undangan]')
       .replace(/\[Nama Tamu\]/gi, guest.name)
       .replace(/\[Link Undangan\]/gi, invLink);
     return `https://wa.me/${basePhone}?text=${encodeURIComponent(txt)}`;
   };
+
+  async function toggleCheckIn(guest) {
+    try {
+      if (guest.checkedIn) await api.delete(`/invitations/me/guests/${guest.id}/checkin`);
+      else await api.post(`/invitations/me/guests/${guest.id}/checkin`);
+      window.dispatchEvent(new Event('guest_updated'));
+      toast.success(guest.checkedIn ? 'Check-in dibatalkan.' : 'Check-in berhasil.');
+    } catch (err) { toast.error(err.response?.data?.error || 'Gagal memperbarui check-in.'); }
+  }
 
   // BROADCAST LOGIC
   const startBroadcast = () => {
@@ -207,7 +216,7 @@ export default function TamuTableModal({
                       <td>{rsvpText}</td>
                       <td>
                         <span className={`status-badge status-${guest.inviteStatus}`}>
-                          {guest.inviteStatus === 'sent' ? 'Terkirim' : 'Menunggu'}
+                          {guest.inviteStatus === 'opened' ? 'Undangan Dibuka' : guest.inviteStatus === 'sent' ? 'Dibuka di WhatsApp' : 'Belum Diproses'}
                         </span>
                       </td>
                       <td className="table-actions">
@@ -229,6 +238,9 @@ export default function TamuTableModal({
                           }}
                         >
                           WA
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={() => toggleCheckIn(guest)} icon={<i className={`fa-solid ${guest.checkedIn ? 'fa-rotate-left' : 'fa-ticket'}`}></i>}>
+                          {guest.checkedIn ? 'Batalkan Check-in' : 'Check-in Manual'}
                         </Button>
                         <Button 
                           variant="ghost" 

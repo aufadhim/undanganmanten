@@ -14,6 +14,7 @@ export default function WishesPanel({ invitation, onUpdated }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('all'); // 'all', 'pinned', 'hidden'
   const [currentPage, setCurrentPage] = useState(1);
+  const [wishSettings, setWishSettings] = useState({ enabled: invitation?.invitationFeatures?.wishesEnabled ?? true, moderation: invitation?.invitationFeatures?.wishesModerationEnabled ?? false });
   const itemsPerPage = 10;
   
   const { toast, confirm } = useUI();
@@ -75,6 +76,15 @@ export default function WishesPanel({ invitation, onUpdated }) {
     } catch (err) {
       toast.error('Gagal menghapus ucapan');
     }
+  }
+
+  async function saveWishSettings(next) {
+    setWishSettings(next);
+    try {
+      const res = await api.patch('/invitations/me/features', { wishesEnabled: next.enabled, wishesModerationEnabled: next.moderation });
+      onUpdated?.({ ...invitation, invitationFeatures: res.data.features });
+      toast.success('Pengaturan ucapan disimpan.');
+    } catch (err) { setWishSettings(wishSettings); toast.error(err.response?.data?.error || 'Gagal menyimpan pengaturan ucapan.'); }
   }
 
   async function handleTogglePin(wish) {
@@ -162,8 +172,12 @@ export default function WishesPanel({ invitation, onUpdated }) {
 
   return (
     <>
-      <h2 className="panel-header">{t('panels.ucapan_title')} & Kehadiran</h2>
+      <h2 className="panel-header">{t('panels.ucapan_title') || 'Ucapan & Doa'}</h2>
       <p className="panel-sub">Sematkan doa terbaik, atau jadikan gambar untuk dipamerkan di IG Story-mu!</p>
+      <div className="section-block" style={{ marginBottom: 18 }}>
+        <label style={{ display: 'flex', gap: 8, marginBottom: 10 }}><input type="checkbox" checked={wishSettings.enabled} onChange={(e) => saveWishSettings({ ...wishSettings, enabled: e.target.checked })} /> Tampilkan form ucapan</label>
+        <label style={{ display: 'flex', gap: 8 }}><input type="checkbox" checked={wishSettings.moderation} onChange={(e) => saveWishSettings({ ...wishSettings, moderation: e.target.checked })} /> Sembunyikan ucapan baru sampai disetujui</label>
+      </div>
 
       {wishes.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>

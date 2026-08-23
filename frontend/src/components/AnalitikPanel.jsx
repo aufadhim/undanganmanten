@@ -10,7 +10,7 @@ export default function AnalitikPanel({ invitation }) {
     guestsCount: 0,
     rsvpAttending: 0,
     rsvpNotAttending: 0,
-    rsvpPending: 0
+    rsvpPending: 0, sent: 0, opened: 0, checkedIn: 0, checkedInPeople: 0
   });
 
   useEffect(() => {
@@ -26,6 +26,7 @@ export default function AnalitikPanel({ invitation }) {
         let attending = 0;
         let notAttending = 0;
         let pending = 0;
+        let sent = 0, opened = 0, checkedIn = 0, checkedInPeople = 0;
         
         guests.forEach(g => {
           if (g.rsvp) {
@@ -34,6 +35,9 @@ export default function AnalitikPanel({ invitation }) {
           } else {
             pending++;
           }
+          if (g.inviteStatus === 'sent' || g.inviteStatus === 'opened') sent++;
+          if (g.inviteStatus === 'opened' || g.openedAt) opened++;
+          if (g.checkedIn) { checkedIn++; checkedInPeople += g.rsvp?.attending ? (g.rsvp.guestCount || 1) : 1; }
         });
 
         setStats({
@@ -41,10 +45,17 @@ export default function AnalitikPanel({ invitation }) {
           guestsCount: guests.length,
           rsvpAttending: attending,
           rsvpNotAttending: notAttending,
-          rsvpPending: pending
+          rsvpPending: pending, sent, opened, checkedIn, checkedInPeople
         });
       })
       .catch(err => console.error(err));
+  }
+
+  async function exportReport() {
+    const res = await api.get('/invitations/me/guests/export', { responseType: 'blob' });
+    const url = URL.createObjectURL(res.data);
+    const link = document.createElement('a'); link.href = url; link.download = `laporan-tamu-${invitation.slug}.csv`; link.click();
+    URL.revokeObjectURL(url);
   }
 
   const pieData = [
@@ -62,12 +73,17 @@ export default function AnalitikPanel({ invitation }) {
       <h2 className="panel-header">Dashboard Analitik</h2>
       <p className="panel-sub">Pantau statistik pengunjung dan konfirmasi kehadiran undanganmu.</p>
 
+      <button type="button" onClick={exportReport} style={{ marginBottom: 16 }}>Ekspor laporan tamu (CSV)</button>
+
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '15px', marginBottom: '30px' }}>
         <div style={{ background: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', textAlign: 'center' }}>
           <i className="fa-solid fa-eye" style={{ fontSize: '24px', color: '#1976d2', marginBottom: '10px' }}></i>
           <h3 style={{ margin: 0, fontSize: '24px' }}>{stats.views}</h3>
           <div style={{ fontSize: '12px', color: '#666' }}>Total Kunjungan</div>
         </div>
+        <div style={{ background: '#fff', padding: 20, borderRadius: 12, textAlign: 'center' }}><h3 style={{ margin: 0 }}>{stats.sent}</h3><div style={{ fontSize: 12 }}>WA Dibuka untuk Dikirim</div></div>
+        <div style={{ background: '#fff', padding: 20, borderRadius: 12, textAlign: 'center' }}><h3 style={{ margin: 0 }}>{stats.opened}</h3><div style={{ fontSize: 12 }}>Undangan Dibuka</div></div>
+        <div style={{ background: '#fff', padding: 20, borderRadius: 12, textAlign: 'center' }}><h3 style={{ margin: 0 }}>{stats.checkedInPeople}</h3><div style={{ fontSize: 12 }}>Orang Check-in ({stats.checkedIn} undangan)</div></div>
         <div style={{ background: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', textAlign: 'center' }}>
           <i className="fa-solid fa-users" style={{ fontSize: '24px', color: '#4caf50', marginBottom: '10px' }}></i>
           <h3 style={{ margin: 0, fontSize: '24px' }}>{stats.rsvpAttending}</h3>

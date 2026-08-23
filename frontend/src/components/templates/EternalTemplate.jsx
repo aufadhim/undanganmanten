@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useCountdown } from "../../hooks/useCountdown.js";
 import { useCalendarUrl } from "../../hooks/useCalendarUrl.js";
 import FloatingMultimedia from "../FloatingMultimedia.jsx";
-import PublicForms from "../PublicForms.jsx";
+import PublicForms, { GiftSection } from "../PublicForms.jsx";
 import Lightbox from "./Lightbox.jsx";
 import "../../styles/eternal-template.css";
 
@@ -151,6 +151,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     { id: "livestream", enabled: true },
     { id: "igFilter", enabled: true },
     { id: "rsvp", enabled: true },
+    { id: "wishes", enabled: true },
     { id: "gift", enabled: true },
     { id: "footer", enabled: true },
   ];
@@ -535,149 +536,13 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   };
 
   const renderGift = () => {
+    if (!gifts || !invitation?.invitationFeatures?.giftEnabled) return null;
     return (
-      <section
-        id="gift"
-        className="gift-section"
-        key="gift"
-        style={{ padding: "60px 0", background: "var(--stone-50)" }}
-      >
-        <div className="container">
-          <div
-            className="gift-header"
-            style={{ textAlign: "center", marginBottom: "40px" }}
-          >
-            <h2
-              className="section-title"
-              style={{
-                color: "var(--stone-900)",
-                marginBottom: "10px",
-              }}
-            >
-              Wedding Gift
-            </h2>
-            <p className="section-subtitle">
-              Your presence is the greatest gift, but if you wish to give, we'll
-              gratefully accept
-            </p>
-          </div>
-          {(gifts.type === 'bank_transfer' || gifts.type === 'both' || !gifts.type) && (
-            <div
-              className="gift-content"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <div
-                className="gift-card"
-                style={{
-                  background: "rgba(255, 255, 255, 0.6)",
-                  padding: "30px",
-                  borderRadius: "0",
-                  border: "1px solid var(--stone-300)",
-                  textAlign: "center",
-                  width: "100%",
-                  maxWidth: "400px",
-                  boxSizing: "border-box",
-                }}
-              >
-                <div className="gift-bank">
-                  <p
-                    className="gift-bank-name"
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: 600,
-                      color: "var(--stone-900)",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {gifts?.bankName || 'Nama Bank'}
-                  </p>
-                  <p
-                    className="gift-account-name"
-                    style={{
-                      fontSize: "16px",
-                      color: "var(--stone-600)",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {gifts?.accountHolder || 'Nama Pemilik Rekening'}
-                  </p>
-                  <div
-                    className="gift-account-number"
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "8px",
-                      background: "#ffffff",
-                      border: "1px solid var(--stone-300)",
-                      padding: "10px 12px",
-                      borderRadius: "0",
-                      width: "100%",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "16px",
-                        color: "var(--stone-900)",
-                        letterSpacing: "1px",
-                        flex: 1,
-                        textAlign: "left",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {gifts?.accountNumber || '1234567890'}
-                    </span>
-                    <button
-                      className="copy-btn-icon"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const textToCopy = gifts?.accountNumber || '1234567890';
-                        if (navigator.clipboard) {
-                          navigator.clipboard.writeText(textToCopy).catch(err => console.error("Copy failed", err));
-                        }
-                        setCopyStatus('COPIED!');
-                        setTimeout(() => setCopyStatus('COPY'), 2000);
-                      }}
-                      title="Salin Nomor Rekening"
-                      style={{
-                        background: "transparent",
-                        border: "none",
-                        color: "var(--stone-600)",
-                        cursor: "pointer",
-                        padding: "4px",
-                        fontSize: "16px",
-                        flexShrink: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {copyStatus === 'COPY' ? <i className="fas fa-copy"></i> : <i className="fas fa-check" style={{color: "var(--stone-900)"}}></i>}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-          {(gifts.type === 'address' || gifts.type === 'both') && (
-            <div className="gift-content" style={{ display: 'flex', justifyContent: 'center', marginTop: gifts.type === 'both' ? '24px' : 0 }}>
-              <div className="gift-card gift-address-card" style={{ background: 'rgba(255, 255, 255, 0.6)', padding: '30px', border: '1px solid var(--stone-300)', width: '100%', maxWidth: '520px', boxSizing: 'border-box', textAlign: 'center' }}>
-                <div aria-hidden="true" style={{ fontSize: '24px', marginBottom: '14px', color: 'var(--stone-700)' }}><i className="fa-solid fa-gift"></i></div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontStyle: 'italic', fontWeight: 500, margin: '0 0 14px', color: 'var(--stone-900)' }}>Kirim Bingkisan</h3>
-                <p style={{ margin: '0 0 10px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--stone-600)' }}>Alamat Pengiriman</p>
-                <p style={{ margin: 0, whiteSpace: 'pre-line', color: 'var(--stone-800)', lineHeight: 1.7 }}>{gifts.shippingAddress || 'Alamat pengiriman belum diisi.'}</p>
-              </div>
-            </div>
-          )}
-        </div>
+      <section id="gift" className="gift-section" key="gift" style={{ padding: '60px 20px', background: 'var(--stone-50)' }}>
+        <div style={{ maxWidth: 800, margin: '0 auto' }}><GiftSection gift={gifts} accent="var(--stone-800)" /></div>
       </section>
     );
   };
-
   const renderRsvp = () => (
     <section
       id="rsvp"
@@ -708,8 +573,15 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           previewGuest={previewGuest}
           templateStyle="eternal"
           previewMode={editorPreview}
+          formType="rsvp"
         />
       </div>
+    </section>
+  );
+
+  const renderWishes = () => (
+    <section id="wishes" className="rsvp-section" key="wishes" style={{ padding: '80px 0', background: 'var(--stone-50)' }}>
+      <div style={{ maxWidth: 800, margin: '0 auto' }}><PublicForms invitation={invitation} previewGuest={previewGuest} templateStyle="eternal" previewMode={editorPreview} formType="wishes" /></div>
     </section>
   );
 
@@ -1074,6 +946,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
         return renderGift();
       case "rsvp":
         return renderRsvp();
+      case "wishes":
+        return renderWishes();
       case "footer":
         return renderFooter();
       default:

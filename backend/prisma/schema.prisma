@@ -35,6 +35,8 @@ model Invitation {
   updatedAt          DateTime            @updatedAt @map("updated_at")
   packageType        PackageType         @default(TRIAL) @map("package_type")
   views              Int                 @default(0)
+  rsvpDeadline       DateTime?           @map("rsvp_deadline")
+  rsvpOpenToPublic   Boolean             @default(true) @map("rsvp_open_to_public")
   coupleProfile      CoupleProfile?
   events             Event[]
   galleryMedia       GalleryMedia[]
@@ -185,6 +187,7 @@ model Guest {
   openedAt        DateTime?     @map("opened_at")
   checkedIn       Boolean       @default(false) @map("checked_in")
   checkedInAt     DateTime?     @map("checked_in_at")
+  paxLimit        Int            @default(2) @map("pax_limit")
   customWaMessage String?       @map("custom_wa_message")
   invitation      Invitation    @relation(fields: [invitationId], references: [id], onDelete: Cascade)
   rsvp            RsvpResponse?
@@ -229,6 +232,7 @@ model GiftSettings {
   accountNumber   String?    @map("account_number")
   accountHolder   String?    @map("account_holder")
   shippingAddress String?    @map("shipping_address")
+  bankAccounts    Json?      @map("bank_accounts")
   invitation      Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
 
   @@map("gift_settings")
@@ -249,6 +253,8 @@ model InvitationFeatures {
   id                String     @id @default(uuid())
   invitationId      String     @unique @map("invitation_id")
   rsvpEnabled       Boolean    @default(true) @map("rsvp_enabled")
+  wishesEnabled     Boolean    @default(true) @map("wishes_enabled")
+  wishesModerationEnabled Boolean @default(false) @map("wishes_moderation_enabled")
   giftEnabled       Boolean    @default(true) @map("gift_enabled")
   livestreamEnabled Boolean    @default(true) @map("livestream_enabled")
   timelineEnabled   Boolean    @default(true) @map("timeline_enabled")

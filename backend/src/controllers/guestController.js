@@ -46,7 +46,7 @@ export async function addGuest(req, res) {
 
     const parsed = guestSchema.safeParse({ ...req.body, groupName: req.body.groupName || req.body.category });
     if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
-    const { name, phone, groupName } = parsed.data;
+    const { name, phone, groupName, paxLimit } = parsed.data;
     const [{ maxGuests }, currentCount] = await Promise.all([
       getEntitlements(invitation),
       prisma.guest.count({ where: { invitationId: invitation.id } }),
@@ -61,6 +61,7 @@ export async function addGuest(req, res) {
         name: name.trim(),
         phone: phone ? phone.trim() : null,
         groupName: groupName || 'Umum',
+        paxLimit,
       },
     });
 
@@ -79,7 +80,18 @@ export async function bulkAddGuests(req, res) {
 
     const parsed = bulkGuestSchema.safeParse({ guests: (req.body?.guests || []).map((guest) => ({ ...guest, groupName: guest.groupName || guest.category })) });
     if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
-    const guestsList = parsed.data.guests;
+    const existingGuests = await prisma.guest.findMany({ where: { invitationId: invitation.id, phone: { not: null } }, select: { phone: true } });
+    const existingPhones = new Set(existingGuests.map((g) => (g.phone || '').replace(/\D/g, '')).filter(Boolean));
+    const batchPhones = new Set();
+    const guestsList = parsed.data.guests.filter((guest) => {
+      const phone = (guest.phone || '').replace(/\D/g, '');
+      if (!phone) return true;
+      if (existingPhones.has(phone) || batchPhones.has(phone)) return false;
+      batchPhones.add(phone);
+      return true;
+    });
+    const skipped = parsed.data.guests.length - guestsList.length;
+    if (!guestsList.length) return res.status(409).json({ error: 'Semua baris terdeteksi sebagai duplikat nomor WhatsApp.' });
     const [{ maxGuests }, currentCount] = await Promise.all([
       getEntitlements(invitation),
       prisma.guest.count({ where: { invitationId: invitation.id } }),
@@ -92,6 +104,7 @@ export async function bulkAddGuests(req, res) {
       name: g.name ? g.name.trim() : 'Tamu',
       phone: g.phone || null,
       groupName: g.groupName || 'Umum',
+      paxLimit: g.paxLimit,
       invitationId: invitation.id,
     }));
 
@@ -99,7 +112,7 @@ export async function bulkAddGuests(req, res) {
       data: guestsData,
     });
 
-    return res.status(201).json({ message: `${result.count} tamu berhasil ditambahkan.` });
+    return res.status(201).json({ message: `${result.count} tamu berhasil ditambahkan${skipped ? `, ${skipped} duplikat dilewati` : ''}.`, imported: result.count, skipped });
   } catch (err) {
     console.error('Error bulkAddGuests:', err);
     return res.status(500).json({ error: 'Gagal menambahkan banyak tamu.' });
@@ -113,7 +126,7 @@ export async function updateGuest(req, res) {
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
     const guestId = req.params.guestId || req.params.id;
-    const { name, phone, category, groupName } = req.body;
+    const { name, phone, category, groupName, paxLimit } = req.body;
 
     await prisma.guest.updateMany({
       where: { id: guestId, invitationId: invitation.id },
@@ -121,6 +134,7 @@ export async function updateGuest(req, res) {
         ...(name !== undefined ? { name: name.trim() } : {}),
         ...(phone !== undefined ? { phone: phone || null } : {}),
         ...(category || groupName ? { groupName: category || groupName } : {}),
+        ...(paxLimit !== undefined ? { paxLimit: Math.min(2, Math.max(1, Number(paxLimit) || 1)) } : {}),
       },
     });
 
@@ -163,6 +177,13 @@ export async function checkInGuest(req, res) {
 
     if (!guest) return res.status(404).json({ error: 'Tamu tidak ditemukan.' });
 
+    if (guest.checkedIn) {
+      return res.status(409).json({
+        error: `Tamu sudah check-in pada ${guest.checkedInAt?.toLocaleString('id-ID') || 'sebelumnya'}.`,
+        guest,
+      });
+    }
+
     await prisma.guest.update({
       where: { id: guest.id },
       data: {
@@ -175,6 +196,19 @@ export async function checkInGuest(req, res) {
   } catch (err) {
     console.error('Error checkInGuest:', err);
     return res.status(500).json({ error: 'Gagal melakukan Check-in.' });
+  }
+}
+
+export async function undoCheckInGuest(req, res) {
+  try {
+    const invitation = await getInvitation(req);
+    if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
+    const guest = await prisma.guest.findFirst({ where: { id: req.params.guestId, invitationId: invitation.id } });
+    if (!guest) return res.status(404).json({ error: 'Tamu tidak ditemukan.' });
+    const updated = await prisma.guest.update({ where: { id: guest.id }, data: { checkedIn: false, checkedInAt: null } });
+    return res.json({ message: 'Check-in tamu dibatalkan.', guest: updated });
+  } catch (err) {
+    return res.status(500).json({ error: 'Gagal membatalkan check-in.' });
   }
 }
 
@@ -202,7 +236,7 @@ export async function blastInvitation(req, res) {
     }
 
     return res.json({
-      message: `${guests.length} undangan ditandai terkirim.`,
+      message: `${guests.length} undangan ditandai telah dibuka di WhatsApp.`,
       guestCount: guests.length,
     });
   } catch (err) {
