@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../config/env.js';
 
-export const api = axios.create({ baseURL: API_BASE_URL });
+export const api = axios.create({ baseURL: API_BASE_URL, timeout: 20_000 });
 
 let activeInvitationId = null;
 
@@ -19,6 +19,19 @@ api.interceptors.request.use((config) => {
     if (activeInvitationId) config.headers['x-invitation-id'] = activeInvitationId;
     return config;
 });
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401 && localStorage.getItem('um_token')) {
+            clearToken();
+            if (!['/login', '/signup'].includes(window.location.pathname)) {
+                window.location.assign('/login');
+            }
+        }
+        return Promise.reject(error);
+    }
+);
 
 export function setToken(token) {
     localStorage.setItem('um_token', token);

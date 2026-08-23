@@ -20,8 +20,11 @@ export default function PublicInvitation() {
       .get(`/invitations/public/${slug}`)
       .then((res) => {
           setInvitation(res.data.invitation);
-          // 1.b Record visit
-          api.post(`/invitations/public/${slug}/visit`).catch(e => console.error(e));
+          const visitKey = `um_visit_${slug}`;
+          if (!sessionStorage.getItem(visitKey)) {
+            sessionStorage.setItem(visitKey, '1');
+            api.post(`/invitations/public/${slug}/visit`).catch(() => sessionStorage.removeItem(visitKey));
+          }
       })
       .catch(() => setNotFound(true));
       
@@ -33,10 +36,7 @@ export default function PublicInvitation() {
              setPreviewGuest(res.data.guest);
            }
         })
-        .catch(() => {
-           // Fallback if guest not found or invalid
-           setPreviewGuest({ id: guestId, name: 'Tamu Spesial' });
-        });
+        .catch(() => setPreviewGuest(null));
     }
   }, [slug, guestId]);
 

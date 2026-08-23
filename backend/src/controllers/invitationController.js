@@ -337,14 +337,20 @@ export async function getPublicGuest(req, res) {
                 id: guestId,
                 invitationId: invitation.id
             },
-            select: { id: true, name: true, groupName: true, inviteStatus: true }
+            select: {
+                id: true,
+                name: true,
+                groupName: true,
+                inviteStatus: true,
+                rsvp: { select: { attending: true, guestCount: true, note: true } },
+            }
         });
 
         if (!guest) {
             return res.status(404).json({ error: 'Tamu tidak ditemukan.' });
         }
 
-        return res.json({ guest });
+        return res.json({ guest: { ...guest, ...(guest.rsvp || {}), rsvp: undefined } });
     } catch (err) {
         console.error('Error getPublicGuest:', err);
         return res.status(500).json({ error: 'Gagal mengambil data tamu.' });

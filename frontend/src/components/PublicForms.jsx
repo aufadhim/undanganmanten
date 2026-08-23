@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
+import { QRCodeSVG } from 'qrcode.react';
 
 export default function PublicForms({ invitation, previewGuest, templateStyle }) {
   if (!invitation) return null;
@@ -18,9 +19,11 @@ export default function PublicForms({ invitation, previewGuest, templateStyle })
           <h3 className="pf-title">Access Pass</h3>
           <p style={{ fontSize: 13, color: '#333', marginBottom: 16 }}>Tunjukkan QR Code ini kepada penerima tamu di lokasi acara untuk check-in.</p>
           <div style={{ background: '#fff', padding: '16px', borderRadius: 12, display: 'inline-block', maxWidth: '100%', boxSizing: 'border-box' }}>
-            <img 
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(window.location.origin + '/dashboard?checkin=' + guestId)}`} 
-              alt="QR Code" style={{ width: '100%', maxWidth: '150px', height: 'auto', aspectRatio: '1/1' }}
+            <QRCodeSVG
+              value={`${window.location.origin}/dashboard?checkin=${guestId}`}
+              size={150}
+              level="M"
+              title={`QR check-in ${previewGuest.name}`}
             />
           </div>
           <div style={{ fontSize: 14, fontWeight: 'bold', color: '#333', marginTop: 12 }}>{previewGuest.name}</div>
