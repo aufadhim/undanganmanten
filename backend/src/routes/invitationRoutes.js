@@ -59,17 +59,26 @@ import {
 import { authenticate } from '../middlewares/auth.js';
 import { upload } from '../middlewares/upload.js';
 import { compressImage } from '../middlewares/compressImage.js';
+import rateLimit from 'express-rate-limit';
 
 const router = Router();
+const publicFormLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 30,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Terlalu banyak permintaan. Silakan coba lagi beberapa saat.' },
+});
+const visitLimiter = rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: true, legacyHeaders: false });
 
 // ==========================================
 // 1. RUTE PUBLIK (Dapat diakses tanpa Login)
 // ==========================================
 router.get('/public/:slug', getPublicInvitation);
-router.post('/public/:slug/visit', recordVisit);
+router.post('/public/:slug/visit', visitLimiter, recordVisit);
 router.get('/public/:slug/guest/:guestId', getPublicGuest);
-router.post('/public/:slug/rsvp', submitRsvp);
-router.post('/public/:slug/wishes', submitWish);
+router.post('/public/:slug/rsvp', publicFormLimiter, submitRsvp);
+router.post('/public/:slug/wishes', publicFormLimiter, submitWish);
 
 // ==========================================
 // 2. RUTE PRIVAT (Wajib Login / Authenticate)

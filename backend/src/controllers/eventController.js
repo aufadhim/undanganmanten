@@ -69,7 +69,7 @@ export async function listMyEvents(req, res) {
 
         const events = await prisma.event.findMany({
             where: { invitationId: invitation.id },
-            orderBy: { createdAt: 'asc' }, // Diurutkan agar posisi Akad & Resepsi konsisten
+            orderBy: { type: 'asc' },
         });
 
         return res.json({ events });

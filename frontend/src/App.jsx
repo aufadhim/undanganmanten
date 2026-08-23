@@ -1,19 +1,20 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Landing from './pages/Landing.jsx';
-import Terms from './pages/Terms.jsx';
-import Privacy from './pages/Privacy.jsx';
-import Guide from './pages/Guide.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
-import ForgotPassword from './pages/ForgotPassword.jsx';
-import ResetPassword from './pages/ResetPassword.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import SandboxDashboard from './pages/SandboxDashboard.jsx';
-import PublicInvitation from './pages/PublicInvitation.jsx';
 import { getToken } from './api/client.js';
 import { UIProvider } from './context/UIContext.jsx';
 
-import AdminDashboard from './pages/AdminDashboard.jsx';
+const Landing = lazy(() => import('./pages/Landing.jsx'));
+const Terms = lazy(() => import('./pages/Terms.jsx'));
+const Privacy = lazy(() => import('./pages/Privacy.jsx'));
+const Guide = lazy(() => import('./pages/Guide.jsx'));
+const Login = lazy(() => import('./pages/Login.jsx'));
+const Signup = lazy(() => import('./pages/Signup.jsx'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword.jsx'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword.jsx'));
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const SandboxDashboard = lazy(() => import('./pages/SandboxDashboard.jsx'));
+const PublicInvitation = lazy(() => import('./pages/PublicInvitation.jsx'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard.jsx'));
 
 function ProtectedRoute({ children }) {
     const token = getToken();
@@ -24,7 +25,8 @@ export default function App() {
     return (
         <UIProvider>
             <BrowserRouter>
-                <Routes>
+                <Suspense fallback={<div className="loading-screen">Memuat...</div>}>
+                  <Routes>
                     <Route path="/" element={<Landing />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
@@ -52,7 +54,8 @@ export default function App() {
                         }
                     />
                     <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                  </Routes>
+                </Suspense>
             </BrowserRouter>
         </UIProvider>
     );

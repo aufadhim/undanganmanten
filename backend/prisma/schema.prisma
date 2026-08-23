@@ -8,17 +8,17 @@ datasource db {
 }
 
 model User {
-  id                   String       @id @default(uuid())
-  email                String       @unique
-  passwordHash         String       @map("password_hash")
-  phone                String?
-  createdAt            DateTime     @default(now()) @map("created_at")
-  isVerified           Boolean      @default(false) @map("is_verified")
-  resetPasswordExpires DateTime?    @map("reset_password_expires")
-  resetPasswordToken   String?      @map("reset_password_token")
-  verificationToken    String?      @map("verification_token")
-  role                 Role         @default(USER)
-  invitation           Invitation[]
+  id                       String       @id @default(uuid())
+  email                    String       @unique
+  passwordHash             String       @map("password_hash")
+  phone                    String?
+  createdAt                DateTime     @default(now()) @map("created_at")
+  isVerified               Boolean      @default(false) @map("is_verified")
+  resetPasswordExpires     DateTime?    @map("reset_password_expires")
+  resetPasswordToken       String?      @map("reset_password_token")
+  verificationToken        String?      @map("verification_token")
+  role                     Role         @default(USER)
+  invitation               Invitation[]
 
   @@map("users")
 }

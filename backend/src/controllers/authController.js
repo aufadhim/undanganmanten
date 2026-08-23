@@ -17,8 +17,17 @@ const SALT_ROUNDS = 10;
 
 // Helper generate 6-digit OTP
 function generateOTP() {
-  return Math.floor(100000 + Math.random() * 900000).toString();
+  return crypto.randomInt(100000, 1000000).toString();
 }
+
+const OTP_TTL_MS = 10 * 60 * 1000;
+const createOtpRecord = (otp) => `${otp}:${Date.now() + OTP_TTL_MS}`;
+function verifyOtpRecord(record, otp) {
+  const [storedOtp, expiresAt] = String(record || '').split(':');
+  return storedOtp === otp && Number(expiresAt) > Date.now();
+}
+
+const hashResetToken = (token) => crypto.createHash('sha256').update(token).digest('hex');
 
 // POST /api/auth/signup
 export async function signup(req, res) {
@@ -44,7 +53,7 @@ export async function signup(req, res) {
         email,
         passwordHash,
         phone: phone ? phone.trim() : null,
-        verificationToken: otp,
+        verificationToken: createOtpRecord(otp),
       },
     });
 
@@ -86,9 +95,10 @@ export async function verifyEmail(req, res) {
       return res.status(400).json({ error: 'Email sudah diverifikasi.' });
     }
 
-    if (user.verificationToken !== otp) {
+    const isTestBypass = process.env.NODE_ENV !== 'production' && otp === '123456';
+    if (!verifyOtpRecord(user.verificationToken, otp)) {
       // Bypass untuk E2E testing
-      if (process.env.NODE_ENV !== 'production' && otp === '123456') {
+      if (isTestBypass) {
         console.log(`[TEST MODE] Bypassed OTP for ${email}`);
       } else {
         return res.status(400).json({ error: 'Kode verifikasi salah.' });
@@ -135,7 +145,7 @@ export async function resendOtp(req, res) {
 
     await prisma.user.update({
       where: { id: user.id },
-      data: { verificationToken: otp },
+      data: { verificationToken: createOtpRecord(otp) },
     });
 
     if (process.env.NODE_ENV !== 'production' && email.includes('@test.com')) {
@@ -214,12 +224,12 @@ export async function forgotPassword(req, res) {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (user) {
-      const resetToken = crypto.randomUUID();
+      const resetToken = crypto.randomBytes(32).toString('hex');
       const expires = new Date(Date.now() + 60 * 60 * 1000); // 1 jam
 
       await prisma.user.update({
         where: { id: user.id },
-        data: { resetPasswordToken: resetToken, resetPasswordExpires: expires },
+        data: { resetPasswordToken: hashResetToken(resetToken), resetPasswordExpires: expires },
       });
 
       sendResetPasswordEmail(email, resetToken).catch((err) =>
@@ -245,10 +255,11 @@ export async function resetPassword(req, res) {
     }
 
     const { token, newPassword } = parsed.data;
+    const tokenHash = hashResetToken(token);
 
     const user = await prisma.user.findFirst({
       where: {
-        resetPasswordToken: token,
+        resetPasswordToken: tokenHash,
         resetPasswordExpires: { gt: new Date() },
       },
     });
@@ -333,11 +344,13 @@ export async function deleteAccount(req, res) {
     }
 
     // Jika punya undangan, hapus file media di R2 jika terkonfigurasi
-    if (user.invitation) {
-      try {
-        await deleteFolderFromR2(`invitations/${user.invitation.id}`);
-      } catch (err) {
-        console.error(`Gagal menghapus folder R2 untuk undangan ${user.invitation.id}:`, err);
+    if (user.invitation.length > 0) {
+      for (const invitation of user.invitation) {
+        try {
+          await deleteFolderFromR2(`invitations/${invitation.id}`);
+        } catch (err) {
+          console.error(`Gagal menghapus folder R2 untuk undangan ${invitation.id}:`, err);
+        }
       }
     }
 

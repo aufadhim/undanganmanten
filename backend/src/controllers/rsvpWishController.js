@@ -29,8 +29,14 @@ export async function submitRsvp(req, res) {
     if (!guestPart.success) return res.status(400).json({ error: guestPart.error.issues[0].message });
     if (!rsvpPart.success) return res.status(400).json({ error: rsvpPart.error.issues[0].message });
 
-    const invitation = await prisma.invitation.findUnique({ where: { slug } });
-    if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    const invitation = await prisma.invitation.findUnique({
+      where: { slug },
+      include: { invitationFeatures: true },
+    });
+    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    if (invitation.invitationFeatures && !invitation.invitationFeatures.rsvpEnabled) {
+      return res.status(403).json({ error: 'RSVP tidak diaktifkan untuk undangan ini.' });
+    }
 
     let guest = null;
 
@@ -81,7 +87,7 @@ export async function submitWish(req, res) {
     if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
 
     const invitation = await prisma.invitation.findUnique({ where: { slug } });
-    if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
 
     // Profanity Filter dengan Word Boundaries agar tidak false positive
     const badWords = ['anjing', 'babi', 'bangsat', 'kontol', 'memek', 'asu', 'ngentot', 'perek', 'lonte', 'bajingan'];
@@ -98,7 +104,7 @@ export async function submitWish(req, res) {
     let wish;
     
     if (validGuestId) {
-      const guestExists = await prisma.guest.findUnique({ where: { id: validGuestId } });
+      const guestExists = await prisma.guest.findFirst({ where: { id: validGuestId, invitationId: invitation.id } });
       if (!guestExists) {
         validGuestId = null;
       }

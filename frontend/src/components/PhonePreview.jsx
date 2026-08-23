@@ -1,7 +1,20 @@
-import SamayaTemplate from './templates/SamayaTemplate.jsx';
-import NiseraTemplate from './templates/NiseraTemplate.jsx';
-import EternalTemplate from './templates/EternalTemplate.jsx';
+import { lazy, Suspense } from 'react';
 import SplitViewLayout from './SplitViewLayout.jsx';
+
+const SamayaTemplate = lazy(() => import('./templates/SamayaTemplate.jsx'));
+const NiseraTemplate = lazy(() => import('./templates/NiseraTemplate.jsx'));
+const EternalTemplate = lazy(() => import('./templates/EternalTemplate.jsx'));
+
+function parseLayoutOrder(value) {
+    if (Array.isArray(value)) return value;
+    if (typeof value !== 'string') return [];
+    try {
+        const parsed = JSON.parse(value);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
 
 export default function PhonePreview({ invitation, previewGuest }) {
     if (!invitation) return null;
@@ -10,9 +23,7 @@ export default function PhonePreview({ invitation, previewGuest }) {
     const theme = invitation?.themeSettings || {};
     const typo = theme?.typography || {};
     
-    const layoutOrder = Array.isArray(theme?.layoutOrder) ? theme.layoutOrder : (
-        typeof theme?.layoutOrder === 'string' ? JSON.parse(theme.layoutOrder) : []
-    );
+    const layoutOrder = parseLayoutOrder(theme?.layoutOrder);
 
     let template = null;
     
@@ -44,7 +55,9 @@ export default function PhonePreview({ invitation, previewGuest }) {
             `}</style>
 
             <SplitViewLayout invitation={invitation}>
-                {template}
+                <Suspense fallback={<div className="loading-screen">Memuat desain...</div>}>
+                    {template}
+                </Suspense>
             </SplitViewLayout>
         </div>
     );

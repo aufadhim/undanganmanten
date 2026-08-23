@@ -2,6 +2,7 @@ import { prisma } from "./lib/prisma.js";
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import cron from 'node-cron';
 import fs from 'fs';
 import path from 'path';
@@ -19,6 +20,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+if (env.isProduction) app.set('trust proxy', 1);
+
 // 1. OOTB Auto-create folder uploads jika belum eksis
 const uploadsDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadsDir)) {
@@ -30,8 +33,9 @@ app.use(cors({
   origin: env.isProduction ? env.frontendUrl : true,
   credentials: true,
 }));
-app.use(express.json({ limit: '30mb' }));
-app.use(express.urlencoded({ extended: true, limit: '30mb' }));
+app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(express.json({ limit: '2mb' }));
+app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
 import adminRoutes from './routes/adminRoutes.js';
 

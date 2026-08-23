@@ -18,14 +18,15 @@ export default defineConfig(({ mode }) => {
         display: 'standalone',
         icons: [
           {
-            src: 'https://cdn-icons-png.flaticon.com/512/865/865769.png', // Temporary generic icon
-            sizes: '512x512',
+            src: '/favicon.png',
+            sizes: '256x256',
             type: 'image/png'
           }
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
+        globIgnores: ['**/*.mp3', '**/*.mp4'],
         maximumFileSizeToCacheInBytes: 4000000
       }
     })

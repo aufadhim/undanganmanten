@@ -1,6 +1,7 @@
 import { prisma } from '../lib/prisma.js';
 import { generateUniqueSlug } from '../utils/slug.js';
 import { createInvitationSchema, updateInvitationSchema } from '../utils/validators.js';
+import { deleteFolderFromR2 } from '../lib/storage.js';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 const RESERVED_SLUGS = ['login', 'signup', 'forgot-password', 'reset-password', 'dashboard', 'sandbox', 'admin', 'terms', 'privacy', 'guide', 'tema', 'api', 'i'];
@@ -235,6 +236,10 @@ export async function deleteInvitation(req, res) {
             where: { id },
         });
 
+        deleteFolderFromR2(`invitations/${id}`).catch((err) => {
+            console.error(`Gagal membersihkan media undangan ${id}:`, err.message);
+        });
+
         return res.json({ message: 'Undangan berhasil dihapus.' });
     } catch (err) {
         console.error('Error deleteInvitation:', err);
@@ -261,7 +266,7 @@ export async function getMyPreview(req, res) {
                 giftSettings: true,
                 livestreamSettings: true,
                 guests: true,
-                wishes: { orderBy: { createdAt: 'desc' } },
+                wishes: { where: { isHidden: false }, orderBy: [{ isPinned: 'desc' }, { createdAt: 'desc' }] },
             },
         });
 
@@ -296,7 +301,7 @@ export async function getPublicInvitation(req, res) {
                 timelineStories: { orderBy: { order: 'asc' } },
                 giftSettings: true,
                 livestreamSettings: true,
-                wishes: { orderBy: { createdAt: 'desc' } },
+                wishes: { where: { isHidden: false }, orderBy: [{ isPinned: 'desc' }, { createdAt: 'desc' }] },
             },
         });
 
@@ -320,10 +325,10 @@ export async function getPublicGuest(req, res) {
 
         const invitation = await prisma.invitation.findUnique({
             where: { slug },
-            select: { id: true }
+            select: { id: true, status: true }
         });
 
-        if (!invitation) {
+        if (!invitation || invitation.status !== 'published') {
             return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
         }
 
@@ -331,7 +336,8 @@ export async function getPublicGuest(req, res) {
             where: {
                 id: guestId,
                 invitationId: invitation.id
-            }
+            },
+            select: { id: true, name: true, groupName: true, inviteStatus: true }
         });
 
         if (!guest) {
@@ -348,7 +354,7 @@ export async function recordVisit(req, res) {
   try {
     const { slug } = req.params;
     const invitation = await prisma.invitation.findUnique({ where: { slug } });
-    if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
 
     await prisma.invitation.update({
       where: { id: invitation.id },
