@@ -11,7 +11,7 @@ export default function FaqSection() {
       <FaqList
         items={[
           ['Apakah saya bisa mencoba dulu sebelum bayar?', 'Bisa. Paket Trial gratis 2 hari untuk mencoba semua fitur dasarnya.'],
-          ['Berapa lama undangan saya aktif?', 'Paket Pro & Premium aktif hingga 30 hari setelah tanggal pernikahan (H+30).'],
+          ['Berapa lama undangan saya aktif?', 'Paket Standard & Premium aktif hingga 30 hari setelah tanggal pernikahan (H+30).'],
           ['Ada batas jumlah tamu yang diundang?', 'Tidak ada. Sebar ke sebanyak apapun tamu, RSVP tercatat otomatis.'],
           ['Bisa ganti tema setelah memilih?', 'Bisa, kapan saja selama masa aktif. Data yang sudah diisi tidak hilang.'],
           ['Data tamu saya aman?', 'Aman. Semua data dienkripsi dan tidak dibagikan ke pihak ketiga.'],

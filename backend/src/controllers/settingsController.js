@@ -4,6 +4,7 @@ import {
   livestreamSettingsSchema,
   invitationFeaturesSchema,
 } from '../utils/validators.js';
+import { getEntitlements } from '../utils/entitlements.js';
 
 // Helper mengambil data undangan aktif milik user
 async function getInvitation(req) {
@@ -29,8 +30,10 @@ export async function upsertGiftSettings(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
-    const features = await prisma.invitationFeatures.findUnique({ where: { invitationId: invitation.id } });
-    // Fitur Hadiah/Amplop sekarang bisa diakses oleh semua tier (TRIAL, PRO, PREMIUM)
+    const entitlements = await getEntitlements(invitation);
+    if (!entitlements.giftEnabled) {
+      return res.status(403).json({ error: 'Amplop digital memerlukan paket Premium atau add-on Amplop Digital.' });
+    }
 
     const giftSettings = await prisma.giftSettings.upsert({
       where: { invitationId: invitation.id },
@@ -54,14 +57,12 @@ export async function upsertLivestreamSettings(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
-    // DIBYPASS UNTUK DEVELOPMENT
-    /*
-    if (invitation.packageType !== 'PREMIUM') {
+    const entitlements = await getEntitlements(invitation);
+    if (!entitlements.livestreamEnabled) {
       return res.status(403).json({
         error: 'Fitur Live Streaming hanya tersedia untuk paket PREMIUM. Silakan upgrade paket Anda.',
       });
     }
-    */
 
     const livestreamSettings = await prisma.livestreamSettings.upsert({
       where: { invitationId: invitation.id },
@@ -87,23 +88,13 @@ export async function updateInvitationFeatures(req, res) {
 
     const { rsvpEnabled, giftEnabled, livestreamEnabled, timelineEnabled, storyEnabled, dresscodeEnabled, rundownEnabled, igFilterEnabled } = parsed.data;
 
-    // Enforcement pembatasan paket (DIBYPASS UNTUK DEVELOPMENT)
-    /*
-    if (invitation.packageType === 'TRIAL') {
-      // Di TRIAL: Hanya Gift (Amplop Digital) yang bebas. RSVP, Livestream, Timeline, Story dilarang.
-      if (rsvpEnabled || livestreamEnabled || timelineEnabled || storyEnabled || rundownEnabled || dresscodeEnabled || igFilterEnabled) {
-        return res.status(403).json({
-          error: 'Paket TRIAL tidak mendukung fitur ini. Silakan upgrade ke paket LAMAR atau PENGANTIN.',
-        });
-      }
-    } else if (invitation.packageType === 'PRO') {
-      if (livestreamEnabled) {
-        return res.status(403).json({
-          error: 'Fitur Live Streaming hanya tersedia untuk paket PREMIUM.',
-        });
-      }
+    const entitlements = await getEntitlements(invitation);
+    if (giftEnabled === true && !entitlements.giftEnabled) {
+      return res.status(403).json({ error: 'Amplop digital belum termasuk dalam paket Anda.' });
     }
-    */
+    if (livestreamEnabled === true && !entitlements.livestreamEnabled) {
+      return res.status(403).json({ error: 'Live streaming hanya tersedia untuk paket Premium.' });
+    }
 
     // Menggunakan upsert agar otomatis terbuat jika record belum ada di DB
     const features = await prisma.invitationFeatures.upsert({

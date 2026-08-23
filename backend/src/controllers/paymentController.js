@@ -1,6 +1,7 @@
 import midtransClient from 'midtrans-client';
 import { prisma } from '../lib/prisma.js';
 import { env } from '../config/env.js';
+import { activateOrder, getPackageExpiresAt } from '../services/orderActivation.js';
 
 // Setup konfigurasi midtrans
 const snap = new midtransClient.Snap({
@@ -62,7 +63,6 @@ export async function getOrders(req, res) {
     if (!invitation) {
       return res.status(404).json({ error: 'Undangan belum dibuat.' });
     }
-
     const orders = await prisma.order.findMany({
       where: { invitationId: invitation.id },
       orderBy: { createdAt: 'desc' }
@@ -87,6 +87,9 @@ export async function createCheckout(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) {
       return res.status(404).json({ error: 'Undangan belum dibuat.' });
+    }
+    if (getPackageExpiresAt(invitation.weddingDate) <= new Date()) {
+      return res.status(400).json({ error: 'Tanggal H+30 undangan sudah berlalu. Perbarui tanggal acara sebelum melakukan pembayaran.' });
     }
 
     // Kalkulasi Rincian Item & Total Harga
@@ -179,56 +182,27 @@ export async function midtransWebhook(req, res) {
       }
     } else if (transactionStatus === 'settlement') {
       orderStatus = 'SUCCESS';
-    } else if (transactionStatus === 'cancel' || transactionStatus === 'deny' || transactionStatus === 'expire') {
+    } else if (transactionStatus === 'expire') {
+      orderStatus = 'EXPIRED';
+    } else if (transactionStatus === 'cancel' || transactionStatus === 'deny') {
       orderStatus = 'FAILED';
     }
 
-    const order = await prisma.order.findUnique({ where: { midtransOrderId: orderId } });
+    const order = await prisma.order.findUnique({
+      where: { midtransOrderId: orderId },
+      include: { invitation: { select: { weddingDate: true } } },
+    });
     if (!order) {
       return res.status(404).json({ error: 'Order tidak ditemukan' });
     }
 
-    if (order.status === 'PENDING' && orderStatus === 'SUCCESS') {
-      await prisma.order.update({
-        where: { id: order.id },
-        data: { status: 'SUCCESS', paidAt: new Date() }
-      });
+    // Order yang sudah final tidak boleh diturunkan statusnya oleh notifikasi terlambat.
+    if (order.status !== 'PENDING') {
+      return res.status(200).json({ message: 'OK' });
+    }
 
-      const invitation = await prisma.invitation.findUnique({
-        where: { id: order.invitationId },
-        include: { invitationFeatures: true }
-      });
-
-      const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
-      const newExpiresAt = new Date(Date.now() + ONE_YEAR_MS);
-
-      // Aktifkan Paket & Status Publish
-      await prisma.invitation.update({
-        where: { id: order.invitationId },
-        data: {
-          packageType: order.packageType,
-          status: 'published',
-          expiresAt: newExpiresAt
-        }
-      });
-
-      // Aktifkan Fitur berdasarkan Paket atau Add-ons yang dibeli
-      const addons = Array.isArray(order.addons) ? order.addons : [];
-      const hasAmplopAddon = addons.includes('AMPLOP_DIGITAL') || order.packageType === 'PREMIUM';
-
-      await prisma.invitationFeatures.upsert({
-        where: { invitationId: order.invitationId },
-        update: {
-          giftEnabled: hasAmplopAddon,
-          livestreamEnabled: order.packageType === 'PREMIUM',
-        },
-        create: {
-          invitationId: order.invitationId,
-          rsvpEnabled: true,
-          giftEnabled: hasAmplopAddon,
-          livestreamEnabled: order.packageType === 'PREMIUM',
-        }
-      });
+    if (orderStatus === 'SUCCESS') {
+      await activateOrder(order);
     } else if (orderStatus === 'FAILED' || orderStatus === 'EXPIRED') {
       await prisma.order.update({
         where: { id: order.id },

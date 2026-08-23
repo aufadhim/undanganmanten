@@ -13,9 +13,6 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
   const [guests, setGuests] = useState([]);
   const [rsvpEnabled, setRsvpEnabled] = useState(invitation?.invitationFeatures?.rsvpEnabled || false);
 
-  const packageType = invitation?.packageType || 'TRIAL';
-  const maxGuests = packageType === 'TRIAL' ? 10 : (packageType === 'PRO' ? 100 : Infinity);
-
   const draftKeyTamu = `draft_tamu_add_${invitation?.id}`;
   const [form, setForm, clearDraftTamu] = useFormDraft(draftKeyTamu, {
     name: '',
@@ -94,11 +91,6 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
     e.preventDefault();
     if (!form.name.trim()) return;
 
-    if (guests.length >= maxGuests) {
-      toast.error(`Batas maksimum daftar tamu untuk paket ${packageType} adalah ${maxGuests}. Silakan upgrade paket Anda.`);
-      return;
-    }
-
     try {
       const res = await api.post('/invitations/me/guests', {
         name: form.name,
@@ -146,17 +138,11 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
             return;
           }
 
-          if (guests.length + guestsData.length > maxGuests) {
-            toast.error(`Import gagal. Total tamu akan melebihi batas maksimum paket ${packageType} (${maxGuests} tamu).`);
-            setImporting(false);
-            return;
-          }
-
           const res = await api.post('/invitations/me/guests/bulk', { guests: guestsData });
           toast.success(res.data.message || 'Import berhasil!');
           loadGuests();
         } catch (err) {
-          toast.error('Gagal mengimport tamu dari CSV.');
+          toast.error(err.response?.data?.error || 'Gagal mengimport tamu dari CSV.');
         } finally {
           setImporting(false);
           e.target.value = null; // reset input

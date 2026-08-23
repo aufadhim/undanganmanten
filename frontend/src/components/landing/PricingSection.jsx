@@ -6,7 +6,7 @@ export default function PricingSection() {
       <div className="section-head reveal">
         <div className="eyebrow center">Kartu Balasan</div>
         <h2>Tiga Paket, Satu Kebahagiaan</h2>
-        <p className="section-sub">Bayar sekali, tak perlu mikirin lagi sampai hari-H.</p>
+        <p className="section-sub">Bayar sekali, undangan aktif hingga 30 hari setelah acara.</p>
       </div>
 
         <div className="ticket-grid">
@@ -16,9 +16,9 @@ export default function PricingSection() {
             <div className="ticket-price">Gratis</div>
             <div className="ticket-period">Untuk mencoba-coba</div>
             <ul>
-              <li>Masa aktif tidak terbatas</li>
+              <li>Masa trial 2 hari</li>
               <li>Hanya bisa dilihat di Preview (Tidak bisa dipublish)</li>
-              <li>Galeri maksimal 5 foto</li>
+              <li>Galeri maksimal 10 media</li>
               <li>Batas undangan 10 tamu</li>
               <li>Watermark UndanganManten</li>
             </ul>
@@ -31,20 +31,20 @@ export default function PricingSection() {
 
         <div className="ticket highlighted reveal" style={{ transitionDelay: '0.1s' }}>
           <div className="ticket-body">
-            <div className="ticket-name">Pro</div>
-            <div className="ticket-price">Rp99.000</div>
-            <div className="ticket-period">Aktif 1 Bulan</div>
+            <div className="ticket-name">Standard</div>
+            <div className="ticket-price">Rp79.000</div>
+            <div className="ticket-period">Aktif hingga H+30</div>
             <ul>
-              <li>Aktif 1 Bulan</li>
+              <li>Aktif hingga 30 hari setelah acara</li>
               <li>Bebas Pilih Semua Tema</li>
-              <li>Maksimal 11 Foto & 1 Video</li>
+              <li>Maksimal 10 media galeri</li>
               <li>RSVP Maksimal 100 Tamu</li>
               <li>Terdapat Watermark Elegan</li>
             </ul>
           </div>
           <div className="ticket-perf" />
           <div className="ticket-stub">
-            <Link to="/signup" className="lp-btn-seal full">Pilih Pro</Link>
+            <Link to="/signup" className="lp-btn-seal full">Pilih Standard</Link>
           </div>
         </div>
 
@@ -52,15 +52,15 @@ export default function PricingSection() {
           <div className="ticket-flag">Paling Laris</div>
           <div className="ticket-body">
             <div className="ticket-name">Premium</div>
-            <div className="ticket-price">Rp149.000</div>
-            <div className="ticket-period">Aktif 1 Tahun Penuh</div>
+            <div className="ticket-price">Rp129.000</div>
+            <div className="ticket-period">Aktif hingga H+30</div>
             <ul>
-              <li>Aktif 1 Tahun Penuh</li>
-              <li>Include Semua Fitur Pro</li>
-              <li>Maksimal 20 Foto & 5 Video</li>
+              <li>Aktif hingga 30 hari setelah acara</li>
+              <li>Semua fitur Standard</li>
+              <li>Maksimal 30 media galeri</li>
               <li>RSVP Tamu <strong>Unlimited</strong></li>
               <li><strong>Buku Tamu QR Code Scanner</strong></li>
-              <li><em>Add-On Opsional: Custom Domain</em></li>
+              <li>Amplop digital &amp; live streaming</li>
             </ul>
           </div>
           <div className="ticket-perf" />

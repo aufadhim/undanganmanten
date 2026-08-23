@@ -50,7 +50,7 @@ export default function Guide() {
         <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
           <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-credit-card" style={{ marginRight: 10 }}></i>5. Upgrade Paket</h3>
           <p>
-            Akun Anda dimulai dengan paket Trial (2 hari). Jika puas, buka tab <strong>Paket</strong> dan pilih Pro/Premium. Pembayaran dilakukan via Midtrans (Gopay, Qris, Transfer Bank). Masa aktif undangan Anda otomatis diperpanjang hingga H+30 hari acara.
+            Akun Anda dimulai dengan paket Trial (2 hari). Jika puas, buka tab <strong>Paket</strong> dan pilih Standard/Premium. Pembayaran dilakukan via Midtrans (GoPay, QRIS, atau transfer bank). Masa aktif undangan Anda otomatis diperpanjang hingga H+30 hari acara.
           </p>
         </div>
 

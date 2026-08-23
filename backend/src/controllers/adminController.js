@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma.js';
+import { activateOrder } from '../services/orderActivation.js';
 
 // 1. Get Admin Dashboard Statistics (Omzet, Total Users, Total Invitations, Active/Draft counts, Monthly breakdown)
 export async function getAdminStats(req, res) {
@@ -87,47 +88,15 @@ export async function manualActivateOrder(req, res) {
   try {
     const { orderId } = req.params;
 
-    const order = await prisma.order.findUnique({ where: { id: orderId } });
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { invitation: { select: { weddingDate: true } } },
+    });
     if (!order) {
       return res.status(404).json({ error: 'Order tidak ditemukan.' });
     }
 
-    // Update status order ke SUCCESS
-    await prisma.order.update({
-      where: { id: orderId },
-      data: { status: 'SUCCESS', paidAt: new Date() }
-    });
-
-    // Aktifkan paket invitation & perpanjang 1 tahun
-    const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
-    const newExpiresAt = new Date(Date.now() + ONE_YEAR_MS);
-
-    await prisma.invitation.update({
-      where: { id: order.invitationId },
-      data: {
-        packageType: order.packageType,
-        status: 'published',
-        expiresAt: newExpiresAt
-      }
-    });
-
-    // Aktifkan fitur pendukung
-    const addons = Array.isArray(order.addons) ? order.addons : [];
-    const hasAmplopAddon = addons.includes('AMPLOP_DIGITAL') || order.packageType === 'PREMIUM';
-
-    await prisma.invitationFeatures.upsert({
-      where: { invitationId: order.invitationId },
-      update: {
-        giftEnabled: hasAmplopAddon,
-        livestreamEnabled: order.packageType === 'PREMIUM',
-      },
-      create: {
-        invitationId: order.invitationId,
-        rsvpEnabled: true,
-        giftEnabled: hasAmplopAddon,
-        livestreamEnabled: order.packageType === 'PREMIUM',
-      }
-    });
+    await activateOrder(order);
 
     return res.json({ message: 'Order berhasil diaktifkan secara manual oleh Admin.' });
   } catch (err) {

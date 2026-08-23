@@ -7,6 +7,8 @@
     "build": "npm --prefix frontend run build",
     "test": "npm --prefix backend test",
     "test:e2e": "npm --prefix frontend run test:e2e",
-    "audit": "npm --prefix backend audit --omit=dev && npm --prefix frontend audit --omit=dev"
+    "audit": "npm run audit:backend && npm run audit:frontend",
+    "audit:backend": "cd backend && npm audit --omit=dev",
+    "audit:frontend": "cd frontend && npm audit --omit=dev"
   }
 }

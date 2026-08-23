@@ -1,6 +1,7 @@
 import { prisma } from '../lib/prisma.js';
 import { uploadToR2 } from '../lib/storage.js';
 import { reorderGallerySchema } from '../utils/validators.js';
+import { getEntitlements } from '../utils/entitlements.js';
 
 // Helper mengambil data undangan aktif milik user
 async function getInvitation(req) {
@@ -45,9 +46,7 @@ export async function uploadGalleryMedia(req, res) {
 
     const count = await prisma.galleryMedia.count({ where: { invitationId: invitation.id } });
 
-    let maxLimit = 10; // TRIAL
-    if (invitation.packageType === 'STANDARD' || invitation.packageType === 'PRO') maxLimit = 15;
-    if (invitation.packageType === 'PREMIUM') maxLimit = 30;
+    const { maxGallery: maxLimit } = await getEntitlements(invitation);
 
     if (count >= maxLimit) {
       return res.status(403).json({
@@ -147,9 +146,7 @@ export async function addGalleryLink(req, res) {
 
     const count = await prisma.galleryMedia.count({ where: { invitationId: invitation.id } });
 
-    let maxLimit = 10; // TRIAL
-    if (invitation.packageType === 'STANDARD' || invitation.packageType === 'PRO') maxLimit = 15;
-    if (invitation.packageType === 'PREMIUM') maxLimit = 30;
+    const { maxGallery: maxLimit } = await getEntitlements(invitation);
 
     if (count >= maxLimit) {
       return res.status(403).json({

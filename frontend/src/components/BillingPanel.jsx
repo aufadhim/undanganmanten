@@ -172,7 +172,7 @@ export default function BillingPanel({ invitation, onUpdated }) {
           </div>
           <h3 style={{ color: '#7a2436', margin: '8px 0 12px', fontSize: 22 }}>Rp79.000</h3>
           <ul style={{ paddingLeft: 18, fontSize: 12, color: '#5c655d', margin: 0, lineHeight: 1.6 }}>
-            <li>Aktif 1 Tahun Penuh</li>
+            <li>Aktif hingga 30 hari setelah acara (H+30)</li>
             <li>Semua Tema Eksklusif Bebas Pilih</li>
             <li>Tanpa Watermark</li>
             <li>Maksimal 10 Foto Galeri</li>
@@ -198,6 +198,7 @@ export default function BillingPanel({ invitation, onUpdated }) {
           </div>
           <h3 style={{ color: '#7a2436', margin: '8px 0 12px', fontSize: 22 }}>Rp129.000</h3>
           <ul style={{ paddingLeft: 18, fontSize: 12, color: '#5c655d', margin: 0, lineHeight: 1.6 }}>
+            <li>Aktif hingga 30 hari setelah acara (H+30)</li>
             <li>Include Semua Fitur Standard</li>
             <li><strong>Amplop Digital &amp; Rekening Bank Included</strong></li>
             <li><strong>Live Streaming Links Included</strong></li>

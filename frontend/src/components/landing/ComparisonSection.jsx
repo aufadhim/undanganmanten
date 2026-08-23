@@ -26,15 +26,15 @@ export default function ComparisonSection() {
         <div className="compare-col new-way">
             <div className="cc-head">
             <h3>UndanganManten</h3>
-            <div className="cc-price">Mulai Rp 99rb</div>
+            <div className="cc-price">Mulai Rp 79rb</div>
             <span className="cc-badge">Sekali Bayar</span>
           </div>
           <ul>
-            <li><i className="fa-solid fa-check" /> <span>Satu harga untuk 100 atau 1.000+ tamu (tanpa batas)</span></li>
+            <li><i className="fa-solid fa-check" /> <span>Pilihan kuota tamu sesuai kebutuhan acara</span></li>
             <li><i className="fa-solid fa-check" /> <span>Kirim instan via link WhatsApp</span></li>
             <li><i className="fa-solid fa-check" /> <span>Bebas revisi data & tema kapan saja</span></li>
             <li><i className="fa-solid fa-check" /> <span>Dashboard RSVP & Ucapan otomatis</span></li>
-            <li><i className="fa-solid fa-check" /> <span>Tersimpan abadi sebagai kenangan digital</span></li>
+            <li><i className="fa-solid fa-check" /> <span>Aktif hingga 30 hari setelah acara</span></li>
           </ul>
         </div>
       </div>

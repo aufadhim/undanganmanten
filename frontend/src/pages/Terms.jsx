@@ -34,14 +34,14 @@ export default function Terms() {
                 <section style={{ marginBottom: '30px' }}>
                     <h2>3. Paket dan Pembayaran</h2>
                     <p>
-                        Kami menawarkan beberapa paket berlangganan (Trial, Pro, Premium). Fitur dan batasan untuk setiap paket diuraikan di halaman Harga (Pricing). Transaksi yang telah berhasil dilakukan tidak dapat dikembalikan (non-refundable) kecuali jika terjadi kesalahan dari sistem kami.
+                        Kami menawarkan beberapa paket (Trial, Standard, Premium). Fitur dan batasan untuk setiap paket diuraikan di halaman Harga. Transaksi yang telah berhasil dilakukan tidak dapat dikembalikan (non-refundable) kecuali jika terjadi kesalahan dari sistem kami.
                     </p>
                 </section>
 
                 <section style={{ marginBottom: '30px' }}>
                     <h2>4. Masa Aktif Undangan</h2>
                     <p>
-                        Undangan digital Anda akan tetap aktif sesuai dengan ketentuan paket yang Anda pilih. Untuk paket PRO dan PREMIUM, undangan akan otomatis diarsipkan atau tidak dapat diakses publik setelah 30 hari dari tanggal pernikahan (H+30).
+                        Undangan digital Anda akan tetap aktif sesuai dengan ketentuan paket yang Anda pilih. Untuk paket STANDARD dan PREMIUM, undangan akan otomatis diarsipkan atau tidak dapat diakses publik setelah 30 hari dari tanggal pernikahan (H+30).
                     </p>
                 </section>
 

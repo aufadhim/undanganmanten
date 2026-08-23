@@ -22,19 +22,6 @@ export default function GaleriPanel({ invitation, onUpdated }) {
     }
   }, [invitation?.id, invitation?.galleryMedia]);
 
-  const packageType = invitation?.packageType || 'TRIAL';
-  
-  let maxPhotos = 10;
-  let maxVideos = 2;
-  
-  if (packageType === 'PRO') {
-    maxPhotos = 12;
-    maxVideos = 3;
-  } else if (packageType === 'PREMIUM') {
-    maxPhotos = 25;
-    maxVideos = 5;
-  }
-
   const currentPhotos = media.filter(m => m.type === 'photo').length;
   const currentVideos = media.filter(m => m.type === 'video').length;
 
@@ -47,45 +34,28 @@ export default function GaleriPanel({ invitation, onUpdated }) {
 
     let currentMedia = [...media];
 
-    // Filter files based on remaining slots for photos and videos
-    let availablePhotos = maxPhotos - currentPhotos;
-    let availableVideos = maxVideos - currentVideos;
-
-    if (availablePhotos <= 0 && availableVideos <= 0) {
-      setErrorMsg(`Batas galeri paket ${packageType} tercapai (Maks ${maxPhotos} foto & ${maxVideos} video). Upgrade untuk menambah kuota.`);
-      setUploading(false);
-      return;
-    }
-
     const validFiles = [];
     const sizeErrors = [];
     const MAX_PHOTO_SIZE = 10 * 1024 * 1024; // 10 MB
     const MAX_VIDEO_SIZE = 30 * 1024 * 1024; // 30 MB
 
-    let photoCount = 0;
-    let videoCount = 0;
-
     for (const file of files) {
       if (file.type.startsWith('image/')) {
         if (file.size > MAX_PHOTO_SIZE) {
           sizeErrors.push(`${file.name} (> 10MB)`);
-        } else if (photoCount < availablePhotos) {
+        } else {
           validFiles.push(file);
-          photoCount++;
-        } else if (photoCount === availablePhotos && sizeErrors.length === 0) {
-           // just skip silently or note that we hit the limit
         }
       } else if (file.type.startsWith('video/')) {
         if (file.size > MAX_VIDEO_SIZE) {
           sizeErrors.push(`${file.name} (> 30MB)`);
-        } else if (videoCount < availableVideos) {
+        } else {
           validFiles.push(file);
-          videoCount++;
         }
       }
     }
 
-    if (photoCount === 0 && videoCount === 0 && validFiles.length === 0) {
+    if (validFiles.length === 0) {
         if (sizeErrors.length > 0) {
            setErrorMsg(`Gagal upload: ${sizeErrors.join(', ')}`);
         } else {
@@ -161,12 +131,6 @@ export default function GaleriPanel({ invitation, onUpdated }) {
     setLinkLoading(true);
     setErrorMsg('');
     
-    if (currentVideos >= maxVideos) {
-        setErrorMsg(`Batas maksimum video paket ${packageType} tercapai (Maks ${maxVideos} video).`);
-        setLinkLoading(false);
-        return;
-    }
-
     try {
       const res = await api.post('/invitations/me/gallery/link', { url: linkUrl });
       const newMedia = [...media, res.data.media];
@@ -196,7 +160,7 @@ export default function GaleriPanel({ invitation, onUpdated }) {
       <p className="panel-sub">{t('panels.galeri_sub')} Pastikan ukuran Foto Maksimal 10MB dan Video Maksimal 30MB.</p>
 
       <div style={{ fontSize: '12px', color: '#5c655d', marginBottom: '12px' }}>
-        Kuota: <strong>Foto ({currentPhotos}/{maxPhotos})</strong> | <strong>Video ({currentVideos}/{maxVideos})</strong> (Paket {packageType})
+        Galeri saat ini: <strong>{currentPhotos} foto</strong> dan <strong>{currentVideos} video</strong>. Kuota paket diperiksa otomatis saat menyimpan.
       </div>
 
       {errorMsg && (

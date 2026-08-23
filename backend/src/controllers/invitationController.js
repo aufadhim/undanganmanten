@@ -76,8 +76,8 @@ export async function createInvitation(req, res) {
                 invitationFeatures: {
                     create: {
                         rsvpEnabled: true,
-                        giftEnabled: true,
-                        livestreamEnabled: true,
+                        giftEnabled: false,
+                        livestreamEnabled: false,
                         timelineEnabled: true,
                         storyEnabled: true,
                         animationEnabled: true,
@@ -179,6 +179,9 @@ export async function updateMyInvitation(req, res) {
 
         // Validasi kelengkapan data sebelum publish
         if (data.status === 'published') {
+            if (invitation.packageType === 'TRIAL') {
+                return res.status(403).json({ error: 'Undangan Trial harus diaktivasi sebelum dipublikasikan.' });
+            }
             const profile = invitation.coupleProfile;
             if (!profile || !profile.brideName || !profile.groomName) {
                 return res.status(400).json({ error: 'Data profil pengantin belum lengkap. Tidak bisa dipublikasi.' });

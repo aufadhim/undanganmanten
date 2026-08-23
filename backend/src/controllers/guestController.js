@@ -1,4 +1,6 @@
 import { prisma } from '../lib/prisma.js';
+import { bulkGuestSchema, guestSchema } from '../utils/validators.js';
+import { getEntitlements } from '../utils/entitlements.js';
 
 // Helper mengambil data undangan aktif milik user
 async function getInvitation(req) {
@@ -42,9 +44,15 @@ export async function addGuest(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
-    const { name, phone, category, groupName } = req.body;
-    if (!name || !name.trim()) {
-      return res.status(400).json({ error: 'Nama tamu wajib diisi.' });
+    const parsed = guestSchema.safeParse({ ...req.body, groupName: req.body.groupName || req.body.category });
+    if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
+    const { name, phone, groupName } = parsed.data;
+    const [{ maxGuests }, currentCount] = await Promise.all([
+      getEntitlements(invitation),
+      prisma.guest.count({ where: { invitationId: invitation.id } }),
+    ]);
+    if (maxGuests !== null && currentCount >= maxGuests) {
+      return res.status(403).json({ error: `Kuota tamu paket Anda sudah penuh (${maxGuests} tamu).` });
     }
 
     const guest = await prisma.guest.create({
@@ -52,7 +60,7 @@ export async function addGuest(req, res) {
         invitationId: invitation.id,
         name: name.trim(),
         phone: phone ? phone.trim() : null,
-        groupName: category || groupName || 'Umum',
+        groupName: groupName || 'Umum',
       },
     });
 
@@ -69,15 +77,21 @@ export async function bulkAddGuests(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
-    const guestsList = req.body?.guests || [];
-    if (!Array.isArray(guestsList) || guestsList.length === 0) {
-      return res.status(400).json({ error: 'Data tamu tidak boleh kosong.' });
+    const parsed = bulkGuestSchema.safeParse({ guests: (req.body?.guests || []).map((guest) => ({ ...guest, groupName: guest.groupName || guest.category })) });
+    if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
+    const guestsList = parsed.data.guests;
+    const [{ maxGuests }, currentCount] = await Promise.all([
+      getEntitlements(invitation),
+      prisma.guest.count({ where: { invitationId: invitation.id } }),
+    ]);
+    if (maxGuests !== null && currentCount + guestsList.length > maxGuests) {
+      return res.status(403).json({ error: `Impor melebihi kuota paket. Tersedia ${Math.max(0, maxGuests - currentCount)} slot tamu.` });
     }
 
     const guestsData = guestsList.map((g) => ({
       name: g.name ? g.name.trim() : 'Tamu',
       phone: g.phone || null,
-      groupName: g.category || g.groupName || 'Umum',
+      groupName: g.groupName || 'Umum',
       invitationId: invitation.id,
     }));
 
