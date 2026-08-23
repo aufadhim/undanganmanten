@@ -1,30 +1,25 @@
 import { prisma } from '../lib/prisma.js';
-import { deleteFolderFromR2 } from '../lib/storage.js';
-
 /**
- * Hapus invitation yang sudah lewat expiresAt (wedding_date + 30 hari).
+ * Nonaktifkan invitation yang sudah lewat expiresAt.
+ * Data dan media tetap disimpan agar dapat dipulihkan atau diperpanjang.
  * Dipanggil otomatis oleh cron di server.js, atau bisa dijalankan manual
  * lewat `npm run cron:expire`.
  */
 export async function runExpireJob() {
     const now = new Date();
 
-    const expired = await prisma.invitation.findMany({
-        where: { expiresAt: { lt: now }, status: { not: 'expired' } },
-    });
+    const where = { expiresAt: { lt: now }, status: { not: 'expired' } };
+    const expired = await prisma.invitation.findMany({ where, select: { id: true, slug: true } });
 
     console.log(`[expire-job] Ditemukan ${expired.length} invitation yang sudah expired.`);
 
-    for (const invitation of expired) {
-        try {
-            await deleteFolderFromR2(`invitations/${invitation.id}`);
-        } catch (err) {
-            console.error(`[expire-job] Gagal hapus file R2 untuk ${invitation.id}:`, err.message);
-        }
-
-        await prisma.invitation.delete({ where: { id: invitation.id } });
-        console.log(`[expire-job] Invitation ${invitation.slug} (${invitation.id}) dihapus.`);
+    if (expired.length > 0) {
+        await prisma.invitation.updateMany({ where, data: { status: 'expired' } });
     }
+
+    expired.forEach((invitation) => {
+        console.log(`[expire-job] Invitation ${invitation.slug} (${invitation.id}) dinonaktifkan.`);
+    });
 
     return expired.length;
 }
@@ -34,7 +29,7 @@ export async function runExpireJob() {
 if (import.meta.url === `file://${process.argv[1]}`) {
     runExpireJob()
         .then((count) => {
-            console.log(`Selesai. ${count} invitation dihapus.`);
+            console.log(`Selesai. ${count} invitation dinonaktifkan.`);
             process.exit(0);
         })
         .catch((err) => {

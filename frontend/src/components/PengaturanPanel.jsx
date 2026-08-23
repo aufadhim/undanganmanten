@@ -25,8 +25,7 @@ export default function PengaturanPanel({ invitation, onUpdated, onDeleted }) {
     }
     setSavingSlug(true);
     try {
-      const res = await api.patch('/invitations/me', {
-        invitationId: invitation.id,
+      const res = await api.patch(`/invitations/${invitation.id}`, {
         slug: slug.trim(),
       });
       onUpdated({ ...invitation, slug: res.data.invitation.slug });

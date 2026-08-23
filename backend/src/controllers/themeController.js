@@ -5,7 +5,7 @@ import { THEME_PRESETS, getPresetById } from '../utils/themePresets.js';
 
 // Helper mengambil data undangan aktif milik user
 async function getInvitation(req) {
-    const invitationId = req.body?.invitationId || req.query?.invitationId || req.params?.id;
+    const invitationId = req.headers?.['x-invitation-id'] || req.body?.invitationId || req.query?.invitationId || req.params?.id;
 
     return prisma.invitation.findFirst({
         where: {

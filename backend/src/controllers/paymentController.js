@@ -156,7 +156,7 @@ export async function createCheckout(req, res) {
       data: { snapToken: transaction.token }
     });
 
-    return res.json({ token: transaction.token, orderId: orderId, amount: totalAmount });
+    return res.json({ token: transaction.token, snapToken: transaction.token, orderId, amount: totalAmount });
   } catch (err) {
     console.error('Midtrans createTransaction error:', err);
     return res.status(500).json({ error: 'Gagal membuat transaksi pembayaran.' });

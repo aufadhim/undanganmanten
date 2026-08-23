@@ -14,6 +14,7 @@ import {
 } from '../controllers/authController.js';
 import { googleLogin } from '../controllers/googleAuthController.js';
 import { authenticate } from '../middlewares/auth.js';
+import { env } from '../config/env.js';
 
 const router = Router();
 
@@ -38,7 +39,9 @@ router.post('/change-password', authenticate, changePassword);
 router.delete('/delete-account', authenticate, deleteAccount);
 router.get('/me', authenticate, me);
 
-// Endpoint utilitas untuk testing
-router.post('/test-reset', testReset);
+// Endpoint utilitas hanya tersedia pada development/test.
+if (!env.isProduction) {
+  router.post('/test-reset', testReset);
+}
 
 export default router;

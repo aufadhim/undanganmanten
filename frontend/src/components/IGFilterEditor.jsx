@@ -40,13 +40,13 @@ export default function IGFilterEditor({ invitation, onUpdated }) {
 
         setUploading(true);
         const formData = new FormData();
-        formData.append('asset', file);
+        formData.append('file', file);
         if (invitation.id) {
             formData.append('invitationId', invitation.id);
         }
 
         try {
-            const res = await api.post('/themes/me/upload-asset', formData, {
+            const res = await api.post('/themes/upload-asset', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setImageUrl(res.data.url);

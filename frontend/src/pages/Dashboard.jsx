@@ -29,6 +29,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import DashboardOnboarding from '../components/dashboard/DashboardOnboarding.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { loadMidtransSnap } from '../utils/midtrans.js';
 
 
 // HadiahPanelPlaceholder removed
@@ -203,15 +204,12 @@ export default function Dashboard() {
             const res = await api.post(`/invitations/${selectedInvitation.id}/checkout`);
             const { snapToken } = res.data;
 
-            if (window.snap) {
-                window.snap.pay(snapToken, {
+            const snap = await loadMidtransSnap();
+            snap.pay(snapToken, {
                     onSuccess: () => fetchInvitations(),
                     onPending: () => fetchInvitations(),
                     onError: (err) => toast.error('Pembayaran gagal: ' + err.message)
                 });
-            } else {
-                toast.info('Sistem pembayaran belum siap: ' + (res.data?.paymentUrl || ''));
-            }
         } catch (err) {
             toast.error(err.response?.data?.error || 'Gagal memproses pembayaran');
         } finally {

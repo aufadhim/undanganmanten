@@ -3,7 +3,7 @@ import { generateUniqueSlug } from '../utils/slug.js';
 import { createInvitationSchema, updateInvitationSchema } from '../utils/validators.js';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
-const RESERVED_SLUGS = ['login', 'signup', 'dashboard', 'admin', 'terms', 'privacy', 'guide', 'tema', 'api', 'i'];
+const RESERVED_SLUGS = ['login', 'signup', 'forgot-password', 'reset-password', 'dashboard', 'sandbox', 'admin', 'terms', 'privacy', 'guide', 'tema', 'api', 'i'];
 
 // Default warna tema netral
 const DEFAULT_THEME_SETTINGS = {

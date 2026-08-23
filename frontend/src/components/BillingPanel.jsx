@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { loadMidtransSnap } from '../utils/midtrans.js';
 
 const ADDONS_CONFIG = [
   { id: 'AMPLOP_DIGITAL', name: 'Amplop Digital & Hadiah', price: 20000, desc: 'Rekening bank & e-wallet di undangan' },
@@ -54,8 +55,8 @@ export default function BillingPanel({ invitation, onUpdated }) {
       });
       const { token } = res.data;
 
-      if (window.snap) {
-        window.snap.pay(token, {
+      const snap = await loadMidtransSnap();
+      snap.pay(token, {
           onSuccess: function () {
             toast.success('Pembayaran berhasil! Undangan Anda kini aktif & dipublikasi.');
             api.get('/invitations').then((r) => {
@@ -71,9 +72,6 @@ export default function BillingPanel({ invitation, onUpdated }) {
             toast.error('Pembayaran tidak dapat diproses.');
           },
         });
-      } else {
-        toast.error('Sistem pembayaran Midtrans belum siap di halaman.');
-      }
     } catch (err) {
       toast.error(err.response?.data?.error || 'Gagal memulai transaksi pembayaran.');
     } finally {
