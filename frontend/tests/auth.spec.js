@@ -1,53 +1,39 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Authentication Flow', () => {
-  const testEmail = `user_${Date.now()}@test.com`;
-  const testPassword = 'Password123!';
+const API = 'http://127.0.0.1:4010/api';
 
-  test.beforeAll(async ({ request }) => {
-    // Reset data (opsional, endpoint ini sudah menghapus semua yang berakhiran @test.com)
-    await request.post('http://127.0.0.1:4000/api/auth/test-reset');
-  });
+test('pengguna dapat daftar, verifikasi OTP, logout, dan login kembali', async ({ page, request }) => {
+  const email = `auth_${Date.now()}@test.com`;
+  const password = 'Password123!';
 
-  test('User can sign up, verify OTP, and login', async ({ page }) => {
-    // 1. Signup
-    await page.goto('/signup');
-    await page.fill('input[type="email"]', testEmail);
-    await page.fill('input[type="password"]', testPassword);
-    await page.fill('input[type="tel"]', '08123456789');
-    await page.click('button[type="submit"]');
+  await page.goto('/signup');
+  await page.locator('input[type="text"]').first().fill('Pengguna Test');
+  await page.locator('input[type="email"]').fill(email);
+  await page.locator('input[type="tel"]').fill('08123456789');
+  await page.locator('input[type="password"]').nth(0).fill(password);
+  await page.locator('input[type="password"]').nth(1).fill(password);
+  await page.locator('input[type="checkbox"]').check();
+  await page.getByRole('button', { name: /create account|daftar/i }).click();
 
-    // Tunggu navigasi ke halaman OTP
-    await expect(page).toHaveURL(/.*\/verify-otp/);
+  await page.getByPlaceholder('000000').fill('123456');
+  await page.getByRole('button', { name: /verifikasi|verify/i }).click();
+  await expect(page).toHaveURL(/\/dashboard$/);
 
-    // 2. Isi OTP Bypass (123456)
-    // Asumsi ada 6 input box untuk OTP
-    const otpInputs = page.locator('.otp-input');
-    await expect(otpInputs).toHaveCount(6);
-    const otp = '123456';
-    for (let i = 0; i < 6; i++) {
-      await otpInputs.nth(i).fill(otp[i]);
-    }
+  await page.getByRole('button', { name: /keluar/i }).click();
+  await expect(page).toHaveURL(/\/login$/);
 
-    // Klik tombol verifikasi (biasanya otomatis, tapi kalau butuh submit)
-    const verifyBtn = page.locator('button:has-text("Verifikasi")');
-    if (await verifyBtn.isVisible()) {
-      await verifyBtn.click();
-    }
+  await page.locator('input[type="email"]').fill(email);
+  await page.locator('input[type="password"]').fill(password);
+  await page.getByRole('button', { name: /login/i }).click();
+  await expect(page).toHaveURL(/\/dashboard$/);
 
-    // Harusnya redirect ke dashboard atau login. Di sistem ini sepertinya login
-    await expect(page).toHaveURL(/.*\/dashboard/);
+  const token = await page.evaluate(() => localStorage.getItem('um_token'));
+  await request.delete(`${API}/auth/delete-account`, { headers: { Authorization: `Bearer ${token}` } });
+});
 
-    // Logout
-    await page.click('button:has-text("Keluar")');
-    await expect(page).toHaveURL('/');
-
-    // 3. Login
-    await page.goto('/login');
-    await page.fill('input[type="email"]', testEmail);
-    await page.fill('input[type="password"]', testPassword);
-    await page.click('button[type="submit"]');
-
-    await expect(page).toHaveURL(/.*\/dashboard/);
-  });
+test('halaman pemulihan password menangani tautan tanpa token', async ({ page }) => {
+  await page.goto('/forgot-password');
+  await expect(page.getByRole('heading', { name: /lupa password/i })).toBeVisible();
+  await page.goto('/reset-password');
+  await expect(page.getByText(/tidak valid atau tidak lengkap/i)).toBeVisible();
 });

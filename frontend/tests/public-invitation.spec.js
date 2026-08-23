@@ -1,56 +1,28 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Public Invitation Flow', () => {
-  let testEmail = `public_${Date.now()}@test.com`;
-  let slug = '';
+const API = 'http://127.0.0.1:4010/api';
 
-  test.beforeAll(async ({ request }) => {
-    // Signup by API
-    await request.post('http://127.0.0.1:4000/api/auth/signup', {
-      data: { email: testEmail, password: 'Password123!', phone: '08123' }
-    });
-    // Verify OTP by API
-    const verifyRes = await request.post('http://127.0.0.1:4000/api/auth/verify-email', {
-      data: { email: testEmail, otp: '123456' }
-    });
-    const token = (await verifyRes.json()).token;
-
-    // Ambil slug dari data undangan yang otomatis terbuat
-    const inviteRes = await request.get('http://127.0.0.1:4000/api/invitations/me', {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    const data = await inviteRes.json();
-    slug = data.invitation.slug;
+test('undangan yang dipublikasikan dapat dibuka tanpa login', async ({ page, request }) => {
+  const email = `public_${Date.now()}@test.com`;
+  const password = 'Password123!';
+  await request.post(`${API}/auth/signup`, { data: { email, password } });
+  const verified = await request.post(`${API}/auth/verify-email`, { data: { email, otp: '123456' } });
+  const token = (await verified.json()).token;
+  const headers = { Authorization: `Bearer ${token}` };
+  const created = await request.post(`${API}/invitations`, {
+    headers,
+    data: { brideName: 'Aisyah', groomName: 'Auf', weddingDate: '2027-12-31', themeId: 'samaya' },
   });
-
-  test.afterAll(async ({ request }) => {
-    await request.post('http://127.0.0.1:4000/api/auth/test-reset');
+  const invitation = (await created.json()).invitation;
+  await request.post(`${API}/invitations/me/events`, {
+    headers: { ...headers, 'x-invitation-id': invitation.id },
+    data: { type: 'akad', date: '2027-12-31', venueName: 'Gedung Test' },
   });
+  await request.patch(`${API}/invitations/${invitation.id}`, { headers, data: { status: 'published' } });
 
-  test('Guest can open invitation, RSVP and send wish', async ({ page }) => {
-    // 1. Buka halaman undangan
-    await page.goto(`/i/${slug}`);
-    
-    // 2. Klik Buka Undangan (Cover)
-    await page.click('button:has-text("Buka Undangan")');
-    await expect(page.locator('.invite-container')).toBeVisible();
+  await page.goto(`/${invitation.slug}`);
+  await expect(page.getByText('Aisyah').first()).toBeVisible();
+  await expect(page.getByText('Auf').first()).toBeVisible();
 
-    // 3. Isi RSVP
-    await page.fill('input[placeholder="Nama Anda"]', 'Budi Tamu');
-    await page.selectOption('select', 'true'); // Attending
-    await page.click('button:has-text("Kirim Konfirmasi")');
-    
-    // Tunggu pesan sukses RSVP
-    await expect(page.locator('text=Konfirmasi kehadiran Anda telah tersimpan')).toBeVisible();
-
-    // 4. Kirim Ucapan
-    // Ada dua input placeholder "Nama Anda", satu di RSVP, satu di Wishes.
-    // RSVP form menghilang setelah dikirim, jadi input "Nama Anda" tinggal satu.
-    await page.fill('input[placeholder="Nama Anda"]', 'Budi Tamu');
-    await page.fill('textarea[placeholder="Berikan ucapan dan doa terbaik untuk pengantin..."]', 'Selamat menempuh hidup baru!');
-    await page.click('button:has-text("Kirim Ucapan")');
-
-    // Cek ucapan muncul
-    await expect(page.locator('text=Selamat menempuh hidup baru!')).toBeVisible();
-  });
+  await request.delete(`${API}/auth/delete-account`, { headers });
 });

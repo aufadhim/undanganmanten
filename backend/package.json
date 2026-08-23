@@ -6,6 +6,7 @@
         "dev": "NODE_ENV=development nodemon src/server.js",
         "start": "NODE_ENV=production node src/server.js",
         "start:dev": "NODE_ENV=development node src/server.js",
+        "start:test": "NODE_ENV=test PORT=4010 node src/server.js",
         "test": "node --test tests/*.test.js",
         "prisma:migrate": "prisma migrate dev",
         "prisma:studio": "prisma studio",
