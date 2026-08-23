@@ -1,5 +1,6 @@
 import { prisma } from '../lib/prisma.js';
 import { uploadToR2 } from '../lib/storage.js';
+import { updateCoupleProfileSchema } from '../utils/validators.js';
 
 // Helper mengambil data undangan aktif milik user
 async function getInvitation(req) {
@@ -22,7 +23,9 @@ export async function updateCoupleProfile(req, res) {
         const invitation = await getInvitation(req);
         if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
 
-        const { brideName, brideFullName, brideFather, brideMother, brideIg, brideBio, groomName, groomFullName, groomFather, groomMother, groomIg, groomBio } = req.body;
+        const parsed = updateCoupleProfileSchema.safeParse(req.body);
+        if (!parsed.success) return res.status(400).json({ error: parsed.error.issues[0].message });
+        const { brideName, brideFullName, brideFather, brideMother, brideIg, brideBio, groomName, groomFullName, groomFather, groomMother, groomIg, groomBio } = parsed.data;
 
         const profile = await prisma.coupleProfile.upsert({
             where: { invitationId: invitation.id },

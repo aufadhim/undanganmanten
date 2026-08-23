@@ -86,12 +86,18 @@ export const applyPresetSchema = z.object({
 });
 
 export const updateCoupleProfileSchema = z.object({
-  groomName: z.string().min(1).optional(),
-  groomFather: z.string().optional(),
-  groomMother: z.string().optional(),
-  brideName: z.string().min(1).optional(),
-  brideFather: z.string().optional(),
-  brideMother: z.string().optional(),
+  groomName: z.string().trim().min(1).max(100).optional(),
+  groomFullName: z.string().trim().max(150).optional(),
+  groomFather: z.string().trim().max(150).optional(),
+  groomMother: z.string().trim().max(150).optional(),
+  groomIg: z.string().trim().max(100).optional(),
+  groomBio: z.string().trim().max(2000).optional(),
+  brideName: z.string().trim().min(1).max(100).optional(),
+  brideFullName: z.string().trim().max(150).optional(),
+  brideFather: z.string().trim().max(150).optional(),
+  brideMother: z.string().trim().max(150).optional(),
+  brideIg: z.string().trim().max(100).optional(),
+  brideBio: z.string().trim().max(2000).optional(),
 });
 
 export const upsertEventSchema = z.object({

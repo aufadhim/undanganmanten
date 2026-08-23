@@ -58,6 +58,10 @@ app.use('/api/admin', adminRoutes);
 app.use((err, req, res, next) => {
   console.error('[server error]', err);
 
+  if (err?.code === 'LIMIT_FILE_SIZE') {
+    return res.status(413).json({ error: 'Ukuran file melebihi batas yang diizinkan.' });
+  }
+
   // Jika error karena database connection lost (biasa terjadi setelah laptop sleep)
   // Kita paksa exit process agar nodemon merestart ulang koneksi DB dengan bersih.
   const isDbError = err.message && (

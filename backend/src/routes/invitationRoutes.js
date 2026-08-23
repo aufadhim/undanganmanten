@@ -57,7 +57,7 @@ import {
     updateInvitationFeatures,
 } from '../controllers/settingsController.js';
 import { authenticate } from '../middlewares/auth.js';
-import { upload } from '../middlewares/upload.js';
+import { galleryUpload, imageUpload } from '../middlewares/upload.js';
 import { compressImage } from '../middlewares/compressImage.js';
 import rateLimit from 'express-rate-limit';
 
@@ -90,7 +90,7 @@ router.post('/me/theme/apply-preset', authenticate, applyThemePreset);
 
 // ---------- Couple Profile ----------
 router.patch('/me/couple-profile', authenticate, updateCoupleProfile);
-router.post('/me/couple-profile/photo', authenticate, upload.single('photo'), compressImage, uploadCouplePhoto);
+router.post('/me/couple-profile/photo', authenticate, imageUpload.single('photo'), compressImage, uploadCouplePhoto);
 
 // ---------- Quote Settings ----------
 router.patch('/me/quote', authenticate, updateQuoteSettings);
@@ -102,7 +102,7 @@ router.delete('/me/events/:eventId', authenticate, deleteEvent);
 
 // ---------- Gallery ----------
 router.get('/me/gallery', authenticate, listGallery);
-router.post('/me/gallery', authenticate, upload.single('file'), compressImage, uploadGalleryMedia);
+router.post('/me/gallery', authenticate, galleryUpload.single('file'), compressImage, uploadGalleryMedia);
 router.post('/me/gallery/link', authenticate, addGalleryLink);
 router.delete('/me/gallery/:mediaId', authenticate, deleteGalleryMedia);
 router.patch('/me/gallery/reorder', authenticate, reorderGallery);

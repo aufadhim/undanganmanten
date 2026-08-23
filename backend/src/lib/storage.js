@@ -41,6 +41,9 @@ export async function uploadToR2({ buffer, mimeType, folder = '', originalName =
       );
       return `${process.env.R2_PUBLIC_URL}/${key}`;
     } catch (error) {
+      if (env.isProduction) {
+        throw new Error(`Upload storage gagal: ${error.message}`);
+      }
       console.error('[R2 Upload Failed, fallback to local disk]:', error.message);
     }
   }
@@ -54,7 +57,6 @@ export async function uploadToR2({ buffer, mimeType, folder = '', originalName =
   const localFilePath = path.join(uploadsDir, fileName);
   await fs.promises.writeFile(localFilePath, buffer);
 
-  // 🚨 KUNCI PERBAIKAN: Kembalikan URL lengkap dengan Port 4000
   return `${env.backendUrl}/uploads/${fileName}`;
 }
 
