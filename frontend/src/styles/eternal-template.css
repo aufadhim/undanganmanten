@@ -1895,7 +1895,7 @@ html,
 
 /* ===== LIVESTREAM & IG FILTER ===== */
 .eternal-wrapper .livestream-section, .eternal-wrapper .igFilter-section {
-  background: var(--stone-100);
+  background: var(--stone-50);
   padding: 6rem 2rem;
   text-align: center;
 }
