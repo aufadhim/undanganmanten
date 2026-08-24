@@ -301,7 +301,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                 
                 // If it's still a single line but has multiple sentences, split by period
                 if (lines.length === 1 && lines[0].includes('. ')) {
-                  lines = lines[0].split('. ').map(l => l.trim() + '.').filter(l => l !== '.');
+                  lines = lines[0].split(/(?<=\.)\s+/).map((line) => line.trim()).filter(Boolean);
                 }
                 
                 return lines.map((line, idx) => (

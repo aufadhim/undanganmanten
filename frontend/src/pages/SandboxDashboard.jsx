@@ -31,14 +31,15 @@ const DEFAULT_SANDBOX_INVITATION = {
         background: { enabled: false },
         bodyText: { enabled: false },
         button: { enabled: false },
-        typography: {}
+        typography: {},
+        mainStory: 'Kami bertemu pada sebuah sore yang sederhana, tanpa pernah menduga percakapan singkat itu akan menjadi awal perjalanan panjang. Waktu membawa kami melewati banyak cerita, tumbuh bersama, dan belajar bahwa rumah bukan hanya sebuah tempat, melainkan seseorang yang selalu ingin kita tuju. Kini kami memilih untuk melanjutkan kisah ini dalam satu janji, satu langkah, dan satu kehidupan bersama.'
     },
     themeId: 'eternal',
     invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true },
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
     galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
 };
-const SANDBOX_VERSION = '6';
+const SANDBOX_VERSION = '7';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();

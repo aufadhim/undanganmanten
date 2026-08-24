@@ -1137,6 +1137,17 @@
 .eternal-wrapper .theme-loading-logo{position:relative;display:grid;place-items:center}.eternal-wrapper .loading-breathe{animation:themeLoadBreathe 1.8s ease-in-out infinite}.eternal-wrapper .loading-spin{animation:themeLoadSpin 2.2s linear infinite}.eternal-wrapper .loading-reveal{animation:themeLoadReveal 2s ease-in-out infinite}.eternal-wrapper .loading-shimmer{overflow:hidden}.eternal-wrapper .loading-shimmer:after{content:'';position:absolute;inset:-20%;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55),transparent 70%);animation:themeLoadShimmer 1.8s linear infinite}
 @keyframes themeLoadBreathe{50%{transform:scale(1.14);opacity:.65}}@keyframes themeLoadSpin{to{transform:rotate(360deg)}}@keyframes themeLoadReveal{0%,100%{clip-path:inset(0 50%)}50%{clip-path:inset(0)}}@keyframes themeLoadShimmer{from{transform:translateX(-140%)}to{transform:translateX(140%)}}
 
+/* Keep section headings visually connected to the section above. */
+.eternal-wrapper .story-section,
+.eternal-wrapper .gallery-section,
+.eternal-wrapper .rundown-section,
+.eternal-wrapper .dresscode-section { padding-top:2rem !important; }
+.eternal-wrapper .countdown-section,
+.eternal-wrapper .rsvp-section { padding-top:2.5rem !important; }
+.eternal-wrapper .livestream-section,
+.eternal-wrapper .igFilter-section { padding-top:2.5rem !important; }
+.eternal-wrapper .gallery-header-col { padding-top:0; }
+
 /* Full-bleed gallery variants must win over the responsive editorial grid. */
 .eternal-wrapper .gallery-container.gallery-layout-collage,
 .eternal-wrapper .gallery-container.gallery-layout-wall {
