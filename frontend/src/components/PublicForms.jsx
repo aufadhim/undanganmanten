@@ -12,7 +12,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
   const guestId = previewGuest?.id;
 
   return (
-    <div style={{ padding: '0 20px', paddingBottom: '60px', width: '100%', boxSizing: 'border-box', zIndex: 10, position: 'relative' }}>
+    <div className="public-forms-root" style={{ padding: '0 20px', paddingBottom: '60px', width: '100%', boxSizing: 'border-box', zIndex: 10, position: 'relative' }}>
       
       {/* QR CODE ACCESS PASS */}
       {previewGuest && (
@@ -64,6 +64,14 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
           margin-bottom: 24px;
           text-align: center;
           font-family: var(--pf-font-body, inherit);
+        }
+        .pf-subtitle {
+          margin: -14px auto 22px;
+          max-width: 520px;
+          color: #666;
+          font-size: 13px;
+          line-height: 1.65;
+          text-align: center;
         }
         .pf-input {
           width: 100%;
@@ -159,6 +167,7 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
   return (
     <div className="pf-glass">
       <h3 className="pf-title">RSVP</h3>
+      <p className="pf-subtitle">{t('public.rsvp_subtitle')}</p>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <input className="pf-input" placeholder="Nama Lengkap" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
         <input className="pf-input" placeholder="Nomor WA (opsional)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
@@ -201,6 +210,7 @@ export function GiftSection({ gift, accent }) {
 }
 
 function WishesSection({ slug, initialWishes, theme, guest, previewMode, templateStyle }) {
+  const { t } = useTranslation();
   const { toast } = useUI();
   const [wishes, setWishes] = useState(initialWishes || []);
   
@@ -279,6 +289,7 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode, templat
     <>
       <div className="pf-glass">
         <h3 className="pf-title">Ucapan & Doa</h3>
+        <p className="pf-subtitle">{t('public.wishes_subtitle')}</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
           <input className="pf-input" placeholder="Nama Anda" value={form.senderName} onChange={(e) => setForm({ ...form, senderName: e.target.value })} required />
           <textarea className="pf-input" placeholder="Tulis ucapan dan doa..." rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />

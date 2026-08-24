@@ -429,6 +429,17 @@
   backdrop-filter: blur(8px) !important;
   box-shadow: none !important;
 }
+.eternal-wrapper .public-forms-root { padding-bottom:0 !important; }
+.eternal-wrapper .pf-title { margin-bottom:22px !important; }
+.eternal-wrapper .pf-subtitle {
+  margin:-12px auto 24px !important;
+  max-width:520px;
+  color:var(--stone-600) !important;
+  font-size:.82rem !important;
+  line-height:1.7 !important;
+  letter-spacing:.02em;
+  text-align:center;
+}
 
 .eternal-wrapper .pf-title {
   font-family: var(--font-display) !important;

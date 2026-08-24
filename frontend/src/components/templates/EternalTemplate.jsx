@@ -555,7 +555,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   const renderGift = () => {
     if (!gifts || !invitation?.invitationFeatures?.giftEnabled) return null;
     return (
-      <section id="gift" className="gift-section" key="gift" style={{ padding: '60px 20px', background: 'var(--stone-50)' }}>
+      <section id="gift" className="gift-section" key="gift" style={{ padding: '24px 20px 40px', background: 'var(--stone-50)' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}><GiftSection gift={gifts} accent="var(--stone-800)" /></div>
       </section>
     );
@@ -565,7 +565,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       id="rsvp"
       className="rsvp-section"
       key="rsvp"
-      style={{ padding: "80px 0", background: "var(--stone-50)" }}
+      style={{ padding: "48px 0 24px", background: "var(--stone-50)" }}
     >
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
         <div
@@ -597,7 +597,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   );
 
   const renderWishes = () => (
-    <section id="wishes" className="rsvp-section" key="wishes" style={{ padding: '80px 0', background: 'var(--stone-50)' }}>
+    <section id="wishes" className="rsvp-section" key="wishes" style={{ padding: '24px 0 40px', background: 'var(--stone-50)' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}><PublicForms invitation={invitation} previewGuest={previewGuest} templateStyle="eternal" previewMode={editorPreview} formType="wishes" /></div>
     </section>
   );
