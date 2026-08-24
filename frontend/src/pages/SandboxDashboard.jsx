@@ -38,8 +38,32 @@ const DEFAULT_SANDBOX_INVITATION = {
     invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true },
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
     galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
+    wishes: [
+        {
+            id: 'sandbox-wish-1',
+            senderName: 'Nadira & Bagas',
+            message: 'Selamat menempuh perjalanan baru, Deva dan Arunika. Semoga rumah kalian selalu dipenuhi tawa, ketenangan, dan kasih yang terus bertumbuh.',
+            createdAt: '2026-08-23T10:00:00.000Z',
+            isHidden: false,
+            isPinned: true,
+        },
+        {
+            id: 'sandbox-wish-2',
+            senderName: 'Raka Pradipta',
+            message: 'Turut berbahagia untuk kalian berdua. Semoga segala rencana menuju hari bahagia dilancarkan dan menjadi awal kisah yang indah.',
+            createdAt: '2026-08-22T09:00:00.000Z',
+            isHidden: false,
+        },
+        {
+            id: 'sandbox-wish-3',
+            senderName: 'Keluarga Narendra',
+            message: 'Semoga senantiasa saling menjaga, menguatkan, dan menemukan rumah dalam satu sama lain. Doa terbaik menyertai kalian.',
+            createdAt: '2026-08-21T08:00:00.000Z',
+            isHidden: false,
+        },
+    ],
 };
-const SANDBOX_VERSION = '7';
+const SANDBOX_VERSION = '8';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();

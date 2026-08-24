@@ -1221,7 +1221,7 @@
 
 /* ===== RSVP SECTION ===== */
 .eternal-wrapper .rsvp-section {
-  min-height: 100%;
+  min-height: auto;
   background: var(--stone-100);
   padding: 8rem 0;
 }
