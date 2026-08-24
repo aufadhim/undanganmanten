@@ -7,6 +7,7 @@ import FloatingMultimedia from '../FloatingMultimedia.jsx';
 import PublicForms from '../PublicForms.jsx';
 import Lightbox from './Lightbox';
 import '../../styles/nisera-template.css';
+import { DUMMY_BRIDE_PHOTO, DUMMY_GROOM_PHOTO } from '../../config/dummyAssets.js';
 
 export default function NiseraTemplate({ invitation, previewGuest, editorPreview = false }) {
     if (!invitation) return null;
@@ -25,8 +26,8 @@ export default function NiseraTemplate({ invitation, previewGuest, editorPreview
     const groomParents = `Putra dari ${profile.groomFather || 'Bapak'} & ${profile.groomMother || 'Ibu'}`;
 
     const defaultCoverImg = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800';
-    const groomImg = profile.groomPhoto || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400';
-    const brideImg = profile.bridePhoto || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400';
+    const groomImg = profile.groomPhoto || DUMMY_GROOM_PHOTO;
+    const brideImg = profile.bridePhoto || DUMMY_BRIDE_PHOTO;
     
     const coverImg = theme.coverImageUrl || defaultCoverImg;
 

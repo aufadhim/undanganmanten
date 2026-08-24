@@ -8,6 +8,7 @@ import SandboxTemaPanel from '../components/SandboxTemaPanel.jsx';
 import SandboxProfilPanel from '../components/SandboxProfilPanel.jsx';
 import SandboxWarnaPanel from '../components/SandboxWarnaPanel.jsx';
 import SandboxFeaturePanel from '../components/SandboxFeaturePanel.jsx';
+import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GROOM_PHOTO } from '../config/dummyAssets.js';
 
 // Default dummy data for sandbox
 const DEFAULT_SANDBOX_INVITATION = {
@@ -19,12 +20,12 @@ const DEFAULT_SANDBOX_INVITATION = {
         brideFullName: 'Arunika Candramawarni',
         brideFather: 'Adikara Wicaksana',
         brideMother: 'Sekar Ayuningtyas',
-        bridePhoto: 'https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?q=80&w=1287&auto=format&fit=crop',
+        bridePhoto: DUMMY_BRIDE_PHOTO,
         groomName: 'Deva',
         groomFullName: 'Deva Nararya',
         groomFather: 'Bramantya Narendra',
         groomMother: 'Ratih Puspitasari',
-        groomPhoto: '/assets/eternal/images/couples/groom.webp',
+        groomPhoto: DUMMY_GROOM_PHOTO,
     },
     themeSettings: {
         background: { enabled: false },
@@ -35,9 +36,9 @@ const DEFAULT_SANDBOX_INVITATION = {
     themeId: 'eternal',
     invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true },
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
-    galleryMedia: [],
+    galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
 };
-const SANDBOX_VERSION = '5';
+const SANDBOX_VERSION = '6';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();

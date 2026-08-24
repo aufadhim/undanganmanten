@@ -1,13 +1,5 @@
 import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
-
-const SAMPLE_PHOTOS = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=900&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1583939000140-547e1ee02ee8?q=80&w=900&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=900&auto=format&fit=crop',
-];
+import { DUMMY_GALLERY_PHOTOS } from '../config/dummyAssets.js';
 
 const BLOCKS = [
   ['storyEnabled', 'Cerita Cinta'], ['timelineEnabled', 'Timeline'], ['dresscodeEnabled', 'Dresscode'],
@@ -50,7 +42,7 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
   </Panel>;
 
   if (type === 'galeri') return <Panel title="Galeri Foto & Video" subtitle="Pilih layout berdasarkan mini-preview, lalu lihat hasil penuhnya di kanan.">
-    <GalleryLayoutPicker value={theme.galleryLayout || 'editorial'} onChange={(galleryLayout) => update({ themeSettings: { galleryLayout }, galleryMedia: SAMPLE_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })) })} />
+    <GalleryLayoutPicker value={theme.galleryLayout || 'editorial'} onChange={(galleryLayout) => update({ themeSettings: { galleryLayout }, galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })) })} />
   </Panel>;
 
   if (type === 'cerita') return <Panel title="Cerita Cinta" subtitle="Coba teks utama dan timeline singkat.">

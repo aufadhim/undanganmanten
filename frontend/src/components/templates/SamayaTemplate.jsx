@@ -8,6 +8,7 @@ import PublicForms, { GiftSection } from '../PublicForms.jsx';
 import Lightbox from './Lightbox';
 import { resolveImageUrl } from '../../config/env.js';
 import '../../styles/samaya-template.css';
+import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GROOM_PHOTO } from '../../config/dummyAssets.js';
 
 export default function SamayaTemplate({ invitation, previewGuest, editorPreview = false }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -55,16 +56,9 @@ export default function SamayaTemplate({ invitation, previewGuest, editorPreview
 
     // Default images
     const defaultCoverImg = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800';
-    const groomImg = profile.groomPhoto ? getImageUrl(profile.groomPhoto) : '/assets/samaya/groom.png';
-    const brideImg = profile.bridePhoto ? getImageUrl(profile.bridePhoto) : '/assets/samaya/bride.png';
-    const defaultGallery = [
-        'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800',
-        'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=800',
-        'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800',
-        'https://images.unsplash.com/photo-1583939000140-547e1ee02ee8?q=80&w=800',
-        'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800',
-    ];
+    const groomImg = profile.groomPhoto ? getImageUrl(profile.groomPhoto) : DUMMY_GROOM_PHOTO;
+    const brideImg = profile.bridePhoto ? getImageUrl(profile.bridePhoto) : DUMMY_BRIDE_PHOTO;
+    const defaultGallery = DUMMY_GALLERY_PHOTOS;
 
     const galleryPhotos = gallery.filter((item) => item.type !== 'video');
     const galleryVideos = gallery.filter((item) => item.type === 'video');

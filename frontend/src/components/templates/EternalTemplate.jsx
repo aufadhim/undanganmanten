@@ -9,6 +9,7 @@ import Lightbox from "./Lightbox.jsx";
 import "../../styles/eternal-template.css";
 import { resolveImageUrl } from '../../config/env.js';
 import { useTranslation } from 'react-i18next';
+import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GROOM_PHOTO } from '../../config/dummyAssets.js';
 
 export default function EternalTemplate({ invitation, previewGuest, editorPreview = false }) {
   const { t } = useTranslation();
@@ -139,10 +140,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     (!useDefaultCover && theme?.coverSecondImageUrl)
       ? theme.coverSecondImageUrl
       : profile.bridePhoto || profile.groomPhoto || "/assets/eternal/images/hero/background.webp";
-  const groomImg =
-    profile.groomPhoto || "/assets/eternal/images/couples/groom.webp";
-  const brideImg =
-    profile.bridePhoto || "/assets/eternal/images/couples/bride.webp";
+  const groomImg = profile.groomPhoto || DUMMY_GROOM_PHOTO;
+  const brideImg = profile.bridePhoto || DUMMY_BRIDE_PHOTO;
 
   const DEFAULT_LAYOUT = [
     { id: "cover", enabled: true },
@@ -495,12 +494,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   const renderGallery = () => {
     const uploadedPhotos = galleries.filter((item) => item.type !== 'video');
     const uploadedVideos = galleries.filter((item) => item.type === 'video');
-    const displayGalleries = uploadedPhotos.length > 0 ? uploadedPhotos : [
-        {url: '/assets/eternal/images/galleries/1.webp'},
-        {url: '/assets/eternal/images/galleries/2.webp'},
-        {url: '/assets/eternal/images/galleries/3.webp'},
-        {url: '/assets/eternal/images/galleries/4.webp'}
-    ];
+    const displayGalleries = uploadedPhotos.length > 0 ? uploadedPhotos : DUMMY_GALLERY_PHOTOS.map((url) => ({ url }));
     const half = Math.ceil(displayGalleries.length / 2);
     const galleryLayout = theme.galleryLayout || 'editorial';
     const usesFlatLayout = ['collage', 'wall'].includes(galleryLayout);
