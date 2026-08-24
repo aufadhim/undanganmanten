@@ -63,14 +63,14 @@ export default function Lightbox({ mediaList, images, initialIndex, currentIndex
         <div className="gallery-lightbox-caption">MOMENTS WE CHERISH</div>
       </div>
       <style>{`
-        .gallery-lightbox{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:20px;color:#fff}
+        .gallery-lightbox{position:fixed;inset:0;width:100vw;height:100dvh;z-index:2147483000;display:grid;place-items:center;padding:12px;color:#fff;box-sizing:border-box;overflow:hidden;isolation:isolate}
         .gallery-lightbox-backdrop{position:absolute;inset:0;background:rgba(15,13,12,.9);backdrop-filter:blur(18px)}
-        .gallery-lightbox-shell{position:relative;width:min(1120px,96vw);height:min(860px,92vh);display:flex;flex-direction:column}
+        .gallery-lightbox-shell{position:relative;width:min(1120px,calc(100vw - 24px));height:calc(100dvh - 24px);max-height:860px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
         .gallery-lightbox-topbar{display:flex;justify-content:space-between;align-items:center;padding:4px 2px 14px;font:600 12px/1 Manrope,sans-serif;letter-spacing:.16em}
         .gallery-lightbox-topbar button,.gallery-lightbox-nav{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;backdrop-filter:blur(8px)}
         .gallery-lightbox-topbar button{width:40px;height:40px;border-radius:50%}
-        .gallery-lightbox-stage{position:relative;flex:1;min-height:0;display:grid;place-items:center}
-        .gallery-lightbox-media{width:100%;height:100%;display:grid;place-items:center}
+        .gallery-lightbox-stage{position:relative;flex:1 1 0;min-height:0;overflow:hidden;display:grid;place-items:center}
+        .gallery-lightbox-media{width:100%;height:100%;min-height:0;overflow:hidden;display:grid;place-items:center}
         .gallery-lightbox-media img,.gallery-lightbox-media video{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
         .gallery-lightbox-media iframe{width:min(100%,960px);aspect-ratio:16/9;border:0;border-radius:8px}
         .gallery-lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;z-index:2}

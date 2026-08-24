@@ -97,6 +97,13 @@
     "loading": "Memuat...",
     "logout": "Keluar",
     "design_label": "Desain",
+    "nav": {
+      "analytics": "Analitik", "design": "Desain", "content": "Konten", "guests": "Tamu", "system": "Sistem",
+      "theme": "Tema", "visual": "Musik & Visual", "colors": "Warna", "typography": "Tipografi", "blocks": "Susunan & Blok",
+      "profile": "Profil & Mempelai", "quote": "Kutipan / Doa", "event": "Informasi Acara & Simpan Tanggal", "gallery": "Galeri Foto & Video",
+      "rundown": "Rundown", "story": "Cerita Cinta", "dresscode": "Dresscode", "livestream": "Siaran Langsung", "rsvp": "RSVP & Daftar Tamu",
+      "gift": "Informasi Hadiah", "wishes": "Ucapan & Doa", "closing": "Penutup", "url": "Sistem URL", "package": "Paket"
+    },
     "tabs": {
       "warna": "Warna",
       "profil": "Profil",
@@ -141,6 +148,14 @@
     "delete_event": "Hapus Acara",
     "galeri_title": "Galeri Foto",
     "galeri_sub": "Upload momen kebersamaan Anda berdua.",
+    "gallery": {
+      "limits": "Pastikan ukuran foto maksimal 10MB dan video maksimal 30MB.",
+      "summary": "Galeri saat ini: {{photos}} foto dan {{videos}} video. Kuota paket diperiksa otomatis saat menyimpan.",
+      "uploading": "Mengunggah Media...", "upload": "Unggah Foto atau Video Singkat", "youtube": "Tambah Video via Tautan YouTube",
+      "youtube_title": "Masukkan Tautan Video YouTube", "cancel": "Batal", "save_link": "Simpan Tautan",
+      "layout": "Layout Galeri Foto", "layout_hint": "Pilih berdasarkan mini-preview. Perubahan langsung terlihat pada preview undangan.",
+      "photos": "Foto ({{count}})", "videos": "Video ({{count}})", "delete": "Hapus"
+    },
     "drag_drop": "Klik atau Drag & Drop foto ke sini",
     "tamu_title": "Daftar Tamu",
     "tamu_sub": "Kelola siapa saja yang diundang.",

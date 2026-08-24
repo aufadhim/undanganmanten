@@ -97,6 +97,13 @@
     "loading": "Loading...",
     "logout": "Log Out",
     "design_label": "Design",
+    "nav": {
+      "analytics": "Analytics", "design": "Design", "content": "Content", "guests": "Guests", "system": "System",
+      "theme": "Theme", "visual": "Music & Visuals", "colors": "Colors", "typography": "Typography", "blocks": "Sections & Order",
+      "profile": "Profile & Couple", "quote": "Quote / Prayer", "event": "Event Information & Save the Date", "gallery": "Photo & Video Gallery",
+      "rundown": "Rundown", "story": "Love Story", "dresscode": "Dress Code", "livestream": "Live Streaming", "rsvp": "RSVP & Guest List",
+      "gift": "Gift Information", "wishes": "Wishes & Prayers", "closing": "Closing", "url": "URL Settings", "package": "Package"
+    },
     "tabs": {
       "warna": "Colors",
       "profil": "Profile",
@@ -141,6 +148,14 @@
     "delete_event": "Delete Event",
     "galeri_title": "Photo Gallery",
     "galeri_sub": "Upload your moments together.",
+    "gallery": {
+      "limits": "Photos may be up to 10MB and videos up to 30MB.",
+      "summary": "Current gallery: {{photos}} photos and {{videos}} videos. Package limits are checked automatically when saving.",
+      "uploading": "Uploading media...", "upload": "Upload Photos or a Short Video", "youtube": "Add Video from a YouTube Link",
+      "youtube_title": "Enter a YouTube Video Link", "cancel": "Cancel", "save_link": "Save Link",
+      "layout": "Photo Gallery Layout", "layout_hint": "Choose from the mini previews. Changes appear instantly in the invitation preview.",
+      "photos": "Photos ({{count}})", "videos": "Videos ({{count}})", "delete": "Delete"
+    },
     "drag_drop": "Click or Drag & Drop photos here",
     "tamu_title": "Guest List",
     "tamu_sub": "Manage who is invited.",

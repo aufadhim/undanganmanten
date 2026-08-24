@@ -283,44 +283,44 @@ export default function Dashboard() {
 
     // 1. MACRO TABS untuk Sidebar
     const MACRO_TABS = [
-        { key: 'analitik', label: 'Analitik', icon: 'fa-chart-pie' },
-        { key: 'desain', label: 'Desain', icon: 'fa-palette' },
-        { key: 'konten', label: 'Konten', icon: 'fa-book-open' },
-        { key: 'tamu', label: 'Tamu', icon: 'fa-users' },
-        { key: 'sistem', label: 'Sistem', icon: 'fa-gear' },
+        { key: 'analitik', label: t('dashboard.nav.analytics'), icon: 'fa-chart-pie' },
+        { key: 'desain', label: t('dashboard.nav.design'), icon: 'fa-palette' },
+        { key: 'konten', label: t('dashboard.nav.content'), icon: 'fa-book-open' },
+        { key: 'tamu', label: t('dashboard.nav.guests'), icon: 'fa-users' },
+        { key: 'sistem', label: t('dashboard.nav.system'), icon: 'fa-gear' },
     ];
 
     // 2. SUB TABS (Pills) untuk setiap Macro Tab
     const SUB_TABS = {
         analitik: [], // Analitik tidak punya sub-tab, langsung render panel
         desain: [
-            { key: 'tema', label: 'Tema', icon: 'fa-palette' },
-            { key: 'visual', label: 'Musik & Visual', icon: 'fa-music' },
-            { key: 'warna', label: t('dashboard.tabs.warna') || 'Warna', icon: 'fa-fill-drip' },
-            { key: 'typography', label: 'Typography', icon: 'fa-font' },
-            { key: 'susunan', label: 'Susunan & Blok', icon: 'fa-layer-group' },
+            { key: 'tema', label: t('dashboard.nav.theme'), icon: 'fa-palette' },
+            { key: 'visual', label: t('dashboard.nav.visual'), icon: 'fa-music' },
+            { key: 'warna', label: t('dashboard.nav.colors'), icon: 'fa-fill-drip' },
+            { key: 'typography', label: t('dashboard.nav.typography'), icon: 'fa-font' },
+            { key: 'susunan', label: t('dashboard.nav.blocks'), icon: 'fa-layer-group' },
         ],
         konten: [
-            { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
-            { key: 'kutipan', label: 'Quote / Doa', icon: 'fa-book-quran' },
-            { key: 'acara', label: 'Informasi Acara & Save The Date', icon: 'fa-calendar-days' },
-            { key: 'galeri', label: 'Galeri Foto & Video', icon: 'fa-images' },
-            { key: 'rundown', label: 'Rundown', icon: 'fa-clipboard-list' },
-            features.storyEnabled && { key: 'cerita', label: 'Cerita Cinta', icon: 'fa-book-open' },
-            features.dresscodeEnabled && { key: 'dresscode', label: 'Dresscode', icon: 'fa-shirt' },
-            features.livestreamEnabled && { key: 'livestream', label: 'Live Streaming', icon: 'fa-video' },
-            { key: 'tamu', label: 'RSVP & Daftar Tamu', icon: 'fa-clipboard-check' },
-            { key: 'hadiah', label: 'Informasi Hadiah', icon: 'fa-gift' },
-            { key: 'ucapan', label: `${t('dashboard.tabs.ucapan') || 'Ucapan & Doa'}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
-            { key: 'penutup', label: 'Penutup', icon: 'fa-heart' },
+            { key: 'profil', label: t('dashboard.nav.profile'), icon: 'fa-user-group' },
+            { key: 'kutipan', label: t('dashboard.nav.quote'), icon: 'fa-book-quran' },
+            { key: 'acara', label: t('dashboard.nav.event'), icon: 'fa-calendar-days' },
+            { key: 'galeri', label: t('dashboard.nav.gallery'), icon: 'fa-images' },
+            { key: 'rundown', label: t('dashboard.nav.rundown'), icon: 'fa-clipboard-list' },
+            features.storyEnabled && { key: 'cerita', label: t('dashboard.nav.story'), icon: 'fa-book-open' },
+            features.dresscodeEnabled && { key: 'dresscode', label: t('dashboard.nav.dresscode'), icon: 'fa-shirt' },
+            features.livestreamEnabled && { key: 'livestream', label: t('dashboard.nav.livestream'), icon: 'fa-video' },
+            { key: 'tamu', label: t('dashboard.nav.rsvp'), icon: 'fa-clipboard-check' },
+            { key: 'hadiah', label: t('dashboard.nav.gift'), icon: 'fa-gift' },
+            { key: 'ucapan', label: `${t('dashboard.nav.wishes')}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
+            { key: 'penutup', label: t('dashboard.nav.closing'), icon: 'fa-heart' },
         ].filter(Boolean),
         tamu: [
             { key: 'tamu', label: t('dashboard.tabs.tamu') || 'Tamu & RSVP', icon: 'fa-users' },
             { key: 'ucapan', label: `${t('dashboard.tabs.ucapan') || 'Ucapan'}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
         ].filter(Boolean),
         sistem: [
-            { key: 'pengaturan', label: 'Sistem URL', icon: 'fa-gear' },
-            { key: 'paket', label: t('dashboard.tabs.paket') || 'Paket', icon: 'fa-crown' },
+            { key: 'pengaturan', label: t('dashboard.nav.url'), icon: 'fa-gear' },
+            { key: 'paket', label: t('dashboard.nav.package'), icon: 'fa-crown' },
         ]
     };
 

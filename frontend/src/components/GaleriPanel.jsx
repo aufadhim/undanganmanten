@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { resolveImageUrl } from '../config/env.js';
+import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
 
 export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
   const { t } = useTranslation();
@@ -173,10 +174,10 @@ export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
   return (
     <>
       <h2 className="panel-header">{t('panels.galeri_title')}</h2>
-      <p className="panel-sub">{t('panels.galeri_sub')} Pastikan ukuran Foto Maksimal 10MB dan Video Maksimal 30MB.</p>
+      <p className="panel-sub">{t('panels.galeri_sub')} {t('panels.gallery.limits')}</p>
 
       <div style={{ fontSize: '12px', color: '#5c655d', marginBottom: '12px' }}>
-        Galeri saat ini: <strong>{currentPhotos} foto</strong> dan <strong>{currentVideos} video</strong>. Kuota paket diperiksa otomatis saat menyimpan.
+        {t('panels.gallery.summary', { photos: currentPhotos, videos: currentVideos })}
       </div>
 
       {errorMsg && (
@@ -193,7 +194,7 @@ export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
           icon={<i className="fa-solid fa-cloud-arrow-up"></i>}
           style={{ margin: 0 }}
         >
-          {uploading ? 'Mengunggah Media...' : 'Upload Foto atau Video Singkat'}
+          {uploading ? t('panels.gallery.uploading') : t('panels.gallery.upload')}
           <input
             type="file"
             accept="image/*,video/*"
@@ -209,13 +210,13 @@ export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
           icon={<i className="fa-brands fa-youtube" style={{ color: '#ff0000', fontSize: '16px' }}></i>}
           style={{ margin: 0, background: '#f0f0f0' }}
         >
-          Tambah Video via Link (YouTube)
+          {t('panels.gallery.youtube')}
         </Button>
       </div>
 
       {showLinkModal && (
         <form onSubmit={handleAddLink} style={{ background: '#fff', padding: '16px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '20px' }}>
-          <h4 style={{ margin: '0 0 12px 0', fontSize: '14px' }}>Masukkan Link Video (YouTube)</h4>
+          <h4 style={{ margin: '0 0 12px 0', fontSize: '14px' }}>{t('panels.gallery.youtube_title')}</h4>
           <input 
             type="url" 
             required 
@@ -227,29 +228,22 @@ export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
           />
           <div style={{ display: 'flex', gap: '12px', marginTop: '16px', justifyContent: 'flex-end' }}>
             <Button variant="ghost" type="button" onClick={() => setShowLinkModal(false)}>
-              Batal
+              {t('panels.gallery.cancel')}
             </Button>
             <Button variant="primary" type="submit" isLoading={linkLoading}>
-              Simpan Link
+              {t('panels.gallery.save_link')}
             </Button>
           </div>
         </form>
       )}
 
       <div className="section-block" style={{ marginBottom: 18 }}>
-        <label className="field-label">Layout Galeri Foto</label>
-        <select className="text-input" value={layout} onChange={(e) => handleLayoutChange(e.target.value)}>
-          <option value="editorial">Editorial Eternal — dua kolom berbeda</option>
-          <option value="grid">Grid Rapi — ukuran seragam</option>
-          <option value="masonry">Masonry — susunan natural</option>
-          <option value="carousel">Slideshow — geser horizontal</option>
-          <option value="collage">Collage — potongan dinamis</option>
-          <option value="wall">Wall Board — foto tempel dinding</option>
-        </select>
-        <small style={{ color: '#777' }}>Perubahan layout langsung terlihat pada preview.</small>
+        <label className="field-label">{t('panels.gallery.layout')}</label>
+        <GalleryLayoutPicker value={layout} onChange={handleLayoutChange} />
+        <small style={{ color: '#777' }}>{t('panels.gallery.layout_hint')}</small>
       </div>
 
-      <h3 style={{ fontSize: 14, margin: '0 0 10px' }}>Foto ({photos.length})</h3>
+      <h3 style={{ fontSize: 14, margin: '0 0 10px' }}>{t('panels.gallery.photos', { count: photos.length })}</h3>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
         {photos.map((item) => (
           <div key={item.id} style={{ position: 'relative' }}>

@@ -1114,8 +1114,12 @@
 .eternal-wrapper .gallery-video iframe,
 .eternal-wrapper .gallery-video video { width: 100%; height: 100%; border: 0; object-fit: cover; }
 .eternal-wrapper .gallery-layout-collage,
-.eternal-wrapper .gallery-layout-wall { grid-template-columns: minmax(180px,.7fr) 2fr; align-items: start; }
+.eternal-wrapper .gallery-layout-wall { grid-template-columns: 1fr; align-items: start; width:100%; max-width:none; }
+.eternal-wrapper .gallery-layout-collage .gallery-header-col,
+.eternal-wrapper .gallery-layout-wall .gallery-header-col { width:min(760px,100%); margin:0 auto 2.5rem; text-align:center; padding:0 24px; }
 .eternal-wrapper .gallery-flat-layout { display: grid; grid-template-columns: repeat(12,1fr); grid-auto-rows: 70px; gap: 10px; }
+.eternal-wrapper .gallery-layout-collage .gallery-flat-layout,
+.eternal-wrapper .gallery-layout-wall .gallery-flat-layout { width:100%; grid-column:1/-1; }
 .eternal-wrapper .gallery-flat-layout .gallery-item { border: 0; padding: 0; min-height: 0; aspect-ratio: auto; }
 .eternal-wrapper .gallery-layout-collage .gallery-item:nth-child(6n+1){grid-column:span 5;grid-row:span 4}
 .eternal-wrapper .gallery-layout-collage .gallery-item:nth-child(6n+2){grid-column:span 3;grid-row:span 2}
@@ -1127,11 +1131,36 @@
 .eternal-wrapper .gallery-layout-wall .gallery-item { grid-column:span 4;grid-row:span 3;background:#fff;padding:8px 8px 26px;box-shadow:0 8px 18px rgba(0,0,0,.28);transform:rotate(-3deg);z-index:1 }
 .eternal-wrapper .gallery-layout-wall .gallery-item:nth-child(even){transform:translateY(36px) rotate(4deg)}
 .eternal-wrapper .gallery-layout-wall .gallery-item:nth-child(3n){transform:translate(-12px,10px) rotate(-1deg);z-index:2}
-@media(max-width:720px){.eternal-wrapper .gallery-layout-collage,.eternal-wrapper .gallery-layout-wall{grid-template-columns:1fr}.eternal-wrapper .gallery-flat-layout{grid-auto-rows:48px}.eternal-wrapper .gallery-layout-wall .gallery-flat-layout{padding:20px}}
+@media(max-width:720px){.eternal-wrapper .gallery-layout-collage,.eternal-wrapper .gallery-layout-wall{grid-template-columns:1fr}.eternal-wrapper .gallery-flat-layout{grid-auto-rows:48px}.eternal-wrapper .gallery-layout-wall .gallery-flat-layout{padding:20px}.eternal-wrapper .gallery-layout-collage .gallery-header-col,.eternal-wrapper .gallery-layout-wall .gallery-header-col{margin-bottom:1.5rem}}
 
 /* ===== GIFT SECTION ===== */
 .eternal-wrapper .theme-loading-logo{position:relative;display:grid;place-items:center}.eternal-wrapper .loading-breathe{animation:themeLoadBreathe 1.8s ease-in-out infinite}.eternal-wrapper .loading-spin{animation:themeLoadSpin 2.2s linear infinite}.eternal-wrapper .loading-reveal{animation:themeLoadReveal 2s ease-in-out infinite}.eternal-wrapper .loading-shimmer{overflow:hidden}.eternal-wrapper .loading-shimmer:after{content:'';position:absolute;inset:-20%;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55),transparent 70%);animation:themeLoadShimmer 1.8s linear infinite}
 @keyframes themeLoadBreathe{50%{transform:scale(1.14);opacity:.65}}@keyframes themeLoadSpin{to{transform:rotate(360deg)}}@keyframes themeLoadReveal{0%,100%{clip-path:inset(0 50%)}50%{clip-path:inset(0)}}@keyframes themeLoadShimmer{from{transform:translateX(-140%)}to{transform:translateX(140%)}}
+
+/* Full-bleed gallery variants must win over the responsive editorial grid. */
+.eternal-wrapper .gallery-container.gallery-layout-collage,
+.eternal-wrapper .gallery-container.gallery-layout-wall {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"header" "gallery";
+  width:100%;
+  max-width:none;
+  padding-inline:0;
+  gap:0;
+}
+.eternal-wrapper .gallery-container.gallery-layout-collage .gallery-header-col,
+.eternal-wrapper .gallery-container.gallery-layout-wall .gallery-header-col {
+  grid-area:header;
+  width:min(760px,100%);
+  margin:0 auto 2rem;
+  padding-inline:24px;
+}
+.eternal-wrapper .gallery-container.gallery-layout-collage .gallery-flat-layout,
+.eternal-wrapper .gallery-container.gallery-layout-wall .gallery-flat-layout {
+  grid-area:gallery;
+  width:100%;
+  min-width:0;
+}
 
 /* ===== GIFT SECTION ===== */
 .eternal-wrapper .gift-section {

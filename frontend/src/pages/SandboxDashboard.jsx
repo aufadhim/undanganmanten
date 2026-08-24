@@ -37,7 +37,7 @@ const DEFAULT_SANDBOX_INVITATION = {
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
     galleryMedia: [],
 };
-const SANDBOX_VERSION = '4';
+const SANDBOX_VERSION = '5';
 
 export default function SandboxDashboard() {
     const navigate = useNavigate();
@@ -87,23 +87,11 @@ export default function SandboxDashboard() {
         desain: [
             { key: 'tema', label: 'Tema', icon: 'fa-palette' },
             { key: 'warna', label: 'Warna', icon: 'fa-fill-drip' },
-            { key: 'typography', label: 'Typography', icon: 'fa-font' },
-            { key: 'visual', label: 'Musik, Visual & Loading', icon: 'fa-music' },
-            { key: 'susunan', label: 'Susunan & Blok', icon: 'fa-layer-group' },
         ],
         konten: [
             { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
-            { key: 'kutipan', label: 'Quote / Doa', icon: 'fa-book-quran' },
             { key: 'acara', label: 'Informasi Acara & Save The Date', icon: 'fa-calendar-days' },
             { key: 'galeri', label: 'Galeri Foto & Video', icon: 'fa-images' },
-            { key: 'rundown', label: 'Rundown', icon: 'fa-clipboard-list' },
-            { key: 'cerita', label: 'Cerita Cinta', icon: 'fa-book-open' },
-            { key: 'dresscode', label: 'Dresscode', icon: 'fa-shirt' },
-            { key: 'livestream', label: 'Live Streaming', icon: 'fa-video' },
-            { key: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check' },
-            { key: 'hadiah', label: 'Informasi Hadiah', icon: 'fa-gift' },
-            { key: 'ucapan', label: 'Ucapan & Doa', icon: 'fa-comment-dots' },
-            { key: 'penutup', label: 'Penutup', icon: 'fa-heart' },
         ]
     };
 

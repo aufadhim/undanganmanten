@@ -1,3 +1,5 @@
+import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
+
 const SAMPLE_PHOTOS = [
   'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900&auto=format&fit=crop',
@@ -47,8 +49,8 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
     <Field label="Tanggal"><input type="date" value={String(event.date || '').slice(0,10)} onChange={(e) => update({ events: [{ ...event, date: e.target.value }] })} /></Field>
   </Panel>;
 
-  if (type === 'galeri') return <Panel title="Galeri Foto & Video" subtitle="Pilih layout untuk enam foto contoh.">
-    <Field label="Layout"><select value={theme.galleryLayout || 'editorial'} onChange={(e) => update({ themeSettings: { galleryLayout: e.target.value }, galleryMedia: SAMPLE_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })) })}><option value="editorial">Editorial</option><option value="grid">Grid</option><option value="masonry">Masonry</option><option value="carousel">Slideshow</option><option value="collage">Collage</option><option value="wall">Wall Board</option></select></Field>
+  if (type === 'galeri') return <Panel title="Galeri Foto & Video" subtitle="Pilih layout berdasarkan mini-preview, lalu lihat hasil penuhnya di kanan.">
+    <GalleryLayoutPicker value={theme.galleryLayout || 'editorial'} onChange={(galleryLayout) => update({ themeSettings: { galleryLayout }, galleryMedia: SAMPLE_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })) })} />
   </Panel>;
 
   if (type === 'cerita') return <Panel title="Cerita Cinta" subtitle="Coba teks utama dan timeline singkat.">
