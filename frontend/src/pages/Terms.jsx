@@ -41,7 +41,7 @@ export default function Terms() {
                 <section style={{ marginBottom: '30px' }}>
                     <h2>4. Masa Aktif Undangan</h2>
                     <p>
-                        Undangan digital Anda akan tetap aktif sesuai dengan ketentuan paket yang Anda pilih. Untuk paket STANDARD dan PREMIUM, undangan akan otomatis diarsipkan atau tidak dapat diakses publik setelah 30 hari dari tanggal pernikahan (H+30).
+                        Undangan digital Premium akan tetap aktif hingga 30 hari setelah tanggal pernikahan (H+30), lalu otomatis diarsipkan atau tidak dapat diakses publik.
                     </p>
                 </section>
 

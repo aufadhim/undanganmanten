@@ -1,0 +1,30 @@
+.save-the-date { max-width: 680px; margin: 0 auto; color: inherit; }
+.save-the-date-countdown { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid currentColor; }
+.save-the-date-countdown > div { padding: 18px 4px; text-align: center; border-right: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+.save-the-date-countdown > div:last-child { border-right: 0; }
+.save-the-date-countdown strong { display: block; font: 400 clamp(35px, 9cqw, 54px)/1 var(--save-date-display, var(--font-display, inherit)); }
+.save-the-date-countdown span { display: block; margin-top: 8px; font: 12px/1.1 var(--save-date-body, var(--font-body, sans-serif)); letter-spacing: .1em; text-transform: uppercase; opacity: .72; }
+.save-the-date-calendar { margin: 28px auto 24px; max-width: 560px; }
+.save-the-date-month { margin-bottom: 13px; font: 22px var(--save-date-display, var(--font-display, serif)); text-align: center; text-transform: uppercase; letter-spacing: .08em; }
+.save-the-date-week, .save-the-date-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+.save-the-date-week { padding-bottom: 8px; border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent); font: 12px var(--save-date-body, var(--font-body, sans-serif)); opacity: .72; }
+.save-the-date-days span { display: grid; place-items: center; min-height: 34px; font: 14px var(--save-date-body, var(--font-body, sans-serif)); opacity: .7; }
+.save-the-date-featured-date { display:flex; align-items:center; justify-content:center; gap:.22em; margin:24px auto 0; font:400 clamp(30px,9cqw,48px)/1 var(--save-date-display,var(--font-display,serif)); letter-spacing:.02em; }
+.save-the-date-featured-date strong { font:inherit; }
+.save-the-date-featured-date i { color:var(--save-date-accent,currentColor); font-style:normal; }
+.save-the-date-days span.is-selected { position: relative; isolation: isolate; width: 38px; height: 34px; min-height: 34px; margin: auto; color: var(--save-date-selected-text, currentColor); background: transparent; font-weight: 700; opacity: 1; }
+.save-the-date-days span.is-selected::before,.save-the-date-days span.is-selected::after { content:''; position:absolute; z-index:-1; pointer-events:none; background:transparent; border:2px solid var(--save-date-accent,currentColor); border-radius:52% 46% 55% 44% / 48% 55% 43% 52%; }
+.save-the-date-days span.is-selected::before { inset:1px -8px 0 -7px; transform:rotate(-8deg); opacity:.88; }
+.save-the-date-days span.is-selected::after { inset:4px -6px 2px -9px; border-width:1px 2px 2px 1px; border-radius:45% 55% 47% 53% / 55% 44% 56% 45%; transform:rotate(5deg); opacity:.52; }
+.save-the-date-button { display: block; width: fit-content; margin: 10px auto 0; padding: 15px 32px; border-radius: var(--save-date-radius, 999px); color: var(--save-date-button-text, #fff); background: var(--save-date-accent, currentColor); font: 600 14px var(--save-date-body, var(--font-body, sans-serif)); letter-spacing: .04em; text-decoration: none; transition: transform .2s ease, filter .2s ease; }
+.save-the-date-button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.save-the-date-seraya { --save-date-display: var(--sy-heading); --save-date-body: var(--sy-body); --save-date-button-font: "Bebas Neue", sans-serif; --save-date-accent: var(--sy-ink); --save-date-mark: color-mix(in srgb, var(--sy-ink) 22%, var(--sy-paper)); --save-date-button-text: var(--sy-paper); --save-date-radius: 0; }
+.save-the-date-seraya .save-the-date-button { font-family: var(--save-date-button-font); font-size: 18px; letter-spacing: .09em; text-transform: uppercase; }
+.save-the-date-nawasena { --save-date-display: var(--nw-script); --save-date-body: var(--nw-body); --save-date-accent: var(--nw-wine); --save-date-mark: var(--nw-paper); --save-date-button-text: #fff; }
+.save-the-date-isvara { --save-date-display: var(--iv-script); --save-date-body: var(--iv-body); --save-date-accent: var(--iv-wine); --save-date-mark: var(--iv-paper); --save-date-button-text: #fff; }
+.save-the-date-lanqing { --save-date-display: var(--lq-script); --save-date-body: var(--lq-body); --save-date-accent: var(--lq-wine); --save-date-mark: var(--lq-paper); --save-date-button-text: #fff; }
+.save-the-date-eternal { --save-date-display: var(--font-display); --save-date-body: var(--font-body); --save-date-accent: var(--stone-800); --save-date-mark: var(--stone-200); --save-date-button-text: var(--stone-50); }
+.save-the-date-eternal .save-the-date-calendar { margin: 52px auto 30px; }
+.save-the-date-eternal .save-the-date-button { display: flex; align-items: center; justify-content: center; width: fit-content; min-width: 210px; margin: 28px auto 0; padding: 14px 26px; border: 1px solid var(--stone-800); border-radius: 0; color: var(--stone-800); background: transparent; font: 500 12px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
+.save-the-date-eternal .save-the-date-button:hover { color: var(--stone-50); background: var(--stone-800); filter: none; }
+@media (max-width: 420px) { .save-the-date-countdown > div { padding-inline: 1px; } .save-the-date-countdown span { font-size: 10px; letter-spacing: .04em; } .save-the-date-days span { min-height: 30px; font-size: 12px; } }

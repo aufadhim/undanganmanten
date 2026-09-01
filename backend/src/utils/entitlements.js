@@ -8,8 +8,8 @@ export function calculateEntitlements(packageType, addonList = []) {
   return {
     maxGallery: (isPremium ? 30 : 10) + (addons.has('EXTRA_GALLERY_10') ? 10 : 0),
     maxGuests: isPremium ? null : (isStandard ? 100 : 10) + (addons.has('EXTRA_GUESTS_100') ? 100 : 0),
-    giftEnabled: isPremium || addons.has('AMPLOP_DIGITAL'),
-    livestreamEnabled: isPremium,
+    giftEnabled: true,
+    livestreamEnabled: true,
   };
 }
 

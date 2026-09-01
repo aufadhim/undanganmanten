@@ -206,7 +206,7 @@ export default function AcaraPanel({ invitation, onUpdated, onLivePreview }) {
                     </div>
 
                     <div style={{ margin: '8px 0 16px', padding: '12px 16px', background: '#f8f9fa', borderRadius: '8px', border: '1px solid #e9ecef' }}>
-                        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600, color: '#333' }}>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13.5px', lineHeight: 1.45, color: '#333' }}>
                             <input 
                                 type="checkbox" 
                                 checked={settings.isSameLocation} 
@@ -271,7 +271,6 @@ export default function AcaraPanel({ invitation, onUpdated, onLivePreview }) {
                     fullWidth 
                     onClick={handleSave} 
                     isLoading={saving}
-                    style={{ padding: '16px', fontSize: '16px' }}
                 >
                     Simpan Perubahan Acara
                 </Button>

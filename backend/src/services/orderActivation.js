@@ -10,9 +10,8 @@ export function getPackageExpiresAt(weddingDate) {
 
 export async function activateOrder(order) {
   const expiresAt = getPackageExpiresAt(order.invitation.weddingDate);
-  const addons = Array.isArray(order.addons) ? order.addons : [];
-  const giftEnabled = order.packageType === 'PREMIUM' || addons.includes('AMPLOP_DIGITAL');
-  const livestreamEnabled = order.packageType === 'PREMIUM';
+  const giftEnabled = true;
+  const livestreamEnabled = true;
 
   await prisma.$transaction(async (tx) => {
     await tx.order.update({

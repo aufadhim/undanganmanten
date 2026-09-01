@@ -290,6 +290,15 @@ select {
     cursor: not-allowed;
 }
 
+.sandbox-signup-btn {
+    width: auto;
+    min-height: 40px;
+    padding: 9px 18px;
+    border-radius: 30px;
+    white-space: nowrap;
+    gap: 8px;
+}
+
 .save-toast {
     font-size: 12px;
     color: #3f7a4d;
@@ -1074,3 +1083,17 @@ select {
         padding: 6px 14px;
     }
 }
+.unsaved-preview-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0 0 14px;
+  padding: 10px 13px;
+  border: 1px solid #e8cf96;
+  border-radius: 10px;
+  color: #6f511c;
+  background: #fff8e8;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.unsaved-preview-notice i { margin-top: 2px; color: #b57a18; }

@@ -3,7 +3,7 @@ import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
-export default function IGFilterEditor({ invitation, onUpdated }) {
+export default function IGFilterEditor({ invitation, onUpdated, onLivePreview }) {
     const themeSettings = invitation?.themeSettings || {};
     const [url, setUrl] = useState(themeSettings.igFilterUrl || '');
     const [imageUrl, setImageUrl] = useState(themeSettings.igFilterImageUrl || '');
@@ -50,6 +50,7 @@ export default function IGFilterEditor({ invitation, onUpdated }) {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setImageUrl(res.data.url);
+            onLivePreview?.({ themeSettings: { ...themeSettings, igFilterUrl: url, igFilterImageUrl: res.data.url } });
             toast.success('Gambar berhasil diunggah. Jangan lupa klik Simpan!');
         } catch (err) {
             console.error(err);
@@ -71,7 +72,7 @@ export default function IGFilterEditor({ invitation, onUpdated }) {
                         type="text" 
                         className="text-input" 
                         value={url}
-                        onChange={(e) => setUrl(e.target.value)}
+                        onChange={(e) => { const value = e.target.value; setUrl(value); onLivePreview?.({ themeSettings: { ...themeSettings, igFilterUrl: value, igFilterImageUrl: imageUrl } }); }}
                         placeholder="Contoh: https://www.instagram.com/ar/..."
                     />
                 </div>
@@ -119,7 +120,7 @@ export default function IGFilterEditor({ invitation, onUpdated }) {
                                 {imageUrl && (
                                     <Button 
                                         variant="outline" 
-                                        onClick={() => setImageUrl('')}
+                                    onClick={() => { setImageUrl(''); onLivePreview?.({ themeSettings: { ...themeSettings, igFilterUrl: url, igFilterImageUrl: '' } }); }}
                                         style={{ color: 'red', borderColor: 'red' }}
                                     >
                                         Hapus

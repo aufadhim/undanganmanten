@@ -1,4 +1,11 @@
 // Preset tema statis buat MVP & Katalog Template.
+const ATELIER_PRESETS = [
+    ['celluloid','Celluloid','#211913','#efe1c8','#8a2d2d','#b89255'],['daguerre','Daguerre','#242321','#ded7ca','#57524c','#a99a7e'],['kodachrome','Kodachrome','#432619','#f2c978','#bd4a2f','#3e6970'],['maison','Maison','#ece9e2','#171717','#8d1933','#bda36b'],
+    ['gatsby','Gatsby','#0d1c1b','#eee1bd','#b08b46','#f0d89d'],['bauhaus','Bauhaus','#eee7d6','#161616','#cf342d','#1f5ca7'],['helvetica','Helvetica','#f5f4ee','#111111','#e93424','#2e5fbc'],['monolith','Monolith','#c8c5bd','#151515','#a32923','#6e6b63'],['vellum','Vellum','#eee8dc','#433b31','#76634b','#b7a27e'],
+    ['hanami','Hanami','#eee7dd','#292522','#a94757','#817664'],['hanji','Hanji','#eee9dc','#26352f','#b2463b','#667f79'],['zellige','Zellige','#efe5cf','#123d46','#a23b2e','#c3923d'],['mughal','Mughal','#ede0c6','#173d32','#8d2437','#c49b4b'],['safavid','Safavid','#122e3b','#f1dfbd','#a94035','#d0a54a'],
+    ['songket','Songket','#2b1718','#f1dfbd','#8f2631','#c49a48'],['ulos','Ulos','#181514','#e8d8c2','#a42b2b','#d0b18a'],['puspa-sunda','Puspa Sunda','#e8e4d5','#273a31','#9a4450','#a68b4c'],['taksu','Taksu','#211b16','#efe0c4','#87352d','#b98c45'],['samudra','Samudra','#112f40','#e6dbc1','#b75b38','#6e9ba0'],
+    ['astralis','Astralis','#101326','#ede5cf','#8369b3','#c4a760'],['herbarium','Herbarium','#e5e5d8','#2f4235','#8e4c52','#9e8b58'],['storybook','Storybook','#eee1cf','#392c35','#9c4655','#b48a50'],['cathedral','Cathedral','#15131e','#e9dfd2','#7d2948','#bd9654'],['chrome','Chrome','#d9dde0','#14161a','#5e40bf','#738c9d'],
+].map(([id,name,background,text,accent,gold]) => ({id,name,previewColor:accent,settings:{background:{primary:background,secondary:background,tertiary:gold,enabled:true},bodyText:{primary:accent,secondary:text,tertiary:gold,enabled:true},button:{primary:accent,secondary:gold,text:background,enabled:true},typography:{fontHeading:'Cormorant Garamond',fontBody:'Montserrat'},animationType:'cinematic'}}));
 export const THEME_PRESETS = [
     {
         id: 'eternal',
@@ -9,6 +16,41 @@ export const THEME_PRESETS = [
             bodyText: { primary: '#292524', secondary: '#1c1917', tertiary: '#57534e', enabled: true },
             button: { primary: '#292524', secondary: '#57534e', text: '#fafaf9', enabled: true },
             typography: { fontHeading: 'Cormorant Garamond', fontBody: 'Montserrat' },
+        },
+    },
+    {
+        id: 'seraya',
+        name: 'Seraya',
+        previewColor: '#F4F1EA',
+        settings: {
+            background: { primary: '#F4F1EA', secondary: '#DEDAD1', tertiary: '#B9B4A8', enabled: true },
+            bodyText: { primary: '#0A0A0A', secondary: '#4A4945', tertiary: '#111111', enabled: true },
+            button: { primary: '#111111', secondary: '#F4F1EA', text: '#FFFFFF', enabled: true },
+            typography: { fontHeading: 'Abril Fatface', fontBody: 'Bellefair' },
+        },
+    },
+    {
+        id: 'nawasena',
+        name: 'Nawasena',
+        previewColor: '#741D2B',
+        settings: {
+            background: { primary: '#F4EDDF', secondary: '#D9C9AD', tertiary: '#B7A276', enabled: true },
+            bodyText: { primary: '#741D2B', secondary: '#243322', tertiary: '#A4894E', enabled: true },
+            button: { primary: '#A4894E', secondary: '#741D2B', text: '#FFFFFF', enabled: true },
+            typography: { fontHeading: 'Cormorant Garamond', fontBody: 'Montserrat' },
+            animationType: 'petals',
+        },
+    },
+    {
+        id: 'isvara',
+        name: 'Isvara',
+        previewColor: '#78846C',
+        settings: {
+            background: { primary: '#F3F0E8', secondary: '#DFE3D5', tertiary: '#AEB8A3', enabled: true },
+            bodyText: { primary: '#465440', secondary: '#30372F', tertiary: '#78846C', enabled: true },
+            button: { primary: '#78846C', secondary: '#465440', text: '#FFFFFF', enabled: true },
+            typography: { fontHeading: 'Cormorant Garamond', fontBody: 'Montserrat' },
+            animationType: 'petals',
         },
     },
     {
@@ -122,27 +164,30 @@ export const THEME_PRESETS = [
         },
     },
     {
-        id: 'samaya',
-        name: 'Samaya',
-        previewColor: '#546447',
+        id: 'lanqing',
+        name: 'Lanqing',
+        previewColor: '#8D1B24',
         settings: {
-            background: { primary: '#F3F2EE', secondary: '#C8CBB8', tertiary: '#F3F2EE', enabled: true },
-            bodyText: { primary: '#546447', secondary: '#616161', tertiary: '#F3F2EE', enabled: true },
-            button: { primary: '#546447', secondary: '#827A4B', enabled: true },
-            typography: { fontHeading: 'Travel November', fontBody: 'Poppins' },
+            background: { primary: '#F6EBDD', secondary: '#E9C9B6', tertiary: '#DDA58B', enabled: true },
+            bodyText: { primary: '#8D1B24', secondary: '#341B18', tertiary: '#C79A3B', enabled: true },
+            button: { primary: '#A8232D', secondary: '#71131B', text: '#FFF8E8', enabled: true },
+            typography: { fontHeading: 'Cormorant Garamond', fontBody: 'Montserrat' },
+            animationType: 'petals',
         },
     },
     {
-        id: 'nisera',
-        name: 'Nisera',
-        previewColor: '#B08D5B',
+        id: 'nocturne',
+        name: 'Nocturne',
+        previewColor: '#751C30',
         settings: {
-            background: { primary: '#F9F5ED', secondary: '#E8DFCC', tertiary: '#B08D5B', enabled: true },
-            bodyText: { primary: '#4A3B32', secondary: '#B08D5B', tertiary: '#F9F5ED', enabled: true },
-            button: { primary: '#B08D5B', secondary: '#8A6D3B', enabled: true },
-            typography: { fontHeading: 'Playfair Display', fontBody: 'Lato' },
+            background: { primary: '#08090B', secondary: '#121014', tertiary: '#1B1A1F', enabled: true },
+            bodyText: { primary: '#751C30', secondary: '#EEE7DC', tertiary: '#89888D', enabled: true },
+            button: { primary: '#C5A46A', secondary: '#751C30', text: '#08090B', enabled: true },
+            typography: { fontHeading: 'Bodoni Moda', fontBody: 'Manrope' },
+            animationType: 'cinematic',
         },
-    }
+    },
+    ...ATELIER_PRESETS,
 ];
 
 export function getPresetById(id) {

@@ -625,10 +625,10 @@
 
 .wish-card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
-    gap: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+    gap: 10px;
 }
 
 .wish-card-header strong {
@@ -660,11 +660,12 @@
 }
 
 .wish-card-actions {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
 }
+.wish-card-actions .btn { min-width: 0; min-height: 34px; justify-content: center; padding: 7px 9px; font-size: 12px; }
 
 .wish-message {
     font-size: 14px;
@@ -775,3 +776,62 @@
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+/* Gift information modal shared structure */
+.pf-gift-modal { position:fixed; z-index:20000; inset:0; display:grid; place-items:center; padding:14px; overflow:hidden; background:rgba(9,12,11,.72); backdrop-filter:blur(9px); animation:gift-modal-in .24s ease both; }
+.pf-gift-modal-panel { width:min(520px,calc(100% - 4px)); min-width:0; max-height:min(86vh,720px); overflow-x:hidden; overflow-y:auto; padding:26px; color:#242424; background:#fff; border-radius:20px; box-shadow:0 28px 90px rgba(0,0,0,.3); text-align:left; }
+.pf-gift-modal-header { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #ddd; }
+.pf-gift-modal-header span,.pf-gift-account > span { display:block; margin-bottom:5px; font-size:10px; font-weight:700; letter-spacing:.16em; opacity:.55; }
+.pf-gift-modal-header h3 { margin:0; font:600 25px var(--font-display); }
+.pf-gift-modal-header > div { min-width:0; }
+.pf-gift-modal-header > button { position:sticky; top:0; flex:0 0 36px; width:36px; height:36px; border:1px solid #ddd; border-radius:50%; color:#222; background:transparent; font-size:24px; line-height:1; cursor:pointer; }
+.pf-gift-accounts { display:grid; gap:12px; }
+.pf-gift-account { min-width:0; padding:17px; overflow:hidden; border:1px solid #ddd; border-radius:14px; background:#fafafa; }
+.pf-gift-account strong { display:block; font-size:14px; }
+.pf-gift-number { max-width:100%; margin:9px 0 3px; font:600 clamp(16px,5cqw,20px) ui-monospace,SFMono-Regular,monospace; letter-spacing:.02em; overflow-wrap:anywhere; word-break:break-word; }
+.pf-gift-account p { margin:0 0 13px; font-size:12px; opacity:.72; }
+.pf-gift-account button { padding:9px 13px; border:0; border-radius:8px; color:#fff; background:var(--gift-accent,#333); font:600 12px var(--font-ui); cursor:pointer; }
+.pf-gift-address { display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:start; padding:18px; border:1px solid #ddd; border-radius:14px; background:#fafafa; }
+.pf-gift-address i { display:grid; place-items:center; width:36px; height:36px; border-radius:50%; color:#fff; background:var(--gift-accent,#333); }
+.pf-gift-address p { margin:0; white-space:pre-line; font-size:14px; line-height:1.7; }
+@media (max-width:480px) { .pf-gift-modal { padding:10px; } .pf-gift-modal-panel { width:100%; padding:20px 16px; } .pf-gift-modal-header h3 { font-size:22px; } }
+@keyframes gift-modal-in { from { opacity:0; } to { opacity:1; } }
+.theme-poster{position:relative;width:100%;height:100%;overflow:hidden;background:var(--poster-paper);color:var(--poster-ink);isolation:isolate}
+.theme-poster::before{content:'';position:absolute;inset:8px;border:1px solid color-mix(in srgb,var(--poster-accent) 55%,transparent);z-index:3;pointer-events:none}
+.theme-poster-grain{position:absolute;inset:0;z-index:0;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+.theme-poster svg{position:absolute;z-index:1;left:50%;top:4px;width:74%;height:145px;transform:translateX(-50%);filter:drop-shadow(0 8px 12px color-mix(in srgb,var(--poster-ink) 18%,transparent));transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.theme-poster-copy{position:absolute;z-index:4;inset:auto 15px 12px;text-align:left;text-shadow:0 1px 10px var(--poster-paper)}
+.theme-poster-copy small{display:block;margin-bottom:2px;font:700 6px/1.2 Montserrat,sans-serif;letter-spacing:.2em;color:var(--poster-accent)}
+.theme-poster-copy strong{display:block;font:italic 600 24px/.95 'Cormorant Garamond',Georgia,serif;color:var(--poster-ink)}
+.theme-poster-copy span{display:block;margin-top:5px;font:700 6px/1 Montserrat,sans-serif;letter-spacing:.16em;color:color-mix(in srgb,var(--poster-ink) 65%,transparent)}
+.theme-poster.is-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.theme-poster-shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(28,15,11,.78) 100%)}
+.theme-poster.is-photo .theme-poster-copy{text-shadow:0 2px 15px #160a08;color:#fff}
+.theme-poster.is-photo .theme-poster-copy :is(strong,span){color:#fff}.theme-poster.is-photo .theme-poster-copy small{color:#ead096}
+.theme-poster:hover svg{transform:translateX(-50%) scale(1.06) rotate(-1deg)}.theme-poster:hover.is-photo img{transform:scale(1.05)}
+.theme-poster-photo{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 36%;transform:scale(1.02);transition:transform .7s cubic-bezier(.16,1,.3,1),filter .4s ease}
+.theme-poster-wash{position:absolute;z-index:1;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--poster-paper) 8%,transparent),color-mix(in srgb,var(--poster-paper) 18%,transparent) 48%,color-mix(in srgb,var(--poster-paper) 94%,transparent) 100%)}
+.theme-poster.is-cinematic::after{content:'';position:absolute;z-index:2;inset:14px;border:1px solid color-mix(in srgb,var(--poster-accent) 75%,transparent);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--poster-paper) 25%,transparent);pointer-events:none}
+.theme-poster.is-cinematic svg{z-index:2;top:8px;width:66%;height:116px;opacity:.82;mix-blend-mode:screen}
+.theme-poster.is-cinematic .theme-poster-copy{padding:22px 8px 4px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--poster-paper) 96%,transparent) 46%);inset:auto 9px 9px}
+.theme-poster.is-cinematic:hover .theme-poster-photo{transform:scale(1.1)}
+.poster-daguerre .theme-poster-photo,.poster-vellum .theme-poster-photo,.poster-isvara .theme-poster-photo{filter:grayscale(1) sepia(.28) contrast(1.05)}
+.poster-celluloid .theme-poster-photo,.poster-kodachrome .theme-poster-photo{filter:sepia(.3) saturate(1.3) contrast(1.08)}
+.poster-nocturne .theme-poster-photo,.poster-cathedral .theme-poster-photo{filter:grayscale(.75) brightness(.48) contrast(1.25)}
+.poster-maison .theme-poster-photo,.poster-helvetica .theme-poster-photo{filter:grayscale(1) contrast(1.18)}
+.poster-hanami .theme-poster-photo,.poster-hanji .theme-poster-photo{filter:saturate(.62) brightness(1.08)}
+.poster-songket .theme-poster-photo,.poster-ulos .theme-poster-photo,.poster-taksu .theme-poster-photo{filter:saturate(.82) sepia(.18) brightness(.68)}
+.poster-samudra .theme-poster-photo{filter:saturate(.7) hue-rotate(145deg) brightness(.75)}
+.poster-astralis .theme-poster-photo{filter:hue-rotate(188deg) saturate(.75) brightness(.55)}
+.poster-chrome .theme-poster-photo{filter:grayscale(1) contrast(1.2) brightness(.85)}
+.poster-bauhaus .theme-poster-wash{background:linear-gradient(90deg,rgba(207,52,45,.45) 0 33%,transparent 33% 66%,rgba(31,92,167,.42) 66%)}
+.poster-gatsby .theme-poster-wash,.poster-songket .theme-poster-wash,.poster-cathedral .theme-poster-wash{background:linear-gradient(180deg,rgba(5,12,12,.18),rgba(5,12,12,.38) 54%,var(--poster-paper) 100%)}
+.poster-nocturne,.poster-songket,.poster-ulos,.poster-mughal,.poster-safavid,.poster-taksu,.poster-samudra,.poster-astralis,.poster-cathedral{background:var(--poster-paper)}
+.poster-bauhaus .theme-poster-copy strong,.poster-helvetica .theme-poster-copy strong,.poster-monolith .theme-poster-copy strong,.poster-chrome .theme-poster-copy strong{font-family:Arial,sans-serif;font-style:normal;font-weight:900;letter-spacing:-.05em}
+.poster-lanqing .theme-poster-copy strong,.poster-songket .theme-poster-copy strong,.poster-ulos .theme-poster-copy strong,.poster-safavid .theme-poster-copy strong,.poster-cathedral .theme-poster-copy strong{color:var(--poster-ink)}
+.poster-chrome{background:linear-gradient(135deg,#f9fbfc,#adb5c0 48%,#f6f7fa 70%,#9d90cf)}
+.poster-vellum,.poster-hanami,.poster-hanji,.poster-herbarium,.poster-storybook{background-image:linear-gradient(115deg,rgba(255,255,255,.45),transparent 55%)}
+.theme-poster-clean::before,.theme-poster-clean::after{display:none}
+.theme-poster-clean .theme-poster-photo{z-index:1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:none;transform:scale(1.001)}
+.theme-poster-clean:hover .theme-poster-photo{transform:scale(1.035)}
+.theme-poster-clean.poster-nawasena .theme-poster-photo{object-position:center 42%}
+.theme-poster-clean.poster-isvara .theme-poster-photo{object-position:center 35%}

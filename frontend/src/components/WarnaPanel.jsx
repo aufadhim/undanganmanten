@@ -4,8 +4,17 @@ import { useFormDraft } from '../hooks/useFormDraft.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
+
 // Palet Warna Default Bawaan Masing-masing Tema (Sebagai Acuan Undo/Reset)
 const DEFAULT_PALETTES = {
+    'celluloid': {
+        bgPrimary: '#211913', bgSecondary: '#211913', textPrimary: '#8a2d2d',
+        textSecondary: '#efe1c8', btnBg: '#8a2d2d', btnText: '#211913',
+    },
+    'nocturne': {
+        bgPrimary: '#08090B', bgSecondary: '#121014', textPrimary: '#751C30',
+        textSecondary: '#EEE7DC', btnBg: '#C5A46A', btnText: '#08090B',
+    },
     'eternal': {
         bgPrimary: '#fafaf9',
         bgSecondary: '#f5f5f4',
@@ -13,6 +22,30 @@ const DEFAULT_PALETTES = {
         textSecondary: '#1c1917',
         btnBg: '#292524',
         btnText: '#fafaf9',
+    },
+    'seraya': {
+        bgPrimary: '#F4F1EA',
+        bgSecondary: '#DEDAD1',
+        textPrimary: '#0A0A0A',
+        textSecondary: '#4A4945',
+        btnBg: '#111111',
+        btnText: '#FFFFFF',
+    },
+    'nawasena': {
+        bgPrimary: '#F4EDDF',
+        bgSecondary: '#D9C9AD',
+        textPrimary: '#741D2B',
+        textSecondary: '#243322',
+        btnBg: '#A4894E',
+        btnText: '#FFFFFF',
+    },
+    'isvara': {
+        bgPrimary: '#F3F0E8', bgSecondary: '#DFE3D5', textPrimary: '#465440',
+        textSecondary: '#30372F', btnBg: '#78846C', btnText: '#FFFFFF',
+    },
+    'lanqing': {
+        bgPrimary: '#F6EBDD', bgSecondary: '#E9C9B6', textPrimary: '#8D1B24',
+        textSecondary: '#341B18', btnBg: '#A8232D', btnText: '#FFF8E8',
     },
     'exclusive-olan': {
         bgPrimary: '#EEE8E5',

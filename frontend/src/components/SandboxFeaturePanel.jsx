@@ -1,5 +1,5 @@
 import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
-import { DUMMY_GALLERY_PHOTOS } from '../config/dummyAssets.js';
+import { DUMMY_GALLERY_PHOTOS, DUMMY_GALLERY_VIDEO } from '../config/dummyAssets.js';
 
 const BLOCKS = [
   ['storyEnabled', 'Cerita Cinta'], ['timelineEnabled', 'Timeline'], ['dresscodeEnabled', 'Dresscode'],
@@ -26,9 +26,13 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
     <Field label="Font Isi"><select value={theme.typography?.fontBody || 'Montserrat'} onChange={(e) => update({ themeSettings: { typography: { ...theme.typography, fontBody: e.target.value } } })}><option>Montserrat</option><option>Manrope</option><option>Inter</option><option>Lora</option></select></Field>
   </Panel>;
 
-  if (type === 'visual') return <Panel title="Musik, Visual & Loading" subtitle="Coba gaya visual tanpa mengunggah file.">
-    <Field label="Animasi Jatuh"><select value={theme.animationType || ''} onChange={(e) => update({ themeSettings: { animationType: e.target.value } })}><option value="">Tidak ada</option><option value="snow">Salju</option><option value="leaves">Daun</option><option value="sakura">Sakura</option></select></Field>
+  if (type === 'visual') return <Panel title="Musik & Visual" subtitle="Coba musik latar, animasi jatuh, dan gaya loading langsung di preview.">
+    <Toggle label="Aktifkan Musik Latar" checked={Boolean(invitation.invitationFeatures?.musicEnabled)} onChange={(checked) => update({ invitationFeatures: { musicEnabled: checked } })} />
+    {invitation.invitationFeatures?.musicEnabled && <Field label="Tautan Musik (MP3/WAV)"><input type="url" value={theme.musicUrl || ''} placeholder="https://contoh.com/lagu-instrumental.mp3" onChange={(e) => update({ themeSettings: { musicUrl: e.target.value } })} /></Field>}
+    <Toggle label="Aktifkan Animasi Visual" checked={Boolean(invitation.invitationFeatures?.animationEnabled)} onChange={(checked) => update({ invitationFeatures: { animationEnabled: checked } })} />
+    {invitation.invitationFeatures?.animationEnabled && <Field label="Animasi Jatuh"><select value={theme.animationType || ''} onChange={(e) => update({ themeSettings: { animationType: e.target.value } })}><option value="">Tidak ada</option><option value="snow">Salju</option><option value="leaves">Daun</option><option value="sakura">Sakura</option></select></Field>}
     <Field label="Animasi Loading"><select value={theme.loadingAnimation || 'breathe'} onChange={(e) => update({ themeSettings: { loadingAnimation: e.target.value } })}><option value="breathe">Napas Halus</option><option value="reveal">Reveal Elegan</option><option value="shimmer">Kilau Cahaya</option><option value="spin">Putar Minimal</option></select></Field>
+    <p style={{ margin: 0, color: 'var(--ink-soft)', fontSize: 12, lineHeight: 1.6 }}>Musik baru diputar setelah tombol “Buka Undangan” ditekan karena aturan autoplay browser.</p>
   </Panel>;
 
   if (type === 'kutipan') return <Panel title="Quote / Doa" subtitle="Teks contoh dapat diganti bebas.">
@@ -42,7 +46,7 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
   </Panel>;
 
   if (type === 'galeri') return <Panel title="Galeri Foto & Video" subtitle="Pilih layout berdasarkan mini-preview, lalu lihat hasil penuhnya di kanan.">
-    <GalleryLayoutPicker value={theme.galleryLayout || 'editorial'} onChange={(galleryLayout) => update({ themeSettings: { galleryLayout }, galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })) })} />
+    <GalleryLayoutPicker value={theme.galleryLayout || 'editorial'} onChange={(galleryLayout) => update({ themeSettings: { galleryLayout }, galleryMedia: [...DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })), { id: 'sandbox-video', type: 'video', url: DUMMY_GALLERY_VIDEO }] })} />
   </Panel>;
 
   if (type === 'cerita') return <Panel title="Cerita Cinta" subtitle="Coba teks utama dan timeline singkat.">
@@ -90,4 +94,8 @@ function Panel({ title, subtitle, children }) {
 }
 function Field({ label, children }) {
   return <label style={{ display: 'grid', gap: 7 }}><span className="field-label">{label}</span>{children}</label>;
+}
+
+function Toggle({ label, checked, onChange }) {
+  return <label className="sandbox-block-toggle"><span>{label}</span><span className="switch"><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} /><span className="slider round" /></span></label>;
 }

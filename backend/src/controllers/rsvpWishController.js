@@ -17,7 +17,7 @@ async function getInvitation(req) {
   });
 }
 
-async function saveRsvp(req, res, invitation) {
+async function saveRsvp(req, res, invitation, { allowUnlisted = false } = {}) {
     // Mendukung query parameter ?g= atau ?code=
     const guestIdParam = req.query.g || req.query.code;
 
@@ -43,7 +43,7 @@ async function saveRsvp(req, res, invitation) {
       });
     }
 
-    if (!guest && !invitation.rsvpOpenToPublic) {
+    if (!guest && !invitation.rsvpOpenToPublic && !allowUnlisted) {
       return res.status(403).json({ error: 'RSVP hanya tersedia melalui link pribadi tamu.' });
     }
 
@@ -159,7 +159,7 @@ export async function submitOwnerPreviewRsvp(req, res) {
   try {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
-    return await saveRsvp(req, res, invitation);
+    return await saveRsvp(req, res, invitation, { allowUnlisted: true });
   } catch (err) {
     console.error('Error submitOwnerPreviewRsvp:', err);
     return res.status(500).json({ error: 'Gagal menyimpan konfirmasi kehadiran.' });

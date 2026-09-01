@@ -53,7 +53,7 @@ export default function SandboxProfilPanel({ invitation, onUpdated, onLivePrevie
         setTimeout(() => {
             onUpdated({ ...invitation, coupleProfile: { ...invitation.coupleProfile, ...form } });
             clearDraft();
-            toast.success('Profil mempelai (Sandbox) berhasil disimpan!');
+            toast.success('Profil mempelai di Mode Coba berhasil disimpan!');
             setSaving(false);
         }, 300);
     }
@@ -97,7 +97,7 @@ export default function SandboxProfilPanel({ invitation, onUpdated, onLivePrevie
             toast.success(`Foto ${side === 'bride' ? 'Mempelai Wanita' : 'Mempelai Pria'} berhasil diunggah!`);
         } catch (err) {
             console.error('Error preview photo:', err);
-            toast.error('Gagal memproses foto untuk preview sandbox.');
+            toast.error('Gagal memproses foto untuk pratinjau Mode Coba.');
         } finally {
             setUploading('');
         }

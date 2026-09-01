@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Bellefair&family=Montserrat:wght@400;500;600&display=swap');
+
+.seraya {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  container-type: size;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  color: var(--sy-ink);
+  background-color: var(--sy-paper);
+  background-image:
+    radial-gradient(circle at 16% 28%, rgba(0,0,0,.045) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 72% 64%, rgba(255,255,255,.7) 0 1px, transparent 1.6px),
+    repeating-linear-gradient(91deg, rgba(0,0,0,.012) 0 1px, transparent 1px 5px);
+  background-size: 11px 13px, 17px 19px, auto;
+  font-family: var(--sy-body);
+}
+
+/* The editorial cover does not spend its cinematic entrance behind the opening. */
+.seraya-opening:not(.is-open) + .seraya-flow .seraya-hero :is(.seraya-issue,.seraya-side-note,.seraya-hero-photo,.seraya-cover-title,.seraya-cover-meta) {
+  animation:none!important;
+  transition:none!important;
+}
+.seraya-opening.is-open + .seraya-flow .seraya-hero::before{animation:syHeroCurtain 1.65s .95s cubic-bezier(.76,0,.24,1) both}
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-hero-photo { animation:syHeroPhotoIn 2.6s 1.05s cubic-bezier(.16,1,.3,1) both; }
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-issue { animation:syHeroLineIn 1.35s 1.55s cubic-bezier(.16,1,.3,1) both; }
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-side-note { animation:syHeroLineIn 1.45s 1.75s cubic-bezier(.16,1,.3,1) both; }
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-cover-title { animation:syHeroTitleIn 1.8s 1.85s cubic-bezier(.16,1,.3,1) both; }
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-cover-meta { animation:syHeroMetaIn 1.5s 2.2s cubic-bezier(.16,1,.3,1) both; }
+.seraya-opening.is-open + .seraya-flow .seraya-hero-photo img { animation:syHeroImageReveal 2.4s 1.15s cubic-bezier(.16,1,.3,1) both,syHeroDrift 18s 3.55s ease-in-out infinite alternate; }
+.seraya-opening.is-open + .seraya-flow .seraya-default-cover small{animation:syHeroLineIn 1.1s 2s both}
+.seraya-opening.is-open + .seraya-flow .seraya-default-cover strong{animation:syHeroMonogramIn 1.7s 1.55s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-open + .seraya-flow .seraya-default-cover span{animation:syHeroMetaIn 1.2s 2.15s both}
+@keyframes syHeroCurtain{0%{transform:translateX(0)}48%{transform:translateX(0)}100%{transform:translateX(105%)}}
+@keyframes syHeroPhotoIn { from{opacity:0;transform:scale(.92) translateY(25px);filter:blur(8px)} to{opacity:1;transform:scale(1);filter:blur(0)} }
+@keyframes syHeroLineIn { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none} }
+@keyframes syHeroTitleIn { from{opacity:0;transform:translateX(-34px)} to{opacity:1;transform:none} }
+@keyframes syHeroMetaIn { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+@keyframes syHeroImageReveal{from{transform:scale(1.12);filter:grayscale(1) contrast(1.18) blur(3px)}to{transform:scale(1);filter:grayscale(.32) contrast(1.04) blur(0)}}
+@keyframes syHeroMonogramIn{from{opacity:0;transform:scale(1.3);letter-spacing:.1em;filter:blur(6px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes syHeroDrift { to{transform:scale(1.045) translate3d(.5%,-.5%,0)} }
+@media (prefers-reduced-motion:reduce) { .seraya-opening.is-open + .seraya-flow .seraya-hero * { animation:none!important; } }
+
+.seraya *, .seraya *::before, .seraya *::after { box-sizing: border-box; }
+.seraya h1, .seraya h2, .seraya h3 { margin: 0; color: var(--sy-ink); }
+.seraya button, .seraya input, .seraya select, .seraya textarea { font: inherit; }
+
+.seraya-flow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow: visible;
+}
+
+.seraya-flow > * {
+  flex-shrink: 0;
+}
+
+.split-view-theme-seraya .split-view-right {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.split-view-theme-seraya .split-view-template-wrapper {
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+  overflow: hidden;
+}
+
+.seraya-flow > [data-section="cover"] { order: 1; }
+.seraya-flow > [data-section="quote"] { order: 2; }
+.seraya-flow > [data-section="profile"] { order: 3; }
+.seraya-flow > [data-section="events"] { order: 4; }
+.seraya-flow > [data-section="countdown"] { order: 5; }
+.seraya-flow > [data-section="gallery"] { order: 6; }
+.seraya-flow > [data-section="rundown"] { order: 7; }
+.seraya-flow > [data-section="story"] { order: 8; }
+.seraya-flow > [data-section="dresscode"] { order: 9; }
+.seraya-flow > [data-section="livestream"] { order: 10; }
+.seraya-flow > [data-section="rsvp"] { order: 11; }
+.seraya-flow > [data-section="gift"] { order: 12; }
+.seraya-flow > [data-section="wishes"] { order: 13; }
+.seraya-flow > [data-section="footer"] { order: 14; }
+
+/* Opening cover */
+.seraya-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 26px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0,0,0) scale(1);
+  transform-origin: center;
+  transition:
+    transform 1.35s cubic-bezier(.77,0,.175,1),
+    opacity 1.2s ease,
+    visibility 1.35s;
+  will-change: transform, opacity;
+}
+
+.seraya-opening.is-open { pointer-events: none; }
+.seraya-opening.is-open.opening-slide-up {
+  transform: translate3d(0,-100%,0);
+  visibility: hidden;
+}
+.seraya-opening.is-open.opening-fade {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0,0,0);
+}
+.seraya-opening.is-open.opening-zoom {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0,0,0) scale(1.12);
+}
+.seraya-opening.is-open.opening-slide-down {
+  transform: translate3d(0,100%,0);
+  visibility: hidden;
+}
+.seraya-opening-copy {
+  width: min(84%, 360px);
+  padding: 38px 22px;
+  border: 1px solid rgba(255,255,255,.86);
+  text-align: left;
+  background: rgba(0,0,0,.05);
+  text-shadow: 0 2px 18px rgba(0,0,0,.3);
+}
+.seraya-opening-copy img { width: 66px; height: 66px; object-fit: contain; margin-bottom: 18px; }
+.seraya-opening-copy > span { font: 18px "Bebas Neue", sans-serif; letter-spacing: .16em; }
+.seraya-opening-copy h1 { margin: 10px 0 22px; color: #fff; font: 400 clamp(42px, 13cqw, 66px)/.9 "Abril Fatface", serif; text-transform: uppercase; }
+.seraya-opening-copy p { margin: 0; font: 18px Bellefair, serif; }
+.seraya-opening-copy strong { display: block; margin-top: 4px; font: 24px Bellefair, serif; }
+.seraya-opening-copy button, .seraya-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 24px;
+  padding: 10px 22px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  font: 20px "Bebas Neue", sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Uploaded photography is art-directed as a magazine cover, not left as a raw background. */
+.seraya-opening:not(.is-default-artwork){isolation:isolate;display:block;overflow:hidden;padding:0;background-position:center;background-size:cover}
+.seraya-opening:not(.is-default-artwork)::before{content:'';position:absolute;z-index:0;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.48) 0,transparent 29%,transparent 48%,rgba(0,0,0,.76) 100%);pointer-events:none}
+.seraya-opening:not(.is-default-artwork)::after{content:'';position:absolute;z-index:1;inset:18px;border:1px solid rgba(255,255,255,.5);pointer-events:none}
+.seraya-photo-edition{position:absolute;z-index:2;inset:0;color:#fff;pointer-events:none;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.seraya-photo-masthead{position:absolute;top:34px;left:34px;right:34px;display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:8px;border-bottom:3px solid #fff}
+.seraya-photo-masthead strong{font:900 clamp(38px,11cqw,58px)/.78 Arial,sans-serif;letter-spacing:-.075em}
+.seraya-photo-masthead span{font:700 7px Arial,sans-serif;letter-spacing:.2em}
+.seraya-photo-issue{position:absolute;top:105px;left:35px;font:700 8px Arial,sans-serif;letter-spacing:.18em}
+.seraya-photo-caption{position:absolute;top:31%;right:20px;writing-mode:vertical-rl;font:600 7px Arial,sans-serif;letter-spacing:.2em}
+.seraya-photo-cropmark{position:absolute;top:145px;left:25px;width:42px;height:42px;border-top:1px solid #fff;border-left:1px solid #fff}
+.seraya-photo-cropmark::after{content:'';position:absolute;left:-6px;top:-6px;width:5px;height:5px;background:#fff}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy{position:absolute;z-index:3;left:34px;right:54px;bottom:48px;width:auto;padding:0 0 0 17px;border:0;border-left:4px solid #fff;background:transparent;text-align:left;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy>span{font-size:12px}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy h1{margin:7px 0 16px;font-size:clamp(42px,12.5cqw,64px);line-height:.82;letter-spacing:-.04em}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy p{font-size:14px}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy strong{font-size:20px}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy button{margin-top:16px;background:#fff;color:#141414;border-color:#fff;padding-inline:24px;box-shadow:5px 5px 0 rgba(0,0,0,.62);transition:transform .25s ease,box-shadow .25s ease}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy button:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 rgba(0,0,0,.72)}
+.seraya-opening:not(.is-default-artwork):not(.is-open) .seraya-photo-masthead{animation:syMagazineRule 1.15s .05s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening:not(.is-default-artwork):not(.is-open) .seraya-photo-issue,.seraya-opening:not(.is-default-artwork):not(.is-open) .seraya-photo-caption{animation:syMagazineMeta 1s .55s both}
+.seraya-opening:not(.is-default-artwork):not(.is-open) .seraya-opening-copy{animation:syMagazineCopy 1.3s .3s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening:not(.is-default-artwork):not(.is-open){animation:syPhotoCoverDrift 16s ease-in-out infinite alternate}
+@keyframes syPhotoCoverDrift{from{background-position:center 47%}to{background-position:center 53%}}
+
+.seraya-loader { position: fixed; inset: 0; z-index: 11000; display: grid; place-items: center; background: #f7f5f0; }
+.seraya-loader img { width: 96px; height: 96px; object-fit: contain; }
+
+/* Newspaper masthead */
+.seraya-hero {
+  position:relative;
+  width:100%;
+  height:calc(100cqh - 4px);
+  min-height:560px;
+  max-height:calc(100cqh - 4px);
+  padding:18px 20px 18px 56px;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  text-align:left;
+  border-top:0;
+  border-bottom:1px solid var(--sy-ink);
+  overflow: hidden;
+  isolation:isolate;
+}
+.seraya-hero::before{content:'';position:absolute;z-index:8;inset:0;background:#171717;transform:translateX(105%);pointer-events:none}
+.seraya-issue { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--sy-ink); color:var(--sy-ink); }
+.seraya-issue span { font:12px Montserrat,sans-serif; letter-spacing:.2em; }
+.seraya-issue strong { font:28px/1 "Bebas Neue",sans-serif; }
+.seraya-side-note { position:absolute; z-index:3; top:66px; bottom:18px; left:14px; margin:0; writing-mode:vertical-rl; transform:rotate(180deg); color:var(--sy-ink); font:10px Montserrat,sans-serif; letter-spacing:.18em; }
+.seraya-hero-photo { position:relative; width:88%; height:100%; min-height:0; margin:0 0 0 auto; overflow:hidden; background:var(--sy-soft); box-shadow:-12px 12px 0 color-mix(in srgb,var(--sy-soft) 72%,transparent); }
+.seraya-hero-photo::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 52%,rgba(8,8,8,.3)); pointer-events:none; }
+.seraya-hero-photo img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; filter:grayscale(.32) contrast(1.04); transition:transform 8s ease,filter .8s ease; }
+.seraya-hero:hover .seraya-hero-photo img { transform: scale(1.035); }
+
+/* Face-free collector's magazine artwork when the couple has not uploaded a photo. */
+.seraya-opening.is-default-artwork{isolation:isolate;overflow:hidden;display:block;padding:0;color:#151515;background-color:#eeeae2;background-image:linear-gradient(rgba(20,20,20,.052) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.052) 1px,transparent 1px),radial-gradient(circle at 78% 18%,rgba(0,0,0,.075),transparent 28%),linear-gradient(135deg,#f6f3ec,#e4e0d8)!important;background-size:34px 34px,34px 34px,100% 100%,100% 100%;text-shadow:none;filter:grayscale(1)}
+.seraya-opening.is-default-artwork::before{content:'';position:absolute;z-index:-1;inset:17px;border:1px solid rgba(24,22,19,.3);pointer-events:none}
+.seraya-opening.is-default-artwork::after{content:'';position:absolute;z-index:-1;top:0;right:10%;width:19%;height:100%;background:#171717;transform:skewX(-11deg) translateX(22%);transform-origin:bottom;opacity:.96}
+.seraya-editorial-art{position:absolute;inset:0;pointer-events:none}
+.seraya-editorial-masthead{position:absolute;top:38px;left:34px;right:32px;display:flex;align-items:baseline;justify-content:space-between;border-bottom:3px solid #181613;padding-bottom:8px}
+.seraya-editorial-masthead span{font:900 clamp(38px,11cqw,58px)/.8 Arial,sans-serif;letter-spacing:-.075em}
+.seraya-editorial-masthead small{font:700 8px/1.2 Arial,sans-serif;letter-spacing:.2em}
+.seraya-editorial-volume{position:absolute;top:112px;left:35px;font:700 8px/1.55 Arial,sans-serif;letter-spacing:.16em}
+.seraya-editorial-monogram{position:absolute;top:19%;right:-3%;color:rgba(255,255,255,.23);font:400 clamp(190px,62cqw,310px)/.65 "Abril Fatface",serif;letter-spacing:-.17em;transform:rotate(-7deg)}
+.seraya-editorial-monogram i{display:block;margin-left:-.42em;color:rgba(24,22,19,.08);font-style:normal}
+.seraya-editorial-date{position:absolute;left:34px;bottom:36px;font:700 8px Arial,sans-serif;letter-spacing:.16em}
+.seraya-editorial-barcode{position:absolute;right:34px;bottom:33px;width:90px;overflow:hidden;color:#f5f0e7;font:900 13px/1 monospace;letter-spacing:-.08em;white-space:nowrap}
+.seraya-opening.is-default-artwork .seraya-opening-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:86px;width:auto;padding:24px 20px 22px;border:0;border-left:5px solid #171717;background:rgba(246,243,236,.94);box-shadow:0 12px 38px rgba(0,0,0,.13);color:#181613;text-align:left}
+.seraya-opening.is-default-artwork .seraya-opening-copy::before{content:'A PRIVATE CELEBRATION';position:absolute;top:-23px;left:0;color:#171717;font:700 8px Arial,sans-serif;letter-spacing:.2em}
+.seraya-opening.is-default-artwork .seraya-opening-copy>span{font-size:12px;color:#171717}
+.seraya-opening.is-default-artwork .seraya-opening-copy h1{margin:7px 0 16px;color:#181613;font-size:clamp(38px,11cqw,55px);line-height:.83;letter-spacing:-.035em}
+.seraya-opening.is-default-artwork .seraya-opening-copy p{font-size:14px}
+.seraya-opening.is-default-artwork .seraya-opening-copy strong{font-size:20px}
+.seraya-opening.is-default-artwork .seraya-opening-copy button{margin-top:17px;border-color:#171717;background:#171717;color:#fff;padding-inline:25px;box-shadow:5px 5px 0 #777;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.seraya-opening.is-default-artwork .seraya-opening-copy button:hover{background:#3b3b3b;transform:translate(3px,3px);box-shadow:2px 2px 0 #171717}
+.seraya-opening.is-default-artwork:not(.is-open) .seraya-editorial-masthead{animation:syMagazineRule 1.1s .1s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-default-artwork:not(.is-open) .seraya-editorial-monogram{animation:syMagazineMonogram 1.5s .2s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-default-artwork:not(.is-open)::after{animation:syMagazineSlash 1.4s .05s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-default-artwork:not(.is-open) .seraya-editorial-volume{animation:syMagazineType .8s .65s steps(6,end) both}
+.seraya-opening.is-default-artwork:not(.is-open) .seraya-editorial-date,.seraya-opening.is-default-artwork:not(.is-open) .seraya-editorial-barcode{animation:syMagazineMeta 1s .9s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-default-artwork:not(.is-open) .seraya-opening-copy{animation:syMagazineCopy 1.25s .45s cubic-bezier(.16,1,.3,1) both}
+.seraya-opening.is-default-artwork.is-open .seraya-editorial-masthead,.seraya-opening.is-default-artwork.is-open .seraya-editorial-volume{animation:syMagazineExitLeft .8s cubic-bezier(.76,0,.24,1) both}
+.seraya-opening.is-default-artwork.is-open .seraya-editorial-monogram{animation:syMagazineExitScale 1.05s cubic-bezier(.76,0,.24,1) both}
+.seraya-opening.is-default-artwork.is-open .seraya-opening-copy{animation:syMagazineExitRight .85s cubic-bezier(.76,0,.24,1) both}
+@keyframes syMagazineRule{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes syMagazineMonogram{from{opacity:0;transform:rotate(-2deg) scale(1.14)}to{opacity:1;transform:rotate(-7deg) scale(1)}}
+@keyframes syMagazineCopy{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:none}}
+@keyframes syMagazineSlash{from{transform:skewX(-11deg) translateX(170%)}to{transform:skewX(-11deg) translateX(22%)}}
+@keyframes syMagazineType{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes syMagazineMeta{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes syMagazineExitLeft{to{opacity:0;transform:translateX(-45px)}}
+@keyframes syMagazineExitRight{to{opacity:0;transform:translateX(65px) rotate(1deg)}}
+@keyframes syMagazineExitScale{to{opacity:0;transform:rotate(-7deg) scale(1.3)}}
+@media (prefers-reduced-motion:reduce){.seraya-opening.is-default-artwork *{animation:none!important}}
+.seraya-hero-photo.is-default-artwork{display:grid;place-items:center;background:linear-gradient(145deg,#ebe7df,#c9c4bb 48%,#f4f1ea)}
+.seraya-default-cover{position:relative;width:78%;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #161616;box-shadow:inset 0 0 0 10px #e4dfd5,inset 0 0 0 11px #161616;color:#111;text-align:center}
+.seraya-default-cover::before,.seraya-default-cover::after{content:'';position:absolute;width:38%;height:1px;background:#111}.seraya-default-cover::before{left:-12%;top:24%}.seraya-default-cover::after{right:-12%;bottom:24%}
+.seraya-default-cover small{font:700 9px Arial;letter-spacing:.26em}.seraya-default-cover strong{margin:24px 0 15px;font:400 clamp(68px,20cqw,100px)/.8 var(--sy-heading)}.seraya-default-cover strong i{font-size:.45em}.seraya-default-cover span{font:700 10px Arial;letter-spacing:.16em;text-transform:uppercase}
+.seraya-cover-title { position:absolute; z-index:3; top:27%; left:20px; width:94%; pointer-events:none; }
+.seraya-cover-title small { display:inline-block; margin:0 0 12px 40px; padding:5px 8px; color:var(--sy-ink); background:var(--sy-paper); font:10px Montserrat,sans-serif; letter-spacing:.2em; }
+.seraya-cover-title h1 { margin:0; color:var(--sy-ink); font:400 clamp(52px,15cqw,82px)/.72 "Abril Fatface",serif; letter-spacing:-.055em; text-transform:uppercase; text-shadow:2px 2px var(--sy-paper),-2px -2px var(--sy-paper); }
+.seraya-cover-title h1 i { display:block; margin-left:20%; color:#fff; font:italic 400 .7em Bellefair,serif; text-transform:none; text-shadow:0 2px 15px rgba(0,0,0,.32); }
+.seraya-cover-meta { display:grid; grid-template-columns:auto 1fr; gap:5px 16px; align-items:end; margin-top:14px; color:var(--sy-ink); }
+.seraya-cover-meta strong { grid-row:span 2; font:36px/1 "Bebas Neue",sans-serif; }
+.seraya-cover-meta span { font:10px/1.25 Montserrat,sans-serif; letter-spacing:.12em; }
+.seraya-cover-meta em { font:15px Bellefair,serif; }
+
+.seraya-section, .seraya-quote {
+  position: relative;
+  padding: 76px 28px;
+  text-align: center;
+  border-bottom: 1px solid rgba(10,10,10,.32);
+  background: transparent;
+}
+
+.seraya-section::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 28px;
+  right: 28px;
+  height: 4px;
+  border-block: 1px solid rgba(10,10,10,.72);
+}
+
+.seraya-header { max-width: 620px; margin: 0 auto 40px; }
+.seraya-header > span { display: block; margin-bottom: 8px; font: 22px "Bebas Neue", sans-serif; letter-spacing: .09em; }
+.seraya-header h2 { font: 400 clamp(42px, 12cqw, 58px)/.95 "Abril Fatface", serif; text-transform: uppercase; }
+
+.seraya-quote { padding-block: 92px; }
+.seraya-quote h2 { font: 400 48px/.95 "Abril Fatface", serif; text-transform: uppercase; }
+.seraya-quote blockquote { max-width: 34ch; margin: 28px auto 0; font: 21px/1.45 Bellefair, serif; }
+
+/* Couple: photo cutouts and newspaper captions */
+.seraya-profile { padding-inline: 20px; }
+.seraya-couple { display: grid; gap: 54px; max-width: 760px; margin: auto; }
+.seraya-couple > i { display: none; }
+.seraya-couple article { position: relative; padding-bottom: 26px; border-bottom: 2px solid var(--sy-ink); }
+.seraya-couple article > div { width: 100%; aspect-ratio: 4/5; overflow: hidden; background: #c9c6be; clip-path: polygon(3% 1%, 97% 0, 100% 97%, 1% 100%); }
+.seraya-couple article:nth-of-type(even) > div { clip-path: polygon(1% 3%, 100% 0, 97% 100%, 3% 97%); }
+.seraya-couple img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); }
+.seraya-couple article > span { display: block; margin: -22px auto 0; position: relative; width: max-content; padding: 3px 14px; color: #fff; background: var(--sy-ink); font: 32px "Bebas Neue", sans-serif; }
+.seraya-couple h3 { margin: 14px 0 2px; font: 400 46px/.9 "Abril Fatface", serif; text-transform: uppercase; }
+.seraya-couple article > strong { display: block; font: 24px "Bebas Neue", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.seraya-couple article > p { max-width: 34ch; margin: 10px auto; font: 17px/1.35 Bellefair, serif; }
+.seraya-couple article > a { display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:174px;margin-top:10px;padding:9px 16px 8px;border:2px solid var(--sy-ink);color:var(--sy-ink);background:transparent;font:18px/1 "Bebas Neue",sans-serif;letter-spacing:.055em;text-decoration:none;text-transform:uppercase;box-shadow:3px 3px 0 var(--sy-ink);transition:color .25s ease,background .25s ease,box-shadow .25s ease,transform .25s ease; }
+.seraya-couple article > a i { font-size:14px; }
+.seraya-couple article > a:hover { color:var(--sy-paper);background:var(--sy-ink);box-shadow:1px 1px 0 var(--sy-ink);transform:translate(2px,2px); }
+
+/* Date and event cards */
+.seraya-date .seraya-header h2 { font-size: clamp(38px, 10cqw, 52px); }
+.seraya-countdown { max-width: 620px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); border-block: 2px solid var(--sy-ink); }
+.seraya-countdown div { padding: 18px 3px; border-right: 1px solid var(--sy-ink); }
+.seraya-countdown div:last-child { border-right: 0; }
+.seraya-countdown strong { display: block; font: 38px "Abril Fatface", serif; }
+.seraya-countdown span { font: 16px "Bebas Neue", sans-serif; letter-spacing: .06em; }
+.seraya-section .seraya-button { color: var(--sy-ink); }
+.seraya-ig-filter > img { display: block; width: min(250px, 72%); aspect-ratio: 9/16; margin: 0 auto 22px; border: 2px solid var(--sy-ink); object-fit: cover; box-shadow: 7px 7px 0 var(--sy-ink); }
+
+.seraya-events { display: grid; gap: 20px; max-width: 760px; margin: auto; }
+.seraya-events article { padding: 26px 20px 30px; border: 2px solid var(--sy-ink); box-shadow: 7px 7px 0 var(--sy-ink); background: rgba(255,255,255,.22); }
+.seraya-events article > span { display: inline-block; padding: 4px 10px; color: var(--sy-paper); background: var(--sy-ink); font: 22px "Bebas Neue", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.seraya-events h3 { margin: 18px 0 8px; font: 34px/.95 "Abril Fatface", serif; text-transform: uppercase; }
+.seraya-events p { margin: 8px 0; font: 18px/1.35 Bellefair, serif; }
+.seraya-events strong { font: 22px "Bebas Neue", sans-serif; text-transform: uppercase; }
+.seraya-events a { display: inline-flex; align-items:center; justify-content:center; gap:9px; margin-top:18px; padding:11px 18px 9px; border:2px solid var(--sy-ink); color:var(--sy-paper); background:var(--sy-ink); box-shadow:4px 4px 0 color-mix(in srgb,var(--sy-ink) 38%,transparent); font:18px/1 "Bebas Neue",sans-serif; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; transition:transform .25s ease,box-shadow .25s ease,color .25s ease,background .25s ease; }
+.seraya-events a i { font-size:13px; }
+.seraya-events a:hover { color:var(--sy-ink); background:var(--sy-paper); box-shadow:2px 2px 0 var(--sy-ink); transform:translate(2px,2px); }
+
+/* Dress code */
+.seraya-intro, .seraya-placeholder { max-width: 38ch; margin: 0 auto 28px; font: 18px/1.45 Bellefair, serif; }
+.seraya-dress { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 620px; margin: auto; }
+.seraya-dress article { padding: 24px 8px; border: 1px solid var(--sy-ink); }
+.seraya-dress h3 { font: 30px "Bebas Neue", sans-serif; text-transform: uppercase; }
+.seraya-dress p { margin: 5px 0; font: 18px Bellefair, serif; }
+.seraya-dress article > div { display: flex; justify-content: center; gap: 7px; margin-top: 16px; }
+.seraya-dress i { width: 34px; height: 34px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #111; }
+
+/* Collage gallery */
+.seraya-gallery-section { padding-inline: 12px; }
+.seraya-gallery-section .seraya-header { margin-bottom: 24px; }
+.seraya-gallery { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); grid-auto-rows: 44px; grid-auto-flow:dense; gap: 6px; width: 100%; max-width: 900px; margin: auto; padding: 8px; border: 2px solid var(--sy-ink); background: #fff; }
+.seraya-gallery button { grid-column: span 6; grid-row: span 4; padding: 0; border: 0; overflow: hidden; background: #111; cursor: pointer; }
+.seraya-gallery button:nth-child(3n+1) { grid-column: span 7; grid-row: span 5; }
+.seraya-gallery button:nth-child(3n+2) { grid-column: span 5; grid-row: span 3; }
+.seraya-gallery button:nth-child(5n) { grid-column: span 5; grid-row: span 5; }
+.seraya-gallery img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.03); transition: transform .5s ease; }
+.seraya-gallery button:hover img { transform: scale(1.035); }
+.seraya-gallery.layout-editorial { gap:10px; padding:10px; background:var(--sy-paper); }
+.seraya-gallery.layout-editorial button { grid-column:span 6; grid-row:span 5; border:1px solid color-mix(in srgb,var(--sy-ink) 35%,transparent); }
+.seraya-gallery.layout-editorial button:nth-child(7n+1) { grid-column:span 12; grid-row:span 9; }
+.seraya-gallery.layout-editorial button:nth-child(7n+2),
+.seraya-gallery.layout-editorial button:nth-child(7n+3) { grid-column:span 6; grid-row:span 6; }
+.seraya-gallery.layout-editorial button:nth-child(7n+4) { grid-column:span 5; grid-row:span 8; }
+.seraya-gallery.layout-editorial button:nth-child(7n+5) { grid-column:span 7; grid-row:span 8; }
+.seraya-gallery.layout-editorial button:nth-child(7n+6),
+.seraya-gallery.layout-editorial button:nth-child(7n+7) { grid-column:span 6; grid-row:span 5; }
+.seraya-gallery.layout-editorial.gallery-mod7-2 button:last-child,
+.seraya-gallery.layout-editorial.gallery-mod7-4 button:last-child,
+.seraya-gallery.layout-editorial.gallery-mod7-6 button:last-child { grid-column:1 / -1; grid-row:span 6; }
+.seraya-gallery.layout-collage { gap:0; padding:18px 16px 24px; background:#ded7cd; border:0; overflow:hidden; }
+.seraya-gallery.layout-collage button { position:relative; z-index:1; grid-column:span 6; grid-row:span 5; padding:5px; border:1px solid #d0c5b8; background:#fff; box-shadow:0 7px 15px #201a1530; transform:rotate(-2.5deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+1) { z-index:2; grid-column:1 / span 8; grid-row:span 8; transform:rotate(-3deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+2) { z-index:3; grid-column:9 / span 4; grid-row:span 4; margin-left:-8px; margin-top:7px; transform:rotate(4deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+3) { z-index:4; grid-column:9 / span 4; grid-row:span 4; margin-left:-5px; margin-top:-7px; transform:rotate(-1deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+4) { grid-column:1 / span 5; grid-row:span 6; margin-top:-5px; transform:rotate(3deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+5) { z-index:2; grid-column:6 / span 7; grid-row:span 6; margin-left:-8px; margin-top:-7px; transform:rotate(-2deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+6) { grid-column:1 / span 7; grid-row:span 6; margin-top:-5px; transform:rotate(-1deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+7) { z-index:2; grid-column:8 / span 5; grid-row:span 6; margin-left:-5px; transform:rotate(3deg); }
+.seraya-gallery.layout-collage button:nth-child(8n+8) { grid-column:1 / span 12; grid-row:span 7; margin-top:-7px; transform:rotate(-1deg); }
+.seraya-gallery.layout-collage.gallery-count-1 button,
+.seraya-gallery.layout-collage.gallery-mod8-1 button:last-child,
+.seraya-gallery.layout-collage.gallery-mod8-4 button:last-child,
+.seraya-gallery.layout-collage.gallery-mod8-6 button:last-child { grid-column:1 / span 12; grid-row:span 7; margin:0; }
+.seraya-gallery.layout-collage.gallery-mod8-2 button:nth-last-child(-n+2),
+.seraya-gallery.layout-collage.gallery-mod8-5 button:nth-last-child(-n+2),
+.seraya-gallery.layout-collage.gallery-mod8-7 button:nth-last-child(-n+2) { grid-column:span 6; grid-row:span 5; margin:0; }
+.seraya-gallery.layout-collage button:hover { z-index:10; transform:rotate(0) scale(1.025); }
+.seraya-gallery.layout-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: auto; }
+.seraya-gallery.layout-grid button { grid-column: auto; grid-row: auto; aspect-ratio: 1; }
+.seraya-gallery.layout-grid.gallery-count-odd button:last-child { grid-column:1 / -1; aspect-ratio:2/1; }
+.seraya-gallery.layout-masonry { display: block; columns: 2; }
+.seraya-gallery.layout-masonry button { width: 100%; display: block; margin-bottom: 8px; }
+.seraya-gallery.layout-masonry img { height: auto; }
+.seraya-gallery.layout-carousel { display: flex; padding: 8px; overflow-x: auto; scroll-snap-type: x mandatory; }
+.seraya-gallery.layout-carousel button { min-width: 82%; aspect-ratio: 3/4; scroll-snap-align: center; }
+.seraya-gallery.layout-carousel.gallery-count-1 button { min-width:100%; }
+.seraya-gallery.layout-wall { padding: 28px 20px 52px; background: #70655d; gap: 0; }
+.seraya-gallery.layout-wall button { grid-column: span 6; grid-row: span 4; padding: 7px 7px 28px; background: #fff; box-shadow: 0 9px 18px #0006; transform: rotate(-3deg); }
+.seraya-gallery.layout-wall button:nth-child(even) { transform: translateY(24px) rotate(3deg); }
+.seraya-gallery.layout-wall.gallery-count-odd button:last-child { grid-column:1 / -1; width:calc(50% - 2px); justify-self:center; }
+.seraya-video { width: calc(100% - 16px); max-width: 900px; margin: 22px auto 0; padding: 8px 8px 42px; aspect-ratio: auto; border: 2px solid var(--sy-ink); background: #fff; }
+.seraya-video::after { content: 'OUR LOVE VIDEO'; display: block; padding-top: 8px; font: 28px "Bebas Neue", sans-serif; color: var(--sy-ink); }
+.seraya-video iframe, .seraya-video video, .seraya-video > div { width: 100%; aspect-ratio: 16/9; border: 0; background: #111; }
+
+/* Rundown and love story */
+.seraya-rundown, .seraya-timeline { max-width: 650px; margin: auto; text-align: left; }
+.seraya-rundown article { display: grid; grid-template-columns: 74px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--sy-ink); }
+.seraya-rundown time { font: 27px "Bebas Neue", sans-serif; }
+.seraya-rundown h3, .seraya-timeline h3 { font: 27px "Bebas Neue", sans-serif; text-transform: uppercase; }
+.seraya-rundown p, .seraya-timeline p { margin: 7px 0; font: 18px/1.35 Bellefair, serif; }
+.seraya-main-story { max-width: 40ch; margin: 0 auto 40px; padding: 24px; border: 1px solid var(--sy-ink); font: 20px/1.5 Bellefair, serif; text-align: left; }
+.seraya-timeline { position: relative; }
+.seraya-timeline article { position: relative; margin-bottom: 14px; padding: 24px; border: 1px solid var(--sy-ink); background: rgba(255,255,255,.2); }
+.seraya-timeline article:nth-child(even) { transform: rotate(.5deg); }
+.seraya-timeline span { display: inline-block; margin-bottom: 8px; padding: 3px 8px; color: var(--sy-paper); background: var(--sy-ink); font: 17px "Bebas Neue", sans-serif; }
+
+/* Our Story — wedding newspaper spread */
+.seraya-story { padding-inline: clamp(18px, 5cqw, 42px); }
+.seraya-story-paper { max-width: 760px; margin: auto; padding: clamp(22px, 6cqw, 46px); color: var(--sy-ink); background: color-mix(in srgb, var(--sy-paper) 90%, white); border: 1px solid color-mix(in srgb, var(--sy-ink) 72%, transparent); box-shadow: 8px 8px 0 color-mix(in srgb, var(--sy-ink) 10%, transparent); text-align: left; }
+.seraya-story-masthead { border-block: 4px double var(--sy-ink); }
+.seraya-story-edition, .seraya-story-byline, .seraya-story-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 13px/1.2 "Bebas Neue", sans-serif; letter-spacing: .12em; }
+.seraya-story-edition { padding: 7px 2px; border-bottom: 1px solid var(--sy-ink); }
+.seraya-story-masthead h2 { margin: 10px 0 8px; font: 400 clamp(42px, 12cqw, 70px)/.82 "Abril Fatface", serif; letter-spacing: -.045em; text-align: center; text-transform: uppercase; }
+.seraya-story-byline { padding: 8px 2px; border-top: 1px solid var(--sy-ink); }
+.seraya-story-byline strong { font: 18px/1 "Bebas Neue", sans-serif; letter-spacing: .08em; text-align: center; }
+.seraya-story-lead { margin: 22px 0; padding-bottom: 22px; border-bottom: 1px solid var(--sy-ink); column-count: 2; column-gap: 28px; column-rule: 1px solid color-mix(in srgb, var(--sy-ink) 34%, transparent); }
+.seraya-story-lead p { margin: 0; font: 18px/1.48 Bellefair, serif; text-align: justify; hyphens: auto; }
+.seraya-story-lead p::first-letter { float: left; margin: 3px 8px 0 0; font: 72px/.7 "Abril Fatface", serif; }
+.seraya-story-news { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 3px solid var(--sy-ink); }
+.seraya-story-news article { min-width: 0; padding: 22px 18px 20px 0; border-bottom: 1px solid var(--sy-ink); }
+.seraya-story-news article:nth-child(even) { padding-right: 0; padding-left: 18px; border-left: 1px solid var(--sy-ink); }
+.seraya-story-news article:last-child:nth-child(odd) { grid-column: 1 / -1; padding-right: 0; }
+.seraya-story-meta { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; font: 12px/1 "Bebas Neue", sans-serif; letter-spacing: .1em; }
+.seraya-story-meta span { padding: 3px 6px; color: var(--sy-paper); background: var(--sy-ink); }
+.seraya-story-meta time { text-align: right; }
+.seraya-story-news h3 { margin: 0 0 8px; font: 29px/.95 "Bebas Neue", sans-serif; letter-spacing: .02em; text-transform: uppercase; }
+.seraya-story-news p { margin: 0; font: 17px/1.42 Bellefair, serif; text-align: justify; }
+.seraya-story-footer { margin-top: 22px; padding-top: 8px; border-top: 4px double var(--sy-ink); }
+
+/* Public forms */
+.seraya-form .public-forms-root { max-width: 760px; margin: auto; padding-bottom: 0 !important; }
+.seraya-form .pf-glass { border: 2px solid var(--sy-ink) !important; border-radius: 0 !important; background: rgba(255,255,255,.24) !important; box-shadow: 7px 7px 0 var(--sy-ink) !important; }
+.seraya-form .pf-title { font: 38px "Abril Fatface", serif !important; letter-spacing: 0 !important; text-transform: uppercase !important; }
+.seraya-form .pf-input { border: 1px solid var(--sy-ink) !important; border-radius: 0 !important; background: rgba(255,255,255,.55) !important; }
+.seraya-form .pf-btn { border-radius: 0 !important; background: var(--sy-ink) !important; font-family: "Bebas Neue", sans-serif !important; font-size: 20px !important; letter-spacing: .08em !important; }
+.pf-gift-modal.theme-seraya { background:rgba(12,12,12,.78); }
+.pf-gift-modal.theme-seraya .pf-gift-modal-panel { padding:24px; color:#111; background:#f4f1ea; border:2px solid #111; border-radius:0; box-shadow:5px 5px 0 rgba(255,255,255,.3); }
+.pf-gift-modal.theme-seraya .pf-gift-modal-header { border-bottom:3px double #111; }
+.pf-gift-modal.theme-seraya .pf-gift-modal-header span,.pf-gift-modal.theme-seraya .pf-gift-account > span { font-family:"Bebas Neue",sans-serif; font-size:13px; letter-spacing:.14em; opacity:1; }
+.pf-gift-modal.theme-seraya .pf-gift-modal-header h3 { font:400 34px/.95 "Abril Fatface",serif; text-transform:uppercase; }
+.pf-gift-modal.theme-seraya .pf-gift-modal-header > button { border:1px solid #111; border-radius:0; color:#f4f1ea; background:#111; font-family:"Bebas Neue",sans-serif; }
+.pf-gift-modal.theme-seraya .pf-gift-account { border:1px solid #111; border-radius:0; background:rgba(255,255,255,.25); box-shadow:4px 4px 0 #111; }
+.pf-gift-modal.theme-seraya .pf-gift-account strong { font:24px "Bebas Neue",sans-serif; text-transform:uppercase; }
+.pf-gift-modal.theme-seraya .pf-gift-number { font-family:"Courier Prime",ui-monospace,monospace; }
+.pf-gift-modal.theme-seraya .pf-gift-account button { border:1px solid #111; border-radius:0; color:#f4f1ea; background:var(--gift-accent,#111); font:17px "Bebas Neue",sans-serif; letter-spacing:.06em; text-transform:uppercase; }
+.pf-gift-modal.theme-seraya .pf-gift-address { border:1px solid #111; border-radius:0; background:rgba(255,255,255,.25); box-shadow:4px 4px 0 #111; }
+.pf-gift-modal.theme-seraya .pf-gift-address i { border-radius:0; color:#f4f1ea; background:var(--gift-accent,#111); }
+.pf-gift-modal.theme-seraya .pf-gift-address p { font:18px/1.5 Bellefair,serif; }
+@media (max-width:560px) { .pf-gift-modal.theme-seraya .pf-gift-modal-panel { width:calc(100% - 6px); padding:18px 14px; box-shadow:3px 3px 0 rgba(255,255,255,.3); } .pf-gift-modal.theme-seraya .pf-gift-modal-header h3 { font-size:28px; } }
+
+.seraya-footer { padding: 94px 28px; color: var(--sy-paper); background: var(--sy-ink); text-align: center; }
+.seraya-footer > span { font: 22px "Bebas Neue", sans-serif; letter-spacing: .12em; }
+.seraya-footer h2 { margin: 18px auto; color: var(--sy-paper); font: 48px/.9 "Abril Fatface", serif; text-transform: uppercase; }
+.seraya-footer p { max-width: 38ch; margin: 0 auto 24px; font: 18px/1.4 Bellefair, serif; }
+.seraya-footer strong { font: 22px "Bebas Neue", sans-serif; }
+.seraya-footer small { display: block; margin-top: 46px; opacity: .55; font: 14px Montserrat, sans-serif; letter-spacing: .13em; }
+
+/* Desktop split cover, matching the reference's fixed photographic half. */
+@container (min-width: 1000px) {
+  .split-view-theme-seraya .split-view-left { width: calc(100% - 450px); flex: 1; }
+  .split-view-theme-seraya .split-view-left-bg { opacity: 1; filter: saturate(.7) contrast(.94); }
+  .split-view-theme-seraya .split-view-left::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(0,0,0,.04), transparent 58%, rgba(0,0,0,.12)); }
+  .split-view-theme-seraya .split-view-left-content { width: min(72%, 500px); padding: 42px; border: 1px solid rgba(255,255,255,.85); text-align: left; }
+  .split-view-theme-seraya .split-view-top-label { font: 25px "Bebas Neue", sans-serif; letter-spacing: .13em; }
+  .split-view-theme-seraya .split-view-title { max-width: 7ch; color: #fff; font: 400 76px/.84 "Abril Fatface", serif !important; text-transform: uppercase; text-shadow: 0 3px 20px rgba(0,0,0,.22); }
+  .split-view-theme-seraya .split-view-subtitle { margin: 24px 0 0; font: 23px Bellefair, serif !important; }
+  .split-view-theme-seraya .split-view-right { width: 450px !important; }
+  .split-view-theme-seraya .split-view-blur-wrapper { display: none; }
+  .split-view-theme-seraya .split-view-template-wrapper { box-shadow: none; }
+}
+
+@container (max-width: 560px) {
+  .seraya-section, .seraya-quote { padding: 66px 20px; }
+  .seraya-section::before { left: 20px; right: 20px; }
+  .seraya-hero { min-height:540px; padding:14px 14px 14px 48px; }
+  .seraya-cover-title { left:16px; }
+  .seraya-events { gap: 24px; }
+  .seraya-dress { grid-template-columns: 1fr 1fr; }
+  .seraya-gallery { grid-auto-rows: 34px; gap:4px; padding:5px; }
+  .seraya-story { padding-inline: 12px; }
+  .seraya-story-paper { padding: 20px 16px; box-shadow: 5px 5px 0 color-mix(in srgb, var(--sy-ink) 10%, transparent); }
+  .seraya-story-edition, .seraya-story-byline, .seraya-story-footer { font-size: 11px; letter-spacing: .08em; }
+  .seraya-story-byline { flex-wrap: wrap; justify-content: center; }
+  .seraya-story-byline strong { order: -1; flex-basis: 100%; }
+  .seraya-story-lead { column-count: 1; }
+  .seraya-story-news { grid-template-columns: 1fr; }
+  .seraya-story-news article, .seraya-story-news article:nth-child(even), .seraya-story-news article:last-child:nth-child(odd) { grid-column: auto; padding: 20px 0; border-left: 0; }
+}

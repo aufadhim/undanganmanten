@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
 import { QRCodeSVG } from 'qrcode.react';
 import { useUI } from '../context/UIContext.jsx';
+import { DUMMY_WISHES } from '../config/dummyPreviewData.js';
 
-export default function PublicForms({ invitation, previewGuest, templateStyle, formType = 'all', previewMode = false }) {
+export default function PublicForms({ invitation, previewGuest, templateStyle, formType = 'all', previewMode = false, hideSectionTitle = false }) {
   if (!invitation) return null;
 
   const theme = invitation.themeSettings;
   const slug = invitation.slug;
   const guestId = previewGuest?.id;
+  const hasQrGuestbook = invitation.orders?.some((order) => Array.isArray(order.addons) && order.addons.includes('QR_GUESTBOOK'));
 
   return (
     <div className="public-forms-root" style={{ padding: '0 20px', paddingBottom: '60px', width: '100%', boxSizing: 'border-box', zIndex: 10, position: 'relative' }}>
       
       {/* QR CODE ACCESS PASS */}
-      {previewGuest && (
+      {previewGuest && hasQrGuestbook && formType !== 'wishes' && (
         <div className="pf-glass" style={{ textAlign: 'center' }}>
           <h3 className="pf-title">Access Pass</h3>
           <p style={{ fontSize: 13, color: '#333', marginBottom: 16 }}>Tunjukkan QR Code ini kepada penerima tamu di lokasi acara untuk check-in.</p>
@@ -32,7 +35,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
       )}
 
       {formType !== 'wishes' && invitation.invitationFeatures?.rsvpEnabled !== false && (
-        <RsvpForm slug={slug} guest={previewGuest} theme={theme} previewMode={previewMode} />
+        <RsvpForm invitationId={invitation.id} slug={slug} guest={previewGuest} theme={theme} previewMode={previewMode} hideTitle={hideSectionTitle} />
       )}
       
       {formType === 'all' && invitation.invitationFeatures?.giftEnabled && invitation.giftSettings && templateStyle !== 'eternal' && (
@@ -40,7 +43,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
       )}
       
       {formType !== 'rsvp' && invitation.invitationFeatures?.wishesEnabled !== false && (
-        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} previewMode={previewMode} templateStyle={templateStyle} />
+        <WishesSection slug={slug} initialWishes={invitation.wishes} theme={theme} guest={previewGuest} previewMode={previewMode} templateStyle={templateStyle} hideTitle={hideSectionTitle} />
       )}
 
       <style>{`
@@ -119,7 +122,7 @@ export default function PublicForms({ invitation, previewGuest, templateStyle, f
   );
 }
 
-function RsvpForm({ slug, guest, theme, previewMode }) {
+function RsvpForm({ invitationId, slug, guest, theme, previewMode, hideTitle }) {
   const { t } = useTranslation();
   const { toast } = useUI();
   const [form, setForm] = useState({ 
@@ -149,6 +152,10 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
     e.preventDefault();
     setLoading(true);
     try {
+      if (previewMode && invitationId === 'sandbox') {
+        toast.success('Simulasi RSVP berhasil. Data akan tersimpan setelah Anda mendaftar.');
+        return;
+      }
       const publicUrl = guest?.id ? `/invitations/public/${slug}/rsvp?g=${guest.id}` : `/invitations/public/${slug}/rsvp`;
       const ownerUrl = guest?.id ? `/invitations/me/preview-rsvp?g=${guest.id}` : '/invitations/me/preview-rsvp';
       const url = previewMode ? ownerUrl : publicUrl;
@@ -166,7 +173,7 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
 
   return (
     <div className="pf-glass">
-      <h3 className="pf-title">RSVP</h3>
+      {!hideTitle && <h3 className="pf-title">RSVP</h3>}
       <p className="pf-subtitle">{t('public.rsvp_subtitle')}</p>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <input className="pf-input" placeholder="Nama Lengkap" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
@@ -186,12 +193,34 @@ function RsvpForm({ slug, guest, theme, previewMode }) {
   );
 }
 
-export function GiftSection({ gift, accent }) {
+export function GiftSection({ gift, accent, templateStyle = '', hideTitle = false }) {
   const [visible, setVisible] = useState(null);
+  const modalHostRef = useRef(null);
   const accounts = gift.bankAccounts?.length ? gift.bankAccounts : [{ bankName: gift.bankName, accountNumber: gift.accountNumber, accountHolder: gift.accountHolder }];
+  useEffect(() => {
+    if (!visible) return undefined;
+    const scrollHost = modalHostRef.current?.closest('.split-view-right');
+    const previousOverflow = scrollHost?.style.overflow;
+    const closeOnEscape = (event) => event.key === 'Escape' && setVisible(null);
+    if (scrollHost) scrollHost.style.overflow = 'hidden';
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      if (scrollHost) scrollHost.style.overflow = previousOverflow || '';
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [visible]);
+
+  const previewViewport = modalHostRef.current?.closest('.phone-preview-wrapper');
+  const modalContent = visible && <div className={`pf-gift-modal theme-${templateStyle}`} role="dialog" aria-modal="true" aria-label="Informasi hadiah" onClick={() => setVisible(null)} style={{ '--gift-accent': accent || '#333' }}>
+    <div className="pf-gift-modal-panel" onClick={(e) => e.stopPropagation()}>
+      <div className="pf-gift-modal-header"><div><span>WEDDING GIFT</span><h3>{visible === 'bank' ? 'Pilihan Rekening' : 'Alamat Pengiriman'}</h3></div><button type="button" onClick={() => setVisible(null)} aria-label="Tutup">×</button></div>
+      {visible === 'bank' ? <div className="pf-gift-accounts">{accounts.map((account, index) => <article key={index} className="pf-gift-account"><span>REKENING {String(index + 1).padStart(2, '0')}</span><strong>{account.bankName}</strong><div className="pf-gift-number">{account.accountNumber}</div><p>a.n. {account.accountHolder}</p><button type="button" onClick={() => navigator.clipboard.writeText(account.accountNumber)}><i className="fa-regular fa-copy"></i> Salin Nomor</button></article>)}</div> : <div className="pf-gift-address"><i className="fa-solid fa-location-dot"></i><p>{gift.shippingAddress}</p></div>}
+    </div>
+  </div>;
+  const modal = modalContent && previewViewport ? createPortal(modalContent, previewViewport) : modalContent;
   return (
-    <div className="pf-glass" style={{ textAlign: 'center' }}>
-      <h3 className="pf-title">Tanda Kasih</h3>
+    <div ref={modalHostRef} className="pf-glass pf-gift-card" style={{ textAlign: 'center', '--gift-accent': accent || '#333' }}>
+      {!hideTitle && <h3 className="pf-title">Tanda Kasih</h3>}
       <p style={{ fontSize: 13, opacity: 0.8, marginBottom: 20, color: '#333' }}>Kehadiran dan doa Anda sudah lebih dari cukup. Informasi berikut tersedia hanya bila Anda berkenan.</p>
       {(gift.type === 'bank_transfer' || gift.type === 'both') && (
         <button className="pf-btn" type="button" onClick={() => setVisible('bank')} style={{ marginBottom: 10 }}>Lihat Informasi Rekening</button>
@@ -199,20 +228,16 @@ export function GiftSection({ gift, accent }) {
       {(gift.type === 'address' || gift.type === 'both') && (
         <button className="pf-btn" type="button" onClick={() => setVisible('address')}>Lihat Alamat Pengiriman</button>
       )}
-      {visible && <div role="dialog" aria-modal="true" aria-label="Informasi hadiah" onClick={() => setVisible(null)} style={{ position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(0,0,0,.55)', display: 'grid', placeItems: 'center', padding: 20 }}>
-        <div onClick={(e) => e.stopPropagation()} style={{ width: 'min(440px,100%)', maxHeight: '80vh', overflow: 'auto', background: '#fff', color: '#222', borderRadius: 18, padding: 24, textAlign: 'left' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><h3 style={{ marginTop: 0 }}>{visible === 'bank' ? 'Pilihan Rekening' : 'Alamat Pengiriman'}</h3><button type="button" onClick={() => setVisible(null)} aria-label="Tutup" style={{ border: 0, background: 'none', fontSize: 22 }}>×</button></div>
-          {visible === 'bank' ? accounts.map((account, index) => <div key={index} style={{ padding: 14, border: '1px solid #ddd', borderRadius: 12, marginBottom: 10 }}><strong>{account.bankName}</strong><div style={{ fontFamily: 'monospace', fontSize: 18, margin: '8px 0' }}>{account.accountNumber}</div><div>a.n. {account.accountHolder}</div><button type="button" onClick={() => navigator.clipboard.writeText(account.accountNumber)} style={{ marginTop: 10 }}>Salin Nomor</button></div>) : <p style={{ whiteSpace: 'pre-line', lineHeight: 1.7 }}>{gift.shippingAddress}</p>}
-        </div>
-      </div>}
+      {modal}
     </div>
   );
 }
 
-function WishesSection({ slug, initialWishes, theme, guest, previewMode, templateStyle }) {
+function WishesSection({ slug, initialWishes, theme, guest, previewMode, templateStyle, hideTitle }) {
   const { t } = useTranslation();
   const { toast } = useUI();
-  const [wishes, setWishes] = useState(initialWishes || []);
+  const resolveWishes = () => initialWishes?.length ? initialWishes : (previewMode ? DUMMY_WISHES : []);
+  const [wishes, setWishes] = useState(resolveWishes);
   
   const guestWish = initialWishes?.find(w => w.guestId === guest?.id);
   
@@ -224,10 +249,8 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode, templat
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (initialWishes) {
-      setWishes(initialWishes);
-    }
-  }, [initialWishes]);
+    setWishes(resolveWishes());
+  }, [initialWishes, previewMode]);
 
   useEffect(() => {
     const gw = wishes.find(w => w.guestId === guest?.id);
@@ -288,7 +311,7 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode, templat
   return (
     <>
       <div className="pf-glass">
-        <h3 className="pf-title">Ucapan & Doa</h3>
+        {!hideTitle && <h3 className="pf-title">Ucapan & Doa</h3>}
         <p className="pf-subtitle">{t('public.wishes_subtitle')}</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
           <input className="pf-input" placeholder="Nama Anda" value={form.senderName} onChange={(e) => setForm({ ...form, senderName: e.target.value })} required />
@@ -299,11 +322,11 @@ function WishesSection({ slug, initialWishes, theme, guest, previewMode, templat
         </form>
       </div>
 
-      <div className={`wishes-scroll-container ${templateStyle === 'eternal' ? 'eternal-wishes-list' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 16, maxHeight: '450px', overflowY: 'auto', paddingRight: '8px', paddingBottom: '20px' }}>
+      <div className={`wishes-scroll-container ${templateStyle ? `${templateStyle}-wishes-list` : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: 16, maxHeight: '450px', overflowY: 'auto', paddingRight: '8px', paddingBottom: '20px' }}>
         {sortedWishes.map((w) => {
           const isMine = guest && w.guestId === guest.id;
           return (
-            <div key={w.id} className={templateStyle === 'eternal' ? 'eternal-wish-card' : ''} style={{
+            <div key={w.id} className={templateStyle ? `${templateStyle}-wish-card` : ''} style={{
               background: isMine ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.5)', 
               padding: '16px', 
               borderRadius: '12px', 

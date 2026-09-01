@@ -27,7 +27,7 @@ export default function PricingSection() {
           </div>
           <div className="ticket-perf" />
           <div className="ticket-stub">
-            <Link to="/sandbox" className="lp-btn-seal full">Coba Dulu di Sandbox</Link>
+            <Link to="/sandbox" className="lp-btn-seal full">Masuk ke Mode Coba</Link>
           </div>
         </div>
       </div>

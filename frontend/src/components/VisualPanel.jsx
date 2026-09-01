@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api/client.js';
-import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
 export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
@@ -19,18 +18,17 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
     }
   }, [invitation?.id]);
 
-  useEffect(() => {
-    if (onLivePreview && features) {
-      onLivePreview({ invitationFeatures: features });
-    }
-  }, [features, onLivePreview]);
-
   if (!invitation) return null;
+
+  const coverType = invitation.themeSettings?.coverType || 'custom';
+  const showOpeningUpload = coverType === 'custom' || coverType === 'custom-opening';
+  const showMainUpload = coverType === 'custom' || coverType === 'custom-main';
 
   async function toggleFeature(key) {
     const newValue = !features[key];
     // Optimistic Update (Ubah UI dulu biar responsif)
     setFeatures((f) => ({ ...f, [key]: newValue }));
+    onLivePreview?.({ invitationFeatures: { ...features, [key]: newValue } });
 
     try {
       const res = await api.patch('/invitations/me/features', {
@@ -41,6 +39,7 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
     } catch (err) {
       // Revert UI ke semula jika gagal
       setFeatures((f) => ({ ...f, [key]: !newValue }));
+      onLivePreview?.(null);
       toast.error(err.response?.data?.error || 'Gagal mengubah pengaturan fitur.');
     }
   }
@@ -115,21 +114,20 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
 
   async function handleSaveOpeningAnimation(e) {
     const openingAnimation = e.target.value;
+    onLivePreview?.({ themeSettings: { ...(invitation.themeSettings || {}), openingAnimation } });
     try {
-      await api.patch('/themes/me', {
+      const res = await api.patch('/invitations/me/theme', {
         invitationId: invitation.id,
         openingAnimation,
       });
       onUpdated({
         ...invitation,
-        themeSettings: {
-          ...(invitation.themeSettings || {}),
-          openingAnimation,
-        },
+        themeSettings: res.data.themeSettings,
       });
       toast.success('Animasi pembuka berhasil disimpan!');
     } catch (err) {
-      toast.error('Gagal menyimpan animasi pembuka.');
+      onLivePreview?.({ themeSettings: invitation.themeSettings || {} });
+      toast.error(err.response?.data?.error || 'Gagal menyimpan animasi pembuka.');
     }
   }
 
@@ -169,6 +167,10 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
     <>
       <h2 className="panel-header">Musik &amp; Visual Tambahan</h2>
       <p className="panel-sub">Atur musik latar, animasi, dan logo awal pada undangan Anda.</p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '10px 0 18px', padding: '10px 12px', borderRadius: '10px', background: '#f2f7f3', color: '#496052', fontSize: '13px' }}>
+        <i className="fa-solid fa-cloud-arrow-up" aria-hidden="true" />
+        Setiap perubahan di panel ini tersimpan otomatis.
+      </div>
 
       <div className="section-block">
         <div className="section-title">Tampilan Cover Awal &amp; Tirai</div>
@@ -179,21 +181,22 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
             </label>
             <select
               className="text-input"
-              value={invitation?.themeSettings?.coverType === 'default' ? 'default' : 'custom'}
+              value={coverType}
               onChange={handleSaveCoverType}
             >
-              <option value="custom">Gambar Kustom (Foto / Ilustrasi)</option>
-              <option value="default">Bawaan Template (Tanpa Cover Custom)</option>
+              <option value="default">Bawaan template untuk keduanya</option>
+              <option value="custom-main">Kustom cover utama saja</option>
+              <option value="custom-opening">Kustom cover sampul saja</option>
+              <option value="custom">Kustom cover sampul &amp; utama</option>
             </select>
             <p style={{ fontSize: '14px', color: '#555', marginTop: '6px', lineHeight: '1.4' }}>
-              Pilih 'Gambar Kustom' jika Anda ingin mengunggah foto asli, ilustrasi full cover, atau ilustrasi syar'i.
+              Anda dapat mempertahankan ilustrasi bawaan template pada salah satu cover dan memakai foto hanya pada cover lainnya.
             </p>
           </div>
 
           <hr style={{ borderTop: '1px solid #eee', margin: '12px 0' }} />
 
-          {invitation?.themeSettings?.coverType !== 'default' && (
-            <>
+          {showOpeningUpload && (
               <div>
                 <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
                   Gambar / Ilustrasi Tirai (Cover 1)
@@ -213,9 +216,13 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
                   Gambar yang akan muncul sebelum undangan dibuka (tirai awal).
                 </p>
               </div>
+          )}
 
+          {showOpeningUpload && showMainUpload && (
               <hr style={{ borderTop: '1px solid #eee', margin: '12px 0' }} />
+          )}
 
+          {showMainUpload && (
               <div>
                 <label style={{ fontSize: '14px', color: '#333', fontWeight: 600, display: 'block', marginBottom: '8px' }}>
                   Gambar / Ilustrasi Cover Utama (Cover 2)
@@ -235,7 +242,6 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
                   Gambar yang akan muncul setelah tamu mengklik tombol buka undangan.
                 </p>
               </div>
-            </>
           )}
         </div>
       </div>
@@ -353,7 +359,7 @@ export default function VisualPanel({ invitation, onUpdated, onLivePreview }) {
               {[
                 ['breathe', 'Napas Halus'], ['reveal', 'Reveal Elegan'], ['shimmer', 'Kilau Cahaya'], ['spin', 'Putar Minimal']
               ].map(([id, label]) => <button type="button" key={id} className={`loading-animation-card ${invitation.themeSettings?.loadingAnimation === id ? 'active' : ''}`} onClick={() => handleLoadingAnimation(id)}>
-                <span className={`loading-animation-demo demo-${id}`}><span>{invitation.themeId === 'eternal' ? '∞' : invitation.themeId === 'samaya' ? '❧' : 'N'}</span></span>
+                <span className={`loading-animation-demo demo-${id}`}><span>{invitation.themeId === 'eternal' ? '∞' : 'N'}</span></span>
                 <strong>{label}</strong>
               </button>)}
             </div>

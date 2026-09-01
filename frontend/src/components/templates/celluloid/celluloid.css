@@ -1,0 +1,1534 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap');
+
+.atelier {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  container-type: inline-size;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  color: var(--at-forest);
+  background: var(--at-paper);
+  font-family: var(--at-body);
+}
+
+/* Atelier collection: each identity owns a recognisable surface and silhouette. */
+.atelier-celluloid { background: var(--at-paper); color: var(--at-forest); }
+
+.atelier-family-vintage { background-image: radial-gradient(rgba(61,38,20,.13) .7px, transparent .8px); background-size: 5px 5px; }
+.atelier-family-vintage .at-section { border-block: 1px solid color-mix(in srgb, var(--at-gold), transparent 55%); }
+.atelier-family-vintage .at-gallery button { box-shadow: 0 8px 24px #0005; transform: rotate(var(--at-photo-tilt, -1deg)); }
+.atelier-celluloid .at-hero::after { content:"35 mm  •  FRAME 25"; position:absolute; inset:auto 6% 3%; border-block:2px dashed var(--at-gold); padding:10px; letter-spacing:.22em; font:600 10px var(--at-body); }
+.atelier-celluloid .at-couple-section::before { content:""; position:absolute; inset:auto -5% 0 auto; width:44%; aspect-ratio:1; background:url('/assets/celluloid/generated/victorian-botanical-corner-v1.png') center/contain no-repeat; pointer-events:none; }
+
+.atelier-family-modern .at-section { border-radius:0; }
+.atelier-family-modern .at-section-title { display:grid; grid-template-columns:1fr 2fr; text-align:left; align-items:end; }
+.atelier-family-world .at-section { background-image:linear-gradient(45deg,color-mix(in srgb,var(--at-gold),transparent 94%) 25%,transparent 25% 75%,color-mix(in srgb,var(--at-gold),transparent 94%) 75%); background-size:24px 24px; }
+.atelier-family-nusantara .at-section { border-inline:8px double color-mix(in srgb,var(--at-gold),transparent 25%); }
+.atelier-family-fantasy .at-section,
+.atelier-family-future .at-section { background-image:radial-gradient(circle at 50% 10%,color-mix(in srgb,var(--at-gold),transparent 76%),transparent 38%); }
+.atelier-family-future .at-button,
+.atelier-family-future .at-event-card { border-radius:2px 28px; backdrop-filter:blur(14px); box-shadow:inset 0 0 0 1px #fff9,0 12px 45px #6155bd30; }
+
+/* Isvara — editorial monochrome cover, ivory paper and layered sage botanicals. */
+.atelier { background-image: url('/assets/isvara/texture-1.webp'); background-size: 600px auto; }
+.split-view-theme-isvara .split-view-right { overflow: hidden; background: var(--at-paper, #f3f0e8); }
+.split-view-theme-isvara .split-view-template-wrapper { height: 100%; min-height: 0; flex: 1 1 auto; overflow: hidden; }
+.at-opening .at-sky { filter: grayscale(1) contrast(1.05) brightness(.62); }
+.at-opening .at-sky::after { background: linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.42)); }
+.at-opening-copy { color:#fff; border-color:rgba(255,255,255,.64); background:rgba(12,14,12,.2); box-shadow:none; backdrop-filter:blur(2px); }
+.at-opening-copy h1 { color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.45); }
+.at-opening-copy::before,
+.at-opening-copy::after { border-color:rgba(255,255,255,.34); }
+.at-opening-copy button { color:#394537; border-color:#fff; background:#fff; }
+.at-opening-copy button:hover { color:#fff; background:#52624f; }
+.at-hero { min-height:920px; }
+.at-hero .at-sky { filter:grayscale(1) contrast(1.02) brightness(.76); }
+.at-hero::after { background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.34) 65%,var(--at-paper)); }
+.at-monogram { color:#fff; border-color:rgba(255,255,255,.75); background:rgba(30,36,29,.18); }
+.at-hero-copy,
+.at-hero-copy h1 { color:#fff; text-shadow:0 2px 15px rgba(0,0,0,.5); }
+.at-section { background-color:var(--at-paper); background-image:url('/assets/isvara/texture-1.webp'); background-size:600px auto; }
+.at-section:nth-of-type(even) { background-color:color-mix(in srgb,var(--at-paper) 76%,var(--at-soft)); }
+.at-section::before { width:64%; background:linear-gradient(90deg,transparent,var(--at-gold),transparent); }
+.at-heading h2,
+.at-person h3,
+.at-story-list h3 { font-style:normal; }
+.at-portrait img { clip-path:polygon(8% 3%,92% 3%,100% 93%,8% 100%,0 10%); filter:grayscale(.15) saturate(.72); }
+.at-portrait svg { stroke-width:1; transform:rotate(-2deg); }
+.at-wayang-tableau { background:linear-gradient(180deg,#e8e8de,#71806a); }
+.at-wayang-tableau > img { width:105%; top:-18%; opacity:.78; filter:sepia(.28) saturate(.66); }
+.at-wayang-tableau::after { background:linear-gradient(180deg,transparent 38%,rgba(37,47,35,.76)); }
+.at-layer { filter:sepia(.22) saturate(.68) drop-shadow(0 12px 16px rgba(44,52,38,.12)); }
+.at-gallery button { border-color:#f9f7f0; }
+.at-events article { background:rgba(255,255,255,.48); box-shadow:inset 0 0 0 7px var(--at-paper),inset 0 0 0 8px rgba(120,132,108,.35),0 14px 34px rgba(45,55,42,.1); }
+.at-button,
+.at-opening-copy button { border-radius:2px; letter-spacing:.16em; }
+.at-petals i { background:#8b9a7d; border-radius:70% 0 70% 0; }
+.at-footer .at-sky { filter:grayscale(.6) brightness(.58); }
+
+@container (min-width: 720px) {
+  .at-couple { grid-template-columns:1fr auto 1fr; align-items:center; }
+  .at-story-list article:nth-child(even) { grid-template-columns:1fr 1.15fr; }
+}
+
+.atelier *,
+.atelier *::before,
+.atelier *::after { box-sizing: border-box; }
+.atelier h1,
+.atelier h2,
+.atelier h3,
+.atelier h4 { margin: 0; color: var(--at-wine); font-family: var(--at-script); }
+.atelier button,
+.atelier input,
+.atelier select,
+.atelier textarea { font: inherit; }
+
+.split-view-theme-isvara .split-view-right { overflow: hidden; background: var(--at-paper, #f4eddf); }
+.split-view-theme-isvara .split-view-template-wrapper { height: 100%; min-height: 0; flex: 1 1 auto; overflow: hidden; }
+
+.at-flow { display: flex; flex-direction: column; width: 100%; min-height: 100%; overflow: visible; }
+.at-flow > * { flex-shrink: 0; }
+.at-flow > [data-section="cover"] { order: 1; }
+.at-flow > [data-section="quote"] { order: 2; }
+.at-flow > [data-section="profile"] { order: 3; }
+.at-flow > [data-section="events"] { order: 4; }
+.at-flow > [data-section="countdown"] { order: 5; }
+.at-flow > [data-section="gallery"] { order: 6; }
+.at-flow > [data-section="rundown"] { order: 7; }
+.at-flow > [data-section="story"] { order: 8; }
+.at-flow > [data-section="dresscode"] { order: 9; }
+.at-flow > [data-section="livestream"] { order: 10; }
+.at-flow > [data-section="igFilter"] { order: 11; }
+.at-flow > [data-section="rsvp"] { order: 12; }
+.at-flow > [data-section="gift"] { order: 13; }
+.at-flow > [data-section="wishes"] { order: 14; }
+.at-flow > [data-section="footer"] { order: 15; }
+
+.at-opening { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; overflow: hidden; transition: opacity 1s ease, visibility 1s ease; }
+.at-opening.is-open { opacity: 0; visibility: hidden; pointer-events: none; }
+.at-opening.is-open.opening-slide-up { transform:translateY(-100%); opacity:1; }
+.at-opening.is-open.opening-slide-down { transform:translateY(100%); opacity:1; }
+.at-opening.is-open.opening-zoom { transform:scale(1.1); opacity:0; }
+.at-opening { transform:translateZ(0); transition:opacity 1.5s ease,visibility 1.5s ease,transform 1.8s cubic-bezier(.22,1,.36,1); }
+.at-loader { position:absolute; inset:0; z-index:10020; display:grid; place-items:center; background:var(--at-paper); }
+.at-loader img { width:min(120px,30%); max-height:120px; object-fit:contain; }
+.at-loader .loading-breathe{animation:ivLogoBreathe 3.8s ease-in-out infinite}.at-loader .loading-reveal{animation:ivLogoReveal 4.2s ease-in-out infinite}.at-loader .loading-spin{animation:ivLogoSpin 5.4s linear infinite}.at-loader .loading-shimmer{animation:ivLogoBreathe 3.8s ease-in-out infinite;filter:drop-shadow(0 0 18px color-mix(in srgb,var(--at-gold) 40%,transparent))}
+@keyframes ivLogoBreathe{50%{transform:scale(1.05);opacity:.68}}@keyframes ivLogoReveal{0%,
+100%{clip-path:inset(0 100% 0 0)}45%,
+70%{clip-path:inset(0)}}@keyframes ivLogoSpin{to{transform:rotate(360deg)}}
+.at-opening-copy { position: relative; z-index: 8; width: min(82%, 370px); padding: 40px 24px; border: 1px solid rgba(116,29,43,.45); color: var(--at-wine); background: rgba(250,245,233,.72); box-shadow: 0 18px 48px rgba(55,35,16,.16); text-align: center; backdrop-filter: blur(5px); }
+.at-opening-copy::before,
+.at-opening-copy::after { content: ''; position: absolute; inset: 9px; border: 1px solid rgba(164,137,78,.55); pointer-events: none; }
+.at-opening-copy::after { inset: 14px; border-style: dotted; }
+.at-opening-copy > * { position: relative; z-index: 1; }
+.at-opening-copy span,
+.at-hero-copy small { font: 600 11px Cinzel, serif; letter-spacing: .18em; text-transform: uppercase; }
+.at-opening-copy h1 { margin: 16px 0 28px; font: italic 500 clamp(46px, 14cqw, 72px)/.88 var(--at-script); }
+.at-opening-copy h1 i,
+.at-hero-copy h1 i,
+.at-footer h2 i { font-weight: 500; }
+.at-opening-copy p { margin: 0; font: 16px var(--at-script); }
+.at-opening-copy strong { display: block; margin-top: 5px; font: 600 23px var(--at-script); }
+.at-opening-copy button,
+.at-button { display: inline-flex; align-items: center; justify-content: center; margin-top: 26px; padding: 12px 23px; border: 1px solid var(--at-wine); border-radius: 999px; color: var(--at-wine); background: rgba(244,237,223,.74); font: 600 10px Cinzel, serif; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; cursor: pointer; transition: .3s ease; }
+.at-opening-copy button:hover,
+.at-button:hover { color: var(--at-paper); background: var(--at-wine); transform: translateY(-2px); }
+
+.at-scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.at-sky { position: absolute; inset: -3%; background-size: cover; background-position: center; animation: ivSceneBreath 14s ease-in-out infinite alternate; }
+.at-sky::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(247,238,219,.06),rgba(44,58,35,.2)); }
+.at-scene-tree { position:absolute; z-index:3; bottom:-3%; width:38%; opacity:.74; filter:saturate(.76) drop-shadow(0 12px 15px rgba(31,35,20,.18)); transform-origin:50% 100%; animation:ivTreeSway 8s ease-in-out infinite alternate; }
+.at-scene-tree.left { left:-9%; }.at-scene-tree.right { right:-9%; transform:scaleX(-1); animation-delay:-3s; }
+.at-scene-flower { position:absolute; z-index:5; bottom:-4%; width:48%; filter:drop-shadow(0 12px 16px rgba(31,35,20,.2)); transform-origin:50% 100%; animation:ivSway 6s ease-in-out infinite alternate; }
+.at-scene-flower.left { left:-13%; }.at-scene-flower.right { right:-13%; transform:scaleX(-1); animation-delay:-2s; }
+.at-scene-cloud { position:absolute; z-index:4; width:31%; opacity:.75; filter:drop-shadow(0 4px 6px rgba(89,43,34,.16)); }
+.at-scene-cloud.one { top:9%; left:-7%; animation:ivCloud 16s ease-in-out infinite alternate; }.at-scene-cloud.two { top:19%; right:-8%; transform:scale(.7); animation:ivCloud 20s -7s ease-in-out infinite alternate-reverse; }
+.at-scene-footer .at-sky{filter:brightness(.73)}
+.at-mist { position: absolute; left: -30%; width: 160%; height: 34%; border-radius: 50%; filter: blur(28px); opacity: .36; background: linear-gradient(90deg, transparent, rgba(255,252,242,.94), transparent); }
+.mist-one { bottom: 20%; animation: ivMist 18s linear infinite alternate; }
+.mist-two { bottom: 7%; opacity: .24; animation: ivMist 24s linear infinite alternate-reverse; }
+.at-bird { position: absolute; z-index: 3; width: 54px; color: #756844; filter: drop-shadow(0 4px 4px rgba(0,0,0,.15)); }
+.bird-one { top: 22%; left: -16%; animation: ivBirdFly 18s linear infinite; }
+.bird-two { top: 35%; left: -20%; width: 38px; opacity: .72; animation: ivBirdFly 23s 5s linear infinite; }
+.at-ornate-bird { position:absolute; z-index:6; top:17%; left:-22%; width:96px; filter:drop-shadow(0 8px 8px rgba(39,30,19,.2)); animation:ivOrnateBird 20s 2s linear infinite; }
+.at-petals i { position: absolute; top: -8%; width: 10px; height: 16px; border-radius: 100% 0 100% 0; background: #86293e; opacity: .7; animation: ivPetal 13s linear infinite; }
+.at-petals i:nth-child(1){left:8%;animation-delay:-4s}.at-petals i:nth-child(2){left:18%;animation-delay:-9s;filter:blur(1px)}.at-petals i:nth-child(3){left:31%;animation-delay:-2s;transform:scale(.7)}.at-petals i:nth-child(4){left:43%;animation-delay:-11s}.at-petals i:nth-child(5){left:54%;animation-delay:-6s;filter:blur(2px)}.at-petals i:nth-child(6){left:64%;animation-delay:-1s}.at-petals i:nth-child(7){left:73%;animation-delay:-8s;transform:scale(.6)}.at-petals i:nth-child(8){left:82%;animation-delay:-3s}.at-petals i:nth-child(9){left:91%;animation-delay:-10s;filter:blur(1px)}.at-petals i:nth-child(10){left:96%;animation-delay:-5s}
+
+.at-hero { min-height: 850px; position: relative; display: grid; place-items: center; overflow: hidden; }
+.at-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(244,237,223,.02), rgba(244,237,223,.18) 55%, var(--at-paper)); }
+.at-monogram { position: absolute; z-index: 6; top: 110px; width: 90px; height: 90px; display: grid; place-items: center; border: 1px solid var(--at-gold); border-radius: 50%; color: var(--at-wine); background: rgba(244,237,223,.66); font: italic 600 33px var(--at-script); backdrop-filter: blur(4px); }
+.at-monogram::before { content:''; position:absolute; inset:7px; border:1px solid color-mix(in srgb,var(--at-gold) 55%,transparent); border-radius:50%; }
+.at-hero-copy { position: relative; z-index: 6; width: min(78%, 390px); margin-top: 180px; color: var(--at-wine); text-align: center; }
+.at-hero-copy h1 { margin: 16px 0 11px; font: italic 500 clamp(52px, 14cqw, 78px)/.86 var(--at-script); text-shadow: 0 2px rgba(255,255,255,.5); }
+.at-hero-copy p { font: 500 12px Cinzel, serif; letter-spacing: .08em; }
+
+.at-section { position: relative; padding: 88px 28px; overflow: hidden; background-color: var(--at-paper); background-image: radial-gradient(rgba(93,67,29,.06) .7px, transparent .7px); background-size: 9px 9px; text-align: center; }
+.at-section > :not(.at-layered) { position:relative; z-index:3; }
+.at-layered { position:absolute; z-index:1; inset:0; overflow:hidden; pointer-events:none; }
+.at-layer { position:absolute; object-fit:contain; filter:drop-shadow(0 12px 16px rgba(44,37,20,.13)); transform-origin:50% 100%; }
+.at-layer-1 { width:72%; left:50%; bottom:-2%; opacity:.24; transform:translateX(-50%); }
+.at-layer-2 { width:38%; left:-10%; bottom:-3%; animation:ivSway 6s ease-in-out infinite alternate; }
+.at-layer-3 { width:36%; right:-11%; top:8%; animation:ivSway 8s -2s ease-in-out infinite alternate-reverse; }
+.at-layered-quote .at-layer-1,
+.at-layered-date .at-layer-1,
+.at-layered-wishes .at-layer-1 { width:86%; height:82%; bottom:8%; opacity:.22; }
+.at-layered-couple .at-layer-1 { left:-7%; bottom:4%; width:33%; opacity:.2; transform:none; }.at-layered-couple .at-layer-2 { left:auto; right:-7%; bottom:4%; width:33%; opacity:.2; transform:scaleX(-1); }
+.at-layered-story .at-layer-1 { width:100%; height:38%; left:0; bottom:0; opacity:.33; object-fit:cover; transform:none; }.at-layered-story .at-layer-2{width:37%;opacity:.38}.at-layered-story .at-layer-3{top:auto;bottom:2%;opacity:.55}
+.at-layered-gallery .at-layer-1{width:42%;left:-8%;bottom:auto;top:4%;transform:none}.at-layered-gallery .at-layer-2{left:auto;right:-12%;bottom:18%;width:45%}.at-layered-gallery .at-layer-3{right:auto;left:-8%;top:auto;bottom:-4%;width:40%}
+.at-layered-events .at-layer-1,
+.at-layered-gift .at-layer-1 { width:94%; height:92%; bottom:3%; opacity:.15; }
+.at-layered-rsvp .at-layer-1{left:-10%;bottom:0;width:30%;opacity:.17;transform:none}.at-layered-rsvp .at-layer-2{left:auto;right:-10%;bottom:0;width:30%;opacity:.17;transform:scaleX(-1)}
+.at-section:nth-of-type(even) { background-color: color-mix(in srgb, var(--at-paper) 82%, var(--at-soft)); }
+.at-section::before { content: ''; position: absolute; top: 16px; left: 50%; width: 44%; height: 1px; background: linear-gradient(90deg, transparent, var(--at-gold), transparent); transform: translateX(-50%); }
+.at-floral { position: absolute; right: -24px; bottom: -20px; width: 170px; opacity: .32; transform: rotate(-8deg); filter:drop-shadow(0 8px 12px rgba(44,37,20,.12)); }
+.at-heading { max-width: 650px; margin: 0 auto 44px; }
+.at-heading span,
+.at-kicker { display: block; color: var(--at-gold); font: 600 10px Cinzel, serif; letter-spacing: .18em; text-transform: uppercase; }
+.at-heading h2 { margin: 11px 0 18px; font: italic 600 clamp(40px, 11cqw, 58px)/.92 var(--at-script); }
+.at-heading i { display:block; width:74px; height:9px; margin:auto; position:relative; }
+.at-heading i::before { content:''; position:absolute; top:4px; left:0; width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--at-gold) 24%,var(--at-gold) 76%,transparent); }
+.at-heading i::after { content:''; position:absolute; top:1px; left:50%; width:7px; height:7px; border:1px solid var(--at-gold); background:var(--at-paper); transform:translateX(-50%) rotate(45deg); }
+.at-intro { min-height: 600px; display: grid; place-items: center; }
+.at-intro > div { max-width: 660px; position: relative; z-index: 2; }
+.at-intro h2 { margin: 14px 0 28px; font: italic 600 clamp(44px, 11cqw, 62px)/.95 var(--at-script); }
+.at-intro blockquote { max-width: 36ch; margin: auto; font: italic 500 21px/1.5 var(--at-script); }
+.at-intro p { margin-top: 16px; font: 600 10px Cinzel, serif; letter-spacing: .12em; }
+
+.at-couple { max-width: 720px; margin: auto; display: grid; gap: 42px; }
+.at-amp { font: italic 600 64px var(--at-script); color: var(--at-gold); }
+.at-person { position: relative; padding-bottom: 24px; }
+.at-portrait { width: min(86%, 340px); margin: auto; aspect-ratio: 4/5; position: relative; }
+.at-portrait img { width: 100%; height: 100%; object-fit: cover; clip-path: ellipse(45% 48% at 50% 50%); filter: saturate(.78) contrast(.97); }
+.at-portrait svg { position: absolute; inset: -2%; width: 104%; height: 104%; fill: none; stroke: var(--at-gold); stroke-width: 2; filter: drop-shadow(0 9px 12px rgba(72,45,15,.18)); }
+.at-person > span { display: block; margin-top: 20px; color: var(--at-gold); font: 600 10px Cinzel, serif; letter-spacing: .16em; text-transform: uppercase; }
+.at-person h3 { margin: 6px 0 2px; font: italic 600 48px/.9 var(--at-script); }
+.at-person strong { font: 600 12px Cinzel, serif; letter-spacing: .05em; text-transform: uppercase; }
+.at-person p { max-width: 35ch; margin: 10px auto; font: 500 17px/1.45 var(--at-script); }
+.at-person a { color: var(--at-wine); font-size: 12px; }
+.at-wayang-tableau { width:calc(100% + 56px); min-height:440px; margin:62px -28px -88px; position:relative; overflow:hidden; border-top:1px solid color-mix(in srgb,var(--at-gold) 55%,transparent); background:linear-gradient(180deg,color-mix(in srgb,var(--at-paper) 82%,var(--at-soft)),#291b18); }
+.at-wayang-tableau::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 42%,rgba(28,15,16,.18) 64%,rgba(28,15,16,.86)); pointer-events:none; }
+.at-wayang-tableau > img { position:absolute; top:0; left:50%; width:110%; max-width:none; transform:translateX(-50%); filter:drop-shadow(0 20px 28px rgba(31,15,14,.22)); animation:ivTableauBreath 9s ease-in-out infinite alternate; }
+.at-wayang-tableau > div { position:absolute!important; z-index:2!important; left:0; right:0; bottom:25px; color:#f5ead7; text-align:center; }
+.at-wayang-tableau span { font:600 9px Cinzel,serif; letter-spacing:.2em; text-transform:uppercase; }.at-wayang-tableau h3{margin-top:8px;color:#f5ead7;font:italic 600 42px/.9 var(--at-script)}
+
+.at-story-lead { max-width: 42ch; margin: 0 auto 44px; font: italic 500 20px/1.6 var(--at-script); }
+.at-story-list { max-width: 720px; margin: auto; display: grid; gap: 28px; }
+.at-story-list article { position: relative; display: grid; padding: 12px; border: 1px solid rgba(164,137,78,.55); background: rgba(255,255,255,.3); box-shadow: 0 16px 32px rgba(79,49,17,.09); }
+.at-story-list img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.at-story-list article > div { padding: 26px 16px; }
+.at-story-list span { color: var(--at-gold); font: 600 10px Cinzel, serif; letter-spacing: .12em; text-transform: uppercase; }
+.at-story-list h3 { margin: 7px 0 10px; font: italic 600 34px var(--at-script); }
+.at-story-list p { font: 500 17px/1.5 var(--at-script); }
+
+.at-gallery-section { padding-inline: 14px; }
+.at-gallery { width: 100%; max-width: 880px; margin: auto; display: grid; grid-template-columns: repeat(12,1fr); grid-auto-rows: 55px; gap: 8px; }
+.at-gallery button { grid-column: span 6; grid-row: span 4; padding: 0; border: 5px solid #f9f3e8; overflow: hidden; background: #ddd; box-shadow: 0 8px 20px rgba(56,35,10,.18); cursor: pointer; }
+.at-gallery button:nth-child(4n+1) { grid-column: span 7; grid-row: span 5; }.at-gallery button:nth-child(4n+2){grid-column:span 5;grid-row:span 3}.at-gallery button:nth-child(4n+4){grid-column:span 5;grid-row:span 5}
+.at-gallery:is(.layout-editorial,.layout-collage){grid-auto-flow:dense}
+.at-gallery.layout-editorial{gap:12px}
+.at-gallery.layout-editorial button{grid-column:span 6;grid-row:span 5;border-width:2px}
+.at-gallery.layout-editorial button:nth-child(5n+1){grid-column:span 12;grid-row:span 7}
+.at-gallery.layout-editorial button:nth-child(5n+4){grid-column:span 4;grid-row:span 4}
+.at-gallery.layout-editorial button:nth-child(5n+5){grid-column:span 8;grid-row:span 4}
+.at-gallery.layout-collage{padding:20px;background:linear-gradient(145deg,rgba(255,255,255,.55),rgba(120,132,108,.12));gap:8px}
+.at-gallery.layout-collage button{grid-column:span 4;grid-row:span 4;border-width:8px;box-shadow:0 12px 26px rgba(37,48,34,.18)}
+.at-gallery.layout-collage button:nth-child(6n+1),
+.at-gallery.layout-collage button:nth-child(6n+6){grid-column:span 8;grid-row:span 6}
+.at-gallery.layout-collage button:nth-child(6n+2){grid-column:span 4;grid-row:span 6}
+.at-gallery.layout-collage.gallery-count-odd button:last-child{grid-column:1/-1;width:66%;justify-self:center}
+.at-gallery.layout-editorial.gallery-mod7-1 button:last-child,
+.at-gallery.layout-editorial.gallery-mod7-4 button:last-child{grid-column:1/-1;grid-row:span 5}
+.at-gallery.layout-editorial.gallery-mod7-2 button:nth-last-child(-n+2),
+.at-gallery.layout-collage.gallery-mod6-2 button:nth-last-child(-n+2){grid-column:span 6}
+.at-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }.at-gallery button:hover img{transform:scale(1.045)}
+.at-gallery.layout-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: auto; }.at-gallery.layout-grid button{grid-column:auto;grid-row:auto;aspect-ratio:1}.at-gallery.layout-grid.gallery-count-odd button:last-child{grid-column:1/-1;aspect-ratio:2/1}
+.at-gallery.layout-masonry{display:block;columns:2}.at-gallery.layout-masonry button{width:100%;display:block;margin-bottom:8px}.at-gallery.layout-masonry img{height:auto}
+.at-gallery.layout-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.at-gallery.layout-carousel button{min-width:82%;aspect-ratio:3/4;scroll-snap-align:center}.at-gallery.layout-carousel.gallery-count-1 button{min-width:100%}
+.at-gallery.layout-wall{padding:30px 20px 56px;background:#6e5a4e;gap:0}.at-gallery.layout-wall button{grid-column:span 6;grid-row:span 4;padding:7px 7px 26px;transform:rotate(-3deg)}.at-gallery.layout-wall button:nth-child(even){transform:translateY(24px) rotate(3deg)}.at-gallery.layout-wall.gallery-count-odd button:last-child{grid-column:1/-1;width:50%;justify-self:center}
+.at-video { width: calc(100% - 16px); max-width: 880px; margin: 28px auto 0; padding: 9px; border: 1px solid var(--at-gold); background: rgba(255,255,255,.4); box-shadow: 0 14px 32px rgba(70,42,13,.12); }
+.at-video iframe,
+.at-video video,
+.at-video > div { width: 100%; aspect-ratio: 16/9; border: 0; background: #111; }
+
+.at-countdown { max-width: 620px; margin: auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+.at-countdown div { padding: 20px 3px; border: 1px solid var(--at-gold); background: rgba(255,255,255,.28); }
+.at-countdown strong { display: block; color: var(--at-wine); font: italic 600 38px var(--at-script); }
+.at-countdown span { font: 600 9px Cinzel, serif; letter-spacing: .08em; text-transform: uppercase; }
+.at-events { max-width: 720px; margin: auto; display: grid; gap: 24px; }
+.at-events article { position: relative; padding: 42px 24px; border: 1px solid var(--at-gold); background: rgba(255,255,255,.32); box-shadow: inset 0 0 0 7px var(--at-paper), inset 0 0 0 8px rgba(164,137,78,.35), 0 14px 34px rgba(64,39,12,.1); overflow:hidden; }
+.at-events .at-floral { width: 130px; right: -18px; bottom: -18px; opacity:.42; }
+.at-events article > span { color: var(--at-gold); font: 600 10px Cinzel, serif; letter-spacing: .15em; text-transform: uppercase; }
+.at-events h3 { margin: 12px 0; font: italic 600 35px/1 var(--at-script); }
+.at-events strong { font: 600 11px Cinzel, serif; letter-spacing: .06em; }
+.at-events h4 { margin: 18px 0 5px; font: italic 600 25px var(--at-script); }
+.at-events p { max-width: 40ch; margin: auto; font: 500 16px/1.45 var(--at-script); }
+.at-events a { display:inline-flex;margin-top:18px;color:var(--at-wine);font-size:11px }
+
+.at-dress { max-width: 620px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.at-dress article { padding: 26px 10px; border: 1px solid var(--at-gold); background: rgba(255,255,255,.2); }
+.at-dress h3 { font: italic 600 30px var(--at-script); }.at-dress p{font:500 16px var(--at-script)}
+.at-dress article > div { display:flex;justify-content:center;gap:7px;margin-top:16px }.at-dress i{width:35px;height:35px;border-radius:50%;border:3px solid var(--at-paper);box-shadow:0 0 0 1px var(--at-gold)}
+.at-rundown { max-width: 640px; margin:auto; text-align:left }.at-rundown article{display:grid;grid-template-columns:74px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid rgba(164,137,78,.55)}
+.at-rundown time{color:var(--at-wine);font:italic 600 27px var(--at-script)}.at-rundown h3{font:italic 600 26px var(--at-script)}.at-rundown p,
+.at-copy{max-width:42ch;margin:8px auto;font:500 17px/1.5 var(--at-script)}
+
+.at-form .public-forms-root { max-width: 730px; margin:auto; padding-bottom:0!important }
+.at-form .pf-glass { border:1px solid var(--at-gold)!important;border-radius:4px!important;background:rgba(255,255,255,.32)!important;box-shadow:inset 0 0 0 7px var(--at-paper),0 16px 34px rgba(60,37,13,.1)!important }
+.at-form .pf-title { color:var(--at-wine)!important;font:italic 600 38px var(--at-script)!important;letter-spacing:0!important;text-transform:none!important }
+.at-form .pf-input { border:1px solid rgba(164,137,78,.55)!important;border-radius:2px!important;background:rgba(255,255,255,.62)!important }
+.at-form .pf-btn { border-radius:999px!important;background:var(--at-wine)!important;font:600 10px Cinzel,serif!important;letter-spacing:.09em!important }
+
+.at-footer { min-height: 720px; position:relative;display:grid;place-items:center;overflow:hidden;color:var(--at-paper);text-align:center }
+.at-footer::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(24,34,20,.25),rgba(38,30,17,.7))}
+.at-footer > div:last-child { position:relative;z-index:5;width:min(78%,430px);padding:40px 20px;border:1px solid rgba(244,237,223,.65);background:rgba(36,51,34,.38);backdrop-filter:blur(4px) }
+.at-footer span{font:600 10px Cinzel,serif;letter-spacing:.16em;text-transform:uppercase}.at-footer h2{margin:16px 0;color:var(--at-paper);font:italic 600 52px/.88 var(--at-script)}
+.at-footer p{max-width:35ch;margin:0 auto 22px;font:500 17px/1.45 var(--at-script)}.at-footer strong,
+.at-footer small{display:block}.at-footer strong{font:600 11px Cinzel,serif}.at-footer small{margin-top:42px;opacity:.6;letter-spacing:.13em}
+
+.at-reveal { opacity:1; transform:none; }
+.atelier.motion-ready .at-reveal { opacity:0; transform:translateY(26px); transition:opacity 1.35s ease,transform 1.65s cubic-bezier(.18,.75,.2,1); }
+.atelier.motion-ready .at-reveal.is-visible { opacity:1; transform:none; }
+.atelier.is-editor-preview.motion-ready .at-reveal { opacity:1!important; transform:none!important; transition:none!important; }
+.at-bio { margin:13px auto 0!important;max-width:34ch;opacity:.72;font-style:italic!important; }
+
+@container (min-width: 1000px) {
+  .split-view-theme-isvara .split-view-left { display:flex!important;width:calc(100% - 450px);flex:1;background:#243322!important }
+  .split-view-theme-isvara .split-view-left-bg { opacity:1;background-size:cover;background-position:center;filter:saturate(.83) contrast(.96) }
+  .split-view-theme-isvara .split-view-left::after { content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(23,34,20,.06),transparent 55%,rgba(23,34,20,.2)) }
+  .split-view-theme-isvara .split-view-left-content { width:min(72%,500px);padding:42px;border:1px solid rgba(244,237,223,.76);background:rgba(244,237,223,.16);text-align:center;backdrop-filter:blur(3px) }
+  .split-view-theme-isvara .split-view-top-label { color:#f4eddf;font:600 11px Cinzel,serif;letter-spacing:.18em }
+  .split-view-theme-isvara .split-view-title { margin:18px 0;color:#f4eddf;font:italic 600 74px/.84 "Cormorant Garamond",serif!important;text-shadow:0 4px 18px rgba(0,0,0,.22) }
+  .split-view-theme-isvara .split-view-subtitle { color:#f4eddf;font:italic 500 22px "Cormorant Garamond",serif!important }
+  .split-view-theme-isvara .split-view-right { width:450px!important }.split-view-theme-isvara .split-view-blur-wrapper{display:none}.split-view-theme-isvara .split-view-template-wrapper{box-shadow:none}
+  .at-couple{grid-template-columns:1fr auto 1fr;align-items:center}.at-events{grid-template-columns:repeat(2,1fr)}
+}
+
+@container (max-width:560px){.at-section{padding:72px 20px}.at-hero{min-height:760px}.at-dress{grid-template-columns:1fr 1fr}.at-gallery{grid-auto-rows:44px}}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier *,
+.atelier *::before,
+.atelier *::after { animation-duration: .001ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+  .atelier.motion-ready .at-reveal { opacity:1; transform:none; transition:none; }
+}
+
+@keyframes ivSceneBreath{from{transform:scale(1.02)}to{transform:scale(1.075) translateY(-1%)}}
+@keyframes ivMist{from{transform:translateX(-8%)}to{transform:translateX(8%)}}
+@keyframes ivBirdFly{0%{transform:translate(-12vw,8vh) rotate(-4deg)}45%{transform:translate(54vw,-2vh) rotate(5deg)}100%{transform:translate(130vw,7vh) rotate(-3deg)}}
+@keyframes ivPetal{0%{transform:translateY(-10vh) rotate(0deg);opacity:0}12%{opacity:.72}100%{transform:translate(18vw,115vh) rotate(540deg);opacity:0}}
+@keyframes ivSway{from{rotate:-2.5deg}to{rotate:2.5deg}}
+@keyframes ivTreeSway{from{rotate:-1.3deg;scale:1}to{rotate:1.5deg;scale:1.015}}
+@keyframes ivCloud{from{translate:-4% 0}to{translate:8% 2%}}
+@keyframes ivOrnateBird{0%{translate:-12vw 7vh;rotate:-3deg;opacity:0}8%{opacity:1}50%{translate:60vw -2vh;rotate:3deg}100%{translate:135vw 5vh;rotate:-2deg;opacity:.9}}
+@keyframes ivTableauBreath{from{transform:translateX(-50%) scale(1.01)}to{transform:translateX(-50%) scale(1.045) translateY(-6px)}}
+.at-ig-filter > img { position: relative; z-index: 2; display:block; width:min(230px,68%); aspect-ratio:9/16; margin:0 auto 22px; padding:7px; border:1px solid var(--at-gold); border-radius:120px 120px 18px 18px; background:var(--at-paper); object-fit:cover; box-shadow:0 15px 34px rgba(55,35,16,.14); }
+
+/* Collection baseline. Surface treatments belong to each identity below; never
+   force Isvara's paper texture across the whole atelier collection. */
+.atelier .at-section { background-color:var(--at-paper); }
+.atelier .at-layer {
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 44%,rgba(0,0,0,.88) 64%,rgba(0,0,0,.4) 80%,transparent 98%);
+  mask-image:radial-gradient(ellipse at center,#000 44%,rgba(0,0,0,.88) 64%,rgba(0,0,0,.4) 80%,transparent 98%);
+}
+.atelier .at-heading { margin-bottom:36px; }
+.atelier .at-heading h2 { font-style:normal;letter-spacing:-.02em; }
+
+.at-story-book { width:100%;max-width:720px;margin:auto; }
+.at-story-book nav { display:flex;gap:7px;margin:0 0 15px;padding:2px 1px 8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--at-gold) transparent; }
+.at-story-book nav button { flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid color-mix(in srgb,var(--at-gold) 38%,transparent);border-radius:999px;color:var(--at-forest);background:rgba(255,255,255,.34);font:600 8px/1 Cinzel,serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;scroll-snap-align:start;cursor:pointer; }
+.at-story-book nav button span { color:var(--at-gold); }
+.at-story-book nav button.is-active { color:#fff;background:var(--at-wine);border-color:var(--at-wine); }
+.at-story-book nav button.is-active span { color:#fff;opacity:.72; }
+.at-story-book > article { position:relative;padding:10px;border:1px solid color-mix(in srgb,var(--at-gold) 54%,transparent);background:rgba(255,255,255,.26);box-shadow:0 18px 42px rgba(47,57,44,.1); }
+.at-story-image { aspect-ratio:4/3;overflow:hidden; }
+.at-story-image img { display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(.97);animation:ivStoryPage 1.35s cubic-bezier(.22,1,.36,1) both; }
+.at-story-book article > div:nth-child(2) { min-height:184px;padding:25px 16px 18px; }
+.at-story-book article > div:nth-child(2) > span { color:var(--at-gold);font:600 9px Cinzel,serif;letter-spacing:.13em;text-transform:uppercase; }
+.at-story-book h3 { margin:7px 0 10px;font:600 34px/1 var(--at-script); }
+.at-story-book p { margin:0 auto;max-width:37ch;font:500 16px/1.5 var(--at-script); }
+.at-story-controls { display:flex;align-items:center;justify-content:center;gap:18px;padding:0 0 10px; }
+.at-story-controls button { display:grid;place-items:center;width:35px;height:35px;padding:0;border:1px solid var(--at-gold);border-radius:50%;color:var(--at-wine);background:var(--at-paper);cursor:pointer; }
+.at-story-controls b { color:var(--at-gold);font:600 9px Cinzel,serif;letter-spacing:.14em; }
+@keyframes ivStoryPage{from{opacity:.2;transform:scale(1.035);filter:blur(3px) saturate(.72)}to{opacity:1;transform:none;filter:blur(0) saturate(.72)}}
+
+.at-slideshow.layout-carousel { display:block;overflow:visible;padding:0 7px;background:transparent; }
+.at-slideshow .at-slide-stage { position:relative;width:100%;max-width:620px;margin:auto;padding:12px 12px 18px;border:1px solid color-mix(in srgb,var(--at-gold) 56%,transparent);background:rgba(255,255,255,.25); }
+.at-slideshow .at-slide-main { display:block;width:100%;min-width:0;aspect-ratio:4/5;padding:0;border:0;box-shadow:none;overflow:hidden; }
+.at-slideshow .at-slide-main img { width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(.98);animation:ivStoryPage 1.45s cubic-bezier(.22,1,.36,1) both; }
+.at-slide-botanical { position:absolute;z-index:2;bottom:-14px;width:35%;pointer-events:none;filter:drop-shadow(0 8px 14px rgba(47,57,44,.15)); }
+.at-slide-botanical.left { left:-10px; }
+.at-slide-botanical.right { right:-10px;transform:scaleX(-1); }
+.at-slide-arrow { position:absolute;z-index:4;top:50%;display:grid;place-items:center;width:38px;height:38px;min-width:0;aspect-ratio:1;padding:0;border:1px solid var(--at-gold);border-radius:50%;color:var(--at-wine);background:rgba(243,240,232,.9);box-shadow:0 8px 18px rgba(45,53,42,.13);transform:translateY(-50%);cursor:pointer; }
+.at-slide-arrow.prev { left:-12px; }.at-slide-arrow.next{right:-12px}
+.at-slide-thumbs { display:flex;gap:8px;width:100%;padding:10px 2px 8px;overflow-x:auto;scroll-snap-type:x mandatory; }
+.at-slide-thumbs button { flex:0 0 calc((100% - 16px)/3);min-width:0;aspect-ratio:1;padding:3px;border:1px solid transparent;background:rgba(255,255,255,.35);box-shadow:none;opacity:.5;scroll-snap-align:center; }
+.at-slide-thumbs button.is-active { border-color:var(--at-gold);opacity:1; }
+.at-slide-thumbs img { width:100%;height:100%;object-fit:cover;filter:saturate(.65); }
+.at-slide-count { display:flex;align-items:center;justify-content:center;gap:10px;color:var(--at-gold);font:600 9px Cinzel,serif;letter-spacing:.13em; }
+.at-slide-count i { width:42px;height:1px;background:var(--at-gold); }
+
+.at-gallery.layout-collage { grid-auto-flow:dense;overflow:hidden; }
+.at-gallery.layout-collage.gallery-count-1 button { grid-column:1/-1;width:82%;justify-self:center; }
+.at-gallery.layout-collage.gallery-count-odd:not(.gallery-count-1) button:last-child { grid-column:1/-1;width:58%;justify-self:center; }
+.at-gallery.layout-wall { grid-auto-flow:row;gap:16px 9px;overflow:hidden; }
+.at-gallery.layout-wall button { grid-column:span 6;grid-row:span 5; }
+.at-gallery.layout-wall.gallery-count-1 button { grid-column:1/-1;width:76%;justify-self:center; }
+.at-gallery.layout-wall.gallery-count-odd:not(.gallery-count-1) button:last-child { grid-column:1/-1;width:52%;justify-self:center; }
+
+/* Gallery audit: every Atelier identity inherits its own palette; only the
+   photographic rhythm changes between layout choices. */
+.atelier .at-gallery{max-width:620px!important;min-width:0!important;margin-inline:auto!important}
+.atelier .at-gallery:is(.layout-editorial,.layout-grid,.layout-collage){grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:dense;overflow:hidden}
+.atelier .at-gallery:is(.layout-editorial,.layout-grid,.layout-masonry,.layout-collage){padding:6px;border:1px solid color-mix(in srgb,var(--at-gold) 48%,transparent);background:color-mix(in srgb,var(--at-paper) 84%,var(--at-soft));gap:6px}
+.atelier .at-gallery:is(.layout-editorial,.layout-grid,.layout-masonry,.layout-collage) button{min-width:0;margin:0;border-color:color-mix(in srgb,var(--at-gold) 35%,transparent);background:var(--at-paper);box-shadow:none}
+.atelier .at-gallery.layout-editorial button{grid-column:span 6;grid-row:span 6}.atelier .at-gallery.layout-editorial button:nth-child(6n+1){grid-column:1/-1;grid-row:span 8}.atelier .at-gallery.layout-editorial button:nth-child(6n+4){grid-column:span 5;grid-row:span 7}.atelier .at-gallery.layout-editorial button:nth-child(6n+5){grid-column:span 7;grid-row:span 7}.atelier .at-gallery.layout-editorial button:nth-child(6n+6){grid-column:1/-1;grid-row:span 6}.atelier .at-gallery.layout-editorial.gallery-mod6-2 button:nth-last-child(-n+2){grid-column:span 6;grid-row:span 6}
+.atelier .at-gallery.layout-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}.atelier .at-gallery.layout-grid button{grid-column:auto;grid-row:auto;aspect-ratio:1}.atelier .at-gallery.layout-grid.gallery-count-odd button:last-child{grid-column:1/-1;aspect-ratio:2/1}
+.atelier .at-gallery.layout-masonry{display:block;columns:2;column-gap:6px}.atelier .at-gallery.layout-masonry button{display:block;width:100%;margin:0 0 6px;break-inside:avoid;aspect-ratio:auto}.atelier .at-gallery.layout-masonry img{display:block;width:100%;height:auto;max-height:430px;object-fit:cover}
+.atelier .at-gallery.layout-collage button{grid-column:span 6;grid-row:span 6;padding:3px;box-shadow:none;transform:none}.atelier .at-gallery.layout-collage button:nth-child(8n+1){grid-column:1/span 7;grid-row:span 8}.atelier .at-gallery.layout-collage button:nth-child(8n+2),
+.atelier .at-gallery.layout-collage button:nth-child(8n+3){grid-column:8/span 5;grid-row:span 4}.atelier .at-gallery.layout-collage button:nth-child(8n+4){grid-column:1/span 5;grid-row:span 6}.atelier .at-gallery.layout-collage button:nth-child(8n+5){grid-column:6/span 7;grid-row:span 6}.atelier .at-gallery.layout-collage button:nth-child(8n+8){grid-column:1/-1;grid-row:span 7}.atelier .at-gallery.layout-collage.gallery-count-odd button:last-child{grid-column:1/-1;width:58%;justify-self:center}
+.atelier .at-gallery.layout-wall{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:20px 10px;padding:30px 18px 42px;overflow:hidden;border:1px solid color-mix(in srgb,var(--at-gold) 45%,transparent);background:color-mix(in srgb,var(--at-forest) 76%,var(--at-paper))}.atelier .at-gallery.layout-wall button{grid-column:auto;grid-row:auto;width:100%;aspect-ratio:4/5;padding:6px 6px 24px;border-color:color-mix(in srgb,var(--at-gold) 46%,transparent);background:var(--at-paper);box-shadow:0 8px 18px color-mix(in srgb,var(--at-forest) 28%,transparent);transform:rotate(-1.4deg)}.atelier .at-gallery.layout-wall button:nth-child(even){transform:translateY(11px) rotate(1.4deg)}.atelier .at-gallery.layout-wall.gallery-count-1 button{grid-column:1/-1;width:76%;justify-self:center}.atelier .at-gallery.layout-wall.gallery-count-odd:not(.gallery-count-1) button:last-child{grid-column:1/-1;width:calc(50% - 5px);justify-self:center}
+
+.at-events article:nth-child(even) .at-floral { right:auto;left:-18px;transform:rotate(8deg) scaleX(-1); }
+.at-events a { position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;padding:10px 17px;border:1px solid var(--at-gold);border-radius:999px;color:#fff;background:var(--at-wine);font:600 9px Cinzel,serif;letter-spacing:.09em;text-decoration:none;text-transform:uppercase; }
+.at-dress article > div { flex-wrap:wrap;max-width:100%; }
+.at-dress i { flex:0 0 31px;width:31px;height:31px; }
+
+.at-rundown { position:relative;max-width:640px; }
+.at-rundown::before { content:'';position:absolute;top:18px;bottom:18px;left:106px;border-left:1px solid var(--at-gold); }
+.at-rundown article { position:relative;grid-template-columns:88px 34px minmax(0,1fr);gap:0;min-height:88px;padding:13px 0;border:0; }
+.at-rundown article::before { content:'';position:relative;z-index:2;grid-column:2;grid-row:1;width:12px;height:12px;justify-self:center;margin-top:5px;border:1px solid var(--at-gold);border-radius:50%;background:var(--at-paper);box-shadow:0 0 0 5px var(--at-paper); }
+.at-rundown time { grid-column:1;grid-row:1;padding-right:14px;font:600 19px/1.2 var(--at-script);text-align:right;white-space:nowrap; }
+.at-rundown article > div { grid-column:3;grid-row:1;padding-left:14px; }
+.at-rundown h3 { margin:0;font:600 24px/1.1 var(--at-script); }
+.at-rundown p { margin:6px 0 0;font-size:14px;opacity:.72; }
+
+.at-ig-showcase { position:relative;z-index:2;width:min(310px,80%);margin:0 auto 23px; }
+.at-ig-preview { display:block;width:min(230px,76%);aspect-ratio:9/16;margin:auto;padding:7px;border:1px solid var(--at-gold);border-radius:120px 120px 18px 18px;background:var(--at-paper);object-fit:cover;filter:saturate(.72);box-shadow:0 15px 34px rgba(55,35,16,.14); }
+.at-ig-leaf { position:absolute;z-index:3;bottom:-15px;width:43%;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(45,55,42,.13));animation:ivSway 9s ease-in-out infinite alternate;transform-origin:bottom; }
+.at-ig-leaf.left { left:-7%; }.at-ig-leaf.right{right:-7%;transform:scaleX(-1);animation-direction:alternate-reverse}
+
+.at-form .public-forms-root { max-width:820px;padding:0 4px!important;padding-bottom:0!important; }
+.at-form .pf-glass { padding:24px 22px!important;border-radius:2px!important;background:rgba(255,255,255,.28)!important;box-shadow:inset 0 0 0 6px var(--at-paper),0 14px 32px rgba(47,57,44,.08)!important; }
+.at-form .pf-subtitle { color:var(--at-forest)!important;font:500 13px/1.6 var(--at-body)!important; }
+.at-form .pf-input { padding:12px 13px!important;border-radius:0!important;color:var(--at-forest)!important;background:rgba(255,255,255,.48)!important;font:500 13px/1.45 var(--at-body)!important; }
+.at-form .pf-btn { background:var(--at-wine)!important; }
+.at-form .wishes-scroll-container { max-height:430px!important;margin-top:19px;padding:2px 5px 18px 1px!important;scrollbar-color:var(--at-gold) transparent; }
+.at-form .atelier-wish-card { position:relative;padding:18px 20px!important;border:1px solid color-mix(in srgb,var(--at-gold) 48%,transparent)!important;border-radius:0!important;background:rgba(255,255,255,.34)!important;box-shadow:0 10px 24px rgba(47,57,44,.06)!important;text-align:left; }
+.at-form .atelier-wish-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--at-gold);opacity:.58; }
+.at-form .atelier-wish-card > div:first-child > div { color:var(--at-wine)!important;font:600 10px Cinzel,serif!important;letter-spacing:.08em;text-transform:uppercase; }
+.at-form .atelier-wish-card > div:nth-child(2) { color:var(--at-forest)!important;font:500 15px/1.55 var(--at-script)!important;opacity:.9!important; }
+
+.pf-gift-modal.theme-isvara { background:rgba(28,35,27,.78);backdrop-filter:blur(10px); }
+.pf-gift-modal.theme-isvara .pf-gift-modal-panel { padding:24px;color:#30372f;background:#f3f0e8 url('/assets/isvara/texture-1.webp');background-size:600px auto;border:1px solid #78846c;border-radius:2px;box-shadow:inset 0 0 0 7px #f3f0e8,inset 0 0 0 8px rgba(120,132,108,.34),0 24px 70px rgba(20,27,19,.45);font-family:Montserrat,sans-serif; }
+.pf-gift-modal.theme-isvara .pf-gift-modal-header { border-color:rgba(120,132,108,.5); }
+.pf-gift-modal.theme-isvara .pf-gift-modal-header span,
+.pf-gift-modal.theme-isvara .pf-gift-account > span { color:#78846c;font:600 9px Cinzel,serif;letter-spacing:.16em;opacity:1; }
+.pf-gift-modal.theme-isvara .pf-gift-modal-header h3 { color:#465440;font:600 29px/1.05 "Cormorant Garamond",serif; }
+.pf-gift-modal.theme-isvara .pf-gift-modal-header > button { border-color:#78846c;color:#fff;background:#465440; }
+.pf-gift-modal.theme-isvara .pf-gift-account,
+.pf-gift-modal.theme-isvara .pf-gift-address { border:1px solid rgba(120,132,108,.55);border-radius:0;background:rgba(255,255,255,.34);box-shadow:inset 0 0 0 5px #f3f0e8; }
+.pf-gift-modal.theme-isvara .pf-gift-account strong { color:#465440;font:600 24px "Cormorant Garamond",serif; }
+.pf-gift-modal.theme-isvara .pf-gift-account button { border-radius:999px;background:#465440;font:600 9px Cinzel,serif;letter-spacing:.08em;text-transform:uppercase; }
+.pf-gift-modal.theme-isvara .pf-gift-address i { background:#465440; }
+.pf-gift-modal.theme-isvara .pf-gift-address p { font:500 16px/1.55 "Cormorant Garamond",serif; }
+
+.atelier .at-footer { width:calc(100% - 28px);min-height:390px;margin:18px auto 14px;border-radius:150px 150px 4px 4px; }
+.atelier .at-footer .at-footer-copy { position:relative;z-index:5;width:min(86%,430px);padding:28px 18px 22px;border:0;background:radial-gradient(circle,rgba(28,37,27,.52),rgba(28,37,27,.12) 72%,transparent);backdrop-filter:none;text-shadow:0 2px 12px rgba(0,0,0,.34); }
+.atelier .at-footer h2 { margin:11px 0;font-size:clamp(38px,10cqw,47px); }
+.atelier .at-footer p { margin-bottom:15px;font-size:15px;line-height:1.4; }
+.atelier .at-footer small { margin-top:22px; }
+
+/* Livestream: flat editorial film frame; the arch remains exclusive to Nawasena. */
+.atelier [data-section="livestream"] { padding-left:clamp(24px,7cqw,48px);padding-right:clamp(24px,7cqw,48px); }
+.atelier .livestream-card-isvara { position:relative;margin-top:38px;padding:30px 18px 44px;border:1px solid color-mix(in srgb,var(--at-gold) 58%,transparent);background:rgba(255,255,255,.28); }
+.atelier .livestream-card-atelier::before { content:'LIVE TRANSMISSION  /  FILM 01';display:block;margin-bottom:13px;color:var(--at-wine);font:600 8px var(--at-body);letter-spacing:.2em;text-align:left; }
+.atelier .livestream-card-isvara::after { content:'WATCH FROM ANYWHERE';position:absolute;right:18px;bottom:16px;color:var(--at-forest);font:600 8px Cinzel,serif;letter-spacing:.17em; }
+.atelier .livestream-card-isvara .livestream-poster { aspect-ratio:16/10;margin:0;border-radius:0;box-shadow:8px 8px 0 var(--at-soft); }
+.atelier .livestream-card-isvara .livestream-poster::before { content:'';position:absolute;inset:8px;z-index:3;border:1px solid rgba(255,255,255,.52);pointer-events:none; }
+.atelier .livestream-card-isvara .livestream-play { z-index:4;width:62px;height:42px;border-radius:0;color:var(--at-paper);border-color:var(--at-gold);background:var(--at-wine); }
+.atelier .livestream-card-isvara .livestream-poster-label { z-index:4;left:14px;bottom:12px;padding:5px 8px;color:var(--at-paper);background:var(--at-wine);font:600 8px Cinzel,serif;letter-spacing:.2em; }
+
+/* Main cover fits the invitation viewport; botanicals remain inside its edge. */
+.atelier .at-hero { width:100%;height:var(--at-viewport-height,100svh);min-height:0!important;max-height:var(--at-viewport-height,100svh);flex:0 0 var(--at-viewport-height,100svh);overflow:hidden;isolation:isolate; }
+.atelier .at-hero .at-scene { position:absolute;inset:0;height:100%;min-height:0;overflow:hidden; }
+.atelier .at-hero .at-sky { position:absolute;inset:0;height:100%;background-size:cover;background-position:center; }
+.atelier .at-hero .at-monogram { top:clamp(62px,12%,102px);width:clamp(72px,21cqw,92px);height:clamp(72px,21cqw,92px); }
+.atelier .at-hero .at-hero-copy { position:absolute;left:11%;bottom:clamp(48px,9%,82px);width:78%;margin:0;padding:clamp(14px,4cqw,22px) 10px;transform:none;background:linear-gradient(90deg,transparent,rgba(243,240,232,.66) 18% 82%,transparent); }
+.atelier .at-hero .at-hero-copy h1 { margin:10px 0 7px;font-size:clamp(43px,12cqw,66px);line-height:.84; }
+.atelier .at-hero .at-hero-copy p { margin:0;font-size:clamp(8px,2.7cqw,11px); }
+.atelier .at-scene-hero .at-scene-tree { bottom:-5%;width:clamp(120px,34%,185px);max-height:38%;object-fit:contain; }
+.atelier .at-scene-hero .at-scene-flower { bottom:-7%;width:clamp(150px,43%,225px);max-height:42%;object-fit:contain; }
+.atelier .at-scene-hero .at-scene-cloud { max-width:30%; }
+.atelier .at-scene-hero .at-mist { max-height:30%; }
+
+/* Couple portraits: asymmetric editorial spreads instead of generic oval frames. */
+.atelier .at-couple { gap:76px; }
+.atelier .at-person { position:relative;padding-top:10px; }
+.atelier .at-person>.at-portrait { width:min(82%,330px);aspect-ratio:4/5;margin:0 auto 40px;overflow:visible;border:0;border-radius:0;background:transparent; }
+.atelier .at-person.is-bride>.at-portrait { margin-left:7%;transform:rotate(-1.2deg); }
+.atelier .at-person.is-groom>.at-portrait { margin-right:7%;transform:rotate(1.2deg); }
+.atelier .at-portrait .at-portrait-photo { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:polygon(0 0,88% 0,100% 12%,100% 100%,0 100%);border-radius:0;filter:grayscale(.16) saturate(.72) contrast(.98);box-shadow:0 20px 45px rgba(41,49,39,.16); }
+.atelier .at-person.is-groom .at-portrait-photo { clip-path:polygon(12% 0,100% 0,100% 100%,0 100%,0 12%); }
+.atelier .at-portrait::before { content:'';position:absolute;z-index:-1;inset:14px -15px -15px 14px;border:1px solid var(--at-gold);background:color-mix(in srgb,var(--at-soft) 68%,transparent); }
+.atelier .at-person.is-groom .at-portrait::before { inset:14px 14px -15px -15px; }
+.atelier .at-portrait::after { content:'';position:absolute;z-index:3;inset:-9px 9px 9px -9px;border-width:1px 0 0 1px;border-style:solid;border-color:var(--at-wine);pointer-events:none; }
+.atelier .at-person.is-groom .at-portrait::after { inset:-9px -9px 9px 9px;border-width:1px 1px 0 0; }
+.atelier .at-portrait-index { position:absolute;z-index:5;right:-24px;top:18%;color:var(--at-wine);font:600 38px/1 Cinzel,serif;letter-spacing:-.08em;writing-mode:vertical-rl; }
+.atelier .at-person.is-groom .at-portrait-index { left:-24px;right:auto;top:auto;bottom:18%;transform:rotate(180deg); }
+.atelier .at-portrait-role { position:absolute;z-index:5;left:-16px;bottom:16px;padding:9px 7px;color:var(--at-paper);background:var(--at-wine);font:600 8px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl; }
+.atelier .at-person.is-groom .at-portrait-role { left:auto;right:-16px;top:16px;bottom:auto; }
+.atelier .at-portrait-lines { position:absolute;z-index:4;inset:0;pointer-events:none; }
+.atelier .at-portrait-lines i:first-child { position:absolute;left:-28px;top:38%;width:56px;height:1px;background:var(--at-gold); }
+.atelier .at-portrait-lines i:last-child { position:absolute;right:-28px;bottom:29%;width:56px;height:1px;background:var(--at-gold); }
+.atelier .at-portrait .at-portrait-botanical { position:absolute;z-index:6;right:-26%;bottom:-12%;width:62%;height:auto;object-fit:contain;clip-path:none;border-radius:0;filter:sepia(.2) saturate(.62) drop-shadow(0 10px 13px rgba(40,49,38,.18));pointer-events:none; }
+.atelier .at-person.is-groom .at-portrait-botanical { left:-25%;right:auto;transform:scaleX(-1); }
+.atelier .at-slide-botanical,
+.atelier .at-ig-leaf { display:none; }
+.atelier .at-tableau-mark { display:grid;place-items:center;width:clamp(90px,20vw,150px);aspect-ratio:1;margin:auto;border:1px solid var(--at-gold);font:500 clamp(2rem,8vw,4rem) var(--at-script);color:var(--at-gold);transform:rotate(45deg); }
+.atelier .at-tableau-mark::first-letter { transform:rotate(-45deg); }
+.atelier .at-scene-shape,
+.atelier .at-scene-line { position:absolute;z-index:2;pointer-events:none; }
+.atelier .at-scene-shape { width:34%;aspect-ratio:1;border:1px solid color-mix(in srgb,var(--at-gold),transparent 25%);transform:rotate(45deg); }
+.atelier .at-scene-shape.one { left:-18%;top:18%; }.atelier .at-scene-shape.two { right:-18%;bottom:8%; }
+.atelier .at-scene-line { inset:8% 7%;border:1px solid color-mix(in srgb,var(--at-gold),transparent 35%); }
+.atelier .at-scene-line.two { inset:10% 9%;border-style:dotted; }
+.atelier .at-layered .at-layer { position:absolute;display:block;width:120px;aspect-ratio:1;border:1px solid color-mix(in srgb,var(--at-gold),transparent 70%);border-radius:50%; }
+.atelier .at-layered .at-layer-1 { left:-70px;top:12%; }.atelier .at-layered .at-layer-2 { right:-85px;bottom:12%; }.atelier .at-layered .at-layer-3 { left:50%;top:3%;width:22px;transform:rotate(45deg);border-radius:0; }
+.atelier .at-floral { display:block;width:70px;height:1px;background:var(--at-gold);opacity:.6; }
+
+.atelier-celluloid .at-opening,
+.atelier-celluloid .at-hero { isolation:isolate; }
+.atelier-celluloid .at-opening::before,
+.atelier-celluloid .at-hero::before { content:"";position:absolute;z-index:5;inset:0 10px;pointer-events:none;background:repeating-linear-gradient(to bottom,#17110d 0 9px,transparent 9px 23px) left/8px 100% no-repeat,repeating-linear-gradient(to bottom,#17110d 0 9px,transparent 9px 23px) right/8px 100% no-repeat; }
+.atelier-celluloid .at-opening-copy { background:#e9dcc4e8;border:1px solid #8a2d2d;box-shadow:8px 8px 0 #20150ebd; }
+
+/* Individual signatures beyond palette changes. */
+
+/* Opening compositions are family-specific, not recoloured copies. */
+.atelier-family-deco .at-opening-copy { width:72%;clip-path:polygon(12% 0,88% 0,100% 12%,100% 88%,88% 100%,12% 100%,0 88%,0 12%);border:4px double var(--at-gold);background:color-mix(in srgb,var(--at-paper),transparent 6%); }
+.atelier-family-deco .at-scene-line.one { clip-path:polygon(50% 0,60% 38%,100% 50%,60% 62%,50% 100%,40% 62%,0 50%,40% 38%);background:color-mix(in srgb,var(--at-gold),transparent 72%);border:0; }
+.atelier-family-modern .at-opening-copy { inset:10% auto auto 8%;width:62%;min-height:62%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:0;border-left:14px solid var(--at-wine);background:color-mix(in srgb,var(--at-paper),transparent 4%); }
+.atelier-family-brutalist .at-opening-copy { width:78%;border:4px solid #111;background:var(--at-paper);box-shadow:14px 14px 0 #111;text-align:left; }.atelier-family-brutalist .at-opening-copy h1 { text-transform:uppercase;font-weight:900; }
+.atelier-family-quiet .at-opening-copy { width:70%;border:0;background:color-mix(in srgb,var(--at-paper),transparent 3%);box-shadow:inset 0 0 45px #6c5b3d1f; }
+.atelier-family-world .at-opening-copy { inset:8% auto auto 8%;width:58%;min-height:74%;border:0;border-right:1px solid var(--at-gold);background:linear-gradient(90deg,color-mix(in srgb,var(--at-paper),transparent 2%),color-mix(in srgb,var(--at-paper),transparent 25%));text-align:left; }
+.atelier-family-world .at-opening-copy h1 { writing-mode:vertical-rl;margin:18px auto;max-height:210px; }
+.atelier-family-nusantara .at-opening-copy { inset:auto 5% 7%;width:90%;border:0;border-block:7px double var(--at-gold);background:color-mix(in srgb,var(--at-paper),transparent 18%);backdrop-filter:blur(7px); }
+.atelier-family-nusantara .at-opening-copy::before { content:"◆  ◆  ◆";display:block;color:var(--at-gold);letter-spacing:.8em;margin-bottom:12px; }
+.atelier-family-fantasy .at-opening-copy { width:74%;border-radius:50% 50% 12px 12px;border:1px solid var(--at-gold);background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--at-gold),transparent 50%),color-mix(in srgb,var(--at-paper),transparent 4%) 42%);box-shadow:0 0 60px color-mix(in srgb,var(--at-gold),transparent 55%); }
+.atelier-family-future .at-opening-copy { width:75%;border:1px solid #fff9;border-radius:4px 56px;background:linear-gradient(135deg,#ffffffc9,#828b9b8c,#ffffffd4);backdrop-filter:blur(18px);box-shadow:inset 0 0 25px #fff,0 18px 60px #5746a85c; }
+
+/* The Atelier cover already carries its own title composition on wide screens. */
+.split-view-container:has(.atelier) .split-view-left-content { display:none; }
+
+/* Celluloid rebuild: no inherited wedding cards. The whole invitation behaves like a film archive. */
+.atelier-celluloid .at-intro { min-height:72vh;display:grid;place-items:end center;padding-bottom:12%;background:#0d0b09; }
+.atelier-celluloid .at-intro .at-layered,
+.atelier-celluloid .at-intro h2,
+.atelier-celluloid .at-intro .at-kicker { display:none; }
+.atelier-celluloid .at-intro blockquote { max-width:86%;margin:0 auto;padding:10px 14px;background:#090806;color:#f4e7cc;font:500 clamp(1.05rem,4.4vw,1.5rem)/1.45 var(--at-body);text-align:center;text-transform:none;box-shadow:none;border:0; }
+.atelier-celluloid .at-intro blockquote::before { content:'SUBTITLE  /  01';display:block;margin-bottom:14px;color:#a98d61;font:700 8px var(--at-body);letter-spacing:.24em; }
+.atelier-celluloid .at-intro blockquote + p { color:#9c805a;font:700 9px var(--at-body);letter-spacing:.18em;text-align:center; }
+.atelier-celluloid .at-couple { display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#0b0907;padding:36px 18px 30px;position:relative; }
+.atelier-celluloid .at-couple::before { content:'CONTACT  02  /  PORTRAIT STOCK 400';position:absolute;inset:10px 14px auto;color:#b89255;font:700 7px monospace;letter-spacing:.16em; }
+.atelier-celluloid .at-person { margin:0;padding:0;background:transparent;border:0;box-shadow:none;color:#e6d8bf;text-align:left; }
+.atelier-celluloid .at-person .at-portrait { width:100%;margin:0;aspect-ratio:3/4;border:0;border-radius:0;clip-path:none; }
+.atelier-celluloid .at-person .at-portrait::after { content:'';position:absolute;inset:0;background:url('/assets/celluloid/generated/film-strip-frame-v1.png') center/112% 112% no-repeat;pointer-events:none; }
+.atelier-celluloid .at-person h3 { font-size:clamp(2rem,8vw,3.5rem);line-height:.8;margin-top:20px; }.atelier-celluloid .at-person p,
+.atelier-celluloid .at-person strong { font-family:monospace;font-size:9px;line-height:1.5; }
+.atelier-celluloid .at-amp { position:absolute;z-index:5;left:50%;top:40%;transform:translate(-50%,-50%);display:grid;place-items:center;width:50px;aspect-ratio:1;background:#8a2d2d;color:#f4e7cc;border-radius:50%; }
+.atelier-celluloid .at-wayang-tableau { display:none; }
+.atelier-celluloid .at-story { overflow:hidden;background:#dac9aa;color:#231b14; }
+.atelier-celluloid .at-story-book { display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;border-block:10px solid #17110d;box-shadow:none; }
+.atelier-celluloid .at-story-book nav { min-width:90px;background:#17110d;display:flex;flex-direction:column;padding:8px; }.atelier-celluloid .at-story-book nav button { writing-mode:vertical-rl;min-height:90px;color:#ccb892;border:0;border-bottom:1px solid #6f5a3d; }
+.atelier-celluloid .at-story-book article { min-width:78%;scroll-snap-align:start;background:#d8c6a5;padding:12px; }
+.atelier-celluloid .at-gallery { position:relative;display:flex!important;overflow-x:auto;gap:0!important;background:#0a0807;padding:38px 0!important;scroll-snap-type:x mandatory; }
+.atelier-celluloid .at-gallery::after { content:'';position:absolute;inset:0;background:url('/assets/celluloid/generated/film-strip-frame-v1.png') center/auto 116% repeat-x;pointer-events:none;mix-blend-mode:multiply; }
+.atelier-celluloid .at-gallery > button { flex:0 0 72%;margin:0!important;border:0!important;box-shadow:none!important;transform:none!important;scroll-snap-align:center;aspect-ratio:4/3; }
+.atelier-celluloid .at-video { padding:24px;background:#080706;border:0;border-radius:0;box-shadow:inset 0 0 0 2px #67583f; }.atelier-celluloid .at-video::before { content:'NOW SHOWING';display:block;color:#b89255;font:700 8px monospace;letter-spacing:.26em;margin-bottom:12px; }
+.atelier-celluloid .at-events { display:block;border-block:3px solid #241b13;background:#eadabd;color:#211912; }
+.atelier-celluloid .at-events article { display:grid;grid-template-columns:72px 1fr;gap:6px;margin:0;padding:18px 12px;border:0;border-bottom:1px dashed #5d4935;border-radius:0;background:transparent;box-shadow:none;text-align:left; }
+.atelier-celluloid .at-events article > span { grid-row:1/7;font:800 10px monospace;writing-mode:vertical-rl;letter-spacing:.16em; }.atelier-celluloid .at-events h3,
+.atelier-celluloid .at-events h4,
+.atelier-celluloid .at-events p,
+.atelier-celluloid .at-events strong,
+.atelier-celluloid .at-events a { grid-column:2;margin:0; }
+.atelier-celluloid .at-dress { display:flex;overflow-x:auto;gap:8px; }.atelier-celluloid .at-dress article { min-width:70%;clip-path:polygon(0 0,90% 0,100% 15%,100% 100%,10% 100%,0 85%);border:0;border-left:8px solid #8a2d2d;border-radius:0;background:#d6c19d;text-align:left; }
+.atelier-celluloid .at-rundown { border-left:0;padding:0;background:#0c0a08;color:#eadfc9;counter-reset:cue; }.atelier-celluloid .at-rundown article { counter-increment:cue;display:grid;grid-template-columns:38px 60px 1fr;gap:8px;padding:15px 10px;border-bottom:1px solid #695638; }.atelier-celluloid .at-rundown article::before { content:counter(cue,decimal-leading-zero);color:#8a2d2d;font:800 14px monospace; }.atelier-celluloid .at-rundown article::after { display:none; }.atelier-celluloid .at-rundown time { font-family:monospace;color:#b89255; }
+.atelier-celluloid .at-form { background:#d8c6a5;color:#211912; }.atelier-celluloid .at-form :is(.public-form,.gift-section,.wishes-list) { clip-path:polygon(0 0,94% 0,100% 10%,100% 90%,94% 100%,0 100%,6% 90%,6% 10%);border:2px dashed #5e4935!important;border-radius:0!important;background:#eadabd!important;box-shadow:none!important; }
+.atelier-celluloid .at-footer { min-height:90vh;background:#090806;color:#eee1c8; }.atelier-celluloid .at-footer .at-scene { opacity:.18; }.atelier-celluloid .at-footer-copy { position:absolute;inset:10% 5%;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(transparent,#090806 35%);animation:at-credits 16s linear infinite; }.atelier-celluloid .at-footer-copy > * { font-family:monospace!important;text-transform:uppercase;letter-spacing:.15em; }
+@keyframes at-credits { from { transform:translateY(28%); } to { transform:translateY(-22%); } }
+
+/* Daguerre — a hinged velvet keepsake case, engraved plates and handwritten registry. */
+
+/* Kodachrome — bright slide tray, travel postcards and Super-8 rhythm. */
+
+/* Nocturne — screenplay, marquee, split-screen portraits and rolling cinema credits. */
+
+/* Maison — fashion magazine grid, pull quotes, proof sheets and colophon. */
+.atelier .at-person>.at-portrait+span { display:none; }
+.atelier .at-person h3 { position:relative;z-index:7;margin-top:-8px; }
+@container (min-width:720px) {
+  .atelier .at-couple { gap:34px; }
+  .atelier .at-person>.at-portrait { width:88%; }
+}
+@media (max-height:650px) {
+  .atelier .at-hero .at-monogram { top:46px;width:68px;height:68px;font-size:26px; }
+  .atelier .at-hero .at-hero-copy { left:12%;width:76%;bottom:34px;padding:11px 8px; }
+  .atelier .at-hero .at-hero-copy h1 { font-size:40px; }
+  .atelier .at-scene-hero .at-scene-flower { width:38%;max-height:35%; }
+}
+
+/* Wave 2 rebuild — five incompatible information systems. */
+
+/* Wave 3 — five distinct book, screen and architectural traditions. */
+
+/* Wave 4 — woven, architectural and maritime section systems from Nusantara. */
+
+/* Wave 5 — celestial, archival, narrative, sacred and spatial interfaces. */
+
+/* Explicit closing canvases; they prevent the shared footer silhouette from leaking back in. */
+
+/* Celluloid: a living 35mm wedding premiere assembled from the new asset library. */
+.atelier-celluloid .at-opening,
+.atelier-celluloid .at-hero{background:#080604;isolation:isolate;overflow:hidden}
+.atelier-celluloid .at-celluloid-scene{position:absolute;inset:0;overflow:hidden;background:#080604}
+.atelier-celluloid .at-cell-bg{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;filter:sepia(.12) contrast(1.08);animation:cellBgPush 18s ease-in-out infinite alternate}
+.atelier-celluloid .at-cell-screen{position:absolute;z-index:2;left:25%;right:25%;top:27%;height:28%;background-size:cover;background-position:center;filter:sepia(.58) saturate(.55) contrast(1.08);mix-blend-mode:multiply;opacity:.82;animation:cellScreenFlicker 4.5s steps(2,end) infinite}
+.atelier-celluloid .at-cell-beam{position:absolute;z-index:3;right:-12%;top:24%;width:80%;height:44%;clip-path:polygon(100% 40%,0 0,0 100%);background:linear-gradient(90deg,rgba(255,229,171,.04),rgba(255,225,161,.24),transparent);filter:blur(8px);animation:cellBeam 9s ease-in-out infinite alternate}
+.atelier-celluloid .at-cell-curtain{position:absolute;z-index:5;inset:-5% -23% auto;width:146%;height:95%;object-fit:cover;object-position:center top;filter:drop-shadow(0 20px 30px #000);animation:cellCurtainIn 3.2s cubic-bezier(.16,1,.3,1) both,cellCurtainBreathe 13s 3.2s ease-in-out infinite alternate}
+.atelier-celluloid .at-cell-projector{position:absolute;z-index:6;right:-19%;bottom:-12%;width:58%;filter:drop-shadow(0 20px 30px #000);animation:cellPropIn 2.8s 1.2s cubic-bezier(.16,1,.3,1) both}
+.atelier-celluloid .at-cell-reel{position:absolute;z-index:5;width:31%;filter:drop-shadow(0 14px 22px #000a);animation:cellReel 14s linear infinite}.atelier-celluloid .at-cell-reel.one{left:-12%;bottom:-8%}.atelier-celluloid .at-cell-reel.two{right:-9%;top:-7%;animation-direction:reverse;animation-duration:18s}
+.atelier-celluloid .at-cell-film{position:absolute;z-index:4;left:-16%;bottom:-5%;width:132%;filter:drop-shadow(0 10px 16px #0008);animation:cellFilmDrift 15s ease-in-out infinite alternate}
+.atelier-celluloid .at-cell-rose{position:absolute;z-index:7;left:-8%;bottom:-8%;width:38%;filter:drop-shadow(0 12px 18px #0009);animation:cellRose 9s ease-in-out infinite alternate;transform-origin:left bottom}
+.atelier-celluloid .at-cell-dust i{position:absolute;z-index:8;width:3px;height:3px;border-radius:50%;background:#f5d9a0;opacity:.3;animation:cellDust 11s linear infinite}.atelier-celluloid .at-cell-dust i:nth-child(3n){left:18%;animation-delay:-3s}.atelier-celluloid .at-cell-dust i:nth-child(3n+1){left:52%;animation-delay:-7s}.atelier-celluloid .at-cell-dust i:nth-child(3n+2){left:82%;animation-delay:-9s}
+.atelier-celluloid .at-celluloid-scene.is-paused>*{animation-play-state:paused!important}.atelier-celluloid .at-celluloid-scene.is-paused :is(.at-cell-curtain,.at-cell-projector,.at-cell-reel,.at-cell-film,.at-cell-rose){opacity:0}
+.atelier-celluloid .at-opening-copy{z-index:12!important;width:min(78%,390px);padding:30px 22px!important;background:rgba(233,220,196,.88)!important;backdrop-filter:blur(7px)}
+.atelier-celluloid .at-hero-copy,
+.atelier-celluloid .at-monogram{z-index:12!important}.atelier-celluloid .at-hero-copy{background:rgba(9,7,5,.72);padding:18px;border-block:1px solid #b89255}.atelier-celluloid .at-hero-copy :is(h1,p,small){color:#efe1c8!important}
+
+/* Props remain inside an inset stage and fade before every section seam. */
+.atelier-celluloid .at-section{isolation:isolate;overflow:hidden}.atelier-celluloid .at-section>*:not(.at-layered){position:relative;z-index:3}
+.atelier-celluloid .at-layered{position:absolute;z-index:1;inset:28px 14px;overflow:hidden;pointer-events:none}.atelier-celluloid .at-layered::before,
+.atelier-celluloid .at-layered::after{content:'';position:absolute;z-index:4;left:0;right:0;height:64px}.atelier-celluloid .at-layered::before{top:0;background:linear-gradient(var(--at-paper),transparent)}.atelier-celluloid .at-layered::after{bottom:0;background:linear-gradient(transparent,var(--at-paper))}
+.atelier-celluloid .at-layer{position:absolute;width:44%;aspect-ratio:1;background:center/contain no-repeat!important;opacity:.16;filter:sepia(.18);animation:cellPropFloat 10s ease-in-out infinite alternate}.atelier-celluloid .at-layer-1{left:-12%;top:8%}.atelier-celluloid .at-layer-2{right:-12%;bottom:9%;animation-delay:-4s}.atelier-celluloid .at-layer-3{right:8%;top:28%;width:27%;animation-delay:-7s}
+.atelier-celluloid .at-layered-quote .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-05.webp')!important}.atelier-celluloid .at-layered-quote .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-06.webp')!important}.atelier-celluloid .at-layered-quote .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-11.webp')!important}
+.atelier-celluloid .at-layered-couple .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-01.webp')!important}.atelier-celluloid .at-layered-couple .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-02.webp')!important}.atelier-celluloid .at-layered-couple .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-10.webp')!important}
+.atelier-celluloid .at-layered-story .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-12.webp')!important}.atelier-celluloid .at-layered-story .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-13.webp')!important}.atelier-celluloid .at-layered-story .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-14.webp')!important}
+.atelier-celluloid .at-layered-gallery .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-28.webp')!important}.atelier-celluloid .at-layered-gallery .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-29.webp')!important}.atelier-celluloid .at-layered-gallery .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-30.webp')!important}
+.atelier-celluloid .at-layered-date .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-09.webp')!important}.atelier-celluloid .at-layered-date .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-15.webp')!important}.atelier-celluloid .at-layered-date .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-16.webp')!important}
+.atelier-celluloid .at-layered-events .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-10.webp')!important}.atelier-celluloid .at-layered-events .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-17.webp')!important}.atelier-celluloid .at-layered-events .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-18.webp')!important}
+.atelier-celluloid .at-layered-rsvp .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-07.webp')!important}.atelier-celluloid .at-layered-rsvp .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-08.webp')!important}.atelier-celluloid .at-layered-rsvp .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-04.webp')!important}
+.atelier-celluloid .at-layered-gift .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-19.webp')!important}.atelier-celluloid .at-layered-gift .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-20.webp')!important}.atelier-celluloid .at-layered-gift .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-21.webp')!important}
+.atelier-celluloid .at-layered-wishes .at-layer-1{background-image:url('/assets/celluloid/cinematic/props/prop-06.webp')!important}.atelier-celluloid .at-layered-wishes .at-layer-2{background-image:url('/assets/celluloid/cinematic/props/prop-22.webp')!important}.atelier-celluloid .at-layered-wishes .at-layer-3{background-image:url('/assets/celluloid/cinematic/props/prop-23.webp')!important}
+.atelier-celluloid .at-couple-section::before{inset:auto -8% 38px auto;width:42%;background:url('/assets/celluloid/cinematic/props/prop-24.webp') center/contain no-repeat!important;opacity:.16;animation:cellPropFloat 11s ease-in-out infinite alternate}
+.atelier-celluloid [data-section="dresscode"]{background-image:url('/assets/celluloid/cinematic/props/prop-26.webp'),linear-gradient(var(--at-paper),var(--at-paper));background-position:right 5% bottom 56px,center;background-size:34% auto,auto;background-repeat:no-repeat,repeat}
+.atelier-celluloid [data-section="rundown"]{background-image:linear-gradient(#0c0a08d8,#0c0a08d8),url('/assets/celluloid/cinematic/props/prop-27.webp');background-position:center,left -8% bottom 50px;background-size:auto,42% auto;background-repeat:repeat,no-repeat}
+.atelier-celluloid [data-section="livestream"]{background-image:url('/assets/celluloid/cinematic/props/prop-25.webp'),linear-gradient(var(--at-paper),var(--at-paper));background-position:right -14% bottom 54px,center;background-size:48% auto,auto;background-repeat:no-repeat,repeat}
+
+/* Full rectangular final shot: the auditorium itself is the closing landscape. */
+.atelier-celluloid .at-footer{width:100%;min-height:520px;margin:0;border:0;border-radius:0!important;overflow:hidden;background:#080604 url('/assets/celluloid/cinematic/backgrounds/bg-05.webp') center/cover no-repeat!important}.atelier-celluloid .at-footer::before{content:'';position:absolute;inset:0;background:linear-gradient(transparent 18%,rgba(7,5,3,.84) 72%)}.atelier-celluloid .at-footer .at-scene{display:none}.atelier-celluloid .at-footer-copy{z-index:3!important;inset:10% 5%!important;padding:32px!important;background:linear-gradient(transparent,rgba(7,5,3,.9) 42%)!important;animation:at-credits 16s linear infinite,cellFooterBreath 9s ease-in-out infinite alternate!important}.atelier-celluloid .at-footer::after{content:'';position:absolute;left:-12%;right:-12%;bottom:-8%;height:38%;background:url('/assets/celluloid/cinematic/props/prop-28.webp') center/cover no-repeat;opacity:.46;animation:cellFilmDrift 14s ease-in-out infinite alternate;pointer-events:none}
+@keyframes cellBgPush{to{transform:scale(1.06) translateY(-1%)}}@keyframes cellScreenFlicker{0%,
+100%{opacity:.82}48%{opacity:.76}52%{opacity:.9}}@keyframes cellBeam{to{transform:translateY(5%) rotate(1.5deg);opacity:.6}}@keyframes cellCurtainIn{from{opacity:0;transform:scaleX(1.32)}to{opacity:1;transform:scaleX(1)}}@keyframes cellCurtainBreathe{to{transform:scaleX(1.025)}}@keyframes cellPropIn{from{opacity:0;transform:translate(22%,18%) rotate(8deg)}to{opacity:1;transform:none}}@keyframes cellReel{to{transform:rotate(360deg)}}@keyframes cellFilmDrift{to{transform:translateX(7%) rotate(.8deg)}}@keyframes cellRose{to{transform:rotate(2deg) translateY(-8px)}}@keyframes cellDust{from{top:110%;opacity:0}20%{opacity:.45}to{top:-10%;opacity:0}}@keyframes cellPropFloat{to{transform:translateY(-9px) rotate(1.3deg)}}@keyframes cellFooterBreath{to{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.atelier-celluloid :is(.at-celluloid-scene *,.at-layer,.at-footer-copy,.at-footer::after){animation:none!important}}
+
+/* Daguerre: a burgundy velvet keepsake cabinet, built from the dedicated asset set. */
+
+/* An inset cabinet keeps every prop away from the hard seam between sections. */
+
+/* The closing is one full landscape cabinet, edge to edge, rather than an arched card. */
+@keyframes dagVelvet{to{transform:scale(1.035) translateY(-1%)}}@keyframes dagStageIn{from{opacity:0;transform:translateY(18%) scale(.88)}to{opacity:1;transform:none}}@keyframes dagStageBreathe{to{transform:translateY(-7px) scale(1.01)}}@keyframes dagPlateReveal{from{opacity:0;filter:blur(12px);transform:scale(.82)}to{opacity:1;filter:none;transform:none}}@keyframes dagDrape{to{transform:rotate(1.8deg) scale(1.025)}}@keyframes dagLocket{to{translate:0 -9px;rotate:2deg}}@keyframes dagFlower{to{transform:rotate(-2deg) translateY(-7px)}}@keyframes dagWatch{to{transform:translateY(-7px) rotate(-2deg)}}@keyframes dagGlint{0%,
+70%,
+100%{opacity:0;transform:scale(.4)}78%{opacity:.8;transform:scale(1.8)}}@keyframes dagPropFloat{to{transform:translateY(-8px) rotate(1.2deg)}}@keyframes dagFooter{to{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){}
+
+/* Celluloid + Daguerre layout polish: vertical compositions, compact controls, no faux overflow. */
+
+/* Celluloid portraits become two composed contact sheets, using the supplied brass frame. */
+.atelier-celluloid .at-couple{display:flex;flex-direction:column;gap:18px;padding:30px 16px;background:linear-gradient(rgba(8,6,5,.94),rgba(8,6,5,.94)),url('/assets/celluloid/cinematic/backgrounds/bg-04.webp') center/cover}
+.atelier-celluloid .at-couple::before{position:static;display:block;margin-bottom:-3px}
+.atelier-celluloid .at-person{display:grid;grid-template-columns:minmax(118px,42%) minmax(0,1fr);align-items:center;gap:3px 15px;padding:12px;border:1px solid #6e5b3d;background:#17110e;color:#e8dbc3;text-align:left}
+.atelier-celluloid .at-person .at-portrait{grid-column:1;grid-row:1/8;width:100%;height:100%;min-height:250px;aspect-ratio:auto;padding:12%;overflow:visible;background:#0c0907}
+.atelier-celluloid .at-person .at-portrait-photo{position:absolute;inset:13%;width:74%;height:74%;border-radius:50%;object-fit:cover;filter:sepia(.55) saturate(.62) contrast(1.08)}
+.atelier-celluloid .at-person .at-portrait::after{inset:0;background:url('/assets/celluloid/cinematic/props/prop-01.webp') center/contain no-repeat;filter:drop-shadow(0 10px 14px #0008)}
+.atelier-celluloid .at-person>:not(.at-portrait){grid-column:2;min-width:0}.atelier-celluloid .at-person h3{margin:8px 0 3px;font-size:clamp(2rem,9cqw,3.4rem)}.atelier-celluloid .at-person p{margin:5px 0;font-size:8px}.atelier-celluloid .at-person .at-bio{display:-webkit-box;overflow:hidden;-webkit-line-clamp:5;-webkit-box-orient:vertical}.atelier-celluloid .at-amp{position:relative;left:auto;top:auto;align-self:center;width:42px;margin:-29px 0;transform:none}
+.atelier-celluloid .at-couple-section{background-image:url('/assets/celluloid/cinematic/props/prop-19.webp'),url('/assets/celluloid/cinematic/props/prop-22.webp');background-position:right -12% top 86px,left -8% bottom 40px;background-size:38% auto,30% auto;background-repeat:no-repeat}
+
+/* Daguerre portraits use the supplied tabletop oval frame instead of a generic CSS oval. */
+
+/* Carousel becomes a contained gallery with small inset controls and a fixed thumbnail grid. */
+
+/* Non-carousel Celluloid gallery is a film contact sheet, never a horizontal strip. */
+.atelier-celluloid .at-gallery:not(.at-slideshow){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px!important;overflow:hidden!important;padding:18px!important;background:#090706}.atelier-celluloid .at-gallery:not(.at-slideshow)::after{display:none}.atelier-celluloid .at-gallery:not(.at-slideshow)>button{width:100%!important;min-width:0!important;margin:0!important;aspect-ratio:4/5;transform:none!important}
+
+/* Dresscode cards stack neatly; color swatches stay inside their own row. */
+.atelier-celluloid [data-section="dresscode"]{background-image:url('/assets/celluloid/cinematic/backgrounds/bg-10.webp'),url('/assets/celluloid/cinematic/props/prop-22.webp');background-position:right -11% bottom 42px,left -8% top 76px;background-size:42% auto,30% auto;background-repeat:no-repeat}
+
+/* Previously hidden cinema environments now support distinct sections at a quiet opacity. */
+.atelier-celluloid .at-intro{background-image:linear-gradient(rgba(13,11,9,.88),rgba(13,11,9,.94)),url('/assets/celluloid/cinematic/backgrounds/bg-03.webp');background-position:center;background-size:cover}
+.atelier-celluloid .at-story{background-image:linear-gradient(rgba(218,201,170,.92),rgba(218,201,170,.96)),url('/assets/celluloid/cinematic/backgrounds/bg-06.webp');background-position:center;background-size:cover}
+.atelier-celluloid .at-gallery-section{background-image:linear-gradient(rgba(10,8,7,.9),rgba(10,8,7,.94)),url('/assets/celluloid/cinematic/backgrounds/bg-07.webp');background-position:center;background-size:cover}
+.atelier-celluloid .at-events-section{background-image:linear-gradient(rgba(234,218,189,.92),rgba(234,218,189,.96)),url('/assets/celluloid/cinematic/backgrounds/bg-08.webp');background-position:center;background-size:cover}
+.atelier-celluloid [data-section="rundown"]{background-image:linear-gradient(rgba(12,10,8,.91),rgba(12,10,8,.96)),url('/assets/celluloid/cinematic/backgrounds/bg-09.webp');background-position:center;background-size:cover}
+@container (min-width:720px){.atelier-celluloid .at-couple{display:grid;grid-template-columns:1fr 1fr;gap:14px}.atelier-celluloid .at-couple::before{grid-column:1/-1}.atelier-celluloid .at-amp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}}
+
+/* Phone composition: portrait above copy, never a squeezed two-column profile. */
+.atelier-celluloid .at-person{display:block;padding:14px 14px 26px;text-align:center}
+.atelier-celluloid .at-person .at-portrait{width:min(88%,330px);height:auto;min-height:0;aspect-ratio:3/4;margin:0 auto 16px;padding:12%}
+.atelier-celluloid .at-person>:not(.at-portrait){min-width:0}.atelier-celluloid .at-person p{max-width:38ch;margin:7px auto;font-size:9px}.atelier-celluloid .at-person .at-bio{-webkit-line-clamp:4}.atelier-celluloid .at-person h3{margin-top:8px}
+@container (min-width:720px){.atelier-celluloid .at-person{display:block}.atelier-celluloid .at-person .at-portrait{width:100%}}
+
+/* Identity-safe default covers: title plates instead of photographs of strangers. */
+.atelier-celluloid .at-cell-screen.is-default-artwork,
+.atelier-celluloid .at-celluloid-scene.is-default-artwork .at-cell-screen{display:grid;place-items:center;background-image:radial-gradient(circle,#efe1c8,#bda477 62%,#5a3b25)!important;box-shadow:inset 0 0 35px #4b2e1d}
+.atelier-celluloid .at-cell-screen>span{display:flex;flex-direction:column;align-items:center;color:#281b12;font:500 clamp(40px,12cqw,64px)/1 var(--at-script);letter-spacing:.12em;text-shadow:0 1px #fff8}.atelier-celluloid .at-cell-screen>span small{margin-bottom:8px;font:700 7px monospace;letter-spacing:.22em}
+
+/* Celluloid opening refactor — Premiere Night / opening credits. */
+.atelier-celluloid .at-opening::before{display:none!important}
+.atelier-celluloid .at-opening .at-cell-bg{
+  inset:-2%!important;width:104%!important;height:104%!important;
+  filter:sepia(.12) contrast(1.08) brightness(.72)!important;
+  animation:cellOpeningEstablish 16s ease-out both!important;
+}
+.atelier-celluloid .at-opening .at-cell-screen{
+  z-index:4!important;left:20%!important;right:20%!important;top:22%!important;height:29%!important;
+  border:1px solid rgba(184,146,85,.62)!important;background-position:center!important;
+  box-shadow:0 0 0 6px rgba(17,11,7,.62),0 12px 36px rgba(0,0,0,.48)!important;
+  mix-blend-mode:normal!important;opacity:.94!important;
+  animation:cellPremiereScreen 2.4s .7s cubic-bezier(.22,1,.36,1) both,cellScreenFlicker 5s 3.1s steps(2,end) infinite!important;
+}
+.atelier-celluloid .at-opening .at-celluloid-scene:not(.is-default-artwork) .at-cell-screen{
+  left:0!important;right:0!important;top:35.2%!important;height:31.5%!important;
+  border:0!important;background-size:cover!important;background-position:center!important;
+  box-shadow:none!important;mix-blend-mode:multiply!important;opacity:.9!important;
+  filter:sepia(.44) saturate(.68) contrast(1.02) brightness(1.02)!important;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 88%,transparent 100%);
+  animation:cellProjectorFocus 2.8s .65s cubic-bezier(.22,1,.36,1) both,cellScreenFlicker 5s 3.45s steps(2,end) infinite!important;
+}
+.atelier-celluloid .at-opening .at-celluloid-scene.is-default-artwork .at-cell-screen{
+  left:0!important;right:0!important;top:35.2%!important;height:31.5%!important;
+  display:grid!important;place-items:center!important;border:0!important;box-shadow:none!important;
+  overflow:hidden!important;isolation:isolate;mix-blend-mode:multiply!important;opacity:.93!important;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(255,247,218,.9),rgba(218,196,153,.68) 47%,rgba(95,65,42,.22) 100%),
+    repeating-linear-gradient(0deg,rgba(53,34,22,.025) 0 1px,transparent 1px 4px)!important;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 89%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 89%,transparent 100%);
+  animation:cellProjectorTitleFocus 2.6s .55s cubic-bezier(.22,1,.36,1) both,cellScreenFlicker 5s 3.2s steps(2,end) infinite!important;
+}
+.atelier-celluloid .at-opening .at-celluloid-scene.is-default-artwork .at-cell-screen::before{
+  content:'';position:absolute;z-index:-1;left:50%;top:50%;width:min(42cqw,180px);aspect-ratio:1;
+  border:1px solid rgba(69,45,29,.22);border-radius:50%;
+  background:linear-gradient(90deg,transparent 49.6%,rgba(69,45,29,.16) 50%,transparent 50.4%),linear-gradient(transparent 49.6%,rgba(69,45,29,.16) 50%,transparent 50.4%);
+  transform:translate(-50%,-50%);animation:cellCountdownMark 5.6s 2.5s linear infinite;
+}
+.atelier-celluloid .at-opening .at-celluloid-scene.is-default-artwork .at-cell-screen::after{
+  content:'';position:absolute;z-index:-1;inset:-35%;
+  background:linear-gradient(104deg,transparent 42%,rgba(255,248,219,.2) 49%,transparent 56%);
+  transform:translateX(-45%);animation:cellProjectorSweep 7s 2.8s ease-in-out infinite;
+}
+.atelier-celluloid .at-opening .at-celluloid-scene.is-default-artwork .at-cell-screen>span{
+  position:relative;z-index:2;color:#291b13!important;text-shadow:0 1px rgba(255,248,222,.7)!important;
+  animation:cellTitleCardIn 1.5s 1.25s cubic-bezier(.22,1,.36,1) both;
+}
+.atelier-celluloid .at-opening .at-cell-screen>span{
+  color:#29170f!important;text-shadow:0 1px rgba(255,248,222,.6)!important;
+}
+.atelier-celluloid .at-opening .at-cell-curtain{
+  inset:-5% -13% auto!important;width:126%!important;height:80%!important;
+  object-fit:cover!important;object-position:center top!important;
+}
+.atelier-celluloid .at-opening .at-cell-curtain-left{
+  clip-path:inset(0 50% 0 0);transform-origin:12% 0!important;
+  animation:cellCurtainLeftIn 2.5s cubic-bezier(.16,1,.3,1) both,cellCurtainLeftSway 4.8s 2.5s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-opening .at-cell-curtain-right{
+  clip-path:inset(0 0 0 50%);transform-origin:88% 0!important;
+  animation:cellCurtainRightIn 2.7s .08s cubic-bezier(.16,1,.3,1) both,cellCurtainRightSway 5.4s 2.78s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-opening :is(.at-cell-projector,.at-cell-reel,.at-cell-film){display:none!important}
+.atelier-celluloid .at-opening .at-cell-rose{
+  left:-8%!important;bottom:-8%!important;width:31%!important;opacity:1!important;transform-origin:left bottom!important;
+  animation:cellPremiereRose 8s 2s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-opening .at-cell-botanical{
+  position:absolute;z-index:8;right:-12%;bottom:-7%;width:43%;height:auto;opacity:1;
+  filter:sepia(.1) saturate(.8) brightness(.82) drop-shadow(0 14px 20px rgba(0,0,0,.6));
+  transform-origin:84% 100%;pointer-events:none;
+  animation:cellBotanicalIn 2.1s 1.7s cubic-bezier(.16,1,.3,1) both,cellBotanicalSway 8.8s 3.8s ease-in-out infinite alternate;
+}
+.atelier-celluloid .at-opening .at-cell-beam{
+  z-index:3!important;right:-20%!important;top:17%!important;width:88%!important;height:45%!important;opacity:.55!important;
+  animation:cellPremiereBeam 8s 1s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-opening-copy{
+  position:absolute!important;z-index:12!important;left:50%!important;right:auto!important;top:auto!important;bottom:7%!important;
+  width:min(82%,410px)!important;padding:0!important;color:#f1dfbf!important;border:0!important;outline:0!important;
+  background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;text-shadow:0 3px 18px #000!important;
+  transform:translateX(-50%)!important;
+}
+.atelier-celluloid .at-opening-copy::before,
+.atelier-celluloid .at-opening-copy::after{display:none!important}
+.atelier-celluloid .at-opening-copy span{
+  display:block!important;margin:0 0 9px!important;color:#c19a5e!important;
+  font:700 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.3em!important;
+  animation:cellCreditIn .9s 1.1s both!important;
+}
+.atelier-celluloid .at-opening-copy span::before{content:'PREMIERE NIGHT  •  '}
+.atelier-celluloid .at-opening-copy h1{
+  max-width:100%!important;margin:0 auto 14px!important;color:#f3dfba!important;
+  font:500 clamp(38px,11cqw,58px)/.88 var(--at-script)!important;letter-spacing:.01em!important;text-shadow:0 4px 24px #000!important;
+  animation:cellCreditIn 1.1s 1.45s both!important;
+}
+.atelier-celluloid .at-opening-copy p{
+  margin:0!important;color:#b99967!important;font:600 8px/1.3 ui-monospace,SFMono-Regular,monospace!important;
+  letter-spacing:.2em!important;text-transform:uppercase!important;animation:cellCreditIn .8s 1.8s both!important;
+}
+.atelier-celluloid .at-opening-copy strong{
+  margin:4px 0 0!important;color:#f3dfba!important;font:500 17px/1.2 var(--at-script)!important;
+  animation:cellCreditIn .8s 2s both!important;
+}
+.atelier-celluloid .at-opening-copy button{
+  min-width:min(82%,280px)!important;min-height:47px!important;margin-top:18px!important;padding:12px 28px!important;
+  color:#24150e!important;border:1px solid #c49b5d!important;border-radius:0!important;
+  background:#e8d4ad!important;box-shadow:inset 0 0 0 4px #e8d4ad,inset 0 0 0 5px rgba(98,46,31,.52),0 9px 24px rgba(0,0,0,.36)!important;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)!important;
+  font:700 9px/1 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.2em!important;
+  animation:cellCreditIn .9s 2.3s both!important;
+}
+.atelier-celluloid .at-opening-copy button::before{content:'ADMIT ONE  /  '}
+.atelier-celluloid .at-opening-copy button:hover{color:#f1dfbf!important;background:#8a2d2d!important;transform:translateY(-2px)!important}
+@keyframes cellOpeningEstablish{from{transform:scale(1.13);filter:sepia(.2) contrast(1.12) brightness(.38)}to{transform:scale(1);filter:sepia(.12) contrast(1.08) brightness(.72)}}
+@keyframes cellPremiereScreen{from{opacity:0;transform:scale(.9);filter:sepia(.8) brightness(.25)}to{opacity:.94;transform:scale(1);filter:sepia(.58) saturate(.55) contrast(1.08)}}
+@keyframes cellProjectorFocus{0%{opacity:0;transform:scale(1.075);filter:sepia(.75) saturate(.45) blur(12px) brightness(.42)}35%{opacity:.48;filter:sepia(.62) saturate(.55) blur(6px) brightness(.74)}100%{opacity:.9;transform:scale(1);filter:sepia(.44) saturate(.68) blur(0) contrast(1.02) brightness(1.02)}}
+@keyframes cellProjectorTitleFocus{0%{opacity:0;transform:scale(1.06);filter:sepia(.8) blur(11px) brightness(.38)}42%{opacity:.56;filter:sepia(.65) blur(5px) brightness(.7)}100%{opacity:.93;transform:scale(1);filter:sepia(.35) blur(0) brightness(1)}}
+@keyframes cellTitleCardIn{from{opacity:0;letter-spacing:.28em;transform:scale(.92);filter:blur(5px)}to{opacity:1;letter-spacing:.12em;transform:scale(1);filter:blur(0)}}
+@keyframes cellCountdownMark{0%{transform:translate(-50%,-50%) rotate(0);opacity:.2}50%{opacity:.38}100%{transform:translate(-50%,-50%) rotate(360deg);opacity:.2}}
+@keyframes cellProjectorSweep{0%,
+18%{transform:translateX(-48%);opacity:0}35%{opacity:.65}62%,
+100%{transform:translateX(48%);opacity:0}}
+@keyframes cellCurtainLeftIn{from{opacity:0;transform:translate(-10%,-5%) scaleX(1.16)}to{opacity:1;transform:none}}
+@keyframes cellCurtainRightIn{from{opacity:0;transform:translate(10%,-5%) scaleX(1.16)}to{opacity:1;transform:none}}
+@keyframes cellCurtainLeftSway{0%{transform:rotate(-.8deg) scaleX(.985) skewX(-.35deg)}52%{transform:rotate(1.55deg) scaleX(1.055) translateY(1.4%) skewX(.55deg)}100%{transform:rotate(-.35deg) scaleX(.995) translateY(.25%)}}
+@keyframes cellCurtainRightSway{0%{transform:rotate(.7deg) scaleX(.99) skewX(.3deg)}48%{transform:rotate(-1.65deg) scaleX(1.06) translateY(1.55%) skewX(-.6deg)}100%{transform:rotate(.3deg) scaleX(.996) translateY(.2%)}}
+@keyframes cellCreditIn{from{opacity:0;transform:translateY(13px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cellPremiereBeam{from{opacity:.28;transform:translateX(2%) rotate(.3deg)}to{opacity:.62;transform:translateX(-2%) rotate(-.3deg)}}
+@keyframes cellPremiereRose{from{transform:rotate(-.6deg) scale(1)}to{transform:rotate(1deg) scale(1.015)}}
+@keyframes cellBotanicalIn{from{opacity:0;transform:translate(18%,16%) rotate(4deg) scale(.92)}to{opacity:1;transform:none}}
+@keyframes cellBotanicalSway{from{transform:rotate(-.45deg) translateY(0)}to{transform:rotate(1deg) translateY(-7px)}}
+@media(max-width:380px){
+  .atelier-celluloid .at-opening .at-cell-screen{left:18%!important;right:18%!important;top:21%!important;height:27%!important}
+  .atelier-celluloid .at-opening .at-celluloid-scene:not(.is-default-artwork) .at-cell-screen{left:0!important;right:0!important;top:35.2%!important;height:31.5%!important}
+  .atelier-celluloid .at-opening .at-celluloid-scene.is-default-artwork .at-cell-screen{left:0!important;right:0!important;top:35.2%!important;height:31.5%!important}
+  .atelier-celluloid .at-opening-copy{bottom:5.5%!important;width:86%!important}
+  .atelier-celluloid .at-opening-copy h1{font-size:36px!important}
+}
+
+/* Celluloid main cover — one focused Feature Presentation after the invitation opens. */
+.atelier-celluloid .at-hero::before,
+.atelier-celluloid .at-hero::after{display:none!important}
+.atelier-celluloid .at-hero .at-monogram{display:none!important}
+.atelier-celluloid .at-hero .at-cell-bg{
+  inset:-4%!important;width:108%!important;height:108%!important;
+  filter:sepia(.16) contrast(1.08) brightness(.63)!important;
+  animation:cellHeroEstablish 15s ease-out both!important;
+}
+.atelier-celluloid .at-hero .at-cell-screen{
+  z-index:4!important;left:3%!important;right:3%!important;top:28.5%!important;height:29.5%!important;
+  border:0!important;box-shadow:none!important;background-size:cover!important;background-position:center!important;
+  mix-blend-mode:multiply!important;opacity:.92!important;
+  filter:sepia(.42) saturate(.7) contrast(1.03) brightness(1.03)!important;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 8%,#000 91%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 8%,#000 91%,transparent 100%);
+  animation:cellHeroProjection 3.4s .7s cubic-bezier(.22,1,.36,1) both,cellScreenFlicker 5.5s 4.1s steps(2,end) infinite!important;
+}
+.atelier-celluloid .at-hero .at-celluloid-scene.is-default-artwork .at-cell-screen{
+  display:grid!important;place-items:center!important;overflow:hidden!important;isolation:isolate;
+  background:radial-gradient(circle at 50% 48%,rgba(255,244,208,.9),rgba(200,172,125,.62) 52%,rgba(77,51,34,.25))!important;
+}
+.atelier-celluloid .at-hero .at-celluloid-scene.is-default-artwork .at-cell-screen::before{
+  content:'';position:absolute;z-index:-1;left:50%;top:50%;width:min(44cqw,190px);aspect-ratio:1;border:1px solid rgba(62,39,25,.2);border-radius:50%;
+  background:linear-gradient(90deg,transparent 49.6%,rgba(62,39,25,.14) 50%,transparent 50.4%),linear-gradient(transparent 49.6%,rgba(62,39,25,.14) 50%,transparent 50.4%);
+  animation:cellHeroCountdown 7s 3.2s linear infinite;
+}
+.atelier-celluloid .at-hero .at-cell-screen>span{position:relative;z-index:2;color:#2c1c13!important;text-shadow:0 1px #fff6!important;animation:cellHeroTitle 1.5s 1.65s both!important}
+.atelier-celluloid .at-hero :is(.at-cell-projector,.at-cell-reel,.at-cell-film){display:none!important}
+.atelier-celluloid .at-hero .at-cell-curtain{display:none!important}
+.atelier-celluloid .at-hero .at-cell-curtain-left{
+  clip-path:inset(0 50% 0 0);transform-origin:10% 0!important;
+  animation:cellHeroCurtainLeft 3.4s cubic-bezier(.16,1,.3,1) both,cellCurtainLeftSway 5.2s 3.4s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-hero .at-cell-curtain-right{
+  clip-path:inset(0 0 0 50%);transform-origin:90% 0!important;
+  animation:cellHeroCurtainRight 3.6s .1s cubic-bezier(.16,1,.3,1) both,cellCurtainRightSway 5.7s 3.7s ease-in-out infinite alternate!important;
+}
+.atelier-celluloid .at-hero .at-cell-beam{z-index:3!important;right:-18%!important;top:21%!important;width:88%!important;height:48%!important;opacity:.5!important;animation:cellPremiereBeam 8s 1.2s ease-in-out infinite alternate!important}
+.atelier-celluloid .at-hero .at-cell-rose{z-index:9!important;left:-9%!important;bottom:-8%!important;width:29%!important;opacity:1!important;transform-origin:left bottom!important;animation:cellPremiereRose 8s 2.8s ease-in-out infinite alternate!important}
+.atelier-celluloid .at-hero .at-cell-botanical{position:absolute;z-index:8;right:-13%;bottom:-8%;width:39%;opacity:1;filter:sepia(.12) saturate(.76) brightness(.78) drop-shadow(0 14px 20px #0009);transform-origin:85% 100%;animation:cellBotanicalIn 2.2s 2.1s both,cellBotanicalSway 9s 4.3s ease-in-out infinite alternate}
+.atelier-celluloid .at-hero .at-hero-copy{
+  position:absolute!important;z-index:12!important;left:9%!important;right:9%!important;bottom:5.5%!important;width:auto!important;margin:0!important;padding:42px 10px 24px!important;
+  border:0!important;background:linear-gradient(transparent,rgba(8,5,3,.82) 40%,rgba(8,5,3,.94))!important;box-shadow:none!important;text-shadow:0 3px 18px #000!important;transform:none!important;
+  animation:cellHeroCredits 1.35s 2.4s cubic-bezier(.22,1,.36,1) both!important;
+}
+.atelier-celluloid .at-hero .at-hero-copy small{color:#c49b5d!important;font:700 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.28em!important}
+.atelier-celluloid .at-hero .at-hero-copy small::before{content:'NOW SHOWING  •  '}
+.atelier-celluloid .at-hero .at-hero-copy h1{margin:10px 0 8px!important;color:#f2dfba!important;font-size:clamp(42px,12cqw,66px)!important;line-height:.86!important;text-shadow:0 4px 22px #000!important}
+.atelier-celluloid .at-hero .at-hero-copy p{margin:0!important;color:#c8a66f!important;font:600 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.16em!important;text-transform:uppercase!important}
+@keyframes cellHeroEstablish{from{transform:scale(1.14);filter:sepia(.2) contrast(1.12) brightness(.25)}to{transform:scale(1);filter:sepia(.16) contrast(1.08) brightness(.63)}}
+@keyframes cellHeroProjection{0%{opacity:0;transform:scale(1.08);filter:sepia(.8) blur(14px) brightness(.3)}38%{opacity:.52;filter:sepia(.62) blur(6px) brightness(.7)}100%{opacity:.92;transform:scale(1);filter:sepia(.42) saturate(.7) blur(0) contrast(1.03) brightness(1.03)}}
+@keyframes cellHeroTitle{from{opacity:0;transform:scale(.91);letter-spacing:.27em;filter:blur(5px)}to{opacity:1;transform:scale(1);letter-spacing:.12em;filter:blur(0)}}
+@keyframes cellHeroCountdown{from{transform:translate(-50%,-50%) rotate(0);opacity:.16}50%{opacity:.35}to{transform:translate(-50%,-50%) rotate(360deg);opacity:.16}}
+@keyframes cellHeroCurtainLeft{from{opacity:0;transform:translateX(18%) scaleX(1.18)}to{opacity:1;transform:translateX(-5%) scaleX(.96)}}
+@keyframes cellHeroCurtainRight{from{opacity:0;transform:translateX(-18%) scaleX(1.18)}to{opacity:1;transform:translateX(5%) scaleX(.96)}}
+@keyframes cellHeroCredits{from{opacity:0;translate:0 22px;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@media(max-width:380px){.atelier-celluloid .at-hero .at-cell-screen{left:3%!important;right:3%!important;top:28.5%!important;height:29.5%!important}.atelier-celluloid .at-hero .at-hero-copy{left:8%!important;right:8%!important;bottom:4.5%!important;width:auto!important}.atelier-celluloid .at-hero .at-hero-copy h1{font-size:39px!important}}
+
+/* Celluloid subtitles remain readable even when the selected quotation is long. */
+.atelier-celluloid .at-intro{min-height:0!important;padding:clamp(96px,19cqw,126px) 0 clamp(52px,10cqw,72px)!important;place-items:center!important;border-top:12px solid #0d0b09}
+.atelier-celluloid .at-intro>div:not(.at-layered){width:100%;max-width:none!important}
+.atelier-celluloid .at-intro blockquote{
+  position:relative;width:76%!important;max-width:420px!important;margin:0 auto!important;padding:30px 24px 28px!important;
+  border:1px solid rgba(190,150,86,.72)!important;background:rgba(10,8,6,.82)!important;
+  box-shadow:inset 0 0 0 5px rgba(10,8,6,.95),inset 0 0 0 6px rgba(190,150,86,.28)!important;
+  color:#efe0c4!important;font:italic 500 clamp(13px,3.4cqw,17px)/1.6 var(--at-script)!important;
+  letter-spacing:.01em!important;text-wrap:pretty;
+}
+.atelier-celluloid .at-intro blockquote::before{content:'INTERTITLE  •  REEL 01'!important;margin-bottom:20px!important;color:#bf975b!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.24em!important}
+.atelier-celluloid .at-intro blockquote+p{margin:18px auto 0!important;color:#bf975b!important;font:600 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.14em!important}
+
+/* Burgundy lacquer and brass replace the generic red multimedia control. */
+.atelier-celluloid>.floating-music-btn{
+  width:44px!important;height:44px!important;border:1px solid #c39a58!important;
+  background:radial-gradient(circle at 34% 28%,#9b3a42,#641923 68%,#3b0d14)!important;
+  color:#f1ddb5!important;box-shadow:inset 0 0 0 3px rgba(61,13,20,.42),0 5px 14px rgba(20,7,5,.38)!important;
+}
+.atelier-celluloid>.floating-music-btn.is-playing{animation:cellMusicPulse 2.2s ease-in-out infinite!important}
+.atelier-celluloid>.floating-music-btn .audio-bar{background:#f1ddb5!important;border-radius:1px!important}
+@keyframes cellMusicPulse{0%,
+100%{box-shadow:inset 0 0 0 3px rgba(61,13,20,.42),0 5px 14px rgba(20,7,5,.38),0 0 0 0 rgba(195,154,88,.35)}55%{box-shadow:inset 0 0 0 3px rgba(61,13,20,.42),0 5px 14px rgba(20,7,5,.38),0 0 0 7px rgba(195,154,88,0)}}
+
+/* Celluloid cast introduction — two calm, consistent leading-role cards. */
+.atelier-celluloid .at-couple-section{
+  padding:clamp(72px,14cqw,104px) 18px!important;background:#100c09!important;color:#eadcc2!important;
+  background-image:linear-gradient(rgba(13,9,7,.92),rgba(13,9,7,.98)),url('/assets/celluloid/cinematic/backgrounds/bg-04.webp')!important;
+  background-position:center!important;background-size:cover!important;
+}
+.atelier-celluloid .at-couple-section>.at-layered{display:none!important}
+.atelier-celluloid .at-couple-section>.at-heading{width:86%;max-width:470px;margin:0 auto 42px!important}
+.atelier-celluloid .at-couple-section>.at-heading span{color:#bf975b!important;font:700 7px/1.3 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.25em!important}
+.atelier-celluloid .at-couple-section>.at-heading h2{max-width:12ch;margin:13px auto 18px!important;color:#f0dfbf!important;font:500 clamp(34px,9cqw,50px)/.96 var(--at-script)!important}
+.atelier-celluloid .at-couple-section>.at-heading i{width:92px!important}
+.atelier-celluloid .at-couple{
+  display:flex!important;flex-direction:column!important;gap:28px!important;width:100%!important;max-width:470px!important;margin:0 auto!important;padding:0!important;
+  overflow:visible!important;background:transparent!important;
+}
+.atelier-celluloid .at-couple::before{display:none!important}
+.atelier-celluloid .at-person{
+  display:block!important;width:100%!important;margin:0!important;padding:24px 18px 28px!important;
+  border:1px solid #80643c!important;background:linear-gradient(145deg,rgba(29,20,15,.97),rgba(12,9,7,.98))!important;
+  box-shadow:inset 0 0 0 6px #130e0b,inset 0 0 0 7px rgba(184,146,85,.28)!important;color:#eadcc2!important;text-align:center!important;
+}
+.atelier-celluloid .at-person::before{content:'';display:block;width:48px;height:1px;margin:0 auto 18px;background:#9a3035}
+.atelier-celluloid .at-person .at-portrait{
+  position:relative!important;width:min(82%,315px)!important;height:auto!important;min-height:0!important;aspect-ratio:3/4!important;margin:0 auto 20px!important;padding:12%!important;
+  overflow:visible!important;border:0!important;background:transparent!important;animation:cellCastFrame 8s ease-in-out infinite alternate;
+}
+.atelier-celluloid .at-person .at-portrait::before{display:none!important}
+.atelier-celluloid .at-person .at-portrait-photo{
+  position:absolute!important;z-index:1!important;inset:13% 15% 15%!important;width:70%!important;height:72%!important;border-radius:50%!important;
+  object-fit:cover!important;filter:grayscale(.7) sepia(.5) saturate(.7) contrast(1.08)!important;
+}
+.atelier-celluloid .at-person .at-portrait::after{
+  content:''!important;position:absolute!important;z-index:2!important;inset:0!important;border:0!important;
+  background:url('/assets/celluloid/cinematic/props/prop-01.webp') center/contain no-repeat!important;
+  filter:drop-shadow(0 13px 17px rgba(0,0,0,.58))!important;pointer-events:none!important;
+}
+.atelier-celluloid .at-person :is(.at-portrait-index,.at-portrait-role,.at-portrait-lines,.at-portrait-botanical){display:none!important}
+.atelier-celluloid .at-person>span{display:block!important;margin:0 0 10px!important;color:#bf975b!important;font-size:0!important;letter-spacing:.22em!important;text-transform:uppercase!important}
+.atelier-celluloid .at-person>span::after{font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important}
+.atelier-celluloid .at-person.is-bride>span::after{content:'LEADING LADY  /  FRAME 01'}
+.atelier-celluloid .at-person.is-groom>span::after{content:'LEADING MAN  /  FRAME 02'}
+.atelier-celluloid .at-person h3{margin:0 0 8px!important;color:#e9d1a5!important;font:italic 500 clamp(36px,10cqw,52px)/.9 var(--at-script)!important}
+.atelier-celluloid .at-person strong{display:block;margin:0 auto 8px!important;color:#f0e3cd!important;font:700 9px/1.45 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+.atelier-celluloid .at-person p{max-width:36ch;margin:7px auto!important;color:#cdbb9e!important;font:500 9px/1.6 ui-monospace,SFMono-Regular,monospace!important}
+.atelier-celluloid .at-person .at-bio{display:-webkit-box!important;max-width:42ch!important;overflow:hidden!important;-webkit-line-clamp:4!important;-webkit-box-orient:vertical!important;color:#a99270!important}
+.atelier-celluloid .at-person a{display:inline-block;margin-top:10px;padding-bottom:3px;border-bottom:1px solid #9a3035;color:#d9ba85!important;font:700 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.12em!important;text-decoration:none!important}
+.atelier-celluloid .at-amp{
+  position:relative!important;left:auto!important;top:auto!important;align-self:center!important;display:grid!important;place-items:center!important;
+  width:58px!important;height:38px!important;margin:-10px 0!important;border:1px solid #bf975b!important;border-radius:0!important;background:#781f28!important;color:#f1dfbb!important;
+  font:italic 500 24px/1 var(--at-script)!important;transform:none!important;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px)!important;
+}
+.atelier-celluloid .at-wayang-tableau{display:none!important}
+@keyframes cellCastFrame{from{transform:translateY(0) scale(1)}to{transform:translateY(-5px) scale(1.008)}}
+
+/* Celluloid wedding events — an adaptive vertical double-feature ticket program. */
+.atelier-celluloid .at-events-section{
+  padding:clamp(72px,14cqw,104px) 18px!important;background:#100b08!important;color:#ead9bd!important;
+  background-image:linear-gradient(rgba(12,8,6,.88),rgba(12,8,6,.96)),url('/assets/celluloid/cinematic/backgrounds/bg-08.webp')!important;
+  background-position:center!important;background-size:cover!important;
+}
+.atelier-celluloid .at-events-section>.at-layered{display:none!important}
+.atelier-celluloid .at-events-section>.at-heading{width:86%;max-width:470px;margin:0 auto 38px!important}
+.atelier-celluloid .at-events-section>.at-heading span{color:#c39a58!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.28em!important}
+.atelier-celluloid .at-events-section>.at-heading h2{margin:13px 0 17px!important;color:#f0dfbf!important;font:500 clamp(38px,10cqw,54px)/.94 var(--at-script)!important}
+.atelier-celluloid .at-events{
+  display:flex!important;flex-direction:column!important;gap:18px!important;width:100%!important;max-width:520px!important;margin:0 auto!important;padding:0!important;
+  overflow:visible!important;border:0!important;background:transparent!important;color:inherit!important;counter-reset:cell-ticket;
+}
+.atelier-celluloid .at-events article{
+  counter-increment:cell-ticket;position:relative!important;display:grid!important;grid-template-columns:78px minmax(0,1fr)!important;align-items:start!important;gap:4px 16px!important;
+  width:100%!important;margin:0!important;padding:22px 18px 22px 0!important;overflow:hidden!important;
+  border:1px solid #bd9150!important;border-radius:0!important;background:#ead7b4!important;color:#2a1a12!important;box-shadow:0 12px 28px rgba(0,0,0,.3)!important;text-align:left!important;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)!important;
+}
+.atelier-celluloid .at-events article:nth-child(even){border-color:#cfaa69!important;background:#741d27!important;color:#f0dfc1!important}
+.atelier-celluloid .at-events article::before{
+  content:'ADMIT  ' counter(cell-ticket,decimal-leading-zero);position:absolute;left:9px;bottom:12px;color:#8b2b31;
+  font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;writing-mode:vertical-rl;
+}
+.atelier-celluloid .at-events article:nth-child(even)::before{color:#e5c68f}
+.atelier-celluloid .at-events article::after{
+  content:'';position:absolute;left:77px;top:10px;bottom:10px;border-left:1px dashed currentColor;opacity:.34;
+  animation:cellTicketPerforation 5s linear infinite;
+}
+.atelier-celluloid .at-events article .at-floral{display:none!important}
+.atelier-celluloid .at-events article>span{
+  grid-column:1!important;grid-row:1/7!important;display:flex!important;align-items:center!important;justify-content:center!important;align-self:stretch!important;
+  margin:0!important;padding:8px 12px!important;color:#8a252d!important;font:800 9px/1.25 ui-monospace,SFMono-Regular,monospace!important;
+  letter-spacing:.13em!important;text-align:center!important;text-transform:uppercase!important;writing-mode:vertical-rl!important;transform:rotate(180deg);
+}
+.atelier-celluloid .at-events article:nth-child(even)>span{color:#f0d49f!important}
+.atelier-celluloid .at-events article :is(h3,strong,h4,p,a){grid-column:2!important;min-width:0;margin-left:0!important;margin-right:0!important}
+.atelier-celluloid .at-events h3{margin:0 0 9px!important;color:inherit!important;font:600 clamp(18px,5cqw,25px)/1.05 var(--at-script)!important}
+.atelier-celluloid .at-events strong{display:block;margin:0 0 15px!important;color:#8a252d!important;font:800 9px/1.3 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.08em!important}
+.atelier-celluloid .at-events article:nth-child(even) strong{color:#efcf96!important}
+.atelier-celluloid .at-events h4{margin:0 0 6px!important;color:inherit!important;font:italic 600 clamp(22px,6cqw,31px)/1 var(--at-script)!important}
+.atelier-celluloid .at-events p{max-width:34ch;margin:0!important;color:inherit!important;font:500 10px/1.5 var(--at-body)!important;opacity:.82}
+.atelier-celluloid .at-events a{
+  display:inline-flex!important;justify-self:start!important;align-items:center!important;gap:7px!important;margin:15px 0 0!important;padding:9px 13px!important;
+  border:1px solid #8a252d!important;border-radius:0!important;background:#8a252d!important;color:#f3dfb7!important;
+  font:700 7px/1 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.12em!important;text-decoration:none!important;text-transform:uppercase!important;
+}
+.atelier-celluloid .at-events article:nth-child(even) a{border-color:#d1a963!important;background:#ead7b4!important;color:#681822!important}
+@keyframes cellTicketPerforation{0%,
+100%{translate:0 0}50%{translate:0 3px}}
+
+/* Celluloid save the date — premiere countdown board and printed show programme. */
+.atelier-celluloid .at-date{
+  position:relative!important;isolation:isolate;min-height:0!important;padding:clamp(72px,14cqw,100px) 18px clamp(82px,16cqw,116px)!important;
+  overflow:hidden!important;background:#120d0a!important;color:#ead9bb!important;
+  background-image:linear-gradient(rgba(12,8,6,.78),rgba(12,8,6,.94)),url('/assets/celluloid/cinematic/backgrounds/bg-06.webp')!important;
+  background-position:center!important;background-size:cover!important;
+}
+.atelier-celluloid .at-date>.at-layered{display:none!important}
+.atelier-celluloid .at-date>.at-heading{position:relative;z-index:2;width:88%;max-width:480px;margin:0 auto 32px!important}
+.atelier-celluloid .at-date>.at-heading span{color:#c49a58!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.27em!important}
+.atelier-celluloid .at-date>.at-heading h2{margin:12px 0 17px!important;color:#f0dfbf!important;font:500 clamp(38px,10cqw,54px)/.94 var(--at-script)!important}
+.atelier-celluloid .at-date>.at-heading i{width:88px!important;background:#9a3035!important}
+.atelier-celluloid .at-date .save-the-date{
+  position:relative;z-index:2;width:100%;max-width:520px;margin:0 auto!important;color:#ead9bb!important;
+}
+.atelier-celluloid .at-date .save-the-date-countdown{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;padding:0!important;border:0!important;
+  perspective:650px;
+}
+.atelier-celluloid .at-date .save-the-date-countdown>div{
+  position:relative;min-width:0;padding:18px 2px 14px!important;overflow:hidden;border:1px solid #b78b4d!important;
+  background:linear-gradient(#18110d 49%,#070504 50%,#17100c 51%)!important;box-shadow:inset 0 0 0 4px #0b0806,inset 0 0 0 5px rgba(190,148,81,.25),0 10px 20px rgba(0,0,0,.3)!important;
+  animation:cellFlipBoardIn .85s cubic-bezier(.2,.8,.2,1) both;
+}
+.atelier-celluloid .at-date .save-the-date-countdown>div:nth-child(2){animation-delay:.1s}.atelier-celluloid .at-date .save-the-date-countdown>div:nth-child(3){animation-delay:.2s}.atelier-celluloid .at-date .save-the-date-countdown>div:nth-child(4){animation-delay:.3s}
+.atelier-celluloid .at-date .save-the-date-countdown>div::before,
+.atelier-celluloid .at-date .save-the-date-countdown>div::after{content:'';position:absolute;top:49%;width:4px;height:5px;background:#c29858;opacity:.8}
+.atelier-celluloid .at-date .save-the-date-countdown>div::before{left:2px}.atelier-celluloid .at-date .save-the-date-countdown>div::after{right:2px}
+.atelier-celluloid .at-date .save-the-date-countdown strong{color:#efd9ae!important;font:500 clamp(29px,8cqw,45px)/1 var(--at-script)!important;text-shadow:0 2px 8px #000!important}
+.atelier-celluloid .at-date .save-the-date-countdown span{margin-top:9px!important;color:#bf975b!important;font:700 7px/1 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.14em!important;opacity:1!important}
+.atelier-celluloid .at-date .save-the-date-calendar{
+  position:relative;width:94%;max-width:440px;margin:26px auto 20px!important;padding:0 16px 16px!important;
+  border:1px solid #b98d4d!important;background:#ead8b6!important;color:#3a2418!important;
+  box-shadow:inset 0 0 0 5px #ead8b6,inset 0 0 0 6px rgba(126,67,42,.35),0 14px 28px rgba(0,0,0,.32)!important;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)!important;
+  animation:cellProgrammeIn 1s .28s cubic-bezier(.16,1,.3,1) both;
+}
+.atelier-celluloid .at-date .save-the-date-calendar::before{content:'SHOW PROGRAMME  /  ONE NIGHT ONLY';display:block;margin:0 -16px 15px;padding:11px 14px;background:#741e27;color:#f0d8aa;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;text-align:center}
+.atelier-celluloid .at-date .save-the-date-month{margin:0 0 11px!important;color:#6f1d25!important;font:600 clamp(20px,5.5cqw,28px)/1 var(--at-script)!important;letter-spacing:.08em!important}
+.atelier-celluloid .at-date .save-the-date-week{padding-bottom:7px!important;border-color:rgba(104,42,34,.28)!important;color:#6b4936!important;font:700 7px/1 ui-monospace,SFMono-Regular,monospace!important;opacity:1!important}
+.atelier-celluloid .at-date .save-the-date-days span{min-height:28px!important;color:#4e3425!important;font:600 10px/1 ui-monospace,SFMono-Regular,monospace!important;opacity:.78!important}
+.atelier-celluloid .at-date .save-the-date-days span.is-selected{width:31px!important;height:28px!important;min-height:28px!important;color:#781f28!important;font-weight:900!important;opacity:1!important}
+.atelier-celluloid .at-date .save-the-date-days span.is-selected{--save-date-accent:#8e2930}
+.atelier-celluloid .at-date .save-the-date-button{
+  display:flex!important;align-items:center!important;justify-content:center!important;width:min(88%,330px)!important;min-height:48px!important;margin:22px auto 0!important;padding:13px 22px!important;
+  border:1px solid #c59a55!important;border-radius:0!important;background:#741e27!important;color:#f1ddb6!important;
+  box-shadow:inset 0 0 0 4px #741e27,inset 0 0 0 5px rgba(237,210,159,.28),0 10px 20px rgba(0,0,0,.28)!important;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)!important;
+  font:800 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.16em!important;text-align:center!important;text-transform:uppercase!important;
+}
+.atelier-celluloid .at-date .save-the-date-button:hover{background:#8f2932!important;filter:none!important;transform:translateY(-2px)!important}
+.atelier-celluloid .at-date::after{
+  content:'';position:absolute;z-index:1;left:0;right:0;bottom:-19px;height:92px;pointer-events:none;
+  background:url('/assets/celluloid/cinematic/props/prop-13.webp') -20px bottom/112px auto no-repeat,url('/assets/celluloid/cinematic/props/prop-12.webp') calc(100% + 18px) bottom/98px auto no-repeat;
+  filter:sepia(.14) saturate(.72) brightness(.68) drop-shadow(0 10px 12px rgba(0,0,0,.52));
+}
+@keyframes cellFlipBoardIn{from{opacity:0;transform:rotateX(-70deg) translateY(13px)}to{opacity:1;transform:rotateX(0) translateY(0)}}
+@keyframes cellProgrammeIn{from{opacity:0;transform:translateY(24px) scale(.97);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes cellBrushDate{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media(max-width:380px){
+  .atelier-celluloid .at-date{padding-inline:14px!important}
+  .atelier-celluloid .at-date .save-the-date-countdown{gap:5px!important}
+  .atelier-celluloid .at-date .save-the-date-countdown span{font-size:6px!important;letter-spacing:.08em!important}
+  .atelier-celluloid .at-date .save-the-date-calendar{width:96%!important;padding-inline:12px!important}
+  .atelier-celluloid .at-date .save-the-date-calendar::before{margin-inline:-12px!important}
+}
+
+/* Celluloid gallery system — six layouts, one coherent film contact-sheet identity. */
+.atelier-celluloid .at-gallery-section{
+  padding:clamp(74px,14cqw,104px) 14px clamp(68px,13cqw,96px)!important;
+  background-image:linear-gradient(rgba(10,8,7,.86),rgba(10,8,7,.95)),url('/assets/celluloid/cinematic/backgrounds/bg-07.webp')!important;
+}
+.atelier-celluloid .at-gallery-section>.at-layered{display:none!important}
+.atelier-celluloid .at-gallery-section>.at-heading{width:88%;max-width:470px;margin:0 auto 30px!important}
+.atelier-celluloid .at-gallery-section>.at-heading span{color:#bf975b!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.27em!important}
+.atelier-celluloid .at-gallery-section>.at-heading h2{max-width:12ch;margin:12px auto 16px!important;color:#e9d7b8!important;font:500 clamp(34px,9cqw,48px)/.96 var(--at-script)!important}
+.atelier-celluloid .at-gallery-section>.at-heading i{width:88px!important;background:#8f2930!important}
+.atelier-celluloid .at-gallery:not(.at-slideshow){
+  position:relative!important;counter-reset:cell-frame;max-width:620px!important;margin:0 auto!important;padding:20px!important;overflow:hidden!important;
+  border:1px solid #6f5636!important;background:#0a0807!important;box-shadow:inset 0 0 0 5px #0a0807,inset 0 0 0 6px rgba(190,147,82,.2)!important;
+}
+.atelier-celluloid .at-gallery:not(.at-slideshow)::before{
+  content:'CONTACT SHEET  •  PORTRAIT STOCK 400  •  ARCHIVE';position:absolute;z-index:3;left:20px;right:20px;top:7px;
+  color:#a9824d;font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-align:left;pointer-events:none;
+}
+.atelier-celluloid .at-gallery:not(.at-slideshow)::after{display:none!important}
+.atelier-celluloid .at-gallery:not(.at-slideshow)>button{
+  counter-increment:cell-frame;position:relative!important;min-width:0!important;margin:0!important;padding:6px 6px 21px!important;overflow:hidden!important;
+  border:1px solid #4e3926!important;border-radius:0!important;background:#1a120e!important;box-shadow:none!important;transform:none!important;
+}
+.atelier-celluloid .at-gallery:not(.at-slideshow)>button::before{
+  content:'FRAME ' counter(cell-frame,decimal-leading-zero) ' / 400';position:absolute;z-index:3;left:7px;bottom:7px;color:#bd9458;
+  font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.12em;pointer-events:none;
+}
+.atelier-celluloid .at-gallery:not(.at-slideshow)>button::after{content:'';position:absolute;z-index:3;right:7px;bottom:7px;width:19px;height:3px;background:repeating-linear-gradient(90deg,#8e2930 0 3px,transparent 3px 5px);pointer-events:none}
+.atelier-celluloid .at-gallery:not(.at-slideshow)>button img{display:block;width:100%;height:100%;object-fit:cover;filter:sepia(.28) saturate(.72) contrast(1.06);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
+.atelier-celluloid.motion-ready .at-gallery:not(.at-slideshow)>button.is-visible img{animation:cellProjectorFocus 1.35s cubic-bezier(.16,1,.3,1) both}
+.atelier-celluloid .at-gallery:not(.at-slideshow)>button:hover img{transform:scale(1.025)!important;filter:sepia(.15) saturate(.85) contrast(1.04)!important}
+
+/* Editorial: a cinematic magazine spread with deliberate hero frames. */
+.atelier-celluloid .at-gallery.layout-editorial{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;grid-auto-rows:38px!important;grid-auto-flow:dense!important;gap:8px!important}
+.atelier-celluloid .at-gallery.layout-editorial>button{grid-column:span 6!important;grid-row:span 7!important;width:100%!important;aspect-ratio:auto!important}
+.atelier-celluloid .at-gallery.layout-editorial>button:nth-child(6n+1){grid-column:1/-1!important;grid-row:span 9!important}
+.atelier-celluloid .at-gallery.layout-editorial>button:nth-child(6n+4){grid-column:span 5!important;grid-row:span 8!important}
+.atelier-celluloid .at-gallery.layout-editorial>button:nth-child(6n+5){grid-column:span 7!important;grid-row:span 8!important}
+.atelier-celluloid .at-gallery.layout-editorial.gallery-count-odd>button:last-child{grid-column:1/-1!important;grid-row:span 8!important;width:100%!important}
+
+/* Grid: the clean laboratory contact sheet. */
+.atelier-celluloid .at-gallery.layout-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:auto!important;gap:8px!important}
+.atelier-celluloid .at-gallery.layout-grid>button{grid-column:auto!important;grid-row:auto!important;width:100%!important;aspect-ratio:4/5!important}
+.atelier-celluloid .at-gallery.layout-grid.gallery-count-odd>button:last-child{grid-column:1/-1!important;aspect-ratio:2/1!important}
+.atelier-celluloid .at-gallery.layout-grid.gallery-count-1>button{grid-column:1/-1!important;width:76%!important;justify-self:center!important;aspect-ratio:4/5!important}
+
+/* Masonry: natural photographic proportions, still mounted as negatives. */
+.atelier-celluloid .at-gallery.layout-masonry{display:block!important;columns:2!important;column-gap:8px!important;padding-top:22px!important}
+.atelier-celluloid .at-gallery.layout-masonry>button{display:block!important;width:100%!important;margin:0 0 8px!important;break-inside:avoid!important;aspect-ratio:auto!important}
+.atelier-celluloid .at-gallery.layout-masonry>button img{height:auto!important;max-height:430px!important}
+.atelier-celluloid .at-gallery.layout-masonry.gallery-count-1{columns:1!important}.atelier-celluloid .at-gallery.layout-masonry.gallery-count-1>button{width:76%!important;margin-inline:auto!important}
+
+/* Collage: cutting-room composition, structured rather than randomly tilted. */
+.atelier-celluloid .at-gallery.layout-collage{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;grid-auto-rows:35px!important;grid-auto-flow:dense!important;gap:7px!important}
+.atelier-celluloid .at-gallery.layout-collage>button{grid-column:span 6!important;grid-row:span 7!important;width:100%!important;aspect-ratio:auto!important}
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+1){grid-column:1/span 7!important;grid-row:span 10!important}
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+2),
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+3){grid-column:8/span 5!important;grid-row:span 5!important}
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+4){grid-column:1/span 5!important;grid-row:span 7!important}
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+5){grid-column:6/span 7!important;grid-row:span 7!important}
+.atelier-celluloid .at-gallery.layout-collage>button:nth-child(8n+8){grid-column:1/-1!important;grid-row:span 8!important}
+.atelier-celluloid .at-gallery.layout-collage.gallery-count-odd>button:last-child{grid-column:1/-1!important;grid-row:span 8!important;width:100%!important}
+
+/* Wall board: three-column screening-room proof board. */
+.atelier-celluloid .at-gallery.layout-wall{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:auto!important;gap:12px 7px!important;padding:25px 13px 25px!important;background:#15100d!important}
+.atelier-celluloid .at-gallery.layout-wall>button{grid-column:auto!important;grid-row:auto!important;width:100%!important;aspect-ratio:3/4!important;padding:4px 4px 18px!important;border-color:#725536!important;background:#211711!important;transform:none!important}
+.atelier-celluloid .at-gallery.layout-wall>button::before{left:5px;bottom:6px;font-size:5px;letter-spacing:.06em}
+.atelier-celluloid .at-gallery.layout-wall>button::after{right:5px;bottom:6px;width:12px}
+.atelier-celluloid .at-gallery.layout-wall.gallery-count-1>button{grid-column:1/-1!important;width:46%!important;justify-self:center!important}
+.atelier-celluloid .at-gallery.layout-wall.gallery-count-odd:not(.gallery-count-1)>button:last-child{grid-column:2!important;width:100%!important;justify-self:stretch!important}
+
+/* Slideshow: a single projection screen with a contact-strip navigator. */
+.atelier-celluloid .at-gallery.at-slideshow{position:relative!important;max-width:590px!important;padding:20px 16px 0!important;counter-reset:cell-slide;background:#0a0807!important;border:1px solid #6e5536!important;box-shadow:inset 0 0 0 5px #0a0807,inset 0 0 0 6px rgba(190,147,82,.2)!important}
+.atelier-celluloid .at-slideshow::before{content:'FEATURE PRESENTATION  •  PROJECTION 01';display:block;margin:0 0 11px;color:#b58c52;font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.17em;text-align:center}
+.atelier-celluloid .at-slideshow .at-slide-stage{padding:7px 7px 25px!important;border:1px solid #6f5638!important;background:#18110d!important}
+.atelier-celluloid .at-slideshow .at-slide-stage::after{content:'NOW SHOWING';position:absolute;left:10px;bottom:9px;color:#bd9458;font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.15em}
+.atelier-celluloid .at-slideshow .at-slide-main{aspect-ratio:4/5!important;background:#090706!important}
+.atelier-celluloid .at-slideshow .at-slide-main img{filter:sepia(.24) saturate(.75) contrast(1.05)!important;animation:cellProjectorFocus 1.25s cubic-bezier(.16,1,.3,1) both!important}
+.atelier-celluloid .at-slideshow :is(.at-slide-botanical){display:none!important}
+.atelier-celluloid .at-slideshow .at-slide-arrow{bottom:34px!important;border:1px solid #bd9458!important;border-radius:0!important;background:#721f28!important;color:#f0dbb3!important}
+.atelier-celluloid .at-slideshow .at-slide-thumbs{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;padding:7px 0!important}
+.atelier-celluloid .at-slideshow .at-slide-thumbs button{padding:2px!important;border:1px solid #513a27!important;background:#18110d!important;opacity:.46!important}
+.atelier-celluloid .at-slideshow .at-slide-thumbs button.is-active{border-color:#bd9458!important;opacity:1!important}
+.atelier-celluloid .at-slideshow .at-slide-count{margin:0 0 11px!important;color:#bd9458!important;font:700 7px/1 ui-monospace,SFMono-Regular,monospace!important}
+.atelier-celluloid .at-slideshow .at-slide-count i{background:#8f2930!important}
+@media(max-width:380px){
+  .atelier-celluloid .at-gallery:not(.at-slideshow){padding:18px 12px 12px!important}
+  .atelier-celluloid .at-gallery:not(.at-slideshow)::before{left:12px;right:12px}
+  .atelier-celluloid .at-gallery.layout-wall{gap:9px 5px!important;padding-inline:9px!important}
+  .atelier-celluloid .at-gallery.layout-wall>button{padding:3px 3px 16px!important}
+  .atelier-celluloid .at-gallery.layout-wall>button::before{font-size:4.5px}
+}
+
+/* Celluloid slideshow correction: one screen only, thumbnails stay in one horizontal film strip. */
+.atelier-celluloid .at-slideshow .at-slide-thumbs{
+  display:flex!important;grid-template-columns:none!important;flex-wrap:nowrap!important;gap:6px!important;width:100%!important;
+  padding:8px 1px 10px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;
+  scrollbar-width:thin;scrollbar-color:#8f2930 #17100c;
+}
+.atelier-celluloid .at-slideshow .at-slide-thumbs>button{
+  flex:0 0 calc((100% - 18px)/4)!important;display:block!important;grid-column:auto!important;grid-row:auto!important;
+  width:auto!important;min-width:0!important;height:auto!important;margin:0!important;padding:3px!important;aspect-ratio:1!important;
+  overflow:hidden!important;border:1px solid #513a27!important;border-radius:0!important;background:#18110d!important;
+  box-shadow:none!important;transform:none!important;scroll-snap-align:start!important;
+}
+.atelier-celluloid .at-slideshow .at-slide-thumbs>button img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;filter:sepia(.28) saturate(.7)!important}
+.atelier-celluloid .at-slideshow .at-slide-thumbs>button.is-active{border-color:#c29a5a!important;box-shadow:inset 0 0 0 2px #18110d,inset 0 0 0 3px #c29a5a!important}
+
+/* Celluloid wall board correction: overlapping pinned proof prints, not another regular grid. */
+.atelier-celluloid .at-gallery.layout-wall{
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;grid-auto-rows:112px!important;grid-auto-flow:dense!important;
+  gap:0!important;padding:34px 20px 48px!important;overflow:hidden!important;
+  background-color:#1b130f!important;
+  background-image:radial-gradient(circle at 17% 23%,rgba(191,148,83,.08) 0 1px,transparent 1.5px),linear-gradient(135deg,rgba(255,255,255,.025),transparent 42%)!important;
+  background-size:19px 19px,100% 100%!important;
+}
+.atelier-celluloid .at-gallery.layout-wall::before{
+  content:'SCREENING ROOM  /  PROOF BOARD';top:12px;left:20px;right:20px;color:#b58c52;text-align:center;
+}
+.atelier-celluloid .at-gallery.layout-wall>button{
+  position:relative!important;grid-column:span 2!important;grid-row:span 2!important;align-self:center!important;z-index:1;
+  width:112%!important;max-width:none!important;margin:0 -6%!important;padding:5px 5px 22px!important;aspect-ratio:auto!important;
+  border:1px solid #856842!important;background:#ddcba9!important;box-shadow:0 11px 18px rgba(0,0,0,.42)!important;
+  transform:rotate(-3.4deg)!important;transform-origin:center!important;will-change:transform;backface-visibility:hidden;
+  transition:transform 1.15s cubic-bezier(.22,.61,.36,1),box-shadow 1.15s ease!important;
+}
+.atelier-celluloid .at-gallery.layout-wall>button:nth-child(3n+2){z-index:2;transform:translateY(13px) rotate(2.8deg)!important}
+.atelier-celluloid .at-gallery.layout-wall>button:nth-child(3n+3){transform:translateY(-5px) rotate(-1.1deg)!important}
+.atelier-celluloid .at-gallery.layout-wall>button:nth-child(6n+4){z-index:3;transform:translate(8px,-10px) rotate(3.6deg)!important}
+.atelier-celluloid .at-gallery.layout-wall>button:nth-child(6n+5){transform:translate(-4px,8px) rotate(-2.2deg)!important}
+.atelier-celluloid .at-gallery.layout-wall>button:hover{z-index:8!important;transform:translateY(-4px) rotate(-.2deg) scale(1.015)!important;box-shadow:0 16px 24px rgba(0,0,0,.46)!important}
+.atelier-celluloid .at-gallery.layout-wall>button img{filter:sepia(.34) saturate(.68) contrast(1.05)!important}
+.atelier-celluloid .at-gallery.layout-wall>button::before{left:7px;bottom:8px;color:#61232a;font-size:5px;letter-spacing:.07em}
+.atelier-celluloid .at-gallery.layout-wall>button::after{right:7px;bottom:8px;background:repeating-linear-gradient(90deg,#7e222a 0 3px,transparent 3px 5px)}
+.atelier-celluloid .at-gallery.layout-wall.gallery-count-1>button{grid-column:2/6!important;grid-row:span 3!important;width:78%!important;margin:auto!important;transform:rotate(-1.2deg)!important}
+.atelier-celluloid .at-gallery.layout-wall.gallery-count-odd:not(.gallery-count-1)>button:last-child{grid-column:3/5!important;width:112%!important;margin-inline:-6%!important}
+@media(max-width:380px){
+  .atelier-celluloid .at-gallery.layout-wall{grid-auto-rows:96px!important;padding-inline:15px!important}
+  .atelier-celluloid .at-gallery.layout-wall>button{padding:4px 4px 19px!important}
+}
+
+/* Celluloid rundown — a readable screening cue sheet instead of a dark clock table. */
+.atelier-celluloid [data-section="rundown"]{
+  position:relative!important;isolation:isolate;min-height:0!important;padding:clamp(72px,14cqw,100px) 16px clamp(98px,18cqw,128px)!important;
+  overflow:hidden!important;background:#130e0b!important;color:#ead9bb!important;
+  background-image:linear-gradient(rgba(13,9,7,.82),rgba(13,9,7,.94)),url('/assets/celluloid/cinematic/backgrounds/bg-09.webp')!important;
+  background-position:center!important;background-size:cover!important;
+}
+.atelier-celluloid [data-section="rundown"]>.at-heading{position:relative;z-index:2;width:88%;max-width:470px;margin:0 auto 31px!important}
+.atelier-celluloid [data-section="rundown"]>.at-heading span{color:#bf975b!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.27em!important}
+.atelier-celluloid [data-section="rundown"]>.at-heading h2{margin:12px 0 16px!important;color:#f0dfbf!important;font:500 clamp(36px,9.5cqw,50px)/.94 var(--at-script)!important}
+.atelier-celluloid [data-section="rundown"]>.at-heading i{width:88px!important;background:#8f2930!important}
+.atelier-celluloid [data-section="rundown"] .at-rundown{
+  position:relative;z-index:2;counter-reset:cue;width:100%;max-width:560px;margin:0 auto!important;padding:37px 13px 16px!important;
+  border:1px solid #b88d4e!important;background:#e8d6b4!important;color:#2d1d14!important;
+  box-shadow:inset 0 0 0 5px #e8d6b4,inset 0 0 0 6px rgba(116,58,38,.3),0 16px 28px rgba(0,0,0,.32)!important;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)!important;
+  animation:cellCueSheetIn 1.05s cubic-bezier(.16,1,.3,1) both;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown::before{
+  content:'PRODUCTION CUE SHEET  •  WEDDING FEATURE';position:absolute;left:0;right:0;top:0;padding:11px 14px;
+  background:#741e27;color:#f0d7a9;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.17em;text-align:center;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown article{
+  counter-increment:cue;position:relative!important;display:grid!important;grid-template-columns:70px 68px minmax(0,1fr)!important;align-items:center!important;
+  gap:4px 12px!important;min-height:94px!important;margin:0 0 9px!important;padding:15px 13px!important;
+  border:1px solid rgba(116,58,38,.32)!important;border-radius:0!important;background:rgba(250,239,216,.65)!important;color:#2d1d14!important;
+  box-shadow:none!important;text-align:left!important;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown article:last-child{margin-bottom:0!important}
+.atelier-celluloid [data-section="rundown"] .at-rundown article::before{
+  content:'SCENE ' counter(cue,decimal-leading-zero)!important;position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  grid-column:1!important;grid-row:1/3!important;align-self:stretch!important;width:auto!important;height:auto!important;margin:0!important;padding:7px 5px!important;
+  border:1px solid #b78949!important;border-radius:0!important;background:#7a2028!important;color:#efd6a7!important;box-shadow:none!important;
+  font:800 7px/1.25 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.1em!important;text-align:center!important;
+  clip-path:polygon(5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px),0 5px)!important;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown article::after{
+  content:''!important;display:block!important;position:absolute!important;left:163px!important;top:13px!important;bottom:13px!important;width:1px!important;height:auto!important;
+  border:0!important;background:repeating-linear-gradient(to bottom,rgba(112,66,40,.48) 0 4px,transparent 4px 8px)!important;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown time{
+  position:static!important;display:block!important;grid-column:2!important;grid-row:1/3!important;align-self:center!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;color:#7b2429!important;
+  font:800 12px/1.15 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.04em!important;text-align:center!important;transform:translateX(-6px)!important;
+}
+.atelier-celluloid [data-section="rundown"] .at-rundown article>div{grid-column:3!important;min-width:0!important;padding-left:3px!important}
+.atelier-celluloid [data-section="rundown"] .at-rundown h3{margin:0!important;color:#392219!important;font:600 clamp(20px,5.5cqw,29px)/1.05 var(--at-script)!important}
+.atelier-celluloid [data-section="rundown"] .at-rundown p{max-width:36ch;margin:7px 0 0!important;color:#705341!important;font:500 10px/1.45 var(--at-body)!important}
+.atelier-celluloid.motion-ready [data-section="rundown"] .at-rundown article:nth-child(2){transition-delay:.12s!important}
+.atelier-celluloid.motion-ready [data-section="rundown"] .at-rundown article:nth-child(3){transition-delay:.24s!important}
+.atelier-celluloid.motion-ready [data-section="rundown"] .at-rundown article:nth-child(4){transition-delay:.36s!important}
+.atelier-celluloid.motion-ready [data-section="rundown"] .at-rundown article:nth-child(n+5){transition-delay:.45s!important}
+.atelier-celluloid [data-section="rundown"]::after{
+  content:'';position:absolute;z-index:1;right:-18px;bottom:-24px;width:128px;height:126px;pointer-events:none;
+  background:url('/assets/celluloid/cinematic/props/prop-12.webp') center bottom/contain no-repeat;
+  filter:sepia(.12) saturate(.72) brightness(.66) drop-shadow(0 11px 14px rgba(0,0,0,.5));transform:rotate(-5deg);
+}
+@keyframes cellCueSheetIn{from{opacity:0;transform:translateY(35px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+@media(max-width:380px){
+  .atelier-celluloid [data-section="rundown"]{padding-inline:12px!important}
+  .atelier-celluloid [data-section="rundown"] .at-rundown{padding-inline:9px!important}
+  .atelier-celluloid [data-section="rundown"] .at-rundown article{grid-template-columns:58px 57px minmax(0,1fr)!important;gap:4px 8px!important;padding:12px 8px!important}
+  .atelier-celluloid [data-section="rundown"] .at-rundown article::after{left:135px!important}
+  .atelier-celluloid [data-section="rundown"] .at-rundown time{font-size:10px!important}
+  .atelier-celluloid [data-section="rundown"] .at-rundown h3{font-size:18px!important}
+}
+
+/* Celluloid supporting sections — one coherent premiere-night visual language. */
+.atelier-celluloid :is([data-section="story"],[data-section="dresscode"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"]){
+  position:relative;isolation:isolate;min-height:0!important;padding:clamp(72px,14cqw,104px) 18px!important;overflow:hidden!important;
+  background:#120d0a!important;color:#ecddc0!important;
+  background-image:linear-gradient(rgba(13,9,7,.9),rgba(13,9,7,.97)),url('/assets/celluloid/cinematic/backgrounds/bg-04.webp')!important;
+  background-position:center!important;background-size:cover!important;
+}
+.atelier-celluloid :is([data-section="dresscode"],[data-section="igFilter"],[data-section="gift"]){background-image:linear-gradient(rgba(25,12,11,.9),rgba(14,9,7,.97)),url('/assets/celluloid/cinematic/backgrounds/bg-07.webp')!important}
+.atelier-celluloid :is([data-section="story"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"])>.at-layered{display:none!important}
+.atelier-celluloid :is([data-section="story"],[data-section="dresscode"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"])>.at-heading{
+  position:relative;z-index:2;width:88%;max-width:470px;margin:0 auto 34px!important;
+}
+.atelier-celluloid :is([data-section="story"],[data-section="dresscode"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"])>.at-heading span{
+  color:#c39a58!important;font:700 7px/1.25 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.27em!important;
+}
+.atelier-celluloid :is([data-section="story"],[data-section="dresscode"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"])>.at-heading h2{
+  max-width:12ch;margin:12px auto 16px!important;color:#efdfc1!important;font:500 clamp(36px,9.6cqw,52px)/.94 var(--at-script)!important;text-wrap:balance;
+}
+.atelier-celluloid :is([data-section="story"],[data-section="dresscode"],[data-section="livestream"],[data-section="igFilter"],[data-section="rsvp"],[data-section="gift"],[data-section="wishes"])>.at-heading i{width:88px!important;background:#8d2930!important}
+
+/* Story Reels: one active reel, compact scene selector, no long timeline overflow. */
+.atelier-celluloid [data-section="story"] .at-story-lead{position:relative;z-index:2;max-width:42ch;margin:-10px auto 26px!important;color:#c8b89c!important;font:500 11px/1.7 var(--at-body)!important}
+.atelier-celluloid [data-section="story"] .at-story-book{position:relative;z-index:2;width:100%;max-width:540px;margin:0 auto!important;padding:13px!important;border:1px solid #947044!important;background:#120d0a!important;box-shadow:0 18px 42px #0007!important}
+.atelier-celluloid [data-section="story"] .at-story-book::before{content:'STORY REELS  •  PRIVATE SCREENING';display:block;padding:2px 3px 12px;color:#c39a58;font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;text-align:center}
+.atelier-celluloid [data-section="story"] .at-story-book nav{display:flex!important;gap:6px!important;margin:0 0 10px!important;padding:0 0 8px!important;overflow-x:auto!important;scroll-snap-type:x mandatory!important;border-bottom:1px solid #604528!important;scrollbar-width:thin;scrollbar-color:#8d2930 #17100c}
+.atelier-celluloid [data-section="story"] .at-story-book nav button{flex:0 0 auto!important;min-width:88px!important;margin:0!important;padding:8px 10px!important;border:1px solid #604528!important;border-radius:0!important;background:#1b130f!important;color:#a9895d!important;font:700 6px/1.25 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.08em!important;scroll-snap-align:start!important}
+.atelier-celluloid [data-section="story"] .at-story-book nav button span{display:block;margin-bottom:5px;color:#d7b77f!important;font-size:9px!important}
+.atelier-celluloid [data-section="story"] .at-story-book nav button.is-active{border-color:#c39a58!important;background:#752029!important;color:#f0dbb3!important}
+.atelier-celluloid [data-section="story"] .at-story-book article{display:grid!important;grid-template-columns:43% minmax(0,1fr)!important;gap:0!important;padding:0!important;border:1px solid #5f452d!important;background:#e4d1af!important;color:#2e2017!important}
+.atelier-celluloid [data-section="story"] .at-story-image{width:100%!important;height:100%!important;min-height:260px!important;margin:0!important;overflow:hidden!important;border:0!important;border-right:1px solid #795a37!important;background:#130e0b!important}
+.atelier-celluloid [data-section="story"] .at-story-image img{width:100%!important;height:100%!important;object-fit:cover!important;filter:sepia(.34) saturate(.7) contrast(1.06)!important;animation:cellStoryFocus 1.15s cubic-bezier(.16,1,.3,1) both}
+.atelier-celluloid [data-section="story"] .at-story-book article>div:nth-child(2){align-self:center;padding:21px 17px!important;text-align:left!important}
+.atelier-celluloid [data-section="story"] .at-story-book article>div:nth-child(2)>span{color:#8a2930!important;font:700 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+.atelier-celluloid [data-section="story"] .at-story-book h3{margin:10px 0!important;color:#38221a!important;font:600 clamp(25px,6cqw,34px)/1 var(--at-script)!important}
+.atelier-celluloid [data-section="story"] .at-story-book p{margin:0!important;color:#624b3b!important;font:500 10px/1.55 var(--at-body)!important}
+.atelier-celluloid [data-section="story"] .at-story-controls{grid-column:1/-1!important;display:grid!important;grid-template-columns:38px 1fr 38px!important;align-items:center!important;padding:8px!important;border-top:1px solid #795a37!important;background:#1b130f!important}
+.atelier-celluloid [data-section="story"] .at-story-controls button{width:32px!important;height:28px!important;border:1px solid #967044!important;border-radius:0!important;background:#752029!important;color:#efd6aa!important}
+.atelier-celluloid [data-section="story"] .at-story-controls b{color:#c8a66d!important;font:700 7px ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.16em!important}
+@keyframes cellStoryFocus{from{opacity:.2;transform:scale(1.05);filter:sepia(.65) blur(5px)}to{opacity:1;transform:scale(1);filter:sepia(.34) saturate(.7) contrast(1.06)}}
+
+/* Wardrobe Department: stacked wardrobe cards, with fabric swatches instead of generic dots. */
+.atelier-celluloid [data-section="dresscode"]::after{content:'';position:absolute;z-index:1;right:-35px;bottom:-24px;width:150px;height:150px;background:url('/assets/celluloid/cinematic/props/prop-02.webp') center/contain no-repeat;filter:sepia(.2) brightness(.62);transform:rotate(-8deg);pointer-events:none}
+.atelier-celluloid [data-section="dresscode"] .at-dress{position:relative;z-index:2;display:grid!important;grid-template-columns:1fr!important;gap:12px!important;width:100%!important;max-width:500px!important;margin:0 auto!important;padding:0!important;overflow:visible!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress article{position:relative!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important;gap:3px 16px!important;margin:0!important;padding:20px!important;border:1px solid #b38a4e!important;border-radius:0!important;background:#e6d3b2!important;color:#2c1d15!important;box-shadow:0 12px 28px #0005!important;text-align:left!important;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress article:nth-child(even){background:#742029!important;color:#f0dfbf!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress h3{grid-column:1;margin:0!important;color:inherit!important;font:600 clamp(25px,6cqw,34px)/1 var(--at-script)!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress p{grid-column:1;margin:5px 0 0!important;color:inherit!important;font:700 7px/1.3 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.15em!important;text-transform:uppercase!important;opacity:.75}
+.atelier-celluloid [data-section="dresscode"] .at-dress article>div{grid-column:2!important;grid-row:1/3!important;display:flex!important;gap:8px!important;margin:0!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress i{display:block!important;width:38px!important;height:50px!important;border:1px solid #be9659!important;border-radius:0!important;box-shadow:inset 0 0 0 3px rgba(255,255,255,.18),3px 4px 0 rgba(46,24,17,.16)!important;transform:rotate(-2deg)!important}
+.atelier-celluloid [data-section="dresscode"] .at-dress i:nth-child(even){transform:translateY(4px) rotate(2deg)!important}
+
+/* Remote Screening: a single cinema monitor, with restrained controls. */
+.atelier-celluloid [data-section="livestream"]>.at-copy{position:relative;z-index:2;max-width:38ch;margin:-9px auto 22px!important;color:#c5b396!important;font:500 10px/1.65 var(--at-body)!important}
+.atelier-celluloid [data-section="livestream"] .livestream-card-root{position:relative;z-index:2;width:100%;max-width:560px;margin:0 auto;padding:13px 13px 30px;border:1px solid #8d6a40;background:#0b0806;box-shadow:0 18px 38px #0007}
+.atelier-celluloid [data-section="livestream"] .livestream-card-root::before{content:'REMOTE SCREENING  •  LIVE FEED';display:block;margin:0 0 11px;color:#bd9458;font:700 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;text-align:center}
+.atelier-celluloid [data-section="livestream"] .livestream-poster{aspect-ratio:16/10!important;margin:0!important;border:1px solid #745636!important;border-radius:0!important;background:#080605!important;box-shadow:none!important}
+.atelier-celluloid [data-section="livestream"] .livestream-poster>img{filter:sepia(.32) saturate(.7) brightness(.72)!important;transition:transform 1.6s cubic-bezier(.16,1,.3,1),filter 1.6s ease!important}
+.atelier-celluloid [data-section="livestream"] .livestream-poster:hover>img{transform:scale(1.025);filter:sepia(.22) saturate(.8) brightness(.83)!important}
+.atelier-celluloid [data-section="livestream"] .livestream-play{width:58px!important;height:42px!important;border:1px solid #c29a5b!important;border-radius:0!important;background:#741e27!important;color:#f1ddb5!important;transform:translate(-50%,-50%)!important;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px)!important}
+.atelier-celluloid [data-section="livestream"] .livestream-poster:hover .livestream-play{transform:translate(-50%,-50%) scale(1.04)!important}
+.atelier-celluloid [data-section="livestream"] .livestream-poster-label{left:10px!important;bottom:9px!important;color:#efd8ad!important;font:700 6px ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.17em!important}
+
+/* Premiere Photo Booth: rectangular contact-print frame, no borrowed botanical arch. */
+.atelier-celluloid [data-section="igFilter"] .at-ig-showcase{position:relative;z-index:2;width:min(78%,390px)!important;margin:0 auto 22px!important;padding:12px 12px 34px!important;border:1px solid #9b7749!important;border-radius:0!important;background:#e2cfad!important;box-shadow:0 18px 34px #0007!important;clip-path:none!important}
+.atelier-celluloid [data-section="igFilter"] .at-ig-showcase::before{content:'PHOTO BOOTH  •  TAKE 01';position:absolute;left:13px;bottom:12px;color:#742029;font:800 6px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.15em}
+.atelier-celluloid [data-section="igFilter"] .at-ig-showcase::after{content:'';position:absolute;right:13px;bottom:12px;width:25px;height:4px;background:repeating-linear-gradient(90deg,#742029 0 4px,transparent 4px 7px)}
+.atelier-celluloid [data-section="igFilter"] .at-ig-preview{display:block!important;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;border:1px solid #59412b!important;border-radius:0!important;filter:sepia(.28) saturate(.72) contrast(1.05)!important}
+.atelier-celluloid [data-section="igFilter"] .at-ig-leaf{display:none!important}
+.atelier-celluloid [data-section="igFilter"]>.at-copy{position:relative;z-index:2;max-width:37ch;margin:0 auto 20px!important;color:#c9b89c!important;font:500 10px/1.6 var(--at-body)!important}
+.atelier-celluloid [data-section="igFilter"]>.at-button{position:relative;z-index:2;display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:210px!important;padding:15px 22px!important;border:1px solid #c09857!important;border-radius:0!important;background:#741e27!important;color:#f0d9ad!important;font:800 8px/1 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.16em!important;text-transform:uppercase!important;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px)!important}
+
+/* Guest admission, gift desk and audience notes: matching ticket-station stationery. */
+.atelier-celluloid .at-form .public-forms-root{position:relative;z-index:2;width:100%!important;max-width:540px!important;margin:0 auto!important;padding:0!important;padding-bottom:0!important}
+.atelier-celluloid .at-form .pf-glass{width:100%!important;margin:0 0 16px!important;padding:26px 20px!important;border:1px solid #aa824b!important;border-radius:0!important;background:#e5d1ad!important;color:#2d1d15!important;box-shadow:0 16px 34px #0006!important;backdrop-filter:none!important;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)!important}
+.atelier-celluloid .at-form .pf-glass::before{content:'ADMISSION FORM  •  PLEASE PRINT CLEARLY';display:block;margin:-4px 0 18px;padding-bottom:10px;border-bottom:1px dashed #986f43;color:#7d2830;font:800 6px/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.16em;text-align:center}
+.atelier-celluloid [data-section="gift"] .pf-glass::before{content:'PREMIERE GIFT DESK  •  OPTIONAL'}
+.atelier-celluloid [data-section="wishes"] .pf-glass::before{content:'AUDIENCE NOTES  •  MESSAGE CARD'}
+.atelier-celluloid .at-form .pf-subtitle{max-width:36ch!important;margin:0 auto 20px!important;color:#624b3a!important;font:500 10px/1.6 var(--at-body)!important}
+.atelier-celluloid .at-form .pf-input{margin-bottom:10px!important;padding:13px 12px!important;border:1px solid #a8804e!important;border-radius:0!important;background:#f1e2c4!important;color:#301e16!important;box-shadow:inset 0 -2px #c5a269!important;font:500 11px/1.3 var(--at-body)!important}
+.atelier-celluloid .at-form .pf-input:focus{border-color:#741e27!important;box-shadow:inset 0 -2px #741e27!important}
+.atelier-celluloid .at-form .pf-btn{padding:14px!important;border:1px solid #c09959!important;border-radius:0!important;background:#741e27!important;color:#f0d9ad!important;font:800 8px/1 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.15em!important;text-transform:uppercase!important;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px)!important}
+.atelier-celluloid .at-form .pf-gift-card>p{max-width:38ch;margin:0 auto 20px!important;color:#624b3a!important;font:500 10px/1.65 var(--at-body)!important}
+.atelier-celluloid .celluloid-wishes-list{position:relative;z-index:2;gap:9px!important;max-height:390px!important;width:100%!important;max-width:540px!important;margin:0 auto!important;padding:0 6px 12px 0!important;overscroll-behavior:contain;scrollbar-color:#8e2930 #211711!important}
+.atelier-celluloid .celluloid-wish-card{margin:0!important;padding:17px 16px!important;border:1px solid #987044!important;border-left:5px solid #7d232b!important;border-radius:0!important;background:#ead9b9!important;box-shadow:none!important;color:#2f2017!important}
+.atelier-celluloid .celluloid-wish-card>div:first-child>div{color:#7c232b!important;font:800 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+.atelier-celluloid .celluloid-wish-card>div:nth-child(2){color:#4b3729!important;font:500 11px/1.55 var(--at-body)!important;opacity:1!important}
+
+/* Gift popups are mounted in a portal, so this part intentionally stays globally theme-scoped. */
+.pf-gift-modal.theme-celluloid{padding:12px!important;background:rgba(8,5,4,.9)!important;backdrop-filter:blur(7px)!important}
+.pf-gift-modal.theme-celluloid .pf-gift-modal-panel{width:min(510px,100%)!important;padding:22px!important;border:1px solid #b88b4e!important;border-radius:0!important;background:#e5d2af!important;color:#2c1c14!important;box-shadow:inset 0 0 0 5px #e5d2af,inset 0 0 0 6px rgba(109,70,39,.42),0 24px 70px #0009!important;font-family:var(--at-body,Montserrat,sans-serif)!important;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px)!important}
+.pf-gift-modal.theme-celluloid .pf-gift-modal-header{border-bottom:1px dashed #977044!important}
+.pf-gift-modal.theme-celluloid .pf-gift-modal-header span,
+.pf-gift-modal.theme-celluloid .pf-gift-account>span{color:#8b2a31!important;font:800 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.17em!important;opacity:1!important}
+.pf-gift-modal.theme-celluloid .pf-gift-modal-header h3{color:#41271b!important;font:600 30px/1 var(--at-script,"Cormorant Garamond",serif)!important}
+.pf-gift-modal.theme-celluloid .pf-gift-modal-header>button{border:1px solid #bd9253!important;border-radius:0!important;background:#741e27!important;color:#f1dcaf!important;clip-path:polygon(5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px),0 5px)!important}
+.pf-gift-modal.theme-celluloid :is(.pf-gift-account,.pf-gift-address){border:1px solid #a77e49!important;border-radius:0!important;background:#f0e1c3!important;box-shadow:none!important}
+.pf-gift-modal.theme-celluloid .pf-gift-account strong{color:#79242b!important;font:600 27px/1 var(--at-script,"Cormorant Garamond",serif)!important}
+.pf-gift-modal.theme-celluloid :is(.pf-gift-account button,.pf-gift-address i){border-radius:0!important;background:#741e27!important;color:#f1dcaf!important}
+.pf-gift-modal.theme-celluloid .pf-gift-account button{font:800 8px ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+
+/* Full-width end credits: landscape remains visible while the closing copy rolls upward. */
+.atelier-celluloid .at-footer{position:relative!important;isolation:isolate;min-height:clamp(620px,145cqw,820px)!important;overflow:hidden!important;background:#090605!important;color:#f0dfbf!important;border-radius:0!important}
+.atelier-celluloid .at-footer .at-celluloid-scene{position:absolute!important;inset:0!important;display:block!important;opacity:1!important}
+.atelier-celluloid .at-footer .at-cell-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;filter:sepia(.25) saturate(.72) brightness(.55)!important;animation:cellFooterLandscape 22s ease-in-out infinite alternate!important}
+.atelier-celluloid .at-footer .at-celluloid-scene::after{content:'';position:absolute;z-index:4;inset:0;background:linear-gradient(180deg,rgba(5,3,2,.2),rgba(5,3,2,.55) 50%,rgba(5,3,2,.88));pointer-events:none}
+.atelier-celluloid .at-footer .at-celluloid-scene>:not(.at-cell-bg){display:none!important}
+.atelier-celluloid .at-footer-copy{position:absolute!important;z-index:6!important;inset:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important;width:100%!important;height:100%!important;margin:0!important;padding:18% 12% 15%!important;border:0!important;border-radius:0!important;background:transparent!important;color:#f0dfbf!important;box-shadow:none!important;text-align:center!important;animation:none!important;text-shadow:0 3px 16px #000!important}
+.atelier-celluloid .at-footer-copy>span{margin:0 0 17px!important;color:#d1ac70!important;font:800 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.25em!important;text-transform:uppercase!important;animation:cellClosingCredits 18s linear infinite!important}
+.atelier-celluloid .at-footer-copy>h2{max-width:12ch;margin:0 auto 18px!important;color:#f1dfbf!important;font:500 clamp(40px,11cqw,61px)/.92 var(--at-script)!important;animation:cellClosingCredits 18s linear infinite!important}
+.atelier-celluloid .at-footer-copy>p{max-width:34ch;margin:0 auto 20px!important;color:#ddccb0!important;font:500 11px/1.7 var(--at-body)!important;animation:cellClosingCredits 18s linear infinite!important}
+.atelier-celluloid .at-footer-copy>strong{color:#d4b57e!important;font:800 8px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.1em!important;text-transform:uppercase!important;animation:cellClosingCredits 18s linear infinite!important}
+.atelier-celluloid .at-footer-copy>small{position:absolute!important;left:0!important;right:0!important;bottom:22px!important;margin:0 auto!important;color:#c9a565!important;font:800 7px/1.2 ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.2em!important;text-transform:uppercase!important}
+@keyframes cellFooterLandscape{from{transform:scale(1.05) translate3d(-1%,0,0)}to{transform:scale(1.11) translate3d(1.5%,-1%,0)}}
+@keyframes cellClosingCredits{0%,
+13%{opacity:0;transform:translateY(45px)}24%,
+67%{opacity:1;transform:translateY(0)}84%,
+100%{opacity:0;transform:translateY(-45px)}}
+
+@media(max-width:400px){
+  .atelier-celluloid [data-section="story"] .at-story-book article{grid-template-columns:1fr!important}
+  .atelier-celluloid [data-section="story"] .at-story-image{height:230px!important;min-height:0!important;border-right:0!important;border-bottom:1px solid #795a37!important}
+  .atelier-celluloid [data-section="story"] .at-story-book article>div:nth-child(2){padding:18px 16px!important}
+  .atelier-celluloid [data-section="dresscode"] .at-dress article{grid-template-columns:1fr!important}
+  .atelier-celluloid [data-section="dresscode"] .at-dress article>div{grid-column:1!important;grid-row:auto!important;margin-top:14px!important}
+  .atelier-celluloid [data-section="dresscode"] .at-dress i{width:34px!important;height:42px!important}
+}
+
+/* ========================================================================== */
+/* DAGUERRE — THE SILVER KEEPSAKE                                              */
+/* A coherent nineteenth-century memory cabinet: velvet, silver, ivory, wood. */
+/* ========================================================================== */
+
+/* Covers: the envelope is a closed keepsake; the hero is the opened silver plate. */
+@keyframes dagCaseSettle{from{opacity:0;transform:translateX(-50%) scale(.88) translateY(-35px)}to{opacity:1;transform:translateX(-50%) scale(1) translateY(0)}}
+@keyframes dagPlateReveal{from{opacity:0;transform:translateX(-50%) translateY(36px) scale(.9);filter:blur(9px)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);filter:none}}
+@keyframes dagChemicalDevelop{0%{opacity:.04;filter:grayscale(1) sepia(1) contrast(.5) brightness(1.6) blur(9px)}42%{opacity:.56;filter:grayscale(1) sepia(.9) contrast(.82) brightness(.95) blur(3px)}100%{opacity:1;filter:grayscale(1) sepia(.64) contrast(1.12) brightness(.72) blur(0)}}
+@keyframes dagFlowerBreathe{from{transform:rotate(-12deg) translateY(0)}to{transform:rotate(-9deg) translateY(-7px)}}
+@keyframes dagWatchSettle{from{opacity:0;transform:rotate(25deg) translate(35px,20px)}to{opacity:1;transform:rotate(11deg) translate(0)}}
+
+/* Quote: a concise engraved silver plaque, not a tall black capsule. */
+
+/* Twin portrait cases: aligned vertically, with calm hierarchy and no floating debris. */
+
+/* Keepsake pages, cabinet cards and registrar calendar. */
+@keyframes dagPageDevelop{from{opacity:.2;filter:grayscale(1) sepia(1) blur(5px);transform:scale(1.04)}to{opacity:1;filter:grayscale(1) sepia(.58) contrast(1.08);transform:scale(1)}}
+
+/* Specimen album: six distinct layouts, one archival language. */
+
+/* Ledger, etiquette and distant-viewing cabinet. */
+
+/* Tintype booth and themed stationery for RSVP, gifts and guest registry. */
+.pf-gift-modal.theme-daguerre{padding:12px!important;background:rgba(8,6,5,.91)!important;backdrop-filter:blur(8px)!important}.pf-gift-modal.theme-daguerre .pf-gift-modal-panel{width:min(510px,100%)!important;padding:23px!important;border:1px solid #948166!important;border-radius:0!important;background:#d7cab7!important;color:#33271f!important;box-shadow:inset 0 0 0 5px #c9bba6,inset 0 0 0 6px #8d7c65,0 25px 70px #000a!important;font-family:var(--at-body,Montserrat,sans-serif)!important;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px)!important}.pf-gift-modal.theme-daguerre .pf-gift-modal-header{border-bottom:1px double #928069!important}.pf-gift-modal.theme-daguerre .pf-gift-modal-header span,
+.pf-gift-modal.theme-daguerre .pf-gift-account>span{color:#5a1722!important;font:800 7px ui-monospace,SFMono-Regular,monospace!important;letter-spacing:.16em!important;opacity:1!important}.pf-gift-modal.theme-daguerre .pf-gift-modal-header h3{color:#372820!important;font:600 30px/1 var(--at-script,"Cormorant Garamond",serif)!important}.pf-gift-modal.theme-daguerre .pf-gift-modal-header>button{border:1px solid #957e5d!important;border-radius:50%!important;background:#4b101b!important;color:#e9dac1!important}.pf-gift-modal.theme-daguerre :is(.pf-gift-account,.pf-gift-address){border:1px solid #96846a!important;border-radius:0!important;background:#e7dccb!important;box-shadow:none!important}.pf-gift-modal.theme-daguerre .pf-gift-account strong{color:#50141e!important;font:600 27px/1 var(--at-script,"Cormorant Garamond",serif)!important}.pf-gift-modal.theme-daguerre :is(.pf-gift-account button,.pf-gift-address i){border-radius:0!important;background:#4b101b!important;color:#eadcc5!important}
+
+/* The box closes: full-width scene, centered copy, grounded still life at the base. */
+@keyframes dagFooterCase{from{transform:translateX(-50%) scale(.98) translateY(0)}to{transform:translateX(-50%) scale(1.025) translateY(-7px)}}
+
+@media(max-width:400px){
+}
+
+/* The dashboard phone preview is container-sized rather than viewport-sized. */
+@container (max-width:420px){
+}
+
+/* Daguerre custom portrait v3 — an open rectangular case, full colour, grounded props. */
+
+/* Main cover uses the same colour policy and only starts after the opening action. */
+
+@keyframes dagAlbumOpenIn{from{opacity:0;transform:translateX(-50%) translateY(-34px) scale(.84) rotateX(18deg)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1) rotateX(0)}}
+@keyframes dagAlbumFloat{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(-5px) scale(1.012)}}
+@keyframes dagPhotoCardIn{from{opacity:0;transform:translateX(-50%) scale(.78) rotate(-4deg)}to{opacity:1;transform:translateX(-50%) scale(1) rotate(0)}}
+@keyframes dagColourDevelop{0%{opacity:0;filter:grayscale(1) sepia(.7) contrast(1.28) brightness(.42);transform:scale(1.1)}45%{opacity:.82;filter:grayscale(.45) sepia(.36) contrast(1.15) brightness(.72)}100%{opacity:1;filter:saturate(.96) contrast(1.04) brightness(.93) sepia(.06);transform:scale(1)}}
+@keyframes dagGroundFlowerSway{from{transform:rotate(-7deg) translateY(0)}to{transform:rotate(-2deg) translateY(-7px)}}
+@keyframes dagWatchDrop{from{opacity:0;transform:translate(26px,30px) rotate(18deg)}to{opacity:1;transform:translate(0) rotate(0)}}
+@keyframes dagWatchPendulum{from{transform:rotate(-3deg)}to{transform:rotate(4deg)}}
+@keyframes dagCurtainBreath{from{transform:rotate(-8deg) translateX(-2px)}to{transform:rotate(-4deg) translateX(4px)}}
+
+@container (max-width:420px){
+}
+
+/* Daguerre cover correction — upright case, visible custom portraits, staged cinema. */
+
+/* A selected custom cover is treated as a developed silver portrait, never hidden. */
+
+/* The main cover begins its photographic development only after Open Invitation. */
+
+@keyframes dagCaseUprightIn{from{opacity:0;transform:translateX(-50%) translateY(-54px) scale(.88)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes dagCaseUprightBreathe{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.025)}}
+@keyframes dagCoverLineIn{from{opacity:0;transform:translateY(18px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes dagCallingCardIn{from{opacity:0;transform:translateY(30px) rotate(2deg)}to{opacity:1;transform:none}}
+@keyframes dagLatchIn{from{opacity:0;transform:translateY(24px) scaleX(.82)}to{opacity:1;transform:none}}
+@keyframes dagPortraitMountIn{from{opacity:0;transform:translateX(-50%) translateY(-34px) scale(.86) rotate(-3deg)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1) rotate(0)}}
+@keyframes dagPortraitBreathe{from{background-size:cover;background-position:50% 50%}to{background-size:108%;background-position:50% 46%}}
+@keyframes dagHeroLandscapeReveal{from{opacity:0;transform:translateX(-50%) scale(1.2);filter:blur(8px) grayscale(.5) sepia(.7) brightness(.28)}to{opacity:.38;transform:translateX(-50%) scale(1.02);filter:grayscale(.3) sepia(.35) brightness(.48)}}
+@keyframes dagHeroLandscapeDrift{from{transform:translateX(-50%) scale(1.02)}to{transform:translateX(-50%) scale(1.07) translateY(-1.2%)}}
+@keyframes dagHeroPropLeft{from{transform:rotate(-8deg) translateY(0)}to{transform:rotate(-4deg) translateY(-8px)}}
+@keyframes dagHeroPropRight{from{transform:scaleX(-1) rotate(-8deg) translateY(0)}to{transform:scaleX(-1) rotate(-4deg) translateY(-7px)}}
+
+@container (max-width:420px){
+}
+
+/* Daguerre envelope v2 — a single grounded Victorian keepsake, not a floating card. */
+
+@keyframes dagClosedCaseArrive{
+  from{opacity:0;transform:translateX(-50%) rotate(-5deg) scale(.86) translateY(-38px)}
+  to{opacity:1;transform:translateX(-50%) rotate(-2deg) scale(1) translateY(0)}
+}
+@keyframes dagEmbossReveal{
+  from{opacity:0;filter:blur(6px);transform:translateX(-50%) rotate(-1.4deg) translateY(22px) scale(.96)}
+  to{opacity:1;filter:none;transform:translateX(-50%) rotate(-1.4deg) translateY(0) scale(1)}
+}
+@keyframes dagEnvelopeCurtain{from{transform:rotate(-8deg) skewX(0)}to{transform:rotate(-5deg) skewX(1.4deg)}}
+@keyframes dagEnvelopeFlowers{from{transform:rotate(-7deg) translateY(0)}to{transform:rotate(-4.5deg) translateY(-6px)}}
+@keyframes dagEnvelopeWatch{
+  0%{opacity:0;transform:translate(24px,30px) rotate(24deg)}
+  68%{opacity:1;transform:translate(0) rotate(-5deg)}
+  84%{transform:rotate(3deg)}100%{opacity:1;transform:rotate(0)}
+}
+@keyframes dagLatchPulse{0%,
+72%,
+100%{filter:brightness(1)}82%{filter:brightness(1.24)}88%{filter:brightness(1.08)}}
+
+@container (max-width:420px){
+}
+
+/* Final Daguerre cover precedence. Keep this last: older theme layers must not tilt it. */
+
+@container (max-width:420px){
+}
+
+/* v3 final precedence */
+@container (max-width:420px){}
+
+/* Recess the portrait behind a real transparent metal frame. */
+@keyframes dagFrameFloat{from{transform:translateX(-50%) translateY(0) rotate(-.6deg)}to{transform:translateX(-50%) translateY(-7px) rotate(.8deg)}}
+@keyframes dagAlbumFloat{from{transform:translateX(-50%) translateY(0) scale(1)}to{transform:translateX(-50%) translateY(-10px) scale(1.018)}}
+@keyframes dagGroundFlowerSway{from{transform:rotate(-9deg) translateY(0)}to{transform:rotate(-1deg) translateY(-9px)}}
+@keyframes dagWatchPendulum{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+@keyframes dagCurtainBreath{from{transform:rotate(-9deg) translateX(-3px)}to{transform:rotate(-3deg) translateX(6px)}}
+@container (max-width:420px){}

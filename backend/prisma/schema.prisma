@@ -88,6 +88,7 @@ model ThemeSettings {
   coverImageUrl       String?    @map("cover_image_url")
   coverSecondImageUrl String?    @map("cover_second_image_url")
   coverType           String?    @map("cover_type")
+  openingAnimation    String?    @map("opening_animation")
   dresscodeDetails    Json?      @map("dresscode_details")
   igFilterImageUrl    String?    @map("ig_filter_image_url")
   layoutOrder         Json?      @map("layout_order")

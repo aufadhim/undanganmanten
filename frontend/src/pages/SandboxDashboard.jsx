@@ -4,11 +4,13 @@ import PhonePreview from '../components/PhonePreview.jsx';
 import DashboardSidebar from '../components/dashboard/DashboardSidebar.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
-import SandboxTemaPanel from '../components/SandboxTemaPanel.jsx';
+import SandboxTemaPanel, { SANDBOX_THEME_SETTINGS } from '../components/SandboxTemaPanel.jsx';
 import SandboxProfilPanel from '../components/SandboxProfilPanel.jsx';
 import SandboxWarnaPanel from '../components/SandboxWarnaPanel.jsx';
 import SandboxFeaturePanel from '../components/SandboxFeaturePanel.jsx';
-import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GROOM_PHOTO } from '../config/dummyAssets.js';
+import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GALLERY_VIDEO, DUMMY_GROOM_PHOTO } from '../config/dummyAssets.js';
+import { resolveSandboxGallery } from '../utils/sandboxMigration.js';
+const SUPPORTED_THEME_IDS = ['eternal', 'seraya', 'nawasena', 'isvara', 'lanqing', 'celluloid', 'nocturne'];
 
 // Default dummy data for sandbox
 const DEFAULT_SANDBOX_INVITATION = {
@@ -32,12 +34,18 @@ const DEFAULT_SANDBOX_INVITATION = {
         bodyText: { enabled: false },
         button: { enabled: false },
         typography: {},
+        musicUrl: '',
+        animationType: '',
+        loadingAnimation: 'breathe',
         mainStory: 'Kami bertemu pada sebuah sore yang sederhana, tanpa pernah menduga percakapan singkat itu akan menjadi awal perjalanan panjang. Waktu membawa kami melewati banyak cerita, tumbuh bersama, dan belajar bahwa rumah bukan hanya sebuah tempat, melainkan seseorang yang selalu ingin kita tuju. Kini kami memilih untuk melanjutkan kisah ini dalam satu janji, satu langkah, dan satu kehidupan bersama.'
     },
     themeId: 'eternal',
-    invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true },
+    invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, dresscodeEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true, customLogoEnabled: true, musicEnabled: false, animationEnabled: false },
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
-    galleryMedia: DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
+    galleryMedia: [
+        ...DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
+        { id: 'sandbox-video', type: 'video', url: DUMMY_GALLERY_VIDEO },
+    ],
     wishes: [
         {
             id: 'sandbox-wish-1',
@@ -77,11 +85,33 @@ export default function SandboxDashboard() {
         const savedVersion = localStorage.getItem('sandbox_version');
         if (saved && savedVersion === SANDBOX_VERSION) {
             const parsed = JSON.parse(saved);
-            return { ...DEFAULT_SANDBOX_INVITATION, ...parsed, themeId: urlTheme || parsed.themeId || 'eternal' };
+            const savedGroomPhoto = parsed.coupleProfile?.groomPhoto || '';
+            const groomPhoto = savedGroomPhoto.includes('photo-1506794778202-cad84cf45f1d')
+                ? DUMMY_GROOM_PHOTO
+                : (savedGroomPhoto || DUMMY_GROOM_PHOTO);
+            const savedGallery = parsed.galleryMedia || [];
+            const galleryMedia = resolveSandboxGallery(savedGallery, DEFAULT_SANDBOX_INVITATION.galleryMedia);
+            return {
+                ...DEFAULT_SANDBOX_INVITATION,
+                ...parsed,
+                coupleProfile: { ...DEFAULT_SANDBOX_INVITATION.coupleProfile, ...(parsed.coupleProfile || {}), groomPhoto },
+                themeSettings: !SUPPORTED_THEME_IDS.includes(urlTheme || parsed.themeId)
+                    ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...SANDBOX_THEME_SETTINGS.eternal }
+                    : urlTheme && urlTheme !== parsed.themeId
+                        ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...SANDBOX_THEME_SETTINGS[urlTheme] }
+                    : { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...(parsed.themeSettings || {}) },
+                invitationFeatures: { ...DEFAULT_SANDBOX_INVITATION.invitationFeatures, ...(parsed.invitationFeatures || {}) },
+                galleryMedia,
+                themeId: SUPPORTED_THEME_IDS.includes(urlTheme || parsed.themeId) ? (urlTheme || parsed.themeId) : 'eternal'
+            };
         }
         return {
             ...DEFAULT_SANDBOX_INVITATION,
-            themeId: urlTheme || 'eternal'
+            themeId: SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'eternal',
+            themeSettings: {
+                ...DEFAULT_SANDBOX_INVITATION.themeSettings,
+                ...SANDBOX_THEME_SETTINGS[SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'eternal'],
+            },
         };
     });
 
@@ -113,6 +143,7 @@ export default function SandboxDashboard() {
         desain: [
             { key: 'tema', label: 'Tema', icon: 'fa-palette' },
             { key: 'warna', label: 'Warna', icon: 'fa-fill-drip' },
+            { key: 'visual', label: 'Musik & Visual', icon: 'fa-music' },
         ],
         konten: [
             { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
@@ -168,13 +199,12 @@ export default function SandboxDashboard() {
             <div className="panel mobile-content-wrapper">
                 <div className="panel-inv-switcher" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
-                        <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Sandbox Mode</h2>
+                        <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Mode Coba</h2>
                         <p style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>Coba ubah tampilan sebelum daftar.</p>
                     </div>
                     <button
-                        className="btn-save"
+                        className="btn btn-primary sandbox-signup-btn"
                         onClick={handleSignup}
-                        style={{ padding: '8px 16px', background: 'var(--ink)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
                     >
                         Daftar & Simpan <i className="fa-solid fa-arrow-right"></i>
                     </button>
@@ -209,7 +239,7 @@ export default function SandboxDashboard() {
                 <div className="stage-topbar">
                     <div className="stage-url">
                         undanganmanten.id/demo
-                        <span className="stage-url-badge" style={{ background: '#ddd', color: '#555', padding: '2px 8px', borderRadius: '12px', marginLeft: '8px', fontSize: '11px' }}>Sandbox</span>
+                        <span className="stage-url-badge" style={{ background: '#ddd', color: '#555', padding: '2px 8px', borderRadius: '12px', marginLeft: '8px', fontSize: '11px' }}>Mode Coba</span>
                     </div>
                     <div className="stage-topbar-actions">
                         <button className="stage-close-btn" onClick={() => setShowMobilePreview(false)} style={{ display: showMobilePreview ? 'flex' : 'none' }}>

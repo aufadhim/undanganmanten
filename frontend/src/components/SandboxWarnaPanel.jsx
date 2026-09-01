@@ -3,11 +3,16 @@ import { useFormDraft } from '../hooks/useFormDraft.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
+
 // Palet Warna Default Bawaan Masing-masing Tema (Sebagai Acuan Undo/Reset)
 const DEFAULT_PALETTES = {
+    'celluloid': { bgPrimary: '#211913', bgSecondary: '#211913', textPrimary: '#8a2d2d', textSecondary: '#efe1c8', btnBg: '#8a2d2d', btnText: '#211913' },
+    'nocturne': { bgPrimary: '#08090b', bgSecondary: '#121014', textPrimary: '#751c30', textSecondary: '#eee7dc', btnBg: '#c5a46a', btnText: '#08090b' },
     'eternal': { bgPrimary: '#fafaf9', bgSecondary: '#f5f5f4', textPrimary: '#292524', textSecondary: '#57534e', btnBg: '#292524', btnText: '#fafaf9' },
-    'samaya': { bgPrimary: '#f4f0e8', bgSecondary: '#dfe7da', textPrimary: '#334238', textSecondary: '#667269', btnBg: '#61715f', btnText: '#ffffff' },
-    'nisera': { bgPrimary: '#f8f3ed', bgSecondary: '#eaded2', textPrimary: '#49372f', textSecondary: '#7b6458', btnBg: '#7a2436', btnText: '#ffffff' },
+    'seraya': { bgPrimary: '#f4f1ea', bgSecondary: '#dedad1', textPrimary: '#0a0a0a', textSecondary: '#4a4945', btnBg: '#111111', btnText: '#ffffff' },
+    'nawasena': { bgPrimary: '#f4eddf', bgSecondary: '#d9c9ad', textPrimary: '#741d2b', textSecondary: '#243322', btnBg: '#a4894e', btnText: '#ffffff' },
+    'isvara': { bgPrimary: '#f3f0e8', bgSecondary: '#dfe3d5', textPrimary: '#465440', textSecondary: '#30372f', btnBg: '#78846c', btnText: '#ffffff' },
+    'lanqing': { bgPrimary: '#f6ebdd', bgSecondary: '#e9c9b6', textPrimary: '#8d1b24', textSecondary: '#341b18', btnBg: '#a8232d', btnText: '#fff8e8' },
     'exclusive-olan': {
         bgPrimary: '#EEE8E5',
         bgSecondary: '#E4D5C0',

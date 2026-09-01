@@ -78,8 +78,8 @@ export async function createInvitation(req, res) {
                 invitationFeatures: {
                     create: {
                         rsvpEnabled: true,
-                        giftEnabled: false,
-                        livestreamEnabled: false,
+                        giftEnabled: true,
+                        livestreamEnabled: true,
                         timelineEnabled: true,
                         storyEnabled: true,
                         animationEnabled: true,

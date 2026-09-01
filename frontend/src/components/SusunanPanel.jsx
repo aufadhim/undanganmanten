@@ -5,7 +5,6 @@ import { useUI } from '../context/UIContext.jsx';
 import debounce from 'lodash.debounce';
 
 import DresscodeEditor from './DresscodeEditor.jsx';
-import IGFilterEditor from './IGFilterEditor.jsx';
 import { Reorder } from 'framer-motion';
 
 const DEFAULT_LAYOUT = [
@@ -19,6 +18,7 @@ const DEFAULT_LAYOUT = [
     { id: 'story', label: 'Cerita Cinta', icon: 'fa-heart', enabled: true, nav: ['konten', 'cerita'], featureKey: 'storyEnabled' },
     { id: 'dresscode', label: 'Panduan Dresscode', icon: 'fa-shirt', enabled: true, nav: ['konten', 'dresscode'], featureKey: 'dresscodeEnabled' },
     { id: 'livestream', label: 'Live Streaming', icon: 'fa-video', enabled: true, nav: ['konten', 'livestream'], featureKey: 'livestreamEnabled' },
+    { id: 'igFilter', label: 'Filter Instagram', icon: 'fa-camera-retro', enabled: true, nav: ['konten', 'igfilter'], featureKey: 'igFilterEnabled' },
     { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['konten', 'tamu'], featureKey: 'rsvpEnabled' },
     { id: 'gift', label: 'Informasi Hadiah', icon: 'fa-gift', enabled: true, nav: ['konten', 'hadiah'], featureKey: 'giftEnabled' },
     { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['konten', 'ucapan'], featureKey: 'wishesEnabled' },
@@ -48,48 +48,36 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
 
                     DEFAULT_LAYOUT.forEach(def => {
                         if (!mergedItems.find(mi => mi.id === def.id)) {
-                            // If it's a new feature block, initialize its enabled state from invitationFeatures
-                            let isEnabled = def.enabled;
-                            if (def.featureKey && invitation?.invitationFeatures) {
-                                isEnabled = !!invitation.invitationFeatures[def.featureKey];
-                            }
-                            mergedItems.push({ ...def, enabled: isEnabled });
+                            mergedItems.push({ ...def, enabled: def.enabled });
                         }
                     });
-
-                    // Sync state from invitationFeatures just in case it was toggled elsewhere
-                    const finalItems = mergedItems.map(item => {
-                        if (item.featureKey && invitation?.invitationFeatures && invitation.invitationFeatures.hasOwnProperty(item.featureKey)) {
-                            return { ...item, enabled: !!invitation.invitationFeatures[item.featureKey] };
-                        }
-                        return item;
-                    });
-
-                    setItems(finalItems);
+                    setItems(mergedItems);
                 }
             } catch(e) {
                 console.error("Error parsing layoutOrder:", e);
             }
         } else {
-            // First time loading without layoutOrder, sync with features
-            const syncItems = DEFAULT_LAYOUT.map(item => {
-                if (item.featureKey && invitation?.invitationFeatures && invitation.invitationFeatures.hasOwnProperty(item.featureKey)) {
-                    return { ...item, enabled: !!invitation.invitationFeatures[item.featureKey] };
-                }
-                return item;
-            });
-            setItems(syncItems);
+            // Undangan baru menampilkan semua blok bisnis secara default.
+            setItems(DEFAULT_LAYOUT);
         }
     }, [invitation?.id]);
 
     const updatePreview = useCallback(
         debounce((newOrder) => {
             if (onLivePreview) {
+                const featureUpdates = {};
+                newOrder.forEach((item) => {
+                    if (item.featureKey) featureUpdates[item.featureKey] = item.enabled;
+                });
                 onLivePreview({
                     themeSettings: {
                         ...invitation?.themeSettings,
                         layoutOrder: newOrder
-                    }
+                    },
+                    invitationFeatures: {
+                        ...invitation?.invitationFeatures,
+                        ...featureUpdates
+                    },
                 });
             }
         }, 300),
@@ -104,7 +92,10 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
         updatePreview(newItems);
     };
 
+    useEffect(() => () => updatePreview.cancel(), [updatePreview]);
+
     const handleSave = async () => {
+        updatePreview.cancel();
         setSaving(true);
         try {
             // Build features payload to sync them perfectly
@@ -239,11 +230,6 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                             {expandedInline === item.id && item.inlineEditor === 'dresscode' && item.enabled && (
                                 <div style={{ padding: '20px', background: '#fafafa', border: '1px solid rgba(0,0,0,0.05)', borderTop: 'none', borderRadius: '0 0 8px 8px' }}>
                                     <DresscodeEditor invitation={invitation} onUpdated={onUpdated} />
-                                </div>
-                            )}
-                            {expandedInline === item.id && item.inlineEditor === 'igFilter' && item.enabled && (
-                                <div style={{ padding: '20px', background: '#fafafa', border: '1px solid rgba(0,0,0,0.05)', borderTop: 'none', borderRadius: '0 0 8px 8px' }}>
-                                    <IGFilterEditor invitation={invitation} onUpdated={onUpdated} />
                                 </div>
                             )}
                         </Reorder.Item>

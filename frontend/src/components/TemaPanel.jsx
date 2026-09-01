@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { api } from '../api/client.js';
 import { useUI } from '../context/UIContext.jsx';
+import ThemeThumbnail from './ThemeThumbnail.jsx';
 
 const CATALOG_TEMPLATES = [
     {
@@ -11,19 +12,47 @@ const CATALOG_TEMPLATES = [
         description: 'Template eksklusif bernuansa elegan dan personal.'
     },
     {
-        id: 'samaya',
-        name: 'Samaya',
+        id: 'seraya',
+        name: 'Seraya',
         category: 'PREMIUM',
-        previewImg: '/assets/samaya/Orn-09.png',
-        description: 'Desain elegan natural dengan ornamen botanical, warna sage green hangat, dan layout split-view.'
+        previewImg: '/assets/gallery/dummy-gallery-03.webp',
+        description: 'Editorial modern dengan cover sinematik, lembar undangan seperti majalah, dan ruang putih elegan.'
     },
     {
-        id: 'nisera',
-        name: 'Nisera',
+        id: 'nawasena',
+        name: 'Nawasena',
         category: 'PREMIUM',
-        previewImg: '/assets/nisera/nisera-aHR0cHM6Ly9tZWRpYS5rYXRzdWRvdG8uaWQvbWVkaWEvcHVibGljLzk2ODQxLzcyMzE3L3RodW1ibmFpbC90aHVtYi1sZy05NzI4NTEtMjAwMC0yMDAwLWVkOGUzYWVjODFhZGE4NDc3MzVkOGJlYi1jZjI1MjUuanBn.webp',
-        description: 'Desain luxury kustom dari referensi Katsudoto dengan tata letak side-to-side klasik.'
-    }
+        previewImg: '/assets/nawasena/enchanted-joglo-hero.webp',
+        description: 'Taman Jawa penuh ilustrasi, kabut, burung, kelopak, dan animasi sinematik.'
+    },
+    {
+        id: 'isvara',
+        name: 'Isvara',
+        category: 'PREMIUM',
+        previewImg: '/assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg',
+        description: 'Editorial monokrom yang beralih ke kertas ivory, ilustrasi pasangan, dan botani sage berlapis.'
+    },
+    {
+        id: 'lanqing',
+        name: 'Lanqing',
+        category: 'PREMIUM',
+        previewImg: '/assets/gallery/dummy-gallery-01.webp',
+        description: 'Chinese lacquer merah dengan segel 囍, parchment hangat, prosesi bergaya gulungan, dan detail emas antik.'
+    },
+    {
+        id: 'celluloid',
+        name: 'Celluloid',
+        category: 'PREMIUM',
+        previewImg: '/assets/theme-thumbnails/celluloid-key-visual-v1.webp',
+        description: 'Sinema vintage dengan proyektor, gulungan film, tirai panggung, dan atmosfer premiere.'
+    },
+    {
+        id: 'nocturne',
+        name: 'Nocturne',
+        category: 'PREMIUM',
+        previewImg: '/assets/nocturne/backgrounds/opening-stage-background.webp',
+        description: 'Black-tie wedding gala dengan panggung Art Deco, velvet burgundy, spotlight, dan editorial malam yang sinematik.'
+    },
 ];
 
 export default function TemaPanel({ invitation, onUpdated }) {
@@ -64,6 +93,10 @@ export default function TemaPanel({ invitation, onUpdated }) {
         <div className="panel-content">
             <h3 className="panel-title">Katalog Desain Undangan</h3>
             <p className="panel-sub">Pilih desain wajah undanganmu. Seluruh data nama, acara, & foto yang sudah kamu isi tidak akan hilang.</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '10px 0 18px', padding: '10px 12px', borderRadius: '10px', background: '#f2f7f3', color: '#496052', fontSize: '13px' }}>
+                <i className="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                Tema langsung diterapkan dan tersimpan otomatis saat dipilih.
+            </div>
 
             <div className="theme-filters">
                 <div className="theme-search-wrapper">
@@ -111,8 +144,8 @@ export default function TemaPanel({ invitation, onUpdated }) {
                                 position: 'relative'
                             }}
                         >
-                            <div style={{ height: '160px', overflow: 'hidden', position: 'relative' }}>
-                                <img src={tmpl.previewImg} alt={tmpl.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <div style={{ height: '190px', overflow: 'hidden', position: 'relative' }}>
+                                <ThemeThumbnail theme={tmpl} />
                                 {isActive && (
                                     <div style={{ position: 'absolute', top: 8, right: 8, background: '#7a2436', color: '#fff', fontSize: '10px', padding: '2px 8px', borderRadius: '10px', fontWeight: 'bold' }}>
                                         Aktif

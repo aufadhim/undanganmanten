@@ -6,7 +6,7 @@ SaaS undangan pernikahan digital dengan React/Vite pada frontend dan Express/Pri
 
 - Dashboard multi-undangan, editor tema, profil, acara, galeri, tamu, RSVP, dan ucapan.
 - Halaman undangan publik dengan personalisasi tamu dan QR check-in.
-- Trial 2 hari, paket Standard/Premium, add-on, dan pembayaran Midtrans.
+- Mode Coba, satu paket Premium Rp119.000, add-on buku tamu QR, dan pembayaran Midtrans.
 - Email OTP, login Google opsional, lupa password, admin, serta penyimpanan media Cloudflare R2.
 
 ## Environment

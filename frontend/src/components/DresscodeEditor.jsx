@@ -8,7 +8,7 @@ export default function DresscodeEditor({ invitation, onUpdated, onLivePreview }
     
     // Default structure for dresscode details
     const defaultDetails = {
-        title: themeSettings.dresscodeText || 'We kindly ask that guests please attend wearing our wedding colors.',
+        title: 'Kami mengharapkan kehadiran Anda dengan mengenakan palet warna berikut.',
         items: [
             { icon: 'men', title: 'Men', desc: 'Garden', colors: ['#AABBCC', '#DDEEFF'] },
             { icon: 'women', title: 'Women', desc: 'Garden Party', colors: ['#AABBCC', '#DDEEFF'] }
@@ -71,17 +71,6 @@ export default function DresscodeEditor({ invitation, onUpdated, onLivePreview }
 
     return (
         <div style={{ marginTop: '16px', padding: '16px', background: '#f8f9fa', borderRadius: '12px', border: '1px solid #e9ecef' }}>
-            <div style={{ marginBottom: '16px' }}>
-                <label className="field-label">Teks Pembuka Dresscode</label>
-                <textarea 
-                    className="text-input" 
-                    rows={2}
-                    value={details.title}
-                    onChange={(e) => setDetails({ ...details, title: e.target.value })}
-                    placeholder="Contoh: We kindly ask that guests please attend wearing our wedding colors."
-                />
-            </div>
-
             {details.items.map((item, idx) => (
                 <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '8px', border: '1px solid #ddd', marginBottom: '12px' }}>
                     <div style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>

@@ -1,9 +1,14 @@
 import { lazy, Suspense } from 'react';
 import SplitViewLayout from './SplitViewLayout.jsx';
 
-const SamayaTemplate = lazy(() => import('./templates/SamayaTemplate.jsx'));
-const NiseraTemplate = lazy(() => import('./templates/NiseraTemplate.jsx'));
-const EternalTemplate = lazy(() => import('./templates/EternalTemplate.jsx'));
+
+const EternalTemplate = lazy(() => import('./templates/eternal/EternalTemplate.jsx'));
+const SerayaTemplate = lazy(() => import('./templates/seraya/SerayaTemplate.jsx'));
+const NawasenaTemplate = lazy(() => import('./templates/nawasena/NawasenaTemplate.jsx'));
+const IsvaraTemplate = lazy(() => import('./templates/isvara/IsvaraTemplate.jsx'));
+const LanqingTemplate = lazy(() => import('./templates/lanqing/LanqingTemplate.jsx'));
+const CelluloidTemplate = lazy(() => import('./templates/celluloid/CelluloidTemplate.jsx'));
+const NocturneTemplate = lazy(() => import('./templates/nocturne/NocturneTemplate.jsx'));
 
 function parseLayoutOrder(value) {
     if (Array.isArray(value)) return value;
@@ -27,12 +32,22 @@ export default function PhonePreview({ invitation, previewGuest, editorPreview =
 
     let template = null;
     
-    if (invitation?.themeId === 'eternal') {
+    if (invitation?.themeId === 'nocturne') {
+        template = <NocturneTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'celluloid') {
+        template = <CelluloidTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'lanqing') {
+        template = <LanqingTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'isvara') {
+        template = <IsvaraTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'nawasena') {
+        template = <NawasenaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'seraya') {
+        template = <SerayaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    } else if (invitation?.themeId === 'eternal') {
         template = <EternalTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'nisera') {
-        template = <NiseraTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
     } else {
-        template = <SamayaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
+        template = <EternalTemplate invitation={{ ...invitation, themeId: 'eternal' }} previewGuest={previewGuest} editorPreview={editorPreview} />;
     }
 
     return (
@@ -49,12 +64,12 @@ export default function PhonePreview({ invitation, previewGuest, editorPreview =
                     --typo-body-letter-spacing: ${typo.bodyLetterSpacing ?? 0}em;
                 }
 
-                :is(.samaya-wrapper, .nisera, .eternal-wrapper) :is(h1, h2, h3, h4, h5, h6) {
+                :is(.nocturne, .atelier, .lanqing, .isvara, .nawasena, .seraya, .eternal-wrapper) :is(h1, h2, h3, h4, h5, h6) {
                     line-height: var(--typo-heading-line-height) !important;
                     letter-spacing: var(--typo-heading-letter-spacing) !important;
                 }
 
-                :is(.samaya-wrapper, .nisera, .eternal-wrapper) :is(p, li) {
+                :is(.nocturne, .atelier, .lanqing, .isvara, .nawasena, .seraya, .eternal-wrapper) :is(p, li) {
                     line-height: var(--typo-body-line-height) !important;
                     letter-spacing: var(--typo-body-letter-spacing) !important;
                 }

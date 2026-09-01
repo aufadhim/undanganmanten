@@ -13,6 +13,8 @@ export const R2_PUBLIC_URL = (
 export function resolveImageUrl(value) {
   if (!value || value.startsWith('http://') || value.startsWith('https://')) return value || '';
   const path = value.startsWith('/') ? value : `/${value}`;
+  // Bundled frontend assets live on the same origin as the app, not on the API server.
+  if (path.startsWith('/assets/')) return path;
   if (R2_PUBLIC_URL && path.startsWith('/invitations')) return `${R2_PUBLIC_URL}${path}`;
   return `${BACKEND_URL}${path}`;
 }

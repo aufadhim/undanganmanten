@@ -7,10 +7,16 @@ export default function SplitViewLayout({ invitation, children }) {
     // Background based on theme primary/secondary or a default image
     const bgPrimary = theme?.background?.primary || '#2C3E50';
     const bgSecondary = theme?.background?.secondary || '#E4D5C0';
-    const coverImage = profile.bridePhoto || profile.groomPhoto || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200';
+    const coverImage = theme.coverImageUrl
+        || (invitation?.themeId === 'lanqing' ? '/assets/gallery/dummy-gallery-01.webp' : '')
+        || (invitation?.themeId === 'isvara' ? '/assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg' : '')
+        || (invitation?.themeId === 'nawasena' ? '/assets/nawasena/enchanted-joglo-hero.webp' : '')
+        || profile.bridePhoto
+        || profile.groomPhoto
+        || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200';
 
     return (
-        <div className="split-view-container">
+        <div className={`split-view-container split-view-theme-${invitation?.themeId || 'default'}`}>
             <div className="split-view-inner">
 
                 {/* Panel Kiri: Animasi & Cover */}
@@ -42,7 +48,7 @@ export default function SplitViewLayout({ invitation, children }) {
                 </div>
 
                 {/* Panel Kanan: Template Asli (Bisa di-scroll) */}
-                <div className="split-view-right">
+                <div className="split-view-right" tabIndex={0} aria-label="Pratinjau undangan yang dapat digulir">
                     {/* Wrapper for background to prevent scale(1.1) from causing overflow */}
                     <div className="split-view-blur-wrapper">
                         {/* Background Blur for iPad void */}

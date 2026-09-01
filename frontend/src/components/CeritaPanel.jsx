@@ -29,6 +29,20 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
         setTimelineEnabled(invitation.invitationFeatures?.timelineEnabled || false);
     }, [invitation.timelineStories, invitation.invitationFeatures]);
 
+    useEffect(() => {
+        if (!showForm || (!form.title && !form.description && !form.date)) return;
+        const draftStory = {
+            id: editingId || 'timeline-live-draft',
+            title: form.title || 'Babak Baru',
+            date: form.date ? `${form.date}-01T00:00:00.000Z` : null,
+            description: form.description || 'Deskripsi cerita akan tampil di sini.',
+        };
+        const previewStories = editingId
+            ? stories.map((story) => story.id === editingId ? draftStory : story)
+            : [...stories, draftStory];
+        onLivePreview?.({ timelineStories: previewStories });
+    }, [form, showForm, editingId]);
+
     // Handle Toggle On/Off
     async function handleToggle(key, currentState) {
         const checked = !currentState;
@@ -63,7 +77,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
         setEditingId(story.id);
         setForm({
             title: story.title,
-            date: story.date ? story.date.slice(0, 10) : '',
+            date: story.date ? story.date.slice(0, 7) : '',
             description: story.description || ''
         });
         setShowForm(true);
@@ -76,7 +90,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
         try {
             const payload = {
                 title: form.title,
-                date: form.date ? new Date(form.date).toISOString() : null,
+                date: form.date ? new Date(`${form.date}-01T00:00:00`).toISOString() : null,
                 description: form.description
             };
 
@@ -172,7 +186,11 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                         className="text-area" 
                         rows={6} 
                         value={mainStory}
-                        onChange={(e) => setMainStory(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setMainStory(value);
+                            onLivePreview?.({ themeSettings: { ...invitation.themeSettings, mainStory: value } });
+                        }}
                         placeholder="Contoh: Kami bertemu tanpa rencana, bertumbuh dalam banyak cerita, lalu memilih berjalan bersama menuju selamanya."
                     ></textarea>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -208,7 +226,7 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                             <div>
                                 <div style={{ fontSize: '12px', color: 'var(--wine)', fontWeight: 700, marginBottom: '4px' }}>Babak {idx + 1}</div>
                                 <h4 style={{ margin: '0 0 6px 0', fontSize: '15px' }}>{story.title}</h4>
-                                <div style={{ fontSize: '12px', color: '#666', marginBottom: '6px' }}>{story.date ? new Date(story.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'}) : ''}</div>
+                                <div style={{ fontSize: '12px', color: '#666', marginBottom: '6px' }}>{story.date ? new Date(story.date).toLocaleDateString('id-ID', {month: 'long', year:'numeric'}) : ''}</div>
                                 <p style={{ fontSize: '13px', margin: 0, color: '#444' }}>{story.description}</p>
                             </div>
                             <div style={{ display: 'flex', gap: '8px' }}>
@@ -244,8 +262,8 @@ export default function CeritaPanel({ invitation, onUpdated, onLivePreview }) {
                             <input required className="text-input" value={form.title} onChange={e => setForm({...form, title: e.target.value})} placeholder="Awal Bertemu" />
                         </div>
                         <div>
-                            <span className="field-label">Tanggal Kejadian</span>
-                            <input type="date" className="text-input" value={form.date} onChange={e => setForm({...form, date: e.target.value})} />
+                            <span className="field-label">Bulan Kejadian</span>
+                            <input type="month" className="text-input" value={form.date} onChange={e => setForm({...form, date: e.target.value})} />
                         </div>
                         <div>
                             <span className="field-label">Deskripsi Cerita *</span>

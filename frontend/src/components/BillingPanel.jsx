@@ -54,7 +54,7 @@ export default function BillingPanel({ invitation, onUpdated }) {
       const snap = await loadMidtransSnap();
       snap.pay(token, {
           onSuccess: function () {
-            toast.success('Pembayaran berhasil! Undangan Anda kini aktif & dipublikasi.');
+            toast.success('Pembayaran berhasil! Fitur premium aktif dan undangan siap ditinjau sebelum diterbitkan.');
             api.get('/invitations').then((r) => {
               const updated = r.data.invitations.find((i) => i.id === invitation.id);
               if (updated && onUpdated) onUpdated(updated);

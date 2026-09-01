@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
@@ -12,6 +12,21 @@ export default function RundownEditor({ invitation, onUpdated, onLivePreview }) 
     
     const [rundownEnabled, setRundownEnabled] = useState(invitation?.invitationFeatures?.rundownEnabled || false);
     const { toast, confirm } = useUI();
+
+    useEffect(() => {
+        if (!onLivePreview) return;
+
+        const hasDraft = adding && (newTime.trim() || newActivity.trim());
+        const draft = hasDraft ? [{
+            id: 'rundown-live-draft',
+            time: newTime || '--:--',
+            activity: newActivity || 'Kegiatan baru',
+            order: rundowns.length,
+            isPreviewDraft: true,
+        }] : [];
+
+        onLivePreview({ rundowns: [...rundowns, ...draft] });
+    }, [invitation.rundowns, adding, newTime, newActivity, onLivePreview]);
 
     async function handleAdd() {
         if (!newTime || !newActivity) return toast.error('Waktu dan kegiatan wajib diisi');

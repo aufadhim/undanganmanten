@@ -83,10 +83,13 @@ export async function getOrders(req, res) {
 export async function createCheckout(req, res) {
   try {
     const { packageType, selectedAddons = [] } = req.body;
-    const targetPackage = packageType || 'STANDARD';
+    const targetPackage = packageType || 'PREMIUM';
 
-    if (!['STANDARD', 'PREMIUM'].includes(targetPackage)) {
-      return res.status(400).json({ error: 'Paket yang dipilih tidak valid.' });
+    if (targetPackage !== 'PREMIUM') {
+      return res.status(400).json({ error: 'Saat ini hanya Paket Premium yang tersedia.' });
+    }
+    if (!Array.isArray(selectedAddons) || selectedAddons.some((addon) => addon !== 'QR_GUESTBOOK')) {
+      return res.status(400).json({ error: 'Add-on yang dipilih tidak tersedia.' });
     }
 
     const invitation = await getInvitation(req);
@@ -113,20 +116,16 @@ export async function createCheckout(req, res) {
 
     // 2. Add-on opsional dapat dipilih bersama paket aktif.
     const validAddons = [];
-    if (Array.isArray(selectedAddons)) {
-      for (const addonKey of selectedAddons) {
-        if (ADDONS[addonKey]) {
-          const addonObj = ADDONS[addonKey];
-          itemDetails.push({
-            id: addonObj.id,
-            price: addonObj.price,
-            quantity: 1,
-            name: addonObj.name,
-          });
-          totalAmount += addonObj.price;
-          validAddons.push(addonKey);
-        }
-      }
+    for (const addonKey of selectedAddons) {
+      const addonObj = ADDONS[addonKey];
+      itemDetails.push({
+        id: addonObj.id,
+        price: addonObj.price,
+        quantity: 1,
+        name: addonObj.name,
+      });
+      totalAmount += addonObj.price;
+      validAddons.push(addonKey);
     }
 
     const orderId = `UM-${Date.now()}-${invitation.id.substring(0, 8)}`;

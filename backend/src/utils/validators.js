@@ -82,7 +82,7 @@ export const updateThemeSettingsSchema = z.object({
   coverType: z.string().max(50).optional(),
   coverImageUrl: z.string().max(2048).optional().or(z.literal('')),
   coverSecondImageUrl: z.string().max(2048).optional().or(z.literal('')),
-  openingAnimation: z.string().max(50).optional(),
+  openingAnimation: z.enum(['', 'fade', 'zoom', 'slide-down']).optional(),
   brideBioEnabled: z.boolean().optional(),
   groomBioEnabled: z.boolean().optional(),
   galleryLayout: z.enum(['editorial', 'grid', 'masonry', 'carousel', 'collage', 'wall']).optional(),

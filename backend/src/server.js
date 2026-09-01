@@ -105,9 +105,11 @@ app.use((err, req, res, next) => {
       return;
   }
 
-  res.status(err.status || 500).json({
-    error: err.message || 'Internal Server Error',
-  });
+  const status = err.status || 500;
+  const publicMessage = status < 500 || !env.isProduction
+    ? (err.message || 'Internal Server Error')
+    : 'Terjadi gangguan pada server. Silakan coba lagi.';
+  res.status(status).json({ error: publicMessage, requestId: req.requestId });
 });
 
 // 5. Cron Job - Jalan tiap jam 02:00
@@ -117,8 +119,9 @@ cron.schedule('0 2 * * *', () => {
 });
 
 const PORT = env.port;
+const HOST = env.isProduction ? '0.0.0.0' : '127.0.0.1';
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, HOST, () => {
   console.log(`[server] ${env.nodeEnv} berjalan di ${env.backendUrl} (port ${PORT})`);
 });
 
@@ -130,7 +133,7 @@ server.on('error', (err) => {
         console.log(`[Auto-Kill] Proses di port ${PORT} telah dihentikan. Mencoba lagi...`);
         setTimeout(() => {
           server.close();
-          server.listen(PORT);
+          server.listen(PORT, HOST);
         }, 1000);
       });
     });

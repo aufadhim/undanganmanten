@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { api, clearToken, setActiveInvitationId } from '../api/client.js';
@@ -7,6 +7,9 @@ import DashboardSidebar from '../components/dashboard/DashboardSidebar.jsx';
 import LangSwitcher from '../components/LangSwitcher.jsx';
 import { useUI } from '../context/UIContext.jsx';
 import { loadMidtransSnap } from '../utils/midtrans.js';
+import { mergePreviewOverride } from '../utils/mergePreviewOverride.js';
+import { normalizeActiveThemeId } from '../utils/activeTheme.js';
+const SUPPORTED_THEME_IDS = ['eternal', 'seraya', 'nawasena', 'isvara', 'lanqing', 'celluloid', 'nocturne'];
 
 const TemaPanel = lazy(() => import('../components/TemaPanel.jsx'));
 const KutipanPanel = lazy(() => import('../components/KutipanPanel.jsx'));
@@ -18,6 +21,7 @@ const CeritaPanel = lazy(() => import('../components/CeritaPanel.jsx'));
 const GaleriPanel = lazy(() => import('../components/GaleriPanel.jsx'));
 const TamuPanel = lazy(() => import('../components/TamuPanel.jsx'));
 const LivestreamEditor = lazy(() => import('../components/LivestreamEditor.jsx'));
+const IGFilterEditor = lazy(() => import('../components/IGFilterEditor.jsx'));
 const HadiahPanel = lazy(() => import('../components/HadiahPanel.jsx'));
 const PengaturanPanel = lazy(() => import('../components/PengaturanPanel.jsx'));
 const BillingPanel = lazy(() => import('../components/BillingPanel.jsx'));
@@ -50,15 +54,46 @@ export default function Dashboard() {
     const [payLoading, setPayLoading] = useState(false);
     const [previewGuest, setPreviewGuest] = useState(null);
     const [previewOverride, setPreviewOverride] = useState(null);
+    const [previewDirty, setPreviewDirty] = useState(false);
+    const previewInteractionRef = useRef(false);
     const [railOpen, setRailOpen] = useState(false);
     const [showMobilePreview, setShowMobilePreview] = useState(false);
 
     const { toast, confirm } = useUI();
 
+    const handleLivePreview = useCallback((patch) => {
+        if (patch == null) {
+            setPreviewOverride(null);
+            setPreviewDirty(false);
+            return;
+        }
+        setPreviewOverride((current) => mergePreviewOverride(current || {}, patch));
+        if (previewInteractionRef.current) setPreviewDirty(true);
+    }, []);
+
+    const markPreviewInteraction = useCallback(() => {
+        previewInteractionRef.current = true;
+        window.requestAnimationFrame(() => {
+            previewInteractionRef.current = false;
+        });
+    }, []);
+
     // Clear preview override when switching tabs or invitations
     useEffect(() => {
         setPreviewOverride(null);
+        setPreviewDirty(false);
+        previewInteractionRef.current = false;
     }, [activeTab, selectedId]);
+
+    useEffect(() => {
+        const warnBeforeLeave = (event) => {
+            if (!previewDirty) return;
+            event.preventDefault();
+            event.returnValue = '';
+        };
+        window.addEventListener('beforeunload', warnBeforeLeave);
+        return () => window.removeEventListener('beforeunload', warnBeforeLeave);
+    }, [previewDirty]);
 
     // Susunan Tab Lengkap (Dipindahkan ke bawah setelah selectedInvitation diinisialisasi)
 
@@ -80,12 +115,15 @@ export default function Dashboard() {
                 try {
                     setLoading(true);
                     const sandboxData = JSON.parse(savedSandbox);
+                    const sandboxWeddingDate = sandboxData.events?.find((event) => event.date)?.date
+                        || sandboxData.weddingDate
+                        || new Date(Date.now() + (180 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
                     // Create basic invitation from sandbox data
                     const res = await api.post('/invitations', {
                         brideName: sandboxData.coupleProfile?.brideName || 'Wanita',
                         groomName: sandboxData.coupleProfile?.groomName || 'Pria',
-                        themeId: sandboxData.themeId || 'nisera',
-                        weddingDate: '' // Or some default
+                        themeId: SUPPORTED_THEME_IDS.includes(sandboxData.themeId) ? sandboxData.themeId : 'eternal',
+                        weddingDate: sandboxWeddingDate
                     });
                     const newInvId = res.data.invitation.id;
                     
@@ -97,11 +135,15 @@ export default function Dashboard() {
                     if (sandboxData.themeSettings) {
                         await api.patch('/invitations/me/theme', sandboxData.themeSettings, { headers: { 'x-invitation-id': newInvId }});
                     }
+                    await api.patch(`/invitations/${newInvId}`, {
+                        themeId: SUPPORTED_THEME_IDS.includes(sandboxData.themeId) ? sandboxData.themeId : 'eternal',
+                        weddingDate: sandboxWeddingDate,
+                    });
                     
-                    toast.success('Desain dari Sandbox berhasil disimpan ke akun Anda!');
+                    toast.success('Desain dari Mode Coba berhasil disimpan ke akun Anda!');
                 } catch (e) {
                     console.error('Failed to import sandbox data', e);
-                    toast.error('Gagal mengimpor data sandbox.');
+                    toast.error('Gagal mengimpor data dari Mode Coba.');
                 } finally {
                     localStorage.removeItem('sandbox_invitation');
                     fetchInvitations();
@@ -175,6 +217,8 @@ export default function Dashboard() {
         setInvitations((prev) =>
             prev.map((inv) => (inv.id === updatedData.id ? { ...inv, ...updatedData } : inv))
         );
+        setPreviewOverride(null);
+        setPreviewDirty(false);
     }
 
     function handleCreatedNew(newInv) {
@@ -259,6 +303,7 @@ export default function Dashboard() {
     const selectedInvitation = rawInvitation
         ? {
             ...rawInvitation,
+            themeId: normalizeActiveThemeId(rawInvitation.themeId),
             coupleProfile: rawInvitation.coupleProfile || {},
             themeSettings: rawInvitation.themeSettings || {},
             invitationFeatures: rawInvitation.invitationFeatures || {},
@@ -301,14 +346,15 @@ export default function Dashboard() {
             { key: 'susunan', label: t('dashboard.nav.blocks'), icon: 'fa-layer-group' },
         ],
         konten: [
-            { key: 'profil', label: t('dashboard.nav.profile'), icon: 'fa-user-group' },
             { key: 'kutipan', label: t('dashboard.nav.quote'), icon: 'fa-book-quran' },
+            { key: 'profil', label: t('dashboard.nav.profile'), icon: 'fa-user-group' },
             { key: 'acara', label: t('dashboard.nav.event'), icon: 'fa-calendar-days' },
             { key: 'galeri', label: t('dashboard.nav.gallery'), icon: 'fa-images' },
             { key: 'rundown', label: t('dashboard.nav.rundown'), icon: 'fa-clipboard-list' },
             features.storyEnabled && { key: 'cerita', label: t('dashboard.nav.story'), icon: 'fa-book-open' },
             features.dresscodeEnabled && { key: 'dresscode', label: t('dashboard.nav.dresscode'), icon: 'fa-shirt' },
             features.livestreamEnabled && { key: 'livestream', label: t('dashboard.nav.livestream'), icon: 'fa-video' },
+            features.igFilterEnabled && { key: 'igfilter', label: 'Filter Instagram', icon: 'fa-camera-retro' },
             { key: 'tamu', label: t('dashboard.nav.rsvp'), icon: 'fa-clipboard-check' },
             { key: 'hadiah', label: t('dashboard.nav.gift'), icon: 'fa-gift' },
             { key: 'ucapan', label: `${t('dashboard.nav.wishes')}${selectedInvitation?.wishes?.length ? ` (${selectedInvitation.wishes.length})` : ''}`, icon: 'fa-comment-dots' },
@@ -325,7 +371,18 @@ export default function Dashboard() {
     };
 
     // Helper untuk mengubah Macro Tab dan otomatis memilih Sub Tab pertama (jika ada)
-    const handleMacroTabChange = (macroKey) => {
+    const confirmPreviewNavigation = async () => {
+        if (!previewDirty) return true;
+        const proceed = await confirm('Perubahan belum disimpan', 'Preview sudah berubah, tetapi perubahan ini belum disimpan ke database. Tetap pindah tab dan batalkan perubahan?');
+        if (proceed) {
+            setPreviewOverride(null);
+            setPreviewDirty(false);
+        }
+        return proceed;
+    };
+
+    const handleMacroTabChange = async (macroKey) => {
+        if (macroKey !== activeMacroTab && !(await confirmPreviewNavigation())) return;
         setActiveMacroTab(macroKey);
         setReturnTab(null);
         
@@ -435,7 +492,8 @@ export default function Dashboard() {
                                 <button
                                     key={tab.key}
                                     className={`subnav-item ${activeTab === tab.key ? 'active' : ''}`}
-                                    onClick={() => {
+                                    onClick={async () => {
+                                        if (tab.key !== activeTab && !(await confirmPreviewNavigation())) return;
                                         setActiveTab(tab.key);
                                         setReturnTab(null);
                                     }}
@@ -445,6 +503,13 @@ export default function Dashboard() {
                                 </button>
                             ))}
                         </div>
+                    </div>
+                )}
+
+                {previewDirty && (
+                    <div className="unsaved-preview-notice" role="status">
+                        <i className="fa-solid fa-circle-exclamation"></i>
+                        <span>Perubahan sudah terlihat di preview, tetapi belum tersimpan. Klik tombol Simpan pada panel ini sebelum berpindah tab.</span>
                     </div>
                 )}
 
@@ -477,41 +542,47 @@ export default function Dashboard() {
                 )}
 
                 {/* Render Panel Berdasarkan Active Tab */}
+                <div
+                    onClickCapture={markPreviewInteraction}
+                    onInputCapture={markPreviewInteraction}
+                    onChangeCapture={markPreviewInteraction}
+                >
                 <Suspense fallback={<div className="loading-screen">Memuat editor...</div>}>
                 {activeTab === 'analitik' && <AnalitikPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
                 {activeTab === 'tema' && <TemaPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
-                {activeTab === 'visual' && <VisualPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'warna' && <WarnaPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'typography' && <TypographyPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'susunan' && <SusunanPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} onNavigateTab={(macro, sub) => { setReturnTab({ macro: 'desain', sub: 'susunan' }); setActiveMacroTab(macro); setActiveTab(sub); }} />}
-                {activeTab === 'kutipan' && <KutipanPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'profil' && <ProfilPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'acara' && <AcaraPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'rundown' && <RundownEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
+                {activeTab === 'visual' && <VisualPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'warna' && <WarnaPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'typography' && <TypographyPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'susunan' && <SusunanPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} onNavigateTab={(macro, sub) => { setReturnTab({ macro: 'desain', sub: 'susunan' }); setActiveMacroTab(macro); setActiveTab(sub); }} />}
+                {activeTab === 'kutipan' && <KutipanPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'profil' && <ProfilPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'acara' && <AcaraPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'rundown' && <RundownEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
                 {activeTab === 'cerita' && (
                     <CeritaPanel
                         invitation={selectedInvitation}
                         onUpdated={handleUpdateInvitation}
-                        onLivePreview={setPreviewOverride}
+                        onLivePreview={handleLivePreview}
                     />
                 )}
-                {activeTab === 'galeri' && <GaleriPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'dresscode' && <DresscodeEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'hadiah' && <HadiahPanel invitation={selectedInvitation} onUpdated={(inv) => { setInvitations(invs => invs.map(i => i.id === inv.id ? inv : i)); setSelectedId(inv.id); }} onLivePreview={setPreviewOverride} />}
+                {activeTab === 'galeri' && <GaleriPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'dresscode' && <DresscodeEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'hadiah' && <HadiahPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
                 {activeTab === 'tamu' && <TamuPanel
                     invitation={selectedInvitation}
                     onUpdated={handleUpdateInvitation}
                     onSelectPreviewGuest={setPreviewGuest}
                 />}
                 {activeTab === 'ucapan' && <WishesPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
-                {activeTab === 'penutup' && <PenutupPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
-                {activeTab === 'livestream' && <LivestreamEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} />}
+                {activeTab === 'penutup' && <PenutupPanel invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'livestream' && <LivestreamEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
+                {activeTab === 'igfilter' && <IGFilterEditor invitation={selectedInvitation} onUpdated={handleUpdateInvitation} onLivePreview={handleLivePreview} />}
                 {activeTab === 'pengaturan' && (
                     <PengaturanPanel
                         invitation={selectedInvitation}
                         onUpdated={handleUpdateInvitation}
                         onDeleted={handleDeletedInvitation}
-                        onLivePreview={setPreviewOverride}
+                        onLivePreview={handleLivePreview}
                     />
                 )}
                 {activeTab === 'paket' && (
@@ -522,6 +593,7 @@ export default function Dashboard() {
                     />
                 )}
                 </Suspense>
+                </div>
             </div>
 
             {/* Stage Preview HP (iPhone 17 dengan Dynamic Island) */}
@@ -563,7 +635,7 @@ export default function Dashboard() {
                 <div className="preview-wrapper">
                     <div className={`iphone-mockup-stage preview-mode-${previewMode}`}>
                         {previewMode === 'mobile' && <div className="dynamic-island"></div>}
-                        <PhonePreview invitation={previewOverride ? { ...selectedInvitation, ...previewOverride } : selectedInvitation} editorPreview previewGuest={previewGuest} />
+                        <PhonePreview invitation={previewOverride ? mergePreviewOverride(selectedInvitation, previewOverride) : selectedInvitation} editorPreview previewGuest={previewGuest} />
                     </div>
                 </div>
             </div>

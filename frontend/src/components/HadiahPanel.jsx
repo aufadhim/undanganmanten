@@ -17,7 +17,7 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
   });
   
   const [loading, setLoading] = useState(false);
-  const [giftEnabled, setGiftEnabled] = useState(invitation?.invitationFeatures?.giftEnabled || false);
+  const [giftEnabled, setGiftEnabled] = useState(invitation?.invitationFeatures?.giftEnabled ?? true);
   const { toast } = useUI();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
   }, [invitation?.giftSettings]);
 
   useEffect(() => {
-    setGiftEnabled(invitation?.invitationFeatures?.giftEnabled || false);
+    setGiftEnabled(invitation?.invitationFeatures?.giftEnabled ?? true);
   }, [invitation?.invitationFeatures]);
 
   // Handle Toggle Gift On/Off
@@ -72,13 +72,9 @@ export default function HadiahPanel({ invitation, onUpdated, onLivePreview }) {
   }
 
   function handleChange(field, value) {
-    setFormData((prev) => {
-      const next = { ...prev, [field]: value };
-      if (onLivePreview) {
-        onLivePreview({ giftSettings: { ...invitation?.giftSettings, ...next } });
-      }
-      return next;
-    });
+    const next = { ...formData, [field]: value };
+    setFormData(next);
+    onLivePreview?.({ giftSettings: { ...invitation?.giftSettings, ...next } });
   }
 
   async function handleSubmit(e) {

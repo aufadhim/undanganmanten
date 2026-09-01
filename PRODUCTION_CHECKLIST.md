@@ -25,6 +25,7 @@
 
 ## Verifikasi bisnis
 
+- Pastikan checkout hanya menawarkan Premium Rp119.000 dan add-on Buku Tamu QR Rp20.000.
 - Daftar, OTP email, login, lupa password, dan reset password.
 - Buat undangan dan edit semua panel utama.
 - Upload foto, musik, dan galeri ke R2.

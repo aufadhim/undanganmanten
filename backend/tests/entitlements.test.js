@@ -2,16 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { calculateEntitlements } from '../src/utils/entitlements.js';
 
-test('Trial hanya mendapat kuota dasar dan fitur gratis', () => {
+test('Trial mendapat kuota dasar serta seluruh section preview', () => {
   assert.deepEqual(calculateEntitlements('TRIAL'), {
     maxGallery: 10,
     maxGuests: 10,
-    giftEnabled: false,
-    livestreamEnabled: false,
+    giftEnabled: true,
+    livestreamEnabled: true,
   });
 });
 
-test('Standard dapat menerima seluruh add-on yang dibeli', () => {
+test('Standard mendapat section lengkap dan add-on menambah kuota', () => {
   assert.deepEqual(calculateEntitlements('STANDARD', [
     'EXTRA_GALLERY_10',
     'EXTRA_GUESTS_100',
@@ -20,7 +20,7 @@ test('Standard dapat menerima seluruh add-on yang dibeli', () => {
     maxGallery: 20,
     maxGuests: 200,
     giftEnabled: true,
-    livestreamEnabled: false,
+    livestreamEnabled: true,
   });
 });
 

@@ -50,6 +50,7 @@ export default function LivestreamEditor({ invitation, onUpdated, onLivePreview 
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setCoverImageUrl(res.data.url);
+            onLivePreview?.({ livestreamSettings: { ...livestream, url, coverImageUrl: res.data.url } });
             toast.success('Cover Livestream berhasil diunggah. Jangan lupa klik Simpan!');
         } catch (err) {
             console.error(err);
@@ -84,9 +85,6 @@ export default function LivestreamEditor({ invitation, onUpdated, onLivePreview 
         <div className="section-block">
             <div className="section-title">
                 Link Live Streaming
-                <span style={{ fontSize: '12px', fontWeight: 'normal', marginLeft: '12px', color: '#666' }}>
-                    (Hanya untuk paket PREMIUM)
-                </span>
             </div>
 
             <div className="stack">
@@ -95,15 +93,9 @@ export default function LivestreamEditor({ invitation, onUpdated, onLivePreview 
                     <input 
                         className="text-input" 
                         value={url} 
-                        onChange={e => setUrl(e.target.value)} 
+                        onChange={e => { const value = e.target.value; setUrl(value); onLivePreview?.({ livestreamSettings: { ...livestream, url: value, coverImageUrl } }); }} 
                         placeholder="https://youtube.com/live/..." 
-                        disabled={invitation.packageType !== 'PREMIUM'}
                     />
-                    {invitation.packageType !== 'PREMIUM' && (
-                        <p style={{ fontSize: '12px', color: 'red', marginTop: '4px' }}>
-                            Fitur ini hanya tersedia untuk paket PREMIUM.
-                        </p>
-                    )}
                 </div>
 
                 <div>
@@ -137,20 +129,19 @@ export default function LivestreamEditor({ invitation, onUpdated, onLivePreview 
                                 ref={fileInputRef}
                                 style={{ display: 'none' }}
                                 onChange={handleUpload}
-                                disabled={invitation.packageType !== 'PREMIUM' && invitation.packageType !== 'TRIAL'}
                             />
                             <div style={{ display: 'flex', gap: '8px' }}>
                                 <Button 
                                     variant="outline" 
                                     onClick={() => fileInputRef.current?.click()}
-                                    disabled={uploading || (invitation.packageType !== 'PREMIUM' && invitation.packageType !== 'TRIAL')}
+                                    disabled={uploading}
                                 >
                                     {uploading ? 'Mengunggah...' : 'Pilih Gambar'}
                                 </Button>
                                 {coverImageUrl && (
                                     <Button 
                                         variant="outline" 
-                                        onClick={() => setCoverImageUrl('')}
+                                    onClick={() => { setCoverImageUrl(''); onLivePreview?.({ livestreamSettings: { ...livestream, url, coverImageUrl: '' } }); }}
                                         style={{ color: 'red', borderColor: 'red' }}
                                     >
                                         Hapus
@@ -166,7 +157,6 @@ export default function LivestreamEditor({ invitation, onUpdated, onLivePreview 
                         variant="primary" 
                         onClick={handleSave} 
                         isLoading={saving}
-                        disabled={invitation.packageType !== 'PREMIUM' && invitation.packageType !== 'TRIAL'}
                     >
                         Simpan Pengaturan Live
                     </Button>

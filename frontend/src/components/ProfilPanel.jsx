@@ -5,6 +5,7 @@ import { api } from '../api/client.js';
 import ImageCropperModal from './ImageCropperModal.jsx';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { getDummyBrideBio, getDummyGroomBio } from '../config/dummyProfile.js';
 import { resolveImageUrl } from '../config/env.js';
 
 function getImageUrl(path) {
@@ -50,21 +51,31 @@ export default function ProfilPanel({ invitation, onUpdated, onLivePreview }) {
         });
     }, [invitation?.id]);
 
-    useEffect(() => {
-        if (onLivePreview) {
-            onLivePreview({
-                coupleProfile: { ...profile, ...form },
-                themeSettings: {
-                    ...(invitation?.themeSettings || {}),
-                    brideBioEnabled: bioVisibility.bride,
-                    groomBioEnabled: bioVisibility.groom,
-                },
-            });
-        }
-    }, [form, bioVisibility, invitation?.themeSettings, onLivePreview]);
+    function emitLivePreview(nextForm, nextBioVisibility) {
+        onLivePreview?.({
+            coupleProfile: { ...profile, ...nextForm },
+            themeSettings: {
+                ...(invitation?.themeSettings || {}),
+                brideBioEnabled: nextBioVisibility.bride,
+                groomBioEnabled: nextBioVisibility.groom,
+            },
+        });
+    }
 
     function update(field, value) {
-        setForm((f) => ({ ...f, [field]: value }));
+        setForm((currentForm) => {
+            const nextForm = { ...currentForm, [field]: value };
+            emitLivePreview(nextForm, bioVisibility);
+            return nextForm;
+        });
+    }
+
+    function updateBioVisibility(side, value) {
+        setBioVisibility((currentVisibility) => {
+            const nextVisibility = { ...currentVisibility, [side]: value };
+            emitLivePreview(form, nextVisibility);
+            return nextVisibility;
+        });
     }
 
     async function handleSave() {
@@ -197,9 +208,9 @@ export default function ProfilPanel({ invitation, onUpdated, onLivePreview }) {
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', marginBottom: '8px' }}>
                             <span className="field-label" style={{ margin: 0 }}>Tampilkan Profil Singkat / Bio</span>
-                            <label className="switch" style={{ margin: 0 }}><input type="checkbox" checked={bioVisibility.bride} onChange={(e) => setBioVisibility((v) => ({ ...v, bride: e.target.checked }))} /><span className="slider"></span></label>
+                            <label className="switch" style={{ margin: 0 }}><input type="checkbox" checked={bioVisibility.bride} onChange={(e) => updateBioVisibility('bride', e.target.checked)} /><span className="slider"></span></label>
                         </div>
-                        <textarea className="text-input" value={form.brideBio} onChange={(e) => update('brideBio', e.target.value)} placeholder="Contoh: Pribadi yang hangat, menyukai perjalanan, kopi, dan cerita sederhana." rows={3} disabled={!bioVisibility.bride} />
+                        <textarea className="text-input" value={form.brideBio} onChange={(e) => update('brideBio', e.target.value)} placeholder={getDummyBrideBio(form.brideName || 'Arunika')} rows={5} disabled={!bioVisibility.bride} />
                         <small style={{ color: '#777' }}>{bioVisibility.bride ? 'Teks ini akan tampil di bawah profil mempelai.' : 'Aktifkan jika ingin menampilkan bio di undangan.'}</small>
                     </div>
                 </div>
@@ -261,9 +272,9 @@ export default function ProfilPanel({ invitation, onUpdated, onLivePreview }) {
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', marginBottom: '8px' }}>
                             <span className="field-label" style={{ margin: 0 }}>Tampilkan Profil Singkat / Bio</span>
-                            <label className="switch" style={{ margin: 0 }}><input type="checkbox" checked={bioVisibility.groom} onChange={(e) => setBioVisibility((v) => ({ ...v, groom: e.target.checked }))} /><span className="slider"></span></label>
+                            <label className="switch" style={{ margin: 0 }}><input type="checkbox" checked={bioVisibility.groom} onChange={(e) => updateBioVisibility('groom', e.target.checked)} /><span className="slider"></span></label>
                         </div>
-                        <textarea className="text-input" value={form.groomBio} onChange={(e) => update('groomBio', e.target.value)} placeholder="Contoh: Sosok tenang yang menyukai musik, fotografi, dan waktu bersama keluarga." rows={3} disabled={!bioVisibility.groom} />
+                        <textarea className="text-input" value={form.groomBio} onChange={(e) => update('groomBio', e.target.value)} placeholder={getDummyGroomBio(form.groomName || 'Deva')} rows={5} disabled={!bioVisibility.groom} />
                         <small style={{ color: '#777' }}>{bioVisibility.groom ? 'Teks ini akan tampil di bawah profil mempelai.' : 'Aktifkan jika ingin menampilkan bio di undangan.'}</small>
                     </div>
                 </div>
