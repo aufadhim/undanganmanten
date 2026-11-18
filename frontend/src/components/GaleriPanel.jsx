@@ -1,273 +1,30 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { api } from '../api/client.js';
+import {useState,useEffect,useRef} from 'react';
+import {Reorder,useDragControls} from 'framer-motion';
+import {api} from '../api/client.js';
 import Button from './ui/Button.jsx';
-import { resolveImageUrl } from '../config/env.js';
+import {useUI} from '../context/UIContext.jsx';
+import {resolveImageUrl} from '../config/env.js';
 import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
-
-export default function GaleriPanel({ invitation, onUpdated, onLivePreview }) {
-  const { t } = useTranslation();
-  const [media, setMedia] = useState(invitation?.galleryMedia || []);
-  const [uploading, setUploading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-  
-  // State for Add Link modal
-  const [showLinkModal, setShowLinkModal] = useState(false);
-  const [linkUrl, setLinkUrl] = useState('');
-  const [linkLoading, setLinkLoading] = useState(false);
-  const [layout, setLayout] = useState(invitation?.themeSettings?.galleryLayout || 'editorial');
-
-  useEffect(() => {
-    if (invitation?.galleryMedia) {
-      setMedia(invitation.galleryMedia);
-    } else {
-      api.get('/invitations/me/gallery').then((res) => setMedia(res.data.media));
-    }
-  }, [invitation?.id, invitation?.galleryMedia]);
-
-  const currentPhotos = media.filter(m => m.type === 'photo').length;
-  const currentVideos = media.filter(m => m.type === 'video').length;
-  const photos = media.filter(m => m.type === 'photo');
-  const videos = media.filter(m => m.type === 'video');
-
-  async function handleLayoutChange(nextLayout) {
-    setLayout(nextLayout);
-    const nextTheme = { ...(invitation.themeSettings || {}), galleryLayout: nextLayout };
-    onLivePreview?.({ themeSettings: nextTheme });
-    try {
-      const res = await api.patch('/invitations/me/theme', { galleryLayout: nextLayout });
-      onUpdated?.({ ...invitation, themeSettings: res.data.themeSettings });
-    } catch (err) {
-      setErrorMsg(err.response?.data?.error || 'Gagal menyimpan layout galeri.');
-    }
-  }
-
-  async function handleBatchUpload(fileList) {
-    if (!fileList || fileList.length === 0) return;
-    setErrorMsg('');
-
-    const files = Array.from(fileList);
-    setUploading(true);
-
-    let currentMedia = [...media];
-
-    const validFiles = [];
-    const sizeErrors = [];
-    const MAX_PHOTO_SIZE = 10 * 1024 * 1024; // 10 MB
-    const MAX_VIDEO_SIZE = 30 * 1024 * 1024; // 30 MB
-
-    for (const file of files) {
-      if (file.type.startsWith('image/')) {
-        if (file.size > MAX_PHOTO_SIZE) {
-          sizeErrors.push(`${file.name} (> 10MB)`);
-        } else {
-          validFiles.push(file);
-        }
-      } else if (file.type.startsWith('video/')) {
-        if (file.size > MAX_VIDEO_SIZE) {
-          sizeErrors.push(`${file.name} (> 30MB)`);
-        } else {
-          validFiles.push(file);
-        }
-      }
-    }
-
-    if (validFiles.length === 0) {
-        if (sizeErrors.length > 0) {
-           setErrorMsg(`Gagal upload: ${sizeErrors.join(', ')}`);
-        } else {
-           setErrorMsg(`Batas maksimum foto/video tercapai.`);
-        }
-        setUploading(false);
-        return;
-    }
-
-    if (sizeErrors.length > 0) {
-      setErrorMsg(`Beberapa file ditolak: ${sizeErrors.join(', ')}`);
-    }
-
-    // Upload concurrently hanya untuk file yang valid ukurannya
-    const uploadPromises = validFiles.map(async (file) => {
-      const formData = new FormData();
-      formData.append('file', file);
-      try {
-        const res = await api.post('/invitations/me/gallery', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-        return res.data.media;
-      } catch (err) {
-        console.error('Gagal upload file:', file.name, err);
-        throw new Error(err.response?.data?.error || `Gagal mengunggah ${file.name}.`);
-      }
-    });
-
-    try {
-      const results = await Promise.allSettled(uploadPromises);
-      
-      const successfulUploads = [];
-      const failedUploads = [];
-
-      results.forEach((res) => {
-        if (res.status === 'fulfilled') {
-          successfulUploads.push(res.value);
-        } else {
-          failedUploads.push(res.reason.message);
-        }
-      });
-
-      currentMedia = [...currentMedia, ...successfulUploads];
-
-      if (failedUploads.length > 0) {
-        // Show the first error, or combine them
-        setErrorMsg(failedUploads[0] + (failedUploads.length > 1 ? ` (dan ${failedUploads.length - 1} lainnya gagal)` : ''));
-      }
-    } catch (err) {
-      setErrorMsg('Gagal mengunggah beberapa file.');
-    }
-
-    setMedia(currentMedia);
-    if (onUpdated && invitation) {
-      onUpdated({ ...invitation, galleryMedia: currentMedia });
-    }
-    setUploading(false);
-  }
-
-  async function handleDelete(id) {
-    setErrorMsg('');
-    await api.delete(`/invitations/me/gallery/${id}`);
-    const filtered = media.filter((item) => item.id !== id);
-    setMedia(filtered);
-    if (onUpdated && invitation) {
-      onUpdated({ ...invitation, galleryMedia: filtered });
-    }
-  }
-
-  async function handleAddLink(e) {
-    e.preventDefault();
-    if (!linkUrl) return;
-    setLinkLoading(true);
-    setErrorMsg('');
-    
-    try {
-      const res = await api.post('/invitations/me/gallery/link', { url: linkUrl });
-      const newMedia = [...media, res.data.media];
-      setMedia(newMedia);
-      if (onUpdated && invitation) {
-        onUpdated({ ...invitation, galleryMedia: newMedia });
-      }
-      setShowLinkModal(false);
-      setLinkUrl('');
-    } catch (err) {
-      setErrorMsg(err.response?.data?.error || 'Gagal menambahkan link video.');
-    } finally {
-      setLinkLoading(false);
-    }
-  }
-
-  // Fungsi utilitas untuk mendeteksi ID YouTube agar bisa menampilkan thumbnail/iframe
-  function getYoutubeId(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  }
-
-  return (
-    <>
-      <h2 className="panel-header">{t('panels.galeri_title')}</h2>
-      <p className="panel-sub">{t('panels.galeri_sub')} {t('panels.gallery.limits')}</p>
-
-      <div style={{ fontSize: '12px', color: '#5c655d', marginBottom: '12px' }}>
-        {t('panels.gallery.summary', { photos: currentPhotos, videos: currentVideos })}
-      </div>
-
-      {errorMsg && (
-        <div className="form-error" style={{ marginBottom: '14px', background: '#fff2f0', border: '1px solid #ffccc7', color: '#ff4d4f', padding: '8px 12px', borderRadius: '8px', fontSize: '12px' }}>
-          ⚠️ {errorMsg}
-        </div>
-      )}
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
-        <Button 
-          as="label"
-          variant="secondary" 
-          isLoading={uploading}
-          icon={<i className="fa-solid fa-cloud-arrow-up"></i>}
-          style={{ margin: 0 }}
-        >
-          {uploading ? t('panels.gallery.uploading') : t('panels.gallery.upload')}
-          <input
-            type="file"
-            accept="image/*,video/*"
-            multiple
-            disabled={uploading}
-            style={{ display: 'none' }}
-            onChange={(e) => handleBatchUpload(e.target.files)}
-          />
-        </Button>
-        <Button 
-          variant="secondary"
-          onClick={() => setShowLinkModal(true)}
-          icon={<i className="fa-brands fa-youtube" style={{ color: '#ff0000', fontSize: '16px' }}></i>}
-          style={{ margin: 0, background: '#f0f0f0' }}
-        >
-          {t('panels.gallery.youtube')}
-        </Button>
-      </div>
-
-      {showLinkModal && (
-        <form onSubmit={handleAddLink} style={{ background: '#fff', padding: '16px', borderRadius: '12px', border: '1px solid #ddd', marginBottom: '20px' }}>
-          <h4 style={{ margin: '0 0 12px 0', fontSize: '14px' }}>{t('panels.gallery.youtube_title')}</h4>
-          <input 
-            type="url" 
-            required 
-            placeholder="https://www.youtube.com/watch?v=..."
-            value={linkUrl}
-            onChange={e => setLinkUrl(e.target.value)}
-            className="text-input"
-            style={{ marginBottom: '12px' }}
-          />
-          <div style={{ display: 'flex', gap: '12px', marginTop: '16px', justifyContent: 'flex-end' }}>
-            <Button variant="ghost" type="button" onClick={() => setShowLinkModal(false)}>
-              {t('panels.gallery.cancel')}
-            </Button>
-            <Button variant="primary" type="submit" isLoading={linkLoading}>
-              {t('panels.gallery.save_link')}
-            </Button>
-          </div>
-        </form>
-      )}
-
-      <div className="section-block" style={{ marginBottom: 18 }}>
-        <label className="field-label">{t('panels.gallery.layout')}</label>
-        <GalleryLayoutPicker value={layout} onChange={handleLayoutChange} />
-        <small style={{ color: '#777' }}>{t('panels.gallery.layout_hint')}</small>
-      </div>
-
-      <h3 style={{ fontSize: 14, margin: '0 0 10px' }}>{t('panels.gallery.photos', { count: photos.length })}</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-        {photos.map((item) => (
-          <div key={item.id} style={{ position: 'relative' }}>
-            <img src={resolveImageUrl(item.url)} style={{ width: '100%', borderRadius: 8, aspectRatio: '1', objectFit: 'cover' }} alt="Foto galeri" />
-            <button
-              onClick={() => handleDelete(item.id)}
-              style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 6, fontSize: 11, padding: '4px 8px', cursor: 'pointer' }}
-            >
-              Hapus
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <h3 style={{ fontSize: 14, margin: '22px 0 10px' }}>Video ({videos.length})</h3>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {videos.map((item) => {
-          const ytId = getYoutubeId(item.url);
-          return <div key={item.id} style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 10, overflow: 'hidden', background: '#111' }}>
-            {ytId ? <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video YouTube" style={{ width: '100%', height: '100%', border: 0 }} allowFullScreen /> : <video src={resolveImageUrl(item.url)} controls preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-            <button onClick={() => handleDelete(item.id)} style={{ position: 'absolute', top: 6, right: 6, zIndex: 2, background: 'rgba(0,0,0,.7)', color: '#fff', border: 0, borderRadius: 6, padding: '5px 9px' }}>Hapus</button>
-          </div>;
-        })}
-      </div>
-    </>
-  );
+import {youtubeId,validateGalleryFile,normalizeGalleryOrder} from '../utils/gallery.js';
+import './galeri-panel.css';
+function MediaRow({item,index,disabled,onDrop,onDelete,onKeyboard}){const drag=useDragControls(),yt=youtubeId(item.url);return <Reorder.Item value={item.id} dragListener={false} dragControls={drag} onDragEnd={onDrop} className="gallery-media-row" whileDrag={{zIndex:10,boxShadow:'0 8px 24px #44543b22'}}><button type="button" className="gallery-grip" disabled={disabled} aria-label={`Geser media ${index+1}`} onPointerDown={e=>{if(!disabled)drag.start(e)}} onKeyDown={e=>{if(['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();onKeyboard(e.key==='ArrowUp'?-1:1)}}}><svg width="12" height="20" viewBox="0 0 12 20" fill="currentColor" aria-hidden="true">{[4,10,16].flatMap(y=>[3,9].map(x=><circle key={`${x}-${y}`} cx={x} cy={y} r="1.7"/>))}</svg></button><div className="gallery-media-thumb">{item.type==='photo'?<img src={resolveImageUrl(item.url)} alt={`Foto ${index+1}`} loading="lazy"/>:yt?<img src={`https://i.ytimg.com/vi/${yt}/mqdefault.jpg`} alt="Video YouTube" loading="lazy"/>:<video src={resolveImageUrl(item.url)} preload="metadata" muted playsInline/>}</div><div className="gallery-media-copy"><strong>{item.type==='photo'?'Foto':'Video'} {index+1}</strong><small>{yt?'YouTube':item.type==='photo'?'Ketuk foto di undangan untuk memperbesar':'Video unggahan'}</small></div><Button type="button" variant="danger" size="sm" disabled={disabled} onClick={onDelete}>Hapus</Button></Reorder.Item>}
+export default function GaleriPanel({invitation,onUpdated,onLivePreview}){
+ const {toast,confirm}=useUI(),input=useRef(null),orderRef=useRef(null),uploadToast=useRef(null),current=useRef(invitation.id);current.current=invitation.id;
+ const [media,setMedia]=useState(invitation.galleryMedia||[]),[busy,setBusy]=useState(false),[showLink,setShowLink]=useState(false),[url,setUrl]=useState(''),[limit,setLimit]=useState(null),[layout,setLayout]=useState(invitation.themeSettings?.galleryLayout||'editorial');
+ useEffect(()=>{current.current=invitation.id;return()=>{current.current=null}},[invitation.id]);
+ const headers={'x-invitation-id':invitation.id};
+ useEffect(()=>{setMedia(invitation.galleryMedia||[]);setLayout(invitation.themeSettings?.galleryLayout||'editorial')},[invitation.id,invitation.galleryMedia,invitation.themeSettings?.galleryLayout]);
+ useEffect(()=>{let alive=true;setLimit(null);api.get('/invitations/me/gallery',{headers}).then(({data})=>{if(alive){setLimit(data.maxGallery??null);if(!invitation.galleryMedia)setMedia(data.media||[])}}).catch(()=>{});return()=>{alive=false}},[invitation.id]);
+ function setError(message){if(message)toast.error(message)}
+ function setProgress(p){if(!p)return;const message=`${p.percent===100?'Memproses':'Mengunggah'} ${p.index} dari ${p.total} · ${p.percent}%`;uploadToast.current=toast.loading(message,{id:uploadToast.current,progress:p.percent})}
+ function update(next){if(current.current!==invitation.id)return;setMedia(next);onLivePreview?.({galleryMedia:next});onUpdated?.({...invitation,galleryMedia:next})}
+ function reorder(ids){const next=ids.map(id=>media.find(m=>m.id===id));orderRef.current=next;setMedia(next);onLivePreview?.({galleryMedia:next})}
+ async function saveOrder(){const draft=orderRef.current;if(!draft||busy)return;orderRef.current=null;const previous=invitation.galleryMedia||[],next=normalizeGalleryOrder(draft);if(next.every((m,i)=>m.id===previous[i]?.id))return;setBusy(true);setError('');try{await api.patch('/invitations/me/gallery/reorder',{items:next.map(({id,order})=>({id,order}))},{headers});update(next)}catch(e){setMedia(previous);onLivePreview?.({galleryMedia:previous});setError(e.response?.data?.error||'Urutan belum tersimpan.')}finally{setBusy(false)}}
+ function keyboardMove(index,step){const target=index+step;if(busy||target<0||target>=media.length)return;const next=[...media];[next[index],next[target]]=[next[target],next[index]];orderRef.current=next;setMedia(next);onLivePreview?.({galleryMedia:next});saveOrder()}
+ async function upload(files){if(!files.length||busy)return;const owner=invitation.id,errors=[],valid=[];for(const f of files){const reason=validateGalleryFile(f);if(reason)errors.push(`${f.name}: ${reason}.`);else valid.push(f)}const remaining=limit===null?valid.length:Math.max(0,limit-media.length),queue=valid.slice(0,remaining);if(queue.length<valid.length)errors.push(`Kuota galeri tersisa ${remaining} media.`);if(!queue.length){setError((errors[0]||'Tidak ada file yang dapat diunggah.')+(errors.length>1?` (${errors.length-1} file lainnya ditolak)`:''));return}setBusy(true);setError('');let next=[...media];for(let i=0;i<queue.length;i++){if(current.current!==owner)break;setProgress({index:i+1,total:queue.length,name:queue[i].name,percent:0});const body=new FormData();body.append('file',queue[i]);try{const {data}=await api.post('/invitations/me/gallery',body,{headers,notification:false,onUploadProgress:e=>{if(current.current===owner)setProgress({index:i+1,total:queue.length,name:queue[i].name,percent:e.total?Math.round(e.loaded/e.total*100):0})}});next=[...next,data.media];if(current.current===owner)update(next)}catch(e){errors.push(`${queue[i].name}: ${e.response?.data?.error||'Gagal diunggah.'}`)}}const uploaded=next.length-media.length;toast.update(uploadToast.current,errors.length?`${uploaded} media ditambahkan. ${errors[0]}${errors.length>1?` (${errors.length-1} lainnya gagal)`:''}`:`${uploaded} media berhasil diunggah.`,errors.length?'error':'success');uploadToast.current=null;if(current.current===owner)setBusy(false)}
+ async function remove(item){if(!await confirm('Hapus media','Media ini akan dihapus dari galeri. Lanjutkan?'))return;setBusy(true);setError('');try{await api.delete(`/invitations/me/gallery/${item.id}`,{headers});update(media.filter(m=>m.id!==item.id))}catch(e){setError(e.response?.data?.error||'Media belum dapat dihapus.')}finally{setBusy(false)}}
+ async function addLink(e){e.preventDefault();if(!youtubeId(url)){setError('Gunakan tautan video YouTube yang valid.');return}setBusy(true);setError('');try{const {data}=await api.post('/invitations/me/gallery/link',{url:url.trim()},{headers});update([...media,data.media]);setUrl('');setShowLink(false);toast.success('Video ditambahkan.')}catch(e){setError(e.response?.data?.error||'Video belum ditambahkan.')}finally{setBusy(false)}}
+ async function changeLayout(next){const previous=layout;setLayout(next);setBusy(true);setError('');onLivePreview?.({themeSettings:{galleryLayout:next}});try{const {data}=await api.patch('/invitations/me/theme',{galleryLayout:next},{headers,notification:{loading:'Menyimpan tampilan galeri…',success:'Tampilan galeri tersimpan.'}});onUpdated?.({...invitation,themeSettings:data.themeSettings})}catch(e){setLayout(previous);onLivePreview?.({themeSettings:{galleryLayout:previous}});setError(e.response?.data?.error||'Tampilan belum tersimpan.')}finally{setBusy(false)}}
+ const full=limit!==null&&media.length>=limit;
+ return <div className="panel-content galeri-panel"><h2 className="panel-header">Galeri Foto & Video</h2><p className="panel-sub">Pilih kenangan yang ingin kalian bagikan.</p><div className="gallery-summary"><span>{media.filter(m=>m.type==='photo').length} foto · {media.filter(m=>m.type==='video').length} video</span><span>{media.length}{limit!==null?` / ${limit}`:''} media</span></div><div className="gallery-upload-box"><input ref={input} type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime" multiple hidden disabled={busy||full} onChange={e=>{upload(Array.from(e.target.files||[]));e.target.value=''}}/><div className="gallery-actions"><Button type="button" disabled={busy||full} onClick={()=>input.current.click()}>Unggah foto / video</Button><Button type="button" variant="secondary" disabled={busy||full} onClick={()=>setShowLink(!showLink)} aria-expanded={showLink}>Tautan YouTube</Button></div><small>Foto JPG, PNG, WebP, GIF maksimal 5 MB. Video MP4 / MOV maksimal 10 MB. Bisa pilih beberapa file.</small><small>Video lebih dari 10 MB? Unggah ke YouTube dengan visibilitas <strong>Tidak publik (Unlisted)</strong>, lalu tambahkan lewat tombol Tautan YouTube.</small>{full&&<p>Kuota galeri penuh. Hapus media untuk menambahkan yang baru.</p>}</div>{showLink&&<form className="gallery-link-form" onSubmit={addLink}><small className="gallery-link-hint">Pilih visibilitas <strong>Tidak publik (Unlisted)</strong> di YouTube agar video bisa ditonton melalui tautan.</small><label>Tautan video YouTube<input className="text-input" type="url" required value={url} onChange={e=>setUrl(e.target.value)} placeholder="https://youtu.be/…" disabled={busy}/></label><div className="gallery-actions"><Button type="button" variant="secondary" disabled={busy} onClick={()=>setShowLink(false)}>Batal</Button><Button type="submit" disabled={busy||!url.trim()}>Tambahkan video</Button></div></form>}<section className="gallery-layout-section"><h3>Tampilan galeri</h3><GalleryLayoutPicker value={layout} onChange={changeLayout} disabled={busy}/></section><section className="gallery-list-section"><h3>Urutan media</h3><p className="panel-sub">Geser pegangan titik. Perubahan tersimpan otomatis.</p>{!media.length?<div className="gallery-empty">Belum ada kenangan. Mulai dengan mengunggah foto atau video.</div>:<Reorder.Group axis="y" values={media.map(m=>m.id)} onReorder={reorder} className="gallery-media-list">{media.map((item,index)=><MediaRow key={item.id} item={item} index={index} disabled={busy} onDrop={saveOrder} onDelete={()=>remove(item)} onKeyboard={step=>keyboardMove(index,step)}/>)}</Reorder.Group>}</section></div>
 }

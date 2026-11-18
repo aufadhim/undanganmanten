@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{guestReportCsv}from'../src/utils/guestReport.js';
+test('guest report separates RSVP quantities from actual attendance and escapes spreadsheet formulas',()=>{const csv=guestReportCsv([{name:'=formula',phone:'00123',rsvp:{attending:true,guestCount:2},checkedIn:true,checkInCount:1,checkedInAt:'2026-10-30T08:00:00Z'}]);assert.match(csv,/Jumlah hadir aktual/);assert.match(csv,/"'=formula"/);assert.match(csv,/"00123"/);assert.match(csv,/"Hadir","2","Sudah","1"/)});

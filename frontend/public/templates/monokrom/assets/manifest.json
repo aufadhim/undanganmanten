@@ -1,0 +1,74 @@
+{
+  "status": "art-generated",
+  "engine": 1,
+  "copiedFrom": "sekar-jawa",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/monokrom/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 135312
+    },
+    {
+      "filename": "ilustrasi3.webp",
+      "path": "/templates/monokrom/assets/ilustrasi3.webp",
+      "usedBy": [
+        "config.assets.foreground",
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 165314
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/monokrom/assets/ilustrasi4.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 446450
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/monokrom/assets/ilustrasi5.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 385152
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/monokrom/assets/ilustrasi6.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 439736
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/monokrom/assets/ilustrasi7.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 421470
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/monokrom/assets/ilustrasi10.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 350412
+    }
+  ],
+  "environmentRevision": {
+    "style": "watercolor",
+    "files": [
+      "environment-v2.webp",
+      "environment-zone-1-v2.webp",
+      "environment-zone-2-v2.webp",
+      "environment-zone-3-v2.webp",
+      "environment-zone-4-v2.webp"
+    ]
+  },
+  "singleCouple": true
+}

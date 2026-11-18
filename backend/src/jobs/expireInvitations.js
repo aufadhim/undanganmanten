@@ -8,7 +8,9 @@ import { prisma } from '../lib/prisma.js';
 export async function runExpireJob() {
     const now = new Date();
 
-    const where = { expiresAt: { lt: now }, status: { not: 'expired' } };
+    // Restore legacy trial drafts; trial is not a public subscription.
+    await prisma.invitation.updateMany({where:{packageType:'TRIAL',status:'expired'},data:{status:'draft'}});
+    const where = { packageType: { not: 'TRIAL' }, expiresAt: { lt: now }, status: { in: ['draft','published'] } };
     const expired = await prisma.invitation.findMany({ where, select: { id: true, slug: true } });
 
     console.log(`[expire-job] Ditemukan ${expired.length} invitation yang sudah expired.`);

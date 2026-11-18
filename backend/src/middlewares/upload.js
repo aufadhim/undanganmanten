@@ -17,6 +17,6 @@ function createUpload(allowedMimes, maxSizeMb, label) {
   });
 }
 
-export const imageUpload = createUpload(IMAGE_MIMES, 8, 'gambar');
-export const galleryUpload = createUpload([...IMAGE_MIMES, ...VIDEO_MIMES], 30, 'galeri');
-export const themeAssetUpload = createUpload([...IMAGE_MIMES, ...AUDIO_MIMES], 20, 'aset tema');
+export const imageUpload = createUpload(IMAGE_MIMES, 5, 'gambar');
+export const galleryUpload = createUpload([...IMAGE_MIMES, ...VIDEO_MIMES], 10, 'galeri');
+export const themeAssetUpload = createUpload([...IMAGE_MIMES, ...AUDIO_MIMES], 8, 'aset tema');

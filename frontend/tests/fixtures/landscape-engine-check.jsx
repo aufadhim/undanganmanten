@@ -1,0 +1,22 @@
+import {BrowserRouter} from 'react-router-dom';
+import React,{useState} from 'react';import{createRoot}from'react-dom/client';
+import RivieraTemplate from '../../src/components/templates/viridarium/ViridariumTemplate.jsx';
+import rivieraPack from '../../src/components/templates/riviera/defaultConfig.json';
+import wasesaPack from '../../src/components/templates/wasesa/defaultConfig.json';
+import ludoraPack from '../../src/components/templates/ludora/defaultConfig.json';
+import viridariumPack from '../../src/components/templates/viridarium/defaultConfig.json';
+import soganPack from '../../src/components/templates/sekar-jawa/defaultConfig.json';
+import pramayaPack from '../../src/components/templates/pramaya/defaultConfig.json';
+const packs={riviera:rivieraPack,wasesa:wasesaPack,ludora:ludoraPack,viridarium:viridariumPack,'sekar-jawa':soganPack,pramaya:pramayaPack};
+import EternalTemplate from '../../src/components/templates/eternal/EternalTemplate.jsx';
+import NawasenaTemplate from '../../src/components/templates/nawasena/NawasenaTemplate.jsx';
+import SerayaTemplate from '../../src/components/templates/seraya/SerayaTemplate.jsx';
+const signatures={eternal:EternalTemplate,nawasena:NawasenaTemplate,seraya:SerayaTemplate};
+const requestedTheme=new URLSearchParams(location.search).get('theme');
+const theme=Object.hasOwn(packs,requestedTheme)||Object.hasOwn(signatures,requestedTheme)?requestedTheme:'riviera';
+const scenePack=packs[theme];
+const entryPath=`/templates/${theme}/index.html`+(new URLSearchParams(location.search).get('renderer')==='canvas'?'?renderer=canvas':'');
+const inv={id:'landscape-qa',slug:'riviera-preview',themeId:theme==='viridarium'?'garden-canvas':theme,weddingDate:'2026-12-20',themeSettings:{characterSettings:{mode:'default'}},coupleProfile:{brideName:'Alina',groomName:'Raka',brideFullName:'Alina Putri',groomFullName:'Raka Pratama',brideFather:'Budi',brideMother:'Sari',groomFather:'Adi',groomMother:'Dewi'},invitationFeatures:{igFilterEnabled:false,rsvpEnabled:true,wishesEnabled:true},wishes:[{id:'demo',senderName:'Sahabat',message:'Semoga bahagia dalam setiap perjalanan bersama.',createdAt:'2026-10-30'}]};
+const PreviewTemplate=signatures[theme]||RivieraTemplate;
+function App(){const[wide,setWide]=useState(false);return <main style={{minHeight:'100vh',background:'#eee9dd',padding:20,boxSizing:'border-box',font:'13px sans-serif',color:'#40553c'}}><nav style={{display:'flex',gap:12,marginBottom:12}}><button onClick={()=>setWide(!wide)}>{wide?'Tampilan HP':'Tampilan lebar'}</button><button onClick={()=>document.querySelector('iframe')?.contentDocument.querySelector('#open')?.click()}>Buka undangan uji</button></nav><div style={{position:'relative',width:wide?'100%':390,height:wide?'calc(100vh - 90px)':844,margin:'auto',boxShadow:'0 14px 60px #465a4320'}}><PreviewTemplate invitation={inv} editorPreview scenePack={scenePack} entryPath={entryPath} templateName={theme}/></div></main>}
+createRoot(document.getElementById('root')).render(<BrowserRouter><App/></BrowserRouter>);

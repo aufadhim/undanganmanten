@@ -1,0 +1,146 @@
+.sam-invoice-overlay {
+  position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center;
+  padding: 16px; background: #23342cc0;
+}
+.sam-invoice {
+  box-sizing: border-box; width: min(100%, 660px); max-height: 92dvh; overflow: auto;
+  padding: clamp(20px, 5vw, 44px); border: 1px solid #c5cdb5; border-radius: 16px;
+  background: #fbf8ee; color: #304337; box-shadow: 0 20px 60px #13221a55;
+  font: 14px/1.5 'DM Sans', Arial, sans-serif;
+}
+.sam-invoice-brand { display: flex; align-items: center; gap: 9px; color: #486044; font: 500 30px/.9 'Cormorant Garamond', Georgia, serif; }
+.sam-invoice-brand svg { width: 34px; height: 34px; flex: none; }
+.sam-invoice-brand small { display: block; margin-top: 6px; font: 600 8px/1.2 Arial,sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.sam-invoice-heading h2 { margin: 16px 0 8px; color: #304337; font: 500 clamp(30px,6vw,44px)/1 'Cormorant Garamond', Georgia, serif; }
+.sam-invoice-status { display: inline-block; padding: 3px 10px; border: 1px solid #879a7a; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.sam-invoice-art { display: block; width: 100%; height: clamp(90px, 22vw, 150px); margin: 18px 0; object-fit: cover; object-position: center 57%; border-radius: 8px; }
+.sam-invoice-meta { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,180px),1fr)); gap: 12px 20px; margin: 18px 0; }
+.sam-invoice-meta dt { color: #5a6a53; font-size: 12px; }
+.sam-invoice dd { margin: 0; overflow-wrap: anywhere; }
+.sam-invoice-items > div { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid #c5cdb5; }
+.sam-invoice-items dd { white-space: nowrap; text-align: right; }
+.sam-invoice-total { font-weight: 700; font-size: 16px; }
+.sam-invoice-note,.sam-invoice-contact { color: #52634f; font-size: 12px; }
+.sam-invoice-contact { margin: 18px 0 0; }
+.sam-invoice footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+@page sam-invoice-page { size: A4; margin: 0; }
+@media print {
+  body:has(> .sam-invoice-overlay) > :not(.sam-invoice-overlay) { display: none !important; }
+  body:has(> .sam-invoice-overlay) { margin: 0 !important; padding: 0 !important; }
+  .sam-invoice-overlay { page: sam-invoice-page; position: static; display: block; padding: 12mm; background: white; }
+  .sam-invoice { width: 100%; max-height: none; overflow: visible; padding: 9mm; border-radius: 0; box-shadow: none; break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .sam-invoice-art { height: 34mm; }
+  .sam-invoice footer { display: none; }
+}
+
+.sam-payment-methods{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0;padding:12px;border:1px solid var(--line,#bbc9ad);border-radius:8px}
+.sam-payment-methods label{padding:6px 10px}
+.sam-payment{box-sizing:border-box;width:100%;margin:16px 0;overflow-wrap:anywhere}
+.sam-payment-qr{width:fit-content;margin:12px auto;background:#fff}
+
+.sam-payment {
+  --payment-surface: #fbf8ee;
+  --payment-inset: #f0ede1;
+  --payment-ink: #334538;
+  --payment-muted: #586854;
+  --payment-line: #c4cbb6;
+  max-width: 740px;
+  margin: 20px 0;
+  padding: clamp(16px, 4vw, 30px);
+  border: 1px solid var(--payment-line);
+  border-radius: 16px;
+  background: var(--payment-surface);
+  color: var(--payment-ink);
+}
+.dashboard-dark .sam-payment {
+  --payment-surface: #232d25;
+  --payment-inset: #1a231d;
+  --payment-ink: #f3f0e1;
+  --payment-muted: #c4cdbb;
+  --payment-line: #576650;
+}
+.sam-payment-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px 24px;
+  padding: 18px;
+  border-radius: 10px;
+  background: linear-gradient(100deg,#f7f3e7ee,#f7f3e7b8),url('/assets/landing-canvas/garden.webp') center/cover;
+  color: #304337;
+}
+.dashboard-dark .sam-payment-header {
+  background-image: linear-gradient(100deg,#26352a,#26352abb),url('/assets/landing-canvas/garden.webp');
+  color: var(--payment-ink);
+}
+.sam-payment .sam-payment-header p { margin: 0 0 6px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.sam-payment .sam-payment-header h2 { margin: 0; color: inherit; font: 500 clamp(24px,5vw,34px)/1.1 'Cormorant Garamond',Georgia,serif; }
+.sam-payment-total span,.sam-payment-code span { display: block; margin-bottom: 4px; font-size: 12px; }
+.sam-payment-total strong { font-size: clamp(22px,4vw,30px); font-variant-numeric: tabular-nums; }
+.sam-payment .sam-payment-note { margin: 14px 0; color: var(--payment-muted); font-size: 13px; }
+.sam-payment-code {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--payment-line);
+  border-radius: 8px;
+  background: var(--payment-inset);
+}
+.sam-payment-code strong { font-family: monospace; font-size: clamp(16px,4vw,22px); }
+.sam-payment-details { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,220px),1fr)); gap: 12px 18px; margin: 18px 0; }
+.sam-payment-details dt { color: var(--payment-muted); font-size: 12px; }
+.sam-payment-details dd { margin: 4px 0 0; font-size: 14px; overflow-wrap: anywhere; }
+.sam-payment footer { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 14px; border-top: 1px solid var(--payment-line); }
+.sam-payment footer > * { min-height: 44px; }
+
+/* The invoice is portalled outside the themed dashboard and uses its paper palette. */
+.sam-invoice footer .btn-primary { background: #536343; color: #fffdf5; box-shadow: none; }
+.sam-invoice footer .btn-primary:is(:hover,:focus-visible):not(:disabled) { background: #405238; color: #fffdf5; }
+.sam-invoice footer .btn-secondary { background: #fbf8ee; border-color: #879a7a; color: #304337; }
+.sam-invoice footer .btn-secondary:is(:hover,:focus-visible):not(:disabled) { background: #e4ead9; color: #304337; }
+.sam-order-history { container-type: inline-size; }
+.sam-order-history h3 { margin: 0 0 14px; }
+.sam-order-list { display: grid; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.sam-order { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.65fr) auto; align-items: center; gap: 12px 18px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--ui-card,var(--panel)); }
+.sam-order-info,.sam-order-state { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
+.sam-order-info time,.sam-order-state small { color: var(--ink-soft); font-size: 12px; }
+.sam-order-id { flex-basis: 100%; overflow-wrap: anywhere; color: var(--ink-soft); font: 11px/1.5 monospace; }
+.sam-order-badge { display: inline-block; padding: 4px 9px; border-radius: 8px; background: var(--ui-danger-surface,#f2e4df); color: var(--ui-danger-ink,#793c36); font-size: 12px; font-weight: 650; }
+.sam-order-badge[data-status="SUCCESS"] { background: var(--dashboard-active,#e6eddf); color: var(--ink,#304337); }
+.sam-order-badge[data-status="PENDING"] { background: var(--ui-warning-surface,#f6edda); color: var(--ui-warning-ink,#754813); }
+.sam-order-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.sam-order-actions .btn { margin: 0; min-height: 36px; }
+@container (max-width: 650px) {
+  .sam-order { grid-template-columns: minmax(0,1fr); }
+  .sam-order-actions { justify-content: flex-start; }
+}
+.sam-payment-methods { display:grid; gap:16px; padding:16px; min-width:0; }
+.sam-payment-methods legend { padding:0 7px; font-weight:650; }
+.sam-method-group { display:grid; gap:8px; }
+.sam-method-group>strong { color:var(--ink-soft); font-size:.84rem; }
+.sam-method-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr)); gap:8px; }
+.sam-payment-methods .sam-method-grid label { display:flex; gap:8px; align-items:center; min-height:44px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); cursor:pointer; }
+.sam-payment-methods .sam-method-grid label:is(:hover,:focus-within,.is-selected) { border-color:var(--wine); background:var(--paper-deep); color:var(--ink); }
+.sam-method-grid input { flex:none; accent-color:var(--wine); }
+.sam-payment-methods { gap:8px; }
+.sam-method-group { gap:0; border:1px solid var(--line); border-radius:9px; overflow:hidden; background:var(--panel); }
+.sam-method-group .sam-method-heading { display:grid; grid-template-columns:22px minmax(0,1fr) auto 14px; align-items:center; gap:9px; width:100%; min-height:48px; padding:10px 12px; border:0; background:transparent; color:var(--ink); text-align:left; font:inherit; font-weight:650; cursor:pointer; }
+.sam-method-group .sam-method-heading:is(:hover,:focus-visible) { background:var(--paper-deep); color:var(--ink); }
+.sam-method-heading small { color:var(--ink-soft); font-size:.75rem; grid-column:3; text-align:right; }
+.sam-method-chevron { grid-column:4; font-size:.68rem; }
+.sam-method-heading[aria-expanded="true"] .sam-method-chevron { transform:rotate(180deg); }
+.sam-method-grid { padding:0 12px 12px; }
+.sam-method-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr)); }
+.sam-method-logo { display:grid; place-items:center; flex:0 0 52px; height:30px; padding:3px 5px; box-sizing:border-box; border:1px solid #dadfd3; border-radius:5px; background:#fff; color:#536343; }
+.sam-method-logo img { display:block; width:100%; height:100%; object-fit:contain; min-height:0; }
+.sam-method-grid label > span:last-child { overflow-wrap:anywhere; }
+.sam-failed-orders { margin-top:12px; }
+.sam-failed-orders summary { width:fit-content; padding:8px 0; color:var(--ink-soft); cursor:pointer; }
+.sam-failed-orders[open] summary { margin-bottom:8px; }
+.sam-payment { scroll-margin-top:24px; }
+.sam-payment:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }

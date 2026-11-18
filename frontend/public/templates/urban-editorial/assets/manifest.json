@@ -1,0 +1,100 @@
+{
+  "status": "art-generated",
+  "engine": 3,
+  "copiedFrom": "riviera",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 130112
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 222788
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi5.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 473844
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi6.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 465682
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.riverbank"
+      ],
+      "status": "generated",
+      "bytes": 208618
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.landing"
+      ],
+      "status": "generated",
+      "bytes": 221534
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi9.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 398018
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi10.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 344316
+    },
+    {
+      "filename": "ilustrasi11.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi11.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 313194
+    },
+    {
+      "filename": "ilustrasi12.webp",
+      "path": "/templates/urban-editorial/assets/ilustrasi12.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 311296
+    }
+  ],
+  "environmentRevision": {
+    "style": "watercolor",
+    "revision": 3,
+    "noPalms": true,
+    "files": [
+      "environment-v3.webp",
+      "environment-zone-1-v3.webp",
+      "environment-zone-2-v3.webp",
+      "environment-zone-3-v3.webp",
+      "environment-zone-4-v3.webp"
+    ]
+  },
+  "singleCouple": true
+}

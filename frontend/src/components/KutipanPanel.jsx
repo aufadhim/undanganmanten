@@ -121,7 +121,7 @@ export default function KutipanPanel({ invitation, onUpdated, onLivePreview }) {
                     </div>
             </div>
 
-            <Button variant="primary" onClick={handleSave} isLoading={saving}>
+            <Button saveAction variant="primary" onClick={handleSave} isLoading={saving}>
                 Simpan Pengaturan
             </Button>
         </>

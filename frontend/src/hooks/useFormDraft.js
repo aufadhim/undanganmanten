@@ -1,37 +1,41 @@
-import { useState, useEffect } from 'react';
+import {useState,useEffect} from 'react';
 
-/**
- * Custom hook untuk menyimpan draft form sementara di localStorage.
- * Berguna agar jika halaman di-reload sebelum disimpan ke database, isian tidak hilang.
- */
-export function useFormDraft(key, initialData) {
-    const [form, setForm] = useState(() => {
-        try {
-            const saved = localStorage.getItem(key);
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                // Kita gabungkan initialData dari DB dengan draft, agar jika ada kolom baru di DB
-                // tetap masuk, tapi prioritas tetap pada draft yang ada di localStorage.
-                if (typeof initialData === 'object' && initialData !== null && !Array.isArray(initialData)) {
-                    return { ...initialData, ...parsed };
-                }
-                return parsed !== undefined && parsed !== null ? parsed : initialData;
+export function readFormDraft(storage,key,initialData){
+    try{
+        const saved=storage.getItem(key);
+        if(saved){
+            const parsed=JSON.parse(saved);
+            if(initialData&&typeof initialData==='object'&&!Array.isArray(initialData)){
+                return parsed&&typeof parsed==='object'&&!Array.isArray(parsed)?{...initialData,...parsed}:initialData;
             }
-        } catch (e) {
-            console.error("Gagal membaca draft dari localStorage", e);
+            return parsed??initialData;
         }
-        return initialData;
-    });
+    }catch{}
+    return initialData;
+}
+export function writeFormDraft(storage,key,form,baseline){
+    if(JSON.stringify(form)===baseline)storage.removeItem(key);
+    else storage.setItem(key,JSON.stringify(form));
+}
 
-    // Simpan ke localStorage setiap kali form berubah
-    useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(form));
-    }, [key, form]);
-
-    // Fungsi untuk menghapus draft (dipanggil setelah sukses simpan ke DB)
-    const clearDraft = () => {
-        localStorage.removeItem(key);
+// Keep only unsaved edits. A completed save must not recreate its own stale draft.
+export function useFormDraft(key,initialData,persist=true){
+    const initial=JSON.stringify(initialData);
+    const fresh=()=>({key,form:persist?readFormDraft(localStorage,key,initialData):initialData,baseline:initial,server:initial});
+    const [state,setState]=useState(fresh);
+    if(state.key!==key)setState(fresh());
+    else if(state.server!==initial){
+        const pristine=JSON.stringify(state.form)===state.baseline;
+        setState({...state,server:initial,...(pristine?{form:initialData,baseline:initial}:{})});
+    }
+    useEffect(()=>{
+        if(!persist||state.key!==key)return;
+        try{writeFormDraft(localStorage,key,state.form,state.baseline)}catch{}
+    },[key,state,persist]);
+    const setForm=value=>setState(current=>({...current,form:typeof value==='function'?value(current.form):value}));
+    const clearDraft=()=>{
+        try{if(persist)localStorage.removeItem(key)}catch{}
+        setState(current=>({...current,baseline:JSON.stringify(current.form)}));
     };
-
-    return [form, setForm, clearDraft];
+    return [state.form,setForm,clearDraft];
 }

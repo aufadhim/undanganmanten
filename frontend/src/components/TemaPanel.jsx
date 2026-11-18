@@ -1,90 +1,82 @@
-import { useState } from 'react';
+import {THEME_CATEGORIES,THEME_CATALOG,GARDEN_DEFAULT_SETTINGS} from '../config/themeCatalog.js';
+import { useState,useEffect,useRef } from 'react';
 import { api } from '../api/client.js';
 import { useUI } from '../context/UIContext.jsx';
 import ThemeThumbnail from './ThemeThumbnail.jsx';
+import {TEMPLATE_LOADERS} from '../config/templateLoaders.generated.js';
+import { THEME_DEFAULT_SETTINGS } from '../config/themePresets.js';
 
-const CATALOG_TEMPLATES = [
-    {
-        id: 'eternal',
-        name: 'Eternal',
-        category: 'CUSTOM',
-        previewImg: '/assets/eternal/images/hero/background.webp',
-        description: 'Template eksklusif bernuansa elegan dan personal.'
-    },
-    {
-        id: 'seraya',
-        name: 'Seraya',
-        category: 'PREMIUM',
-        previewImg: '/assets/gallery/dummy-gallery-03.webp',
-        description: 'Editorial modern dengan cover sinematik, lembar undangan seperti majalah, dan ruang putih elegan.'
-    },
-    {
-        id: 'nawasena',
-        name: 'Nawasena',
-        category: 'PREMIUM',
-        previewImg: '/assets/nawasena/enchanted-joglo-hero.webp',
-        description: 'Taman Jawa penuh ilustrasi, kabut, burung, kelopak, dan animasi sinematik.'
-    },
-    {
-        id: 'isvara',
-        name: 'Isvara',
-        category: 'PREMIUM',
-        previewImg: '/assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg',
-        description: 'Editorial monokrom yang beralih ke kertas ivory, ilustrasi pasangan, dan botani sage berlapis.'
-    },
-    {
-        id: 'lanqing',
-        name: 'Lanqing',
-        category: 'PREMIUM',
-        previewImg: '/assets/gallery/dummy-gallery-01.webp',
-        description: 'Chinese lacquer merah dengan segel 囍, parchment hangat, prosesi bergaya gulungan, dan detail emas antik.'
-    },
-    {
-        id: 'celluloid',
-        name: 'Celluloid',
-        category: 'PREMIUM',
-        previewImg: '/assets/theme-thumbnails/celluloid-key-visual-v1.webp',
-        description: 'Sinema vintage dengan proyektor, gulungan film, tirai panggung, dan atmosfer premiere.'
-    },
-    {
-        id: 'nocturne',
-        name: 'Nocturne',
-        category: 'PREMIUM',
-        previewImg: '/assets/nocturne/backgrounds/opening-stage-background.webp',
-        description: 'Black-tie wedding gala dengan panggung Art Deco, velvet burgundy, spotlight, dan editorial malam yang sinematik.'
-    },
-];
+const CATALOG_TEMPLATES = THEME_CATALOG;
 
-export default function TemaPanel({ invitation, onUpdated }) {
+export default function TemaPanel({ invitation, onUpdated, client = api }) {
+    const [available,setAvailable]=useState(null);
+    useEffect(()=>{client.get('/themes/presets').then(({data})=>setAvailable(data.themes.map(t=>t.id))).catch(()=>setAvailable([]))},[]);
+    const applying=useRef(false);
     const [applyingId, setApplyingId] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState('Semua');
-    
+
     const { toast } = useUI();
 
-    const categories = ['Semua', ...new Set(CATALOG_TEMPLATES.map(t => t.category))];
+    const categories = THEME_CATEGORIES;
 
     const filteredTemplates = CATALOG_TEMPLATES.filter(tmpl => {
         const matchesSearch = tmpl.name.toLowerCase().includes(searchQuery.toLowerCase()) || tmpl.description.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = activeCategory === 'Semua' || tmpl.category === activeCategory;
-        return matchesSearch && matchesCategory;
+        return matchesSearch && matchesCategory && (available===null?false:available.includes(tmpl.id)||invitation.themeId===tmpl.id);
     });
 
     async function handleSelectTheme(themeId) {
+        if(applying.current||themeId===invitation.themeId)return;
+        applying.current=true;
+        TEMPLATE_LOADERS[themeId]?.().catch(()=>{});
         setApplyingId(themeId);
+        const prevInvitation = invitation;
+        const defaultSettings = THEME_DEFAULT_SETTINGS[themeId] || {};
+
+        // Optimistic UI update: instantly change preview in phone
+        const optimisticInvitation = {
+            ...invitation,
+            themeId,
+            themeSettings: {
+                ...(invitation.themeSettings || {}),
+                ...defaultSettings,
+                typography: {
+                    ...(invitation.themeSettings?.typography || {}),
+                    ...(defaultSettings.typography || {}),
+                },
+                background: {
+                    ...(invitation.themeSettings?.background || {}),
+                    ...(defaultSettings.background || {}),
+                },
+                bodyText: {
+                    ...(invitation.themeSettings?.bodyText || {}),
+                    ...(defaultSettings.bodyText || {}),
+                },
+                button: {
+                    ...(invitation.themeSettings?.button || {}),
+                    ...(defaultSettings.button || {}),
+                },
+                openingAnimation: defaultSettings.openingAnimation || 'fade',
+            }
+        };
+        onUpdated(optimisticInvitation);
+
         try {
             // Memanggil API update preset tema
-            const res = await api.post('/themes/apply-preset', {
+            const res = await client.post('/themes/apply-preset', {
                 invitationId: invitation.id,
                 presetId: themeId,
             });
 
-            // Panggil callback agar iPhone di kanan langsung berubah desainnya!
-            onUpdated(res.data.invitation);
+            // Panggil callback dengan data server lengkap
+            onUpdated({...optimisticInvitation,...res.data.invitation,guests:prevInvitation.guests,_count:prevInvitation._count});
             toast.success('Tema berhasil diganti!');
         } catch (err) {
+            onUpdated(prevInvitation);
             toast.error(err.response?.data?.error || 'Gagal mengganti tema');
         } finally {
+            applying.current=false;
             setApplyingId(null);
         }
     }
@@ -92,27 +84,28 @@ export default function TemaPanel({ invitation, onUpdated }) {
     return (
         <div className="panel-content">
             <h3 className="panel-title">Katalog Desain Undangan</h3>
-            <p className="panel-sub">Pilih desain wajah undanganmu. Seluruh data nama, acara, & foto yang sudah kamu isi tidak akan hilang.</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '10px 0 18px', padding: '10px 12px', borderRadius: '10px', background: '#f2f7f3', color: '#496052', fontSize: '13px' }}>
+            <p className="panel-sub">Temukan desain berdasarkan suasana dan tema. Data undangan tetap tersimpan saat berganti desain.</p>
+            <div className="studio-theme-notice">
                 <i className="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
                 Tema langsung diterapkan dan tersimpan otomatis saat dipilih.
             </div>
 
+            <aside className="collection-bespoke"><strong>Bespoke</strong><p>Layanan desain khusus yang dirancang berdasarkan cerita dan keinginan pasangan.</p></aside>
             <div className="theme-filters">
                 <div className="theme-search-wrapper">
                     <i className="fa-solid fa-magnifying-glass theme-search-icon"></i>
-                    <input 
-                        type="text" 
-                        className="theme-search-input" 
-                        placeholder="Cari tema..." 
+                    <input
+                        type="text"
+                        className="theme-search-input"
+                        placeholder="Cari tema..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
                 <div className="theme-category-chips">
                     {categories.map(cat => (
-                        <button 
-                            key={cat} 
+                        <button
+                            key={cat}
                             className={`theme-chip ${activeCategory === cat ? 'active' : ''}`}
                             onClick={() => setActiveCategory(cat)}
                         >
@@ -133,12 +126,12 @@ export default function TemaPanel({ invitation, onUpdated }) {
                         return (
                         <div
                             key={tmpl.id}
-                            onClick={() => handleSelectTheme(tmpl.id)}
+                            className={`atelier-catalog-card ${isActive ? 'is-active' : ''}`}
                             style={{
-                                border: isActive ? '2px solid #7a2436' : '1px solid #e3d6b4',
+                                border: isActive ? '2px solid var(--wine)' : '1px solid #e3d6b4',
                                 borderRadius: '12px',
                                 overflow: 'hidden',
-                                background: '#ffffff',
+                                background: 'var(--ui-card, #ffffff)',
                                 cursor: 'pointer',
                                 transition: 'transform 0.2s',
                                 position: 'relative'
@@ -147,7 +140,7 @@ export default function TemaPanel({ invitation, onUpdated }) {
                             <div style={{ height: '190px', overflow: 'hidden', position: 'relative' }}>
                                 <ThemeThumbnail theme={tmpl} />
                                 {isActive && (
-                                    <div style={{ position: 'absolute', top: 8, right: 8, background: '#7a2436', color: '#fff', fontSize: '10px', padding: '2px 8px', borderRadius: '10px', fontWeight: 'bold' }}>
+                                    <div className="theme-active-badge" style={{ position: 'absolute', top: 8, right: 8, background: '#536343', color: '#fff', fontSize: '10px', padding: '2px 8px', borderRadius: '10px', fontWeight: 'bold' }}>
                                         Aktif
                                     </div>
                                 )}
@@ -156,9 +149,12 @@ export default function TemaPanel({ invitation, onUpdated }) {
                                 <strong style={{ fontSize: '13px', display: 'block', color: '#182420' }}>{tmpl.name}</strong>
                                 <span style={{ fontSize: '10px', color: '#8c8c8c' }}>{tmpl.category}</span>
                                 <button
+                                    onClick={() => handleSelectTheme(tmpl.id)}
                                     className={isActive ? 'btn-primary' : 'btn-secondary'}
                                     style={{ width: '100%', marginTop: '12px', fontSize: '12px', padding: '8px 0', borderRadius: '8px' }}
-                                    disabled={applyingId === tmpl.id}
+                                    disabled={applyingId !== null || isActive}
+                                    onPointerEnter={() => TEMPLATE_LOADERS[tmpl.id]?.().catch(()=>{})}
+                                    onFocus={() => TEMPLATE_LOADERS[tmpl.id]?.().catch(()=>{})}
                                 >
                                     {applyingId === tmpl.id ? 'Memuat...' : isActive ? 'Terpakai' : 'Ganti Desain'}
                                 </button>

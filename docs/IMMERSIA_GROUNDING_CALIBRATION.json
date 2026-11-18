@@ -1,0 +1,1800 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "templates": [
+    {
+      "id": "melayu-balairung",
+      "name": "Swarnalaya",
+      "engine": 1,
+      "asset": "/templates/melayu-balairung/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09224011713030747,
+        "right": 0.9253294289897511,
+        "top": 0.029296875,
+        "bottom": 0.95703125
+      },
+      "reference": "pintu balairung dan tinggi pagar",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6411111111111112,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6785714285714286,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6404761904761905,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "melayu-hikayat",
+      "name": "Hikayat",
+      "engine": 2,
+      "asset": "/templates/melayu-hikayat/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09077598828696926,
+        "right": 0.8931185944363104,
+        "top": 0.0283203125,
+        "bottom": 0.9599609375
+      },
+      "reference": "pintu dan anak tangga",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6580645161290323,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.682258064516129,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6435483870967742,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "sunda-pendopo",
+      "name": "Paseban",
+      "engine": 1,
+      "asset": "/templates/sunda-pendopo/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.1054172767203514,
+        "right": 0.9033674963396779,
+        "top": 0.01953125,
+        "bottom": 0.953125
+      },
+      "reference": "kolom pendopo dan tangga",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6441935483870969,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.682258064516129,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6435483870967742,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "sunda-parahyangan",
+      "name": "Halimun",
+      "engine": 3,
+      "asset": "/templates/sunda-parahyangan/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.11859443631039532,
+        "right": 0.9033674963396779,
+        "top": 0.05078125,
+        "bottom": 0.95703125
+      },
+      "reference": "pagar batu tepi jalan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6515625,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.675,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6375,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "bali-pekarangan",
+      "name": "Paduraksa",
+      "engine": 1,
+      "asset": "/templates/bali-pekarangan/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.1273792093704246,
+        "right": 0.972181551976574,
+        "top": 0.06640625,
+        "bottom": 0.9326171875
+      },
+      "reference": "pintu pekarangan",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6396410256410257,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "bali-subak",
+      "name": "Terasering",
+      "engine": 3,
+      "asset": "/templates/bali-subak/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.07174231332357248,
+        "right": 0.9663250366032211,
+        "top": 0.0498046875,
+        "bottom": 0.94921875
+      },
+      "reference": "tembok tepi jalan dan tangga",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "banjar",
+      "name": "Lanting",
+      "engine": 3,
+      "asset": "/templates/banjar/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.10834553440702782,
+        "right": 0.8975109809663251,
+        "top": 0.009765625,
+        "bottom": 0.943359375
+      },
+      "reference": "pagar rumah panggung",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "dayak",
+      "name": "Sylvatica",
+      "engine": 2,
+      "asset": "/templates/dayak/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.12298682284040996,
+        "right": 0.931185944363104,
+        "top": 0.0146484375,
+        "bottom": 0.9345703125
+      },
+      "reference": "pintu rumah panjang",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6501082251082251,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "bugis-makassar",
+      "name": "Phinisi",
+      "engine": 1,
+      "asset": "/templates/bugis-makassar/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.1054172767203514,
+        "right": 0.9019033674963397,
+        "top": 0.0517578125,
+        "bottom": 0.9462890625
+      },
+      "reference": "tangga rumah panggung",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6456613756613757,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6840136054421769,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6450113378684807,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "toraja",
+      "name": "Lignum",
+      "engine": 2,
+      "asset": "/templates/toraja/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09370424597364568,
+        "right": 0.9531478770131772,
+        "top": 0.0068359375,
+        "bottom": 0.9658203125
+      },
+      "reference": "pagar batu dan pintu",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "sumba",
+      "name": "Savana",
+      "engine": 3,
+      "asset": "/templates/sumba/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.0951683748169839,
+        "right": 0.9663250366032211,
+        "top": 0.021484375,
+        "bottom": 0.9580078125
+      },
+      "reference": "rumah di kejauhan dan rumput depan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "flores",
+      "name": "Floraison",
+      "engine": 3,
+      "asset": "/templates/flores/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.0527086383601757,
+        "right": 0.9736456808199122,
+        "top": 0.0322265625,
+        "bottom": 0.939453125
+      },
+      "reference": "tembok batu jalan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "maluku",
+      "name": "Nirwana",
+      "engine": 2,
+      "asset": "/templates/maluku/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.12445095168374817,
+        "right": 0.9882869692532943,
+        "top": 0.0537109375,
+        "bottom": 0.9482421875
+      },
+      "reference": "kolom dan pagar",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6531868131868133,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "papua",
+      "name": "Arunika",
+      "engine": 3,
+      "asset": "/templates/papua/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09077598828696926,
+        "right": 0.9604685212298683,
+        "top": 0.0625,
+        "bottom": 0.921875
+      },
+      "reference": "pagar batu jalur depan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "minangkabau",
+      "name": "Pusaka",
+      "engine": 1,
+      "asset": "/templates/minangkabau/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09224011713030747,
+        "right": 0.9194729136163983,
+        "top": 0.0380859375,
+        "bottom": 0.9541015625
+      },
+      "reference": "pintu rumah dan tinggi tangga",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6396410256410257,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "masjid-taman",
+      "name": "Mihrab",
+      "engine": 1,
+      "asset": "/templates/masjid-taman/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.0629575402635432,
+        "right": 0.9692532942898975,
+        "top": 0.025390625,
+        "bottom": 0.93359375
+      },
+      "reference": "pintu dan kolom pelataran",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.638125,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.675,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6375,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "masjid-manuskrip",
+      "name": "Sahifah",
+      "engine": 2,
+      "asset": "/templates/masjid-manuskrip/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.06442166910688141,
+        "right": 0.9765739385065886,
+        "top": 0.0498046875,
+        "bottom": 0.9306640625
+      },
+      "reference": "kolom lorong",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6547619047619048,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6785714285714286,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6404761904761905,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "katedral",
+      "name": "Aureole",
+      "engine": 1,
+      "asset": "/templates/katedral/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.060029282576866766,
+        "right": 0.9780380673499268,
+        "top": 0.0234375,
+        "bottom": 0.939453125
+      },
+      "reference": "pintu samping dan pagar",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6367676767676768,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "katedral-album",
+      "name": "Canticle",
+      "engine": 2,
+      "asset": "/templates/katedral-album/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.07613469985358712,
+        "right": 0.9677891654465594,
+        "top": 0.0302734375,
+        "bottom": 0.9345703125
+      },
+      "reference": "pintu dan kolom lorong",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6501082251082251,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "taman-tionghoa",
+      "name": "Lianhua",
+      "engine": 1,
+      "asset": "/templates/taman-tionghoa/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09077598828696926,
+        "right": 0.9370424597364568,
+        "top": 0.037109375,
+        "bottom": 0.955078125
+      },
+      "reference": "pintu lingkaran dan pagar",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6426041666666666,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "peranakan",
+      "name": "Porcelaine",
+      "engine": 2,
+      "asset": "/templates/peranakan/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09224011713030747,
+        "right": 0.9970717423133236,
+        "top": 0.0380859375,
+        "bottom": 0.9609375
+      },
+      "reference": "pintu depan rumah",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6471215351812367,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.670042643923241,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6333688699360341,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "chateau",
+      "name": "Orangerie",
+      "engine": 3,
+      "asset": "/templates/chateau/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.0629575402635432,
+        "right": 0.9677891654465594,
+        "top": 0.0283203125,
+        "bottom": 0.9248046875
+      },
+      "reference": "pagar teras dan bangku",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "edinburgh",
+      "name": "Glenmore",
+      "engine": 3,
+      "asset": "/templates/edinburgh/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.07906295754026355,
+        "right": 0.9736456808199122,
+        "top": 0.01953125,
+        "bottom": 0.9248046875
+      },
+      "reference": "pintu rumah dan lampu jalan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6501082251082251,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "paris",
+      "name": "Reverie",
+      "engine": 2,
+      "asset": "/templates/paris/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09663250366032211,
+        "right": 0.9780380673499268,
+        "top": 0.0322265625,
+        "bottom": 0.939453125
+      },
+      "reference": "pagar teras",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "london",
+      "name": "Mayfair",
+      "engine": 2,
+      "asset": "/templates/london/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.09370424597364568,
+        "right": 0.9663250366032211,
+        "top": 0.0439453125,
+        "bottom": 0.9345703125
+      },
+      "reference": "pintu rumah dan lampu jalan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6501082251082251,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "elegant-ivory",
+      "name": "Alabaster",
+      "engine": 1,
+      "asset": "/templates/elegant-ivory/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.05417276720351391,
+        "right": 0.9824304538799414,
+        "top": 0.01953125,
+        "bottom": 0.94140625
+      },
+      "reference": "pintu dan balustrade",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6396410256410257,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "elegant-velvet",
+      "name": "Velours",
+      "engine": 2,
+      "asset": "/templates/elegant-velvet/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.06734992679355783,
+        "right": 0.9882869692532943,
+        "top": 0.0341796875,
+        "bottom": 0.966796875
+      },
+      "reference": "pintu lorong",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6501082251082251,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "kaligrafi",
+      "name": "Vellum",
+      "engine": 2,
+      "asset": "/templates/kaligrafi/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.08199121522693997,
+        "right": 0.9546120058565154,
+        "top": 0.04296875,
+        "bottom": 0.943359375
+      },
+      "reference": "pintu dan bangku lorong",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "cinema",
+      "name": "Cinematique",
+      "engine": 1,
+      "asset": "/templates/cinema/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.02635431918008785,
+        "right": 0.9912152269399708,
+        "top": 0.0068359375,
+        "bottom": 0.9677734375
+      },
+      "reference": "pintu bioskop",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6339800995024876,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.670042643923241,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6333688699360341,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "kingdom",
+      "name": "Sovereign",
+      "engine": 2,
+      "asset": "/templates/kingdom/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.04978038067349927,
+        "right": 0.9633967789165446,
+        "top": 0.0498046875,
+        "bottom": 0.89453125
+      },
+      "reference": "pintu kastel dan tangga",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6531868131868133,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "sabana",
+      "name": "Meadow",
+      "engine": 3,
+      "asset": "/templates/sabana/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.07174231332357248,
+        "right": 0.9882869692532943,
+        "top": 0.0107421875,
+        "bottom": 0.9248046875
+      },
+      "reference": "tinggi semak dan lebar jalan",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6665105386416862,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6916861826697893,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6514051522248244,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "urban-editorial",
+      "name": "Promenade",
+      "engine": 3,
+      "asset": "/templates/urban-editorial/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.08638360175695461,
+        "right": 0.9385065885797951,
+        "top": 0.0234375,
+        "bottom": 0.9443359375
+      },
+      "reference": "kursi kafe dan tiang pembatas",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6531868131868133,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.8873237179487181
+      }
+    },
+    {
+      "id": "mural",
+      "name": "Chromatica",
+      "engine": 3,
+      "asset": "/templates/mural/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.08199121522693997,
+        "right": 0.9472913616398243,
+        "top": 0.041015625,
+        "bottom": 0.9130859375
+      },
+      "reference": "kursi studio dan sofa",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.8914583333333335
+      }
+    },
+    {
+      "id": "monokrom",
+      "name": "Nocturne",
+      "engine": 1,
+      "asset": "/templates/monokrom/assets/ilustrasi1.webp",
+      "bounds": {
+        "left": 0.05856515373352855,
+        "right": 0.9633967789165446,
+        "top": 0.05859375,
+        "bottom": 0.9326171875
+      },
+      "reference": "kursi studio dan anak tangga",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6367676767676768,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6733766233766234,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6361471861471861,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    },
+    {
+      "id": "ludora",
+      "name": "Ludora",
+      "engine": 3,
+      "asset": "/templates/ludora/assets/couple-sampul-v2.webp",
+      "bounds": {
+        "left": 0.0400390625,
+        "right": 0.9931640625,
+        "top": 0.032552083333333336,
+        "bottom": 0.970703125
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6665105386416862,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6916861826697893,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6514051522248244,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.9022449908925319
+      }
+    },
+    {
+      "id": "wasesa",
+      "name": "Wasesa",
+      "engine": 3,
+      "asset": "/templates/sekar-jawa/assets/couple-cover.webp",
+      "bounds": {
+        "left": 0.1125,
+        "right": 0.9041666666666667,
+        "top": 0.004166666666666667,
+        "bottom": 0.9902777777777778
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6563616071428572,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6803571428571429,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8300000000000001
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6419642857142858,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "riviera",
+      "name": "Riviera",
+      "engine": 3,
+      "asset": "assets/couple-cover-watercolor-v3.webp",
+      "bounds": {
+        "left": 0.06002143622722401,
+        "right": 1,
+        "top": 0.024285714285714285,
+        "bottom": 0.9907142857142858
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.8299999999999998
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94
+      }
+    },
+    {
+      "id": "pramaya",
+      "name": "Pramaya",
+      "engine": 2,
+      "asset": "/templates/sekar-jawa/assets/couple-cover.webp",
+      "bounds": {
+        "left": 0.1125,
+        "right": 0.9041666666666667,
+        "top": 0.004166666666666667,
+        "bottom": 0.9902777777777778
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6531868131868133,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "garden-canvas",
+      "name": "Viridarium",
+      "engine": 1,
+      "asset": "assets/couple-cover-watercolor-v3.webp",
+      "bounds": {
+        "left": 0.06002143622722401,
+        "right": 1,
+        "top": 0.024285714285714285,
+        "bottom": 0.9907142857142858
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.30714285714285716,
+        "groundY": 0.6630184331797235,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6877880184331797,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6481566820276499,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    {
+      "id": "sekar-jawa",
+      "name": "Sogan",
+      "engine": 1,
+      "asset": "/templates/sekar-jawa/assets/couple-cover-dusty-v3.webp",
+      "bounds": {
+        "left": 0.10833333333333334,
+        "right": 0.928125,
+        "top": 0.0006944444444444445,
+        "bottom": 0.9916666666666667
+      },
+      "reference": "Retained painted floor perspective",
+      "cover": {
+        "adultHeight": 0.2866666666666667,
+        "groundY": 0.6396410256410257,
+        "minimumCoverage": 1.5,
+        "bodyFraction": 0.43,
+        "footLine": 0.78,
+        "referencePose": {
+          "x": 0,
+          "y": 15,
+          "z": 1160
+        }
+      },
+      "hero": {
+        "adultHeight": 0.34285714285714286,
+        "groundY": 0.6768131868131868,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.48,
+        "footLine": 0.83,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      },
+      "closing": {
+        "adultHeight": 0.28571428571428575,
+        "groundY": 0.6390109890109891,
+        "minimumCoverage": 1.4,
+        "bodyFraction": 0.4,
+        "footLine": 0.94,
+        "referencePose": {
+          "x": 0,
+          "y": -30,
+          "z": 1340
+        }
+      }
+    }
+  ]
+}

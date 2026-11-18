@@ -173,7 +173,7 @@ export default function WishesPanel({ invitation, onUpdated }) {
   return (
     <>
       <h2 className="panel-header">{t('panels.ucapan_title') || 'Ucapan & Doa'}</h2>
-      <p className="panel-sub">Sematkan doa terbaik, atau jadikan gambar untuk dipamerkan di IG Story-mu!</p>
+      <p className="panel-sub">Kelola ucapan yang tampil di undangan dan bagikan ucapan pilihan sebagai gambar Story.</p>
       <div className="section-block" style={{ marginBottom: 18, fontSize: 12, color: 'var(--ink-soft)' }}>
         Form ucapan diaktifkan melalui tab Susunan &amp; Blok. Ucapan tidak pantas otomatis ditolak sebelum tersimpan.
       </div>
@@ -216,49 +216,28 @@ export default function WishesPanel({ invitation, onUpdated }) {
           {wishes.length === 0 ? 'Belum ada ucapan.' : 'Ucapan tidak ditemukan.'}
         </div>
       ) : (
-        <div className="wishes-list" style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
+        <div className="wishes-list wishes-dashboard-list">
           {paginatedWishes.map((wish) => (
             <div key={wish.id} className={`wish-card ${wish.isHidden ? 'wish-hidden' : ''} ${wish.isPinned ? 'wish-pinned' : ''}`}>
               <div className="wish-card-header">
-                <div>
-                  <strong>{wish.senderName}</strong>
-                  {wish.isPinned && <span className="badge badge-pin">📌 Disematkan</span>}
-                  {wish.isHidden && <span className="badge badge-hide">👁️ Disembunyikan</span>}
+                <div className="wish-sender">
+                  <div>
+                    <strong>{wish.senderName || 'Tamu'}</strong>
+                    <time>{new Date(wish.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
+                  </div>
                 </div>
-                <div className="wish-card-actions">
-                  <Button 
-                    variant="ghost" size="sm" 
-                    onClick={() => handleShare(wish)}
-                    isLoading={exportingId === wish.id}
-                    icon={<i className="fa-brands fa-instagram"></i>}
-                  >
-                    IG Story
-                  </Button>
-                  <Button 
-                    variant="ghost" size="sm"
-                    onClick={() => handleTogglePin(wish)}
-                    isLoading={loadingId === `pin-${wish.id}`}
-                    icon={<i className="fa-solid fa-thumbtack"></i>}
-                  >
-                    {wish.isPinned ? 'Lepas' : 'Sematkan'}
-                  </Button>
-                  <Button 
-                    variant="ghost" size="sm"
-                    onClick={() => handleToggleHide(wish)}
-                    isLoading={loadingId === `hide-${wish.id}`}
-                    icon={<i className={wish.isHidden ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}></i>}
-                  >
-                    {wish.isHidden ? 'Tampilkan' : 'Sembunyikan'}
-                  </Button>
-                  <Button 
-                    variant="ghost" size="sm" style={{ color: 'red' }}
-                    onClick={() => handleDelete(wish.id)}
-                    icon={<i className="fa-solid fa-trash"></i>}
-                  />
+                <div className="wish-statuses">
+                  {wish.isPinned && <span className="badge badge-pin"><i className="fa-solid fa-thumbtack" /> Disematkan</span>}
+                  {wish.isHidden && <span className="badge badge-hide"><i className="fa-solid fa-eye-slash" /> Disembunyikan</span>}
                 </div>
               </div>
-              <p className="wish-message">{wish.message}</p>
-              <div className="wish-date">{new Date(wish.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+              <p className="wish-message">“{wish.message}”</p>
+              <div className="wish-card-actions" aria-label={`Aksi ucapan dari ${wish.senderName || 'tamu'}`}>
+                <Button variant="ghost" size="sm" className="wish-share-action" data-tooltip="Bagikan sebagai gambar Story" aria-label="Bagikan sebagai gambar Story" onClick={() => handleShare(wish)} isLoading={exportingId === wish.id} icon={<i className="fa-brands fa-instagram" />} />
+                <Button variant="ghost" size="sm" className={wish.isPinned ? 'is-active' : ''} data-tooltip={wish.isPinned ? 'Lepas dari ucapan tersemat' : 'Sematkan ucapan ini'} aria-label={wish.isPinned ? 'Lepas sematan' : 'Sematkan ucapan'} onClick={() => handleTogglePin(wish)} isLoading={loadingId === `pin-${wish.id}`} icon={<i className="fa-solid fa-thumbtack" />} />
+                <Button variant="ghost" size="sm" className={wish.isHidden ? 'is-active' : ''} data-tooltip={wish.isHidden ? 'Tampilkan kembali di undangan' : 'Sembunyikan dari undangan'} aria-label={wish.isHidden ? 'Tampilkan di undangan' : 'Sembunyikan dari undangan'} onClick={() => handleToggleHide(wish)} isLoading={loadingId === `hide-${wish.id}`} icon={<i className={wish.isHidden ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'} />} />
+                <Button variant="ghost" size="sm" className="wish-delete-action" data-tooltip="Hapus ucapan secara permanen" aria-label={`Hapus ucapan dari ${wish.senderName || 'tamu'}`} onClick={() => handleDelete(wish.id)} icon={<i className="fa-solid fa-trash" />} />
+              </div>
             </div>
           ))}
         </div>

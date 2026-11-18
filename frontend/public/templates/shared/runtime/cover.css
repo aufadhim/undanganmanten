@@ -1,0 +1,461 @@
+/* The cover is an independent scene; invitation chapters retain their own layout. */
+#cover {
+  background: radial-gradient(ellipse at 50% 40%, #fbf5e6, #dfe5ce 80%);
+  padding: 0;
+  overflow: hidden;
+  display: block;
+  isolation: isolate;
+  touch-action: none;
+  transition: opacity 0.7s;
+  transform: none !important;
+}
+#cover-stage {
+  position: absolute;
+  inset: 0;
+  perspective-origin: 50% 50%;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.scene-camera {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.scene-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+.scene-layer img,
+.scene-layer > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.couple-layer img {
+  filter: drop-shadow(0 12px 16px #51644512);
+}
+#cover:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    #faf4e7a0 0%,
+    #faf4e700 24%,
+    #faf4e700 65%,
+    #f4f0e37d 79%,
+    #f4f0e3ee 100%
+  );
+}
+#cover .cover-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  z-index: 3;
+  pointer-events: none;
+  text-align: center;
+}
+#cover .cover-heading {
+  position: absolute;
+  top: 12%;
+  left: 15%;
+  right: 15%;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 1.7s,
+    transform 1.7s;
+}
+#cover.scene-ready .cover-heading {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+#cover .kicker {
+  font-size: 8px;
+  letter-spacing: 3.5px;
+  color: #7d856c;
+}
+#cover h1 {
+  font-size: clamp(48px, 6.5vw, 84px);
+  letter-spacing: -2px;
+  margin: 9px 0 8px;
+  line-height: 1;
+}
+#cover h1 em {
+  font-size: 0.6em;
+  display: inline;
+  margin: 0 0.05em;
+  line-height: 1;
+}
+#cover .cover-date {
+  font-size: 8px;
+  gap: 12px;
+  letter-spacing: 2.5px;
+}
+#cover .cover-date span {
+  font-size: 10px;
+}
+#cover .cover-date i {
+  width: 19px;
+}
+#cover .cover-response {
+  position: absolute;
+  bottom: 7.5%;
+  left: 20%;
+  right: 20%;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 1.5s,
+    transform 1.5s;
+}
+#cover.scene-ready .cover-response {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1s;
+}
+#cover .guest {
+  font-size: 9px;
+  line-height: 1.6;
+  color: #747d66;
+}
+#cover .guest strong {
+  font-size: 14px;
+  margin: 4px 0 14px;
+}
+#cover .primary {
+  pointer-events: auto;
+  min-width: 225px;
+  border-radius: 30px;
+  padding: 13px 24px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 30px #526b4530;
+  background: #52674e;
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+#cover .primary:hover {
+  transform: translateY(-3px);
+  background: #3f583e;
+}
+#cover .cover-note {
+  font-size: 8px;
+  letter-spacing: 0.4px;
+  margin-top: 10px;
+}
+#cover .cover-bottom {
+  z-index: 3;
+  bottom: 21px;
+  font-size: 7px;
+  color: #76806a;
+  pointer-events: none;
+  letter-spacing: 1.5px;
+}
+#cover .cover-controls {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 5;
+}
+#cover .cover-controls button {
+  border: 1px solid #81906c44;
+  background: #f8f3e7a0;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  color: #617552;
+  font-size: 15px;
+  backdrop-filter: blur(8px);
+}
+#cover .cover-controls button:hover {
+  background: #fff9e9;
+}
+#cover .scene-instruction {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  writing-mode: vertical-rl;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: #7a856b;
+  z-index: 3;
+}
+#ambient-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+#ambient-petals i {
+  position: absolute;
+  left: var(--left);
+  top: -20px;
+  width: var(--size);
+  height: calc(var(--size) * 1.5);
+  border-radius: 2px 80% 10% 80%;
+  background: linear-gradient(40deg, #d1ad9e88, #fff0dfbb);
+  animation: petal-fall var(--duration) var(--delay) infinite linear;
+}
+.touch-petal {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  width: 9px;
+  height: 15px;
+  border-radius: 2px 80% 10% 80%;
+  background: #d1ab9bc0;
+  animation: petal-burst 1.9s ease-out forwards;
+}
+.butterfly-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-20deg);
+}
+.butterfly-body .wing {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 80% 65%,
+    #efe0b0,
+    #caad79 70%,
+    #9f8c5d
+  );
+  border: 1px solid #a3916266;
+  box-shadow: inset 0 0 8px #fff7dd70;
+}
+.wing.left {
+  left: 0;
+  transform-origin: 100% 50%;
+  border-radius: 80% 10% 60% 30%;
+  transform: rotateY(var(--wing, 20deg));
+}
+.wing.right {
+  right: 0;
+  transform-origin: 0% 50%;
+  border-radius: 10% 80% 30% 60%;
+  transform: rotateY(calc(-1 * var(--wing, 20deg)));
+}
+.butterfly-body b {
+  position: absolute;
+  left: 48%;
+  top: 20%;
+  width: 5%;
+  height: 70%;
+  border-radius: 100%;
+  background: #786c48;
+}
+.scene-paused #ambient-petals i {
+  animation-play-state: paused;
+}
+#cover.opening .cover-heading,
+#cover.opening .cover-response,
+#cover.opening .cover-controls,
+#cover.opening .scene-instruction {
+  opacity: 0 !important;
+  transition: opacity 0.65s !important;
+  pointer-events: none !important;
+}
+#cover.opening .primary {
+  pointer-events: none;
+}
+#cover.leaving {
+  transform: none;
+  opacity: 0;
+}
+body.locked #garden,
+body.locked > .wash {
+  visibility: hidden;
+}
+body.locked .demo-tag {
+  font-size: 7px;
+  top: 68px;
+  opacity: 0.8;
+}
+body.locked header {
+  pointer-events: none;
+}
+body.locked header .monogram {
+  pointer-events: auto;
+}
+body.locked .edition {
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+body.locked .grain {
+  opacity: 0.075;
+}
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(100px, 110vh, 0) rotate(370deg);
+    opacity: 0;
+  }
+}
+@keyframes petal-burst {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--r));
+  }
+}
+@media (max-width: 600px) {
+  #cover .cover-heading {
+    top: 14%;
+    left: 9%;
+    right: 9%;
+  }
+  #cover h1 {
+    font-size: 49px;
+  }
+  #cover .kicker {
+    font-size: 6px;
+    letter-spacing: 2.3px;
+  }
+  #cover .cover-date {
+    font-size: 7px;
+    gap: 9px;
+  }
+  #cover .cover-response {
+    bottom: 8%;
+    left: 10%;
+    right: 10%;
+  }
+  #cover .guest {
+    font-size: 8px;
+  }
+  #cover .guest strong {
+    font-size: 12px;
+    margin: 4px 0 12px;
+  }
+  #cover .primary {
+    min-width: 205px;
+    font-size: 8px;
+    min-height: 44px;
+    padding: 11px 20px;
+  }
+  #cover .cover-note {
+    font-size: 7px;
+    margin-top: 9px;
+  }
+  #cover .cover-bottom {
+    font-size: 5.5px;
+    bottom: 18px;
+    letter-spacing: 1px;
+  }
+  #cover .cover-controls {
+    left: 12px;
+    top: 47%;
+    gap: 8px;
+  }
+  #cover .cover-controls button {
+    width: 29px;
+    height: 29px;
+    font-size: 13px;
+  }
+  #cover .scene-instruction {
+    right: 12px;
+    font-size: 6px;
+    top: 44%;
+    letter-spacing: 1.5px;
+  }
+  body.locked .edition {
+    font-size: 6px;
+  }
+  body.locked .demo-tag {
+    top: 59px;
+    font-size: 6px;
+  }
+}
+@media (max-height: 680px) {
+  #cover .cover-heading {
+    top: 13%;
+  }
+  #cover h1 {
+    font-size: 42px;
+  }
+  #cover .cover-response {
+    bottom: 7%;
+  }
+  #cover .cover-note {
+    display: none;
+  }
+  #cover .guest {
+    font-size: 7px;
+  }
+  #cover .guest strong {
+    font-size: 11px;
+    margin-bottom: 9px;
+  }
+  #cover .primary {
+    min-height: 36px;
+    padding: 8px 20px;
+  }
+  body.locked .demo-tag {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #ambient-petals {
+    display: none;
+  }
+  #cover .cover-heading,
+  #cover .cover-response {
+    opacity: 1;
+    transform: none;
+  }
+  .touch-petal {
+    display: none;
+  }
+}
+
+/* The locked cover fills the viewport, including inside the Studio iframe. */
+html:has(body.locked) {
+  overflow: hidden;
+}
+body.cover-handoff #cover {
+  transition: none !important;
+}
+body.cover-handoff #cover-stage {
+  transition: none !important;
+}
+body.cover-handoff #journey {
+  pointer-events: none;
+}
+body.cover-handoff .hero-heading {
+  opacity: 0 !important;
+}

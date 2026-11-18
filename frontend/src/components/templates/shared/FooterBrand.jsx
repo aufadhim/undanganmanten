@@ -1,0 +1,1 @@
+export default function FooterBrand(){return <div style={{textAlign:'center',marginTop:22,fontSize:10,letterSpacing:'.06em',opacity:.75}}><a href="/" target="_blank" rel="noopener noreferrer" style={{color:'inherit',textDecoration:'none'}}>Dibuat dengan Samavaya</a></div>}

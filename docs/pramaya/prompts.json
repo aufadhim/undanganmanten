@@ -1,0 +1,35 @@
+{
+  "mode": "Built-in image_gen",
+  "assets": [
+    {
+      "name": "prambanan-dawn",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. A poetic view of the recognizable Prambanan Hindu temple compound in Java, slender tall central Shiva temple with tiered pointed ratna pinnacle and smaller temples, viewed along warm pale sandstone garden path, jasmine and frangipani framing sides. Calm open central space, distant hazy Merapi silhouette. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Portrait 2:3 composition fills canvas. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-8853064e-5de8-4ea8-b396-358f647abaa9.png"
+    },
+    {
+      "name": "temple-courtyard",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. Quiet romantic Javanese wedding garden pavilion in a Prambanan-inspired stone courtyard, modest carved teak ceremonial canopy at far center, jasmine garlands, pale stone steps, lotus basin foreground, distant Prambanan temple spires. Open central area. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Portrait 2:3 composition fills canvas. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-14a5428b-d4c8-4b2e-a983-33efd170096e.png"
+    },
+    {
+      "name": "relief-walk",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. Intimate walkway through ancient Prambanan carved sandstone relief walls, recognizable Java Hindu temple towers in distance, frangipani branches, jasmine and soft terracotta flowers, winding quiet pale path, layered architecture. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Portrait 2:3 composition fills canvas. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-081acf4c-c313-4f24-bf71-284020a0a607.png"
+    },
+    {
+      "name": "temple-evening",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. Prambanan temple silhouette at soft dusty mauve dusk, warm antique gold lanterns at sides, lotus reflecting pond, small jasmine blossoms and warm taupe stone, luminous quiet open center, not dark or oversaturated. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Portrait 2:3 composition fills canvas. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-038b687d-6f57-4a43-a701-38d40d0ecbb6.png"
+    },
+    {
+      "name": "outer-garden",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. View downward onto a warm ivory stone garden reading table occupying central and lower 80 percent, textured watercolor cotton paper, surrounding frangipani branches and pale jasmine at far edges, distant blurred Prambanan temple spires at top beyond table, warm morning light. Table completely empty, central 80 percent clear for an open book overlay. No book, no people, no objects in center. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Portrait 2:3 composition fills canvas. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-4c56cd25-0520-4289-af8b-61652663557b.png"
+    },
+    {
+      "name": "storybook",
+      "prompt": "Use case: illustration-story. Asset for Pramaya interactive watercolor wedding invitation, Mental Canvas 2. Single large antique open storybook cutout viewed almost directly from above, symmetric landscape book shape, vertical spine center, both blank warm parchment pages almost flat and parallel to camera, dark warm tan cloth binding, delicate gold Javanese botanical corners, softly painted edges and subtle paper texture. Right page is a plain blank rectangle covering x52 to90 percent and y12 to86 percent of image, left page also blank. Entire book visible with breathing room, landscape 3:2 composition, no writing, no objects, genuinely transparent alpha outside book, no floor, no cast shadow. Hand painted traditional delicate watercolor on cotton canvas, visible fine pigment granulation and loose brushwork. Palette muted warm stone taupe, dusty terracotta, soft sage accents, antique gold, warm ivory, dusty mauve; moderately desaturated but alive, neither vivid nor washed out. Deep foreground midground distant atmosphere. Transparent background. No text, logos, border, photorealism, glossy rendering or 3D.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-f6e80896-e43a-49ad-a72d-c367a58b13b3.png"
+    }
+  ]
+}

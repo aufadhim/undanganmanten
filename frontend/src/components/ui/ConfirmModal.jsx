@@ -86,7 +86,7 @@ export default function ConfirmModal({ title, message, confirmText, cancelText, 
         }
 
         .ui-btn-confirm {
-          background: var(--wine, #7a2436);
+          background: #536343;
           color: #ffffff;
         }
         .ui-btn-confirm:hover {

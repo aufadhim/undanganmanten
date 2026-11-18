@@ -1,0 +1,13 @@
+{
+  "undanganmanten": {
+    "beforeBytes": 209993090,
+    "afterBytes": 45368313,
+    "reductionPercent": 78.4
+  },
+  "gardenCanvas": {
+    "beforeConfiguredAssetsBytes": 31638843,
+    "afterConfiguredAssetsBytes": 5021059,
+    "files": 17,
+    "reductionPercent": 84.13
+  }
+}

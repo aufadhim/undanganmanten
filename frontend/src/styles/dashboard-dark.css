@@ -1,0 +1,346 @@
+.atelier-app .dashboard-theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.workspace-topbar > .dashboard-theme-toggle { margin-inline-start: auto; }
+.workspace-topbar:has(> label) > .dashboard-theme-toggle { align-self: flex-end; }
+.workspace-topbar > .dashboard-theme-toggle,
+.workspace-topbar select { box-sizing: border-box; height: 42px; border-radius: 5px; }
+.workspace-topbar > .dashboard-theme-toggle { width: 42px; }
+@media (min-width: 601px) {
+  .workspace-topbar > label + label { margin-inline-start: -12px; }
+}
+
+@media (max-width: 600px) {
+  .workspace-topbar { position: relative; }
+  .workspace-topbar > div:first-child { padding-inline-end: 48px; }
+  .workspace-topbar > .dashboard-theme-toggle { position: absolute; top: 20px; right: 20px; }
+}
+
+.atelier-app.dashboard-dark {
+  --ink: #e6e9df;
+  --ink-soft: #b8c3ae;
+  --paper: #171c17;
+  --paper-deep: #202820;
+  --panel: #242c24;
+  --line: #465345;
+  --wine: #9fb38a;
+  --wine-deep: #bbccab;
+  --dashboard-input: #1d251e;
+  --dashboard-active: #344434;
+  --ui-card: #29342a;
+  --ui-muted: #c3ceba;
+  --ui-danger-surface: #382825;
+  --ui-danger-ink: #f3b6aa;
+  color-scheme: dark;
+  background-image: none;
+}
+
+.atelier-app.dashboard-dark .iphone-mockup-stage {
+  color-scheme: light;
+  color: #182420;
+}
+
+.atelier-app.dashboard-dark .stage .iphone-mockup-stage {
+  border-color: #414e43;
+  box-shadow: 0 0 0 1px #7a887b, 0 16px 42px #0b110dc0;
+}
+
+.atelier-app.dashboard-dark .stage .device-switch-btn { color: #b8c3ae; }
+.atelier-app.dashboard-dark .stage .device-switch-btn.active { background: #4a5d47; color: #fffdf4; }
+
+.atelier-app.dashboard-dark :is(.wedding-workspace,.invitation-library,.stage) {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.atelier-app.dashboard-dark .stage::before { opacity: .1; }
+.atelier-app.dashboard-dark .stage::after { background: none; }
+
+.atelier-app.dashboard-dark :is(.workspace-sidebar,.workspace-topbar,.workspace-account-card,.workspace-next,.workspace-stats > div,.library-card,.workspace-sidebar .workspace-account-link,.rail,.panel,.atelier-workspace-intro,.subnav-container,.studio-panel-scroll,.atelier-catalog-card > div:last-child,.modal-card,.ui-modal-content) {
+  background: var(--panel);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.workspace-label,.workspace-subtitle,.workspace-account-card dt,.workspace-next p,.workspace-help p,.workspace-stats small,.library-theme,.library-slug,.workspace-topbar label,.panel .panel-sub,.atelier-intro-note,.atelier-eyebrow,.rail-item,.rail-item span,.subnav-item,.theme-chip,.workspace-sidebar button,.workspace-sidebar a,.workspace-help a,.atelier-brand) {
+  color: var(--ink-soft);
+}
+
+.atelier-app.dashboard-dark .atelier-catalog-card > div:last-child > span { color: var(--ink-soft) !important; }
+
+.atelier-app.dashboard-dark :is(.workspace-sidebar nav button[aria-current=page],.rail-item.active,.rail-item:hover,.subnav-item.active,.subnav-item:hover,.theme-chip.active,.device-switch-btn.active,.workspace-account-edit:hover,.workspace-account-edit:focus-visible) {
+  background: var(--dashboard-active);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.workspace-page button,.library-actions button,.panel .btn-secondary,.stage-url,.stage-topbar-device-switch,.stage .lang-switcher-dashboard,.stage .preview-reload-btn,.studio-navigation .editor-library-back) {
+  background: var(--paper-deep);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.workspace-page button.workspace-primary,.panel .btn-primary,.panel .btn-save) {
+  background: #a8ba96;
+  color: #1a2519;
+  border-color: #a8ba96;
+}
+
+.atelier-app.dashboard-dark :is(.workspace-account-card .workspace-account-danger,.workspace-sidebar .workspace-logout,.stage .logout-btn) {
+  background: #302321;
+  color: #f3b6aa;
+  border-color: #80534a;
+}
+.atelier-app.dashboard-dark .stage .logout-btn:hover { background: #49312e; }
+
+.atelier-app.dashboard-dark :is(.workspace-account-form,.workspace-topbar,.workspace-panel,.panel,.modal-card,.ui-modal-content) :is(input:not([type=color]):not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select) {
+  background-color: var(--dashboard-input);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark .panel .theme-search-input { background: var(--dashboard-input) !important; }
+.atelier-app.dashboard-dark .workspace-account-card .workspace-account-edit { background: transparent; color: var(--ink-soft); }
+.atelier-app.dashboard-dark .workspace-account-card .workspace-account-edit:hover { background: var(--dashboard-active); }
+
+.atelier-app.dashboard-dark .studio-heading {
+  background: linear-gradient(105deg, #29362b, var(--panel));
+  border-color: var(--line);
+}
+.atelier-app.dashboard-dark :is(.studio-heading h2,.collection-bespoke strong) { color: var(--ink); }
+.atelier-app.dashboard-dark :is(.studio-heading small,.collection-bespoke p,.inv-count-badge,.content-save-footer > p) { color: var(--ink-soft); }
+.atelier-app.dashboard-dark :is(.studio-theme-notice,.collection-bespoke) {
+  background: #2d392d;
+  color: #d3dfcb;
+}
+.atelier-app.dashboard-dark .collection-bespoke { border-color: #a79571; }
+.atelier-app.dashboard-dark :is(.studio-navigation .editor-library-back:last-child,.panel-inv-switcher > .btn-create-inv,.stage-topbar-actions .lang-switcher-dashboard) {
+  background: var(--dashboard-active);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.atelier-app.dashboard-dark .stage-topbar .badge-draft-label { background: #344434; color: #d3dfcb; }
+.atelier-app.dashboard-dark .stage .lang-switcher-dashboard {
+  background: var(--dashboard-active) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+.atelier-app.dashboard-dark .studio-panel-shell > .content-save-target { background: var(--panel); }
+.atelier-app.dashboard-dark .stage::before { opacity: .06; }
+
+.atelier-app.dashboard-dark .panel .type-section > p { color: var(--ink-soft); }
+.atelier-app.dashboard-dark .panel .type-section > .type-sample {
+  background: var(--dashboard-input);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.atelier-app.dashboard-dark .panel .canvas-music-setting small { color: var(--ink-soft); }
+.atelier-app.dashboard-dark .panel .canvas-media-upload .canvas-upload-button {
+  background: var(--dashboard-active);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.atelier-app.dashboard-dark .panel .canvas-media-upload .canvas-upload-button:hover:not(:disabled) {
+  background: #4a5d47;
+}
+
+/* Editor and workspace surfaces are separate from the invitation artwork. */
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(
+  .story-chapter,.story-new,.story-empty,.rundown-item,.rundown-sortable,.rundown-empty,
+  .gallery-upload-box,.gallery-link-form,.gallery-media-row,.gallery-empty,
+  .dress-editor-group,.gift-editor-account,.live-editor-cover,.live-editor-poster,
+  .frame-editor-sample,.character-panel,.character-generation-requirements,
+  .loading-animation-card,.type-save-status,.guest-hub-note,
+  .guest-rsvp-details,.guest-wa-details,.fullscreen-modal-container,.fullscreen-action-bar
+) {
+  background: var(--ui-card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(
+  .field-label,.story-main-label,.story-editor label,.story-editor label span,
+  .story-chapter summary strong,.story-chapter summary small,.story-mode-options span,
+  .rundown-form label,.rundown-form small,.rundown-row-toggle span,.rundown-row-toggle time,
+  .gallery-summary,.gallery-upload-box small,.gallery-media-copy small,.gallery-link-hint,
+  .gift-editor-help,.live-editor-help,.frame-editor-help,.character-panel p,
+  .character-panel .character-note,.type-range output
+) { color: var(--ui-muted); }
+
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(
+  .story-mode-options button,.rundown-row-toggle,.type-reset-fonts,.type-save-status button,.type-panel-header button,
+  .character-panel button,.signature-visual-panel .signature-upload button,.guest-hub-tabs button,
+  .gallery-layout-choice,.photo-frame-button
+) { background: var(--dashboard-input); color: var(--ink); border-color: var(--line); }
+
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(
+  .story-mode-options button[aria-pressed=true],.gift-editor-types label.selected,
+  .character-panel button[aria-pressed=true],.loading-animation-card.active,.guest-hub-tabs button[aria-selected=true],.gallery-layout-choice.active
+) { background: var(--dashboard-active); color: var(--ink); border-color: #7b9074; }
+
+.atelier-app.dashboard-dark .panel .gallery-layout-mini { background: var(--paper-deep); border-color: var(--line); }
+.atelier-app.dashboard-dark .panel .switch .slider { background-color: #4d594c; }
+.atelier-app.dashboard-dark .panel .switch input:checked + .slider { background-color: #748b68; }
+
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(.gallery-error,.gift-editor-error,.type-save-status.error) {
+  background: var(--ui-danger-surface);
+  color: var(--ui-danger-ink);
+}
+
+.atelier-app.dashboard-dark :is(.analytics-cards article,.analytics-columns section,.analytics-group,.guest-scanner-backdrop > section,.wish-card,.admin-surface,.admin-metrics section,.admin-modal > :is(section,form),.admin-table-wrap,.admin-ops > aside,.admin-notice,.guide-help,.guide-topic,.guide-toc) {
+  background: var(--panel);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.analytics-toolbar p,.analytics-cards small,.analytics-cards p,.guest-desk-list small,.admin-eyebrow,.policy-date,.guide-topic p) { color: var(--ui-muted); }
+.atelier-app.dashboard-dark :is(.analytics-cards strong,.admin-ops,.sam-guide,.atelier-document,.policy-sections) { color: var(--ink); }
+.atelier-app.dashboard-dark :is(.admin-ops,.atelier-document,.sam-guide) { background: var(--paper); }
+.atelier-app.dashboard-dark :is(.admin-ops,.guest-desk,.sam-guide) :is(input,select,textarea,button:not(.lp-btn-seal)) {
+  background-color: var(--dashboard-input);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.atelier-app.dashboard-dark :is(.workspace-panel,.admin-ops) :is(thead,th,td) { border-color: var(--line); }
+.atelier-app.dashboard-dark :is(.workspace-panel,.admin-ops) th { background: var(--paper-deep); color: var(--ink); }
+.atelier-app.dashboard-dark .admin-ops nav button[aria-current=page] { background: var(--dashboard-active); }
+.atelier-app.dashboard-dark .admin-ops :is(.admin-danger,.admin-error) { background: var(--ui-danger-surface); color: var(--ui-danger-ink); border-color: #80534a; }
+.atelier-app.dashboard-dark :is(.atelier-document,.sam-guide) :is(h1,h2,h3,a) { color: var(--ink); }
+.atelier-app.dashboard-dark :is(.atelier-document,.sam-guide) :is(p,li,summary) { color: var(--ink-soft); }
+.atelier-app.dashboard-dark :is(.lp-header,.atelier-app-footer) { background: var(--paper-deep); color: var(--ink-soft); }
+.atelier-app.dashboard-dark :is(.panel,.workspace-panel) :is(input,textarea)::placeholder { color: #a3b09b; }
+
+.atelier-app.dashboard-dark .invitation-library .library-intro {
+  background: #222d25;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.atelier-app.dashboard-dark .invitation-library .library-intro::before {
+  inset: 0 0 0 44%;
+  background: linear-gradient(#19251b66, #19251b99), url('/assets/landing-canvas/rosewalk.webp') center 48% / cover;
+  mask-image: linear-gradient(90deg, transparent, #000 72%);
+  mask-composite: add;
+}
+@media (max-width: 600px) {
+  .atelier-app.dashboard-dark .invitation-library .library-intro::before { opacity: .45; }
+}
+.atelier-app.dashboard-dark .invitation-library :is(.library-intro p,.library-eyebrow,.library-steps,.library-steps b,.library-toolbar small,.library-date,.library-card dt,.library-card dd,.library-help,.library-empty p) { color: var(--ink-soft); }
+.atelier-app.dashboard-dark .invitation-library :is(.library-toolbar input,.library-card-actions button,.library-card-actions > a,.library-dialog button,.library-dialog input) { background: var(--dashboard-input); color: var(--ink); border-color: var(--line); }
+.atelier-app.dashboard-dark .invitation-library .library-toolbar input::placeholder { color: var(--ink-soft); }
+.atelier-app.dashboard-dark .invitation-library .library-toolbar nav button { color: var(--ink-soft); }
+.atelier-app.dashboard-dark .invitation-library .library-toolbar nav button[aria-pressed=true] { background: var(--dashboard-active); color: var(--ink); border-color: var(--line); }
+.atelier-app.dashboard-dark .invitation-library .library-dialog { background: var(--panel); color: var(--ink); }
+.atelier-app.dashboard-dark .invitation-library .library-primary { background: #a8ba96; color: #1a2519; border-color: #a8ba96; }
+.atelier-app.dashboard-dark .invitation-library .library-primary:hover { background: #bbccab; }
+.atelier-app.dashboard-dark .invitation-library .library-danger { color: var(--ui-danger-ink); }
+.atelier-app.dashboard-dark .invitation-library .library-card .library-danger { background: var(--ui-danger-surface); border-color: #80534a; }
+.atelier-app.dashboard-dark .invitation-library .library-card .library-primary { background: #a8ba96; color: #1a2519; border-color: #a8ba96; }
+
+.atelier-auth-language { display: flex; align-items: center; gap: 8px; }
+
+.atelier-app.auth-dark {
+  --ink: #e6e9df;
+  --ink-soft: #b8c3ae;
+  --paper: #171c17;
+  --panel: #242c24;
+  --line: #465345;
+  color-scheme: dark;
+  background-image: none;
+}
+
+.atelier-app.auth-dark .auth-screen {
+  --auth-ink: var(--ink);
+  --auth-ink-soft: var(--ink-soft);
+  --auth-paper: var(--paper);
+  --auth-paper-deep: #252e25;
+  --auth-wine: #aec29c;
+  --auth-line: var(--line);
+}
+
+.atelier-app.auth-dark .auth-form .field :is(input, input:focus) { background: #222a22; color: var(--ink); }
+.atelier-app.auth-dark :is(.auth-form .field,.auth-subtitle,.auth-switch,.auth-or,.field-checkbox,.atelier-brand,.atelier-brand > span,.atelier-brand small) { color: var(--ink-soft); }
+.atelier-app.auth-dark .atelier-auth-painting { opacity: .55; }
+.atelier-app.auth-dark :is(.atelier-art-heading,.atelier-art-caption) { text-shadow: 0 1px 8px #121712; }
+.atelier-app.auth-dark :is(.atelier-art-heading,.atelier-art-caption) :is(h2,em,p,span) { color: var(--ink); }
+
+.atelier-app.dashboard-dark .broadcast-banner {
+  background: var(--ui-card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.broadcast-info .badge, .data-table .status-sent) {
+  background: var(--dashboard-active);
+  color: var(--ink);
+}
+
+.atelier-app.dashboard-dark .broadcast-info .phone {
+  color: var(--ink-soft);
+}
+
+.atelier-app.dashboard-dark .data-table tr.row-sent td {
+  background: var(--ui-card);
+}
+
+.atelier-app.dashboard-dark .data-table tr.row-sent:hover td {
+  background: var(--dashboard-active);
+}
+
+.atelier-app.dashboard-dark .data-table .status-pending {
+  background: #403523;
+  color: #efce8a;
+}
+
+.atelier-app.dashboard-dark {
+  --ui-warning-surface: #403523;
+  --ui-warning-ink: #efce8a;
+}
+
+.atelier-app.dashboard-dark :is(.payment-warning-banner, .wish-pinned .badge-pin) {
+  background: var(--ui-warning-surface);
+  color: var(--ui-warning-ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.wish-card.wish-hidden, .wish-card .badge-hide, .wish-card .wish-share-action, .gallery-layout-check) {
+  background: var(--dashboard-active);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark :is(.wish-card .wish-delete-action, .btn-danger:hover:not(:disabled)) {
+  background: var(--ui-danger-surface);
+  color: var(--ui-danger-ink);
+  border-color: var(--line);
+}
+
+.atelier-app.dashboard-dark .gallery-layout-copy small { color: var(--ink-soft); }
+
+/* These overlays are rendered alongside the route frame by UIProvider. */
+body:has(.atelier-app.dashboard-dark) :is(.ui-modal-content, .ui-toast) {
+  --ink: #e6e9df;
+  --ink-soft: #b8c3ae;
+  --wine: #a8ba96;
+  background: #242c24;
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+body:has(.atelier-app.dashboard-dark) .ui-toast { border-color: #465345; border-inline-start-color: #a8ba96; }
+body:has(.atelier-app.dashboard-dark) .ui-toast-error { background: #382825; color: #f3b6aa; border-inline-start-color: #f3b6aa; }
+body:has(.atelier-app.dashboard-dark) .ui-btn-confirm:not(.danger) { color: #171c17; }
+body:has(.atelier-app.dashboard-dark) .ui-btn-confirm:not(.danger):hover { background: #bbccab; }
+body:has(.atelier-app.dashboard-dark) .ui-btn-cancel:hover { background: #344434; }

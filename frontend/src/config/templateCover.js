@@ -4,8 +4,9 @@ function usableCover(value) {
   if (!normalized || ['null', 'undefined', 'none'].includes(normalized.toLowerCase())) return '';
   if (normalized.includes('/assets/gallery/dummy-gallery-')) return '';
   if (normalized.includes('/assets/dummy-')) return '';
-  if (normalized.includes('photo-1492175742197-ed20dc5a6bed')) return '';
+  // Abaikan placeholder lama yang mungkin masih tersimpan pada undangan.
   if (normalized.includes('/assets/isvara/thumb-md-')) return '';
+  if (normalized.includes('photo-1492175742197-ed20dc5a6bed')) return '';
   return normalized;
 }
 

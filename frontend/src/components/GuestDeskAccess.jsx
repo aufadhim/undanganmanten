@@ -1,0 +1,16 @@
+import {useEffect,useState} from 'react';
+import {api} from '../api/client.js';
+import {useUI} from '../context/UIContext.jsx';
+export default function GuestDeskAccess({invitationId}){
+ const[rows,setRows]=useState([]),[label,setLabel]=useState(''),[hours,setHours]=useState(24),[link,setLink]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');const{toast,confirm}=useUI();
+ async function load(){try{const{data}=await api.get(`/guest-desk/access/${invitationId}`);setRows(data.accesses);setError('')}catch(e){setError(e.response?.data?.error||'Daftar akses belum tersedia.')}}
+ useEffect(()=>{setLink('');load()},[invitationId]);
+ async function create(){setBusy(true);try{const{data}=await api.post(`/guest-desk/access/${invitationId}`,{label,hours});setLink(`${location.origin}/guest-desk#${data.token}`);setLabel('');await load()}catch(e){toast.error(e.response?.data?.error||'Akses belum dibuat.')}finally{setBusy(false)}}
+ async function revoke(id){if(!await confirm('Cabut akses petugas?','Tautan petugas ini tidak dapat digunakan lagi.'))return;try{await api.delete(`/guest-desk/access/${invitationId}/${id}`);setLink('');await load()}catch(e){toast.error(e.response?.data?.error||'Akses belum dicabut.')}}
+ async function remove(id){
+  if(!await confirm('Hapus akses petugas?','Akses ini akan dihapus dari daftar. Catatan kedatangan tetap tersimpan.'))return;
+  try{await api.delete('/guest-desk/access/'+invitationId+'/'+id+'/history');setRows(current=>current.filter(row=>row.id!==id))}
+  catch(e){toast.error(e.response?.data?.error||'Akses belum dapat dihapus.')}
+ }
+ return <section className="guest-hub-note guest-access"><h3>Akses penerima tamu</h3><p>Petugas hanya dapat mencari tamu dan mencatat kedatangan. Akun pemilik tidak perlu dibagikan.</p><div className="guest-access-create"><input aria-label="Nama petugas" placeholder="Nama petugas / meja" maxLength={60} value={label} onChange={e=>setLabel(e.target.value)}/><select aria-label="Masa akses petugas" value={hours} onChange={e=>setHours(Number(e.target.value))}>{[6,12,24,48,168].map(h=><option key={h} value={h}>{h} jam</option>)}</select><button type="button" disabled={busy||!label.trim()} onClick={create}>Buat akses</button></div><p className="panel-sub">Tautan hanya muncul saat dibuat. Salin sebelum meninggalkan halaman.</p>{link&&<div className="guest-access-link"><p>Bagikan tautan ini langsung kepada petugas yang ditunjuk.</p><div className="guest-access-copy"><input readOnly value={link} aria-label="Tautan petugas"/><button type="button" onClick={async()=>{try{await navigator.clipboard.writeText(link);toast.success('Tautan disalin.')}catch{toast.error('Salin tautan dari kolom di atas.')}}}>Salin tautan</button></div></div>}{error&&<p role="alert">{error}</p>}{rows.length>0&&<ul className="guest-access-list">{rows.map(r=><li className="guest-access-row" key={r.id}><div><strong>{r.label}</strong><small>{r.revokedAt?'Dicabut':new Date(r.expiresAt)<=new Date()?'Berakhir':`Aktif sampai ${new Date(r.expiresAt).toLocaleString('id-ID')}`}</small></div>{!r.revokedAt&&new Date(r.expiresAt)>new Date()?<button type="button" onClick={()=>revoke(r.id)}>Cabut akses</button>:<button type="button" onClick={()=>remove(r.id)}>Hapus akses</button>}</li>)}</ul>}</section>;
+}

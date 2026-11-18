@@ -1,0 +1,87 @@
+/* VIRIDARIUM — penyesuaian default template.
+ * Edit ukuran font, jarak, warna, dan visibilitas di sini.
+ * Pengaturan ukuran user dihitung dari ukuran CSS ini (100%).
+ * Panduan: docs/PANDUAN_EDIT_VIRIDARIUM.md
+ */
+
+/* Sampul — teks pendukung tetap terbaca pada layar HP. */
+#cover .kicker {
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 2px;
+}
+
+#cover .guest {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+#cover .guest strong {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+#cover .cover-note {
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Sampul — label tombol pembuka lebih mudah dibaca. */
+#cover .primary {
+  font-size: 11px;
+}
+
+/* Sampul — nama pasangan lebih proporsional dengan ilustrasi. */
+#cover h1 {
+  font-size: 46px;
+}
+
+/* Seluruh teks pendukung sampul memakai ukuran dasar yang sama. */
+#cover .cover-date,
+#cover .cover-date span {
+  font-size: 11px;
+}
+
+/* Sampul — kapitalisasi alami, tanpa uppercase otomatis. */
+#cover .kicker,
+#cover .cover-date {
+  text-transform: none;
+}
+
+/* Hero — teks pembuka dan tanggal mengikuti ukuran body 11 px. */
+.hero-heading .kicker,
+.hero-heading .cover-date,
+.hero-heading .cover-date span {
+  font-size: 11px;
+}
+
+.hero-heading .kicker,
+.hero-heading .cover-date {
+  text-transform: none;
+}
+
+/* Kutipan — label ayat terbaca, tanpa tautan referensi berulang. */
+#arrum-content > .kicker {
+  font-size: 11px;
+  text-transform: none;
+}
+
+#arrum-content .arrum-reference {
+  display: none;
+}
+
+/* Kutipan — label dan isi ayat memakai ukuran dasar yang sama. */
+#arrum-content > .kicker,
+#arrum-content .arrum-meaning {
+  font-size: 14.4px;
+}
+
+/* Default body Viridarium: konsisten 11 px di seluruh bagian.
+ * Heading, signature, ikon, dan kontrol musik mempertahankan ukurannya.
+ * Penyesuaian user tetap diterapkan runtime melalui inline style.
+ */
+#cover :where(*):not(:where(h1,h2,h3,h4,h5,h6,.signature,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,.signature *,svg,svg *,i,.arrum-flourish,.music-control,.music-control *, .section-dots,.section-dots *)),
+#journey :where(*):not(:where(h1,h2,h3,h4,h5,h6,.signature,h1 *,h2 *,h3 *,h4 *,h5 *,h6 *,.signature *,svg,svg *,i,.arrum-flourish,.music-control,.music-control *, .section-dots,.section-dots *)) {
+  font-size: 11px !important;
+}

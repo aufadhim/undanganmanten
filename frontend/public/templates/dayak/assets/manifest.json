@@ -1,0 +1,75 @@
+{
+  "status": "art-generated",
+  "engine": 2,
+  "copiedFrom": "pramaya",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/dayak/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 190718
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/dayak/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet",
+        "config.assets.room2"
+      ],
+      "status": "generated",
+      "bytes": 196610
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/dayak/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.galleryGarden",
+        "config.assets.room1"
+      ],
+      "status": "generated",
+      "bytes": 215836
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/dayak/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room3"
+      ],
+      "status": "generated",
+      "bytes": 204716
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/dayak/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.room4"
+      ],
+      "status": "generated",
+      "bytes": 193992
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/dayak/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.outer"
+      ],
+      "status": "generated",
+      "bytes": 209830
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/dayak/assets/ilustrasi9.webp",
+      "usedBy": [
+        "config.assets.book"
+      ],
+      "status": "generated",
+      "bytes": 126910
+    }
+  ],
+  "singleCouple": true
+}

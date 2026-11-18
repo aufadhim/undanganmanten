@@ -22,9 +22,14 @@ export const QUOTE_PRESETS = {
 };
 
 export function resolveInvitationQuote(settings = {}) {
+  settings = settings && typeof settings === 'object' && !Array.isArray(settings) ? settings : {};
   const preset = QUOTE_PRESETS[settings.religion] || QUOTE_PRESETS.islam;
+  const text = value => typeof value === 'string' ? value : '';
+  if (text(settings.customText) && !text(settings.customSource)) {
+    return { text: text(settings.customText), source: '' };
+  }
   return {
-    text: settings.customText || settings.text || preset.text,
-    source: settings.customSource || settings.source || preset.source,
+    text: text(settings.customText) || text(settings.text) || preset.text,
+    source: text(settings.customSource) || text(settings.source) || preset.source,
   };
 }

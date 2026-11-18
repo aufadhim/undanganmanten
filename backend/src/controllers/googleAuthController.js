@@ -54,12 +54,13 @@ export async function googleLogin(req, res) {
       });
     }
 
+    if(user.suspendedAt)return res.status(403).json({error:'Akun ditangguhkan. Hubungi dukungan.'});
     const token = generateToken({ userId: user.id });
 
     return res.json({
       message: 'Login Google berhasil.',
       token,
-      user: { id: user.id, email: user.email, name },
+      user: { id: user.id, email: user.email, name, role: user.role },
     });
   } catch (err) {
     console.error('Google Auth Error:', err);

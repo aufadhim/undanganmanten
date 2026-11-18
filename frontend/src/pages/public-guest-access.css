@@ -1,0 +1,91 @@
+.private-invitation {
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 24px;
+  background: #e7e9db;
+  color: #314333;
+  text-align: center;
+}
+.private-invitation section {
+  width: min(100%, 440px);
+  padding: clamp(24px, 7vw, 48px);
+  border: 1px solid #c9cfb8;
+  border-radius: 18px;
+  background: #fcfaf1;
+  box-shadow: 0 16px 44px #31433315;
+}
+.private-invitation svg { width: 36px; height: 36px; }
+.private-invitation h1 { font-size: clamp(32px, 7vw, 56px); line-height: 1.05; }
+.private-invitation p { margin-block: 14px; }
+.private-invitation .private-invitation-error { color: #8a3835; }
+
+.private-invitation:has(.private-invitation-letter) {
+  background:
+    linear-gradient(135deg, #eeefdfc9, #e5e8d5aa),
+    url('/assets/landing-canvas/garden.webp') center / cover,
+    #e7e9db;
+}
+.private-invitation .private-invitation-letter {
+  width: min(100%, 500px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(32px, 7vw, 64px) clamp(24px, 6vw, 56px);
+  border-radius: 22px;
+  background: #fcf9ee;
+  box-shadow: 0 22px 68px #33463026;
+}
+.private-invitation-letter::before,
+.private-invitation-letter::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+.private-invitation-letter::before {
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, transparent, #fcf9ee 34% 72%, #fcf9ee30),
+    url('/assets/landing-canvas/foliage.webp') center bottom / cover;
+  opacity: .8;
+}
+.private-invitation-letter::after {
+  inset: 9px;
+  border: 1px solid #8e98665c;
+  border-radius: 15px;
+}
+.private-invitation-letter svg { color: #6a7c51; }
+.private-invitation-letter .atelier-eyebrow { color: #55634b; }
+.private-invitation .private-invitation-letter h1 {
+  margin: 16px 0;
+  font: 500 clamp(38px, 8vw, 68px)/.98 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.private-invitation-letter h1 em { font-size: .76em; color: #806940; }
+.private-invitation-letter .private-invitation-notice {
+  max-width: 34ch;
+  margin: 24px auto 18px;
+  padding: 14px 16px;
+  border-block: 1px solid #aab09469;
+  background: #f4f1e4e0;
+  color: #3b4c37;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.private-invitation-signature {
+  display: block;
+  color: #536447;
+  font: italic 23px/1 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Fit the visible Safari viewport as its browser bars expand and collapse. */
+.published-invitation-viewport {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+}

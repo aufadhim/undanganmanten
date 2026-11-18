@@ -1,3 +1,12 @@
+import EnvelopeColorPanel from '../components/EnvelopeColorPanel.jsx';
+import MobilePreviewFit from '../components/MobilePreviewFit.jsx';
+import Brand from '../components/atelier/Brand.jsx';
+import StudioTabIcon from '../components/atelier/StudioTabIcon.jsx';
+import {DEFAULT_INVITATION_MUSIC} from '../utils/invitationMusic.js';
+import { DashboardThemeToggle } from '../components/atelier/CanvasRouteFrame.jsx';
+import {ACTIVE_THEME_IDS} from '../config/templateRegistry.js';
+import {isMentalCanvas} from '../components/MentalCanvasMediaPanel.jsx';
+import WorkspaceIntro from '../components/atelier/WorkspaceIntro.jsx';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import PhonePreview from '../components/PhonePreview.jsx';
@@ -10,7 +19,7 @@ import SandboxWarnaPanel from '../components/SandboxWarnaPanel.jsx';
 import SandboxFeaturePanel from '../components/SandboxFeaturePanel.jsx';
 import { DUMMY_BRIDE_PHOTO, DUMMY_GALLERY_PHOTOS, DUMMY_GALLERY_VIDEO, DUMMY_GROOM_PHOTO } from '../config/dummyAssets.js';
 import { resolveSandboxGallery } from '../utils/sandboxMigration.js';
-const SUPPORTED_THEME_IDS = ['eternal', 'seraya', 'nawasena', 'isvara', 'lanqing', 'celluloid', 'nocturne'];
+const SUPPORTED_THEME_IDS = ACTIVE_THEME_IDS;
 
 // Default dummy data for sandbox
 const DEFAULT_SANDBOX_INVITATION = {
@@ -39,8 +48,8 @@ const DEFAULT_SANDBOX_INVITATION = {
         loadingAnimation: 'breathe',
         mainStory: 'Kami bertemu pada sebuah sore yang sederhana, tanpa pernah menduga percakapan singkat itu akan menjadi awal perjalanan panjang. Waktu membawa kami melewati banyak cerita, tumbuh bersama, dan belajar bahwa rumah bukan hanya sebuah tempat, melainkan seseorang yang selalu ingin kita tuju. Kini kami memilih untuk melanjutkan kisah ini dalam satu janji, satu langkah, dan satu kehidupan bersama.'
     },
-    themeId: 'eternal',
-    invitationFeatures: { storyEnabled: true, timelineEnabled: true, galleryEnabled: true, dresscodeEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true, customLogoEnabled: true, musicEnabled: false, animationEnabled: false },
+    themeId: 'garden-canvas',
+    invitationFeatures: { igFilterEnabled: false, storyEnabled: true, timelineEnabled: true, galleryEnabled: true, dresscodeEnabled: true, rsvpEnabled: true, wishesEnabled: true, giftEnabled: true, livestreamEnabled: true, customLogoEnabled: true, musicEnabled: false, animationEnabled: false },
     events: [{ type: 'RECEPTION', date: '2026-12-20', startTime: '11:00', endTime: '14:00', venueName: 'The Langham Jakarta', address: 'District 8, SCBD Lot 28, Jakarta' }],
     galleryMedia: [
         ...DUMMY_GALLERY_PHOTOS.map((url, index) => ({ id: `sandbox-photo-${index}`, type: 'photo', url })),
@@ -96,29 +105,42 @@ export default function SandboxDashboard() {
                 ...parsed,
                 coupleProfile: { ...DEFAULT_SANDBOX_INVITATION.coupleProfile, ...(parsed.coupleProfile || {}), groomPhoto },
                 themeSettings: !SUPPORTED_THEME_IDS.includes(urlTheme || parsed.themeId)
-                    ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...SANDBOX_THEME_SETTINGS.eternal }
+                    ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...SANDBOX_THEME_SETTINGS['garden-canvas'] }
                     : urlTheme && urlTheme !== parsed.themeId
-                        ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...SANDBOX_THEME_SETTINGS[urlTheme] }
+                        ? { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...(parsed.themeSettings || {}), ...SANDBOX_THEME_SETTINGS[urlTheme] }
                     : { ...DEFAULT_SANDBOX_INVITATION.themeSettings, ...(parsed.themeSettings || {}) },
                 invitationFeatures: { ...DEFAULT_SANDBOX_INVITATION.invitationFeatures, ...(parsed.invitationFeatures || {}) },
                 galleryMedia,
-                themeId: SUPPORTED_THEME_IDS.includes(urlTheme || parsed.themeId) ? (urlTheme || parsed.themeId) : 'eternal'
+                themeId: SUPPORTED_THEME_IDS.includes(urlTheme || parsed.themeId) ? (urlTheme || parsed.themeId) : 'garden-canvas'
             };
         }
         return {
             ...DEFAULT_SANDBOX_INVITATION,
-            themeId: SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'eternal',
+            themeId: SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'garden-canvas',
             themeSettings: {
                 ...DEFAULT_SANDBOX_INVITATION.themeSettings,
-                ...SANDBOX_THEME_SETTINGS[SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'eternal'],
+                ...SANDBOX_THEME_SETTINGS[SUPPORTED_THEME_IDS.includes(urlTheme) ? urlTheme : 'garden-canvas'],
             },
         };
     });
 
     const [activeMacroTab, setActiveMacroTab] = useState('desain');
     const [activeTab, setActiveTab] = useState('tema');
+    useEffect(()=>{if(activeTab==='warna'&&isMentalCanvas(sandboxInvitation.themeId))setActiveTab('tema')},[activeTab,sandboxInvitation.themeId]);
+    const [previewRevision, setPreviewRevision] = useState(0);
     const [previewMode, setPreviewMode] = useState('mobile'); 
     const [previewOverride, setPreviewOverride] = useState(null);
+    const demoInvitation = {
+        ...sandboxInvitation,
+        ...previewOverride,
+        coupleProfile: { ...sandboxInvitation.coupleProfile, ...previewOverride?.coupleProfile },
+        themeSettings: {
+            ...sandboxInvitation.themeSettings,
+            ...previewOverride?.themeSettings,
+            musicUrl: DEFAULT_INVITATION_MUSIC,
+        },
+        invitationFeatures: { ...sandboxInvitation.invitationFeatures, ...previewOverride?.invitationFeatures, animationEnabled: false },
+    };
     const [railOpen, setRailOpen] = useState(false);
     const [showMobilePreview, setShowMobilePreview] = useState(false);
 
@@ -142,8 +164,8 @@ export default function SandboxDashboard() {
     const SUB_TABS = {
         desain: [
             { key: 'tema', label: 'Tema', icon: 'fa-palette' },
-            { key: 'warna', label: 'Warna', icon: 'fa-fill-drip' },
-            { key: 'visual', label: 'Musik & Visual', icon: 'fa-music' },
+            ...(!isMentalCanvas(sandboxInvitation.themeId)?[{ key: 'warna', label: sandboxInvitation?.themeId === 'engine-4' ? 'Amplop' : 'Warna', icon: 'fa-fill-drip' }]:[]),
+            { key: 'visual', label: 'Musik', icon: 'fa-music' },
         ],
         konten: [
             { key: 'profil', label: 'Profil & Mempelai', icon: 'fa-user-group' },
@@ -168,12 +190,16 @@ export default function SandboxDashboard() {
     };
 
     const handleSignup = () => {
-        // Data is already in localStorage. We redirect to signup.
+        localStorage.setItem('sandbox_import_requested', 'true');
         navigate('/signup?from_sandbox=true');
     };
 
     return (
-        <div className="dashboard">
+        <div className={`dashboard ${showMobilePreview ? 'mobile-studio-preview' : ''}`}>
+            <div className="mobile-studio-bar" role="group" aria-label="Tampilan studio">
+                <Brand className="sandbox-mobile-brand" />
+                <DashboardThemeToggle />
+            </div>
             <DashboardSidebar 
                 TABS={MACRO_TABS} 
                 activeTab={activeMacroTab} 
@@ -190,13 +216,14 @@ export default function SandboxDashboard() {
                         onClick={() => handleMacroTabChange(tab.key)}
                         title={tab.label}
                     >
-                        <i className={`fa-solid ${tab.icon}`}></i>
+                        <StudioTabIcon tab={tab.key} />
                         <span className="nav-label">{tab.label}</span>
                     </button>
                 ))}
             </nav>
 
-            <div className="panel mobile-content-wrapper">
+            <div className="panel mobile-content-wrapper studio-panel-shell">
+                <div className="studio-panel-scroll"><WorkspaceIntro sandbox/>
                 <div className="panel-inv-switcher" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                         <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Mode Coba</h2>
@@ -206,7 +233,7 @@ export default function SandboxDashboard() {
                         className="btn btn-primary sandbox-signup-btn"
                         onClick={handleSignup}
                     >
-                        Daftar & Simpan <i className="fa-solid fa-arrow-right"></i>
+                        Daftar & Simpan 
                     </button>
                 </div>
 
@@ -219,7 +246,7 @@ export default function SandboxDashboard() {
                                     className={`subnav-item ${activeTab === tab.key ? 'active' : ''}`}
                                     onClick={() => setActiveTab(tab.key)}
                                 >
-                                    {tab.icon && <i className={`fa-solid ${tab.icon}`}></i>}
+                                    <StudioTabIcon tab={tab.key} />
                                     <span>{tab.label}</span>
                                 </button>
                             ))}
@@ -228,21 +255,24 @@ export default function SandboxDashboard() {
                 )}
 
                 {activeTab === 'tema' && <SandboxTemaPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} />}
-                {activeTab === 'warna' && <SandboxWarnaPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
+                {activeTab === 'warna' && !isMentalCanvas(sandboxInvitation.themeId) && (sandboxInvitation.themeId === 'engine-4'
+                    ? <EnvelopeColorPanel key={sandboxInvitation.id} invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} sandbox />
+                    : <SandboxWarnaPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />)}
                 {activeTab === 'profil' && <SandboxProfilPanel invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />}
                 {!['tema', 'warna', 'profil'].includes(activeTab) && (
                     <SandboxFeaturePanel type={activeTab} invitation={sandboxInvitation} onUpdated={handleUpdateInvitation} onLivePreview={setPreviewOverride} />
                 )}
             </div>
+            </div>
 
             <div className={`stage ${showMobilePreview ? 'is-mobile-preview-open' : ''}`}>
                 <div className="stage-topbar">
                     <div className="stage-url">
-                        undanganmanten.id/demo
+                        <span className="stage-url-address">{window.location.host}/demo</span>
                         <span className="stage-url-badge" style={{ background: '#ddd', color: '#555', padding: '2px 8px', borderRadius: '12px', marginLeft: '8px', fontSize: '11px' }}>Mode Coba</span>
                     </div>
-                    <div className="stage-topbar-actions">
-                        <button className="stage-close-btn" onClick={() => setShowMobilePreview(false)} style={{ display: showMobilePreview ? 'flex' : 'none' }}>
+                    <div className="stage-topbar-actions"><button type="button" className="preview-reload-btn" aria-label="Muat ulang pratinjau" onClick={() => setPreviewRevision(revision => revision + 1)}><i className="preview-reload-icon fa-solid fa-rotate-right" aria-hidden="true" /><span className="preview-reload-label">Muat Ulang</span></button><DashboardThemeToggle />
+                        <button className="stage-close-btn" aria-label="Kembali ke editor" onClick={() => setShowMobilePreview(false)} style={{ display: showMobilePreview ? 'flex' : 'none' }}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                         <div className="stage-topbar-device-switch">
@@ -262,49 +292,42 @@ export default function SandboxDashboard() {
                     </div>
                 </div>
 
-                <div className="preview-wrapper">
-                    <div className={`iphone-mockup-stage preview-mode-${previewMode}`}>
-                        {previewMode === 'mobile' && <div className="dynamic-island"></div>}
-                        <PhonePreview
-                            invitation={previewOverride ? {
-                                ...sandboxInvitation,
-                                ...previewOverride,
-                                coupleProfile: { ...sandboxInvitation.coupleProfile, ...(previewOverride.coupleProfile || {}) },
-                                themeSettings: { ...sandboxInvitation.themeSettings, ...(previewOverride.themeSettings || {}) },
-                                invitationFeatures: { ...sandboxInvitation.invitationFeatures, ...(previewOverride.invitationFeatures || {}) },
-                            } : sandboxInvitation}
+                <div className="preview-wrapper"><span className="studio-preview-caption">Pratinjau undangan</span>
+                    <MobilePreviewFit><div className={`iphone-mockup-stage preview-mode-${previewMode}`}>
+                        {previewMode === 'mobile' && <div className="dynamic-island" aria-hidden="true"></div>}
+                        <PhonePreview key={previewRevision}
+                            invitation={demoInvitation}
                             previewMode={previewMode}
                             previewGuest={null}
                             editorPreview
                         />
-                    </div>
+                    </div></MobilePreviewFit>
                 </div>
             </div>
             
-            {/* Mobile Rail Toggle */}
-            <button className="mobile-rail-toggle" onClick={() => setRailOpen(true)}>
-                <i className="fa-solid fa-bars"></i>
-            </button>
             {railOpen && <div className="rail-overlay" onClick={() => setRailOpen(false)}></div>}
 
-            {/* FAB untuk Lihat Preview di Mobile */}
-            <button className="mobile-preview-fab" onClick={() => setShowMobilePreview(true)}>
-                <i className="fa-solid fa-mobile-screen"></i> Lihat Undangan
-            </button>
-
             {/* Bottom Nav for Mobile */}
-            <div className="bottom-nav">
+            <nav className="bottom-nav" aria-label="Navigasi studio">
                 {MACRO_TABS.map(tab => (
                     <button
                         key={tab.key}
-                        className={`bottom-nav-item ${activeMacroTab === tab.key ? 'active' : ''}`}
-                        onClick={() => handleMacroTabChange(tab.key)}
+                        className={`bottom-nav-item ${!showMobilePreview && activeMacroTab === tab.key ? 'active' : ''}`}
+                        aria-pressed={!showMobilePreview && activeMacroTab === tab.key}
+                        onClick={() => {
+                            if (activeMacroTab !== tab.key) handleMacroTabChange(tab.key);
+                            setShowMobilePreview(false);
+                        }}
                     >
-                        <i className={`fa-solid ${tab.icon}`}></i>
+                        <StudioTabIcon tab={tab.key} />
                         <span className="nav-label">{tab.label}</span>
                     </button>
                 ))}
-            </div>
+                <button type="button" className={showMobilePreview ? "bottom-nav-item active" : "bottom-nav-item"} aria-pressed={showMobilePreview} onClick={() => setShowMobilePreview(true)}>
+                    <StudioTabIcon tab="preview" />
+                    <span className="nav-label">Pratinjau</span>
+                </button>
+            </nav>
         </div>
     );
 }

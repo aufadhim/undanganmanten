@@ -28,7 +28,7 @@ test('pengguna dapat daftar, verifikasi OTP, logout, dan login kembali', async (
   await expect(page).toHaveURL(/\/dashboard$/);
 
   const token = await page.evaluate(() => localStorage.getItem('um_token'));
-  await request.delete(`${API}/auth/delete-account`, { headers: { Authorization: `Bearer ${token}` } });
+  await request.delete(`${API}/auth/delete-account`, { headers: { Authorization: `Bearer ${token}` }, data: { confirmationEmail: email } });
 });
 
 test('halaman pemulihan password menangani tautan tanpa token', async ({ page }) => {

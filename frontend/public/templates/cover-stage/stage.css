@@ -1,0 +1,17 @@
+/* Standalone exterior stage shared by opening and closing. Content remains HTML. */
+.stage-enabled #cover-stage.standalone-stage{position:fixed!important;inset:0;z-index:8;background:#eee7dc;pointer-events:none;transition:none!important;overflow:hidden}
+.stage-enabled #cover-stage[hidden]{display:none!important}
+.stage-enabled #cover{background:transparent!important}
+.stage-enabled #cover:after{background:linear-gradient(#f5ecdc25,transparent 45%,#e6d8c825)}
+.stage-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.stage-travelling #cover .cover-inner,.stage-travelling #journey .paper,.stage-travelling .cloud-backdrop,.stage-travelling .bottom-ui,.stage-travelling header{opacity:0!important;pointer-events:none!important;transition:opacity .35s}
+.stage-closing #penutup .closing{top:29%;max-height:45svh;width:min(440px,94vw);padding:14px 22px!important;background:radial-gradient(ellipse,#f2eadcde 25%,transparent 76%)!important;overflow:auto}
+.stage-closing #penutup .ornament,.stage-closing #penutup .mini{display:none}
+.stage-closing #penutup h2{font-size:38px;margin:8px 0}
+.stage-closing #penutup p{font-size:11px;line-height:1.65;margin:9px auto}
+.stage-closing #penutup .signature{font-size:30px;margin:12px 0}
+.stage-closing #penutup .cover-date{font-size:8px;margin:10px auto}
+.stage-closing #penutup .kicker{font-size:7px}
+.stage-closing #back-cover{font-size:9px;padding:10px 16px;margin-top:9px;background:#f1e8d9a8}
+@media(min-width:900px){.stage-closing #penutup .closing{top:31%;left:33%;width:430px}.stage-closing #penutup h2{font-size:48px}}
+@media(prefers-reduced-motion:reduce){.stage-travelling *{transition:none!important}.stage-particles{display:none}}

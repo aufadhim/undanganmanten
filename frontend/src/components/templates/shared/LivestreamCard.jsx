@@ -1,38 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import {useEffect,useRef,useState} from 'react';
+import {createPortal} from 'react-dom';
+import {livestreamTarget} from '../../../utils/livestream.js';
 import './livestream-card.css';
-
-function youtubeEmbed(url = '') {
-  const match = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|live\/))([^?&/]+)/);
-  return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&rel=0` : '';
-}
-
-export default function LivestreamCard({ className = '', url, coverImage, title = 'Live Streaming' }) {
-  const [open, setOpen] = useState(false);
-  const hostRef = useRef(null);
-  const embedUrl = youtubeEmbed(url);
-  const directVideo = !embedUrl && /\.(?:mp4|webm|ogg)(?:[?#].*)?$/i.test(String(url || '')) ? url : '';
-  const playable = Boolean(embedUrl || directVideo);
-  useEffect(() => {
-    if (!open) return undefined;
-    const close = (event) => event.key === 'Escape' && setOpen(false);
-    document.addEventListener('keydown', close);
-    document.body.style.overflow = 'hidden';
-    return () => { document.removeEventListener('keydown', close); document.body.style.overflow = ''; };
-  }, [open]);
-
-  const lightbox = open && <div className="livestream-lightbox" role="dialog" aria-modal="true" aria-label={title} onClick={() => setOpen(false)}>
-    <button type="button" className="livestream-lightbox-close" onClick={() => setOpen(false)} aria-label="Tutup pemutar">×</button>
-    <div className="livestream-lightbox-player" onClick={(event) => event.stopPropagation()}>{embedUrl ? <iframe src={embedUrl} title={title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <video src={directVideo} controls autoPlay playsInline />}</div>
-  </div>;
-  const previewViewport = hostRef.current?.closest('.phone-preview-wrapper');
-  return <div ref={hostRef} className="livestream-card-root">
-    <button type="button" className={`livestream-poster ${className}`} onClick={() => playable && setOpen(true)} aria-label={`Tonton ${title}`} disabled={!playable}>
-      {coverImage ? <img src={coverImage} alt={`Sampul ${title}`} /> : <div className="livestream-poster-placeholder"><i className="fa-regular fa-image" /></div>}
-      <span className="livestream-poster-shade" />
-      <span className="livestream-play"><i className="fa-solid fa-play" /></span>
-      <span className="livestream-poster-label">WATCH LIVE</span>
-    </button>
-    {lightbox && (previewViewport ? createPortal(lightbox, previewViewport) : lightbox)}
-  </div>;
+export default function LivestreamCard({className='',url,coverImage,title='Live Streaming',portalTarget}){
+ const [open,setOpen]=useState(false);const host=useRef(null),dialog=useRef(null);const target=livestreamTarget(url),playable=Boolean(target?.embed||target?.video);
+ const doc=portalTarget?.ownerDocument||host.current?.ownerDocument||document;
+ useEffect(()=>setOpen(false),[url]);
+ useEffect(()=>{const target=doc.defaultView;target.dispatchEvent(new CustomEvent('invitation:media',{detail:{source:'livestream',active:open}}));return()=>target.dispatchEvent(new CustomEvent('invitation:media',{detail:{source:'livestream',active:false}}))},[open,doc]);
+ useEffect(()=>{if(!open)return;const previous=doc.body.style.overflow,focus=doc.activeElement;doc.body.style.overflow='hidden';dialog.current?.querySelector('button')?.focus();
+ const key=e=>{if(e.key==='Escape')setOpen(false);if(e.key==='Tab'){const items=[...dialog.current.querySelectorAll('button,iframe,video')],first=items[0],last=items.at(-1);if(e.shiftKey&&doc.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&doc.activeElement===last){e.preventDefault();first?.focus()}}};doc.addEventListener('keydown',key);return()=>{doc.body.style.overflow=previous;doc.removeEventListener('keydown',key);focus?.focus?.()}},[open,doc]);
+ const activate=()=>{if(!target)return;if(playable){doc.querySelectorAll('audio').forEach(a=>a.pause());setOpen(true)}else doc.defaultView.open(target.url,'_blank','noopener,noreferrer')};
+ const viewport=portalTarget||host.current?.closest('.phone-preview-wrapper');const image=coverImage||target?.thumbnail;
+ const modal=open&&<div ref={dialog} className={`livestream-lightbox ${viewport?'is-embedded':''}`} role="dialog" aria-modal="true" aria-label={title} onClick={()=>setOpen(false)}><button type="button" className="livestream-lightbox-close" onClick={()=>setOpen(false)} aria-label="Tutup pemutar">×</button><div className="livestream-lightbox-player" onClick={e=>e.stopPropagation()}>{target?.embed?<iframe src={target.embed} referrerPolicy="strict-origin-when-cross-origin" title={title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen/>:<video src={target?.url} controls autoPlay playsInline/>}</div></div>;
+ return <div ref={host} className="livestream-card-root">{image&&<button type="button" className={`livestream-poster ${className}`} onClick={activate} aria-label={playable?`Tonton ${title}`:'Buka siaran'} disabled={!target}><img src={image} alt={`Sampul ${title}`}/><span className="livestream-poster-shade"/>{target&&<><span className="livestream-play" aria-hidden="true">{playable?'▶':'Buka'}</span><span className="livestream-poster-label">{playable?'Tonton siaran':'Buka siaran'}</span></>}</button>}{!target?<p className="livestream-empty">Tautan siaran segera tersedia.</p>:!image&&<button type="button" className={`livestream-open ${className}`} onClick={activate}>{playable?'Tonton siaran':'Buka siaran'}</button>}{modal&&createPortal(modal,viewport||doc.body)}</div>;
 }

@@ -1,0 +1,102 @@
+.guest-scanner-backdrop {
+  --scanner-paper: #fcfaf1;
+  --scanner-panel: #f0f2e5;
+  --scanner-ink: #344531;
+  --scanner-line: #b7c2a8;
+  --scanner-action: #536647;
+  --scanner-on-action: #fffdf5;
+  position: fixed;
+  inset: 0;
+  z-index: 22000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #233021b3;
+}
+body:has(.dashboard-dark) .guest-scanner-backdrop {
+  --scanner-paper: #232d23;
+  --scanner-panel: #1b251c;
+  --scanner-ink: #eff1e6;
+  --scanner-line: #63765d;
+  --scanner-action: #bdccaa;
+  --scanner-on-action: #22311f;
+}
+.guest-scanner-backdrop > section {
+  box-sizing: border-box;
+  width: min(460px, 100%);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: clamp(18px, 5vw, 28px);
+  border: 1px solid var(--scanner-line);
+  border-radius: 18px;
+  background: var(--scanner-paper);
+  color: var(--scanner-ink);
+  box-shadow: 0 18px 65px #15221340;
+}
+.guest-scanner-backdrop header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.guest-scanner-backdrop h2 {
+  margin: 0;
+  font: 600 clamp(25px, 7vw, 34px)/1 'Cormorant Garamond', Georgia, serif;
+}
+.guest-scanner-backdrop p {
+  margin: 12px 0 18px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.guest-scanner-backdrop button,
+.guest-scanner-backdrop #html5-qrcode-anchor-scan-type-change {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid var(--scanner-line);
+  border-radius: 8px;
+  background: var(--scanner-paper);
+  color: var(--scanner-ink);
+  font-weight: 600;
+  line-height: 1.35;
+  font-family: inherit;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+.guest-scanner-backdrop #html5-qrcode-anchor-scan-type-change {
+  margin: 8px 0 0;
+  text-decoration: none !important;
+}
+.guest-scanner-backdrop #html5-qrcode-button-camera-permission,
+.guest-scanner-backdrop #html5-qrcode-button-file-selection {
+  border-color: var(--scanner-action);
+  background: var(--scanner-action);
+  color: var(--scanner-on-action);
+}
+.guest-scanner-backdrop :is(button, [role="button"]):focus-visible {
+  outline: 2px solid var(--scanner-action);
+  outline-offset: 3px;
+}
+.guest-scanner-backdrop header button {
+  flex: 0 0 44px;
+  padding: 0;
+  font-size: 22px;
+}
+.guest-scanner-backdrop footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--scanner-line);
+}
+.guest-scanner-reader {
+  box-sizing: border-box;
+  border: 1px solid var(--scanner-line) !important;
+  border-radius: 12px;
+  padding: 12px !important;
+  background: var(--scanner-panel);
+}

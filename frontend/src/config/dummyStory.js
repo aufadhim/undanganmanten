@@ -27,8 +27,9 @@ export const DUMMY_TIMELINE_STORIES = [
   },
 ];
 
-export function resolvePreviewStory(mainStory, timeline, editorPreview) {
+export function resolvePreviewStory(mainStory, timeline, editorPreview, timelineEnabled) {
   const savedTimeline = Array.isArray(timeline) ? timeline : [];
+  if (typeof timelineEnabled === 'boolean') return {mainStory: timelineEnabled ? '' : (mainStory || ''), timeline: timelineEnabled ? savedTimeline : []};
   const hasSavedStory = Boolean(mainStory || savedTimeline.length);
 
   return {

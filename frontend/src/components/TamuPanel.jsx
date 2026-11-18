@@ -1,3 +1,7 @@
+import { whatsappTemplates } from '../utils/whatsappTemplates.js';
+import { normalizeWhatsAppPhone } from '../utils/whatsapp.js';
+import GuestCheckIn from './GuestCheckIn.jsx';
+import WishesPanel from './WishesPanel.jsx';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormDraft } from '../hooks/useFormDraft.js';
@@ -8,9 +12,14 @@ import ScannerModal from './ScannerModal.jsx';
 import Papa from 'papaparse';
 import { useUI } from '../context/UIContext.jsx';
 
-export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest, onLivePreview }) {
+export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest, onLivePreview, autoPreview=true, fullPage=false }) {
   const { t } = useTranslation();
-  const hasQrGuestbook = invitation?.orders?.some((order) => Array.isArray(order.addons) && order.addons.includes('QR_GUESTBOOK'));
+  const [guestTab,setGuestTab]=useState(()=>new URLSearchParams(location.search).has('checkin')?'checkin':'list');
+  const [checkinGuest,setCheckinGuest]=useState('');
+  const [permissions,setPermissions]=useState(null);
+  const [browserLock, setBrowserLock] = useState(false);
+  const [accessBusy, setAccessBusy] = useState(false);
+  const hasQrGuestbook = invitation?.orders?.some((order) => Array.isArray(order.addons) && order.addons.includes('QR_GUESTBOOK')&&order.status==='SUCCESS');
   const [guests, setGuests] = useState([]);
   const [rsvpEnabled, setRsvpEnabled] = useState(invitation?.invitationFeatures?.rsvpEnabled || false);
   const [rsvpSettings, setRsvpSettings] = useState({ openToPublic: false, deadline: invitation?.rsvpDeadline?.slice?.(0, 16) || '' });
@@ -32,9 +41,10 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
   const [editForm, setEditForm] = useState({ name: '', phone: '', category: 'Umum' });
 
   // State untuk Template WA
-  const defaultWaTemplate = `Kepada Yth. [Nama Tamu],\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri pernikahan kami.\n\nTautan undangan:\n[Link Undangan]\n\nTerima kasih.`;
+  const defaultWaTemplate = whatsappTemplates.Netral;
   const [waTemplate, setWaTemplate] = useState(invitation?.themeSettings?.waTemplate || defaultWaTemplate);
   const [savingWa, setSavingWa] = useState(false);
+  const [waPreset, setWaPreset] = useState('');
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   
@@ -84,12 +94,14 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
   }
 
   function loadGuests() {
-    api
-      .get('/invitations/me/guests')
+    return api
+      .get('/invitations/me/guests',{headers:{'x-invitation-id':invitation.id}})
       .then((res) => {
         const list = res.data?.guests || [];
         setGuests(list);
-        if (list.length > 0 && onSelectPreviewGuest && !activePreviewId) {
+        setBrowserLock(res.data.browserLock);
+        setPermissions(res.data.entitlements||null);
+        if (autoPreview && list.length > 0 && onSelectPreviewGuest && !activePreviewId) {
           onSelectPreviewGuest(list[0]);
           setActivePreviewId(list[0].id);
         }
@@ -113,9 +125,9 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
       clearDraftTamu();
       // Also reset state manually in case clearDraftTamu doesn't re-render immediately
       setForm({ name: '', phone: '', category: 'Umum', paxLimit: 2 });
-      loadGuests();
+      loadGuests();window.dispatchEvent(new Event('refresh_dashboard'));
 
-      if (newGuest && onSelectPreviewGuest) {
+      if (autoPreview && newGuest && onSelectPreviewGuest) {
         onSelectPreviewGuest(newGuest);
         setActivePreviewId(newGuest.id);
       }
@@ -126,6 +138,26 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
 
   // Import CSV / Excel
   const [importing, setImporting] = useState(false);
+  async function downloadGuestTemplate() {
+    try {
+      const XLSX = await import('@e965/xlsx');
+      const sheet = XLSX.utils.aoa_to_sheet([
+        ['Nama', 'No HP', 'Kategori'],
+        ['Ayu Pratama', '', 'Teman Kuliah'],
+        ['Keluarga Bapak Budi', '', 'Keluarga'],
+      ]);
+      sheet['!cols'] = [{ wch: 32 }, { wch: 22 }, { wch: 24 }];
+      for (let row = 2; row <= 100; row++) {
+        sheet[`B${row}`] = { t: 's', v: '', z: '@' };
+      }
+      sheet['!ref'] = 'A1:C100';
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, sheet, 'Daftar Tamu');
+      XLSX.writeFile(workbook, 'contoh-daftar-tamu-samavaya.xlsx');
+    } catch {
+      toast.error('Contoh Excel belum bisa diunduh. Coba lagi.');
+    }
+  }
   function normalizeGuestRows(rows) {
     return rows.map((row) => ({
       name: String(row.Nama || row.name || row.Name || '').trim(),
@@ -142,7 +174,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
 
     const res = await api.post('/invitations/me/guests/bulk', { guests: guestsData });
     toast.success(res.data.message || 'Import berhasil!');
-    await loadGuests();
+    await loadGuests();window.dispatchEvent(new Event('refresh_dashboard'));
     input.value = '';
   }
 
@@ -199,18 +231,18 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
       });
 
       setEditingGuestId(null);
-      loadGuests();
+      loadGuests();window.dispatchEvent(new Event('refresh_dashboard'));
     } catch (err) {
       toast.error(err.response?.data?.error || 'Gagal memperbarui tamu.');
     }
   }
 
   async function handleDelete(id) {
-    const isConfirmed = await confirm('Hapus Tamu', 'Yakin ingin menghapus tamu ini?');
+    const isConfirmed = await confirm('Hapus tamu dari pernikahan?', 'Tamu ini beserta RSVP dan check-in akan dihapus dari semua desain dalam pernikahan yang sama.');
     if (!isConfirmed) return;
     try {
       await api.delete(`/invitations/me/guests/${id}`);
-      loadGuests();
+      loadGuests();window.dispatchEvent(new Event('refresh_dashboard'));
     } catch (err) {
       toast.error(err.response?.data?.error || 'Gagal menghapus tamu.');
     }
@@ -238,9 +270,33 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
     }
   }
 
+  async function saveBrowserAccess(action, guest) {
+    const settings = { headers: { 'x-invitation-id': invitation.id }, notification: false };
+    if (action === 'toggle' && !await confirm(
+      browserLock ? 'Matikan kunci browser?' : 'Aktifkan kunci browser?',
+      browserLock ? 'Isi undangan akan bisa diakses melalui tautan umum.' : 'Tamu perlu tautan pribadi. Tautan langsung dikunci ke browser pertama yang membukanya.',
+    )) return;
+    if (action === 'rotate' && !await confirm('Ganti tautan pribadi?', 'Tautan lama dan akses browser tamu ini akan dicabut. Salin dan bagikan tautan yang baru.')) return;
+    if (action === 'reset' && !await confirm('Reset akses browser?', 'Tautan tetap sama dan bisa diaktifkan kembali dari browser pertama yang membukanya.')) return;
+    setAccessBusy(true);
+    try {
+      if (action === 'toggle') {
+        await api.patch('/invitations/me/browser-lock', { enabled: !browserLock }, settings);
+      } else {
+        await api.patch('/invitations/me/guests/' + guest.id + '/browser-access', { action }, settings);
+      }
+      await loadGuests();
+      toast.success(action === 'rotate' ? 'Tautan baru siap disalin.' : 'Akses undangan diperbarui.');
+    } catch (failure) {
+      toast.error(failure.response?.data?.error || 'Akses belum bisa diperbarui.');
+    } finally {
+      setAccessBusy(false);
+    }
+  }
+
   function getGuestUrl(guest) {
     const slug = invitation?.slug || 'undangan';
-    return `${window.location.origin}/${slug}?g=${guest.id}`;
+    return `${window.location.origin}/${slug}?g=${guest.linkToken || guest.id}`;
   }
 
   function handleCopyLink(guest) {
@@ -251,23 +307,33 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
   }
 
   return (
-    <div className="panel-content">
+    <div className={`panel-content ${fullPage?'guest-full-page':''}`}>
       <h2 className="panel-header">{t('panels.tamu_title') || 'Daftar Tamu & Link Undangan'}</h2>
       <p className="panel-sub">
         Kelola siapa saja yang diundang, atur pesan WhatsApp (*Smart WA*), dan pantau RSVP tamu.
       </p>
-      <div className="section-block" style={{ marginBottom: 20 }}>
+      {fullPage&&<nav className="guest-hub-tabs" role="tablist" aria-label="Kelola tamu">{[['list','Daftar tamu'],['distribution','Undangan & WhatsApp'],['rsvp','RSVP'],['checkin','Buku tamu & QR'],['wishes','Ucapan & doa']].map(([id,label])=><button type="button" key={id} role="tab" aria-selected={guestTab===id} onClick={()=>setGuestTab(id)}>{label}</button>)}</nav>}
+      {fullPage&&guestTab==='wishes'&&<WishesPanel invitation={invitation} onUpdated={onUpdated}/>}
+      {fullPage&&guestTab==='checkin'&&<GuestCheckIn invitation={invitation} guests={guests} initialGuestId={checkinGuest} enabled={permissions?.qrGuestbook??hasQrGuestbook} onUpdated={loadGuests}/>}
+      {fullPage && guestTab === 'rsvp' && <section className="guest-hub-note">
+        <h3>Ringkasan RSVP</h3>
+        <p>Hadir <strong>{guests.filter(guest => guest.rsvp?.attending === true).length}</strong>
+          {' · '}Tidak hadir <strong>{guests.filter(guest => guest.rsvp?.attending === false).length}</strong>
+          {' · '}Belum menjawab <strong>{guests.filter(guest => !guest.rsvp).length}</strong></p>
+        <Button type="button" variant="secondary" onClick={() => setGuestTab('list')}>Lihat jawaban per tamu</Button>
+      </section>}
+      <details hidden={fullPage&&guestTab!=='rsvp'} className="guest-rsvp-details" open>{fullPage&&<summary>Aturan RSVP</summary>}
         <div className="section-title">Aturan RSVP</div>
         <p style={{ fontSize: 12, color: 'var(--ink-soft)', margin: '0 0 12px' }}>RSVP diaktifkan melalui Susunan &amp; Blok dan hanya dapat diisi melalui link pribadi tamu.</p>
         <label className="field-label">Batas waktu RSVP (opsional)</label>
         <input className="text-input" type="datetime-local" value={rsvpSettings.deadline} onChange={(e) => setRsvpSettings((s) => ({ ...s, deadline: e.target.value }))} />
         <Button type="button" variant="secondary" onClick={saveRsvpSettings} style={{ marginTop: 10 }}>Simpan Aturan RSVP</Button>
-      </div>
+      </details>
 
-      <div style={{ marginBottom: 20, display: 'flex', gap: 10 }}>
+      <div className="guest-tools" style={{ marginBottom: 20, display: fullPage?'none':'flex', gap: 10 }}>
         <Button
           variant="secondary"
-          style={{ flex: 1 }}
+          style={{ flex: 1, display: fullPage?'none':undefined }}
           onClick={() => setIsTableModalOpen(true)}
           icon={<i className="fa-solid fa-expand"></i>}
         >
@@ -290,24 +356,54 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
       </div>
 
       {/* SMART WA TEMPLATE */}
-      <div className="section-block" style={{ marginBottom: 20 }}>
+      {fullPage && guestTab === 'distribution' && <section className="guest-hub-note">
+        <h3>Kunci browser pertama</h3>
+        <p>Batasi isi undangan ke browser pertama yang membuka setiap tautan pribadi.</p>
+        <Button type="button" variant="secondary" disabled={accessBusy} onClick={() => saveBrowserAccess('toggle')}>
+          {browserLock ? 'Matikan kunci browser' : 'Aktifkan kunci browser'}
+        </Button>
+        {browserLock && <div className="guest-desk-list">
+          {guests.map(guest => <div key={guest.id}>
+            <span><strong>{guest.name}</strong><small>{guest.browserActive ? 'Akses aktif' : 'Belum dibuka'}</small></span>
+            <button type="button" onClick={() => handleCopyLink(guest)}>{copiedId === guest.id ? 'Tersalin' : 'Salin tautan'}</button>
+            <button type="button" disabled={accessBusy || !guest.browserActive} onClick={() => saveBrowserAccess('reset', guest)}>Reset akses</button>
+            <button type="button" disabled={accessBusy} onClick={() => saveBrowserAccess('rotate', guest)}>Ganti tautan</button>
+          </div>)}
+        </div>}
+      </section>}
+      <details hidden={fullPage&&guestTab!=='distribution'} className="guest-wa-details" open>{fullPage&&<summary>Template pesan WhatsApp</summary>}
         <div className="section-title">Template Pesan WhatsApp</div>
-        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
+        <p style={{ fontSize: '12px', color: 'var(--ui-muted, #666)', marginBottom: '8px' }}>
           Gunakan variabel <strong>[Nama Tamu]</strong> dan <strong>[Link Undangan]</strong>. Sistem akan otomatis menggantinya.
         </p>
+        <div className="guest-hub-tabs">
+          <label className="field-label">
+            Versi pesan
+            <select className="text-input" value={waPreset} onChange={event => {
+              const preset = event.target.value;
+              setWaPreset(preset);
+              setWaTemplate(whatsappTemplates[preset]);
+            }}>
+              <option value="" disabled>Pilih versi pesan</option>
+              {Object.keys(whatsappTemplates).map(label => <option key={label}>{label}</option>)}
+            </select>
+          </label>
+        </div>
         <textarea
+          aria-label="Isi pesan WhatsApp"
           className="text-area"
+          maxLength={2000}
           value={waTemplate}
           onChange={(e) => setWaTemplate(e.target.value)}
-          rows={5}
+          rows={10}
         />
         <Button variant="primary" onClick={handleSaveWaTemplate} isLoading={savingWa} style={{ marginTop: '8px' }}>
           Simpan Template
         </Button>
-      </div>
+      </details>
 
       {/* FORM TAMBAH TAMU */}
-      <form onSubmit={handleAdd} className="stack" style={{ marginBottom: 20 }}>
+      <form hidden={fullPage&&guestTab!=='list'} onSubmit={handleAdd} className="stack guest-add-form" style={{ marginBottom: 20 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.5fr 1fr 1fr', gap: 10 }}>
           <input
             type="text"
@@ -328,7 +424,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
             className="text-input"
             value={form.category}
             onChange={(e) => setForm(f => ({ ...f, category: e.target.value }))}
-            style={{ background: '#fff' }}
+            style={{ background: 'var(--ui-card, #fff)' }}
           >
             <option value="Umum">Umum</option>
             <option value="Keluarga">Keluarga</option>
@@ -340,31 +436,40 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
           <select className="text-input" value={form.paxLimit} onChange={(e) => setForm((f) => ({ ...f, paxLimit: Number(e.target.value) }))}><option value="1">Maks. 1 orang</option><option value="2">Maks. 2 orang</option></select>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10, alignItems: 'stretch' }}>
-          <Button variant="secondary" type="submit" style={{ flex: 1 }}>
+        <div className="guest-add-actions">
+          <Button variant="primary" type="submit">
             <i className="fa-solid fa-user-plus"></i> {t('panels.add_guest') || 'Tambah Tamu'}
           </Button>
 
-          <label style={{ display: 'flex' }}>
-            <div style={{
-              display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px',
-              padding: '12px 16px', background: '#e3f2fd', color: '#1976d2', borderRadius: '8px',
-              fontWeight: 600, fontSize: '13px', cursor: 'pointer', minHeight: '42px', width: '100%', boxSizing: 'border-box'
-            }}>
-              {importing ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-file-excel"></i>}
-              {importing ? 'Mengimpor...' : 'Import CSV / Excel'}
-            </div>
-            <input type="file" accept=".csv,.xls,.xlsx" style={{ display: 'none' }} onChange={handleImportGuests} disabled={importing} />
-          </label>
         </div>
-        <div style={{ padding: '10px 12px', borderRadius: 8, background: '#f7f4ef', fontSize: 12, color: '#675f58' }}>
-          <strong>Format file:</strong> baris pertama harus memakai kolom <code>Nama</code>, <code>No HP</code>, dan <code>Kategori</code>. Nama wajib; nomor HP dan kategori boleh kosong. Contoh: <code>Ayu | 08123456789 | Teman Kuliah</code>.
-        </div>
+        <section className="guest-import-box" aria-label="Impor daftar tamu">
+          <div>
+            <strong>Impor daftar tamu</strong>
+            <p>Unduh contoh Excel dan ganti nama pada baris contoh. Pertahankan judul kolom <code>Nama</code>, <code>No HP</code>, dan <code>Kategori</code>. Nomor HP dan kategori boleh kosong.</p>
+          </div>
+          <div className="guest-import-actions">
+            <button type="button" className="guest-import-control" onClick={downloadGuestTemplate}><i className="fa-solid fa-download" aria-hidden="true" /> Unduh contoh Excel</button>
+            <label className="guest-import-control">
+              <i className={importing ? 'fa-solid fa-spinner fa-spin' : 'fa-solid fa-file-arrow-up'} aria-hidden="true" />
+              {importing ? 'Mengimpor…' : 'Impor CSV / Excel'}
+              <input type="file" accept=".csv,.xls,.xlsx" aria-label="Impor CSV atau Excel" onChange={handleImportGuests} disabled={importing} />
+            </label>
+          </div>
+        </section>
       </form>
 
+      {fullPage && <section hidden={guestTab !== 'distribution'} aria-label="Antrean WhatsApp">
+        <div className="guest-hub-note">
+          <h3>Antrean WhatsApp</h3>
+          <p>Pilih kelompok atau cari nama untuk menyiapkan pesan undangan. Pesan dikirim satu per satu dari WhatsApp.</p>
+        </div>
+        <TamuTableModal embedded mode="distribution" guests={guests} waTemplate={waTemplate}
+          invitationSlug={invitation.slug} onUpdateStatus={loadGuests} />
+      </section>}
+      {fullPage && guestTab === 'list' && <TamuTableModal embedded mode="directory" guests={guests} waTemplate={waTemplate} invitationSlug={invitation.slug} onEditGuest={handleStartEdit} onDeleteGuest={handleDelete} onRequestCheckin={id=>{setCheckinGuest(id);setGuestTab('checkin')}} onUpdateStatus={loadGuests}/>}
       {/* LIST DAFTAR TAMU */}
       <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {guests.map((guest) => {
+        {guests.filter(guest=>!fullPage||(guestTab === 'list' && editingGuestId === guest.id)).map((guest) => {
           const isEditing = editingGuestId === guest.id;
           const isPreviewing = activePreviewId === guest.id;
           const guestUrl = getGuestUrl(guest);
@@ -374,7 +479,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
           msg = msg.replace(/\[Link Undangan\]/g, guestUrl);
           msg = msg.replace(/\[Kategori Tamu\]/g, guest.groupName || 'Umum');
 
-          const cleanPhone = guest.phone ? guest.phone.replace(/^0/, '62').replace(/[^0-9]/g, '') : '';
+          const cleanPhone = normalizeWhatsAppPhone(guest.phone);
           const waLink = cleanPhone
             ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`
             : `https://wa.me/?text=${encodeURIComponent(msg)}`;
@@ -391,8 +496,8 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
             <div
               key={guest.id}
               style={{
-                borderLeft: isPreviewing ? '4px solid #7a2436' : '1px solid #e3d6b4',
-                background: isPreviewing ? '#faf3e3' : '#ffffff',
+                borderLeft: isPreviewing ? '4px solid var(--wine, #7a2436)' : '1px solid var(--line, #e3d6b4)',
+                background: isPreviewing ? 'var(--dashboard-active, #faf3e3)' : 'var(--ui-card, #ffffff)',
                 padding: '12px',
                 borderRadius: '10px',
                 boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
@@ -423,7 +528,7 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
                       className="text-input"
                       value={editForm.category}
                       onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
-                      style={{ fontSize: '12px', padding: '6px 8px', background: '#fff' }}
+                      style={{ fontSize: '12px', padding: '6px 8px', background: 'var(--ui-card, #fff)' }}
                     >
                       <option value="Umum">Umum</option>
                       <option value="Keluarga">Keluarga</option>
@@ -456,9 +561,9 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <div>
                       <strong style={{ fontSize: '14px', color: isPreviewing ? '#7a2436' : '#182420', wordBreak: 'break-word' }}>
-                        {guest.name} {isPreviewing && <span style={{ fontSize: '10px', color: '#7a2436' }}>(Preview)</span>}
+                        {guest.name} {isPreviewing && <span style={{ fontSize: '10px', color: 'var(--ui-danger-ink, #7a2436)' }}>(Preview)</span>}
                       </strong>
-                      <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>
+                      <div style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', marginTop: '2px' }}>
                         {guest.phone || 'Tanpa No. WA'} · <span style={{ fontWeight: '600' }}>[{guest.groupName || 'Umum'}]</span>
                       </div>
                       <div style={{ fontSize: '10px', color: guest.rsvp ? (guest.rsvp.attending ? '#52c41a' : '#ff4d4f') : '#8c8c8c', marginTop: '4px', fontWeight: 'bold' }}>
@@ -530,6 +635,11 @@ export default function TamuPanel({ invitation, onUpdated, onSelectPreviewGuest,
           isOpen={isTableModalOpen}
           onClose={() => setIsTableModalOpen(false)}
           guests={guests}
+          waTemplate={waTemplate}
+          invitationSlug={invitation.slug}
+          onEditGuest={handleStartEdit}
+          onDeleteGuest={handleDelete}
+          onRequestCheckin={id=>{setCheckinGuest(id);setGuestTab('checkin')}} onUpdateStatus={loadGuests}
           onUpdated={loadGuests}
         />
       )}

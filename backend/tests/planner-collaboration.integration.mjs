@@ -1,0 +1,48 @@
+import 'dotenv/config';
+import assert from 'node:assert/strict';
+import express from 'express';
+import {prisma} from '../src/lib/prisma.js';
+import {generateToken} from '../src/utils/jwt.js';
+import weddings from '../src/routes/weddingRoutes.js';
+import publicPlanner from '../src/routes/plannerPublicRoutes.js';
+const nativeFetch=globalThis.fetch;let sentMail;
+globalThis.fetch=async (url,options)=>{if(String(url).startsWith('https://api.resend.com/emails')){sentMail=JSON.parse(options.body);return new Response(JSON.stringify({id:'planner-test-mail'}),{headers:{'Content-Type':'application/json'}})}return nativeFetch(url,options)};
+const app=express();app.use(express.json());app.use('/api/weddings',weddings);app.use('/api/planner',publicPlanner);
+const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));const base='http://127.0.0.1:'+server.address().port+'/api';
+const ids=[];let checks=0;
+async function call(path,method='GET',body,user,expected=200){const response=await nativeFetch(base+path,{method,headers:{'Content-Type':'application/json',...(user?{Authorization:'Bearer '+generateToken({userId:user.id})}:{})},body:body===undefined?undefined:JSON.stringify(body)});let data;try{data=await response.json()}catch{data=null}assert.equal(response.status,expected,method+' '+path.replace(/[a-f0-9]{64}/g,'[token]')+' '+JSON.stringify(data));checks++;return data}
+try{
+ const tag=Date.now();const owner=await prisma.user.create({data:{email:'planner-owner-'+tag+'@example.invalid',passwordHash:'test-only',isVerified:true}});ids.push(owner.id);
+ const member=await prisma.user.create({data:{email:'planner-member-'+tag+'@example.invalid',passwordHash:'test-only',isVerified:true}});ids.push(member.id);
+ const stranger=await prisma.user.create({data:{email:'planner-other-'+tag+'@example.invalid',passwordHash:'test-only',isVerified:true}});ids.push(stranger.id);
+ const wedding=await prisma.wedding.create({data:{userId:owner.id,title:'Uji Planner Samavaya',weddingDate:new Date('2027-02-14')}});const ep='/weddings/'+wedding.id+'/planner';
+ await call(ep,'GET',undefined,undefined,401);await call(ep,'GET',undefined,stranger,404);
+ await call(ep+'/settings','PUT',{budgetTarget:100000000,savingsTarget:50000000,categories:[{title:'Katering',limit:20000000}]},owner,204);
+ await call(ep+'/settings','PUT',{budgetTarget:0,savingsTarget:0,categories:[{title:'Katering',limit:1},{title:'katering',limit:2}]},owner,400);
+ const vendor=(await call(ep+'/entries/vendors','POST',{title:'Vendor Uji',category:'Katering',estimate:20000000,actual:25000000,paid:1000000,selected:true,package:'Paket 500 porsi',url:'https://example.com/offer',status:'Dipesan'},owner,201)).entry;
+ await call(ep+'/payments/'+vendor.id,'POST',{value:2000000,date:'2026-11-18',notes:'Cicilan kedua'},owner,201);
+ await Promise.all([call(ep+'/payments/'+vendor.id,'POST',{value:3000000,date:'2026-11-19'},owner,201),call(ep+'/payments/'+vendor.id,'POST',{value:4000000,date:'2026-11-20'},owner,201)]);
+ let data=await call(ep+'/entries','GET',undefined,owner);let v=data.entries.find(e=>e.id===vendor.id);assert.equal(v.details.paid,10000000);assert.equal(v.details.payments.length,4);assert.equal(v.updatedBy,owner.email);
+ await call(ep+'/entries/vendors/'+vendor.id,'PUT',{...v.details,title:'Vendor Uji Revisi',paid:0},owner,204);data=await call(ep+'/entries','GET',undefined,owner);v=data.entries.find(e=>e.id===vendor.id);assert.equal(v.details.paid,10000000);
+ await call(ep+'/payments/'+vendor.id+'/'+v.details.payments[1].id,'DELETE',undefined,owner,204);
+ await call(ep+'/entries/savings','POST',{title:'Setoran pertama',contributor:'Pasangan A',value:3000000,date:'2026-11-18'},owner,201);
+ const doc=(await call(ep+'/entries/documents','POST',{title:'Berkas nikah',owner:'Pasangan B',authority:'KUA',due:'2027-01-14',status:'Dalam proses'},owner,201)).entry;
+ await call(ep+'/entries/uniforms','POST',{title:'Ibu pengantin',group:'Keluarga',size:'L',fabric:'Satin sage',tailor:'Penjahit A',quantity:1,status:'Dijahit'},owner,201);
+ await call(ep+'/entries/gifts','POST',{title:'Seserahan',category:'Seserahan',quantity:1,package:'Satu paket',url:'javascript:alert(1)'},owner,400);
+ await call(ep+'/entries/gifts','POST',{title:'Seserahan',category:'Seserahan',quantity:1,package:'Satu paket',url:'https://example.com/shop',status:'Dipesan'},owner,201);
+ await call(ep+'/entries/schedule','POST',{title:'Akad',event:'Pernikahan',date:'2027-02-14',start:'08:00',end:'09:00',owner:'PIC A',location:'Garden Hall',notes:'Siapkan cincin'},owner,201);
+ await call(ep+'/entries/schedule','POST',{title:'Resepsi',event:'Pernikahan',date:'2027-02-14',start:'10:00',end:'09:00'},owner,400);
+ await call(ep+'/access','POST',{email:member.email},owner,201);assert.equal(sentMail.to,member.email);const invite=sentMail.text.match(/planner\/invite\/([a-f0-9]{64})/)[1];
+ await call('/planner/invite/'+invite,'POST',{},stranger,403);
+ await prisma.plannerMember.updateMany({where:{weddingId:wedding.id},data:{expiresAt:new Date(Date.now()-1000)}});await call('/planner/invite/'+invite,'POST',{},member,403);await prisma.plannerMember.updateMany({where:{weddingId:wedding.id},data:{expiresAt:new Date(Date.now()+86400000)}});
+ await prisma.user.update({where:{id:member.id},data:{isVerified:false}});await call('/planner/invite/'+invite,'POST',{},member,403);await prisma.user.update({where:{id:member.id},data:{isVerified:true}});
+ await call('/planner/invite/'+invite,'POST',{},member);let list=await call('/planner/weddings','GET',undefined,member);assert.equal(list.weddings.find(w=>w.id===wedding.id).role,'member');
+ await call(ep+'/entries/documents/'+doc.id,'PUT',{...doc.details,status:'Lengkap'},member,204);data=await call(ep+'/entries','GET',undefined,member);assert.equal(data.entries.find(e=>e.id===doc.id).updatedBy,member.email);assert.equal(data.settings.budgetTarget,100000000);assert.equal(data.role,'member');
+ await call(ep+'/access','GET',undefined,member,403);await call(ep+'/shares','POST',{},member,403);await call('/weddings/'+wedding.id+'/guests','GET',undefined,member,404);
+ const share=await call(ep+'/shares','POST',{},owner,201);const token=share.url.split('/').pop();let publicData=await call('/planner/rundown/'+token);assert.equal(publicData.entries.length,1);assert.equal(publicData.wedding.title,wedding.title);assert.ok(!JSON.stringify(publicData).includes('Vendor Uji'));assert.ok(!('userId' in publicData.wedding));
+ await prisma.plannerShare.updateMany({where:{weddingId:wedding.id},data:{expiresAt:new Date(Date.now()-1000)}});await call('/planner/rundown/'+token,'GET',undefined,undefined,404);await prisma.plannerShare.updateMany({where:{weddingId:wedding.id},data:{expiresAt:new Date(Date.now()+86400000)}});
+ const access=await call(ep+'/access','GET',undefined,owner);await call(ep+'/shares/'+access.shares[0].id,'DELETE',undefined,owner,204);await call('/planner/rundown/'+token,'GET',undefined,undefined,404);
+ await call(ep+'/access/'+access.members[0].id,'DELETE',undefined,owner,204);await call(ep+'/entries','GET',undefined,member,404);await call('/planner/invite/'+invite,'POST',{},member,403);
+ const task=(await call(ep,'POST',{title:'Tugas bersama',dueDate:'2027-01-01'},owner,201)).task;await call(ep+'/'+task.id,'PATCH',{done:true},owner,204);data=await call(ep,'GET',undefined,owner);assert.equal(data.tasks[0].updatedBy,owner.email);
+ console.log('PASS: '+checks+' requests; installment concurrency, membership email and acceptance, roles, revocation, isolated public rundown, module persistence and attribution.');
+}finally{globalThis.fetch=nativeFetch;await prisma.user.deleteMany({where:{id:{in:ids}}});await new Promise(r=>server.close(r));await prisma.$disconnect()}

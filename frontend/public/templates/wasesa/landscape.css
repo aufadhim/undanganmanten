@@ -1,0 +1,30 @@
+@import url('/templates/engines/landscape/layout.css');
+/* Wasesa: subdued teak, antique gold, and warm ivory. */
+body.wasesa{--ink:#625340;--cms-ink:#625340;--cms-accent:#918069;--landscape-paper:#f3ecde}
+body.wasesa #journey .scene-panel :is(p,.kicker,small,label,.person-family,.person-family strong,.person-bio,.person-placeholder){color:#73664f}
+body.wasesa .scene-panel h2 em,body.wasesa .signature{color:#9a8565}
+body.wasesa .scene-panel :is(.secondary,.person-instagram){border-color:#a090776b;color:#625340;background-color:#fffaf087}
+body.wasesa .person-rule{background:#aa987d}
+body.wasesa #cover .guest,body.wasesa #cover .cover-note,body.wasesa #guest-name{color:#6d604d}
+
+.wasesa-birds{position:fixed;inset:0;z-index:9;pointer-events:none;overflow:hidden}
+.wasesa-bird-flight{position:absolute;left:-20%;top:var(--bird-top);width:var(--bird-size);height:var(--bird-size);opacity:0;will-change:transform;animation:wasesa-bird-flight var(--bird-duration) var(--bird-delay) linear infinite}
+.wasesa-bird{width:100%;height:100%;background-repeat:no-repeat;background-size:300% 100%;animation:wasesa-bird-wings .7s steps(1,end) infinite;filter:saturate(.78)}
+.wasesa-bird.sunbird{background-image:url('/templates/wasesa/assets/sunbird-flight-v1.webp')}
+.wasesa-bird.dove{background-image:url('/templates/wasesa/assets/dove-flight-v1.webp');animation-duration:1.1s}
+.wasesa-bird-flight.is-reversed{animation-direction:reverse}
+.wasesa-bird-flight.is-reversed .wasesa-bird{scale:-1 1}
+.wasesa-birds.is-paused *{animation-play-state:paused!important}
+@keyframes wasesa-bird-wings{0%,100%{background-position:0% 50%}25%,75%{background-position:50% 50%}50%{background-position:100% 50%}}
+@keyframes wasesa-bird-flight{
+ 0%{transform:translate(-12vw,2vh) rotate(-4deg) scale(.68);opacity:0}
+ 10%{opacity:.76}25%{transform:translate(30vw,-3vh) rotate(3deg) scale(.82)}
+ 50%{transform:translate(70vw,3vh) rotate(-3deg) scale(1);opacity:.9}
+ 75%{transform:translate(110vw,-2vh) rotate(4deg) scale(.86)}90%{opacity:.72}
+ 100%{transform:translate(155vw,2vh) rotate(-2deg) scale(.64);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.wasesa-birds{display:none}}
+
+/* Ivory lettering stays readable over the dark joglo roof without a painted panel. */
+body.wasesa #journey .hero-heading :is(.kicker,h2,h2 span,h2 em,.cover-date){color:#fff7e4!important;text-shadow:0 2px 6px #3e3028d9,0 0 1px #3e3028}
+body.wasesa #journey .hero-heading .cover-date i{background:#fff7e4;opacity:.75}

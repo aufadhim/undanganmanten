@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-export default function LangSwitcher({ style = {} }) {
+export default function LangSwitcher({ style = {}, className = '' }) {
   const { i18n } = useTranslation();
 
   const toggleLang = () => {
@@ -9,6 +9,8 @@ export default function LangSwitcher({ style = {} }) {
 
   return (
     <button 
+      type="button"
+      className={`atelier-language ${className}`}
       onClick={toggleLang} 
       style={{
         background: 'rgba(255, 255, 255, 0.2)',

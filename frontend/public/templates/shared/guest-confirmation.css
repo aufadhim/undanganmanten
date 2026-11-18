@@ -1,0 +1,43 @@
+.guest-confirmation{font:inherit;color:inherit;width:100%;box-sizing:border-box;text-align:left}.guest-confirmation>h3{text-align:center}.guest-confirmation form,.guest-confirmation fieldset{display:grid;gap:14px}.guest-confirmation fieldset{border:0;padding:0;margin:0;min-width:0}.guest-confirmation label{display:grid;gap:7px;font:inherit}.guest-confirmation :is(input,textarea,select){width:100%;min-width:0;box-sizing:border-box;padding:11px 14px;border:1px solid #9ca68c66;border-radius:7px;background:#fffdf4b8;color:inherit;font:inherit;margin:0}.guest-confirmation select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23748560' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}.guest-confirmation button{font:inherit;min-height:42px;border:1px solid #929f7e;padding:11px 20px;border-radius:24px;background:#f9f6e9d9;color:inherit;cursor:pointer}.guest-confirmation button:disabled{opacity:.6;cursor:wait}.guest-confirmation small{font-size:.9em;opacity:.8}.guest-confirmation [role=alert]{color:#a3483e}.guest-confirmation-success{text-align:center;padding:18px 0}.guest-confirmation-success p{overflow-wrap:anywhere;white-space:pre-line}.guest-confirmation-wishes{margin-top:28px;max-height:32svh;overflow:auto;overscroll-behavior:contain}.guest-confirmation-wishes>h3{font-size:1.1em;font-weight:500;text-align:center}.guest-confirmation-wishes article{padding:14px 0;border-top:1px solid #a1a88a55;overflow-wrap:anywhere}.guest-confirmation-wishes article p{white-space:pre-line;line-height:1.6}.guest-confirmation-wishes article small{display:block;margin-top:5px}.guest-confirmation-wishes blockquote{margin:8px 0;padding:8px 12px;border-left:2px solid #9ea98b}.guest-confirmation :focus-visible{outline:2px solid #82946b;outline-offset:3px}
+.immersia-confirmation{max-height:64svh;overflow:auto;overscroll-behavior:contain;padding:4px 6px 20px;scrollbar-width:thin}
+
+/* One continuous reading area: the section owns scrolling, not each wish list. */
+.guest-confirmation-wishes{max-height:none;overflow:visible}
+.immersia-confirmation{max-height:none;overflow:visible;padding:0 0 18px}
+body #rsvp .paper.scene-panel{left:50%!important;top:max(66px,8svh)!important;width:calc(100% - 32px)!important;max-width:900px;height:calc(100svh - max(66px,8svh) - 72px);max-height:none!important;box-sizing:border-box;padding:14px 16px 28px!important;transform:translate(-50%,var(--world-lift,0px))!important;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+body #rsvp .paper.scene-panel>h2{margin:10px 0 22px}
+body #rsvp .paper.scene-panel>.kicker{margin:0}
+body #rsvp .public-forms-root{padding:0!important}
+body #rsvp .guest-confirmation label{margin:0}
+body #rsvp .guest-confirmation-wishes{padding-bottom:20px}
+@media(min-width:700px){
+ .immersia-confirmation .guest-confirmation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+ .immersia-confirmation .guest-confirmation-wishes{margin-top:0}
+ .immersia-confirmation .guest-confirmation>h3{grid-column:1/-1}
+}
+/* Closing copy stays above the illustration rather than across its body. */
+body #penutup .paper.scene-panel,body.stage-closing #penutup .closing{left:50%!important;top:max(68px,9svh)!important;width:calc(100% - 32px)!important;max-width:520px;max-height:52svh!important;height:auto;padding:10px 20px!important;box-sizing:border-box;transform:translate(-50%,var(--world-lift,0px))!important;background:radial-gradient(ellipse,#fffaf0bd 12%,#fffaf060 48%,transparent 74%)!important;text-align:center;overflow:auto}
+body #penutup .paper.scene-panel .kicker{margin:0 0 8px}
+body #penutup .paper.scene-panel h2{margin:8px 0 12px}
+body #penutup .paper.scene-panel>p{margin:8px auto;line-height:1.5}
+body #penutup .paper.scene-panel .signature{margin:10px 0;font-size:30px}
+body #penutup .paper.scene-panel .cover-date{margin:10px auto}
+body #penutup #back-cover{margin-top:8px}
+body #penutup #closing-brand{margin-top:12px!important}
+.eternal-wrapper .footer-section{min-height:80svh;box-sizing:border-box;padding:60px 24px 35svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center}
+.seraya-footer{min-height:80svh;box-sizing:border-box;padding:60px 28px 35svh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center}
+.nawasena .nw-footer{min-height:85svh;align-content:start;align-items:start;padding-top:40px;box-sizing:border-box}
+.nawasena .nw-footer .nw-footer-copy{align-self:start;padding-top:24px}
+/* Classic templates use the same generous, uninterrupted guest book. */
+.nawasena [data-section="rsvp"] .public-forms-root,.seraya-wrapper [data-section="rsvp"] .public-forms-root,.seraya [data-section="rsvp"] .public-forms-root{max-width:none}
+.eternal-wrapper .rsvp-section>div{max-width:1100px!important}
+.eternal-wrapper .footer-section{padding-bottom:35svh!important}
+body #rsvp .paper.scene-panel{background:radial-gradient(ellipse at center,#fffaf0d9 18%,#fffaf0a6 58%,#fffaf030 85%,transparent 100%)!important}
+/* Closing reading area leaves a clear foreground for grounded full-body cutouts. */
+body #penutup .paper.scene-panel{display:flex;flex-direction:column;align-items:center;gap:4px;max-height:32svh!important;padding:6px 16px!important}
+body #penutup .paper.scene-panel>*{margin:0!important}
+body #penutup .paper.scene-panel h2{font-size:36px;line-height:1.1}
+body #penutup .paper.scene-panel .signature{font-size:28px;line-height:1.15}
+body #penutup .paper.scene-panel>.kicker{display:none}
+body #penutup .paper.scene-panel .secondary{min-height:30px;padding:5px 14px}
+body #penutup .paper.scene-panel>.ornament{display:none}

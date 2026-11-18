@@ -1,16 +1,20 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSnowflake, faLeaf, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faSnowflake, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import '../styles/particles.css';
+import {createMusicController,MUSIC_BUTTON_MARKUP} from '../../public/templates/shared/music-controller.js';
+import '../../public/templates/shared/music-control.css';
 
-export default function FloatingMultimedia({ invitation, isOpen, defaultColor = '#7E3942', defaultColorText = '#FFFFFF' }) {
+export default function FloatingMultimedia({ invitation, isOpen, defaultColor = '#536343', defaultColorText = '#FFFFFF' }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
 
     const features = invitation?.invitationFeatures || {};
     const settings = invitation?.themeSettings || {};
+    const resolvedButtonColor = settings?.button?.primary || settings?.colorAccent || settings?.colorPrimary || defaultColor;
+    const openRef=useRef(isOpen);openRef.current=isOpen;
 
-    const musicEnabled = features.musicEnabled && settings.musicUrl;
+    const musicEnabled = features.musicEnabled !== false && settings.musicUrl;
     const visualType = ['snow', 'leaves', 'sakura'].includes(settings.animationType) ? settings.animationType : '';
     const animationEnabled = features.animationEnabled && visualType;
     const particles = useMemo(() => Array.from({ length: 24 }, (_, index) => {
@@ -32,48 +36,18 @@ export default function FloatingMultimedia({ invitation, isOpen, defaultColor = 
         };
     }), [visualType]);
 
-    // Auto-play when the envelope is opened
-    useEffect(() => {
-        if (isOpen && musicEnabled && audioRef.current) {
-            audioRef.current.play().then(() => {
-                setIsPlaying(true);
-            }).catch(err => {
-                console.warn('Autoplay prevented by browser:', err);
-                setIsPlaying(false);
-            });
-        }
-    }, [isOpen, musicEnabled]);
-
-    // Handle tab visibility changes to pause/resume music
-    useEffect(() => {
-        const handleVisibilityChange = () => {
-            if (document.hidden) {
-                if (isPlaying && audioRef.current) {
-                    audioRef.current.pause();
-                }
-            } else {
-                if (isPlaying && audioRef.current) {
-                    audioRef.current.play().catch(console.warn);
-                }
-            }
-        };
-
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        return () => {
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-        };
-    }, [isPlaying]);
-
-    function toggleMusic() {
-        if (!audioRef.current) return;
-        if (isPlaying) {
-            audioRef.current.pause();
-            setIsPlaying(false);
-        } else {
-            audioRef.current.play();
-            setIsPlaying(true);
-        }
-    }
+    const controller=useRef(null),[musicError,setMusicError]=useState('');
+    useEffect(()=>{
+        if(!audioRef.current)return;
+        const music=createMusicController(audioRef.current,{enabled:Boolean(musicEnabled),onChange:state=>{setIsPlaying(state.playing);setMusicError(state.error)}});controller.current=music;
+        const root=audioRef.current.closest('.template-wrapper-dynamic')||audioRef.current.parentElement;
+        const prime=event=>{const button=event.target.closest('button');if(!openRef.current&&button&&root?.contains(button)&&(button.hasAttribute('data-open-cover')||/buka undangan|open invitation/i.test(button.textContent)))music.open()};
+        document.addEventListener('click',prime,true);
+        if(isOpen)music.open();
+        return()=>{document.removeEventListener('click',prime,true);music.destroy();controller.current=null};
+    },[settings.musicUrl,Boolean(musicEnabled)]);
+    useEffect(()=>{controller.current?.setEnabled(Boolean(musicEnabled));if(isOpen)controller.current?.open();else controller.current?.close()},[isOpen,musicEnabled]);
+    function toggleMusic(){controller.current?.toggle()}
 
     // Determine Animation Element
     function renderAnimation() {
@@ -122,26 +96,13 @@ export default function FloatingMultimedia({ invitation, isOpen, defaultColor = 
                 <>
                     <audio ref={audioRef} src={settings.musicUrl} loop />
                     
-                    {/* Floating Music Button */}
-                    <button
-                        onClick={toggleMusic}
-                        className={`floating-music-btn ${isOpen ? 'is-visible' : 'is-hidden'} ${isPlaying ? 'is-playing' : ''}`}
-                        style={{
-                            background: settings?.colorAccent || settings?.colorPrimary || defaultColor,
-                            color: settings?.colorTextLight || defaultColorText
-                        }}
-                    >
-                        {isPlaying ? (
-                            <div className="audio-waveform">
-                                <div className="audio-bar"></div>
-                                <div className="audio-bar"></div>
-                                <div className="audio-bar"></div>
-                                <div className="audio-bar"></div>
-                            </div>
-                        ) : (
-                            <FontAwesomeIcon icon={faPlay} style={{ marginLeft: '2px' }} />
-                        )}
-                    </button>
+                    <button type="button" onClick={toggleMusic}
+                        className={`floating-music-btn music-control ${isOpen ? 'is-visible' : 'is-hidden'} ${isPlaying ? 'is-playing' : ''}`}
+                        aria-label={isPlaying?'Jeda musik latar':'Putar musik latar'} aria-pressed={isPlaying}
+                        title={isPlaying?'Jeda musik':'Putar musik'}
+                        style={{'--music-color':resolvedButtonColor,'--music-ink':settings?.button?.text||settings?.colorTextLight||defaultColorText}}
+                        dangerouslySetInnerHTML={{__html:MUSIC_BUTTON_MARKUP}} />
+                    <span role="status" style={{position:'absolute',width:1,height:1,overflow:'hidden',clipPath:'inset(50%)'}}>{musicError}</span>
                 </>
             )}
         </>

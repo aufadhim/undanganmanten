@@ -6,21 +6,12 @@ import { useUI } from '../context/UIContext.jsx';
 
 // Palet Warna Default Bawaan Masing-masing Tema (Sebagai Acuan Undo/Reset)
 const DEFAULT_PALETTES = {
-    'celluloid': { bgPrimary: '#211913', bgSecondary: '#211913', textPrimary: '#8a2d2d', textSecondary: '#efe1c8', btnBg: '#8a2d2d', btnText: '#211913' },
-    'nocturne': { bgPrimary: '#08090b', bgSecondary: '#121014', textPrimary: '#751c30', textSecondary: '#eee7dc', btnBg: '#c5a46a', btnText: '#08090b' },
+    'pramaya': {bgPrimary:'#eee5d5',bgSecondary:'#d8c6ae',textPrimary:'#57483d',textSecondary:'#8f7c68',btnBg:'#a28268',btnText:'#fff9ee'},
+    'sekar-jawa': {bgPrimary:'#eee7dc',bgSecondary:'#d7c6b7',textPrimary:'#594942',textSecondary:'#8d7c71',btnBg:'#896865',btnText:'#fff9ed'},
+    'garden-canvas': {bgPrimary:'#f5f2e8',bgSecondary:'#e4e8d8',textPrimary:'#40553c',textSecondary:'#718064',btnBg:'#7c8c6e',btnText:'#fffdf5'},
     'eternal': { bgPrimary: '#fafaf9', bgSecondary: '#f5f5f4', textPrimary: '#292524', textSecondary: '#57534e', btnBg: '#292524', btnText: '#fafaf9' },
     'seraya': { bgPrimary: '#f4f1ea', bgSecondary: '#dedad1', textPrimary: '#0a0a0a', textSecondary: '#4a4945', btnBg: '#111111', btnText: '#ffffff' },
     'nawasena': { bgPrimary: '#f4eddf', bgSecondary: '#d9c9ad', textPrimary: '#741d2b', textSecondary: '#243322', btnBg: '#a4894e', btnText: '#ffffff' },
-    'isvara': { bgPrimary: '#f3f0e8', bgSecondary: '#dfe3d5', textPrimary: '#465440', textSecondary: '#30372f', btnBg: '#78846c', btnText: '#ffffff' },
-    'lanqing': { bgPrimary: '#f6ebdd', bgSecondary: '#e9c9b6', textPrimary: '#8d1b24', textSecondary: '#341b18', btnBg: '#a8232d', btnText: '#fff8e8' },
-    'exclusive-olan': {
-        bgPrimary: '#EEE8E5',
-        bgSecondary: '#E4D5C0',
-        textPrimary: '#7E3942',
-        textSecondary: '#1E3F43',
-        btnBg: '#7E3942',
-        btnText: '#EEE8E5',
-    },
     'eloise': {
         bgPrimary: '#FDFBF7',
         bgSecondary: '#E9EDC9',
@@ -196,7 +187,7 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
             </div>
 
             {msg && (
-                <div style={{ padding: '8px 12px', background: '#f6ffed', border: '1px solid #b7eb8f', color: '#52c41a', borderRadius: '8px', fontSize: '12px', marginBottom: '16px' }}>
+                <div style={{ padding: '8px 12px', background: 'var(--ui-card, #f6ffed)', border: '1px solid #b7eb8f', color: '#52c41a', borderRadius: '8px', fontSize: '12px', marginBottom: '16px' }}>
                     ✓ {msg}
                 </div>
             )}
@@ -204,13 +195,13 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
                 {/* BAGIAN 1: WARNA BACKGROUND */}
-                <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
-                    <strong style={{ fontSize: '13px', color: '#182420', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+                <div className="atelier-control-group" style={{ background: 'var(--ui-card, #ffffff)', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
+                    <strong style={{ fontSize: '13px', color: 'var(--ui-muted, #182420)', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
                         <i className="fa-solid fa-palette" style={{ color: 'var(--wine)' }}></i> Background / Latar Layar
                     </strong>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Utama (Primary)</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Utama (Primary)</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"
@@ -228,7 +219,7 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
                         </div>
 
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Sekunder (Kartu/Header)</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Sekunder (Kartu/Header)</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"
@@ -248,13 +239,13 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
                 </div>
 
                 {/* BAGIAN 2: WARNA TEKS */}
-                <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
-                    <strong style={{ fontSize: '13px', color: '#182420', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+                <div className="atelier-control-group" style={{ background: 'var(--ui-card, #ffffff)', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
+                    <strong style={{ fontSize: '13px', color: 'var(--ui-muted, #182420)', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
                         <i className="fa-solid fa-pen-nib" style={{ color: 'var(--wine)' }}></i> Teks &amp; Judul
                     </strong>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Judul &amp; Aksen</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Judul &amp; Aksen</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"
@@ -272,7 +263,7 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
                         </div>
 
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Teks Isi / Paragraf</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Teks Isi / Paragraf</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"
@@ -292,13 +283,13 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
                 </div>
 
                 {/* BAGIAN 3: WARNA TOMBOL */}
-                <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
-                    <strong style={{ fontSize: '13px', color: '#182420', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+                <div className="atelier-control-group" style={{ background: 'var(--ui-card, #ffffff)', padding: '16px', borderRadius: '12px', border: '1px solid #e3d6b4', marginBottom: '8px' }}>
+                    <strong style={{ fontSize: '13px', color: 'var(--ui-muted, #182420)', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
                         <i className="fa-regular fa-circle-dot" style={{ color: 'var(--wine)' }}></i> Tombol Aksi (Buka Undangan, Maps, dll)
                     </strong>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Background Tombol</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Background Tombol</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"
@@ -316,7 +307,7 @@ export default function SandboxWarnaPanel({ invitation, onUpdated, onLivePreview
                         </div>
 
                         <div>
-                            <label style={{ fontSize: '11px', color: '#666', display: 'block', marginBottom: '4px' }}>Teks Tombol</label>
+                            <label style={{ fontSize: '11px', color: 'var(--ui-muted, #666)', display: 'block', marginBottom: '4px' }}>Teks Tombol</label>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <input
                                     type="color"

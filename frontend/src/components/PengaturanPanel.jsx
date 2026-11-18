@@ -47,7 +47,7 @@ export default function PengaturanPanel({ invitation, onUpdated, onDeleted }) {
 
     const isConfirmed = await confirm(
       'Hapus Undangan',
-      `Apakah Anda yakin ingin menghapus undangan "${bride} & ${groom}"? Data yang dihapus tidak dapat dikembalikan.`,
+      `Apakah Anda yakin ingin menghapus undangan "${bride} & ${groom}"? Konten, ucapan, dan statistik undangan dihapus permanen. Daftar tamu dan RSVP tetap tersimpan di pernikahan. Media yang masih dipakai undangan lain tetap disimpan.`,
       { danger: true }
     );
 
@@ -55,7 +55,7 @@ export default function PengaturanPanel({ invitation, onUpdated, onDeleted }) {
 
     setDeleting(true);
     try {
-      await api.delete(`/invitations/${invitation.id}`);
+      await api.delete(`/invitations/${invitation.id}`,{data:{confirmSlug:invitation.slug}});
       if (onDeleted) onDeleted(invitation.id);
       toast.success('Undangan berhasil dihapus.');
     } catch (err) {
@@ -74,7 +74,7 @@ export default function PengaturanPanel({ invitation, onUpdated, onDeleted }) {
         <div className="section-title">Tautan URL Undangan (Slug)</div>
         <div className="stack">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ color: 'var(--ink-soft)', fontSize: '13px' }}>undanganmanten.id/</span>
+            <span style={{ color: 'var(--ink-soft)', fontSize: '13px' }}>{window.location.host}/</span>
             <input
               className="text-input"
               value={typeof slug === 'string' ? slug : ''}
@@ -90,9 +90,9 @@ export default function PengaturanPanel({ invitation, onUpdated, onDeleted }) {
       </div>
 
       {/* Area Danger Zone untuk Hapus Undangan */}
-      <div className="section-block" style={{ border: '1px solid #ff4d4f', padding: '15px', borderRadius: '8px', marginTop: '30px', background: '#fff5f5' }}>
+      <div className="section-block" style={{ border: '1px solid #ff4d4f', padding: '15px', borderRadius: '8px', marginTop: '30px', background: 'var(--ui-card, #fff5f5)' }}>
         <div className="section-title" style={{ color: '#ff4d4f' }}>Area Berbahaya</div>
-        <p style={{ fontSize: '13px', color: '#666', marginBottom: '12px' }}>
+        <p style={{ fontSize: '13px', color: 'var(--ui-muted, #666)', marginBottom: '12px' }}>
           Menghapus undangan ini akan menghapus seluruh data terkait (profil, acara, galeri, daftar tamu, dan ucapan) secara permanen.
         </p>
         <Button

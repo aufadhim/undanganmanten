@@ -13,3 +13,15 @@ export function mergePreviewOverride(base, override) {
 function isPlainObject(value) {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 }
+
+/** Content drafts may contain an older theme snapshot. Typography has its own live/save lifecycle. */
+export function composeInvitationPreview(saved, contentDraft, liveTypography) {
+  const preview = mergePreviewOverride(saved, contentDraft);
+  return {
+    ...preview,
+    themeSettings: {
+      ...preview.themeSettings,
+      typography: liveTypography ?? saved.themeSettings?.typography,
+    },
+  };
+}

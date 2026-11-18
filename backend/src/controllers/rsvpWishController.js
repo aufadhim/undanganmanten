@@ -1,3 +1,8 @@
+import {saveConfirmation} from '../services/saveConfirmation.js';
+import {confirmationPolicy} from '../utils/confirmationPolicy.js';
+import {isPublicBlocked,themeHidden} from '../utils/platformAccess.js';
+import {getEntitlements} from '../utils/entitlements.js';
+import {guestScope} from '../utils/weddingGuests.js';
 import { prisma } from '../lib/prisma.js';
 import { rsvpSchema, wishSchema, guestSchema } from '../utils/validators.js';
 
@@ -39,7 +44,7 @@ async function saveRsvp(req, res, invitation, { allowUnlisted = false } = {}) {
     // Jika tamu mengakses via link unik
     if (guestIdParam) {
       guest = await prisma.guest.findFirst({
-        where: { id: guestIdParam, invitationId: invitation.id },
+        where: { id: guestIdParam, ...guestScope(invitation) },
       });
     }
 
@@ -50,22 +55,24 @@ async function saveRsvp(req, res, invitation, { allowUnlisted = false } = {}) {
     // Jika tidak punya link unik, cari berdasarkan nama
     if (!guest && guestPart.data.name) {
       guest = await prisma.guest.findFirst({
-        where: { invitationId: invitation.id, name: guestPart.data.name.trim() },
+        where: { ...guestScope(invitation), name: guestPart.data.name.trim() },
       });
     }
 
     // Buat tamu baru jika belum terdaftar
     if (!guest) {
+      const {maxGuests}=await getEntitlements(invitation);
+      if(maxGuests!==null&&await prisma.guest.count({where:guestScope(invitation)})>=maxGuests)return res.status(403).json({error:'Daftar tamu pernikahan sudah mencapai kuota paket.'});
       guest = await prisma.guest.create({
         data: {
-          invitationId: invitation.id,
+          invitationId: invitation.id, weddingId:invitation.weddingId,
           name: guestPart.data.name.trim(),
           phone: guestPart.data.phone || null,
         },
       });
     }
 
-    const limitedRsvp = { ...rsvpPart.data, guestCount: Math.min(rsvpPart.data.guestCount, guest.paxLimit || 2) };
+    const limitedRsvp = { ...rsvpPart.data, guestCount: rsvpPart.data.attending ? Math.min(rsvpPart.data.guestCount, guest.paxLimit || 2) : 0 };
     const rsvp = await prisma.rsvpResponse.upsert({
       where: { guestId: guest.id },
       update: limitedRsvp,
@@ -82,7 +89,7 @@ export async function submitRsvp(req, res) {
       where: { slug: req.params.slug },
       include: { invitationFeatures: true },
     });
-    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    if (!invitation || await isPublicBlocked(invitation) || (invitation.status !== 'published' || new Date(invitation.expiresAt) <= new Date())) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
     return await saveRsvp(req, res, invitation);
   } catch (err) {
     console.error('Error submitRsvp:', err);
@@ -108,11 +115,14 @@ async function saveWish(req, res, invitation) {
       }
     }
 
+    const shouldModerate = Boolean(invitation.invitationFeatures?.wishesModerationEnabled);
+    const initialIsHidden = shouldModerate;
+
     let validGuestId = req.query.g || null;
     let wish;
     
     if (validGuestId) {
-      const guestExists = await prisma.guest.findFirst({ where: { id: validGuestId, invitationId: invitation.id } });
+      const guestExists = await prisma.guest.findFirst({ where: { id: validGuestId, ...guestScope(invitation) } });
       if (!guestExists) {
         validGuestId = null;
       }
@@ -126,27 +136,31 @@ async function saveWish(req, res, invitation) {
       if (existingWish) {
         wish = await prisma.wish.update({
           where: { id: existingWish.id },
-          data: { ...parsed.data, guestId: validGuestId }
+          data: { ...parsed.data, guestId: validGuestId, isHidden: initialIsHidden }
         });
       } else {
         wish = await prisma.wish.create({
-          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId, isHidden: false },
+          data: { ...parsed.data, invitationId: invitation.id, guestId: validGuestId, isHidden: initialIsHidden },
         });
       }
     } else {
       wish = await prisma.wish.create({
-        data: { ...parsed.data, invitationId: invitation.id, isHidden: false },
+        data: { ...parsed.data, invitationId: invitation.id, isHidden: initialIsHidden },
       });
     }
 
-    return res.status(201).json({ message: 'Ucapan berhasil dikirim.', wish });
+    const responseMessage = shouldModerate
+      ? 'Ucapan berhasil dikirim dan akan tampil setelah disetujui keluarga mempelai.'
+      : 'Ucapan berhasil dikirim.';
+
+    return res.status(201).json({ message: responseMessage, wish, pendingModeration: shouldModerate });
 }
 
 // Tamu kirim ucapan dari halaman publik undangan (tanpa login)
 export async function submitWish(req, res) {
   try {
     const invitation = await prisma.invitation.findUnique({ where: { slug: req.params.slug }, include: { invitationFeatures: true } });
-    if (!invitation || invitation.status !== 'published') return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
+    if (!invitation || await isPublicBlocked(invitation) || (invitation.status !== 'published' || new Date(invitation.expiresAt) <= new Date())) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
     return await saveWish(req, res, invitation);
   } catch (err) {
     console.error('Error submitWish:', err);
@@ -159,7 +173,7 @@ export async function submitOwnerPreviewRsvp(req, res) {
   try {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
-    return await saveRsvp(req, res, invitation, { allowUnlisted: true });
+    return res.json({message:'Simulasi RSVP berhasil. Data tidak disimpan.',simulated:true});
   } catch (err) {
     console.error('Error submitOwnerPreviewRsvp:', err);
     return res.status(500).json({ error: 'Gagal menyimpan konfirmasi kehadiran.' });
@@ -170,7 +184,7 @@ export async function submitOwnerPreviewWish(req, res) {
   try {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
-    return await saveWish(req, res, invitation);
+    return res.json({message:'Simulasi ucapan berhasil. Data tidak disimpan.',simulated:true});
   } catch (err) {
     console.error('Error submitOwnerPreviewWish:', err);
     return res.status(500).json({ error: 'Gagal mengirim ucapan.' });
@@ -184,7 +198,7 @@ export async function getMyRsvpSummary(req, res) {
     if (!invitation) return res.status(404).json({ error: 'Kamu belum punya undangan.' });
 
     const guests = await prisma.guest.findMany({
-      where: { invitationId: invitation.id },
+      where: guestScope(invitation),
       include: { rsvp: true },
     });
 
@@ -268,4 +282,17 @@ export async function updateWish(req, res) {
     console.error('Error updateWish:', err);
     return res.status(500).json({ error: 'Gagal memperbarui status ucapan.' });
   }
+}
+
+// Commit attendance and the optional wish together: a rejected wish never leaves a partial RSVP.
+export async function submitConfirmation(req,res){
+ try{
+  const inv=await prisma.invitation.findUnique({where:{slug:req.params.slug},include:{invitationFeatures:true}});
+  if(!inv||await isPublicBlocked(inv)||inv.status!=='published'||new Date(inv.expiresAt)<=new Date())return res.status(404).json({error:'Undangan tidak ditemukan.'});
+  const data=confirmationPolicy(inv,req.body);if(data.error)return res.status(data.status).json({error:data.error});
+  const guestId=req.query.g||req.query.code;
+  const {maxGuests}=await getEntitlements(inv);
+  const result=await saveConfirmation(prisma,inv,data,guestId,maxGuests);
+  return res.status(201).json({...result,pendingModeration:Boolean(result.wish?.isHidden),message:'Konfirmasi berhasil dikirim.'});
+ }catch(error){if(error.code==='P2034')return res.status(409).json({error:'Ada pengiriman bersamaan. Silakan coba lagi.'});console.error('submitConfirmation:',error.message);return res.status(error.status||500).json({error:error.status?error.message:'Gagal menyimpan konfirmasi. Silakan coba lagi.'})}
 }

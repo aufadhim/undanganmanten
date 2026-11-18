@@ -1,0 +1,39 @@
+.sam-guide{color:var(--ink,#40533c);line-height:1.8}.guide-flow,.guide-help{background:#edf0e2;padding:22px 26px;border-radius:12px}.guide-search{display:grid;gap:8px;margin:28px 0;font-weight:600}.guide-search input{width:100%;box-sizing:border-box;min-height:48px;padding:12px 16px;border:1px solid #ccd1bd;border-radius:8px;background:#fffdf7;color:inherit;font:inherit}.guide-toc{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 40px}.guide-toc a{padding:7px 13px;border:1px solid #d5d9c8;border-radius:20px;color:inherit;text-decoration:none;font-size:13px}.guide-topic{scroll-margin-top:25px;margin:42px 0}.guide-topic h2,.guide-help h2{font:32px/1.2 'Cormorant Garamond',Georgia,serif;margin-bottom:20px}.guide-topic details{border-bottom:1px solid #dfe2d4;padding:17px 0}.guide-topic summary{cursor:pointer;font-weight:600;padding-right:12px}.guide-topic details p{margin:14px 0 5px;color:#66745c}.guide-search input:focus-visible,.guide-toc a:focus-visible,.guide-topic summary:focus-visible{outline:2px solid #718359;outline-offset:4px}.policy-sections section{margin:32px 0;line-height:1.85}.policy-sections h2{font:28px/1.25 'Cormorant Garamond',Georgia,serif}.policy-sections a{color:inherit;text-decoration:underline}.policy-date{color:#6e7c62;font-size:13px}
+.guide-figures { display:grid; gap:16px; margin:16px 0 24px; }
+.guide-figures figure { margin:0; overflow:hidden; border:1px solid var(--line,#d5d9c8); border-radius:10px; }
+.guide-figures img { display:block; width:100%; height:auto; }
+.guide-figures figcaption { padding:10px 14px; font-size:.875rem; }
+.contact-channels { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:16px; }
+.contact-channels section { border:1px solid var(--line); border-radius:10px; padding:20px; background:var(--panel); }
+.contact-channels h2 { margin:0 0 8px; font:500 28px/1.2 'Cormorant Garamond',Georgia,serif; }
+.contact-channels a { color:inherit; overflow-wrap:anywhere; }
+.guide-practice { margin:16px 0 24px; padding:16px; border:1px solid var(--line); border-radius:12px; background:var(--panel); }
+.guide-practice h3 { margin:0 0 8px; }
+.guide-practice > button { margin:0 8px 8px 0; }
+.guide-practice-body { margin-top:12px; min-width:0; }
+.guide-theme-preview .theme-poster { width:min(100%,220px); aspect-ratio:3/4; }
+
+.guide-practice > button.sam-action-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #40583a;
+  border-radius: 8px;
+  background: #40583a;
+  color: #fffdf5;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.guide-practice > button.sam-action-link:is(:hover, :focus-visible) {
+  background: #31462c;
+  color: #fffdf5;
+}
+@media (max-width: 600px) {
+  .atelier-document-body .sam-guide :is(p, summary, li, a, label, input, select, textarea, button) {
+    font-size: 12px !important;
+  }
+  .atelier-document-body .sam-guide .guide-topic > h2 { font-size: 23px; line-height: 1.2; }
+  .sam-guide .guide-practice h3 { font-size: 16px; }
+}

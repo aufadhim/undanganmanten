@@ -1,0 +1,38 @@
+.foliage-curtain{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+.foliage-bough{position:absolute;inset:-24%;background:url('/templates/viridarium/assets/foliage-curtain.webp') center/cover no-repeat;will-change:transform;transition:transform 4.6s cubic-bezier(.22,.65,.22,1);transform:scale(1.1)}
+.foliage-bough.left{clip-path:polygon(0 0,51% 0,49% 18%,52% 36%,48% 57%,51% 78%,49% 100%,0 100%);transform-origin:8% 60%}
+.foliage-bough.right{clip-path:polygon(49% 0,100% 0,100% 100%,51% 100%,49% 78%,52% 57%,48% 36%,51% 18%);transform-origin:92% 45%}
+.foliage-reveal .foliage-bough.left{transform:translate(-43%,0) rotate(-8deg) scale(1.16)}
+.foliage-reveal .foliage-bough.right{transform:translate(43%,-2%) rotate(9deg) scale(1.16)}
+#cover:not(.foliage-reveal) .cover-heading,#cover:not(.foliage-reveal) .cover-response{opacity:0!important}
+#cover.foliage-reveal.scene-ready .cover-heading{transition-delay:1.8s}
+#cover.foliage-reveal.scene-ready .cover-response{transition-delay:2.5s}
+.cover-butterflies{position:absolute;inset:0;pointer-events:none;z-index:7;opacity:0;transition:opacity 1.4s 3s}
+.foliage-reveal .cover-butterflies{opacity:1}
+.garden-butterfly{position:absolute;width:24px;height:21px;left:19%;top:60%;animation:butterfly-garden-flight 19s ease-in-out infinite;will-change:transform}
+.garden-butterfly.butterfly-2{left:76%;top:74%;animation-duration:25s;animation-delay:-9s;scale:.75}
+.garden-butterfly i{position:absolute;top:0;width:50%;height:90%;background:radial-gradient(ellipse at 75% 65%,#f3e4bf,#b59d73 65%,#788269);border:1px solid #9f9c7d80;transform-origin:100% 50%;border-radius:85% 15% 65% 25%;animation:butterfly-wing .32s ease-in-out infinite alternate}
+.garden-butterfly i:nth-child(2){left:50%;transform-origin:0 50%;border-radius:15% 85% 25% 65%;animation-direction:alternate-reverse}
+.garden-butterfly b{position:absolute;left:47%;width:6%;height:75%;top:10%;background:#786c53;border-radius:50%}
+@keyframes butterfly-wing{from{transform:rotateY(15deg)}to{transform:rotateY(72deg)}}
+@keyframes butterfly-garden-flight{0%,100%{transform:translate(0,0) rotate(-20deg)}20%{transform:translate(23px,-85px) rotate(16deg)}44%{transform:translate(-18px,-30px) rotate(-15deg)}66%{transform:translate(35px,35px) rotate(22deg)}82%{transform:translate(8px,15px) rotate(-8deg)}}
+#cover.opening .foliage-curtain,#cover.opening .cover-butterflies{opacity:0;transition:opacity .7s}
+@media(prefers-reduced-motion:reduce){.foliage-bough{transition:none}.garden-butterfly,.garden-butterfly i{animation:none}.cover-butterflies{transition:none}.foliage-curtain{display:none}}
+@media(prefers-reduced-motion:no-preference){.foliage-reveal .foliage-bough{animation:canopy-breath 8s 4.6s ease-in-out infinite alternate}.foliage-reveal .foliage-bough.right{animation-duration:10s;animation-delay:4.9s}}
+@keyframes canopy-breath{from{translate:0 0}to{translate:5px -7px}}
+
+/* Painted wing silhouettes, with broad curved travel and short resting phases. */
+.garden-butterfly{width:38px;height:27px;left:12%;top:62%;animation:butterfly-wide-flight 22s ease-in-out infinite;filter:saturate(.55) sepia(.15);perspective:160px}
+.garden-butterfly.butterfly-2{left:78%;top:70%;animation:butterfly-wide-flight-two 27s -11s ease-in-out infinite;scale:.82}
+.garden-butterfly i{width:50%;height:100%;background:url('/templates/shared/assets/cover-butterfly.webp') left center/200% 100% no-repeat;border:0;border-radius:0;transform-origin:100% 50%;animation:painted-wing .65s ease-in-out infinite alternate}
+.garden-butterfly i:nth-child(2){background-position:right center;left:50%;transform-origin:0 50%;animation:painted-wing .65s ease-in-out infinite alternate}
+.garden-butterfly b{display:none}
+@keyframes painted-wing{0%,15%{transform:rotateY(5deg)}100%{transform:rotateY(64deg)}}
+@keyframes butterfly-wide-flight{0%,12%{transform:translate(0,0) rotate(-18deg)}30%{transform:translate(8vw,-9vh) rotate(30deg)}48%{transform:translate(2vw,-18vh) rotate(-32deg)}68%{transform:translate(-3vw,-7vh) rotate(-14deg)}88%,100%{transform:translate(0,0) rotate(-18deg)}}
+@keyframes butterfly-wide-flight-two{0%,15%{transform:translate(0,0) rotate(20deg)}35%{transform:translate(-7vw,-13vh) rotate(-35deg)}55%{transform:translate(-3vw,-22vh) rotate(25deg)}77%{transform:translate(4vw,-8vh) rotate(15deg)}94%,100%{transform:translate(0,0) rotate(20deg)}}
+@media(prefers-reduced-motion:reduce){.garden-butterfly,.garden-butterfly.butterfly-2,.garden-butterfly i,.garden-butterfly i:nth-child(2){animation:none}}
+
+/* Keep the entire painted silhouette intact; never split the body between wing crops. */
+.garden-butterfly img{display:block;width:100%;height:100%;object-fit:contain;transform-origin:50% 50%;animation:whole-butterfly-wing .8s ease-in-out infinite alternate}
+@keyframes whole-butterfly-wing{from{transform:scaleX(1) rotate(-3deg)}to{transform:scaleX(.72) rotate(3deg)}}
+@media(prefers-reduced-motion:reduce){.garden-butterfly img{animation:none}}

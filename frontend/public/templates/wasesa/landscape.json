@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "id": "wasesa-javanese-garden",
+  "world": {
+    "width": 54000,
+    "height": 18000,
+    "z": -2200,
+    "asset": "panorama",
+    "y": -1800
+  },
+  "areas": [
+    {
+      "id": "joglo",
+      "asset": "landscapeGarden",
+      "x": -12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.4,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "watercourt",
+      "asset": "landscapeRiver",
+      "x": -4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.56,
+        "width": 0.42,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "bamboo-bridge",
+      "asset": "landscapeBridge",
+      "x": 4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.51,
+        "y": 0.66,
+        "width": 0.36,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "lotus-pond",
+      "asset": "landscapeLake",
+      "x": 12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.56,
+        "width": 0.36,
+        "height": 0.3
+      },
+      "y": -1800
+    }
+  ],
+  "stops": [
+    {
+      "id": "cover",
+      "area": "joglo",
+      "x": 0,
+      "y": -319.3090909090911,
+      "z": 1260.7927617406303
+    },
+    {
+      "id": "hero",
+      "area": "joglo",
+      "x": 0,
+      "y": -436.1454545454544,
+      "z": 1260.7927617406303
+    },
+    {
+      "id": "janji",
+      "area": "joglo",
+      "x": 450,
+      "y": -70,
+      "z": 2200
+    },
+    {
+      "id": "wanita",
+      "area": "joglo",
+      "x": 150,
+      "y": -55,
+      "z": 1120
+    },
+    {
+      "id": "pria",
+      "area": "joglo",
+      "x": -150,
+      "y": -65,
+      "z": 1120
+    },
+    {
+      "id": "countdown",
+      "area": "watercourt",
+      "x": -350,
+      "y": -140,
+      "fit": "landmark"
+    },
+    {
+      "id": "akad",
+      "area": "watercourt",
+      "x": 0,
+      "y": 80,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rundown",
+      "area": "watercourt",
+      "x": 420,
+      "y": -50,
+      "z": 2300
+    },
+    {
+      "id": "cerita",
+      "area": "bamboo-bridge",
+      "x": 0,
+      "y": -100,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "galeri",
+      "area": "bamboo-bridge",
+      "x": 250,
+      "y": -180,
+      "fit": "landmark"
+    },
+    {
+      "id": "dresscode",
+      "area": "bamboo-bridge",
+      "x": 620,
+      "y": -45,
+      "z": 2450
+    },
+    {
+      "id": "livestream",
+      "area": "bamboo-bridge",
+      "x": 920,
+      "y": -20,
+      "z": 2500
+    },
+    {
+      "id": "filter",
+      "area": "bamboo-bridge",
+      "x": 1200,
+      "y": 0,
+      "z": 2200
+    },
+    {
+      "id": "gift",
+      "area": "lotus-pond",
+      "x": -380,
+      "y": -70,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rsvp",
+      "area": "lotus-pond",
+      "x": 0,
+      "y": -50,
+      "fit": "landmark"
+    },
+    {
+      "id": "penutup",
+      "area": "lotus-pond",
+      "x": 0,
+      "y": -1553.1428571428564,
+      "z": 3893.432633716994
+    }
+  ],
+  "characters": {
+    "cover": {
+      "stop": "cover",
+      "y": 200.45754946649618,
+      "z": -1800,
+      "width": 745.1573265044817,
+      "aspect": 0.6666666666666666,
+      "footY": 0.9902777777777778
+    },
+    "hero": {
+      "stop": "hero",
+      "y": 186.95354946649627,
+      "z": -1800,
+      "width": 745.1573265044817,
+      "aspect": 0.6666666666666666,
+      "footY": 0.9902777777777778
+    },
+    "closing": {
+      "stop": "penutup",
+      "y": -53.40258870849311,
+      "z": -1800,
+      "width": 1428.9222735979513,
+      "aspect": 0.6666666666666666,
+      "footY": 0.9902777777777778
+    }
+  },
+  "decorations": [
+    {
+      "id": "garden-flowers",
+      "asset": "riverbank",
+      "area": "joglo",
+      "x": -467.50000000000006,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.08
+    },
+    {
+      "id": "river-flowers",
+      "asset": "riverbank",
+      "area": "watercourt",
+      "x": 797.5000000000001,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.1
+    },
+    {
+      "id": "bridge-flowers",
+      "asset": "riverbank",
+      "area": "bamboo-bridge",
+      "x": -852.5000000000001,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.1
+    },
+    {
+      "id": "lake-flowers",
+      "asset": "riverbank",
+      "area": "lotus-pond",
+      "x": 660,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.08
+    },
+    {
+      "id": "closing-ground",
+      "asset": "contactShadow",
+      "area": "lotus-pond",
+      "x": 150,
+      "y": 1150,
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "closing",
+        "contact": true
+      }
+    },
+    {
+      "id": "cover-contact",
+      "asset": "contactShadow",
+      "area": "joglo",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "cover",
+        "contact": true
+      }
+    },
+    {
+      "id": "hero-contact",
+      "asset": "contactShadow",
+      "area": "joglo",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "hero",
+        "contact": true
+      }
+    }
+  ],
+  "motion": {
+    "overviewHoldMs": 650,
+    "durationScale": 1.6
+  }
+}

@@ -1,5 +1,9 @@
+import {plannerInviteContext} from '../utils/plannerInviteContext.js';
+import { DashboardThemeToggle } from '../components/atelier/CanvasRouteFrame.jsx';
+import Brand from '../components/atelier/Brand.jsx';
+import AuthArtwork from '../components/atelier/AuthArtwork.jsx';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { useTranslation } from 'react-i18next';
 import { api, setToken, getToken } from '../api/client.js';
@@ -8,7 +12,8 @@ import { useUI } from '../context/UIContext.jsx';
 
 export default function Signup() {
     const { t } = useTranslation();
-    const navigate = useNavigate();
+    const inviteContext = plannerInviteContext(window.location.search);
+
     const [step, setStep] = useState(1); // 1: Signup, 2: OTP
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -26,9 +31,9 @@ export default function Signup() {
 
     useEffect(() => {
         if (getToken()) {
-            navigate('/dashboard');
+            window.location.replace(inviteContext.returnPath || '/dashboard');
         }
-    }, [navigate]);
+    }, []);
 
     useEffect(() => {
         let interval;
@@ -80,7 +85,7 @@ export default function Signup() {
         try {
             const res = await api.post('/auth/verify-email', { email, otp });
             setToken(res.data.token);
-            navigate('/dashboard');
+            window.location.replace(inviteContext.returnPath || '/dashboard');
         } catch (err) {
             setError(err.response?.data?.error || t('auth.otp_fail'));
         } finally {
@@ -89,12 +94,24 @@ export default function Signup() {
     }
 
     async function handleGoogleSuccess(credentialResponse) {
+        setError('');
+        setLoading(true);
         try {
+            if (!credentialResponse?.credential) {
+                throw new Error('Google belum mengirim hasil login. Silakan coba lagi.');
+            }
             const res = await api.post('/auth/google', { credential: credentialResponse.credential });
+            if (typeof res.data?.token !== 'string' || !res.data.token.trim()) {
+                throw new Error('Server belum membuat sesi login. Silakan coba lagi.');
+            }
             setToken(res.data.token);
-            navigate('/dashboard');
+            window.location.replace(inviteContext.returnPath || (res.data.user?.role === 'ADMIN' ? '/admin' : '/dashboard'));
         } catch (err) {
-            setError(err.response?.data?.error || t('auth.google_fail'));
+            setError(err.response?.data?.error || (err.code === 'ERR_NETWORK'
+                ? 'Tidak dapat terhubung ke server Samavaya. Pastikan backend berjalan, lalu coba lagi.'
+                : err.message || t('auth.google_fail')));
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -116,16 +133,14 @@ export default function Signup() {
 
     if (step === 2) {
         return (
-            <div className="auth-screen">
-                <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10 }}>
-                    <LangSwitcher style={{ background: 'var(--auth-paper)', color: 'var(--auth-ink)', borderColor: 'var(--auth-line)' }} />
+            <div className="auth-screen auth-signup">
+                <div className="atelier-auth-language">
+                    <DashboardThemeToggle />
+                <LangSwitcher style={{ background: 'var(--auth-paper)', color: 'var(--auth-ink)', borderColor: 'var(--auth-line)' }} />
                 </div>
                 <div className="auth-left">
                     <div className="auth-card">
-                        <div className="auth-brand">
-                            <img src="/logo.png" alt="UndanganManten Logo" style={{ height: 22, marginRight: 8 }} />
-                            UNDANGANMANTEN
-                        </div>
+                        <Brand className="auth-brand"/>
                         <h1 className="auth-title">{t('auth.verify_title')}</h1>
                         <p className="auth-subtitle">{t('auth.verify_sub', { email })}</p>
 
@@ -142,7 +157,7 @@ export default function Signup() {
                                     required 
                                 />
                             </label>
-                            {error && <div className="form-error">{error}</div>}
+                            {error && <div className="form-error" role="alert">{error}</div>}
                             <button type="submit" className="btn-primary" disabled={loading}>
                                 {loading ? t('auth.verifying') : t('auth.verify_btn')}
                             </button>
@@ -153,7 +168,7 @@ export default function Signup() {
                                     onClick={() => { setStep(1); setOtp(''); }}
                                     style={{ background: 'none', border: 'none', color: 'var(--auth-ink-soft)', cursor: 'pointer', padding: 0 }}
                                 >
-                                    ← Kembali
+                                     Kembali
                                 </button>
                                 
                                 <button 
@@ -175,56 +190,38 @@ export default function Signup() {
                         </form>
                     </div>
                 </div>
-                <div className="auth-right">
-                    <div className="iphone-mockup">
-                        <div className="dynamic-island"></div>
-                        <div className="iphone-screen">
-                            <div className="mockup-invitation">
-                                <h4>The Wedding of</h4>
-                                <h2>Rangga</h2>
-                                <div className="and">&</div>
-                                <h2>Cinta</h2>
-                                <div className="mockup-date">
-                                    12 . 10 . 2026
-                                </div>
-                                <div className="mockup-photo"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <AuthArtwork/>
             </div>
         );
     }
 
     return (
-        <div className="auth-screen">
-            <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10 }}>
+        <div className="auth-screen auth-signup">
+            <div className="atelier-auth-language">
+                <DashboardThemeToggle />
                 <LangSwitcher style={{ background: 'var(--auth-paper)', color: 'var(--auth-ink)', borderColor: 'var(--auth-line)' }} />
             </div>
             
             <div className="auth-left">
                 <div className="auth-card">
-                    <div className="auth-brand">
-                        <img src="/logo.png" alt="UndanganManten Logo" style={{ height: 22, marginRight: 8 }} />
-                        UNDANGANMANTEN
-                    </div>
+                    <Brand className="auth-brand"/>
                     <h1 className="auth-title">{t('auth.signup_title', 'Create account')}</h1>
                     <p className="auth-subtitle">{t('auth.signup_sub', 'Mulai buat undangan pernikahan digitalmu sekarang.')}</p>
 
                     <form onSubmit={handleSignupSubmit} className="auth-form">
-                        <label className="field">
+                        <label className="field signup-field-name">
                             <span>{t('auth.name', 'Nama Lengkap')}</span>
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nama Anda" required />
                         </label>
-                        <label className="field">
+                        <label className="field signup-field-email">
                             <span>{t('auth.email', 'Email')}</span>
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Alamat email Anda" required />
                         </label>
-                        <label className="field">
+                        <label className="field signup-field-phone">
                             <span>{t('auth.phone', 'Nomor WhatsApp')}</span>
                             <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="0812..." required />
                         </label>
-                        <label className="field">
+                        <label className="field signup-field-password">
                             <span>{t('auth.password', 'Kata Sandi')}</span>
                             <input
                                 type="password"
@@ -246,7 +243,7 @@ export default function Signup() {
                                 </span>
                             )}
                         </label>
-                        <label className="field">
+                        <label className="field signup-field-confirm_password">
                             <span>{t('auth.confirm_password', 'Konfirmasi Kata Sandi')}</span>
                             <input
                                 type="password"
@@ -285,7 +282,7 @@ export default function Signup() {
                             </span>
                         </label>
 
-                        {error && <div className="form-error">{error}</div>}
+                        {error && <div className="form-error" role="alert">{error}</div>}
 
                         <button type="submit" className="btn-primary" disabled={loading}>
                             {loading ? t('auth.processing') : t('auth.signup_btn', 'Create account')}
@@ -293,6 +290,7 @@ export default function Signup() {
                     </form>
 
                     {googleEnabled && <>
+                        {loading && <p className="auth-google-status" role="status">Menghubungkan akun…</p>}
                         <div className="auth-or">{t('auth.or_email', 'or')}</div>
                         <div style={{ marginBottom: 20 }}>
                             <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError(t('auth.google_fail'))} useOneTap width="100%" text="signup_with" />
@@ -300,28 +298,12 @@ export default function Signup() {
                     </>}
                     
                     <p className="auth-switch">
-                        {t('auth.has_account', 'Already have an account?')} <Link to="/login">{t('auth.login_here', 'Login')}</Link>
+                        {t('auth.has_account', 'Already have an account?')} <Link className="sam-action-link" to={'/login'+inviteContext.query}>{t('auth.login_here', 'Login')}</Link>
                     </p>
                 </div>
             </div>
 
-            <div className="auth-right">
-                <div className="iphone-mockup">
-                    <div className="dynamic-island"></div>
-                    <div className="iphone-screen">
-                        <div className="mockup-invitation">
-                            <h4>The Wedding of</h4>
-                            <h2>Rangga</h2>
-                            <div className="and">&</div>
-                            <h2>Cinta</h2>
-                            <div className="mockup-date">
-                                12 . 10 . 2026
-                            </div>
-                            <div className="mockup-photo"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <AuthArtwork/>
         </div>
     );
 }

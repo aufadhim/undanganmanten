@@ -17,18 +17,46 @@ model User {
   resetPasswordExpires     DateTime?    @map("reset_password_expires")
   resetPasswordToken       String?      @map("reset_password_token")
   verificationToken        String?      @map("verification_token")
+  suspendedAt              DateTime? @map("suspended_at")
+  suspensionReason         String? @map("suspension_reason")
   role                     Role         @default(USER)
   invitation               Invitation[]
+  weddings                 Wedding[]
 
   @@map("users")
 }
 
+model Wedding {
+  id String @id @default(uuid())
+  userId String @map("user_id")
+  title String
+  weddingDate DateTime @map("wedding_date")
+  createdAt DateTime @default(now()) @map("created_at")
+  user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+  invitations Invitation[]
+  guests Guest[]
+  addons WeddingAddon[]
+  plannerTasks WeddingPlannerTask[]
+  plannerEntries WeddingPlannerEntry[]
+  plannerMembers PlannerMember[]
+  plannerShares PlannerShare[]
+  plannerSettings Json @default("{}") @map("planner_settings")
+  @@index([userId])
+  @@map("weddings")
+}
+
 model Invitation {
+  browserLock Boolean @default(false)
+  guestBrowserAccess GuestBrowserAccess[]
   id                 String              @id @default(uuid())
   userId             String              @map("user_id")
+  weddingId          String?             @map("wedding_id")
+  wedding            Wedding?            @relation(fields:[weddingId],references:[id],onDelete:SetNull)
   slug               String              @unique
   themeId            String?             @map("theme_id")
   weddingDate        DateTime            @map("wedding_date")
+  suspendedAt        DateTime? @map("suspended_at")
+  suspensionReason   String? @map("suspension_reason")
   status             InvitationStatus    @default(draft)
   expiresAt          DateTime            @map("expires_at")
   createdAt          DateTime            @default(now()) @map("created_at")
@@ -45,9 +73,13 @@ model Invitation {
   invitationFeatures InvitationFeatures?
   user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
   livestreamSettings LivestreamSettings?
+  deskAccesses       GuestDeskAccess[]
   orders             Order[]
   quoteSettings      QuoteSettings?
   rundowns           Rundown[]
+  illustrationWallet IllustrationWallet?
+  illustrationGenerations IllustrationGeneration[]
+  illustrationRequest IllustrationRequest?
   themeSettings      ThemeSettings?
   timelineStories    TimelineStory[]
   wishes             Wish[]
@@ -57,19 +89,40 @@ model Invitation {
 }
 
 model Order {
+  kind            String @default("PACKAGE")
   id              String      @id @default(uuid())
   invitationId    String      @map("invitation_id")
   packageType     PackageType @map("package_type")
   amount          Int
   status          OrderStatus @default(PENDING)
   midtransOrderId String      @unique @map("midtrans_order_id")
+  tripay          Json?
   snapToken       String?     @map("snap_token")
+  activationSource String @default("gateway") @map("activation_source")
+  activationReason String? @map("activation_reason")
   paidAt          DateTime?   @map("paid_at")
   createdAt       DateTime    @default(now()) @map("created_at")
   addons          Json?
   invitation      Invitation  @relation(fields: [invitationId], references: [id], onDelete: Cascade)
 
   @@map("orders")
+}
+
+model IllustrationRequest {
+  id String @id @default(uuid())
+  invitationId String @unique @map("invitation_id")
+  status String @default("submitted")
+  references Json
+  brief String @db.Text
+  referenceDetails Json? @map("reference_details")
+  resultCover String? @map("result_cover")
+  resultHero String? @map("result_hero")
+  resultMeta Json? @map("result_meta")
+  adminNote String? @map("admin_note")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  invitation Invitation @relation(fields:[invitationId], references:[id], onDelete:Cascade)
+  @@map("illustration_requests")
 }
 
 model ThemeSettings {
@@ -87,12 +140,15 @@ model ThemeSettings {
   igFilterUrl         String?    @map("ig_filter_url")
   coverImageUrl       String?    @map("cover_image_url")
   coverSecondImageUrl String?    @map("cover_second_image_url")
+  characterSettings Json? @map("character_settings")
   coverType           String?    @map("cover_type")
   openingAnimation    String?    @map("opening_animation")
   dresscodeDetails    Json?      @map("dresscode_details")
   igFilterImageUrl    String?    @map("ig_filter_image_url")
   layoutOrder         Json?      @map("layout_order")
   mainStory           String?    @map("main_story")
+  brideInstagramEnabled Boolean? @map("bride_instagram_enabled")
+  groomInstagramEnabled Boolean? @map("groom_instagram_enabled")
   brideBioEnabled     Boolean?   @map("bride_bio_enabled")
   groomBioEnabled     Boolean?   @map("groom_bio_enabled")
   galleryLayout       String?    @map("gallery_layout")
@@ -183,8 +239,11 @@ model TimelineStory {
 }
 
 model Guest {
+  browserAccess GuestBrowserAccess[]
   id              String        @id @default(uuid())
-  invitationId    String        @map("invitation_id")
+  invitationId    String?        @map("invitation_id")
+  weddingId       String?       @map("wedding_id")
+  wedding         Wedding?      @relation(fields:[weddingId],references:[id],onDelete:Cascade)
   name            String
   phone           String?
   groupName       String?       @map("group_name")
@@ -193,12 +252,14 @@ model Guest {
   openedAt        DateTime?     @map("opened_at")
   checkedIn       Boolean       @default(false) @map("checked_in")
   checkedInAt     DateTime?     @map("checked_in_at")
+  checkInCount    Int?          @map("check_in_count")
   paxLimit        Int            @default(2) @map("pax_limit")
   customWaMessage String?       @map("custom_wa_message")
-  invitation      Invitation    @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  invitation      Invitation?   @relation(fields: [invitationId], references: [id], onDelete: SetNull)
   rsvp            RsvpResponse?
   wishes          Wish[]
 
+  @@index([weddingId])
   @@map("guests")
 }
 
@@ -269,7 +330,7 @@ model InvitationFeatures {
   customLogoEnabled Boolean    @default(true) @map("custom_logo_enabled")
   musicEnabled      Boolean    @default(true) @map("music_enabled")
   dresscodeEnabled  Boolean    @default(true) @map("dresscode_enabled")
-  igFilterEnabled   Boolean    @default(true) @map("ig_filter_enabled")
+  igFilterEnabled   Boolean    @default(false) @map("ig_filter_enabled")
   rundownEnabled    Boolean    @default(true) @map("rundown_enabled")
   views             Int        @default(0)
   invitation        Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
@@ -282,6 +343,7 @@ model Rundown {
   invitationId String     @map("invitation_id")
   time         String
   activity     String
+  description  String?
   order        Int        @default(0)
   invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
 
@@ -297,6 +359,8 @@ enum InvitationStatus {
   draft
   published
   expired
+  archived
+  trashed
 }
 
 enum PackageType {
@@ -315,6 +379,7 @@ enum OrderStatus {
 enum EventType {
   akad
   resepsi
+  ngunduh_mantu
 }
 
 enum MediaType {
@@ -332,4 +397,161 @@ enum GiftType {
   bank_transfer
   address
   both
+}
+
+// Physical uploaded objects, counted once per owner even when reused by a duplicate.
+model UploadedAsset {
+ id String @id @default(uuid())
+ ownerId String @map("owner_id")
+ uploadedForId String @map("uploaded_for_id")
+ invitationIds String[] @default([]) @map("invitation_ids")
+ url String @unique
+ key String
+ backend String
+ bytes Int
+ state String @default("reserved")
+ createdAt DateTime @default(now()) @map("created_at")
+ @@index([ownerId])
+ @@map("uploaded_assets")
+}
+
+model AdminAuditLog {
+ id String @id @default(uuid())
+ actorId String @map("actor_id")
+ action String
+ targetType String @map("target_type")
+ targetId String @map("target_id")
+ reason String
+ before Json?
+ after Json?
+ createdAt DateTime @default(now()) @map("created_at")
+ @@index([createdAt])
+ @@index([targetId])
+ @@map("admin_audit_logs")
+}
+model TemplateAvailability {
+ id String @id
+ hidden Boolean @default(false)
+ updatedAt DateTime @updatedAt @map("updated_at")
+ @@map("template_availability")
+}
+
+model IllustrationWallet {
+ id String @id @default(uuid())
+ invitationId String @unique @map("invitation_id")
+ granted Int @default(3)
+ remaining Int @default(3)
+ invitation Invitation @relation(fields:[invitationId],references:[id],onDelete:Cascade)
+ @@map("illustration_wallets")
+}
+model IllustrationGeneration {
+ id String @id @default(uuid())
+ invitationId String? @map("invitation_id")
+ ownerId String @map("owner_id")
+ requestKey String @map("request_key")
+ status String @default("queued")
+ referenceUrls Json @map("reference_urls")
+ styleVersion String @map("style_version")
+ resultUrl String? @map("result_url")
+ aspect Float?
+ error String?
+ refunded Boolean @default(false)
+ createdAt DateTime @default(now()) @map("created_at")
+ updatedAt DateTime @updatedAt @map("updated_at")
+ invitation Invitation? @relation(fields:[invitationId],references:[id],onDelete:SetNull)
+ @@unique([invitationId,requestKey])
+ @@index([status,createdAt])
+ @@map("illustration_generations")
+}
+
+// Revocable, scoped access for reception staff. Only the token hash is stored.
+model GuestDeskAccess {
+  id String @id @default(uuid())
+  invitationId String @map("invitation_id")
+  ownerId String @map("owner_id")
+  label String
+  tokenHash String @unique @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  invitation Invitation @relation(fields:[invitationId],references:[id],onDelete:Cascade)
+  @@index([invitationId])
+  @@map("guest_desk_accesses")
+}
+
+// Wedding-owned entitlement survives replacing/deleting an invitation design.
+model WeddingAddon {
+  id String @id @default(uuid())
+  weddingId String @map("wedding_id")
+  addon String
+  grantedAt DateTime @default(now()) @map("granted_at")
+  revokedAt DateTime? @map("revoked_at")
+  wedding Wedding @relation(fields:[weddingId],references:[id],onDelete:Cascade)
+  @@unique([weddingId,addon])
+  @@map("wedding_addons")
+}
+
+model GuestBrowserAccess {
+  invitationId String
+  guestId String
+  linkToken String? @unique
+  browserHash String?
+  invitation Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  guest Guest @relation(fields: [guestId], references: [id], onDelete: Cascade)
+
+  @@id([invitationId, guestId])
+  @@index([guestId])
+  @@index([invitationId, browserHash])
+}
+model WeddingPlannerTask {
+  updatedBy String @default("") @map("updated_by")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  id String @id @default(uuid())
+  weddingId String @map("wedding_id")
+  preset String?
+  category String @default("Umum")
+  owner String @default("")
+  title String @db.VarChar(140)
+  dueDate DateTime @map("due_date") @db.Date
+  done Boolean @default(false)
+  wedding Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+  @@unique([weddingId, preset])
+  @@index([weddingId, dueDate])
+  @@map("wedding_planner_tasks")
+}
+
+model WeddingPlannerEntry {
+  updatedBy String @default("") @map("updated_by")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  id String @id @default(uuid())
+  weddingId String @map("wedding_id")
+  module String
+  details Json
+  createdAt DateTime @default(now()) @map("created_at")
+  wedding Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+  @@index([weddingId, module])
+  @@map("wedding_planner_entries")
+}
+
+model PlannerMember {
+ id String @id @default(uuid())
+ weddingId String @map("wedding_id")
+ email String
+ userId String? @map("user_id")
+ tokenHash String @unique @map("token_hash")
+ expiresAt DateTime @map("expires_at")
+ acceptedAt DateTime? @map("accepted_at")
+ wedding Wedding @relation(fields:[weddingId],references:[id],onDelete:Cascade)
+ @@unique([weddingId,email])
+ @@index([userId])
+ @@map("planner_members")
+}
+model PlannerShare {
+ id String @id @default(uuid())
+ weddingId String @map("wedding_id")
+ tokenHash String @unique @map("token_hash")
+ expiresAt DateTime @map("expires_at")
+ wedding Wedding @relation(fields:[weddingId],references:[id],onDelete:Cascade)
+ @@index([weddingId])
+ @@map("planner_shares")
 }

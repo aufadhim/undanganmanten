@@ -9,6 +9,10 @@
     "test:e2e": "npm --prefix frontend run test:e2e",
     "audit": "npm run audit:backend && npm run audit:frontend",
     "audit:backend": "cd backend && npm audit --omit=dev",
-    "audit:frontend": "cd frontend && npm audit --omit=dev"
+    "audit:frontend": "cd frontend && npm audit --omit=dev",
+    "audit:assets": "python3 tools/audit/inventory.py",
+    "check:assets": "python3 tools/audit/check-built-assets.py",
+    "registry:sync": "node tools/sync-template-registry.cjs",
+    "templates:sync": "node tools/sync-template-registry.cjs"
   }
 }

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "melayu-balairung",
+    "source": "shared/template-scenes/melayu-balairung.json",
+    "revision": "37dc7da3d05aa67e"
+  },
+  {
+    "id": "melayu-hikayat",
+    "source": "shared/template-scenes/melayu-hikayat.json",
+    "revision": "2412a4f06e90e4d3"
+  },
+  {
+    "id": "sunda-pendopo",
+    "source": "shared/template-scenes/sunda-pendopo.json",
+    "revision": "f8b471cdee7ceee9"
+  },
+  {
+    "id": "sunda-parahyangan",
+    "source": "shared/template-scenes/sunda-parahyangan.json",
+    "revision": "7acc5c3b5ac5c004"
+  },
+  {
+    "id": "bali-pekarangan",
+    "source": "shared/template-scenes/bali-pekarangan.json",
+    "revision": "c34796e9e391484c"
+  },
+  {
+    "id": "bali-subak",
+    "source": "shared/template-scenes/bali-subak.json",
+    "revision": "1b838efb111cd6e1"
+  },
+  {
+    "id": "banjar",
+    "source": "shared/template-scenes/banjar.json",
+    "revision": "1eb6c5f2ad051a0f"
+  },
+  {
+    "id": "dayak",
+    "source": "shared/template-scenes/dayak.json",
+    "revision": "a329ad1b725bc35b"
+  },
+  {
+    "id": "bugis-makassar",
+    "source": "shared/template-scenes/bugis-makassar.json",
+    "revision": "559ed15badfdc1f3"
+  },
+  {
+    "id": "toraja",
+    "source": "shared/template-scenes/toraja.json",
+    "revision": "2a9b1ac9c4cbb57f"
+  },
+  {
+    "id": "sumba",
+    "source": "shared/template-scenes/sumba.json",
+    "revision": "237568b94ab3bf27"
+  },
+  {
+    "id": "flores",
+    "source": "shared/template-scenes/flores.json",
+    "revision": "097aec7cf878d24c"
+  },
+  {
+    "id": "maluku",
+    "source": "shared/template-scenes/maluku.json",
+    "revision": "ef32020c78638fb3"
+  },
+  {
+    "id": "papua",
+    "source": "shared/template-scenes/papua.json",
+    "revision": "419e2c8666af2d26"
+  },
+  {
+    "id": "minangkabau",
+    "source": "shared/template-scenes/minangkabau.json",
+    "revision": "d1ca094c9f64780e"
+  },
+  {
+    "id": "masjid-taman",
+    "source": "shared/template-scenes/masjid-taman.json",
+    "revision": "a40c33111b2db60e"
+  },
+  {
+    "id": "masjid-manuskrip",
+    "source": "shared/template-scenes/masjid-manuskrip.json",
+    "revision": "d677982f7d635b61"
+  },
+  {
+    "id": "katedral",
+    "source": "shared/template-scenes/katedral.json",
+    "revision": "254057bbdd8288e6"
+  },
+  {
+    "id": "katedral-album",
+    "source": "shared/template-scenes/katedral-album.json",
+    "revision": "f565b87709537917"
+  },
+  {
+    "id": "taman-tionghoa",
+    "source": "shared/template-scenes/taman-tionghoa.json",
+    "revision": "c4f8c2ae7e337f89"
+  },
+  {
+    "id": "peranakan",
+    "source": "shared/template-scenes/peranakan.json",
+    "revision": "eb419416cc3c5717"
+  },
+  {
+    "id": "chateau",
+    "source": "shared/template-scenes/chateau.json",
+    "revision": "590c73a7808c9733"
+  },
+  {
+    "id": "edinburgh",
+    "source": "shared/template-scenes/edinburgh.json",
+    "revision": "f27ebde97a8f6a37"
+  },
+  {
+    "id": "paris",
+    "source": "shared/template-scenes/paris.json",
+    "revision": "069be6c80750d17d"
+  },
+  {
+    "id": "london",
+    "source": "shared/template-scenes/london.json",
+    "revision": "27e864092f45f51b"
+  },
+  {
+    "id": "elegant-ivory",
+    "source": "shared/template-scenes/elegant-ivory.json",
+    "revision": "4c57090210e59d57"
+  },
+  {
+    "id": "elegant-velvet",
+    "source": "shared/template-scenes/elegant-velvet.json",
+    "revision": "51b7c2f2c78a5835"
+  },
+  {
+    "id": "kaligrafi",
+    "source": "shared/template-scenes/kaligrafi.json",
+    "revision": "b86a3523b3cc0837"
+  },
+  {
+    "id": "cinema",
+    "source": "shared/template-scenes/cinema.json",
+    "revision": "bef60084a29440eb"
+  },
+  {
+    "id": "kingdom",
+    "source": "shared/template-scenes/kingdom.json",
+    "revision": "7bc5c7101b02d40e"
+  },
+  {
+    "id": "sabana",
+    "source": "shared/template-scenes/sabana.json",
+    "revision": "3d4ba46d5f00527d"
+  },
+  {
+    "id": "urban-editorial",
+    "source": "shared/template-scenes/urban-editorial.json",
+    "revision": "7cac1022afc12dbb"
+  },
+  {
+    "id": "mural",
+    "source": "shared/template-scenes/mural.json",
+    "revision": "071cb4ef27e18c83"
+  },
+  {
+    "id": "monokrom",
+    "source": "shared/template-scenes/monokrom.json",
+    "revision": "0036b8cc67dc3a98"
+  },
+  {
+    "id": "ludora",
+    "source": "shared/template-scenes/ludora.json",
+    "revision": "a5ec3a1fd823308b"
+  },
+  {
+    "id": "wasesa",
+    "source": "shared/template-scenes/wasesa.json",
+    "revision": "4b5d92299da07c36"
+  },
+  {
+    "id": "riviera",
+    "source": "shared/template-scenes/riviera.json",
+    "revision": "37dbb017418499a6"
+  },
+  {
+    "id": "pramaya",
+    "source": "shared/template-scenes/pramaya.json",
+    "revision": "9894f9d9f5bbb7fc"
+  },
+  {
+    "id": "garden-canvas",
+    "source": "shared/template-scenes/viridarium.json",
+    "revision": "7e98d0dc56216729"
+  },
+  {
+    "id": "sekar-jawa",
+    "source": "shared/template-scenes/sekar-jawa.json",
+    "revision": "da722926dc290649"
+  }
+]

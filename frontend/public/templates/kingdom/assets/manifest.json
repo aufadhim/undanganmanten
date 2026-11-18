@@ -1,0 +1,75 @@
+{
+  "status": "art-generated",
+  "engine": 2,
+  "copiedFrom": "pramaya",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/kingdom/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 165578
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/kingdom/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet",
+        "config.assets.room2"
+      ],
+      "status": "generated",
+      "bytes": 197860
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/kingdom/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.galleryGarden",
+        "config.assets.room1"
+      ],
+      "status": "generated",
+      "bytes": 205864
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/kingdom/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room3"
+      ],
+      "status": "generated",
+      "bytes": 182918
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/kingdom/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.room4"
+      ],
+      "status": "generated",
+      "bytes": 179104
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/kingdom/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.outer"
+      ],
+      "status": "generated",
+      "bytes": 202746
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/kingdom/assets/ilustrasi9.webp",
+      "usedBy": [
+        "config.assets.book"
+      ],
+      "status": "generated",
+      "bytes": 133140
+    }
+  ],
+  "singleCouple": true
+}

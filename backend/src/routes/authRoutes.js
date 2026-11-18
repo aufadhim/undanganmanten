@@ -9,6 +9,7 @@ import {
   changePassword,
   deleteAccount,
   me,
+  updateAccount,
   testReset,
   resendOtp,
 } from '../controllers/authController.js';
@@ -38,6 +39,7 @@ router.post('/reset-password', authLimiter, resetPassword);
 router.post('/change-password', authenticate, changePassword);
 router.delete('/delete-account', authenticate, deleteAccount);
 router.get('/me', authenticate, me);
+router.patch('/me', authenticate, updateAccount);
 
 // Endpoint utilitas hanya tersedia pada development/test.
 if (env.isTest && process.env.ALLOW_TEST_RESET === 'true') {

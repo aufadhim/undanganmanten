@@ -1,0 +1,20 @@
+/* PRAMAYA · Mental Canvas 2. Art, book geometry and palette are theme-local. */
+:root{--cms-ink:#57483d;--cms-accent:#a28268}
+body{background:#e8dfce;color:var(--cms-ink)}
+.pramaya #cover{background:none!important;z-index:9;pointer-events:none}.pramaya #cover-stage{display:none!important}.pramaya #cover:after{display:none}.pramaya #cover button{pointer-events:auto}
+.pramaya #cover .cover-heading{top:13%;opacity:1;translate:none}.pramaya #cover h1{font-size:clamp(45px,9vw,80px);line-height:1.05}.pramaya #cover .cover-heading .kicker{color:#817365;letter-spacing:2.4px}
+.pramaya #cover .cover-response{bottom:8%;padding:20px 30px;width:min(330px,90vw)}.pramaya #cover .cover-response:before{opacity:.85}.pramaya .cover-note{font-size:9px;color:#7b6b5b}
+.pramaya .primary,.pramaya #open{background:var(--cms-accent)!important;border-color:var(--cms-accent);color:#fff9ee}.pramaya .secondary,.pramaya .person-instagram{color:#80664f;border-color:#a28b6a77}
+.pramaya .demo-tag,.pramaya .cover-controls,.pramaya .scene-instruction,.pramaya .cover-bottom{display:none!important}
+.pramaya .scene-panel p,.pramaya .arrum-meaning,.pramaya .person-family strong{color:var(--cms-ink)}.pramaya .kicker,.pramaya .arrum-flourish,.pramaya .person-kicker,.pramaya .arrum-reference,.pramaya .arrum-next{color:#8f7c63}
+.pramaya .hero-heading{top:11%!important;background:radial-gradient(ellipse,#f4ebdbca,transparent 73%)}.pramaya .hero-heading h2{font-size:58px;line-height:1.04;margin:12px 0}.pramaya .hero-heading h2 em{color:#9d8160!important}.pramaya .hero-next{background:#a28268dc;color:#fff8ed;border:0;border-radius:24px}.pramaya .hero-location{background:radial-gradient(ellipse at left,#f4ebdbd9,transparent)!important;padding:8px}
+.pramaya #penutup .closing{top:27%;max-height:42svh;width:min(450px,92vw);padding:15px 20px!important}.pramaya #penutup h2{font-size:46px;margin:8px 0}.pramaya #penutup .signature{font-size:32px;margin:12px 0}.pramaya #penutup .mini{display:none}.pramaya #penutup p{font-size:11px}.pramaya #penutup .cover-date{margin:12px auto}.pramaya #penutup .kicker{font-size:7px}
+.book-outside #hero-stage{opacity:0!important}.book-outside .hero-visual{visibility:hidden}
+.book-travelling #cover .cover-inner,.book-travelling #journey .paper,.book-travelling .hero-tools,.book-travelling header,.book-travelling .bottom-ui,.book-travelling .cloud-backdrop{opacity:0!important;pointer-events:none!important;transition:opacity .35s}.book-travelling #cover{pointer-events:none!important}
+
+@keyframes book-arrives{from{opacity:0;translate:0 15px}to{opacity:1;translate:0 0}}
+@media(min-width:900px){.storybook{top:57%;width:min(70vw,850px)}.pramaya #cover .cover-heading{top:9%}.pramaya #cover .cover-response{bottom:5%}.pramaya .hero-heading h2{font-size:82px}.pramaya #penutup .closing{top:24%}}
+@media(prefers-reduced-motion:reduce){.storybook{animation:none}.book-travelling *{transition:none!important}}
+
+.pramaya #penutup .closing{top:25%;max-height:none;overflow:visible;width:min(420px,94vw);padding:8px 15px!important;background:radial-gradient(ellipse,#f5ecdadb 25%,transparent 75%)!important}
+.pramaya #penutup .ornament{display:none}.pramaya #penutup h2{font-size:36px;margin:8px 0}.pramaya #penutup p{font-size:10px;line-height:1.6;margin:8px auto}.pramaya #penutup .signature{font-size:26px;margin:8px 0}.pramaya #penutup .cover-date{font-size:7px;margin:8px auto}.pramaya #back-cover{font-size:8px;padding:9px 14px;margin-top:7px;background:#f3e9d7ad}

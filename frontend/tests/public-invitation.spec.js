@@ -24,5 +24,5 @@ test('undangan yang dipublikasikan dapat dibuka tanpa login', async ({ page, req
   await expect(page.getByText('Aisyah').first()).toBeVisible();
   await expect(page.getByText('Auf').first()).toBeVisible();
 
-  await request.delete(`${API}/auth/delete-account`, { headers });
+  await request.delete(`${API}/auth/delete-account`, { headers, data: { confirmationEmail: email } });
 });

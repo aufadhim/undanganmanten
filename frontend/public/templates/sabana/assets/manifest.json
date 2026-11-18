@@ -1,0 +1,104 @@
+{
+  "status": "art-generated",
+  "engine": 3,
+  "copiedFrom": "riviera",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/sabana/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 132488
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/sabana/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 256754
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/sabana/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.galleryGarden"
+      ],
+      "status": "generated",
+      "bytes": 225808
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/sabana/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room1",
+        "config.assets.room2",
+        "config.assets.room3",
+        "config.assets.room4",
+        "config.assets.panorama"
+      ],
+      "status": "generated",
+      "bytes": 376176
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/sabana/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.riverbank"
+      ],
+      "status": "generated",
+      "bytes": 206894
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/sabana/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.landing"
+      ],
+      "status": "generated",
+      "bytes": 277246
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/sabana/assets/ilustrasi9.webp",
+      "usedBy": [
+        "config.assets.landscapeGarden"
+      ],
+      "status": "generated",
+      "bytes": 361948
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/sabana/assets/ilustrasi10.webp",
+      "usedBy": [
+        "config.assets.landscapeRiver"
+      ],
+      "status": "generated",
+      "bytes": 312862
+    },
+    {
+      "filename": "ilustrasi11.webp",
+      "path": "/templates/sabana/assets/ilustrasi11.webp",
+      "usedBy": [
+        "config.assets.landscapeBridge"
+      ],
+      "status": "generated",
+      "bytes": 382828
+    },
+    {
+      "filename": "ilustrasi12.webp",
+      "path": "/templates/sabana/assets/ilustrasi12.webp",
+      "usedBy": [
+        "config.assets.landscapeLake"
+      ],
+      "status": "generated",
+      "bytes": 319960
+    }
+  ],
+  "singleCouple": true
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import ContentSaveAction from './ContentSaveAction.jsx';
+import './button.css';
 
 /**
  * Reusable Button component.
@@ -9,7 +11,8 @@ import React from 'react';
  * @param {React.ReactNode} icon - Optional FontAwesome icon node
  */
 export default function Button({ 
-  children, 
+  children,
+  saveAction = false, 
   variant = 'primary', 
   size = 'md', 
   fullWidth = false, 
@@ -36,9 +39,11 @@ export default function Button({
     className
   ].filter(Boolean).join(' ');
 
-  return (
+  const button = (
     <Component 
-      className={combinedClasses} 
+      className={combinedClasses}
+      data-ui-button={variant}
+      aria-busy={isLoading || undefined} 
       disabled={disabled || isLoading}
       style={style}
       {...props}
@@ -56,4 +61,5 @@ export default function Button({
       )}
     </Component>
   );
+  return saveAction ? <ContentSaveAction>{button}</ContentSaveAction> : button;
 }

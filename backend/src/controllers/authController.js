@@ -1,8 +1,9 @@
 import bcrypt from 'bcryptjs';
 import { prisma } from '../lib/prisma.js';
 import { generateToken } from '../utils/jwt.js';
-import { deleteFolderFromR2 } from '../lib/storage.js';
+import {indexLegacyAssets,cleanupOwnerAssets} from '../lib/storage.js';
 import { sendVerificationEmail, sendResetPasswordEmail } from '../utils/email.js';
+import { env } from '../config/env.js';
 import {
   signupSchema,
   loginSchema,
@@ -23,6 +24,7 @@ const SALT_ROUNDS = 10;
 
 // POST /api/auth/signup
 export async function signup(req, res) {
+  if (!env.accountEmailEnabled) return res.status(503).json({ error: 'Pendaftaran via email belum tersedia. Gunakan login Google.' });
   try {
     const parsed = signupSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -121,6 +123,7 @@ export async function verifyEmail(req, res) {
 
 // POST /api/auth/resend-otp
 export async function resendOtp(req, res) {
+  if (!env.accountEmailEnabled) return res.status(503).json({ error: 'Pengiriman kode verifikasi belum tersedia.' });
   try {
     const { email: rawEmail } = req.body || {};
     if (!rawEmail) {
@@ -191,6 +194,7 @@ export async function login(req, res) {
       return res.status(401).json({ error: 'Email atau password salah.' });
     }
 
+    if(user.suspendedAt)return res.status(403).json({error:'Akun ditangguhkan. Hubungi dukungan.'});
     const token = generateToken({ userId: user.id });
 
     return res.json({
@@ -206,6 +210,7 @@ export async function login(req, res) {
 
 // POST /api/auth/forgot-password
 export async function forgotPassword(req, res) {
+  if (!env.accountEmailEnabled) return res.status(503).json({ error: 'Reset password via email belum tersedia.' });
   try {
     const parsed = forgotPasswordSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -335,18 +340,14 @@ export async function deleteAccount(req, res) {
       return res.status(404).json({ error: 'User tidak ditemukan.' });
     }
 
-    // Jika punya undangan, hapus file media di R2 jika terkonfigurasi
-    if (user.invitation.length > 0) {
-      for (const invitation of user.invitation) {
-        try {
-          await deleteFolderFromR2(`invitations/${invitation.id}`);
-        } catch (err) {
-          console.error(`Gagal menghapus folder R2 untuk undangan ${invitation.id}:`, err);
-        }
-      }
+    if(user.role==='ADMIN')return res.status(409).json({error:'Alihkan kewenangan admin melalui panel admin sebelum menghapus akun.'});
+    const confirmation = req.body?.confirmationEmail;
+    if (typeof confirmation !== 'string' || confirmation.trim().toLowerCase() !== user.email.toLowerCase()) {
+      return res.status(400).json({ error: 'Ketik email akun untuk mengonfirmasi penghapusan.' });
     }
-
+    await indexLegacyAssets(user.id);
     await prisma.user.delete({ where: { id: user.id } });
+    await cleanupOwnerAssets(user.id).catch(err=>console.error('Account media cleanup pending:',err.message));
 
     return res.json({
       message: 'Akun dan semua data undangan berhasil dihapus secara permanen.',
@@ -362,17 +363,36 @@ export async function me(req, res) {
   try {
     const user = await prisma.user.findUnique({
       where: { id: req.userId },
-      select: { id: true, email: true, phone: true, role: true, isVerified: true, createdAt: true },
+      select: { id: true, email: true, phone: true, role: true, isVerified: true, createdAt: true, passwordHash: true },
     });
 
     if (!user) {
       return res.status(404).json({ error: 'User tidak ditemukan.' });
     }
 
-    return res.json({ user });
+    const { passwordHash, ...profile } = user;
+    return res.json({ user: { ...profile, hasPassword: Boolean(passwordHash) } });
   } catch (err) {
     console.error('Error me:', err);
     return res.status(500).json({ error: 'Gagal mengambil data user.' });
+  }
+}
+
+export async function updateAccount(req, res) {
+  const phone = typeof req.body?.phone === 'string' ? req.body.phone.trim() : null;
+  if (phone === null || (phone && !/^\+?[\d(). -]{6,30}$/.test(phone)) || (phone && !/\d/.test(phone))) {
+    return res.status(400).json({ error: 'Masukkan nomor telepon yang valid atau kosongkan kolom.' });
+  }
+  try {
+    const user = await prisma.user.update({
+      where: { id: req.userId },
+      data: { phone: phone || null },
+      select: { phone: true },
+    });
+    return res.json({ user });
+  } catch (err) {
+    if (err.code === 'P2025') return res.status(404).json({ error: 'User tidak ditemukan.' });
+    return res.status(500).json({ error: 'Gagal menyimpan nomor telepon.' });
   }
 }
 

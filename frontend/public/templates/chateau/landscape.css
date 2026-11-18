@@ -1,0 +1,3 @@
+@import url('/templates/engines/landscape/layout.css');
+/* Riviera-specific overrides belong here. The standard layout stays in the engine. */
+body.engine-landscape{--landscape-paper:#f6f0e4}

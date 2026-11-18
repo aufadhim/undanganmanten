@@ -1,0 +1,93 @@
+/* Engine 3 owns one persistent world canvas, from the cover through the closing. */
+html,body{overflow:hidden!important;background:#ede8dc}
+#landscape-stage{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none;background:#ede8dc}
+#landscape-stage canvas{width:100%;height:100%;display:block}
+body.engine-landscape #cover,body.engine-landscape #journey{background:transparent!important}
+#cover-stage,#hero-stage,#shared-clouds,.person-cloud,.cloud-backdrop,#ambient-petals{display:none!important}
+body.engine-landscape #cover:after{background:linear-gradient(#fff9ed20,transparent 45%,#fff9ed30)!important}
+body.engine-landscape #cover{z-index:20}
+body.engine-landscape #cover.gone{pointer-events:none}
+#cover .cover-inner{transition:none!important}
+body.engine-landscape .paper.scene-panel{position:fixed;z-index:13;left:50%;top:50%;width:min(490px,calc(100% - 32px));max-height:calc(100svh - 160px);margin:0!important;box-sizing:border-box;padding:26px 24px!important;transform:translate(-50%,calc(-50% + var(--panel-lift,0px)))!important;opacity:var(--panel-opacity,0)!important;visibility:visible!important;overflow:auto;overscroll-behavior:contain;background:radial-gradient(ellipse,#fffaf0de 16%,#fffaf0b3 52%,transparent 76%)!important;border:0!important;border-radius:0!important;box-shadow:none!important;scrollbar-width:thin}
+body.engine-landscape .paper.scene-panel[hidden]{display:none!important}
+body.engine-landscape .hero-content{inset:0!important;width:100%!important;max-width:none!important;max-height:none!important;height:100%;padding:0!important;transform:none!important;background:none!important;overflow:visible!important;pointer-events:none}
+body.engine-landscape .hero-heading{top:12%!important;left:5%!important;right:5%!important}
+body.engine-landscape #cover .cover-heading{top:12%}
+body.engine-landscape #cover h1,.hero-heading h2{font-size:46px!important}
+body.engine-landscape .hero-heading:before{background:radial-gradient(ellipse,#fffaf0cd 10%,#fffaf06b 58%,transparent 77%)}
+body.engine-landscape .paper.scene-panel#bride-detail{left:73%;top:47%;width:48%;max-width:340px;padding:20px 14px!important}
+body.engine-landscape .paper.scene-panel#groom-detail{left:27%;top:47%;width:48%;max-width:340px;padding:20px 14px!important}
+body.engine-landscape .hero-bottom,.world-next,.hero-next,.person-next,.arrum-next{display:none!important}
+body.engine-landscape #penutup .paper.scene-panel{top:max(68px,9svh)!important;transform:translate(-50%,var(--panel-lift,0px))!important;max-height:48svh!important}
+body.engine-landscape #rsvp .paper.scene-panel{top:max(68px,8svh)!important;transform:translate(-50%,var(--panel-lift,0px))!important}
+body.engine-landscape .scene-panel h2{font-size:42px;line-height:1.08}
+body.engine-landscape #scene-feedback{display:none!important}
+body.engine-landscape #cover .cover-response{background:none!important;border:0!important;box-shadow:none!important}
+body.engine-landscape #cover .cover-response:before{background:radial-gradient(ellipse,#fffaf0e3 16%,#fffaf0b0 52%,transparent 77%)!important;filter:blur(9px);inset:-20px -16px}
+body.engine-landscape .cover-response .primary{font-size:12px}
+@media(min-width:900px){body.engine-landscape .paper.scene-panel:not(.hero-content){width:510px}body.engine-landscape .paper.scene-panel#bride-detail{left:66%;width:340px}body.engine-landscape .paper.scene-panel#groom-detail{left:34%;width:340px}}
+@media(prefers-reduced-motion:reduce){body.engine-landscape *{scroll-behavior:auto!important}}
+
+/* Theme-authored reading positions keep the main landmark visible below the copy. */
+body.engine-landscape .paper.scene-panel[data-landscape-panel="top"]{top:max(70px,10svh)!important;max-height:46svh;transform:translate(-50%,var(--panel-lift,0px))!important}
+
+/* The wash is a separate blurred layer, so scroll clipping never cuts its edges. */
+body.engine-landscape #journey .paper.scene-panel:not(.hero-content){background:none!important;text-shadow:0 1px 5px #fffaf0b3}
+body.engine-landscape .landscape-ivory-wash{position:fixed;z-index:12;pointer-events:none;transform:translate(-50%,-50%);background:radial-gradient(ellipse at 48% 48%,#fffbf1fa 0%,#fffbf1f2 52%,#fffbf1c9 70%,#fffbf159 86%,transparent 100%);filter:blur(12px);border:0;box-shadow:none}
+body.engine-landscape .landscape-ivory-wash[hidden]{display:none!important}
+body.engine-landscape #cover .cover-heading,body.engine-landscape #journey .hero-heading{isolation:isolate}
+body.engine-landscape #cover .cover-heading::before,body.engine-landscape #journey .hero-heading::before{
+ content:'';position:absolute;inset:-18px -5%;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse,#fffaf0fa 0%,#fffaf0e8 36%,#fffaf099 61%,transparent 82%)!important;
+ filter:blur(10px);opacity:1;transform:none;mask-image:none;
+}
+body.engine-landscape #cover .cover-response{isolation:isolate}
+body.engine-landscape #cover .cover-response::before{
+ content:'';position:absolute;z-index:-1;pointer-events:none;
+ inset:-15px -12px!important;left:-12px!important;top:-15px!important;right:-12px!important;bottom:-15px!important;
+ width:auto!important;height:auto!important;aspect-ratio:auto!important;transform:none!important;
+ background:radial-gradient(ellipse,#fffaf0f7 0%,#fffaf0e3 38%,#fffaf08c 64%,transparent 85%)!important;
+ filter:blur(10px);opacity:1;mask-image:none;
+}
+
+/* Keep long names readable beside the couple on narrow portrait screens. */
+@media(max-width:599px){
+ body.engine-landscape #journey .paper.scene-panel#bride-detail{left:68%;width:60%;padding:20px 10px!important}
+ body.engine-landscape #journey .paper.scene-panel#groom-detail{left:32%;width:60%;padding:20px 10px!important}
+ body.engine-landscape #journey .person-detail h2{font-size:30px;line-height:1.08;letter-spacing:-.6px;text-wrap:balance}
+}
+
+/* The landscape hero uses the same subtitle, couple names and date as engines 1–2. */
+body.engine-landscape #journey .hero-heading{
+ left:5%!important;right:5%!important;top:12%!important;width:auto;max-width:none;padding:0;
+ text-align:center;opacity:var(--hero-ui-opacity,0)!important;visibility:visible!important;
+ translate:none!important;transition:none!important;
+}
+/* Hero uses the shared ivory heading wash; only the fullscreen panel bed is suppressed. */
+body.engine-landscape #journey .hero-heading .kicker{font-size:11px;letter-spacing:0;text-transform:none}
+body.engine-landscape #journey .hero-heading h2{margin:14px 0;line-height:1.05}
+body.engine-landscape #journey .hero-heading h2 :is(span,em){display:inline;margin:0}
+body.engine-landscape #journey .hero-heading h2 span{font-size:.6em;padding:0 4px}
+body.engine-landscape #journey .hero-heading>p{display:none}
+body.engine-landscape #journey .hero-heading .cover-date{justify-content:center;font-size:11px;letter-spacing:0;text-transform:none}
+
+/* Override the generic centered reading panel at the hero CONTAINER level. */
+body.engine-landscape #journey .paper.scene-panel.hero-content{
+ position:fixed!important;inset:0!important;left:0!important;top:0!important;right:0!important;bottom:0!important;
+ width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+ transform:none!important;translate:none!important;background:none!important;background-image:none!important;
+ padding:0!important;margin:0!important;contain:none!important;border-radius:0!important;overflow:visible!important;
+}
+body.engine-landscape #journey .paper.scene-panel.hero-content::before,
+body.engine-landscape #journey .paper.scene-panel.hero-content::after{display:none!important;content:none!important}
+/* Reserve the foreground for adult-sized characters in long landscape packs. */
+body.engine-landscape:not(.theme-ludora) #penutup .paper.scene-panel{top:max(54px,7svh)!important;padding:6px 16px!important;display:flex;flex-direction:column;align-items:center;gap:4px;max-height:29svh!important}
+body.engine-landscape:not(.theme-ludora) #penutup .paper.scene-panel>*{margin:0!important}
+body.engine-landscape:not(.theme-ludora) #penutup .paper.scene-panel h2{font-size:30px!important;line-height:1.1}
+body.engine-landscape:not(.theme-ludora) #penutup .signature{font-size:24px;line-height:1.15}
+body.engine-landscape:not(.theme-ludora) #penutup .kicker{display:none}
+body.engine-landscape:not(.theme-ludora) #penutup .secondary{padding:5px 14px;min-height:30px}
+
+body.engine-landscape:not(.theme-ludora) .landscape-ivory-wash[data-for=penutup]{mask-image:radial-gradient(ellipse,#000 25%,#0008 60%,transparent 73%)}
+/* Follow the marked person's side even when an uploaded pose reverses the couple. */
+body.engine-landscape #journey .paper.scene-panel:is(#bride-detail,#groom-detail){left:var(--profile-left)!important}

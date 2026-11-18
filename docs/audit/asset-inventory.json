@@ -1,0 +1,3902 @@
+{
+  "publicBytes": 209993090,
+  "publicFiles": 366,
+  "folders": {
+    "assets/lanqing": 95333860,
+    "assets/edena": 43438628,
+    "assets/nocturne": 28574414,
+    "assets/celluloid": 9275462,
+    "assets/isvara": 7858726,
+    "assets/yunshui": 6918466,
+    "assets/theme-thumbnails": 6137588,
+    "assets/nawasena": 5973800,
+    "assets/gallery": 3898212,
+    "assets/eternal": 2474736,
+    "logo.png": 45992,
+    "favicon.png": 33496,
+    "assets/dummy-groom.webp": 29710
+  },
+  "assets": [
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-01.webp",
+      "bytes": 63856,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-02.webp",
+      "bytes": 106486,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-03.webp",
+      "bytes": 68770,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-04.webp",
+      "bytes": 96330,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-05.webp",
+      "bytes": 130090,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-06.webp",
+      "bytes": 246568,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-07.webp",
+      "bytes": 128634,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-08.webp",
+      "bytes": 72366,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-09.webp",
+      "bytes": 343116,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/backgrounds/bg-10.webp",
+      "bytes": 370488,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-01.webp",
+      "bytes": 170894,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-02.webp",
+      "bytes": 154656,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-03.webp",
+      "bytes": 83118,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-04.webp",
+      "bytes": 61102,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-05.webp",
+      "bytes": 110144,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-06.webp",
+      "bytes": 127698,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-07.webp",
+      "bytes": 134704,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-08.webp",
+      "bytes": 142148,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-09.webp",
+      "bytes": 110034,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-10.webp",
+      "bytes": 98586,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-11.webp",
+      "bytes": 72100,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-12.webp",
+      "bytes": 202438,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-13.webp",
+      "bytes": 161160,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-14.webp",
+      "bytes": 145950,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-15.webp",
+      "bytes": 197962,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-16.webp",
+      "bytes": 161012,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-17.webp",
+      "bytes": 239358,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-18.webp",
+      "bytes": 177378,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-19.webp",
+      "bytes": 134450,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-20.webp",
+      "bytes": 178450,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-21.webp",
+      "bytes": 182566,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-22.webp",
+      "bytes": 95098,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-23.webp",
+      "bytes": 201118,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-24.webp",
+      "bytes": 115114,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-25.webp",
+      "bytes": 105782,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-26.webp",
+      "bytes": 134758,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-27.webp",
+      "bytes": 148524,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-28.webp",
+      "bytes": 30882,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-29.webp",
+      "bytes": 109542,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/cinematic/props/prop-30.webp",
+      "bytes": 240858,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/generated/film-strip-frame-v1.png",
+      "bytes": 1537616,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/celluloid/generated/victorian-botanical-corner-v1.png",
+      "bytes": 1883558,
+      "direct": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelierThemes.js",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelierThemes.js",
+        "frontend/src/components/templates/atelier/atelier.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/dummy-groom.webp",
+      "bytes": 29710,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-bg-dawn-garden.webp",
+      "bytes": 1063216,
+      "direct": [
+        "frontend/src/components/templates/edena/edena.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.css",
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-bg-golden-garden.webp",
+      "bytes": 1024038,
+      "direct": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/edena/edena.css"
+      ],
+      "indirect": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/edena/edena.css",
+        "frontend/src/components/templates/edena/edena.manifest.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-bg-night-garden.webp",
+      "bytes": 947266,
+      "direct": [
+        "frontend/src/components/templates/edena/edena.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.css",
+        "frontend/src/components/templates/edena/edena.manifest.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-floral-large.webp",
+      "bytes": 3530006,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-floral-small.webp",
+      "bytes": 2111980,
+      "direct": [
+        "frontend/src/components/templates/edena/edena-refinement.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/edena-refinement.css",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-fog-overlay.webp",
+      "bytes": 1722910,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-foliage-foreground-left.webp",
+      "bytes": 2913940,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-foliage-foreground-right.webp",
+      "bytes": 2899000,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-garden-clock.webp",
+      "bytes": 2913674,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-garden-path.webp",
+      "bytes": 2143110,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-grand-arch.webp",
+      "bytes": 4097566,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-guestbook-envelope.webp",
+      "bytes": 2154124,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-keepsake-box.webp",
+      "bytes": 2654102,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-lantern.webp",
+      "bytes": 2625616,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-light-rays-overlay.webp",
+      "bytes": 2996130,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-parchment.webp",
+      "bytes": 3822008,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-trailing-vine.webp",
+      "bytes": 1684748,
+      "direct": [
+        "frontend/src/components/templates/edena/edena-refinement.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/edena-refinement.css",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/edena/edena-universal-frame.webp",
+      "bytes": 2135194,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/couples/bride.webp",
+      "bytes": 78422,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/SandboxProfilPanel.jsx",
+        "frontend/src/components/ProfilPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/depth/useInvitationViewModel.js",
+        "frontend/src/components/templates/depth/buildSceneOrder.js",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx",
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/locales/id/translation.json",
+        "frontend/src/locales/en/translation.json",
+        "backend/src/controllers/coupleProfileController.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/couples/groom.webp",
+      "bytes": 92978,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SandboxProfilPanel.jsx",
+        "frontend/src/components/ProfilPanel.jsx",
+        "frontend/src/components/templates/depth/useInvitationViewModel.js",
+        "frontend/src/components/templates/depth/buildSceneOrder.js",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx",
+        "frontend/src/locales/id/translation.json",
+        "frontend/src/locales/en/translation.json",
+        "backend/src/controllers/coupleProfileController.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/1.webp",
+      "bytes": 44216,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/ThemeThumbnail.jsx",
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx",
+        "frontend/src/components/templates/lanqing/lanqing.css",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/2.webp",
+      "bytes": 735400,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx",
+        "frontend/src/components/templates/lanqing/lanqing.css",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/3.webp",
+      "bytes": 445490,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/4.webp",
+      "bytes": 283948,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/5.webp",
+      "bytes": 246314,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/lanqing/lanqing.css",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/galleries/6.webp",
+      "bytes": 311956,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/eternal/images/hero/background.webp",
+      "bytes": 236012,
+      "direct": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/eternal/eternal.css"
+      ],
+      "indirect": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/eternal/eternal.css",
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-01.webp",
+      "bytes": 10612,
+      "direct": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-02.webp",
+      "bytes": 16390,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-03.webp",
+      "bytes": 15296,
+      "direct": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-04.webp",
+      "bytes": 11910,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-05.webp",
+      "bytes": 12212,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-06.webp",
+      "bytes": 6856,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-07.webp",
+      "bytes": 11516,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-08.webp",
+      "bytes": 15028,
+      "direct": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/gallery/dummy-gallery-video.mp4",
+      "bytes": 3798392,
+      "direct": [
+        "frontend/src/config/dummyPreviewData.js",
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "indirect": [
+        "frontend/src/config/dummyPreviewData.js",
+        "frontend/src/config/dummyAssets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-01.webp",
+      "bytes": 19798,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-02.webp",
+      "bytes": 7698,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-03.webp",
+      "bytes": 19412,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-04.webp",
+      "bytes": 95494,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-05.webp",
+      "bytes": 131260,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-06.webp",
+      "bytes": 31698,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-07.webp",
+      "bytes": 43874,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-08.webp",
+      "bytes": 50592,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-09.webp",
+      "bytes": 332524,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-10.webp",
+      "bytes": 32532,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-11.webp",
+      "bytes": 80404,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-12.webp",
+      "bytes": 26008,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-13.webp",
+      "bytes": 52384,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/Orn-14.webp",
+      "bytes": 59668,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/botanical-wreath.webp",
+      "bytes": 158458,
+      "direct": [
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/cosmos-cutout-v2.webp",
+      "bytes": 276434,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/eucalyptus.webp",
+      "bytes": 143760,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/fern-mound.webp",
+      "bytes": 141350,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/fern-valley.webp",
+      "bytes": 200930,
+      "direct": [
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/flowering-shrub.webp",
+      "bytes": 126054,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/flowering-tree.webp",
+      "bytes": 207682,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/hydrangea-cutout-v2.webp",
+      "bytes": 184530,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/hydrangea-valley.webp",
+      "bytes": 175098,
+      "direct": [
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/hydrangeas.webp",
+      "bytes": 184530,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/magnolia.webp",
+      "bytes": 94422,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/moss-island.webp",
+      "bytes": 118232,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/peony-corner.webp",
+      "bytes": 167890,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/shaded-grove.webp",
+      "bytes": 219806,
+      "direct": [
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/small-tree.webp",
+      "bytes": 217630,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/botanical/trailing-garland.webp",
+      "bytes": 269372,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/bride.webp",
+      "bytes": 432050,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/SandboxProfilPanel.jsx",
+        "frontend/src/components/ProfilPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/depth/useInvitationViewModel.js",
+        "frontend/src/components/templates/depth/buildSceneOrder.js",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx",
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "frontend/src/locales/id/translation.json",
+        "frontend/src/locales/en/translation.json",
+        "backend/src/controllers/coupleProfileController.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/cascading-ivy.webp",
+      "bytes": 756456,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/fern-fan.webp",
+      "bytes": 423450,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/floating-petals.webp",
+      "bytes": 156428,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/flowering-tree.webp",
+      "bytes": 399240,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/garden-path.webp",
+      "bytes": 399088,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/edena/edena.manifest.js",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/leaf-canopy.webp",
+      "bytes": 271708,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/cinematic/peony-corner.webp",
+      "bytes": 320584,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/env-back.webp",
+      "bytes": 49958,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/env-front.webp",
+      "bytes": 27032,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/groom.webp",
+      "bytes": 494962,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/dummyAssets.js",
+        "frontend/src/components/SandboxProfilPanel.jsx",
+        "frontend/src/components/ProfilPanel.jsx",
+        "frontend/src/components/templates/depth/useInvitationViewModel.js",
+        "frontend/src/components/templates/depth/buildSceneOrder.js",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx",
+        "frontend/src/components/templates/edena/EdenaTemplate.jsx",
+        "frontend/src/locales/id/translation.json",
+        "frontend/src/locales/en/translation.json",
+        "backend/src/controllers/coupleProfileController.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/texture-1.webp",
+      "bytes": 145242,
+      "direct": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg",
+      "bytes": 113004,
+      "direct": [
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-01.png",
+      "bytes": 8678,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-02.png",
+      "bytes": 7158,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-03.png",
+      "bytes": 102204,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-04.png",
+      "bytes": 68054,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-05.png",
+      "bytes": 100271,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-06.png",
+      "bytes": 151379,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-07.png",
+      "bytes": 54146,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-08.png",
+      "bytes": 105250,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-09.png",
+      "bytes": 200488,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-10.png",
+      "bytes": 135211,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-11.png",
+      "bytes": 85223,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-12.png",
+      "bytes": 73988,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-13.png",
+      "bytes": 210774,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-14.png",
+      "bytes": 149781,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-15.png",
+      "bytes": 2611,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-16.png",
+      "bytes": 3350,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-17.png",
+      "bytes": 88419,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-18.png",
+      "bytes": 48422,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-19.png",
+      "bytes": 27400,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-20.png",
+      "bytes": 214083,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-21.png",
+      "bytes": 153003,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-22.png",
+      "bytes": 2607,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-23.png",
+      "bytes": 97845,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-24.png",
+      "bytes": 55229,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-26.png",
+      "bytes": 60504,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-28.png",
+      "bytes": 65299,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-29.png",
+      "bytes": 60645,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/Orn-30.png",
+      "bytes": 211743,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/cinematic/art-11.webp",
+      "bytes": 232186,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/cinematic/art-22.webp",
+      "bytes": 433478,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/cinematic/art-25.webp",
+      "bytes": 293038,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/frame-event.png",
+      "bytes": 14158,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/frame-quote.png",
+      "bytes": 2038,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/background/01-cover-sampul-gerbang-merah.png",
+      "bytes": 6882271,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/background/02-cover-utama-taman-istana.png",
+      "bytes": 7141864,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/background/03-latar-penutup-landscape.png",
+      "bytes": 7134581,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/background/04-latar-section-terang.png",
+      "bytes": 7243268,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/background/05-latar-section-gelap.png",
+      "bytes": 5772695,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/02-peony-sudut-kiri-bawah.png",
+      "bytes": 3307877,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/03-peony-sudut-kanan-bawah.png",
+      "bytes": 2177858,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/04-cabang-peony-vertikal.png",
+      "bytes": 5280361,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/05-lentera-kiri.png",
+      "bytes": 3793550,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/06-lentera-kanan.png",
+      "bytes": 4120232,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/07-rangkaian-lentera-jauh.png",
+      "bytes": 2493988,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/08-gerbang-bulan.png",
+      "bytes": 3922187,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/09-bingkai-foto-mempelai.png",
+      "bytes": 4591072,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/11-paviliun-depan.png",
+      "bytes": 2866272,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/12-atap-sudut-kanan-atas.png",
+      "bytes": 2396872,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/13-atap-sudut-kiri-atas.png",
+      "bytes": 2245326,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/14-phoenix-terbang.png",
+      "bytes": 2686283,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/15-sepasang-phoenix.png",
+      "bytes": 5393807,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/16-awan-keberuntungan.png",
+      "bytes": 1870225,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/18-kelopak-bergerak.png",
+      "bytes": 2300667,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/19-kipas-dekoratif.png",
+      "bytes": 4130486,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/red/transparent/20-simpul-keberuntungan.png",
+      "bytes": 3971738,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/LanqingTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/lanqing/texture-1.png",
+      "bytes": 91717,
+      "direct": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/lanqing/lanqing.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-1.webp",
+      "bytes": 129662,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-10.webp",
+      "bytes": 27264,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-11.webp",
+      "bytes": 84254,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-12.webp",
+      "bytes": 31204,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-13.webp",
+      "bytes": 93546,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-14.webp",
+      "bytes": 31380,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-15.webp",
+      "bytes": 48962,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-16.webp",
+      "bytes": 62268,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-17.webp",
+      "bytes": 61310,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-18.webp",
+      "bytes": 63326,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-19.webp",
+      "bytes": 129662,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-2.webp",
+      "bytes": 7582,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-20.webp",
+      "bytes": 87450,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-21.webp",
+      "bytes": 110570,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-22.webp",
+      "bytes": 32108,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-23.webp",
+      "bytes": 27810,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-24.webp",
+      "bytes": 27484,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-25.webp",
+      "bytes": 32894,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-3.webp",
+      "bytes": 10088,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-4.webp",
+      "bytes": 10056,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-5.webp",
+      "bytes": 9370,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "numeric ornament map in Nawasena; retained",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-6.webp",
+      "bytes": 9806,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-7.webp",
+      "bytes": 10406,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-8.webp",
+      "bytes": 123866,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/custom/ornamen-9.webp",
+      "bytes": 95032,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/enchanted-joglo-hero.webp",
+      "bytes": 308744,
+      "direct": [
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/SplitViewLayout.jsx",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/nawasena/NawasenaTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/original-ornaments/magnolia.webp",
+      "bytes": 86602,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/original-ornaments/petals.webp",
+      "bytes": 78964,
+      "direct": [],
+      "indirect": [
+        "frontend/src/config/themePresets.js",
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx",
+        "backend/src/utils/themePresets.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-01.webp",
+      "bytes": 15766,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-02.webp",
+      "bytes": 81714,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-03.webp",
+      "bytes": 42740,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-04.webp",
+      "bytes": 41514,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-05.webp",
+      "bytes": 49784,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+        "frontend/src/components/templates/isvara/IsvaraTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-06.webp",
+      "bytes": 12356,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-07.webp",
+      "bytes": 19802,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-08.webp",
+      "bytes": 103682,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-09.webp",
+      "bytes": 198472,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-10.webp",
+      "bytes": 211884,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-11.webp",
+      "bytes": 29092,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-12.webp",
+      "bytes": 73870,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-13.webp",
+      "bytes": 69896,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-14.webp",
+      "bytes": 49866,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-15.webp",
+      "bytes": 28542,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-16.webp",
+      "bytes": 98952,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-17.webp",
+      "bytes": 156274,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-18.webp",
+      "bytes": 90428,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-19.webp",
+      "bytes": 52716,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-20.webp",
+      "bytes": 86372,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-21.webp",
+      "bytes": 36714,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-22.webp",
+      "bytes": 49570,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-23.webp",
+      "bytes": 131106,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-24.webp",
+      "bytes": 112006,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-25.webp",
+      "bytes": 88476,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-26.webp",
+      "bytes": 5832,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-27.webp",
+      "bytes": 67100,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-28.webp",
+      "bytes": 34508,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-29.webp",
+      "bytes": 12424,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-30.webp",
+      "bytes": 47514,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-31.webp",
+      "bytes": 43144,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-32.webp",
+      "bytes": 60086,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-33.webp",
+      "bytes": 47576,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-34.webp",
+      "bytes": 124578,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-35.webp",
+      "bytes": 18086,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-36.webp",
+      "bytes": 80960,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-37.webp",
+      "bytes": 88378,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-38.webp",
+      "bytes": 22834,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-39.webp",
+      "bytes": 61294,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-40.webp",
+      "bytes": 30772,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-41.webp",
+      "bytes": 54184,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-42.webp",
+      "bytes": 45658,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-43.webp",
+      "bytes": 137850,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-44.webp",
+      "bytes": 61444,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-45.webp",
+      "bytes": 58846,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-46.webp",
+      "bytes": 81216,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-47.webp",
+      "bytes": 110644,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-48.webp",
+      "bytes": 8980,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-49.webp",
+      "bytes": 54348,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-51.webp",
+      "bytes": 15914,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-53.webp",
+      "bytes": 59418,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-54.webp",
+      "bytes": 46966,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-55.webp",
+      "bytes": 32054,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-56.webp",
+      "bytes": 65958,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-57.webp",
+      "bytes": 48134,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-58.webp",
+      "bytes": 52606,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-59.webp",
+      "bytes": 79658,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-60.webp",
+      "bytes": 28516,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-61.webp",
+      "bytes": 59978,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-62.webp",
+      "bytes": 51904,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-63.webp",
+      "bytes": 168048,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-64.webp",
+      "bytes": 33756,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-65.webp",
+      "bytes": 45444,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/Orn-67.webp",
+      "bytes": 1832,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "possible generated ornament index; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/nawasena/ornaments/texture-1.webp",
+      "bytes": 62094,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/celluloid.css",
+        "frontend/src/components/templates/atelier/atelier.css",
+        "frontend/src/components/templates/isvara/isvara.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/backgrounds/closing-stage-background.webp",
+      "bytes": 235252,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/backgrounds/cover-main-background.webp",
+      "bytes": 266854,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/backgrounds/opening-stage-background.webp",
+      "bytes": 198998,
+      "direct": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/contact-sheet.webp",
+      "bytes": 414082,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/celluloid/CelluloidTemplate.jsx",
+        "frontend/src/components/templates/atelier/atelierBlueprints.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/curtains/closing-curtain-left.webp",
+      "bytes": 980780,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/curtains/closing-curtain-right.webp",
+      "bytes": 987760,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/curtains/opening-curtain-left.webp",
+      "bytes": 905274,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/curtains/opening-curtain-right.webp",
+      "bytes": 993076,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/curtains/opening-top-drape.webp",
+      "bytes": 450312,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/florals/closing-floral-floor.webp",
+      "bytes": 502302,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/florals/couple-floral-accent.webp",
+      "bytes": 325838,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/florals/cover-floral-left.webp",
+      "bytes": 594376,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/florals/cover-floral-right.webp",
+      "bytes": 479758,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/calendar-deco-frame.webp",
+      "bytes": 413526,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/couple-stage-divider.webp",
+      "bytes": 36706,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/cover-main-photo-frame.webp",
+      "bytes": 638356,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/dresscode-hanger-line.webp",
+      "bytes": 162488,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/event-program-frame.webp",
+      "bytes": 935466,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/livestream-screen-frame.webp",
+      "bytes": 411466,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/opening-deco-frame.webp",
+      "bytes": 357018,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/quote-deco-corner.webp",
+      "bytes": 54182,
+      "direct": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/rundown-spine.webp",
+      "bytes": 12624,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/story-film-frame.webp",
+      "bytes": 612398,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/timecode-divider.webp",
+      "bytes": 7126,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/frames/video-cinema-frame.webp",
+      "bytes": 396316,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/closing-final-vignette.webp",
+      "bytes": 2224030,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/closing-spotlight.webp",
+      "bytes": 1040974,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/couple-light-shadow.webp",
+      "bytes": 762860,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/cover-spotlight-left.webp",
+      "bytes": 1174198,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/event-akad-light.webp",
+      "bytes": 663254,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/event-reception-spotlight.webp",
+      "bytes": 786816,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/opening-low-fog.webp",
+      "bytes": 471524,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/lighting/opening-spotlight-beam.webp",
+      "bytes": 1806438,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/masks/dresscode-fabric-mask.webp",
+      "bytes": 163784,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/sections/gift-envelope-open.webp",
+      "bytes": 850426,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/sections/quote-paper.webp",
+      "bytes": 1458442,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/sections/rsvp-ticket-background.webp",
+      "bytes": 1380840,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/sections/wish-note-paper.webp",
+      "bytes": 553746,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/textures/nocturne-dust-overlay.webp",
+      "bytes": 3201570,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/NocturneTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/textures/nocturne-metal-brushed.webp",
+      "bytes": 318600,
+      "direct": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/textures/nocturne-paper-grain.webp",
+      "bytes": 205046,
+      "direct": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/textures/nocturne-smoked-glass.webp",
+      "bytes": 62196,
+      "direct": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/nocturne/textures/nocturne-velvet-texture.webp",
+      "bytes": 77336,
+      "direct": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "indirect": [
+        "frontend/src/components/templates/nocturne/nocturne.css"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/astralis-key-visual-v1.webp",
+      "bytes": 227256,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/bauhaus-key-visual-v1.webp",
+      "bytes": 62324,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/cathedral-key-visual-v1.webp",
+      "bytes": 196224,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/celluloid-key-visual-v1.webp",
+      "bytes": 117908,
+      "direct": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/chrome-key-visual-v1.webp",
+      "bytes": 155914,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/daguerre-key-visual-v1.webp",
+      "bytes": 119854,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/eternal-key-visual-v1.webp",
+      "bytes": 57490,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/gatsby-key-visual-v1.webp",
+      "bytes": 147182,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/hanami-key-visual-v1.webp",
+      "bytes": 184432,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/hanji-key-visual-v1.webp",
+      "bytes": 85238,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/helvetica-key-visual-v1.webp",
+      "bytes": 30422,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/herbarium-key-visual-v1.webp",
+      "bytes": 206154,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/isvara-key-visual-v1.png",
+      "bytes": 2256266,
+      "direct": [
+        "frontend/src/components/ThemeThumbnail.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/ThemeThumbnail.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/kodachrome-key-visual-v1.webp",
+      "bytes": 141806,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/lanqing-key-visual-v1.webp",
+      "bytes": 193508,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/maison-key-visual-v1.webp",
+      "bytes": 67936,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/monolith-key-visual-v1.webp",
+      "bytes": 93154,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/mughal-key-visual-v1.webp",
+      "bytes": 180588,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/nocturne-key-visual-v1.webp",
+      "bytes": 85356,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/puspa-sunda-key-visual-v1.webp",
+      "bytes": 200434,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/safavid-key-visual-v1.webp",
+      "bytes": 279738,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/samudra-key-visual-v1.webp",
+      "bytes": 111928,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/seraya-key-visual-v1.webp",
+      "bytes": 56254,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/songket-key-visual-v1.webp",
+      "bytes": 158054,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/storybook-key-visual-v1.webp",
+      "bytes": 172938,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/taksu-key-visual-v1.webp",
+      "bytes": 142280,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/ulos-key-visual-v1.webp",
+      "bytes": 124172,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/vellum-key-visual-v1.webp",
+      "bytes": 88816,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/theme-thumbnails/zellige-key-visual-v1.webp",
+      "bytes": 193962,
+      "direct": [],
+      "indirect": [],
+      "dynamicReview": "dynamic thumbnail theme lookup; review",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/backgrounds/main-cover.webp",
+      "bytes": 266252,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/backgrounds/opening-cover.webp",
+      "bytes": 247676,
+      "direct": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/SandboxTemaPanel.jsx",
+        "frontend/src/components/TemaPanel.jsx",
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-bamboo.webp",
+      "bytes": 356788,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-blossom-corner.webp",
+      "bytes": 295184,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-blossom.webp",
+      "bytes": 296158,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-bridge.webp",
+      "bytes": 329244,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-butterfly.webp",
+      "bytes": 250368,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-clouds.webp",
+      "bytes": 330364,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-crane.webp",
+      "bytes": 357406,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-eave.webp",
+      "bytes": 367100,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-fan-folding.webp",
+      "bytes": 388668,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-fan-round.webp",
+      "bytes": 170116,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-incense.webp",
+      "bytes": 247500,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-koi.webp",
+      "bytes": 396632,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-landscape-crescent.webp",
+      "bytes": 349642,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-lotus.webp",
+      "bytes": 470658,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-moon-clouds.webp",
+      "bytes": 292396,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-moongate.webp",
+      "bytes": 389922,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-pavilion.webp",
+      "bytes": 336192,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-pine.webp",
+      "bytes": 547548,
+      "direct": [],
+      "indirect": [
+        "frontend/src/pages/DepthEngineLab.jsx",
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "assets/yunshui/orn/orn-teacup.webp",
+      "bytes": 232652,
+      "direct": [],
+      "indirect": [
+        "frontend/src/components/templates/yunshui/YunshuiTemplate.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "favicon.png",
+      "bytes": 33496,
+      "direct": [
+        "backend/src/controllers/openGraphController.js",
+        "frontend/index.html",
+        "frontend/vite.config.js"
+      ],
+      "indirect": [
+        "backend/src/controllers/openGraphController.js",
+        "frontend/index.html",
+        "frontend/vite.config.js"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    },
+    {
+      "path": "logo.png",
+      "bytes": 45992,
+      "direct": [
+        "frontend/src/components/Header.jsx",
+        "frontend/src/components/Footer.jsx",
+        "frontend/src/pages/Signup.jsx",
+        "frontend/src/pages/ResetPassword.jsx",
+        "frontend/src/pages/AdminDashboard.jsx",
+        "frontend/src/pages/ForgotPassword.jsx",
+        "frontend/src/pages/Login.jsx"
+      ],
+      "indirect": [
+        "frontend/src/components/Header.jsx",
+        "frontend/src/components/Footer.jsx",
+        "frontend/src/pages/Signup.jsx",
+        "frontend/src/pages/ResetPassword.jsx",
+        "frontend/src/pages/AdminDashboard.jsx",
+        "frontend/src/pages/ForgotPassword.jsx",
+        "frontend/src/pages/Login.jsx"
+      ],
+      "dynamicReview": "",
+      "candidate": false
+    }
+  ],
+  "exactDuplicates": [
+    [
+      "assets/isvara/botanical/hydrangea-cutout-v2.webp",
+      "assets/isvara/botanical/hydrangeas.webp"
+    ],
+    [
+      "assets/nawasena/custom/ornamen-1.webp",
+      "assets/nawasena/custom/ornamen-19.webp"
+    ]
+  ],
+  "unreachableModules": [
+    "frontend/src/components/templates/atelier/AtelierTemplate.jsx",
+    "frontend/src/components/templates/atelier/atelier.css",
+    "frontend/src/components/templates/atelier/atelierBlueprints.js",
+    "frontend/src/components/templates/atelier/atelierThemes.js",
+    "frontend/src/components/templates/templateManifest.js",
+    "frontend/vite.config.js"
+  ],
+  "reachableModules": 178
+}

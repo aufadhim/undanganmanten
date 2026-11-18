@@ -1,5 +1,2 @@
-export const ACTIVE_THEME_IDS = ['eternal', 'seraya', 'nawasena', 'isvara', 'lanqing', 'celluloid', 'nocturne'];
-
-export function normalizeActiveThemeId(themeId) {
-  return ACTIVE_THEME_IDS.includes(themeId) ? themeId : 'eternal';
-}
+export {ACTIVE_THEME_IDS} from '../config/templateRegistry.js';
+export {normalizeThemeId as normalizeActiveThemeId} from '../config/templateRegistry.js';

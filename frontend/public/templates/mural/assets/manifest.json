@@ -1,0 +1,98 @@
+{
+  "status": "art-generated",
+  "engine": 3,
+  "copiedFrom": "riviera",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/mural/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 130330
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/mural/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 203412
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/mural/assets/ilustrasi5.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 464944
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/mural/assets/ilustrasi6.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 501862
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/mural/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.riverbank"
+      ],
+      "status": "generated",
+      "bytes": 191330
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/mural/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.landing"
+      ],
+      "status": "generated",
+      "bytes": 243808
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/mural/assets/ilustrasi9.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 340436
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/mural/assets/ilustrasi10.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 330560
+    },
+    {
+      "filename": "ilustrasi11.webp",
+      "path": "/templates/mural/assets/ilustrasi11.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 348308
+    },
+    {
+      "filename": "ilustrasi12.webp",
+      "path": "/templates/mural/assets/ilustrasi12.webp",
+      "usedBy": [],
+      "status": "generated",
+      "bytes": 308704
+    }
+  ],
+  "environmentRevision": {
+    "style": "watercolor",
+    "files": [
+      "environment-v2.webp",
+      "environment-zone-1-v2.webp",
+      "environment-zone-2-v2.webp",
+      "environment-zone-3-v2.webp",
+      "environment-zone-4-v2.webp"
+    ]
+  },
+  "singleCouple": true
+}

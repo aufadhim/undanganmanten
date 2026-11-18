@@ -1,10 +1,11 @@
+import PenutupPanel from './PenutupPanel.jsx';
 import GalleryLayoutPicker from './GalleryLayoutPicker.jsx';
 import { DUMMY_GALLERY_PHOTOS, DUMMY_GALLERY_VIDEO } from '../config/dummyAssets.js';
 
 const BLOCKS = [
   ['storyEnabled', 'Cerita Cinta'], ['timelineEnabled', 'Timeline'], ['dresscodeEnabled', 'Dresscode'],
   ['livestreamEnabled', 'Live Streaming'], ['rsvpEnabled', 'RSVP'], ['giftEnabled', 'Informasi Hadiah'],
-  ['wishesEnabled', 'Ucapan & Doa'], ['animationEnabled', 'Animasi Visual'],
+  ['wishesEnabled', 'Ucapan & Doa'],
 ];
 
 export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLivePreview }) {
@@ -26,12 +27,8 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
     <Field label="Font Isi"><select value={theme.typography?.fontBody || 'Montserrat'} onChange={(e) => update({ themeSettings: { typography: { ...theme.typography, fontBody: e.target.value } } })}><option>Montserrat</option><option>Manrope</option><option>Inter</option><option>Lora</option></select></Field>
   </Panel>;
 
-  if (type === 'visual') return <Panel title="Musik & Visual" subtitle="Coba musik latar, animasi jatuh, dan gaya loading langsung di preview.">
+  if (type === 'visual') return <Panel title="Musik Latar" subtitle="Dengarkan musik bawaan langsung di pratinjau.">
     <Toggle label="Aktifkan Musik Latar" checked={Boolean(invitation.invitationFeatures?.musicEnabled)} onChange={(checked) => update({ invitationFeatures: { musicEnabled: checked } })} />
-    {invitation.invitationFeatures?.musicEnabled && <Field label="Tautan Musik (MP3/WAV)"><input type="url" value={theme.musicUrl || ''} placeholder="https://contoh.com/lagu-instrumental.mp3" onChange={(e) => update({ themeSettings: { musicUrl: e.target.value } })} /></Field>}
-    <Toggle label="Aktifkan Animasi Visual" checked={Boolean(invitation.invitationFeatures?.animationEnabled)} onChange={(checked) => update({ invitationFeatures: { animationEnabled: checked } })} />
-    {invitation.invitationFeatures?.animationEnabled && <Field label="Animasi Jatuh"><select value={theme.animationType || ''} onChange={(e) => update({ themeSettings: { animationType: e.target.value } })}><option value="">Tidak ada</option><option value="snow">Salju</option><option value="leaves">Daun</option><option value="sakura">Sakura</option></select></Field>}
-    <Field label="Animasi Loading"><select value={theme.loadingAnimation || 'breathe'} onChange={(e) => update({ themeSettings: { loadingAnimation: e.target.value } })}><option value="breathe">Napas Halus</option><option value="reveal">Reveal Elegan</option><option value="shimmer">Kilau Cahaya</option><option value="spin">Putar Minimal</option></select></Field>
     <p style={{ margin: 0, color: 'var(--ink-soft)', fontSize: 12, lineHeight: 1.6 }}>Musik baru diputar setelah tombol “Buka Undangan” ditekan karena aturan autoplay browser.</p>
   </Panel>;
 
@@ -40,9 +37,9 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
   </Panel>;
 
   if (type === 'acara') return <Panel title="Informasi Acara & Save The Date" subtitle="Kota pada cover diambil dari bagian terakhir alamat.">
-    <Field label="Nama Lokasi"><input value={event.venueName || ''} onChange={(e) => update({ events: [{ ...event, venueName: e.target.value }] })} /></Field>
-    <Field label="Alamat Lengkap"><textarea rows="3" value={event.address || ''} onChange={(e) => update({ events: [{ ...event, address: e.target.value }] })} /></Field>
-    <Field label="Tanggal"><input type="date" value={String(event.date || '').slice(0,10)} onChange={(e) => update({ events: [{ ...event, date: e.target.value }] })} /></Field>
+    <Field label="Nama Lokasi"><input className="sandbox-event-input" value={event.venueName || ''} onChange={(e) => update({ events: [{ ...event, venueName: e.target.value }] })} /></Field>
+    <Field label="Alamat Lengkap"><textarea className="sandbox-event-input" rows="3" value={event.address || ''} onChange={(e) => update({ events: [{ ...event, address: e.target.value }] })} /></Field>
+    <Field label="Tanggal"><input className="sandbox-event-input" type="date" value={String(event.date || '').slice(0,10)} onChange={(e) => update({ events: [{ ...event, date: e.target.value }] })} /></Field>
   </Panel>;
 
   if (type === 'galeri') return <Panel title="Galeri Foto & Video" subtitle="Pilih layout berdasarkan mini-preview, lalu lihat hasil penuhnya di kanan.">
@@ -77,12 +74,10 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
   </Panel>;
 
   if (type === 'susunan') return <Panel title="Susunan & Blok" subtitle="Aktifkan atau sembunyikan bagian undangan. Urutannya mengikuti alur Konten.">
-    <div style={{ display: 'grid', gap: 10 }}>{BLOCKS.map(([key, label]) => <label key={key} className="sandbox-block-toggle"><span>{label}</span><span className="switch"><input type="checkbox" checked={invitation.invitationFeatures?.[key] ?? true} onChange={(e) => update({ invitationFeatures: { [key]: e.target.checked } })} /><span className="slider round" /></span></label>)}</div>
+    <div style={{ display: 'grid', gap: 10 }}>{BLOCKS.map(([key, label]) => <label key={key} className="sandbox-block-toggle"><span>{label}</span><span className="switch"><input type="checkbox" checked={invitation.invitationFeatures?.[key] ?? (key!=='igFilterEnabled')} onChange={(e) => update({ invitationFeatures: { [key]: e.target.checked } })} /><span className="slider round" /></span></label>)}</div>
   </Panel>;
 
-  if (type === 'penutup') return <Panel title="Penutup" subtitle="Kalimat terakhir yang tampil sebelum informasi tanggal dan lokasi.">
-    <Field label="Teks Penutup"><textarea rows="4" value={theme.closingText || ''} placeholder="Awal dari kisah selamanya" onChange={(e) => update({ themeSettings: { closingText: e.target.value } })} /></Field>
-  </Panel>;
+  if(type==='penutup')return <PenutupPanel invitation={invitation} onUpdated={onUpdated} onLivePreview={onLivePreview} sandbox/>;
 
   return <Panel title="Ucapan & Doa" subtitle="Form pada preview dapat dicoba tanpa menyimpan ucapan ke server."><p style={{ fontSize: 13 }}>Ucapan tidak pantas akan otomatis ditolak pada undangan aktif.</p></Panel>;
 }
@@ -90,6 +85,8 @@ export default function SandboxFeaturePanel({ type, invitation, onUpdated, onLiv
 function Panel({ title, subtitle, children }) {
   return <div className="panel-content"><h2 className="panel-header">{title}</h2><p className="panel-sub">{subtitle}</p><div className="section-block stack">{children}</div><style>{`
     .sandbox-block-toggle{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line,#eee);font-size:13px;font-weight:600}
+    .atelier-app .panel .sandbox-event-input{box-sizing:border-box;width:100%;min-width:0;min-height:42px;padding:10px 12px;border:1px solid var(--line,#d7dbc9);border-radius:4px;background:var(--dashboard-input,#fffdf6);font:inherit;color:inherit}
+    .atelier-app .panel textarea.sandbox-event-input{resize:vertical}
   `}</style></div>;
 }
 function Field({ label, children }) {

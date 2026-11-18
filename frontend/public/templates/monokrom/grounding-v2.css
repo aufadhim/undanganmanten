@@ -1,0 +1,5 @@
+/* Direct top offset: engine 3 intentionally disables CSS translate. */
+:root body.template-monokrom #cover .cover-heading,:root body.template-monokrom #journey .hero-heading{top:calc(10.5% + 30px)!important;translate:none!important}
+@media(min-width:900px){:root body.template-monokrom #cover .cover-heading,:root body.template-monokrom #journey .hero-heading{top:calc(8.5% + 30px)!important}}
+@media(max-height:700px){:root body.template-monokrom #cover .cover-heading,:root body.template-monokrom #journey .hero-heading{top:calc(7% + 30px)!important}}
+:root body.template-monokrom{--cms-ink:#3d3b39;--cms-accent:#686664}:root body.template-monokrom .primary{background:#686664!important}:root body.template-monokrom #cover h1 em,:root body.template-monokrom .hero-heading h2 em{color:#73706c!important}

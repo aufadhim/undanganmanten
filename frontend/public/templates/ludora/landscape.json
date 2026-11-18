@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "id": "ludora-playful-park",
+  "world": {
+    "width": 21600,
+    "height": 7200,
+    "z": -2200,
+    "asset": "panorama",
+    "y": -1200
+  },
+  "areas": [
+    {
+      "id": "meadow",
+      "asset": "landscapeGarden",
+      "x": -7200,
+      "width": 7200,
+      "height": 7200,
+      "feather": 0.08,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.72,
+        "width": 0.25,
+        "height": 0.18
+      },
+      "y": -1200
+    },
+    {
+      "id": "plaza",
+      "asset": "landscapeRiver",
+      "x": -2400,
+      "width": 7200,
+      "height": 7200,
+      "feather": 0.08,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.72,
+        "width": 0.25,
+        "height": 0.18
+      },
+      "y": -1200
+    },
+    {
+      "id": "picnic",
+      "asset": "landscapeBridge",
+      "x": 2400,
+      "width": 7200,
+      "height": 7200,
+      "feather": 0.08,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.72,
+        "width": 0.25,
+        "height": 0.18
+      },
+      "y": -1200
+    },
+    {
+      "id": "party",
+      "asset": "landscapeLake",
+      "x": 7200,
+      "width": 7200,
+      "height": 7200,
+      "feather": 0.08,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.72,
+        "width": 0.25,
+        "height": 0.18
+      },
+      "y": -1200
+    }
+  ],
+  "stops": [
+    {
+      "id": "cover",
+      "area": "meadow",
+      "x": 0,
+      "y": -850.2857142857142,
+      "z": 2370.0744752877454
+    },
+    {
+      "id": "hero",
+      "area": "meadow",
+      "x": 0,
+      "y": -1004.5714285714282,
+      "z": 2370.0744752877454
+    },
+    {
+      "id": "janji",
+      "area": "meadow",
+      "x": 450,
+      "y": -70,
+      "z": 2200
+    },
+    {
+      "id": "wanita",
+      "area": "meadow",
+      "x": 150,
+      "y": -55,
+      "z": 1120
+    },
+    {
+      "id": "pria",
+      "area": "meadow",
+      "x": -150,
+      "y": -65,
+      "z": 1120
+    },
+    {
+      "id": "countdown",
+      "area": "plaza",
+      "x": 0,
+      "y": -140,
+      "fit": "landmark"
+    },
+    {
+      "id": "akad",
+      "area": "plaza",
+      "x": 0,
+      "y": 80,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rundown",
+      "area": "plaza",
+      "x": 420,
+      "y": -50,
+      "z": 2300
+    },
+    {
+      "id": "cerita",
+      "area": "picnic",
+      "x": 0,
+      "y": -100,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "galeri",
+      "area": "picnic",
+      "x": 0,
+      "y": -180,
+      "fit": "landmark"
+    },
+    {
+      "id": "dresscode",
+      "area": "picnic",
+      "x": 620,
+      "y": -45,
+      "z": 2450
+    },
+    {
+      "id": "livestream",
+      "area": "picnic",
+      "x": 920,
+      "y": -20,
+      "z": 2500
+    },
+    {
+      "id": "filter",
+      "area": "picnic",
+      "x": 1200,
+      "y": 0,
+      "z": 2200
+    },
+    {
+      "id": "gift",
+      "area": "party",
+      "x": 0,
+      "y": -70,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rsvp",
+      "area": "party",
+      "x": 0,
+      "y": -50,
+      "fit": "landmark"
+    },
+    {
+      "id": "penutup",
+      "area": "party",
+      "x": 0,
+      "y": -1158.8571428571424,
+      "z": 2370.0744752877454
+    }
+  ],
+  "characters": {
+    "cover": {
+      "stop": "cover",
+      "y": -186.33801063809335,
+      "z": -1800,
+      "width": 1120.0218500139342,
+      "aspect": 0.6666666666666666,
+      "footY": 0.970703125
+    },
+    "hero": {
+      "stop": "hero",
+      "y": -144.48624322676005,
+      "z": -1800,
+      "width": 1041.6203205129589,
+      "aspect": 0.6666666666666666,
+      "footY": 0.970703125
+    },
+    "closing": {
+      "stop": "penutup",
+      "y": -58.89196136568435,
+      "z": -1800,
+      "width": 901.2653542256263,
+      "aspect": 0.6666666666666666,
+      "footY": 0.970703125
+    }
+  },
+  "decorations": [
+    {
+      "id": "garden-flowers",
+      "asset": "riverbank",
+      "area": "meadow",
+      "x": -425,
+      "y": 1450,
+      "z": -1700,
+      "width": 1000,
+      "sway": 0.08
+    },
+    {
+      "id": "river-flowers",
+      "asset": "riverbank",
+      "area": "plaza",
+      "x": 725,
+      "y": 1450,
+      "z": -1700,
+      "width": 1000,
+      "sway": 0.1
+    },
+    {
+      "id": "bridge-flowers",
+      "asset": "riverbank",
+      "area": "picnic",
+      "x": -775,
+      "y": 1450,
+      "z": -1700,
+      "width": 1000,
+      "sway": 0.1
+    },
+    {
+      "id": "lake-flowers",
+      "asset": "riverbank",
+      "area": "party",
+      "x": 600,
+      "y": 1450,
+      "z": -1700,
+      "width": 1000,
+      "sway": 0.08
+    },
+    {
+      "id": "closing-ground",
+      "asset": "landing",
+      "area": "party",
+      "x": 150,
+      "y": 1150,
+      "z": -1850,
+      "width": 800,
+      "attachment": {
+        "slot": "closing",
+        "floorOffset": -30,
+        "contact": true
+      }
+    },
+    {
+      "id": "cover-contact",
+      "asset": "landing",
+      "area": "meadow",
+      "z": -1850,
+      "width": 850,
+      "attachment": {
+        "slot": "cover",
+        "floorOffset": -30,
+        "contact": true
+      }
+    },
+    {
+      "id": "hero-contact",
+      "asset": "landing",
+      "area": "meadow",
+      "z": -1850,
+      "width": 850,
+      "attachment": {
+        "slot": "hero",
+        "floorOffset": -30,
+        "contact": true
+      }
+    }
+  ],
+  "motion": {
+    "overviewHoldMs": 650,
+    "durationScale": 1.6
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import {getTemplate,isImmersiveTemplate} from '../config/templateRegistry.js';
 
 export default function SplitViewLayout({ invitation, children }) {
     const profile = invitation?.coupleProfile || {};
@@ -7,16 +7,20 @@ export default function SplitViewLayout({ invitation, children }) {
     // Background based on theme primary/secondary or a default image
     const bgPrimary = theme?.background?.primary || '#2C3E50';
     const bgSecondary = theme?.background?.secondary || '#E4D5C0';
-    const coverImage = theme.coverImageUrl
-        || (invitation?.themeId === 'lanqing' ? '/assets/gallery/dummy-gallery-01.webp' : '')
-        || (invitation?.themeId === 'isvara' ? '/assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg' : '')
-        || (invitation?.themeId === 'nawasena' ? '/assets/nawasena/enchanted-joglo-hero.webp' : '')
-        || profile.bridePhoto
-        || profile.groomPhoto
-        || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200';
+    const eventDate = new Date(invitation?.weddingDate || invitation?.events?.[0]?.date || '');
+    const dateLabel = Number.isNaN(eventDate.getTime()) ? '' : new Intl.DateTimeFormat('id-ID', {
+        dateStyle: 'long', timeZone: 'Asia/Jakarta',
+    }).format(eventDate);
+    const template = getTemplate(invitation?.themeId);
+    const immersive = isImmersiveTemplate(invitation?.themeId);
+    const templateBackground = invitation?.themeId === 'nawasena'
+        ? '/assets/nawasena/enchanted-joglo-hero.webp'
+        : template?.previewFallback || template?.previewImg;
+    const coverImage = (immersive ? templateBackground : theme.coverImageUrl || templateBackground)
+        || '/assets/landing-canvas/garden.webp';
 
     return (
-        <div className={`split-view-container split-view-theme-${invitation?.themeId || 'default'}`}>
+        <div className={`split-view-container split-view-theme-${invitation?.themeId || 'default'} ${immersive?'split-view-immersia':''}`}>
             <div className="split-view-inner">
 
                 {/* Panel Kiri: Animasi & Cover */}
@@ -27,28 +31,25 @@ export default function SplitViewLayout({ invitation, children }) {
                         style={{ backgroundImage: `url(${coverImage})` }}
                     ></div>
 
-                    {/* Content */}
-                    <div className="split-view-left-content">
-                        <div className="split-view-top-label">
-                            The Wedding Of
-                        </div>
-                        <h1 
-                            className="split-view-title"
-                            style={{ fontFamily: theme?.typography?.fontHeading || "'Playfair Display', serif" }}
-                        >
-                            {profile.brideName || 'Bride'} &amp; {profile.groomName || 'Groom'}
-                        </h1>
-                        <p 
-                            className="split-view-subtitle"
-                            style={{ fontFamily: theme?.typography?.fontBody || "'Manrope', sans-serif" }}
-                        >
-                            A Journey of Love
-                        </p>
+                    <div className="split-view-bubbles" aria-hidden="true">
+                        {Array.from({ length: 14 }, (_, i) => (
+                            <span key={i} className="split-view-bubble" style={{
+                                left: ((i * 37 + 8) % 100) + '%',
+                                '--bubble-rest': (18 + (i * 29) % 72) + '%',
+                                '--bubble-size': (14 + (i * 11) % 34) + 'px',
+                                '--bubble-duration': (15 + (i * 7) % 16) + 's',
+                                '--bubble-delay': (-i * 2.3) + 's',
+                                '--bubble-drift': i % 2 ? 1 : -1,
+                            }} />
+                        ))}
+                    </div>
+                    <div className="split-view-left-content split-couple-caption">
+                        <h1 className="split-view-title">{profile.brideName || 'Mempelai wanita'} &amp; {profile.groomName || 'Mempelai pria'}</h1>
+                        {dateLabel && <p className="split-view-subtitle">{dateLabel}</p>}
                     </div>
                 </div>
-
                 {/* Panel Kanan: Template Asli (Bisa di-scroll) */}
-                <div className="split-view-right" tabIndex={0} aria-label="Pratinjau undangan yang dapat digulir">
+                <div className="split-view-right" tabIndex={0} aria-label="Undangan dalam tampilan mobile">
                     {/* Wrapper for background to prevent scale(1.1) from causing overflow */}
                     <div className="split-view-blur-wrapper">
                         {/* Background Blur for iPad void */}

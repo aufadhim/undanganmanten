@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="160" viewBox="0 0 1000 160"><defs><radialGradient id="pigment"><stop stop-color="#766c4f" stop-opacity=".3"/><stop offset=".55" stop-color="#766c4f" stop-opacity=".13"/><stop offset="1" stop-color="#766c4f" stop-opacity="0"/></radialGradient></defs><ellipse cx="500" cy="80" rx="480" ry="68" fill="url(#pigment)"/></svg>

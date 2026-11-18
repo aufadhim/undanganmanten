@@ -1,0 +1,2922 @@
+[
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-01.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 63856,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-02.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 106486,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-03.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 68770,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-04.webp",
+    "width": 1600,
+    "height": 1068,
+    "alpha": false,
+    "bytes": 96330,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-05.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 130090,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-06.webp",
+    "width": 1600,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 246568,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-07.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 128634,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-08.webp",
+    "width": 1600,
+    "height": 1067,
+    "alpha": false,
+    "bytes": 72366,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-09.webp",
+    "width": 1600,
+    "height": 1600,
+    "alpha": true,
+    "bytes": 343116,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/backgrounds/bg-10.webp",
+    "width": 1600,
+    "height": 1600,
+    "alpha": true,
+    "bytes": 370488,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-01.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 170894,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-02.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 154656,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-03.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 83118,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-04.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 61102,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-05.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 110144,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-06.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 127698,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-07.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 134704,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-08.webp",
+    "width": 1000,
+    "height": 1089,
+    "alpha": true,
+    "bytes": 142148,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-09.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 110034,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-10.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 98586,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-11.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 72100,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-12.webp",
+    "width": 1000,
+    "height": 1027,
+    "alpha": true,
+    "bytes": 202438,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-13.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 161160,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-14.webp",
+    "width": 1000,
+    "height": 1200,
+    "alpha": true,
+    "bytes": 145950,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-15.webp",
+    "width": 1000,
+    "height": 1040,
+    "alpha": true,
+    "bytes": 197962,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-16.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 161012,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-17.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 239358,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-18.webp",
+    "width": 1000,
+    "height": 1040,
+    "alpha": true,
+    "bytes": 177378,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-19.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 134450,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-20.webp",
+    "width": 1000,
+    "height": 855,
+    "alpha": true,
+    "bytes": 178450,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-21.webp",
+    "width": 1000,
+    "height": 1078,
+    "alpha": true,
+    "bytes": 182566,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-22.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 95098,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-23.webp",
+    "width": 1000,
+    "height": 1049,
+    "alpha": true,
+    "bytes": 201118,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-24.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 115114,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-25.webp",
+    "width": 1000,
+    "height": 563,
+    "alpha": true,
+    "bytes": 105782,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-26.webp",
+    "width": 1000,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 134758,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-27.webp",
+    "width": 1000,
+    "height": 927,
+    "alpha": true,
+    "bytes": 148524,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-28.webp",
+    "width": 1000,
+    "height": 334,
+    "alpha": true,
+    "bytes": 30882,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-29.webp",
+    "width": 1000,
+    "height": 667,
+    "alpha": true,
+    "bytes": 109542,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/cinematic/props/prop-30.webp",
+    "width": 1000,
+    "height": 1000,
+    "alpha": true,
+    "bytes": 240858,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/generated/film-strip-frame-v1.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha": true,
+    "bytes": 1537616,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/celluloid/generated/victorian-botanical-corner-v1.png",
+    "width": 1224,
+    "height": 1285,
+    "alpha": true,
+    "bytes": 1883558,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/dummy-groom.webp",
+    "width": 1023,
+    "height": 1537,
+    "alpha": false,
+    "bytes": 29710,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-bg-dawn-garden.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 1063216,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-bg-golden-garden.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 1024038,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-bg-night-garden.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 947266,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-floral-large.webp",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 3530006,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-floral-small.webp",
+    "width": 1600,
+    "height": 1600,
+    "alpha": true,
+    "bytes": 2111980,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-fog-overlay.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 1722910,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-foliage-foreground-left.webp",
+    "width": 1600,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 2913940,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-foliage-foreground-right.webp",
+    "width": 1600,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 2899000,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-garden-clock.webp",
+    "width": 1800,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 2913674,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-garden-path.webp",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2143110,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-grand-arch.webp",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 4097566,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-guestbook-envelope.webp",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2154124,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-keepsake-box.webp",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2654102,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-lantern.webp",
+    "width": 1600,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 2625616,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-light-rays-overlay.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 2996130,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-parchment.webp",
+    "width": 1800,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 3822008,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-trailing-vine.webp",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 1684748,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/edena/edena-universal-frame.webp",
+    "width": 1800,
+    "height": 2400,
+    "alpha": true,
+    "bytes": 2135194,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/couples/bride.webp",
+    "width": 760,
+    "height": 858,
+    "alpha": false,
+    "bytes": 78422,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/couples/groom.webp",
+    "width": 960,
+    "height": 1088,
+    "alpha": false,
+    "bytes": 92978,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/1.webp",
+    "width": 854,
+    "height": 1280,
+    "alpha": false,
+    "bytes": 44216,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/2.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 735400,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/3.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 445490,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/4.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 283948,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/5.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 246314,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/galleries/6.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 311956,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/eternal/images/hero/background.webp",
+    "width": 2774,
+    "height": 4160,
+    "alpha": false,
+    "bytes": 236012,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-01.webp",
+    "width": 349,
+    "height": 560,
+    "alpha": false,
+    "bytes": 10612,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-02.webp",
+    "width": 347,
+    "height": 560,
+    "alpha": false,
+    "bytes": 16390,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-03.webp",
+    "width": 348,
+    "height": 560,
+    "alpha": false,
+    "bytes": 15296,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-04.webp",
+    "width": 349,
+    "height": 560,
+    "alpha": false,
+    "bytes": 11910,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-05.webp",
+    "width": 349,
+    "height": 559,
+    "alpha": false,
+    "bytes": 12212,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-06.webp",
+    "width": 347,
+    "height": 559,
+    "alpha": false,
+    "bytes": 6856,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-07.webp",
+    "width": 348,
+    "height": 559,
+    "alpha": false,
+    "bytes": 11516,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-08.webp",
+    "width": 349,
+    "height": 559,
+    "alpha": false,
+    "bytes": 15028,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-01.webp",
+    "width": 684,
+    "height": 142,
+    "alpha": true,
+    "bytes": 19798,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-02.webp",
+    "width": 2718,
+    "height": 204,
+    "alpha": true,
+    "bytes": 7698,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-03.webp",
+    "width": 556,
+    "height": 500,
+    "alpha": true,
+    "bytes": 19412,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-04.webp",
+    "width": 741,
+    "height": 1205,
+    "alpha": true,
+    "bytes": 95494,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-05.webp",
+    "width": 1022,
+    "height": 827,
+    "alpha": true,
+    "bytes": 131260,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-06.webp",
+    "width": 428,
+    "height": 384,
+    "alpha": true,
+    "bytes": 31698,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-07.webp",
+    "width": 600,
+    "height": 671,
+    "alpha": true,
+    "bytes": 43874,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-08.webp",
+    "width": 363,
+    "height": 756,
+    "alpha": true,
+    "bytes": 50592,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-09.webp",
+    "width": 2639,
+    "height": 4617,
+    "alpha": true,
+    "bytes": 332524,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-10.webp",
+    "width": 1089,
+    "height": 1199,
+    "alpha": true,
+    "bytes": 32532,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-11.webp",
+    "width": 600,
+    "height": 470,
+    "alpha": true,
+    "bytes": 80404,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-12.webp",
+    "width": 312,
+    "height": 316,
+    "alpha": true,
+    "bytes": 26008,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-13.webp",
+    "width": 600,
+    "height": 554,
+    "alpha": true,
+    "bytes": 52384,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/Orn-14.webp",
+    "width": 1629,
+    "height": 782,
+    "alpha": true,
+    "bytes": 59668,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/botanical-wreath.webp",
+    "width": 750,
+    "height": 500,
+    "alpha": true,
+    "bytes": 158458,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/cosmos-cutout-v2.webp",
+    "width": 700,
+    "height": 1050,
+    "alpha": true,
+    "bytes": 276434,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/eucalyptus.webp",
+    "width": 650,
+    "height": 975,
+    "alpha": true,
+    "bytes": 143760,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/fern-mound.webp",
+    "width": 750,
+    "height": 500,
+    "alpha": true,
+    "bytes": 141350,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/fern-valley.webp",
+    "width": 1000,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 200930,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/flowering-shrub.webp",
+    "width": 700,
+    "height": 467,
+    "alpha": true,
+    "bytes": 126054,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/flowering-tree.webp",
+    "width": 850,
+    "height": 567,
+    "alpha": true,
+    "bytes": 207682,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/hydrangea-cutout-v2.webp",
+    "width": 800,
+    "height": 923,
+    "alpha": true,
+    "bytes": 184530,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/hydrangea-valley.webp",
+    "width": 1000,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 175098,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/hydrangeas.webp",
+    "width": 800,
+    "height": 923,
+    "alpha": true,
+    "bytes": 184530,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/magnolia.webp",
+    "width": 700,
+    "height": 467,
+    "alpha": true,
+    "bytes": 94422,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/moss-island.webp",
+    "width": 700,
+    "height": 467,
+    "alpha": true,
+    "bytes": 118232,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/peony-corner.webp",
+    "width": 850,
+    "height": 567,
+    "alpha": true,
+    "bytes": 167890,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/shaded-grove.webp",
+    "width": 1000,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 219806,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/small-tree.webp",
+    "width": 650,
+    "height": 975,
+    "alpha": true,
+    "bytes": 217630,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/botanical/trailing-garland.webp",
+    "width": 1400,
+    "height": 510,
+    "alpha": true,
+    "bytes": 269372,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/bride.webp",
+    "width": 1388,
+    "height": 1416,
+    "alpha": true,
+    "bytes": 432050,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/cascading-ivy.webp",
+    "width": 1200,
+    "height": 1800,
+    "alpha": true,
+    "bytes": 756456,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/fern-fan.webp",
+    "width": 1200,
+    "height": 800,
+    "alpha": true,
+    "bytes": 423450,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/floating-petals.webp",
+    "width": 1200,
+    "height": 800,
+    "alpha": true,
+    "bytes": 156428,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/flowering-tree.webp",
+    "width": 1200,
+    "height": 800,
+    "alpha": true,
+    "bytes": 399240,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/garden-path.webp",
+    "width": 1400,
+    "height": 1400,
+    "alpha": false,
+    "bytes": 399088,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/leaf-canopy.webp",
+    "width": 1200,
+    "height": 800,
+    "alpha": true,
+    "bytes": 271708,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/cinematic/peony-corner.webp",
+    "width": 1200,
+    "height": 800,
+    "alpha": true,
+    "bytes": 320584,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/env-back.webp",
+    "width": 1000,
+    "height": 1156,
+    "alpha": true,
+    "bytes": 49958,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/env-front.webp",
+    "width": 1000,
+    "height": 672,
+    "alpha": true,
+    "bytes": 27032,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/groom.webp",
+    "width": 1388,
+    "height": 1416,
+    "alpha": true,
+    "bytes": 494962,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/texture-1.webp",
+    "width": 600,
+    "height": 1801,
+    "alpha": false,
+    "bytes": 145242,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/isvara/thumb-md-717117-1400-1400-9632766178daf24c67babd5c-642061.jpg",
+    "width": 933,
+    "height": 1400,
+    "alpha": false,
+    "bytes": 113004,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-01.png",
+    "width": 223,
+    "height": 223,
+    "alpha": true,
+    "bytes": 8678,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-02.png",
+    "width": 960,
+    "height": 106,
+    "alpha": true,
+    "bytes": 7158,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-03.png",
+    "width": 296,
+    "height": 352,
+    "alpha": true,
+    "bytes": 102204,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-04.png",
+    "width": 560,
+    "height": 688,
+    "alpha": true,
+    "bytes": 68054,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-05.png",
+    "width": 243,
+    "height": 369,
+    "alpha": true,
+    "bytes": 100271,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-06.png",
+    "width": 276,
+    "height": 364,
+    "alpha": true,
+    "bytes": 151379,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-07.png",
+    "width": 617,
+    "height": 670,
+    "alpha": true,
+    "bytes": 54146,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-08.png",
+    "width": 840,
+    "height": 573,
+    "alpha": true,
+    "bytes": 105250,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-09.png",
+    "width": 800,
+    "height": 924,
+    "alpha": true,
+    "bytes": 200488,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-10.png",
+    "width": 350,
+    "height": 257,
+    "alpha": true,
+    "bytes": 135211,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-11.png",
+    "width": 868,
+    "height": 516,
+    "alpha": true,
+    "bytes": 85223,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-12.png",
+    "width": 976,
+    "height": 472,
+    "alpha": true,
+    "bytes": 73988,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-13.png",
+    "width": 580,
+    "height": 992,
+    "alpha": true,
+    "bytes": 210774,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-14.png",
+    "width": 676,
+    "height": 564,
+    "alpha": true,
+    "bytes": 149781,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-15.png",
+    "width": 284,
+    "height": 75,
+    "alpha": true,
+    "bytes": 2611,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-16.png",
+    "width": 1368,
+    "height": 124,
+    "alpha": true,
+    "bytes": 3350,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-17.png",
+    "width": 429,
+    "height": 716,
+    "alpha": true,
+    "bytes": 88419,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-18.png",
+    "width": 640,
+    "height": 306,
+    "alpha": true,
+    "bytes": 48422,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-19.png",
+    "width": 148,
+    "height": 888,
+    "alpha": true,
+    "bytes": 27400,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-20.png",
+    "width": 840,
+    "height": 1024,
+    "alpha": true,
+    "bytes": 214083,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-21.png",
+    "width": 318,
+    "height": 755,
+    "alpha": true,
+    "bytes": 153003,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-22.png",
+    "width": 105,
+    "height": 342,
+    "alpha": true,
+    "bytes": 2607,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-23.png",
+    "width": 568,
+    "height": 466,
+    "alpha": true,
+    "bytes": 97845,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-24.png",
+    "width": 1025,
+    "height": 368,
+    "alpha": true,
+    "bytes": 55229,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-26.png",
+    "width": 340,
+    "height": 508,
+    "alpha": true,
+    "bytes": 60504,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-28.png",
+    "width": 1672,
+    "height": 544,
+    "alpha": true,
+    "bytes": 65299,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-29.png",
+    "width": 544,
+    "height": 380,
+    "alpha": true,
+    "bytes": 60645,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/Orn-30.png",
+    "width": 688,
+    "height": 1596,
+    "alpha": true,
+    "bytes": 211743,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/cinematic/art-11.webp",
+    "width": 1100,
+    "height": 734,
+    "alpha": true,
+    "bytes": 232186,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/cinematic/art-22.webp",
+    "width": 1100,
+    "height": 1650,
+    "alpha": true,
+    "bytes": 433478,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/cinematic/art-25.webp",
+    "width": 1100,
+    "height": 978,
+    "alpha": true,
+    "bytes": 293038,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/frame-event.png",
+    "width": 1236,
+    "height": 1788,
+    "alpha": true,
+    "bytes": 14158,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/frame-quote.png",
+    "width": 280,
+    "height": 348,
+    "alpha": true,
+    "bytes": 2038,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/background/01-cover-sampul-gerbang-merah.png",
+    "width": 2160,
+    "height": 3840,
+    "alpha": false,
+    "bytes": 6882271,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/background/02-cover-utama-taman-istana.png",
+    "width": 2160,
+    "height": 3840,
+    "alpha": false,
+    "bytes": 7141864,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/background/03-latar-penutup-landscape.png",
+    "width": 3840,
+    "height": 2160,
+    "alpha": false,
+    "bytes": 7134581,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/background/04-latar-section-terang.png",
+    "width": 2160,
+    "height": 3840,
+    "alpha": false,
+    "bytes": 7243268,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/background/05-latar-section-gelap.png",
+    "width": 2160,
+    "height": 3840,
+    "alpha": false,
+    "bytes": 5772695,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/02-peony-sudut-kiri-bawah.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 3307877,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/03-peony-sudut-kanan-bawah.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2177858,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/04-cabang-peony-vertikal.png",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 5280361,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/05-lentera-kiri.png",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 3793550,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/06-lentera-kanan.png",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 4120232,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/07-rangkaian-lentera-jauh.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2493988,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/08-gerbang-bulan.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 3922187,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/09-bingkai-foto-mempelai.png",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 4591072,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/11-paviliun-depan.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2866272,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/12-atap-sudut-kanan-atas.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2396872,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/13-atap-sudut-kiri-atas.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2245326,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/14-phoenix-terbang.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2686283,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/15-sepasang-phoenix.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 5393807,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/16-awan-keberuntungan.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 1870225,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/18-kelopak-bergerak.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 2300667,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/19-kipas-dekoratif.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true,
+    "bytes": 4130486,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/red/transparent/20-simpul-keberuntungan.png",
+    "width": 2048,
+    "height": 3072,
+    "alpha": true,
+    "bytes": 3971738,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/lanqing/texture-1.png",
+    "width": 600,
+    "height": 1111,
+    "alpha": false,
+    "bytes": 91717,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-1.webp",
+    "width": 1535,
+    "height": 1015,
+    "alpha": true,
+    "bytes": 129662,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-10.webp",
+    "width": 152,
+    "height": 563,
+    "alpha": true,
+    "bytes": 27264,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-11.webp",
+    "width": 437,
+    "height": 610,
+    "alpha": true,
+    "bytes": 84254,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-12.webp",
+    "width": 387,
+    "height": 388,
+    "alpha": true,
+    "bytes": 31204,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-13.webp",
+    "width": 566,
+    "height": 462,
+    "alpha": true,
+    "bytes": 93546,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-14.webp",
+    "width": 263,
+    "height": 314,
+    "alpha": true,
+    "bytes": 31380,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-15.webp",
+    "width": 351,
+    "height": 356,
+    "alpha": true,
+    "bytes": 48962,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-16.webp",
+    "width": 498,
+    "height": 397,
+    "alpha": true,
+    "bytes": 62268,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-17.webp",
+    "width": 500,
+    "height": 406,
+    "alpha": true,
+    "bytes": 61310,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-18.webp",
+    "width": 570,
+    "height": 394,
+    "alpha": true,
+    "bytes": 63326,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-19.webp",
+    "width": 1535,
+    "height": 1015,
+    "alpha": true,
+    "bytes": 129662,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-2.webp",
+    "width": 182,
+    "height": 140,
+    "alpha": true,
+    "bytes": 7582,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-20.webp",
+    "width": 473,
+    "height": 387,
+    "alpha": true,
+    "bytes": 87450,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-21.webp",
+    "width": 566,
+    "height": 394,
+    "alpha": true,
+    "bytes": 110570,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-22.webp",
+    "width": 333,
+    "height": 306,
+    "alpha": true,
+    "bytes": 32108,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-23.webp",
+    "width": 284,
+    "height": 315,
+    "alpha": true,
+    "bytes": 27810,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-24.webp",
+    "width": 301,
+    "height": 289,
+    "alpha": true,
+    "bytes": 27484,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-25.webp",
+    "width": 244,
+    "height": 284,
+    "alpha": true,
+    "bytes": 32894,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-3.webp",
+    "width": 187,
+    "height": 197,
+    "alpha": true,
+    "bytes": 10088,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-4.webp",
+    "width": 233,
+    "height": 160,
+    "alpha": true,
+    "bytes": 10056,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-5.webp",
+    "width": 162,
+    "height": 219,
+    "alpha": true,
+    "bytes": 9370,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-6.webp",
+    "width": 214,
+    "height": 161,
+    "alpha": true,
+    "bytes": 9806,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-7.webp",
+    "width": 155,
+    "height": 243,
+    "alpha": true,
+    "bytes": 10406,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-8.webp",
+    "width": 582,
+    "height": 685,
+    "alpha": true,
+    "bytes": 123866,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/custom/ornamen-9.webp",
+    "width": 482,
+    "height": 613,
+    "alpha": true,
+    "bytes": 95032,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/enchanted-joglo-hero.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha": false,
+    "bytes": 308744,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/original-ornaments/magnolia.webp",
+    "width": 520,
+    "height": 390,
+    "alpha": true,
+    "bytes": 86602,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/original-ornaments/petals.webp",
+    "width": 510,
+    "height": 500,
+    "alpha": true,
+    "bytes": 78964,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-01.webp",
+    "width": 486,
+    "height": 200,
+    "alpha": true,
+    "bytes": 15766,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-02.webp",
+    "width": 600,
+    "height": 649,
+    "alpha": true,
+    "bytes": 81714,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-03.webp",
+    "width": 416,
+    "height": 320,
+    "alpha": true,
+    "bytes": 42740,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-04.webp",
+    "width": 478,
+    "height": 384,
+    "alpha": true,
+    "bytes": 41514,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-05.webp",
+    "width": 569,
+    "height": 352,
+    "alpha": true,
+    "bytes": 49784,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-06.webp",
+    "width": 300,
+    "height": 280,
+    "alpha": true,
+    "bytes": 12356,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-07.webp",
+    "width": 248,
+    "height": 252,
+    "alpha": true,
+    "bytes": 19802,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-08.webp",
+    "width": 600,
+    "height": 913,
+    "alpha": true,
+    "bytes": 103682,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-09.webp",
+    "width": 600,
+    "height": 971,
+    "alpha": true,
+    "bytes": 198472,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-10.webp",
+    "width": 600,
+    "height": 955,
+    "alpha": true,
+    "bytes": 211884,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-11.webp",
+    "width": 280,
+    "height": 440,
+    "alpha": true,
+    "bytes": 29092,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-12.webp",
+    "width": 600,
+    "height": 666,
+    "alpha": true,
+    "bytes": 73870,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-13.webp",
+    "width": 472,
+    "height": 576,
+    "alpha": true,
+    "bytes": 69896,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-14.webp",
+    "width": 600,
+    "height": 874,
+    "alpha": true,
+    "bytes": 49866,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-15.webp",
+    "width": 224,
+    "height": 516,
+    "alpha": true,
+    "bytes": 28542,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-16.webp",
+    "width": 600,
+    "height": 898,
+    "alpha": true,
+    "bytes": 98952,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-17.webp",
+    "width": 600,
+    "height": 751,
+    "alpha": true,
+    "bytes": 156274,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-18.webp",
+    "width": 600,
+    "height": 744,
+    "alpha": true,
+    "bytes": 90428,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-19.webp",
+    "width": 511,
+    "height": 336,
+    "alpha": true,
+    "bytes": 52716,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-20.webp",
+    "width": 600,
+    "height": 830,
+    "alpha": true,
+    "bytes": 86372,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-21.webp",
+    "width": 465,
+    "height": 324,
+    "alpha": true,
+    "bytes": 36714,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-22.webp",
+    "width": 600,
+    "height": 1374,
+    "alpha": true,
+    "bytes": 49570,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-23.webp",
+    "width": 600,
+    "height": 896,
+    "alpha": true,
+    "bytes": 131106,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-24.webp",
+    "width": 600,
+    "height": 1246,
+    "alpha": true,
+    "bytes": 112006,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-25.webp",
+    "width": 571,
+    "height": 909,
+    "alpha": true,
+    "bytes": 88476,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-26.webp",
+    "width": 164,
+    "height": 140,
+    "alpha": true,
+    "bytes": 5832,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-27.webp",
+    "width": 451,
+    "height": 648,
+    "alpha": true,
+    "bytes": 67100,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-28.webp",
+    "width": 286,
+    "height": 320,
+    "alpha": true,
+    "bytes": 34508,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-29.webp",
+    "width": 160,
+    "height": 156,
+    "alpha": true,
+    "bytes": 12424,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-30.webp",
+    "width": 600,
+    "height": 807,
+    "alpha": true,
+    "bytes": 47514,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-31.webp",
+    "width": 293,
+    "height": 492,
+    "alpha": true,
+    "bytes": 43144,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-32.webp",
+    "width": 696,
+    "height": 396,
+    "alpha": true,
+    "bytes": 60086,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-33.webp",
+    "width": 436,
+    "height": 504,
+    "alpha": true,
+    "bytes": 47576,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-34.webp",
+    "width": 600,
+    "height": 814,
+    "alpha": true,
+    "bytes": 124578,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-35.webp",
+    "width": 116,
+    "height": 340,
+    "alpha": true,
+    "bytes": 18086,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-36.webp",
+    "width": 445,
+    "height": 724,
+    "alpha": true,
+    "bytes": 80960,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-37.webp",
+    "width": 600,
+    "height": 683,
+    "alpha": true,
+    "bytes": 88378,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-38.webp",
+    "width": 332,
+    "height": 384,
+    "alpha": true,
+    "bytes": 22834,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-39.webp",
+    "width": 539,
+    "height": 456,
+    "alpha": true,
+    "bytes": 61294,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-40.webp",
+    "width": 248,
+    "height": 552,
+    "alpha": true,
+    "bytes": 30772,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-41.webp",
+    "width": 505,
+    "height": 460,
+    "alpha": true,
+    "bytes": 54184,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-42.webp",
+    "width": 333,
+    "height": 528,
+    "alpha": true,
+    "bytes": 45658,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-43.webp",
+    "width": 600,
+    "height": 1157,
+    "alpha": true,
+    "bytes": 137850,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-44.webp",
+    "width": 479,
+    "height": 396,
+    "alpha": true,
+    "bytes": 61444,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-45.webp",
+    "width": 416,
+    "height": 840,
+    "alpha": true,
+    "bytes": 58846,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-46.webp",
+    "width": 952,
+    "height": 280,
+    "alpha": true,
+    "bytes": 81216,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-47.webp",
+    "width": 600,
+    "height": 517,
+    "alpha": true,
+    "bytes": 110644,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-48.webp",
+    "width": 300,
+    "height": 477,
+    "alpha": true,
+    "bytes": 8980,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-49.webp",
+    "width": 600,
+    "height": 907,
+    "alpha": true,
+    "bytes": 54348,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-51.webp",
+    "width": 564,
+    "height": 232,
+    "alpha": true,
+    "bytes": 15914,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-53.webp",
+    "width": 800,
+    "height": 514,
+    "alpha": true,
+    "bytes": 59418,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-54.webp",
+    "width": 513,
+    "height": 425,
+    "alpha": true,
+    "bytes": 46966,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-55.webp",
+    "width": 180,
+    "height": 548,
+    "alpha": true,
+    "bytes": 32054,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-56.webp",
+    "width": 600,
+    "height": 478,
+    "alpha": true,
+    "bytes": 65958,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-57.webp",
+    "width": 412,
+    "height": 376,
+    "alpha": true,
+    "bytes": 48134,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-58.webp",
+    "width": 504,
+    "height": 404,
+    "alpha": true,
+    "bytes": 52606,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-59.webp",
+    "width": 600,
+    "height": 745,
+    "alpha": true,
+    "bytes": 79658,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-60.webp",
+    "width": 400,
+    "height": 308,
+    "alpha": true,
+    "bytes": 28516,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-61.webp",
+    "width": 600,
+    "height": 830,
+    "alpha": false,
+    "bytes": 59978,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-62.webp",
+    "width": 800,
+    "height": 531,
+    "alpha": true,
+    "bytes": 51904,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-63.webp",
+    "width": 600,
+    "height": 706,
+    "alpha": true,
+    "bytes": 168048,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-64.webp",
+    "width": 284,
+    "height": 352,
+    "alpha": true,
+    "bytes": 33756,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-65.webp",
+    "width": 369,
+    "height": 627,
+    "alpha": true,
+    "bytes": 45444,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/Orn-67.webp",
+    "width": 400,
+    "height": 32,
+    "alpha": true,
+    "bytes": 1832,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nawasena/ornaments/texture-1.webp",
+    "width": 800,
+    "height": 2410,
+    "alpha": true,
+    "bytes": 62094,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/backgrounds/closing-stage-background.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 235252,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/backgrounds/cover-main-background.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 266854,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/backgrounds/opening-stage-background.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": false,
+    "bytes": 198998,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/contact-sheet.webp",
+    "width": 2000,
+    "height": 3300,
+    "alpha": false,
+    "bytes": 414082,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/curtains/closing-curtain-left.webp",
+    "width": 800,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 980780,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/curtains/closing-curtain-right.webp",
+    "width": 800,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 987760,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/curtains/opening-curtain-left.webp",
+    "width": 900,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 905274,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/curtains/opening-curtain-right.webp",
+    "width": 900,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 993076,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/curtains/opening-top-drape.webp",
+    "width": 1440,
+    "height": 600,
+    "alpha": true,
+    "bytes": 450312,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/florals/closing-floral-floor.webp",
+    "width": 1100,
+    "height": 600,
+    "alpha": true,
+    "bytes": 502302,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/florals/couple-floral-accent.webp",
+    "width": 650,
+    "height": 800,
+    "alpha": true,
+    "bytes": 325838,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/florals/cover-floral-left.webp",
+    "width": 700,
+    "height": 1100,
+    "alpha": true,
+    "bytes": 594376,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/florals/cover-floral-right.webp",
+    "width": 650,
+    "height": 950,
+    "alpha": true,
+    "bytes": 479758,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/calendar-deco-frame.webp",
+    "width": 1100,
+    "height": 1100,
+    "alpha": true,
+    "bytes": 413526,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/couple-stage-divider.webp",
+    "width": 300,
+    "height": 1200,
+    "alpha": true,
+    "bytes": 36706,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/cover-main-photo-frame.webp",
+    "width": 1100,
+    "height": 1700,
+    "alpha": true,
+    "bytes": 638356,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/dresscode-hanger-line.webp",
+    "width": 900,
+    "height": 700,
+    "alpha": true,
+    "bytes": 162488,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/event-program-frame.webp",
+    "width": 1100,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 935466,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/livestream-screen-frame.webp",
+    "width": 1300,
+    "height": 850,
+    "alpha": true,
+    "bytes": 411466,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/opening-deco-frame.webp",
+    "width": 1200,
+    "height": 2200,
+    "alpha": true,
+    "bytes": 357018,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/quote-deco-corner.webp",
+    "width": 500,
+    "height": 500,
+    "alpha": true,
+    "bytes": 54182,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/rundown-spine.webp",
+    "width": 250,
+    "height": 1800,
+    "alpha": true,
+    "bytes": 12624,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/story-film-frame.webp",
+    "width": 1200,
+    "height": 900,
+    "alpha": true,
+    "bytes": 612398,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/timecode-divider.webp",
+    "width": 120,
+    "height": 300,
+    "alpha": true,
+    "bytes": 7126,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/frames/video-cinema-frame.webp",
+    "width": 1400,
+    "height": 900,
+    "alpha": true,
+    "bytes": 396316,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/closing-final-vignette.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 2224030,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/closing-spotlight.webp",
+    "width": 1000,
+    "height": 1800,
+    "alpha": true,
+    "bytes": 1040974,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/couple-light-shadow.webp",
+    "width": 900,
+    "height": 1100,
+    "alpha": true,
+    "bytes": 762860,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/cover-spotlight-left.webp",
+    "width": 900,
+    "height": 1800,
+    "alpha": true,
+    "bytes": 1174198,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/event-akad-light.webp",
+    "width": 900,
+    "height": 1000,
+    "alpha": true,
+    "bytes": 663254,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/event-reception-spotlight.webp",
+    "width": 1000,
+    "height": 1000,
+    "alpha": true,
+    "bytes": 786816,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/opening-low-fog.webp",
+    "width": 1440,
+    "height": 700,
+    "alpha": true,
+    "bytes": 471524,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/lighting/opening-spotlight-beam.webp",
+    "width": 1200,
+    "height": 1800,
+    "alpha": true,
+    "bytes": 1806438,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/masks/dresscode-fabric-mask.webp",
+    "width": 600,
+    "height": 600,
+    "alpha": true,
+    "bytes": 163784,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/sections/gift-envelope-open.webp",
+    "width": 1000,
+    "height": 900,
+    "alpha": true,
+    "bytes": 850426,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/sections/quote-paper.webp",
+    "width": 1100,
+    "height": 1500,
+    "alpha": true,
+    "bytes": 1458442,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/sections/rsvp-ticket-background.webp",
+    "width": 1200,
+    "height": 1600,
+    "alpha": true,
+    "bytes": 1380840,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/sections/wish-note-paper.webp",
+    "width": 900,
+    "height": 700,
+    "alpha": true,
+    "bytes": 553746,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/textures/nocturne-dust-overlay.webp",
+    "width": 1440,
+    "height": 2560,
+    "alpha": true,
+    "bytes": 3201570,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/textures/nocturne-metal-brushed.webp",
+    "width": 1024,
+    "height": 1024,
+    "alpha": false,
+    "bytes": 318600,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/textures/nocturne-paper-grain.webp",
+    "width": 1024,
+    "height": 1024,
+    "alpha": false,
+    "bytes": 205046,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/textures/nocturne-smoked-glass.webp",
+    "width": 1024,
+    "height": 1024,
+    "alpha": false,
+    "bytes": 62196,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/nocturne/textures/nocturne-velvet-texture.webp",
+    "width": 1024,
+    "height": 1024,
+    "alpha": false,
+    "bytes": 77336,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/astralis-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 227256,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/bauhaus-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 62324,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/cathedral-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 196224,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/celluloid-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 117908,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/chrome-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 155914,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/daguerre-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 119854,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/eternal-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 57490,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/gatsby-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 147182,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/hanami-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 184432,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/hanji-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 85238,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/helvetica-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 30422,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/herbarium-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 206154,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/isvara-key-visual-v1.png",
+    "width": 1122,
+    "height": 1402,
+    "alpha": false,
+    "bytes": 2256266,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/kodachrome-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 141806,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/lanqing-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 193508,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/maison-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 67936,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/monolith-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 93154,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/mughal-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 180588,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/nocturne-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 85356,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/puspa-sunda-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 200434,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/safavid-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 279738,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/samudra-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 111928,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/seraya-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 56254,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/songket-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 158054,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/storybook-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 172938,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/taksu-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 142280,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/ulos-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 124172,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/vellum-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 88816,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/theme-thumbnails/zellige-key-visual-v1.webp",
+    "width": 800,
+    "height": 1000,
+    "alpha": false,
+    "bytes": 193962,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/backgrounds/main-cover.webp",
+    "width": 1013,
+    "height": 1800,
+    "alpha": false,
+    "bytes": 266252,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/backgrounds/opening-cover.webp",
+    "width": 1013,
+    "height": 1800,
+    "alpha": false,
+    "bytes": 247676,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-bamboo.webp",
+    "width": 933,
+    "height": 1400,
+    "alpha": true,
+    "bytes": 356788,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-blossom-corner.webp",
+    "width": 1254,
+    "height": 1254,
+    "alpha": true,
+    "bytes": 295184,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-blossom.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 296158,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-bridge.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 329244,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-butterfly.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 250368,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-clouds.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 330364,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-crane.webp",
+    "width": 933,
+    "height": 1400,
+    "alpha": true,
+    "bytes": 357406,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-eave.webp",
+    "width": 1312,
+    "height": 1199,
+    "alpha": true,
+    "bytes": 367100,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-fan-folding.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 388668,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-fan-round.webp",
+    "width": 933,
+    "height": 1400,
+    "alpha": true,
+    "bytes": 170116,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-incense.webp",
+    "width": 933,
+    "height": 1400,
+    "alpha": true,
+    "bytes": 247500,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-koi.webp",
+    "width": 1145,
+    "height": 1374,
+    "alpha": true,
+    "bytes": 396632,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-landscape-crescent.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 349642,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-lotus.webp",
+    "width": 1224,
+    "height": 1285,
+    "alpha": true,
+    "bytes": 470658,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-moon-clouds.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 292396,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-moongate.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 389922,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-pavilion.webp",
+    "width": 1312,
+    "height": 1199,
+    "alpha": true,
+    "bytes": 336192,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-pine.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 547548,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/assets/yunshui/orn/orn-teacup.webp",
+    "width": 1400,
+    "height": 933,
+    "alpha": true,
+    "bytes": 232652,
+    "format": "webp"
+  },
+  {
+    "path": "frontend/public/favicon.png",
+    "width": 256,
+    "height": 256,
+    "alpha": true,
+    "bytes": 33496,
+    "format": "png"
+  },
+  {
+    "path": "frontend/public/logo.png",
+    "width": 256,
+    "height": 256,
+    "alpha": true,
+    "bytes": 45992,
+    "format": "png"
+  }
+]

@@ -1,14 +1,17 @@
+import CoverAmbience from '../shared/CoverAmbience.jsx';
+import FooterBrand from '../shared/FooterBrand.jsx';
+import PhotoFrame from '../shared/PhotoFrame.jsx';
+import DresscodeContent from '../shared/DresscodeContent.jsx';
+import StandardGallery from '../shared/StandardGallery.jsx';
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useCountdown } from "../../../hooks/useCountdown.js";
 import { useCalendarUrl } from "../../../hooks/useCalendarUrl.js";
 import FloatingMultimedia from "../../FloatingMultimedia.jsx";
 import PublicForms, { GiftSection } from "../../PublicForms.jsx";
-import Lightbox from "../shared/Lightbox.jsx";
 import SaveTheDate from "../shared/SaveTheDate.jsx";
 import { sortWeddingEvents } from '../../../config/dummyPreviewData.js';
 import LivestreamCard from "../shared/LivestreamCard.jsx";
-import { galleryCountClasses } from "../shared/galleryLayout.js";
 import CenteredVideoPlayer from "../../CenteredVideoPlayer.jsx";
 import "./eternal.css";
 import { resolveImageUrl } from '../../../config/env.js';
@@ -24,7 +27,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   if (!invitation) return null;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(null);
+  
   const [copyStatus, setCopyStatus] = useState('COPY');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -213,7 +216,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     { id: "story", enabled: true },
     { id: "dresscode", enabled: true },
     { id: "livestream", enabled: true },
-    { id: "igFilter", enabled: true },
+    { id: "igFilter", enabled: features.igFilterEnabled === true },
     { id: "rsvp", enabled: true },
     { id: "wishes", enabled: true },
     { id: "gift", enabled: true },
@@ -247,7 +250,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   const renderHero = () => (
     <section id="home" className={`hero-section ${templateCovers.mainIsArtwork ? 'is-default-artwork' : ''}`} key="cover">
       <div className="hero-bg">
-        {templateCovers.mainIsArtwork ? <div className="eternal-default-hero-art" aria-hidden="true"><span>ETERNAL</span><strong>{(profile.brideName || 'Arunika')[0]}<i>&amp;</i>{(profile.groomName || 'Deva')[0]}</strong><small>LOVE · INFINITE · ALWAYS</small></div> : <img src={coverSecondImage} alt="Hero Background" className="hero-img" />}
+        {templateCovers.mainIsArtwork ? <div className="eternal-default-hero-art" aria-hidden="true"><small>LOVE · INFINITE · ALWAYS</small></div> : <img src={coverSecondImage} alt="Hero Background" className="hero-img" />}
         <div className="hero-overlay"></div>
       </div>
       <div className="hero-noise"></div>
@@ -331,7 +334,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     return <span dangerouslySetInnerHTML={{ __html: highlightedText }} />;
   };
   const renderStory = () => {
-    const previewStory = resolvePreviewStory(theme?.mainStory, timeline, editorPreview);
+    const previewStory = resolvePreviewStory(theme?.mainStory, timeline, editorPreview, invitation.invitationFeatures?.timelineEnabled);
     const displayTimeline = previewStory.timeline;
     const displayMainStory = previewStory.mainStory;
     
@@ -428,7 +431,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                 <p>{profile.brideBio || getDummyBrideBio(profile.brideName || 'Arunika')}</p>
               </div>
             )}
-            {profile.brideIg && (
+            {settings.brideInstagramEnabled !== false && profile.brideIg && (
               <a 
                 href={profile.brideIg.startsWith('http') ? profile.brideIg : `https://instagram.com/${profile.brideIg.replace('@', '')}`}
                 target="_blank"
@@ -465,7 +468,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
                 <p>{profile.groomBio || getDummyGroomBio(profile.groomName || 'Deva')}</p>
               </div>
             )}
-            {profile.groomIg && (
+            {settings.groomInstagramEnabled !== false && profile.groomIg && (
               <a 
                 href={profile.groomIg.startsWith('http') ? profile.groomIg : `https://instagram.com/${profile.groomIg.replace('@', '')}`}
                 target="_blank"
@@ -504,66 +507,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   };
 
   const renderGallery = () => {
-    const uploadedPhotos = galleries.filter((item) => item.type !== 'video');
-    const savedVideos = galleries.filter((item) => item.type === 'video');
-    const uploadedVideos = savedVideos.length || !editorPreview ? savedVideos : [{ id: 'eternal-dummy-video', type: 'video', url: DUMMY_GALLERY_VIDEO }];
-    const displayGalleries = uploadedPhotos.length > 0 ? uploadedPhotos : DUMMY_GALLERY_PHOTOS.map((url) => ({ url }));
-    const lightboxMedia = [...displayGalleries.map((item) => ({ ...item, type: 'photo' })), ...uploadedVideos];
-    const half = Math.ceil(displayGalleries.length / 2);
-    const galleryLayout = theme.galleryLayout || 'editorial';
-    const usesFlatLayout = ['collage', 'wall'].includes(galleryLayout);
-
-    return (
-      <section id="gallery" className="gallery-section" key="gallery" style={{ overflow: 'hidden' }}>
-        <div className={`gallery-container gallery-layout-${galleryLayout} ${galleryCountClasses(displayGalleries.length)}`}>
-          <div className="gallery-header-col">
-            <h2 className="section-title">{t('public.gallery')}</h2>
-            <p className="section-subtitle">{t('public.gallery_subtitle')}</p>
-            <div className="event-details">
-              <p className="event-description">
-                A glimpse into our beautiful journey together. Every picture tells a story of love, laughter, and a promise of forever.
-              </p>
-            </div>
-          </div>
-          {usesFlatLayout ? <div className="gallery-flat-layout">
-            {displayGalleries.map((g, index) => <button className="gallery-item" key={g.id || index} onClick={() => setLightboxIndex(index)}>
-              <img src={resolveImageUrl(g.url)} alt={`Gallery ${index + 1}`} />
-            </button>)}
-          </div> : <><div className="gallery-col gallery-col-up" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
-            {displayGalleries.slice(0, half).map((g, i) => (
-              <div className="gallery-item" key={i} onClick={() => setLightboxIndex(i)} style={{ cursor: 'pointer' }}>
-                <img src={resolveImageUrl(g.url)} alt="Gallery" />
-              </div>
-            ))}
-          </div>
-          <div className="gallery-col gallery-col-down" style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}>
-            {displayGalleries.slice(half).map((g, i) => (
-              <div className="gallery-item" key={half + i} onClick={() => setLightboxIndex(half + i)} style={{ cursor: 'pointer' }}>
-                <img src={resolveImageUrl(g.url)} alt="Gallery" />
-              </div>
-            ))}
-          </div></>}
-        </div>
-
-        {uploadedVideos.length > 0 && <div className="gallery-video-list">
-          {uploadedVideos.map((video) => {
-            const ytMatch = video.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&/]+)/);
-            return <div className="gallery-video" key={video.id || video.url}>
-              {ytMatch ? <iframe src={`https://www.youtube.com/embed/${ytMatch[1]}`} title="Wedding video" allowFullScreen /> : <CenteredVideoPlayer src={resolveImageUrl(video.url)} />}
-            </div>;
-          })}
-        </div>}
-
-        {lightboxIndex !== null && (
-          <Lightbox
-            currentIndex={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onNavigate={setLightboxIndex}
-            mediaList={lightboxMedia}
-          />
-        )}
-      </section>
-    );
+    const media=galleries.length?galleries:[...DUMMY_GALLERY_PHOTOS.map(url=>({type:'photo',url})),...(editorPreview?[{type:'video',url:DUMMY_GALLERY_VIDEO}]:[])];
+    return <section id="gallery" className="gallery-section" key="gallery" style={{overflow:'hidden',padding:'36px 20px',height:'auto',minHeight:0,display:'block'}}><h2 className="section-title">{t('public.gallery')}</h2><p className="section-subtitle">{t('public.gallery_subtitle')}</p><StandardGallery mediaList={media} layout={theme.galleryLayout||'editorial'}/></section>;
   };
 
   const renderGift = () => {
@@ -574,7 +519,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       </section>
     );
   };
-  const renderRsvp = () => (
+  const renderRsvp = () => features.rsvpEnabled === false ? null : (
     <section
       id="rsvp"
       className="rsvp-section"
@@ -610,7 +555,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
     </section>
   );
 
-  const renderWishes = () => (
+  const renderWishes = () => features.rsvpEnabled !== false ? null : (
     <section id="wishes" className="rsvp-section" key="wishes" style={{ padding: '24px 0 40px', background: 'var(--stone-50)' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}><PublicForms invitation={invitation} previewGuest={previewGuest} templateStyle="eternal" previewMode={editorPreview} formType="wishes" /></div>
     </section>
@@ -695,7 +640,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           </p>
         </div>
       </div>
-    </footer>
+    <FooterBrand/></footer>
   );
 
   const renderEvents = () => {
@@ -830,62 +775,11 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   };
 
   const renderDresscode = () => {
-    let parsedDresscode = null;
-    if (theme?.dresscodeDetails) {
-      if (typeof theme.dresscodeDetails === 'string') {
-        try { parsedDresscode = JSON.parse(theme.dresscodeDetails); } catch (e) { }
-      } else {
-        parsedDresscode = theme.dresscodeDetails;
-      }
-    }
-
-    const dresscodeText = parsedDresscode?.title || theme?.dresscodeText || "Kami mengharapkan para tamu undangan dapat hadir menggunakan pakaian dengan palet warna berikut:";
-
-    let displayDresscode = [
-      { color: '#ffffff', label: 'White' },
-      { color: '#d6d3d1', label: 'Grey' },
-      { color: '#1c1917', label: 'Black' }
-    ];
-
-    if (parsedDresscode) {
-      if (Array.isArray(parsedDresscode) && parsedDresscode.length > 0) {
-        displayDresscode = parsedDresscode; // Fallback for old simple array format
-      } else if (parsedDresscode.items && Array.isArray(parsedDresscode.items)) {
-        // Extract all colors from Men/Women categories and remove duplicates for a general list
-        const uniqueColors = new Set();
-        parsedDresscode.items.forEach(item => {
-          if (Array.isArray(item.colors)) {
-            item.colors.forEach(c => uniqueColors.add(c));
-          }
-        });
-        if (uniqueColors.size > 0) {
-          displayDresscode = Array.from(uniqueColors).map(hex => ({ color: hex, label: '' }));
-        }
-      }
-    }
-
-    return (
-      <section id="dresscode" className="dresscode-section" key="dresscode">
-        <div className="container">
-          <div className="dresscode-content">
-            <h2 className="section-title">Dresscode</h2>
-            <p className="dresscode-text">{dresscodeText}</p>
-            <div className="color-palette">
-              {displayDresscode.map((d, i) => (
-                <div className="color-item" key={i}>
-                  <div className="color-circle" style={{ backgroundColor: d.color }}></div>
-                  <span className="color-label">{d.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
+    return <section id="dresscode" className="dresscode-section" key="dresscode"><div className="container"><div className="dresscode-content"><h2 className="section-title">Dress Code</h2><DresscodeContent theme={theme} /></div></div></section>;
   };
 
   const renderLivestream = () => {
-    const liveLink = invitation?.livestreamSettings?.url || "https://youtube.com";
+    const liveLink = invitation?.livestreamSettings?.url || "";
     return (
       <section id="livestream" className="livestream-section" key="livestream">
         <div className="container">
@@ -900,23 +794,8 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
   };
 
   const renderIgFilter = () => {
-    const filter = theme?.igFilterUrl ? { url: theme.igFilterUrl } : (editorPreview ? DUMMY_INSTAGRAM_FILTER : null);
-    const filterLink = filter?.url;
-    if (!filterLink) return null;
-    return (
-      <section id="igFilter" className="igFilter-section" key="igFilter">
-        <div className="container">
-          <div className="igFilter-content">
-            <h2 className="section-title">Instagram Filter</h2>
-            <p className="section-subtitle">Gunakan filter spesial kami untuk mengabadikan momen</p>
-            <div className="filter-preview">
-              <i className="fa-brands fa-instagram ig-icon"></i>
-            </div>
-            <a href={filterLink} target={filter?.isPreviewDummy ? undefined : '_blank'} rel={filter?.isPreviewDummy ? undefined : 'noreferrer'} className="eternal-btn" onClick={filter?.isPreviewDummy ? (event) => event.preventDefault() : undefined}>Coba Filter</a>
-          </div>
-        </div>
-      </section>
-    );
+    if(features.igFilterEnabled !== true) return null;
+    return <section id="igFilter" className="igFilter-section" key="igFilter"><div className="container"><h2 className="section-title">Bingkai Foto</h2><PhotoFrame invitation={invitation} themeId={invitation.themeId} frameUrl={theme.igFilterImageUrl}/></div></section>;
   };
 
   const renderFallback = (block) => {
@@ -1040,10 +919,11 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
       {/* Cover / Opening */}
       <div
         id="coverOpening"
-        className={`cover-opening cover-hero-bg ${templateCovers.openingIsArtwork ? 'is-default-artwork' : ''} ${(isOpen || isLoading) ? (settings.openingAnimation ? ("hide-" + settings.openingAnimation) : "hide") : ""}`}
+        className={`cover-opening cover-hero-bg ${templateCovers.openingIsArtwork ? 'is-default-artwork' : ''} ${(isOpen || isLoading) ? (['fade', 'zoom', 'slide-down', 'slide-up'].includes(settings.openingAnimation) ? ("hide-" + settings.openingAnimation) : "hide") : ""}`}
         style={{ backgroundImage: templateCovers.openingIsArtwork ? undefined : `url('${coverImage}')` }}
       >
-        {templateCovers.openingIsArtwork && <div className="eternal-default-opening-art" aria-hidden="true"><span>ETERNAL</span><strong>{(profile.brideName || 'Arunika')[0]}<i>&amp;</i>{(profile.groomName || 'Deva')[0]}</strong><small>EST. {eventYear}</small></div>}
+        {templateCovers.openingIsArtwork && <div className="eternal-default-opening-art" aria-hidden="true"><small>EST. {eventYear}</small></div>}
+        <CoverAmbience theme="eternal" image={coverImage} active={!isOpen&&!isLoading}/>
         <div className="cover-content">
           {hasCustomLogo && (
             <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
@@ -1074,7 +954,7 @@ export default function EternalTemplate({ invitation, previewGuest, editorPrevie
           </div>
           <div className="cover-buttons">
             <button
-              id="openWithMusic"
+              id="openWithMusic" data-open-cover
               className="btn-primary"
               onClick={() => setIsOpen(true)}
             >

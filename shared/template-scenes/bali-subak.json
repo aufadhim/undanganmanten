@@ -1,0 +1,1984 @@
+{
+  "schemaVersion": 1,
+  "invitation": {
+    "schemaVersion": 1,
+    "template": "mental-canvas-3",
+    "identity": {
+      "title": "Terasering",
+      "bride": "Alina",
+      "groom": "Raka",
+      "brideFull": "Alina Putri",
+      "groomFull": "Raka Pratama",
+      "monogram": "A & R"
+    },
+    "event": {
+      "start": "2026-12-20T08:00:00+07:00",
+      "end": "2026-12-20T14:00:00+07:00",
+      "location": "Taman Janji, Jakarta",
+      "description": "Pernikahan Alina dan Raka"
+    },
+    "links": {
+      "brideInstagram": "",
+      "groomInstagram": "",
+      "location": "",
+      "livestream": "",
+      "filter": ""
+    },
+    "gift": {
+      "bank": "",
+      "number": "",
+      "holder": ""
+    },
+    "assets": {
+      "coverCouple": "/templates/bali-subak/assets/couple-watercolor-regional.webp",
+      "heroCouple": "/templates/bali-subak/assets/couple-watercolor-regional.webp",
+      "music": "assets/garden-nocturne.mp3",
+      "galleryCouple": "/templates/bali-subak/assets/couple-watercolor-regional.webp",
+      "galleryBouquet": "/templates/bali-subak/assets/ilustrasi4.webp",
+      "galleryGarden": "/templates/bali-subak/assets/ilustrasi5.webp",
+      "room1": "/templates/bali-subak/assets/ilustrasi6.webp",
+      "room2": "/templates/bali-subak/assets/ilustrasi6.webp",
+      "room3": "/templates/bali-subak/assets/ilustrasi6.webp",
+      "room4": "/templates/bali-subak/assets/ilustrasi6.webp",
+      "cloud_cover": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_bride": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_groom": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_quote": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_event": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_gallery": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_form": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "cloud_closing": "/templates/viridarium/assets/pigment-wash-v1.webp",
+      "panorama": "/templates/bali-subak/assets/ilustrasi6.webp",
+      "riverbank": "/templates/bali-subak/assets/ilustrasi7.webp",
+      "landing": "/templates/bali-subak/assets/ilustrasi8.webp",
+      "landscapeGarden": "/templates/bali-subak/assets/ilustrasi9.webp",
+      "landscapeRiver": "/templates/bali-subak/assets/ilustrasi10.webp",
+      "landscapeBridge": "/templates/bali-subak/assets/ilustrasi11.webp",
+      "landscapeLake": "/templates/bali-subak/assets/ilustrasi12.webp",
+      "contactShadow": "/templates/viridarium/assets/contact-shadow.svg"
+    },
+    "style": {
+      "ink": "#40553c",
+      "accent": "#7c8c6e",
+      "musicVolume": 0.3
+    },
+    "motion": {
+      "sameRoomMs": 2400,
+      "crossRoomMs": 3200,
+      "autoplayMs": 8500
+    },
+    "sections": [
+      {
+        "id": "hero",
+        "room": 1,
+        "title": "Hero utama"
+      },
+      {
+        "id": "janji",
+        "room": 1,
+        "title": "QS. Ar-Rum"
+      },
+      {
+        "id": "wanita",
+        "room": 1,
+        "title": "Mempelai wanita"
+      },
+      {
+        "id": "pria",
+        "room": 1,
+        "title": "Mempelai pria"
+      },
+      {
+        "id": "countdown",
+        "room": 1,
+        "title": "Countdown"
+      },
+      {
+        "id": "akad",
+        "room": 1,
+        "title": "Akad & Resepsi"
+      },
+      {
+        "id": "rundown",
+        "room": 1,
+        "title": "Rundown acara"
+      },
+      {
+        "id": "cerita",
+        "room": 1,
+        "title": "Love story"
+      },
+      {
+        "id": "galeri",
+        "room": 1,
+        "title": "Galeri"
+      },
+      {
+        "id": "dresscode",
+        "room": 1,
+        "title": "Dress code"
+      },
+      {
+        "id": "livestream",
+        "room": 1,
+        "title": "Livestream"
+      },
+      {
+        "id": "filter",
+        "room": 1,
+        "title": "Bingkai Foto"
+      },
+      {
+        "id": "gift",
+        "room": 1,
+        "title": "Gift / Amplop digital"
+      },
+      {
+        "id": "rsvp",
+        "room": 1,
+        "title": "RSVP & Ucapan"
+      },
+      {
+        "id": "penutup",
+        "room": 1,
+        "title": "Footer / Penutup"
+      }
+    ],
+    "copy": {
+      "t000": {
+        "value": "{{bride}} & {{groom}} — A Garden of Promises",
+        "group": "Umum"
+      },
+      "t001": {
+        "value": "A",
+        "group": "Header"
+      },
+      "t002": {
+        "value": "&",
+        "group": "Header"
+      },
+      "t003": {
+        "value": "R",
+        "group": "Header"
+      },
+      "t004": {
+        "value": "{{title}}",
+        "group": "Header"
+      },
+      "t005": {
+        "value": "☰",
+        "group": "Header"
+      },
+      "t006": {
+        "value": "DESIGN PREVIEW · DATA CONTOH",
+        "group": "Header"
+      },
+      "t007": {
+        "value": "The wedding celebration of",
+        "group": "cover"
+      },
+      "t008": {
+        "value": "{{bride}} ",
+        "group": "cover"
+      },
+      "t009": {
+        "value": "&",
+        "group": "cover"
+      },
+      "t010": {
+        "value": " {{groom}}",
+        "group": "cover"
+      },
+      "t011": {
+        "value": "{{day}}",
+        "group": "cover"
+      },
+      "t012": {
+        "value": "{{monthName}}",
+        "group": "cover"
+      },
+      "t013": {
+        "value": "{{year}}",
+        "group": "cover"
+      },
+      "t014": {
+        "value": "Kepada Yth. Bapak / Ibu / Saudara/i",
+        "group": "cover"
+      },
+      "t015": {
+        "value": "Tamu Tersayang",
+        "group": "cover"
+      },
+      "t016": {
+        "value": "Open Invitation ",
+        "group": "cover"
+      },
+      "t017": {
+        "value": "↗",
+        "group": "cover"
+      },
+      "t018": {
+        "value": "Bersamamu, cinta selalu menemukan musimnya.",
+        "group": "cover"
+      },
+      "t019": {
+        "value": "↺",
+        "group": "cover"
+      },
+      "t020": {
+        "value": "Ⅱ",
+        "group": "cover"
+      },
+      "t021": {
+        "value": "GERAKKAN KURSOR / SENTUH & GESER",
+        "group": "cover"
+      },
+      "t022": {
+        "value": "BOTANICAL · {{title}}",
+        "group": "cover"
+      },
+      "t023": {
+        "value": "ILUSTRASI PASANGAN CONTOH",
+        "group": "cover"
+      },
+      "t024": {
+        "value": "02 / THE BEGINNING OF FOREVER",
+        "group": "hero"
+      },
+      "t025": {
+        "value": "Together is a beautiful place to be",
+        "group": "hero"
+      },
+      "t026": {
+        "value": "{{bride}} ",
+        "group": "hero"
+      },
+      "t027": {
+        "value": "&",
+        "group": "hero"
+      },
+      "t028": {
+        "value": "{{groom}}",
+        "group": "hero"
+      },
+      "t029": {
+        "value": "Di antara semua perjalanan,",
+        "group": "hero"
+      },
+      "t030": {
+        "value": "aku memilih berjalan bersamamu.",
+        "group": "hero"
+      },
+      "t031": {
+        "value": "{{day}} ",
+        "group": "hero"
+      },
+      "t032": {
+        "value": " {{monthName}} ",
+        "group": "hero"
+      },
+      "t033": {
+        "value": " {{year}}",
+        "group": "hero"
+      },
+      "t034": {
+        "value": "THE WEDDING OF",
+        "group": "hero"
+      },
+      "t035": {
+        "value": "{{brideFull}} & {{groomFull}}",
+        "group": "hero"
+      },
+      "t036": {
+        "value": "JAKARTA · INDONESIA",
+        "group": "hero"
+      },
+      "t037": {
+        "value": "QS. AR-RUM ",
+        "group": "hero"
+      },
+      "t038": {
+        "value": "↓",
+        "group": "hero"
+      },
+      "t039": {
+        "value": "↺",
+        "group": "hero"
+      },
+      "t040": {
+        "value": "Ⅱ",
+        "group": "hero"
+      },
+      "t041": {
+        "value": "❦",
+        "group": "janji"
+      },
+      "t042": {
+        "value": "QS. AR-RUM · AYAT 21",
+        "group": "janji"
+      },
+      "t043": {
+        "value": "Salah satu tanda kebesaran-Nya adalah diciptakannya pasangan bagi kalian dari sesama manusia, supaya kalian menemukan kedamaian bersamanya. Dia menumbuhkan cinta dan kasih di antara kalian. Di dalamnya terdapat tanda-tanda bagi orang yang berpikir.",
+        "group": "janji"
+      },
+      "t044": {
+        "value": "AR-RUM [30] : 21 ",
+        "group": "janji"
+      },
+      "t045": {
+        "value": "↗",
+        "group": "janji"
+      },
+      "t046": {
+        "value": "LANJUT KE MEMPELAI ",
+        "group": "janji"
+      },
+      "t047": {
+        "value": "↓",
+        "group": "janji"
+      },
+      "t048": {
+        "value": "04 — THE BRIDE",
+        "group": "wanita"
+      },
+      "t049": {
+        "value": "{{bride}} ",
+        "group": "wanita"
+      },
+      "t050": {
+        "value": "Putri",
+        "group": "wanita"
+      },
+      "t051": {
+        "value": "Putri dari",
+        "group": "wanita"
+      },
+      "t052": {
+        "value": "Bapak [Nama Ayah]",
+        "group": "wanita"
+      },
+      "t053": {
+        "value": "&",
+        "group": "wanita"
+      },
+      "t054": {
+        "value": "Ibu [Nama Ibu]",
+        "group": "wanita"
+      },
+      "t055": {
+        "value": "Instagram ",
+        "group": "wanita"
+      },
+      "t056": {
+        "value": "↗",
+        "group": "wanita"
+      },
+      "t057": {
+        "value": "Nama contoh · akun belum diisi",
+        "group": "wanita"
+      },
+      "t058": {
+        "value": "MEMPELAI PRIA ",
+        "group": "wanita"
+      },
+      "t059": {
+        "value": "↓",
+        "group": "wanita"
+      },
+      "t060": {
+        "value": "05 — THE GROOM",
+        "group": "pria"
+      },
+      "t061": {
+        "value": "{{groom}} ",
+        "group": "pria"
+      },
+      "t062": {
+        "value": "Pratama",
+        "group": "pria"
+      },
+      "t063": {
+        "value": "Putra dari",
+        "group": "pria"
+      },
+      "t064": {
+        "value": "Bapak [Nama Ayah]",
+        "group": "pria"
+      },
+      "t065": {
+        "value": "&",
+        "group": "pria"
+      },
+      "t066": {
+        "value": "Ibu [Nama Ibu]",
+        "group": "pria"
+      },
+      "t067": {
+        "value": "Instagram ",
+        "group": "pria"
+      },
+      "t068": {
+        "value": "↗",
+        "group": "pria"
+      },
+      "t069": {
+        "value": "Nama contoh · akun belum diisi",
+        "group": "pria"
+      },
+      "t070": {
+        "value": "COUNTDOWN ",
+        "group": "pria"
+      },
+      "t071": {
+        "value": "↓",
+        "group": "pria"
+      },
+      "t072": {
+        "value": "06 — COUNTING EVERY MOMENT",
+        "group": "countdown"
+      },
+      "t073": {
+        "value": "Menuju hari ",
+        "group": "countdown"
+      },
+      "t074": {
+        "value": "bahagia.",
+        "group": "countdown"
+      },
+      "t075": {
+        "value": "Kami tak sabar merayakan awal yang baru,",
+        "group": "countdown"
+      },
+      "t076": {
+        "value": "bersama orang-orang tersayang.",
+        "group": "countdown"
+      },
+      "t077": {
+        "value": "00",
+        "group": "countdown"
+      },
+      "t078": {
+        "value": "HARI",
+        "group": "countdown"
+      },
+      "t079": {
+        "value": "00",
+        "group": "countdown"
+      },
+      "t080": {
+        "value": "JAM",
+        "group": "countdown"
+      },
+      "t081": {
+        "value": "00",
+        "group": "countdown"
+      },
+      "t082": {
+        "value": "MENIT",
+        "group": "countdown"
+      },
+      "t083": {
+        "value": "00",
+        "group": "countdown"
+      },
+      "t084": {
+        "value": "DETIK",
+        "group": "countdown"
+      },
+      "t085": {
+        "value": "Simpan tanggal",
+        "group": "countdown"
+      },
+      "t086": {
+        "value": "Tanggal contoh · {{dateLong}}, {{time}} WIB",
+        "group": "countdown"
+      },
+      "t087": {
+        "value": "07 — THE CELEBRATION",
+        "group": "akad"
+      },
+      "t088": {
+        "value": "Akad & ",
+        "group": "akad"
+      },
+      "t089": {
+        "value": "Resepsi",
+        "group": "akad"
+      },
+      "t090": {
+        "value": "{{weekdayUpper}} · {{dateUpper}}",
+        "group": "akad"
+      },
+      "t091": {
+        "value": "AKAD NIKAH",
+        "group": "akad"
+      },
+      "t092": {
+        "value": "08.00 – 10.00",
+        "group": "akad"
+      },
+      "t093": {
+        "value": "WIB · Janji suci kita",
+        "group": "akad"
+      },
+      "t094": {
+        "value": "RESEPSI",
+        "group": "akad"
+      },
+      "t095": {
+        "value": "11.00 – 14.00",
+        "group": "akad"
+      },
+      "t096": {
+        "value": "WIB · Merayakan bersama",
+        "group": "akad"
+      },
+      "t097": {
+        "value": "Taman Janji",
+        "group": "akad"
+      },
+      "t098": {
+        "value": "[Nama venue & alamat lengkap]",
+        "group": "akad"
+      },
+      "t099": {
+        "value": "Jakarta, Indonesia",
+        "group": "akad"
+      },
+      "t100": {
+        "value": "Lihat lokasi ↗",
+        "group": "akad"
+      },
+      "t101": {
+        "value": "Contoh satu lokasi · jam dan tempat dapat disesuaikan",
+        "group": "akad"
+      },
+      "t102": {
+        "value": "08 — A DAY TO REMEMBER",
+        "group": "rundown"
+      },
+      "t103": {
+        "value": "Rangkaian ",
+        "group": "rundown"
+      },
+      "t104": {
+        "value": "bahagia.",
+        "group": "rundown"
+      },
+      "t105": {
+        "value": "08.00",
+        "group": "rundown"
+      },
+      "t106": {
+        "value": "Akad nikah",
+        "group": "rundown"
+      },
+      "t107": {
+        "value": "Awal sebuah janji suci",
+        "group": "rundown"
+      },
+      "t108": {
+        "value": "♡",
+        "group": "rundown"
+      },
+      "t109": {
+        "value": "10.00",
+        "group": "rundown"
+      },
+      "t110": {
+        "value": "Sesi foto keluarga",
+        "group": "rundown"
+      },
+      "t111": {
+        "value": "Mengabadikan senyum bersama",
+        "group": "rundown"
+      },
+      "t112": {
+        "value": "✧",
+        "group": "rundown"
+      },
+      "t113": {
+        "value": "11.00",
+        "group": "rundown"
+      },
+      "t114": {
+        "value": "Resepsi & ramah tamah",
+        "group": "rundown"
+      },
+      "t115": {
+        "value": "Merayakan dengan orang terkasih",
+        "group": "rundown"
+      },
+      "t116": {
+        "value": "❦",
+        "group": "rundown"
+      },
+      "t117": {
+        "value": "14.00",
+        "group": "rundown"
+      },
+      "t118": {
+        "value": "Penutup",
+        "group": "rundown"
+      },
+      "t119": {
+        "value": "Membawa pulang kenangan manis",
+        "group": "rundown"
+      },
+      "t120": {
+        "value": "☼",
+        "group": "rundown"
+      },
+      "t121": {
+        "value": "Rundown contoh · seluruh waktu dalam WIB",
+        "group": "rundown"
+      },
+      "t122": {
+        "value": "09 — HOW OUR GARDEN GREW",
+        "group": "cerita"
+      },
+      "t123": {
+        "value": "Cerita ",
+        "group": "cerita"
+      },
+      "t124": {
+        "value": "kita.",
+        "group": "cerita"
+      },
+      "t125": {
+        "value": "2022 · BENIH PERTAMA",
+        "group": "cerita"
+      },
+      "t126": {
+        "value": "Sebuah pertemuan",
+        "group": "cerita"
+      },
+      "t127": {
+        "value": "Dari percakapan sederhana, tumbuh rasa ingin mengenal lebih dekat.",
+        "group": "cerita"
+      },
+      "t128": {
+        "value": "2024 · MULAI BERTUMBUH",
+        "group": "cerita"
+      },
+      "t129": {
+        "value": "Memilih berjalan bersama",
+        "group": "cerita"
+      },
+      "t130": {
+        "value": "Di antara banyak perjalanan, kami belajar menjadi tempat pulang satu sama lain.",
+        "group": "cerita"
+      },
+      "t131": {
+        "value": "2026 · SELAMANYA",
+        "group": "cerita"
+      },
+      "t132": {
+        "value": "Satu janji untuk berdua",
+        "group": "cerita"
+      },
+      "t133": {
+        "value": "Kini, kami siap menuliskan bab berikutnya dalam ikatan pernikahan.",
+        "group": "cerita"
+      },
+      "t134": {
+        "value": "Cerita ilustratif · akan diganti cerita mempelai",
+        "group": "cerita"
+      },
+      "t135": {
+        "value": "10 — LITTLE PIECES OF US",
+        "group": "galeri"
+      },
+      "t136": {
+        "value": "Kenangan yang ",
+        "group": "galeri"
+      },
+      "t137": {
+        "value": "mekar.",
+        "group": "galeri"
+      },
+      "t138": {
+        "value": "Beberapa potongan kecil dari cerita kami.",
+        "group": "galeri"
+      },
+      "t139": {
+        "value": "01 / Bersama",
+        "group": "galeri"
+      },
+      "t140": {
+        "value": "02 / Mekar",
+        "group": "galeri"
+      },
+      "t141": {
+        "value": "03 / Rumah",
+        "group": "galeri"
+      },
+      "t142": {
+        "value": "Ilustrasi pengganti foto · klik untuk memperbesar",
+        "group": "galeri"
+      },
+      "t143": {
+        "value": "11 — DRESSED IN LOVE",
+        "group": "dresscode"
+      },
+      "t144": {
+        "value": "A touch of ",
+        "group": "dresscode"
+      },
+      "t145": {
+        "value": "garden.",
+        "group": "dresscode"
+      },
+      "t146": {
+        "value": "Kami akan senang melihat Anda mengenakan",
+        "group": "dresscode"
+      },
+      "t147": {
+        "value": "nuansa lembut yang terinspirasi dari taman.",
+        "group": "dresscode"
+      },
+      "t148": {
+        "value": "Sage",
+        "group": "dresscode"
+      },
+      "t149": {
+        "value": "Ivory",
+        "group": "dresscode"
+      },
+      "t150": {
+        "value": "Sand",
+        "group": "dresscode"
+      },
+      "t151": {
+        "value": "Dusty rose",
+        "group": "dresscode"
+      },
+      "t152": {
+        "value": "Garden formal",
+        "group": "dresscode"
+      },
+      "t153": {
+        "value": "Kenakan pakaian yang nyaman untuk suasana taman.",
+        "group": "dresscode"
+      },
+      "t154": {
+        "value": "Palet dan dress code ini merupakan contoh.",
+        "group": "dresscode"
+      },
+      "t155": {
+        "value": "12 — LOVE KNOWS NO DISTANCE",
+        "group": "livestream"
+      },
+      "t156": {
+        "value": "▷",
+        "group": "livestream"
+      },
+      "t157": {
+        "value": "Dekat, meski ",
+        "group": "livestream"
+      },
+      "t158": {
+        "value": "berjarak.",
+        "group": "livestream"
+      },
+      "t159": {
+        "value": "Bagi Anda yang belum dapat hadir langsung,",
+        "group": "livestream"
+      },
+      "t160": {
+        "value": "mari menjadi saksi janji kami secara virtual.",
+        "group": "livestream"
+      },
+      "t161": {
+        "value": " SIARAN BELUM DIJADWALKAN",
+        "group": "livestream"
+      },
+      "t162": {
+        "value": "{{bride}} & {{groom}}",
+        "group": "livestream"
+      },
+      "t163": {
+        "value": "{{dateLong}} · {{time}} WIB",
+        "group": "livestream"
+      },
+      "t164": {
+        "value": "Tautan livestream belum diisi ↗",
+        "group": "livestream"
+      },
+      "t165": {
+        "value": "13 — CAPTURE THE JOY",
+        "group": "filter"
+      },
+      "t166": {
+        "value": "✧",
+        "group": "filter"
+      },
+      "t167": {
+        "value": "Bingkai ",
+        "group": "filter"
+      },
+      "t168": {
+        "value": "bahagiamu.",
+        "group": "filter"
+      },
+      "t169": {
+        "value": "A & R",
+        "group": "filter"
+      },
+      "t170": {
+        "value": "our garden",
+        "group": "filter"
+      },
+      "t171": {
+        "value": "of promises",
+        "group": "filter"
+      },
+      "t172": {
+        "value": "{{dateNumeric}}",
+        "group": "filter"
+      },
+      "t173": {
+        "value": "Bagikan momen indah dari hari pernikahan kami.",
+        "group": "filter"
+      },
+      "t174": {
+        "value": "Bingkai Foto belum dihubungkan ↗",
+        "group": "filter"
+      },
+      "t175": {
+        "value": "Konsep visual · tautan atau alternatif bingkai perlu disiapkan",
+        "group": "filter"
+      },
+      "t176": {
+        "value": "14 — A LITTLE TOKEN OF LOVE",
+        "group": "gift"
+      },
+      "t177": {
+        "value": "Tanda ",
+        "group": "gift"
+      },
+      "t178": {
+        "value": "kasih.",
+        "group": "gift"
+      },
+      "t179": {
+        "value": "Kehadiran dan doa Anda adalah hadiah terindah.",
+        "group": "gift"
+      },
+      "t180": {
+        "value": "Bila berkenan, tanda kasih dapat disampaikan",
+        "group": "gift"
+      },
+      "t181": {
+        "value": "melalui amplop digital.",
+        "group": "gift"
+      },
+      "t182": {
+        "value": "WEDDING GIFT ",
+        "group": "gift"
+      },
+      "t183": {
+        "value": "❦",
+        "group": "gift"
+      },
+      "t184": {
+        "value": "{{bride}} & {{groom}}",
+        "group": "gift"
+      },
+      "t185": {
+        "value": "Detail rekening belum ditambahkan",
+        "group": "gift"
+      },
+      "t186": {
+        "value": "Nama bank · nomor rekening · nama pemilik",
+        "group": "gift"
+      },
+      "t187": {
+        "value": "Belum menerima pembayaran · menunggu data rekening",
+        "group": "gift"
+      },
+      "t188": {
+        "value": "15 — YOUR PRESENCE, YOUR PRAYERS",
+        "group": "rsvp"
+      },
+      "t189": {
+        "value": "Kehadiran & ",
+        "group": "rsvp"
+      },
+      "t190": {
+        "value": "doa.",
+        "group": "rsvp"
+      },
+      "t191": {
+        "value": "Satu kabar darimu, satu doa untuk kami.",
+        "group": "rsvp"
+      },
+      "t192": {
+        "value": "Nama lengkap",
+        "group": "rsvp"
+      },
+      "t193": {
+        "value": "Kehadiran",
+        "group": "rsvp"
+      },
+      "t194": {
+        "value": "Pilih kehadiran",
+        "group": "rsvp"
+      },
+      "t195": {
+        "value": "Dengan senang hati, hadir",
+        "group": "rsvp"
+      },
+      "t196": {
+        "value": "Maaf, belum bisa hadir",
+        "group": "rsvp"
+      },
+      "t197": {
+        "value": "Belum dapat memastikan",
+        "group": "rsvp"
+      },
+      "t198": {
+        "value": "Jumlah tamu",
+        "group": "rsvp"
+      },
+      "t199": {
+        "value": "1 orang",
+        "group": "rsvp"
+      },
+      "t200": {
+        "value": "2 orang",
+        "group": "rsvp"
+      },
+      "t201": {
+        "value": "Ucapan & doa ",
+        "group": "rsvp"
+      },
+      "t202": {
+        "value": "(opsional)",
+        "group": "rsvp"
+      },
+      "t203": {
+        "value": "Simpan konfirmasi & ucapan ",
+        "group": "rsvp"
+      },
+      "t204": {
+        "value": "↗",
+        "group": "rsvp"
+      },
+      "t205": {
+        "value": "Ucapan yang bersemi ",
+        "group": "rsvp"
+      },
+      "t206": {
+        "value": "↓",
+        "group": "rsvp"
+      },
+      "t207": {
+        "value": "Mode demo · konfirmasi dan ucapan hanya disimpan di browser ini",
+        "group": "rsvp"
+      },
+      "t208": {
+        "value": "16 — WITH FULL HEARTS",
+        "group": "penutup"
+      },
+      "t209": {
+        "value": "❦",
+        "group": "penutup"
+      },
+      "t210": {
+        "value": "Terima ",
+        "group": "penutup"
+      },
+      "t211": {
+        "value": "kasih.",
+        "group": "penutup"
+      },
+      "t212": {
+        "value": "Atas setiap doa, kasih, dan kehadiran Anda.",
+        "group": "penutup"
+      },
+      "t213": {
+        "value": "Sampai jumpa di taman bahagia kami.",
+        "group": "penutup"
+      },
+      "t214": {
+        "value": "{{bride}} & {{groom}}",
+        "group": "penutup"
+      },
+      "t215": {
+        "value": "{{day}} ",
+        "group": "penutup"
+      },
+      "t216": {
+        "value": " {{monthName}} ",
+        "group": "penutup"
+      },
+      "t217": {
+        "value": " {{year}}",
+        "group": "penutup"
+      },
+      "t218": {
+        "value": "Kembali ke sampul ↑",
+        "group": "penutup"
+      },
+      "t219": {
+        "value": "{{title}}",
+        "group": "penutup"
+      },
+      "t220": {
+        "value": "Undangan interaktif · 4 ruang · 16 bagian",
+        "group": "penutup"
+      },
+      "t221": {
+        "value": "Our little journey",
+        "group": "penutup"
+      },
+      "t222": {
+        "value": "×",
+        "group": "penutup"
+      },
+      "t223": {
+        "value": "02 / 16",
+        "group": "penutup"
+      },
+      "t224": {
+        "value": "Quote / Janji",
+        "group": "penutup"
+      },
+      "t225": {
+        "value": "▷",
+        "group": "penutup"
+      },
+      "t226": {
+        "value": "♫",
+        "group": "penutup"
+      },
+      "t227": {
+        "value": "▷",
+        "group": "penutup"
+      },
+      "t228": {
+        "value": "×",
+        "group": "penutup"
+      }
+    },
+    "layout": {
+      "coverWidth": 1767.4202435426707,
+      "coverX": -29.50921266606929,
+      "coverY": -295.7134738250086,
+      "heroWidth": 1767.4202435426707,
+      "heroX": -29.50921266606929,
+      "heroY": -309.21747382500826,
+      "closingOpacity": 1,
+      "closingScale": 0.95,
+      "heroBrideHeadX": 0.7245605468749999,
+      "heroBrideHeadY": 0.1211,
+      "heroGroomHeadX": 0.295654296875,
+      "heroGroomHeadY": 0.0861,
+      "coverFootY": 0.94921875,
+      "heroFootY": 0.94921875,
+      "profileBodyFraming": 1,
+      "profileBodyTop": 0.0498046875,
+      "profileBodyBottom": 0.94921875,
+      "profileBodyLeft": 0.07174231332357248,
+      "profileBodyRight": 0.9663250366032211,
+      "profileHeight": 0.7,
+      "profileFootLine": 0.9,
+      "profileEdgeInset": 0.025,
+      "closingWidth": 1650.0922368444733,
+      "closingX": -27.550280083965845,
+      "closingY": 0,
+      "closingFootY": 0.94921875
+    },
+    "cameras": [
+      {
+        "id": "hero",
+        "mobile": {
+          "x": 0,
+          "y": 0,
+          "z": 1280,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "z": 1280,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "janji",
+        "mobile": {
+          "x": -72.857,
+          "y": -145,
+          "z": 1126,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -72.857,
+          "y": -145,
+          "z": 1126,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "wanita",
+        "mobile": {
+          "x": 654.191491261628,
+          "y": 306.8539933144357,
+          "z": 1037.9563573345263,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 1924.3712182222223,
+          "y": 411.66515273437494,
+          "z": 978.8838541666664,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "pria",
+        "mobile": {
+          "x": -720.2220270886628,
+          "y": 354.5281724200413,
+          "z": 926.4708424642217,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -2017.9386762222223,
+          "y": 411.66515273437494,
+          "z": 978.8838541666664,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "countdown",
+        "mobile": {
+          "x": -19,
+          "y": -15,
+          "z": 1380,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -19,
+          "y": -15,
+          "z": 1380,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "akad",
+        "mobile": {
+          "x": 13,
+          "y": 5,
+          "z": 1280,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 13,
+          "y": 5,
+          "z": 1280,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "rundown",
+        "mobile": {
+          "x": -11,
+          "y": 20,
+          "z": 1200,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -11,
+          "y": 20,
+          "z": 1200,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "cerita",
+        "mobile": {
+          "x": -48,
+          "y": -24,
+          "z": 1300,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -48,
+          "y": -24,
+          "z": 1300,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "galeri",
+        "mobile": {
+          "x": -24,
+          "y": -12,
+          "z": 1272,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -24,
+          "y": -12,
+          "z": 1272,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "dresscode",
+        "mobile": {
+          "x": 0,
+          "y": 0,
+          "z": 1244,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "z": 1244,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "livestream",
+        "mobile": {
+          "x": 24,
+          "y": 12,
+          "z": 1216,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 24,
+          "y": 12,
+          "z": 1216,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "filter",
+        "mobile": {
+          "x": 48,
+          "y": 24,
+          "z": 1188,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 48,
+          "y": 24,
+          "z": 1188,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "gift",
+        "mobile": {
+          "x": -18,
+          "y": -10,
+          "z": 1360,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": -18,
+          "y": -10,
+          "z": 1360,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "rsvp",
+        "mobile": {
+          "x": 18,
+          "y": 8,
+          "z": 1320,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 18,
+          "y": 8,
+          "z": 1320,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      },
+      {
+        "id": "penutup",
+        "mobile": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        },
+        "wide": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    ],
+    "composition": {
+      "version": 1,
+      "stage": "all-sections-authored",
+      "referenceViewport": {
+        "width": 390,
+        "height": 844,
+        "lens": 750
+      },
+      "targets": {
+        "cover": {
+          "center": 0.47,
+          "foot": 0.76,
+          "span": 0.43,
+          "maxWidth": 0.8
+        },
+        "hero": {
+          "center": 0.48,
+          "foot": 0.9,
+          "span": 0.55,
+          "maxWidth": 0.88
+        }
+      },
+      "art": {
+        "cover": {
+          "width": 683,
+          "height": 1024,
+          "aspect": 0.6669921875,
+          "bounds": {
+            "left": 0.07174231332357248,
+            "right": 0.9663250366032211,
+            "top": 0.0498046875,
+            "bottom": 0.94921875
+          }
+        },
+        "hero": {
+          "width": 683,
+          "height": 1024,
+          "aspect": 0.6669921875,
+          "bounds": {
+            "left": 0.07174231332357248,
+            "right": 0.9663250366032211,
+            "top": 0.0498046875,
+            "bottom": 0.94921875
+          }
+        }
+      },
+      "cover": {
+        "layers": {},
+        "scaleGuide": {
+          "adultHeight": 0.23317241379310352,
+          "groundY": 0.78,
+          "footLine": 0.81,
+          "bodyFraction": 0,
+          "referencePose": {
+            "x": -12240,
+            "y": -1224.7909090909088,
+            "z": 3856.387333046101,
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0
+          }
+        }
+      },
+      "hero": {
+        "backgroundFitScale": 0.82,
+        "foreground": {
+          "fit": null,
+          "width": 1860.36312,
+          "preserveAspect": true,
+          "anchor": "bottom",
+          "x": -72.857,
+          "y": 1640.4407794859999,
+          "z": 110,
+          "opacity": 0
+        },
+        "viewportFill": true,
+        "scaleGuide": {
+          "adultHeight": 0.23317241379310352,
+          "groundY": 0.78,
+          "footLine": 0.84,
+          "bodyFraction": 0,
+          "referencePose": {
+            "x": -12240,
+            "y": -1429.2545454545448,
+            "z": 3856.387333046101,
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0
+          }
+        }
+      },
+      "intro": {
+        "quoteMs": 4000,
+        "profileMs": 5000,
+        "returnMs": 3400,
+        "quoteOpacity": 0.12,
+        "profiles": {
+          "bodyFraming": true,
+          "singlePair": true,
+          "readingColumn": "opposite-subject",
+          "mobilePanelWidth": 0.5
+        }
+      },
+      "events": {
+        "entryMs": 6200,
+        "exitMs": 5400,
+        "localMs": 4000,
+        "overviewDepth": 70,
+        "readingTop": 0.48,
+        "readingWidthMobile": 460,
+        "sameLocation": "shared-venue",
+        "rundown": "preserve-editor-order"
+      },
+      "social": {
+        "ids": [
+          "cerita",
+          "galeri",
+          "dresscode",
+          "livestream",
+          "filter"
+        ],
+        "entryMs": 6200,
+        "exitMs": 5400,
+        "localMs": 4200,
+        "overviewDepth": 60
+      },
+      "finale": {
+        "ids": [
+          "gift",
+          "rsvp",
+          "penutup"
+        ],
+        "entryMs": 6200,
+        "exitMs": 5400,
+        "localMs": 4200,
+        "overviewDepth": 60
+      },
+      "grounding": {
+        "version": 5,
+        "headingOffsetPx": 30,
+        "bodyScreenHeight": 0.58,
+        "footLine": 0.9,
+        "removeFloatingFrames": true,
+        "reference": "tembok tepi jalan dan tangga",
+        "guide": {
+          "adultHeight": 0.62,
+          "groundY": 0.88,
+          "footLine": 0.94,
+          "bodyFraction": 0.68
+        },
+        "notes": "Estimated from painted perspective; user placement offsets remain additive.",
+        "baseGuide": {
+          "adultHeight": 0.62,
+          "groundY": 0.88,
+          "horizonY": 0.45
+        },
+        "framingReference": "ludora",
+        "placements": {
+          "cover": {
+            "width": 1550.3686346865534,
+            "height": 2324.4179823119043,
+            "x": -29.50921266606929,
+            "y": -295.7134738250086,
+            "z": -1800,
+            "footY": 0.94921875
+          },
+          "hero": {
+            "width": 1550.3686346865534,
+            "height": 2324.4179823119043,
+            "x": -29.50921266606929,
+            "y": -309.21747382500826,
+            "z": -1800,
+            "footY": 0.94921875
+          },
+          "closing": {
+            "width": 1447.4493305653275,
+            "height": 2170.1143696909157,
+            "x": -27.550280083965845,
+            "y": -253.405397842924,
+            "z": -1800,
+            "footY": 0.94921875
+          }
+        },
+        "calibrationViewport": {
+          "width": 390,
+          "height": 844
+        },
+        "horizontalAlignment": "visible-body-center",
+        "paintingScale": {
+          "version": 1,
+          "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+          "scenes": {
+            "cover": {
+              "asset": "landscapeGarden",
+              "horizonY": 0.43,
+              "footY": 0.78,
+              "footX": 0.5,
+              "screenFootY": 0.81,
+              "centerOnCamera": true,
+              "humanMetres": 1.68,
+              "landmarks": [
+                {
+                  "id": "terrace-stone-wall",
+                  "height": 0.115,
+                  "groundY": 0.72,
+                  "metres": 1,
+                  "weight": 1
+                }
+              ],
+              "framing": {
+                "minBody": 0.32,
+                "maxBody": 0.5,
+                "maximumCoverage": 2.6
+              },
+              "measurementConfidence": "estimated"
+            },
+            "hero": {
+              "asset": "landscapeGarden",
+              "horizonY": 0.43,
+              "footY": 0.78,
+              "footX": 0.5,
+              "screenFootY": 0.84,
+              "centerOnCamera": true,
+              "humanMetres": 1.68,
+              "landmarks": [
+                {
+                  "id": "terrace-stone-wall",
+                  "height": 0.115,
+                  "groundY": 0.72,
+                  "metres": 1,
+                  "weight": 1
+                }
+              ],
+              "framing": {
+                "minBody": 0.32,
+                "maxBody": 0.5,
+                "maximumCoverage": 2.6
+              },
+              "measurementConfidence": "estimated"
+            },
+            "closing": {
+              "asset": "landscapeLake",
+              "horizonY": 0.44,
+              "footY": 0.78,
+              "footX": 0.5,
+              "screenFootY": 0.87,
+              "centerOnCamera": true,
+              "humanMetres": 1.68,
+              "landmarks": [
+                {
+                  "id": "path-stone-wall",
+                  "height": 0.08,
+                  "groundY": 0.65,
+                  "metres": 1,
+                  "weight": 1
+                }
+              ],
+              "framing": {
+                "minBody": 0.3,
+                "maxBody": 0.45,
+                "maximumCoverage": 2.6
+              },
+              "measurementConfidence": "estimated"
+            }
+          },
+          "results": {
+            "cover": {
+              "reference": "terrace-stone-wall",
+              "candidates": [
+                {
+                  "id": "terrace-stone-wall",
+                  "weight": 1,
+                  "height": 0.23317241379310352
+                }
+              ],
+              "bodyFraction": 0.3284381338742394,
+              "screenFootY": 0.81,
+              "environmentZ": -2200,
+              "characterZ": -1800
+            },
+            "hero": {
+              "reference": "terrace-stone-wall",
+              "candidates": [
+                {
+                  "id": "terrace-stone-wall",
+                  "weight": 1,
+                  "height": 0.23317241379310352
+                }
+              ],
+              "bodyFraction": 0.3284381338742394,
+              "screenFootY": 0.84,
+              "environmentZ": -2200,
+              "characterZ": -1800
+            },
+            "closing": {
+              "reference": "path-stone-wall",
+              "candidates": [
+                {
+                  "id": "path-stone-wall",
+                  "weight": 1,
+                  "height": 0.2176
+                }
+              ],
+              "bodyFraction": 0.30463999999999997,
+              "screenFootY": 0.8699999999999999,
+              "environmentZ": -2200,
+              "characterZ": -1800
+            }
+          }
+        }
+      },
+      "singleCouple": true,
+      "closing": {
+        "scaleGuide": {
+          "adultHeight": 0.2176,
+          "groundY": 0.78,
+          "footLine": 0.8699999999999999,
+          "bodyFraction": 0,
+          "referencePose": {
+            "x": 12240,
+            "y": -1649.1428571428564,
+            "z": 3893.432633716994,
+            "yaw": 0,
+            "pitch": 0,
+            "roll": 0
+          }
+        }
+      }
+    }
+  },
+  "landscape": {
+    "version": 1,
+    "id": "bali-subak-landscape",
+    "world": {
+      "width": 43200,
+      "height": 14406.632888070013,
+      "z": -2200,
+      "asset": "panorama",
+      "y": -1800
+    },
+    "areas": [
+      {
+        "id": "garden",
+        "asset": "landscapeGarden",
+        "x": -12240,
+        "width": 9600,
+        "height": 9600,
+        "feather": 0.15,
+        "landmark": {
+          "x": 0.5,
+          "y": 0.6,
+          "width": 0.3,
+          "height": 0.3
+        },
+        "y": -1800
+      },
+      {
+        "id": "river",
+        "asset": "landscapeRiver",
+        "x": -4080,
+        "width": 9600,
+        "height": 9600,
+        "feather": 0.15,
+        "landmark": {
+          "x": 0.5,
+          "y": 0.6,
+          "width": 0.32,
+          "height": 0.32
+        },
+        "y": -1800
+      },
+      {
+        "id": "bridge",
+        "asset": "landscapeBridge",
+        "x": 4080,
+        "width": 9600,
+        "height": 9600,
+        "feather": 0.15,
+        "landmark": {
+          "x": 0.5,
+          "y": 0.6,
+          "width": 0.32,
+          "height": 0.3
+        },
+        "y": -1800
+      },
+      {
+        "id": "lake",
+        "asset": "landscapeLake",
+        "x": 12240,
+        "width": 9600,
+        "height": 9600,
+        "feather": 0.15,
+        "landmark": {
+          "x": 0.5,
+          "y": 0.6,
+          "width": 0.32,
+          "height": 0.3
+        },
+        "y": -1800
+      }
+    ],
+    "stops": [
+      {
+        "id": "cover",
+        "area": "garden",
+        "x": 0,
+        "y": -1224.7909090909088,
+        "z": 3856.387333046101
+      },
+      {
+        "id": "hero",
+        "area": "garden",
+        "x": 0,
+        "y": -1429.2545454545448,
+        "z": 3856.387333046101
+      },
+      {
+        "id": "janji",
+        "area": "garden",
+        "x": 0,
+        "y": -218.68588,
+        "z": 1038
+      },
+      {
+        "id": "wanita",
+        "area": "garden",
+        "x": 0,
+        "y": 35,
+        "z": 1500
+      },
+      {
+        "id": "pria",
+        "area": "garden",
+        "x": 0,
+        "y": 35,
+        "z": 1500
+      },
+      {
+        "id": "countdown",
+        "area": "river",
+        "x": -80,
+        "y": -45,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "akad",
+        "area": "river",
+        "x": 0,
+        "y": 5,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "rundown",
+        "area": "river",
+        "x": 80,
+        "y": 40,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "cerita",
+        "area": "bridge",
+        "x": -220,
+        "y": -50,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "galeri",
+        "area": "bridge",
+        "x": -110,
+        "y": -25,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "dresscode",
+        "area": "bridge",
+        "x": 0,
+        "y": 0,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "livestream",
+        "area": "bridge",
+        "x": 110,
+        "y": 25,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "filter",
+        "area": "bridge",
+        "x": 220,
+        "y": 50,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "gift",
+        "area": "lake",
+        "x": -100,
+        "y": -25,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "rsvp",
+        "area": "lake",
+        "x": 0,
+        "y": 0,
+        "fit": "landmark",
+        "panel": "center",
+        "minZ": 1500
+      },
+      {
+        "id": "penutup",
+        "area": "lake",
+        "x": 0,
+        "y": -1649.1428571428564,
+        "z": 3893.432633716994
+      }
+    ],
+    "characters": {
+      "cover": {
+        "stop": "cover",
+        "y": -441.8975734938431,
+        "z": -1800,
+        "width": 1767.4202435426707,
+        "aspect": 0.6669921875,
+        "footY": 0.94921875
+      },
+      "hero": {
+        "stop": "hero",
+        "y": -455.40157349384276,
+        "z": -1800,
+        "width": 1767.4202435426707,
+        "aspect": 0.6669921875,
+        "footY": 0.94921875
+      },
+      "closing": {
+        "stop": "penutup",
+        "y": -389.8852468742667,
+        "z": -1800,
+        "width": 1650.0922368444733,
+        "aspect": 0.6669921875,
+        "footY": 0.94921875
+      }
+    },
+    "decorations": [
+      {
+        "id": "closing-ground",
+        "asset": "contactShadow",
+        "area": "lake",
+        "x": 150,
+        "y": 1150,
+        "z": -1802,
+        "width": 1100,
+        "attachment": {
+          "slot": "closing",
+          "contact": true
+        }
+      },
+      {
+        "id": "cover-contact",
+        "asset": "contactShadow",
+        "area": "garden",
+        "z": -1802,
+        "width": 1100,
+        "attachment": {
+          "slot": "cover",
+          "contact": true
+        }
+      },
+      {
+        "id": "hero-contact",
+        "asset": "contactShadow",
+        "area": "garden",
+        "z": -1802,
+        "width": 1100,
+        "attachment": {
+          "slot": "hero",
+          "contact": true
+        }
+      }
+    ],
+    "motion": {
+      "overviewHoldMs": 650,
+      "durationScale": 1.6
+    }
+  }
+}

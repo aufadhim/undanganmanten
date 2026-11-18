@@ -19,6 +19,7 @@
     repeating-linear-gradient(91deg, rgba(0,0,0,.012) 0 1px, transparent 1px 5px);
   background-size: 11px 13px, 17px 19px, auto;
   font-family: var(--sy-body);
+  transform: translateZ(0); /* Traps position: fixed inside this container */
 }
 
 /* The editorial cover does not spend its cinematic entrance behind the opening. */
@@ -112,10 +113,16 @@
   will-change: transform, opacity;
 }
 
-.seraya-opening.is-open { pointer-events: none; }
+.seraya-opening.is-open {
+  pointer-events: none;
+  transform: translate3d(0,-100%,0);
+  visibility: hidden;
+  opacity: 0;
+}
 .seraya-opening.is-open.opening-slide-up {
   transform: translate3d(0,-100%,0);
   visibility: hidden;
+  opacity: 1;
 }
 .seraya-opening.is-open.opening-fade {
   opacity: 0;
@@ -466,10 +473,6 @@
   .split-view-theme-seraya .split-view-left { width: calc(100% - 450px); flex: 1; }
   .split-view-theme-seraya .split-view-left-bg { opacity: 1; filter: saturate(.7) contrast(.94); }
   .split-view-theme-seraya .split-view-left::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(0,0,0,.04), transparent 58%, rgba(0,0,0,.12)); }
-  .split-view-theme-seraya .split-view-left-content { width: min(72%, 500px); padding: 42px; border: 1px solid rgba(255,255,255,.85); text-align: left; }
-  .split-view-theme-seraya .split-view-top-label { font: 25px "Bebas Neue", sans-serif; letter-spacing: .13em; }
-  .split-view-theme-seraya .split-view-title { max-width: 7ch; color: #fff; font: 400 76px/.84 "Abril Fatface", serif !important; text-transform: uppercase; text-shadow: 0 3px 20px rgba(0,0,0,.22); }
-  .split-view-theme-seraya .split-view-subtitle { margin: 24px 0 0; font: 23px Bellefair, serif !important; }
   .split-view-theme-seraya .split-view-right { width: 450px !important; }
   .split-view-theme-seraya .split-view-blur-wrapper { display: none; }
   .split-view-theme-seraya .split-view-template-wrapper { box-shadow: none; }
@@ -492,3 +495,57 @@
   .seraya-story-news { grid-template-columns: 1fr; }
   .seraya-story-news article, .seraya-story-news article:nth-child(even), .seraya-story-news article:last-child:nth-child(odd) { grid-column: auto; padding: 20px 0; border-left: 0; }
 }
+
+/* Seraya, editorial edition 2: quiet paper, clear hierarchy, no pasted card. */
+.seraya:not(.is-open){overflow-y:hidden}
+.seraya{background-image:radial-gradient(#564b3c08 .6px,transparent .8px);background-size:5px 5px}
+.seraya-opening.is-default-artwork{filter:none;background:#f3eee5!important}
+.seraya-opening.is-default-artwork::before{inset:26px;border:0;border-top:1px solid #6e625633;border-bottom:1px solid #6e625633}
+.seraya-opening.is-default-artwork::after,.seraya-editorial-barcode{display:none}
+.seraya-editorial-masthead{top:43px;left:28px;right:28px;border-bottom:1px solid #6e62564d;padding-bottom:13px;align-items:center;gap:10px}
+.seraya-editorial-masthead span{font:400 24px/1.1 Georgia,serif;letter-spacing:.12em}
+.seraya-editorial-masthead small{font:500 6px/1.5 Montserrat,sans-serif;letter-spacing:.12em;max-width:80px;text-align:right}
+.seraya-editorial-volume{top:100px;left:28px;color:#887b6b;font-size:7px;font-weight:400;letter-spacing:.16em}
+.seraya-editorial-monogram{top:23%;right:8%;color:#b8a9952c;font:italic 220px/.8 Georgia,serif;letter-spacing:-.12em;transform:none}
+.seraya-editorial-monogram i{color:#b8a99525}
+.seraya-opening.is-default-artwork .seraya-opening-copy{left:28px;right:28px;bottom:15%;padding:0;border:0;background:none;box-shadow:none;text-shadow:none}
+.seraya-opening.is-default-artwork .seraya-opening-copy::before{display:none}
+.seraya-opening-copy h1,.seraya-opening.is-default-artwork .seraya-opening-copy h1{font-family:var(--sy-heading);font-size:clamp(38px,12cqw,60px);line-height:1.05;text-transform:none;letter-spacing:-.035em;margin:12px 0 24px;overflow-wrap:anywhere}
+.seraya-opening.is-default-artwork .seraya-opening-copy>span{font:500 8px Montserrat,sans-serif;letter-spacing:.24em;color:#827563}
+.seraya-opening.is-default-artwork .seraya-opening-copy p{font-size:15px;color:#827563}.seraya-opening.is-default-artwork .seraya-opening-copy strong{font-size:20px;font-weight:400;margin-top:5px}
+.seraya-opening-copy button,.seraya-opening.is-default-artwork .seraya-opening-copy button,.seraya-opening:not(.is-default-artwork) .seraya-opening-copy button{box-shadow:none;transform:none;font:500 10px Montserrat,sans-serif;letter-spacing:.1em;padding:15px 23px;min-height:44px;border-width:1px;transition:opacity .2s;background:var(--sy-ink);color:var(--sy-paper);text-transform:none}
+.seraya-opening-copy button:hover,.seraya-opening.is-default-artwork .seraya-opening-copy button:hover,.seraya-opening:not(.is-default-artwork) .seraya-opening-copy button:hover{box-shadow:none;transform:none;opacity:.85}
+.seraya-editorial-date{left:28px;right:28px;bottom:47px;font-size:6px;letter-spacing:.12em;color:#887b6b}
+.seraya-photo-masthead{border-bottom-width:1px}.seraya-photo-masthead strong{font:400 27px Georgia,serif;letter-spacing:.12em}.seraya-photo-masthead span{font-size:6px}.seraya-photo-cropmark{display:none}
+.seraya-opening:not(.is-default-artwork) .seraya-opening-copy{border:0;padding:0;left:28px;right:28px;bottom:12%}
+.seraya-hero{padding:32px 24px 24px;min-height:520px}.seraya-side-note{display:none}.seraya-issue span{font:500 8px Montserrat,sans-serif;letter-spacing:.17em}.seraya-issue strong{font:400 20px Georgia,serif}
+.seraya-hero-photo{width:100%;box-shadow:none}.seraya-cover-title h1{font-size:clamp(38px,12cqw,64px);line-height:1.03;text-transform:none;letter-spacing:-.03em}.seraya-cover-title h1 i{text-transform:none}
+.seraya-cover-meta strong{font:400 20px Georgia,serif}.seraya-cover-meta span{font-size:7px}.seraya-cover-meta em{font-size:12px}
+.seraya-default-cover{background:#e8e0d3}.seraya-default-cover strong{font-family:Georgia,serif;font-weight:400;opacity:.45}.seraya-hero-photo.is-default-artwork::after{background:linear-gradient(transparent 40%,#37291c33)}
+.seraya-section,.seraya-quote{padding:58px 26px;border-bottom-color:#81715e30}.seraya-section::before{height:1px;border:0;background:#81715e26;top:0}
+.seraya-header{margin-bottom:26px}.seraya-header>span{font:500 8px/1.6 Montserrat,sans-serif;letter-spacing:.18em;color:#887b6b;margin-bottom:12px}
+.seraya-header h2,.seraya-quote h2{font:400 clamp(29px,9cqw,43px)/1.12 var(--sy-heading);text-transform:none;letter-spacing:-.025em;overflow-wrap:anywhere}
+.seraya-quote blockquote{font:400 20px/1.75 var(--sy-body);margin-top:24px}.seraya-couple article{border-bottom:1px solid #81715e40}.seraya-couple article>div,.seraya-couple article:nth-of-type(even)>div{clip-path:none}
+.seraya-couple article>span{margin:18px auto 0;background:none;color:#887b6b;font:500 8px Montserrat,sans-serif;letter-spacing:.18em;padding:0;text-transform:uppercase}
+.seraya-couple h3{font:400 37px/1.1 var(--sy-heading);text-transform:none;margin:10px 0}.seraya-couple article>strong{font:500 10px/1.6 Montserrat,sans-serif;letter-spacing:.1em}.seraya-couple article>p{font:400 17px/1.7 var(--sy-body)}
+.seraya-couple article>a,.seraya-button{box-shadow:none;border-width:1px;font:500 10px Montserrat,sans-serif;letter-spacing:.08em;padding:13px 19px;text-transform:none}.seraya-couple article>a:hover{box-shadow:none;transform:none}
+.seraya-story-masthead h2{font:400 38px/1.1 var(--sy-heading);text-transform:none;letter-spacing:-.02em}.seraya-story-lead p,.seraya-story-news p{line-height:1.75;text-align:left}.seraya-story-news h3{font:400 25px/1.2 var(--sy-heading);text-transform:none}.seraya-story-meta{font:500 8px/1.6 Montserrat,sans-serif;letter-spacing:.05em}.seraya-story-byline strong{font:400 17px var(--sy-body)}
+.seraya-form .pf-glass{border:1px solid #81715e40!important;box-shadow:none!important;background:transparent!important}.seraya-form .pf-title{font:400 25px var(--sy-heading)!important;text-transform:none!important}.seraya-form .pf-btn{font:500 11px Montserrat,sans-serif!important;text-transform:none!important;letter-spacing:.04em!important;min-height:44px}
+.seraya-footer h2{font:400 40px/1.1 var(--sy-heading);text-transform:none}
+.seraya-flow>[data-section="igFilter"]{order:10}
+@container(max-width:480px){.seraya-story-lead{column-count:1}.seraya-story-news{grid-template-columns:1fr}.seraya-story-news article:nth-child(even){border-left:0;padding-left:0}.seraya-opening.is-default-artwork .seraya-opening-copy{bottom:16%}}
+@media(prefers-reduced-motion:reduce){.seraya-opening,.seraya-opening *{animation:none!important;transition:none!important}}
+.seraya-hero::before{display:none}
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-hero-photo{animation:syHeroPhotoIn 1.4s .2s both}
+.seraya-opening.is-open + .seraya-flow .seraya-hero .seraya-cover-title{animation:syHeroTitleIn 1.2s .45s both}
+/* The fallback monogram is scenery; the couple names remain the single headline. */
+.seraya-hero-photo.is-default-artwork{background:#e9e2d7}
+.seraya-hero-photo.is-default-artwork::after{display:none}
+.seraya-default-cover{width:100%;height:100%;border:0;box-shadow:none;background:none}
+.seraya-default-cover::before,.seraya-default-cover::after,.seraya-default-cover small,.seraya-default-cover span{display:none}
+.seraya-default-cover strong{font-size:clamp(110px,42cqw,230px);opacity:.09;transform:rotate(-8deg);margin:0}
+.seraya-hero:has(.is-default-artwork) .seraya-cover-title{left:42px;top:36%;width:calc(100% - 84px)}
+.seraya-hero:has(.is-default-artwork) .seraya-cover-title small{margin-left:0;padding:0;background:none}
+.seraya-hero:has(.is-default-artwork) .seraya-cover-title h1{font-family:var(--sy-heading);font-weight:400;text-shadow:none}
+.seraya-hero:has(.is-default-artwork) .seraya-cover-title h1 i{color:var(--sy-muted);text-shadow:none;margin-left:0}
+.seraya-opening.is-open + .seraya-flow .seraya-default-cover strong{animation:none;opacity:.075;transform:rotate(-8deg);max-width:100%;font-size:clamp(100px,36cqw,190px)}

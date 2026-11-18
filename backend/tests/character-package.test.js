@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {updateThemeSettingsSchema} from '../src/utils/validators.js';
+const point={scale:1,x:0,y:0,aspect:.6};
+test('character placement validates bounds and preserves calibration',()=>{const characterSettings={mode:'custom',separatePose:false,cover:{...point,anchors:{bride:{x:.7,y:.3},groom:{x:.3,y:.2}}},hero:point};assert.deepEqual(updateThemeSettingsSchema.parse({characterSettings}).characterSettings,characterSettings);assert.equal(updateThemeSettingsSchema.safeParse({characterSettings:{...characterSettings,cover:{...point,scale:100}}}).success,false)});

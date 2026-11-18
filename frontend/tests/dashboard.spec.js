@@ -7,7 +7,7 @@ async function createUser(request, prefix) {
   const password = 'Password123!';
   await request.post(`${API}/auth/signup`, { data: { email, password, phone: '08123' } });
   const verified = await request.post(`${API}/auth/verify-email`, { data: { email, otp: '123456' } });
-  return { token: (await verified.json()).token };
+  return { email, token: (await verified.json()).token };
 }
 
 test('dashboard memuat undangan milik pengguna', async ({ page, request }) => {
@@ -22,5 +22,5 @@ test('dashboard memuat undangan milik pengguna', async ({ page, request }) => {
   await page.goto('/dashboard');
   await expect(page.getByText(/Siti & Budi/).first()).toBeVisible();
 
-  await request.delete(`${API}/auth/delete-account`, { headers: { Authorization: `Bearer ${user.token}` } });
+  await request.delete(`${API}/auth/delete-account`, { headers: { Authorization: `Bearer ${user.token}` }, data: { confirmationEmail: user.email } });
 });

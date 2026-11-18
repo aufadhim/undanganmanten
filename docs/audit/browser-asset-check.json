@@ -1,0 +1,103 @@
+[
+  {
+    "theme": "lanqing",
+    "localImages": 64,
+    "pending": 0,
+    "broken": []
+  },
+  {
+    "broken": [],
+    "localImages": 38,
+    "pending": 0,
+    "theme": "celluloid"
+  },
+  {
+    "broken": [],
+    "localImages": 52,
+    "pending": 0,
+    "theme": "edena"
+  },
+  {
+    "broken": [],
+    "localImages": 62,
+    "pending": 0,
+    "theme": "yunshui"
+  },
+  {
+    "broken": [],
+    "localImages": 9,
+    "pending": 0,
+    "theme": "eternal"
+  },
+  {
+    "broken": [],
+    "localImages": 9,
+    "pending": 0,
+    "theme": "seraya"
+  },
+  {
+    "broken": [],
+    "localImages": 126,
+    "pending": 0,
+    "theme": "nawasena"
+  },
+  {
+    "broken": [],
+    "localImages": 54,
+    "pending": 0,
+    "theme": "isvara"
+  },
+  {
+    "broken": [],
+    "declaredPaths": [
+      "/assets/nocturne/backgrounds/opening-stage-background.webp",
+      "/assets/nocturne/lighting/opening-spotlight-beam.webp",
+      "/assets/nocturne/lighting/opening-low-fog.webp",
+      "/assets/nocturne/textures/nocturne-dust-overlay.webp",
+      "/assets/nocturne/frames/opening-deco-frame.webp",
+      "/assets/nocturne/curtains/opening-top-drape.webp",
+      "/assets/nocturne/curtains/opening-curtain-left.webp",
+      "/assets/nocturne/curtains/opening-curtain-right.webp",
+      "/assets/nocturne/backgrounds/cover-main-background.webp",
+      "/assets/nocturne/lighting/cover-spotlight-left.webp",
+      "/assets/nocturne/frames/cover-main-photo-frame.webp",
+      "/assets/nocturne/florals/cover-floral-left.webp",
+      "/assets/nocturne/florals/cover-floral-right.webp",
+      "/assets/nocturne/sections/quote-paper.webp",
+      "/assets/nocturne/lighting/couple-light-shadow.webp",
+      "/assets/nocturne/frames/event-program-frame.webp",
+      "/assets/nocturne/frames/couple-stage-divider.webp",
+      "/assets/dummy-groom.webp",
+      "/assets/nocturne/florals/couple-floral-accent.webp",
+      "/assets/nocturne/frames/story-film-frame.webp",
+      "/assets/gallery/dummy-gallery-01.webp",
+      "/assets/nocturne/lighting/event-akad-light.webp",
+      "/assets/nocturne/frames/calendar-deco-frame.webp",
+      "/assets/nocturne/frames/timecode-divider.webp",
+      "/assets/gallery/dummy-gallery-02.webp",
+      "/assets/gallery/dummy-gallery-03.webp",
+      "/assets/gallery/dummy-gallery-04.webp",
+      "/assets/gallery/dummy-gallery-05.webp",
+      "/assets/gallery/dummy-gallery-06.webp",
+      "/assets/gallery/dummy-gallery-07.webp",
+      "/assets/gallery/dummy-gallery-08.webp",
+      "/assets/nocturne/frames/video-cinema-frame.webp",
+      "/assets/nocturne/frames/rundown-spine.webp",
+      "/assets/nocturne/frames/dresscode-hanger-line.webp",
+      "/assets/nocturne/masks/dresscode-fabric-mask.webp",
+      "/assets/nocturne/frames/livestream-screen-frame.webp",
+      "/assets/nocturne/sections/rsvp-ticket-background.webp",
+      "/assets/nocturne/sections/gift-envelope-open.webp",
+      "/assets/nocturne/sections/wish-note-paper.webp",
+      "/assets/nocturne/backgrounds/closing-stage-background.webp",
+      "/assets/nocturne/lighting/closing-spotlight.webp",
+      "/assets/nocturne/curtains/closing-curtain-left.webp",
+      "/assets/nocturne/curtains/closing-curtain-right.webp",
+      "/assets/nocturne/florals/closing-floral-floor.webp",
+      "/assets/nocturne/lighting/closing-final-vignette.webp"
+    ],
+    "localImages": 50,
+    "pending": 21,
+    "theme": "nocturne"
+  }
+]

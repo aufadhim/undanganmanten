@@ -1,0 +1,24 @@
+import 'dotenv/config';import {randomUUID} from 'node:crypto';import assert from 'node:assert/strict';import sharp from 'sharp';import {prisma} from '../src/lib/prisma.js';import {generateToken} from '../src/utils/jwt.js';import {cleanupOwnerAssets} from '../src/lib/storage.js';
+const users=[],ids=[];let inv;
+try{
+ for(const role of ['USER','ADMIN','USER'])users.push(await prisma.user.create({data:{email:`character-qa-${randomUUID()}@test.invalid`,passwordHash:'',isVerified:true,role}}));
+ async function call(user,path,method='GET',body,expected=200){const r=await fetch('http://127.0.0.1:4000/api'+path,{method,headers:{Authorization:`Bearer ${generateToken({userId:user.id})}`,...(inv?{'x-invitation-id':inv.id}:{}),...(body instanceof FormData?{}:{'Content-Type':'application/json'})},...(body?{body:body instanceof FormData?body:JSON.stringify(body)}:{})});const data=await r.json();assert.equal(r.status,expected,JSON.stringify(data));return data}
+ inv=(await call(users[0],'/invitations','POST',{brideName:'Character',groomName:'QA',weddingDate:'2027-10-01',themeId:'garden-canvas'},201)).invitation;
+ const rgb=await sharp({create:{width:32,height:48,channels:3,background:'#bbb'}}).jpeg().toBuffer(),ref=new FormData();ref.append('file',new Blob([rgb],{type:'image/jpeg'}),'reference.jpg');ref.append('invitationId',inv.id);
+ const {url}=await call(users[0],'/themes/upload-asset','POST',ref,201);
+ const {request}=await call(users[0],'/themes/illustration-request','POST',{references:[url],brief:'Pose seluruh tubuh, pakaian ivory, gaya cat air.'});ids.push(request.id);assert.equal(request.status,'submitted');
+ await call(users[2],'/themes/illustration-request','GET',undefined,409);await call(users[0],'/admin/illustrations','GET',undefined,403);
+ await call(users[1],`/admin/illustrations/${request.id}`,'PATCH',{status:'processing',reason:'Memproses permintaan ilustrasi QA'});
+ const transparent=await sharp({create:{width:40,height:60,channels:4,background:{r:0,g:0,b:0,alpha:0}}}).composite([{input:Buffer.from('<svg width="20" height="40"><rect width="20" height="40" fill="red"/></svg>'),left:10,top:10}]).webp().toBuffer(),result=new FormData();result.append('file',new Blob([transparent],{type:'image/webp'}),'result.webp');
+ await call(users[1],`/admin/illustrations/${request.id}/cover`,'POST',result);
+ await call(users[1],`/admin/illustrations/${request.id}`,'PATCH',{status:'review',note:'Hasil siap ditinjau.',reason:'Hasil ilustrasi selesai dan siap ditinjau'});
+ const revision=await call(users[0],'/themes/illustration-request/revise','POST',{note:'Tolong sesuaikan warna pakaian menjadi sage.'});assert.equal(revision.request.status,'submitted');await call(users[1],`/admin/illustrations/${request.id}`,'PATCH',{status:'processing',reason:'Menyesuaikan revisi warna pakaian'});await call(users[1],`/admin/illustrations/${request.id}`,'PATCH',{status:'review',reason:'Hasil revisi siap ditinjau pemilik'});
+ const status=await call(users[0],'/themes/illustration-request');const resultUrl=status.request.resultCover;
+ const draftPreview=await call(users[0],'/themes/character-assets?'+new URLSearchParams({coverImageUrl:resultUrl,coverSecondImageUrl:'',separatePose:'false'}));assert.ok(draftPreview.assets.coverCouple.startsWith('data:image/webp;base64,'));assert.equal(draftPreview.assets.coverCouple,draftPreview.assets.heroCouple);
+ const before=await prisma.themeSettings.findUnique({where:{invitationId:inv.id}});assert.notEqual(before.coverImageUrl,resultUrl);
+ const point={scale:1.2,x:25,y:-10,aspect:40/60,anchors:{bride:{x:.7,y:.3},groom:{x:.2,y:.2}}};
+ const saved=await call(users[0],'/invitations/me/theme','PATCH',{coverImageUrl:resultUrl,coverSecondImageUrl:'',characterSettings:{mode:'custom',separatePose:false,cover:point,hero:{...point,x:-25}}});assert.equal(saved.themeSettings.coverImageUrl,resultUrl);assert.deepEqual(saved.themeSettings.characterSettings.cover,point);assert.equal(saved.themeSettings.characterSettings.hero.x,-25);
+ assert.equal((await prisma.illustrationRequest.findUnique({where:{id:request.id}})).status,'approved');
+ const preview=await call(users[0],`/invitations/${inv.id}/preview`);assert.equal(preview.invitation.illustrationRequest,undefined);assert.ok(!JSON.stringify(preview.invitation).includes(url));assert.equal(await prisma.adminAuditLog.count({where:{targetId:request.id}}),5);
+ console.log('PASS: reference upload, ownership/admin gates, result upload, status, draft preview before save, single content save with placement and anchors, private reference, audit.');
+}finally{for(const u of users){await prisma.user.delete({where:{id:u.id}}).catch(()=>{});await cleanupOwnerAssets(u.id).catch(()=>{});await prisma.uploadedAsset.deleteMany({where:{ownerId:u.id}})}await prisma.adminAuditLog.deleteMany({where:{targetId:{in:ids}}});await prisma.$disconnect();console.log('Disposable QA accounts and assets cleaned.');}

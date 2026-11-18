@@ -1,0 +1,274 @@
+{
+  "version": 1,
+  "id": "sunda-parahyangan-landscape",
+  "world": {
+    "width": 43200,
+    "height": 14400,
+    "z": -2200,
+    "asset": "panorama",
+    "y": -1800
+  },
+  "areas": [
+    {
+      "id": "garden",
+      "asset": "landscapeGarden",
+      "x": -12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.3,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "river",
+      "asset": "landscapeRiver",
+      "x": -4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.32
+      },
+      "y": -1800
+    },
+    {
+      "id": "bridge",
+      "asset": "landscapeBridge",
+      "x": 4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "lake",
+      "asset": "landscapeLake",
+      "x": 12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.3
+      },
+      "y": -1800
+    }
+  ],
+  "stops": [
+    {
+      "id": "cover",
+      "area": "garden",
+      "x": 0,
+      "y": -1104.0599999999995,
+      "z": 3510.308056872037
+    },
+    {
+      "id": "hero",
+      "area": "garden",
+      "x": 0,
+      "y": -1296.8399999999988,
+      "z": 3510.308056872037
+    },
+    {
+      "id": "janji",
+      "area": "garden",
+      "x": 0,
+      "y": -227.53126000000003,
+      "z": 1038
+    },
+    {
+      "id": "wanita",
+      "area": "garden",
+      "x": 0,
+      "y": 35,
+      "z": 1500
+    },
+    {
+      "id": "pria",
+      "area": "garden",
+      "x": 0,
+      "y": 35,
+      "z": 1500
+    },
+    {
+      "id": "countdown",
+      "area": "river",
+      "x": -80,
+      "y": -45,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "akad",
+      "area": "river",
+      "x": 0,
+      "y": 5,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "rundown",
+      "area": "river",
+      "x": 80,
+      "y": 40,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "cerita",
+      "area": "bridge",
+      "x": -220,
+      "y": -50,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "galeri",
+      "area": "bridge",
+      "x": -110,
+      "y": -25,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "dresscode",
+      "area": "bridge",
+      "x": 0,
+      "y": 0,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "livestream",
+      "area": "bridge",
+      "x": 110,
+      "y": 25,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "filter",
+      "area": "bridge",
+      "x": 220,
+      "y": 50,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "gift",
+      "area": "lake",
+      "x": -100,
+      "y": -25,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "rsvp",
+      "area": "lake",
+      "x": 0,
+      "y": 0,
+      "fit": "landmark",
+      "panel": "center",
+      "minZ": 1500
+    },
+    {
+      "id": "penutup",
+      "area": "lake",
+      "x": 0,
+      "y": -1553.1428571428564,
+      "z": 3893.432633716994
+    }
+  ],
+  "characters": {
+    "cover": {
+      "stop": "cover",
+      "y": -370.2235733333325,
+      "z": -1800,
+      "width": 1632.606773333333,
+      "aspect": 0.6669921875,
+      "footY": 0.95703125
+    },
+    "hero": {
+      "stop": "hero",
+      "y": -383.72757333333243,
+      "z": -1800,
+      "width": 1632.606773333333,
+      "aspect": 0.6669921875,
+      "footY": 0.95703125
+    },
+    "closing": {
+      "stop": "penutup",
+      "y": -177.4056705872514,
+      "z": -1800,
+      "width": 1451.8950391974922,
+      "aspect": 0.6669921875,
+      "footY": 0.95703125
+    }
+  },
+  "decorations": [
+    {
+      "id": "closing-ground",
+      "asset": "contactShadow",
+      "area": "lake",
+      "x": 150,
+      "y": 1150,
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "closing",
+        "contact": true
+      }
+    },
+    {
+      "id": "cover-contact",
+      "asset": "contactShadow",
+      "area": "garden",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "cover",
+        "contact": true
+      }
+    },
+    {
+      "id": "hero-contact",
+      "asset": "contactShadow",
+      "area": "garden",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "hero",
+        "contact": true
+      }
+    }
+  ],
+  "motion": {
+    "overviewHoldMs": 650,
+    "durationScale": 1.6
+  }
+}

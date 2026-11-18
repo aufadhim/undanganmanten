@@ -1,0 +1,31 @@
+@import url('/templates/engines/landscape/layout.css');
+/* Ludora changes art direction only; navigation and reading remain engine 3. */
+body.theme-ludora{--landscape-paper:#fcf4e4;--ink:#344e62;--sage:#b87359;--gold:#b87359;--garden-heading:'Cormorant Garamond';--garden-body:'DM Sans'}
+.theme-ludora #cover h1 span,.theme-ludora .hero-heading h2 span{font-size:.6em}
+.theme-ludora #cover .kicker,.theme-ludora .hero-heading>.kicker{text-transform:none;letter-spacing:.025em}
+.theme-ludora .paper h2 em,.theme-ludora .hero-heading h2 em{color:#aa674f!important}
+.theme-ludora .cover-response .primary,.theme-ludora .primary,.theme-ludora #open{background:#b87359;color:#fffaf0;box-shadow:0 5px 15px #925f4320}
+.theme-ludora .secondary,.theme-ludora .person-instagram{border-color:#b79278;color:#344e62;background:#fff9ea70}
+.theme-ludora .scene-panel .swatches>div:nth-child(1)>span{background:#e2ca89!important}
+.theme-ludora .scene-panel .swatches>div:nth-child(2)>span{background:#f6f0de!important}
+.theme-ludora .scene-panel .swatches>div:nth-child(3)>span{background:#bc8066!important}
+.theme-ludora .scene-panel .swatches>div:nth-child(4)>span{background:#9eb7c3!important}
+.theme-ludora .section-dots button[aria-current=true]{background:#ad6c53}
+.theme-ludora .hero-heading:before{background:radial-gradient(ellipse,#fff8e4c9 0 25%,#fff8e490 50%,transparent 73%)}
+.theme-ludora .cover-ambient-ray{opacity:.15}
+/* Reserve the lower half for the grounded pair; pigment must not veil their faces. */
+body.theme-ludora #penutup .paper.scene-panel{padding:12px 20px!important;display:flex;flex-direction:column;align-items:center;gap:8px;max-height:42svh!important}
+body.theme-ludora #penutup .paper.scene-panel>*{margin:0!important}
+body.theme-ludora #penutup .paper.scene-panel h2{font-size:36px!important;line-height:1.1}
+body.theme-ludora #penutup .signature{font-size:28px;line-height:1.15}
+body.theme-ludora #penutup .paper.scene-panel p{line-height:1.45}
+body.theme-ludora #penutup .secondary{padding:8px 18px;min-height:36px}
+body.theme-ludora #penutup .paper.scene-panel>a{font-size:10px;line-height:1.3}
+body.theme-ludora .landscape-ivory-wash[data-for=penutup]{mask-image:radial-gradient(ellipse,#000 30%,#0009 61%,transparent 73%)}
+
+/* Closing people share the picnic plane: full adult height, feet stay anchored. */
+body.theme-ludora #penutup .paper.scene-panel{gap:4px;max-height:29svh!important;padding:6px 16px!important;top:max(54px,7svh)!important}
+body.theme-ludora #penutup .paper.scene-panel h2{font-size:30px!important}
+body.theme-ludora #penutup .signature{font-size:24px}
+body.theme-ludora #penutup .paper.scene-panel .kicker{display:none}
+body.theme-ludora #penutup .secondary{padding:5px 14px;min-height:30px}

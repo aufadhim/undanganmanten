@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "id": "riviera-long-river",
+  "world": {
+    "width": 43200,
+    "height": 14400,
+    "z": -2200,
+    "asset": "panorama",
+    "y": -1800
+  },
+  "areas": [
+    {
+      "id": "garden",
+      "asset": "landscapeGarden",
+      "x": -12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.3,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "river",
+      "asset": "landscapeRiver",
+      "x": -4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.32
+      },
+      "y": -1800
+    },
+    {
+      "id": "bridge",
+      "asset": "landscapeBridge",
+      "x": 4080,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.3
+      },
+      "y": -1800
+    },
+    {
+      "id": "lake",
+      "asset": "landscapeLake",
+      "x": 12240,
+      "width": 9600,
+      "height": 9600,
+      "feather": 0.15,
+      "landmark": {
+        "x": 0.5,
+        "y": 0.6,
+        "width": 0.32,
+        "height": 0.3
+      },
+      "y": -1800
+    }
+  ],
+  "stops": [
+    {
+      "id": "cover",
+      "area": "garden",
+      "x": 0,
+      "y": -928.4265734265728,
+      "z": 3006.848838365425
+    },
+    {
+      "id": "hero",
+      "area": "garden",
+      "x": 0,
+      "y": -1104.2097902097894,
+      "z": 3006.848838365425
+    },
+    {
+      "id": "janji",
+      "area": "garden",
+      "x": 450,
+      "y": -70,
+      "z": 2200
+    },
+    {
+      "id": "wanita",
+      "area": "garden",
+      "x": 150,
+      "y": -55,
+      "z": 1120
+    },
+    {
+      "id": "pria",
+      "area": "garden",
+      "x": -150,
+      "y": -65,
+      "z": 1120
+    },
+    {
+      "id": "countdown",
+      "area": "river",
+      "x": -350,
+      "y": -140,
+      "fit": "landmark"
+    },
+    {
+      "id": "akad",
+      "area": "river",
+      "x": 0,
+      "y": 80,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rundown",
+      "area": "river",
+      "x": 420,
+      "y": -50,
+      "z": 2300
+    },
+    {
+      "id": "cerita",
+      "area": "bridge",
+      "x": 0,
+      "y": -100,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "galeri",
+      "area": "bridge",
+      "x": 250,
+      "y": -180,
+      "fit": "landmark"
+    },
+    {
+      "id": "dresscode",
+      "area": "bridge",
+      "x": 620,
+      "y": -45,
+      "z": 2450
+    },
+    {
+      "id": "livestream",
+      "area": "bridge",
+      "x": 920,
+      "y": -20,
+      "z": 2500
+    },
+    {
+      "id": "filter",
+      "area": "bridge",
+      "x": 1200,
+      "y": 0,
+      "z": 2200
+    },
+    {
+      "id": "gift",
+      "area": "lake",
+      "x": -380,
+      "y": -70,
+      "fit": "landmark",
+      "panel": "top"
+    },
+    {
+      "id": "rsvp",
+      "area": "lake",
+      "x": 0,
+      "y": -50,
+      "fit": "landmark"
+    },
+    {
+      "id": "penutup",
+      "area": "lake",
+      "x": 0,
+      "y": -881.1428571428569,
+      "z": 3893.432633716994
+    }
+  ],
+  "characters": {
+    "cover": {
+      "stop": "cover",
+      "y": -220.77914378418564,
+      "z": -1800,
+      "width": 1316.3011312236472,
+      "aspect": 0.6664285714285715,
+      "footY": 0.9907142857142858
+    },
+    "hero": {
+      "stop": "hero",
+      "y": -234.28314378418577,
+      "z": -1800,
+      "width": 1316.3011312236472,
+      "aspect": 0.6664285714285715,
+      "footY": 0.9907142857142858
+    },
+    "closing": {
+      "stop": "penutup",
+      "y": 335.5023492479319,
+      "z": -1800,
+      "width": 1567.1525184158363,
+      "aspect": 0.6664285714285715,
+      "footY": 0.9907142857142858
+    }
+  },
+  "decorations": [
+    {
+      "id": "garden-flowers",
+      "asset": "riverbank",
+      "area": "garden",
+      "x": -467.50000000000006,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.08
+    },
+    {
+      "id": "river-flowers",
+      "asset": "riverbank",
+      "area": "river",
+      "x": 797.5000000000001,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.1
+    },
+    {
+      "id": "bridge-flowers",
+      "asset": "riverbank",
+      "area": "bridge",
+      "x": -852.5000000000001,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.1
+    },
+    {
+      "id": "lake-flowers",
+      "asset": "riverbank",
+      "area": "lake",
+      "x": 660,
+      "y": 1580,
+      "z": -1650,
+      "width": 650,
+      "sway": 0.08
+    },
+    {
+      "id": "closing-ground",
+      "asset": "contactShadow",
+      "area": "lake",
+      "x": 150,
+      "y": 1150,
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "closing",
+        "contact": true
+      }
+    },
+    {
+      "id": "cover-contact",
+      "asset": "contactShadow",
+      "area": "garden",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "cover",
+        "contact": true
+      }
+    },
+    {
+      "id": "hero-contact",
+      "asset": "contactShadow",
+      "area": "garden",
+      "z": -1802,
+      "width": 1100,
+      "attachment": {
+        "slot": "hero",
+        "contact": true
+      }
+    }
+  ],
+  "motion": {
+    "overviewHoldMs": 650,
+    "durationScale": 1.6
+  }
+}

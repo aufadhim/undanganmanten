@@ -1,0 +1,11 @@
+CREATE TABLE "weddings"("id" TEXT PRIMARY KEY,"user_id" TEXT NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,"title" TEXT NOT NULL,"wedding_date" TIMESTAMP(3) NOT NULL,"created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX "weddings_user_id_idx" ON "weddings"("user_id");
+ALTER TABLE "invitations" ADD COLUMN "wedding_id" TEXT REFERENCES "weddings"("id") ON DELETE SET NULL;
+INSERT INTO "weddings"("id","user_id","title","wedding_date","created_at") SELECT i.id,i.user_id,COALESCE(p.bride_name,'Mempelai wanita')||' & '||COALESCE(p.groom_name,'Mempelai pria'),i.wedding_date,i.created_at FROM "invitations" i LEFT JOIN "couple_profiles" p ON p.invitation_id=i.id;
+UPDATE "invitations" SET wedding_id=id;
+ALTER TABLE "guests" ADD COLUMN "wedding_id" TEXT REFERENCES "weddings"("id") ON DELETE CASCADE;
+CREATE INDEX "guests_wedding_id_idx" ON "guests"("wedding_id");
+UPDATE "guests" g SET wedding_id=i.wedding_id FROM "invitations" i WHERE g.invitation_id=i.id;
+ALTER TABLE "guests" ALTER COLUMN "invitation_id" DROP NOT NULL;
+ALTER TABLE "guests" DROP CONSTRAINT "guests_invitation_id_fkey";
+ALTER TABLE "guests" ADD CONSTRAINT "guests_invitation_id_fkey" FOREIGN KEY ("invitation_id") REFERENCES "invitations"("id") ON DELETE SET NULL ON UPDATE CASCADE;

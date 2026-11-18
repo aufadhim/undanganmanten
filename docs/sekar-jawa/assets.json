@@ -1,0 +1,58 @@
+[
+  {
+    "name": "regol-garden.webp",
+    "bytes": 315446,
+    "width": 960,
+    "height": 1440,
+    "alpha": false,
+    "original": "exec-071a2aa7-8e39-4165-8fc6-9c2260e55c9c.png"
+  },
+  {
+    "name": "pendopo-ceremony.webp",
+    "bytes": 291992,
+    "width": 960,
+    "height": 1440,
+    "alpha": false,
+    "original": "exec-2f9d24dc-5211-4844-b7e4-3eddf6cd00ed.png"
+  },
+  {
+    "name": "jasmine-walk.webp",
+    "bytes": 311622,
+    "width": 960,
+    "height": 1440,
+    "alpha": false,
+    "original": "exec-38a61e42-e47d-49c2-915d-0083e14c962c.png"
+  },
+  {
+    "name": "lantern-garden.webp",
+    "bytes": 296168,
+    "width": 960,
+    "height": 1440,
+    "alpha": false,
+    "original": "exec-485e6696-9e77-4a15-ac68-33ba765a9a10.png"
+  },
+  {
+    "name": "couple-cover.webp",
+    "bytes": 258174,
+    "width": 960,
+    "height": 1440,
+    "alpha": true,
+    "original": "exec-84061fe2-a839-4fc3-83b1-cc3786147c2b.png"
+  },
+  {
+    "name": "couple-hero.webp",
+    "bytes": 292016,
+    "width": 960,
+    "height": 1440,
+    "alpha": true,
+    "original": "exec-76c253a3-1ed3-4bf3-80ff-9b4add2f06a5.png"
+  },
+  {
+    "name": "jasmine-canopy.webp",
+    "bytes": 313262,
+    "width": 960,
+    "height": 1440,
+    "alpha": true,
+    "original": "exec-f2fa4f9a-de72-491b-9663-e5e75efc8966.png"
+  }
+]

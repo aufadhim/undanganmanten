@@ -1,0 +1,15 @@
+{
+  "mode": "Built-in image_gen",
+  "assets": [
+    {
+      "kind": "pillar",
+      "prompt": "Use case: illustration-story. Asset for a hand-painted Javanese wedding garden. One single modest weathered Javanese sandstone garden boundary pillar, entire pillar and broad foot plinth fully visible, frontal view slightly from the right at human eye level, not tall monumental gate, no arch, no matching second pillar. Sparse low ivory jasmine and dusty maroon leaves grow closely around the base only. Flat clear bottom foot for alignment to a ground plane. Transparent background outside pillar and plants, no floor, no floating ornaments. Portrait 2:3 composition with subject centered. Delicate traditional watercolor on cotton paper, loose soft brushwork, warm mushroom taupe and dusty muted rose-brown, linen ivory, matte champagne accents, softly faded moderate saturation, no sharp black outlines, no digital gloss, no photorealism, no text or watermark. Genuine transparent alpha outside painted shapes.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-3e6949fd-66a8-4c44-bdb1-354061a33f67.png"
+    },
+    {
+      "kind": "ground",
+      "prompt": "Use case: illustration-story. Asset for a hand-painted Javanese wedding garden. Top-down orthographic texture of a warm weathered pale sandstone garden walkway, large irregular stone slabs, gentle joints, faint earth and tiny understated moss flecks, restrained loose watercolor pigment texture. NO perspective, NO horizon, no buildings, no plants, no objects. Square composition. Central 80 percent continuous opaque stone; outer edges soften into genuine transparency like feathered watercolor pigment, not a white border. Used on a real 3D ground plane. Delicate traditional watercolor on cotton paper, loose soft brushwork, warm mushroom taupe and dusty muted rose-brown, linen ivory, matte champagne accents, softly faded moderate saturation, no sharp black outlines, no digital gloss, no photorealism, no text or watermark. Genuine transparent alpha outside painted shapes.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-183a6640-e09d-4b29-a522-f02b3ceb27e0.png"
+    }
+  ]
+}

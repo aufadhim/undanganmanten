@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),root=path.resolve(__dirname,'../..');
+function templates(){return JSON.parse(fs.readFileSync(path.join(root,'shared/template-registry.json'))).templates.filter(t=>t.engine)}
+function writeChanged(file,content){if(fs.existsSync(file)&&fs.readFileSync(file,'utf8')===content)return false;fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,content);return true}
+function sourcePath(t){if(!t.sceneSource)throw Error('Scene source missing for '+t.id);const file=path.resolve(root,t.sceneSource),base=path.join(root,'shared/template-scenes')+path.sep;if(!file.startsWith(base)||!file.endsWith('.json'))throw Error('Invalid scene source for '+t.id);return file}
+function read(t){const value=JSON.parse(fs.readFileSync(sourcePath(t),'utf8'));if(value.schemaVersion!==1||value.invitation?.schemaVersion!==1||!Array.isArray(value.invitation.cameras)||!value.invitation.assets)throw Error('Invalid scene envelope for '+t.id);if(t.engine===3&&!value.landscape)throw Error('Landscape required for '+t.id);return value}
+function outputs(t,value){const text=JSON.stringify(value.invitation,null,2)+'\n';writeChanged(path.join(root,'frontend/src/components/templates',t.folder,'defaultConfig.json'),text);writeChanged(path.join(root,'frontend/public/templates',t.folder,'config/invitation.json'),text);if(value.landscape)writeChanged(path.join(root,'frontend/public/templates',t.folder,'landscape.json'),JSON.stringify(value.landscape,null,2)+'\n')}
+function syncScenes(){const all=templates();const values=all.map(t=>[t,read(t)]);for(const [t,value]of values)outputs(t,value);return values.map(([t,value])=>({id:t.id,source:t.sceneSource,revision:crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex').slice(0,16)}))}
+let routes;
+function resolveOutput(file){if(!routes){routes=new Map();for(const t of templates()){for(const p of [path.join(root,'frontend/src/components/templates',t.folder,'defaultConfig.json'),path.join(root,'frontend/public/templates',t.folder,'config/invitation.json')])routes.set(p,{t,section:'invitation'});if(t.engine===3)routes.set(path.join(root,'frontend/public/templates',t.folder,'landscape.json'),{t,section:'landscape'});}}return routes.get(path.resolve(file))||null}
+
+function writeSection(t,section,value){const envelope=read(t);envelope[section]=value;writeChanged(sourcePath(t),JSON.stringify(envelope,null,2)+'\n');outputs(t,envelope)}
+module.exports={root,templates,sourcePath,read,outputs,syncScenes,resolveOutput,writeSection};

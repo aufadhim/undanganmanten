@@ -1,0 +1,66 @@
+name: CI & Deploy
+
+on:
+  push:
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            backend/node_modules
+            frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Run backend tests
+        working-directory: backend
+        run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # Only run deploy on the main branches
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Render (optional)
+        if: secrets.RENDER_API_KEY != '' && secrets.RENDER_SERVICE_ID != ''
+        run: |
+          echo "Triggering Render deploy..."
+          curl -s -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": true}'
+
+      - name: Deploy to Vercel (optional)
+        if: secrets.VERCEL_TOKEN != ''
+        run: |
+          echo "Deploying frontend to Vercel..."
+          npm install -g vercel
+          cd frontend
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm

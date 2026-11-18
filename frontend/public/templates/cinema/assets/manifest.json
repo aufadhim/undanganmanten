@@ -1,0 +1,75 @@
+{
+  "status": "art-generated",
+  "engine": 1,
+  "copiedFrom": "sekar-jawa",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/cinema/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 155868
+    },
+    {
+      "filename": "ilustrasi3.webp",
+      "path": "/templates/cinema/assets/ilustrasi3.webp",
+      "usedBy": [
+        "config.assets.foreground",
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 215360
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/cinema/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryGarden",
+        "config.assets.room3"
+      ],
+      "status": "generated",
+      "bytes": 185188
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/cinema/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.room1"
+      ],
+      "status": "generated",
+      "bytes": 198910
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/cinema/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room2"
+      ],
+      "status": "generated",
+      "bytes": 220966
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/cinema/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.room4"
+      ],
+      "status": "generated",
+      "bytes": 207080
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/cinema/assets/ilustrasi10.webp",
+      "usedBy": [
+        "config.assets.stageLandscape"
+      ],
+      "status": "generated",
+      "bytes": 179898
+    }
+  ],
+  "singleCouple": true
+}

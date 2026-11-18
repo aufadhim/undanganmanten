@@ -1,0 +1,174 @@
+{
+  "unit": "MiB (1048576 bytes)",
+  "scope": "Old templates: current per-theme asset folder after cleanup. Garden Canvas: unique config-referenced local assets, plus original asset folder totals. Shared gallery/thumbnails and customer uploads excluded from per-theme folders.",
+  "templates": [
+    {
+      "name": "eternal",
+      "files": 9,
+      "imageFiles": 9,
+      "bytes": 2474736,
+      "MiB": 2.36
+    },
+    {
+      "name": "seraya",
+      "files": 0,
+      "imageFiles": 0,
+      "bytes": 0,
+      "MiB": 0.0
+    },
+    {
+      "name": "nawasena",
+      "files": 93,
+      "imageFiles": 93,
+      "bytes": 5973800,
+      "MiB": 5.7
+    },
+    {
+      "name": "isvara",
+      "files": 43,
+      "imageFiles": 43,
+      "bytes": 7858726,
+      "MiB": 7.49
+    },
+    {
+      "name": "lanqing",
+      "files": 56,
+      "imageFiles": 56,
+      "bytes": 95333860,
+      "MiB": 90.92
+    },
+    {
+      "name": "celluloid",
+      "files": 42,
+      "imageFiles": 42,
+      "bytes": 9275462,
+      "MiB": 8.85
+    },
+    {
+      "name": "nocturne",
+      "files": 43,
+      "imageFiles": 43,
+      "bytes": 28574414,
+      "MiB": 27.25
+    },
+    {
+      "name": "edena",
+      "files": 18,
+      "imageFiles": 18,
+      "bytes": 43438628,
+      "MiB": 41.43
+    },
+    {
+      "name": "yunshui",
+      "files": 21,
+      "imageFiles": 21,
+      "bytes": 6918466,
+      "MiB": 6.6
+    }
+  ],
+  "gardenCanvas": {
+    "usedFiles": 17,
+    "usedMiB": 30.17,
+    "folderFiles": 25,
+    "folderMiB": 42.45,
+    "unusedFiles": 8,
+    "unusedMiB": 12.28,
+    "breakdown": [
+      {
+        "group": "clouds",
+        "files": 8,
+        "MiB": 15.25
+      },
+      {
+        "group": "foreground/decoration",
+        "files": 2,
+        "MiB": 4.39
+      },
+      {
+        "group": "music",
+        "files": 1,
+        "MiB": 2.02
+      },
+      {
+        "group": "couple",
+        "files": 2,
+        "MiB": 5.08
+      },
+      {
+        "group": "backgrounds",
+        "files": 4,
+        "MiB": 3.44
+      }
+    ],
+    "largest": [
+      {
+        "name": "couple-cover-watercolor-v3.png",
+        "MiB": 2.58
+      },
+      {
+        "name": "couple-front-watercolor-v3.png",
+        "MiB": 2.5
+      },
+      {
+        "name": "botanical-spray.png",
+        "MiB": 2.37
+      },
+      {
+        "name": "cloud-event-v4.png",
+        "MiB": 2.2
+      },
+      {
+        "name": "cloud-form-v4.png",
+        "MiB": 2.12
+      },
+      {
+        "name": "cloud-bride-v4.png",
+        "MiB": 2.08
+      },
+      {
+        "name": "cloud-groom-v4.png",
+        "MiB": 2.02
+      },
+      {
+        "name": "garden-foreground-watercolor-v3.png",
+        "MiB": 2.02
+      },
+      {
+        "name": "garden-nocturne.wav",
+        "MiB": 2.02
+      },
+      {
+        "name": "cloud-gallery-v4.png",
+        "MiB": 1.93
+      },
+      {
+        "name": "cloud-cover-v4.png",
+        "MiB": 1.74
+      },
+      {
+        "name": "cloud-quote-v4.png",
+        "MiB": 1.67
+      },
+      {
+        "name": "cloud-closing-v4.png",
+        "MiB": 1.49
+      },
+      {
+        "name": "garden-rosewalk-watercolor-v3.jpg",
+        "MiB": 0.87
+      },
+      {
+        "name": "garden-fountain-watercolor-v3.jpg",
+        "MiB": 0.87
+      },
+      {
+        "name": "garden-entrance-watercolor-v3.jpg",
+        "MiB": 0.86
+      },
+      {
+        "name": "garden-twilight-watercolor-v3.jpg",
+        "MiB": 0.84
+      }
+    ]
+  }
+}

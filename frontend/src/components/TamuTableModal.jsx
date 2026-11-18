@@ -1,14 +1,18 @@
-import React, { useState, useMemo } from 'react';
+import { normalizeWhatsAppPhone } from '../utils/whatsapp.js';
+import React, { useState, useMemo, useRef } from 'react';
 import { api } from '../api/client.js';
 import Button from './ui/Button.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
 export default function TamuTableModal({
   guests,
+  embedded=false,
+  mode = 'all',
   onClose,
   waTemplate,
   invitationSlug,
   onEditGuest,
+  onRequestCheckin,
   onDeleteGuest,
   onUpdateStatus // Callback to update status in parent state
 }) {
@@ -21,6 +25,10 @@ export default function TamuTableModal({
   const [isBroadcasting, setIsBroadcasting] = useState(false);
   const [broadcastQueue, setBroadcastQueue] = useState([]);
   const [currentBroadcastIndex, setCurrentBroadcastIndex] = useState(0);
+
+  const whatsappTab = useRef(null);
+  const [chatOpened, setChatOpened] = useState(false);
+  const [savingProgress, setSavingProgress] = useState(false);
 
   // Generate unique groups for filter dropdown
   const uniqueGroups = useMemo(() => {
@@ -40,11 +48,9 @@ export default function TamuTableModal({
   // WhatsApp link generator (same as in TamuPanel)
   const generateWaLink = (guest) => {
     if (!guest.phone) return '#';
-    let basePhone = guest.phone.replace(/[^0-9]/g, '');
-    if (basePhone.startsWith('0')) {
-      basePhone = '62' + basePhone.substring(1);
-    }
-    const invLink = `${window.location.origin}/${invitationSlug}?g=${guest.id}`;
+    const basePhone = normalizeWhatsAppPhone(guest.phone);
+    if (!basePhone) return "#";
+    const invLink = `${window.location.origin}/${invitationSlug}?g=${guest.linkToken || guest.id}`;
     const txt = (waTemplate || 'Halo [Nama Tamu], ini link undangan: [Link Undangan]')
       .replace(/\[Nama Tamu\]/gi, guest.name)
       .replace(/\[Link Undangan\]/gi, invLink);
@@ -54,7 +60,7 @@ export default function TamuTableModal({
   async function toggleCheckIn(guest) {
     try {
       if (guest.checkedIn) await api.delete(`/invitations/me/guests/${guest.id}/checkin`);
-      else await api.post(`/invitations/me/guests/${guest.id}/checkin`);
+      else {onRequestCheckin?.(guest.id);return;}
       window.dispatchEvent(new Event('guest_updated'));
       toast.success(guest.checkedIn ? 'Check-in dibatalkan.' : 'Check-in berhasil.');
     } catch (err) { toast.error(err.response?.data?.error || 'Gagal memperbarui check-in.'); }
@@ -63,7 +69,7 @@ export default function TamuTableModal({
   // BROADCAST LOGIC
   const startBroadcast = () => {
     // Only queue guests that haven't been sent yet and have a phone number
-    const pendingGuests = filteredGuests.filter(g => g.inviteStatus !== 'sent' && g.phone);
+    const pendingGuests = filteredGuests.filter(g => !['sent', 'opened'].includes(g.inviteStatus) && normalizeWhatsAppPhone(g.phone));
     if (pendingGuests.length === 0) {
       toast.info('Semua tamu di filter ini sudah dikirimi pesan atau tidak memiliki nomor WA.');
       return;
@@ -71,56 +77,71 @@ export default function TamuTableModal({
     setBroadcastQueue(pendingGuests);
     setCurrentBroadcastIndex(0);
     setIsBroadcasting(true);
+    openBroadcastChat(pendingGuests[0]);
   };
 
   const cancelBroadcast = () => {
     setIsBroadcasting(false);
     setBroadcastQueue([]);
+    setChatOpened(false);
     setCurrentBroadcastIndex(0);
   };
 
-  const handleSendBroadcastMessage = async () => {
-    const guest = broadcastQueue[currentBroadcastIndex];
-    if (!guest) return;
-
-    // 1. Open WA Web in new tab
-    const waLink = generateWaLink(guest);
-    window.open(waLink, '_blank');
-
-    // 2. Mark as sent in backend
-    try {
-      await api.post('/invitations/me/guests/blast', { guestIds: [guest.id] });
-      // Notify parent to update state
-      if (onUpdateStatus) {
-        onUpdateStatus(guest.id, 'sent');
-      }
-    } catch (error) {
-      console.error('Gagal update status:', error);
+  const openBroadcastChat = (guest, allowNewTab = true) => {
+    const url = new URL(generateWaLink(guest));
+    const phone = url.pathname.slice(1);
+    const webUrl = 'https://web.whatsapp.com/send?phone=' + phone + '&' + url.searchParams;
+    if (whatsappTab.current && !whatsappTab.current.closed) {
+      whatsappTab.current.location.href = webUrl;
+      whatsappTab.current.focus();
+    } else if (allowNewTab) {
+      whatsappTab.current = window.open(webUrl, '_blank');
+      if (whatsappTab.current) whatsappTab.current.opener = null;
     }
+    const opened = Boolean(whatsappTab.current && !whatsappTab.current.closed);
+    setChatOpened(opened);
+    if (!opened && allowNewTab) toast.info('Izinkan pop-up, lalu klik Buka chat.');
   };
 
-  const handleNextBroadcast = () => {
-    if (currentBroadcastIndex < broadcastQueue.length - 1) {
-      setCurrentBroadcastIndex(prev => prev + 1);
-    } else {
-      toast.success('Selesai! Semua antrean telah dikirim.');
-      setIsBroadcasting(false);
+  const advanceBroadcast = () => {
+    const nextIndex = currentBroadcastIndex + 1;
+    const nextGuest = broadcastQueue[nextIndex];
+    if (!nextGuest) {
+      cancelBroadcast();
+      toast.success('Antrean selesai. Tamu yang dilewati bisa diproses lagi.');
+      return;
+    }
+    setCurrentBroadcastIndex(nextIndex);
+    openBroadcastChat(nextGuest, false);
+  };
+
+  const confirmBroadcastMessage = async () => {
+    const guest = broadcastQueue[currentBroadcastIndex];
+    setSavingProgress(true);
+    try {
+      await api.post('/invitations/me/guests/blast', { guestIds: [guest.id] });
+      onUpdateStatus?.(guest.id, 'sent');
+      advanceBroadcast();
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'Progres gagal disimpan. Coba konfirmasi lagi.');
+    } finally {
+      setSavingProgress(false);
     }
   };
 
   return (
-    <div className="fullscreen-modal-overlay">
+    <div className={embedded?"guest-table-embedded":"fullscreen-modal-overlay"}>
       <div className="fullscreen-modal-container">
         
         {/* Header */}
-        <div className="fullscreen-modal-header">
+        {!embedded&&<div className="fullscreen-modal-header">
           <div className="header-title">
             <i className="fa-solid fa-users"></i> Kelola Tamu (Layar Penuh)
           </div>
           <button className="close-btn" onClick={onClose}>
             <i className="fa-solid fa-xmark"></i> Tutup
           </button>
-        </div>
+        </div>}
 
         {/* Action Bar (Filters & Broadcst) */}
         <div className="fullscreen-action-bar">
@@ -138,21 +159,21 @@ export default function TamuTableModal({
               className="form-input"
             >
               {uniqueGroups.map(group => (
-                <option key={group} value={group}>{group}</option>
+                <option key={group} value={group}>{group==='All'?'Semua kelompok':group}</option>
               ))}
             </select>
           </div>
-          <div className="actions">
+          {mode !== 'directory' && <div className="actions">
             {!isBroadcasting ? (
               <Button variant="primary" onClick={startBroadcast} icon={<i className="fa-solid fa-paper-plane"></i>}>
-                Kirim Massal (Semi-Auto)
+                Kirim massal
               </Button>
             ) : (
-              <Button variant="danger" onClick={cancelBroadcast} icon={<i className="fa-solid fa-stop"></i>}>
+              <Button variant="danger" onClick={cancelBroadcast} disabled={savingProgress} icon={<i className="fa-solid fa-stop"></i>}>
                 Hentikan Proses
               </Button>
             )}
-          </div>
+          </div>}
         </div>
 
         {/* Broadcast Overlay / Banner */}
@@ -160,30 +181,26 @@ export default function TamuTableModal({
           <div className="broadcast-banner">
             <div className="broadcast-info">
               <span className="badge">Antrean {currentBroadcastIndex + 1} / {broadcastQueue.length}</span>
-              <strong>Mengirim ke: {broadcastQueue[currentBroadcastIndex]?.name}</strong>
+              <strong>Chat untuk: {broadcastQueue[currentBroadcastIndex]?.name}</strong>
               <span className="phone">({broadcastQueue[currentBroadcastIndex]?.phone})</span>
             </div>
             <div className="broadcast-actions">
-              <Button 
-                variant="primary" 
-                onClick={handleSendBroadcastMessage}
-                icon={<i className="fa-brands fa-whatsapp"></i>}
-              >
-                1. Buka WA Web
+              <Button variant="secondary" disabled={savingProgress}
+                onClick={() => openBroadcastChat(broadcastQueue[currentBroadcastIndex])}>
+                {chatOpened ? 'Buka ulang chat' : 'Buka chat'}
               </Button>
-              <Button 
-                variant="secondary" 
-                onClick={handleNextBroadcast}
-                icon={<i className="fa-solid fa-forward-step"></i>}
-              >
-                2. Lanjut Berikutnya
+              <Button variant="secondary" disabled={savingProgress} onClick={advanceBroadcast}>
+                Lewati
+              </Button>
+              <Button variant="primary" disabled={!chatOpened || savingProgress} onClick={confirmBroadcastMessage}>
+                {savingProgress ? 'Menyimpan…' : currentBroadcastIndex + 1 === broadcastQueue.length ? 'Sudah kirim, selesai' : 'Sudah kirim, lanjut'}
               </Button>
             </div>
           </div>
         )}
 
         {/* Data Table */}
-        <div className="table-container">
+        {mode !== 'distribution' && <div className="table-container">
           <table className="data-table">
             <thead>
               <tr>
@@ -228,7 +245,9 @@ export default function TamuTableModal({
                           size="sm"
                           icon={<i className="fa-brands fa-whatsapp"></i>}
                           style={{ color: '#25D366' }}
-                          onClick={async () => {
+                          aria-disabled={!guest.phone}
+                          onClick={async (event) => {
+                            if(!guest.phone){event.preventDefault();return}
                             if (guest.inviteStatus !== 'sent') {
                               try {
                                 await api.post('/invitations/me/guests/blast', { guestIds: [guest.id] });
@@ -246,7 +265,7 @@ export default function TamuTableModal({
                           variant="ghost" 
                           size="sm"
                           onClick={() => {
-                            onClose();
+                            if(!embedded)onClose();
                             onEditGuest(guest);
                           }}
                           icon={<i className="fa-solid fa-pen"></i>}
@@ -269,7 +288,7 @@ export default function TamuTableModal({
               )}
             </tbody>
           </table>
-        </div>
+        </div>}
       </div>
     </div>
   );

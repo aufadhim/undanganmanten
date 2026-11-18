@@ -1,0 +1,46 @@
+/* SEKAR — penyesuaian manual template Jawa.
+   Kamera/struktur memakai engine bersama. CSS ini terpisah dari Anam. */
+:root{--cms-ink:#594942;--cms-accent:#896865}
+body{background:#eee7dc;color:#594942}
+#cover{background:radial-gradient(ellipse at 50% 35%,#faf3e5,#d7c6b7 85%)}
+#cover h1 em,.hero-heading h2 em{color:#a89475!important}
+header .monogram{color:#69524b}
+.cover-heading .kicker,.hero-heading .kicker{letter-spacing:.2em;color:#8e7770}
+.cover-note{color:#8d7c71}
+.primary{background:#896865;border-color:#896865;box-shadow:0 6px 22px #5c462315}
+.primary:hover{background:#735953}
+.person-instagram,.secondary{border-color:#a092714f;color:#896865}
+.person-rule{background:#b4a58b}
+.person-detail h2 em{color:#a89475!important}
+.scene-panel .kicker{color:#937c73}
+.cloud-skin,.person-cloud{filter:sepia(.08)}
+.bottom-ui{background:#f8f4e8ed;border-color:#ad9c6b33}
+#track-fill{background:#aa987d}
+#music-toggle{color:#f7f1e3;background:#896865}
+#host-access-pass{background:#faf5e7bd}
+@media(max-width:600px){.cover-note{font-size:10px}.cover-heading .kicker{letter-spacing:.18em}}
+.sekar-jawa #open,.sekar-jawa .scene-panel .primary{background:var(--cms-accent)!important;color:#fff9ed}
+.sekar-jawa #cover h1 em,.sekar-jawa .hero-heading h2 em{color:#a89475!important}
+.sekar-jawa .hero-heading{top:11%!important}
+.sekar-jawa .hero-heading h2{font-size:64px;line-height:1.02;margin:14px 0}
+.sekar-jawa .hero-next{background:#896865cf;color:#fff9ed;border-color:#e7d9b773}
+.sekar-jawa .hero-location{background:radial-gradient(ellipse at left center,#f6efdfdc,transparent 78%);padding:8px 10px}
+@media(min-width:900px){.sekar-jawa .hero-heading h2{font-size:82px}.sekar-jawa .hero-heading{top:12%!important}}
+.sekar-jawa #cover #open,.sekar-jawa #rsvp .primary{background:var(--cms-accent)!important;color:#fff9ed}
+.sekar-jawa #penutup h2{background:radial-gradient(ellipse,#faf6e8db 25%,transparent 78%)}
+.sekar-jawa .demo-tag{display:none!important}
+@media(max-width:899px){.sekar-jawa .hero-heading{top:9%!important}.sekar-jawa .hero-heading h2{font-size:56px;margin:12px 0}}
+
+/* Soft parchment light keeps names readable over the richer sogan painting. */
+.sekar-jawa .cover-heading{background:radial-gradient(ellipse at center,#f0e9dce0 10%,#f0e9dc75 48%,transparent 73%)}
+.sekar-jawa .hero-heading{background:radial-gradient(ellipse at center,#f0e9dce8 5%,#f0e9dc85 48%,transparent 75%)}
+.sekar-jawa .cover-heading h1,.sekar-jawa .hero-heading h2{text-shadow:0 1px 12px #f3eee5}
+
+.sekar-jawa .scene-panel p,.sekar-jawa .scene-panel .arrum-meaning,.sekar-jawa .person-family strong{color:var(--cms-ink)}
+.sekar-jawa .arrum-flourish,.sekar-jawa .arrum-reference,.sekar-jawa .arrum-next{color:#9b8570}
+
+/* Dusty watercolor edition: parchment stays quiet beside the softened art. */
+.sekar-jawa .pigment-backdrop{filter:saturate(.42)}
+.sekar-jawa .scene-panel .placeholder,.sekar-jawa .scene-panel .mini{color:#8d7c71}
+/* A restrained display grade keeps all four rooms and cutouts on the same matte palette. */
+.sekar-jawa .garden-renderer{filter:saturate(.76) contrast(.92) brightness(1.035)}

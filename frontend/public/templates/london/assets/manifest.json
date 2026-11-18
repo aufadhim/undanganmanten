@@ -1,0 +1,75 @@
+{
+  "status": "art-generated",
+  "engine": 2,
+  "copiedFrom": "pramaya",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/london/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 130894
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/london/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet",
+        "config.assets.room2"
+      ],
+      "status": "generated",
+      "bytes": 232900
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/london/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.galleryGarden",
+        "config.assets.room1"
+      ],
+      "status": "generated",
+      "bytes": 217490
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/london/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room3"
+      ],
+      "status": "generated",
+      "bytes": 223436
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/london/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.room4"
+      ],
+      "status": "generated",
+      "bytes": 214162
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/london/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.outer"
+      ],
+      "status": "generated",
+      "bytes": 221380
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/london/assets/ilustrasi9.webp",
+      "usedBy": [
+        "config.assets.book"
+      ],
+      "status": "generated",
+      "bytes": 157344
+    }
+  ],
+  "singleCouple": true
+}

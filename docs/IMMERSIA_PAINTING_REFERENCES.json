@@ -1,0 +1,4904 @@
+{
+  "version": 1,
+  "measurementMethod": "Approximate visual landmark measurements from the source artwork, not surveyed dimensions. Canonical editable data is in shared/template-scenes/*.json.",
+  "templates": {
+    "melayu-balairung": {
+      "version": 1,
+      "notes": "Approximate art measurements, railing is primary; ambiguous stair is secondary. Weighted median; no fixed character screen height.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.49,
+          "footY": 0.79,
+          "footX": 0.465,
+          "screenFootY": 0.81,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-railing",
+              "height": 0.074,
+              "groundY": 0.61,
+              "metres": 1,
+              "weight": 0.8
+            },
+            {
+              "id": "stair-riser",
+              "height": 0.0085,
+              "groundY": 0.596,
+              "metres": 0.16,
+              "weight": 0.2
+            }
+          ],
+          "centerOnCamera": true
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.52,
+          "footY": 0.79,
+          "footX": 0.465,
+          "screenFootY": 0.84,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-railing",
+              "height": 0.074,
+              "groundY": 0.66,
+              "metres": 0.9,
+              "weight": 0.8
+            },
+            {
+              "id": "stair-riser",
+              "height": 0.013,
+              "groundY": 0.71,
+              "metres": 0.16,
+              "weight": 0.2
+            }
+          ],
+          "centerOnCamera": true
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.49,
+          "footY": 0.79,
+          "footX": 0.465,
+          "screenFootY": 0.94,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-railing",
+              "height": 0.074,
+              "groundY": 0.61,
+              "metres": 1,
+              "weight": 0.8
+            },
+            {
+              "id": "stair-riser",
+              "height": 0.0085,
+              "groundY": 0.596,
+              "metres": 0.16,
+              "weight": 0.2
+            }
+          ],
+          "centerOnCamera": true
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "courtyard-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.2525943396226416
+            },
+            {
+              "id": "courtyard-railing",
+              "weight": 0.8,
+              "height": 0.3108
+            }
+          ],
+          "bodyFraction": 0.4588000000000002,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.19397368421052635
+            },
+            {
+              "id": "near-railing",
+              "weight": 0.8,
+              "height": 0.26639999999999997
+            }
+          ],
+          "bodyFraction": 0.3552000000000002,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.2525943396226416
+            },
+            {
+              "id": "courtyard-railing",
+              "weight": 0.8,
+              "height": 0.3108
+            }
+          ],
+          "bodyFraction": 0.41702278481012656,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "melayu-hikayat": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.47,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pavilion-door",
+              "height": 0.15,
+              "groundY": 0.66,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.47,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pavilion-door",
+              "height": 0.15,
+              "groundY": 0.66,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-veranda-railing",
+              "height": 0.08,
+              "groundY": 0.64,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "pavilion-door",
+          "candidates": [
+            {
+              "id": "pavilion-door",
+              "weight": 1,
+              "height": 0.19291866028708132
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "pavilion-door",
+          "candidates": [
+            {
+              "id": "pavilion-door",
+              "weight": 1,
+              "height": 0.19291866028708132
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-veranda-railing",
+          "candidates": [
+            {
+              "id": "near-veranda-railing",
+              "weight": 1,
+              "height": 0.24640000000000004
+            }
+          ],
+          "bodyFraction": 0.3306126582278482,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "sunda-pendopo": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pendopo-column-clearance",
+              "height": 0.19,
+              "groundY": 0.64,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pendopo-column-clearance",
+              "height": 0.23,
+              "groundY": 0.68,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pendopo-column-clearance",
+              "height": 0.19,
+              "groundY": 0.64,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.22507692307692306
+            }
+          ],
+          "bodyFraction": 0.33225641025641034,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.2196923076923077
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.22507692307692306
+            }
+          ],
+          "bodyFraction": 0.3020019474196689,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "sunda-parahyangan": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "path-stone-wall",
+              "height": 0.085,
+              "groundY": 0.66,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "path-stone-wall",
+              "height": 0.085,
+              "groundY": 0.66,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-bamboo-path-railing",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.22069090909090908
+            }
+          ],
+          "bodyFraction": 0.3199999999999999,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.22069090909090908
+            }
+          ],
+          "bodyFraction": 0.3199999999999999,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-bamboo-path-railing",
+          "candidates": [
+            {
+              "id": "near-bamboo-path-railing",
+              "weight": 1,
+              "height": 0.21992727272727272
+            }
+          ],
+          "bodyFraction": 0.3078981818181818,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "bali-pekarangan": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-gate-door",
+              "height": 0.18,
+              "groundY": 0.65,
+              "metres": 2.3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-door",
+              "height": 0.22,
+              "groundY": 0.67,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-gate-door",
+              "height": 0.18,
+              "groundY": 0.65,
+              "metres": 2.3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "courtyard-gate-door",
+          "candidates": [
+            {
+              "id": "courtyard-gate-door",
+              "weight": 1,
+              "height": 0.21286956521739134
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.238
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-gate-door",
+          "candidates": [
+            {
+              "id": "courtyard-gate-door",
+              "weight": 1,
+              "height": 0.21286956521739134
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "bali-subak": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-stone-wall",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-stone-wall",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "path-stone-wall",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.2271818181818182
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.2271818181818182
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.2176
+            }
+          ],
+          "bodyFraction": 0.30463999999999997,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "banjar": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.45,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-stilt-house-railing",
+              "height": 0.1,
+              "groundY": 0.66,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.45,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-stilt-house-railing",
+              "height": 0.1,
+              "groundY": 0.66,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "wooden-jetty-railing",
+              "height": 0.15,
+              "groundY": 0.72,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "near-stilt-house-railing",
+          "candidates": [
+            {
+              "id": "near-stilt-house-railing",
+              "weight": 1,
+              "height": 0.24
+            }
+          ],
+          "bodyFraction": 0.336,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-stilt-house-railing",
+          "candidates": [
+            {
+              "id": "near-stilt-house-railing",
+              "weight": 1,
+              "height": 0.24
+            }
+          ],
+          "bodyFraction": 0.336,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "wooden-jetty-railing",
+          "candidates": [
+            {
+              "id": "wooden-jetty-railing",
+              "weight": 1,
+              "height": 0.2781818181818182
+            }
+          ],
+          "bodyFraction": 0.38945454545454544,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "dayak": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "longhouse-railing",
+              "height": 0.07,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "longhouse-railing",
+              "height": 0.07,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-longhouse-railing",
+              "height": 0.085,
+              "groundY": 0.66,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "longhouse-railing",
+          "candidates": [
+            {
+              "id": "longhouse-railing",
+              "weight": 1,
+              "height": 0.20425263157894738
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "longhouse-railing",
+          "candidates": [
+            {
+              "id": "longhouse-railing",
+              "weight": 1,
+              "height": 0.20425263157894738
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-longhouse-railing",
+          "candidates": [
+            {
+              "id": "near-longhouse-railing",
+              "weight": 1,
+              "height": 0.2312
+            }
+          ],
+          "bodyFraction": 0.3102177215189874,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "bugis-makassar": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "raised-house-door",
+              "height": 0.14,
+              "groundY": 0.61,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "front-house-railing",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "raised-house-door",
+              "height": 0.14,
+              "groundY": 0.61,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "raised-house-door",
+          "candidates": [
+            {
+              "id": "raised-house-door",
+              "weight": 1,
+              "height": 0.22718181818181823
+            }
+          ],
+          "bodyFraction": 0.33536363636363664,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "front-house-railing",
+          "candidates": [
+            {
+              "id": "front-house-railing",
+              "weight": 1,
+              "height": 0.24802105263157898
+            }
+          ],
+          "bodyFraction": 0.3306947368421054,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "raised-house-door",
+          "candidates": [
+            {
+              "id": "raised-house-door",
+              "weight": 1,
+              "height": 0.22718181818181823
+            }
+          ],
+          "bodyFraction": 0.3048262370540853,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "toraja": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "tongkonan-entry-door",
+              "height": 0.12,
+              "groundY": 0.62,
+              "metres": 2.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "tongkonan-entry-door",
+              "height": 0.12,
+              "groundY": 0.62,
+              "metres": 2.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "stone-courtyard-wall",
+              "height": 0.08,
+              "groundY": 0.64,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "tongkonan-entry-door",
+          "candidates": [
+            {
+              "id": "tongkonan-entry-door",
+              "weight": 1,
+              "height": 0.19800000000000004
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "tongkonan-entry-door",
+          "candidates": [
+            {
+              "id": "tongkonan-entry-door",
+              "weight": 1,
+              "height": 0.19800000000000004
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "stone-courtyard-wall",
+          "candidates": [
+            {
+              "id": "stone-courtyard-wall",
+              "weight": 1,
+              "height": 0.24640000000000004
+            }
+          ],
+          "bodyFraction": 0.3306126582278482,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "sumba": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-dry-stone-wall",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 0.95,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-dry-stone-wall",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 0.95,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-stone-wall",
+              "height": 0.085,
+              "groundY": 0.64,
+              "metres": 0.95,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "near-dry-stone-wall",
+          "candidates": [
+            {
+              "id": "near-dry-stone-wall",
+              "weight": 1,
+              "height": 0.2576842105263158
+            }
+          ],
+          "bodyFraction": 0.36075789473684217,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-dry-stone-wall",
+          "candidates": [
+            {
+              "id": "near-dry-stone-wall",
+              "weight": 1,
+              "height": 0.2576842105263158
+            }
+          ],
+          "bodyFraction": 0.36075789473684217,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-stone-wall",
+          "candidates": [
+            {
+              "id": "near-stone-wall",
+              "weight": 1,
+              "height": 0.24336842105263162
+            }
+          ],
+          "bodyFraction": 0.34071578947368425,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "flores": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-stone-wall",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-stone-wall",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-garden-wall",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-garden-wall",
+          "candidates": [
+            {
+              "id": "near-garden-wall",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "maluku": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.43,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "veranda-column-clearance",
+              "height": 0.34,
+              "groundY": 0.69,
+              "metres": 2.8,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.43,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "veranda-column-clearance",
+              "height": 0.34,
+              "groundY": 0.69,
+              "metres": 2.8,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "veranda-column-clearance",
+              "height": 0.28,
+              "groundY": 0.67,
+              "metres": 2.8,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2824615384615386
+            }
+          ],
+          "bodyFraction": 0.4169670329670333,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2824615384615386
+            }
+          ],
+          "bodyFraction": 0.37661538461538496,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2556521739130435
+            }
+          ],
+          "bodyFraction": 0.34302696752889383,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "papua": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "path-low-stone-wall",
+              "height": 0.1,
+              "groundY": 0.67,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "path-low-stone-wall",
+              "height": 0.1,
+              "groundY": 0.67,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "shore-path-wall",
+              "height": 0.09,
+              "groundY": 0.66,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "path-low-stone-wall",
+          "candidates": [
+            {
+              "id": "path-low-stone-wall",
+              "weight": 1,
+              "height": 0.2227272727272727
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "path-low-stone-wall",
+          "candidates": [
+            {
+              "id": "path-low-stone-wall",
+              "weight": 1,
+              "height": 0.2227272727272727
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "shore-path-wall",
+          "candidates": [
+            {
+              "id": "shore-path-wall",
+              "weight": 1,
+              "height": 0.2225454545454545
+            }
+          ],
+          "bodyFraction": 0.31156363636363626,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "minangkabau": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "rumah-gadang-entry",
+              "height": 0.12,
+              "groundY": 0.64,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "rumah-gadang-entry",
+              "height": 0.17,
+              "groundY": 0.65,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "rumah-gadang-entry",
+              "height": 0.12,
+              "groundY": 0.64,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "rumah-gadang-entry",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry",
+              "weight": 1,
+              "height": 0.16398086124401912
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "rumah-gadang-entry",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry",
+              "weight": 1,
+              "height": 0.20668421052631583
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "rumah-gadang-entry",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry",
+              "weight": 1,
+              "height": 0.16398086124401912
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "masjid-taman": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-near-arch",
+              "height": 0.31,
+              "groundY": 0.7,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-door",
+              "height": 0.17,
+              "groundY": 0.63,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-near-arch",
+              "height": 0.31,
+              "groundY": 0.7,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "courtyard-near-arch",
+          "candidates": [
+            {
+              "id": "courtyard-near-arch",
+              "weight": 1,
+              "height": 0.23609600000000003
+            }
+          ],
+          "bodyFraction": 0.34852266666666676,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.21044210526315793
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-near-arch",
+          "candidates": [
+            {
+              "id": "courtyard-near-arch",
+              "weight": 1,
+              "height": 0.23609600000000003
+            }
+          ],
+          "bodyFraction": 0.3167870379746836,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "masjid-manuskrip": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-courtyard-arch",
+              "height": 0.33,
+              "groundY": 0.7,
+              "metres": 3.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-courtyard-arch",
+              "height": 0.33,
+              "groundY": 0.7,
+              "metres": 3.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-colonnade-opening",
+              "height": 0.32,
+              "groundY": 0.69,
+              "metres": 3.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "near-courtyard-arch",
+          "candidates": [
+            {
+              "id": "near-courtyard-arch",
+              "weight": 1,
+              "height": 0.23562000000000005
+            }
+          ],
+          "bodyFraction": 0.3478200000000002,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-courtyard-arch",
+          "candidates": [
+            {
+              "id": "near-courtyard-arch",
+              "weight": 1,
+              "height": 0.23562000000000005
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-colonnade-opening",
+          "candidates": [
+            {
+              "id": "near-colonnade-opening",
+              "weight": 1,
+              "height": 0.23800000000000004
+            }
+          ],
+          "bodyFraction": 0.31934177215189885,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "katedral": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cathedral-side-door",
+              "height": 0.12,
+              "groundY": 0.64,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cathedral-side-door",
+              "height": 0.15,
+              "groundY": 0.66,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cathedral-side-door",
+              "height": 0.12,
+              "groundY": 0.64,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "cathedral-side-door",
+          "candidates": [
+            {
+              "id": "cathedral-side-door",
+              "weight": 1,
+              "height": 0.147
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "cathedral-side-door",
+          "candidates": [
+            {
+              "id": "cathedral-side-door",
+              "weight": 1,
+              "height": 0.1632
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "cathedral-side-door",
+          "candidates": [
+            {
+              "id": "cathedral-side-door",
+              "weight": 1,
+              "height": 0.147
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "katedral-album": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cloister-door",
+              "height": 0.22,
+              "groundY": 0.66,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cloister-door",
+              "height": 0.22,
+              "groundY": 0.66,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "cloister-door",
+              "height": 0.21,
+              "groundY": 0.65,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.23936
+            }
+          ],
+          "bodyFraction": 0.3533409523809525,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.23936
+            }
+          ],
+          "bodyFraction": 0.31999999999999984,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.24510315789473677
+            }
+          ],
+          "bodyFraction": 0.32887259160559623,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "taman-tionghoa": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "moon-gate-clearance",
+              "height": 0.22,
+              "groundY": 0.66,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "moon-gate-clearance",
+              "height": 0.35,
+              "groundY": 0.68,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "moon-gate-clearance",
+              "height": 0.22,
+              "groundY": 0.66,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.24933333333333332
+            }
+          ],
+          "bodyFraction": 0.3680634920634922,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.28973913043478255
+            }
+          ],
+          "bodyFraction": 0.38631884057971033,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.24933333333333332
+            }
+          ],
+          "bodyFraction": 0.334548523206751,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "peranakan": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "front-house-door",
+              "height": 0.23,
+              "groundY": 0.67,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "front-house-door",
+              "height": 0.23,
+              "groundY": 0.67,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "side-house-door",
+              "height": 0.18,
+              "groundY": 0.65,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "front-house-door",
+          "candidates": [
+            {
+              "id": "front-house-door",
+              "weight": 1,
+              "height": 0.23184
+            }
+          ],
+          "bodyFraction": 0.32668363636363634,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "front-house-door",
+          "candidates": [
+            {
+              "id": "front-house-door",
+              "weight": 1,
+              "height": 0.23184
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "side-house-door",
+          "candidates": [
+            {
+              "id": "side-house-door",
+              "weight": 1,
+              "height": 0.2188421052631579
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "chateau": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-terrace-balustrade",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "chateau-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "chateau-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "near-terrace-balustrade",
+              "weight": 1,
+              "height": 0.2312
+            }
+          ],
+          "bodyFraction": 0.32368,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "edinburgh": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-house-door",
+              "height": 0.29,
+              "groundY": 0.69,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-house-door",
+              "height": 0.29,
+              "groundY": 0.69,
+              "metres": 2.4,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "street-stone-wall",
+              "height": 0.1,
+              "groundY": 0.66,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "near-house-door",
+          "candidates": [
+            {
+              "id": "near-house-door",
+              "weight": 1,
+              "height": 0.27608000000000005
+            }
+          ],
+          "bodyFraction": 0.386512,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-house-door",
+          "candidates": [
+            {
+              "id": "near-house-door",
+              "weight": 1,
+              "height": 0.27608000000000005
+            }
+          ],
+          "bodyFraction": 0.386512,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "street-stone-wall",
+          "candidates": [
+            {
+              "id": "street-stone-wall",
+              "weight": 1,
+              "height": 0.23603305785123962
+            }
+          ],
+          "bodyFraction": 0.3304462809917355,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "paris": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.09,
+              "groundY": 0.66,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.22399999999999998
+            }
+          ],
+          "bodyFraction": 0.33066666666666683,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.22399999999999998
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2448
+            }
+          ],
+          "bodyFraction": 0.3284658227848101,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "london": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.085,
+              "groundY": 0.64,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.085,
+              "groundY": 0.64,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "terrace-balustrade",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2555368421052632
+            }
+          ],
+          "bodyFraction": 0.37722105263157907,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2555368421052632
+            }
+          ],
+          "bodyFraction": 0.34071578947368436,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.25704
+            }
+          ],
+          "bodyFraction": 0.34488911392405064,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "elegant-ivory": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-balustrade",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "courtyard-door",
+              "height": 0.19,
+              "groundY": 0.64,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-balustrade",
+              "height": 0.08,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "garden-balustrade",
+          "candidates": [
+            {
+              "id": "garden-balustrade",
+              "weight": 1,
+              "height": 0.22848
+            }
+          ],
+          "bodyFraction": 0.3372800000000001,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.2196923076923077
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "garden-balustrade",
+          "candidates": [
+            {
+              "id": "garden-balustrade",
+              "weight": 1,
+              "height": 0.22848
+            }
+          ],
+          "bodyFraction": 0.3065681012658228,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "elegant-velvet": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "vaulted-near-arch",
+              "height": 0.3,
+              "groundY": 0.68,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "vaulted-near-arch",
+              "height": 0.3,
+              "groundY": 0.68,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "balcony-balustrade",
+              "height": 0.11,
+              "groundY": 0.69,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "vaulted-near-arch",
+          "candidates": [
+            {
+              "id": "vaulted-near-arch",
+              "weight": 1,
+              "height": 0.24834782608695652
+            }
+          ],
+          "bodyFraction": 0.36660869565217397,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "vaulted-near-arch",
+          "candidates": [
+            {
+              "id": "vaulted-near-arch",
+              "weight": 1,
+              "height": 0.24834782608695652
+            }
+          ],
+          "bodyFraction": 0.3311304347826089,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "balcony-balustrade",
+          "candidates": [
+            {
+              "id": "balcony-balustrade",
+              "weight": 1,
+              "height": 0.2618000000000001
+            }
+          ],
+          "bodyFraction": 0.3512759493670887,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "kaligrafi": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-stone-arch",
+              "height": 0.29,
+              "groundY": 0.67,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "near-stone-arch",
+              "height": 0.29,
+              "groundY": 0.67,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "stone-bench-height",
+              "height": 0.055,
+              "groundY": 0.68,
+              "metres": 0.55,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "near-stone-arch",
+          "candidates": [
+            {
+              "id": "near-stone-arch",
+              "weight": 1,
+              "height": 0.2552
+            }
+          ],
+          "bodyFraction": 0.37672380952380957,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-stone-arch",
+          "candidates": [
+            {
+              "id": "near-stone-arch",
+              "weight": 1,
+              "height": 0.2552
+            }
+          ],
+          "bodyFraction": 0.34026666666666683,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "stone-bench-height",
+          "candidates": [
+            {
+              "id": "stone-bench-height",
+              "weight": 1,
+              "height": 0.24834782608695646
+            }
+          ],
+          "bodyFraction": 0.3332261970280682,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "cinema": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "theatre-entry-door",
+              "height": 0.21,
+              "groundY": 0.66,
+              "metres": 2.7,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "theatre-entry-door",
+              "height": 0.26,
+              "groundY": 0.67,
+              "metres": 2.8,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "theatre-entry-door",
+              "height": 0.21,
+              "groundY": 0.66,
+              "metres": 2.7,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.2115555555555555
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.2410909090909091
+            }
+          ],
+          "bodyFraction": 0.3214545454545456,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.2115555555555555
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "kingdom": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "castle-entrance",
+              "height": 0.23,
+              "groundY": 0.65,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.45,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "castle-entrance",
+              "height": 0.23,
+              "groundY": 0.65,
+              "metres": 3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "castle-balustrade",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "castle-entrance",
+          "candidates": [
+            {
+              "id": "castle-entrance",
+              "weight": 1,
+              "height": 0.21896000000000002
+            }
+          ],
+          "bodyFraction": 0.32322666666666683,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "castle-entrance",
+          "candidates": [
+            {
+              "id": "castle-entrance",
+              "weight": 1,
+              "height": 0.21896000000000002
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "castle-balustrade",
+          "candidates": [
+            {
+              "id": "castle-balustrade",
+              "weight": 1,
+              "height": 0.24802105263157898
+            }
+          ],
+          "bodyFraction": 0.3327877415056629,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "sabana": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "foreground-grass-clump",
+              "height": 0.07,
+              "groundY": 0.69,
+              "metres": 0.65,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "low"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "foreground-grass-clump",
+              "height": 0.07,
+              "groundY": 0.69,
+              "metres": 0.65,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "low"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "foreground-grass-clump",
+              "height": 0.07,
+              "groundY": 0.69,
+              "metres": 0.65,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "low"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.23659171597633144
+            }
+          ],
+          "bodyFraction": 0.33122840236686396,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.23659171597633144
+            }
+          ],
+          "bodyFraction": 0.33122840236686396,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.23659171597633144
+            }
+          ],
+          "bodyFraction": 0.33122840236686396,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "urban-editorial": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.76,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "street-bollard",
+              "height": 0.14,
+              "groundY": 0.72,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.76,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "street-bollard",
+              "height": 0.14,
+              "groundY": 0.72,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.44,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "plaza-near-railing",
+              "height": 0.09,
+              "groundY": 0.68,
+              "metres": 1.1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "street-bollard",
+          "candidates": [
+            {
+              "id": "street-bollard",
+              "weight": 1,
+              "height": 0.2676413793103449
+            }
+          ],
+          "bodyFraction": 0.37469793103448285,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "street-bollard",
+          "candidates": [
+            {
+              "id": "street-bollard",
+              "weight": 1,
+              "height": 0.2676413793103449
+            }
+          ],
+          "bodyFraction": 0.37469793103448285,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "plaza-near-railing",
+          "candidates": [
+            {
+              "id": "plaza-near-railing",
+              "weight": 1,
+              "height": 0.18899999999999995
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "mural": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.42,
+          "footY": 0.69,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-chair-back",
+              "height": 0.13,
+              "groundY": 0.57,
+              "metres": 0.95,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.42,
+          "footY": 0.69,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-chair-back",
+              "height": 0.13,
+              "groundY": 0.57,
+              "metres": 0.95,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.42,
+          "footY": 0.7,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-sofa-back",
+              "height": 0.105,
+              "groundY": 0.61,
+              "metres": 0.85,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "studio-chair-back",
+          "candidates": [
+            {
+              "id": "studio-chair-back",
+              "weight": 1,
+              "height": 0.4138105263157896
+            }
+          ],
+          "bodyFraction": 0.5000000000000001,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "studio-chair-back",
+          "candidates": [
+            {
+              "id": "studio-chair-back",
+              "weight": 1,
+              "height": 0.4138105263157896
+            }
+          ],
+          "bodyFraction": 0.5000000000000001,
+          "screenFootY": 0.8274217584113416,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "studio-sofa-back",
+          "candidates": [
+            {
+              "id": "studio-sofa-back",
+              "weight": 1,
+              "height": 0.3058328173374612
+            }
+          ],
+          "bodyFraction": 0.4281659442724457,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "monokrom": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.4,
+          "footY": 0.7,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-window-panel",
+              "height": 0.43,
+              "groundY": 0.65,
+              "metres": 3.3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.4,
+          "footY": 0.7,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-window-panel",
+              "height": 0.43,
+              "groundY": 0.65,
+              "metres": 3.3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.4,
+          "footY": 0.7,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "studio-window-panel",
+              "height": 0.43,
+              "groundY": 0.65,
+              "metres": 3.3,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.26269090909090903
+            }
+          ],
+          "bodyFraction": 0.34900363636363635,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.26269090909090903
+            }
+          ],
+          "bodyFraction": 0.3602618181818181,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.26269090909090903
+            }
+          ],
+          "bodyFraction": 0.3977890909090908,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    "ludora": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-path-step-riser",
+              "height": 0.02,
+              "groundY": 0.66,
+              "metres": 0.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-path-step-riser",
+              "height": 0.02,
+              "groundY": 0.66,
+              "metres": 0.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.42,
+          "footY": 0.77,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "picnic-bicycle-wheel",
+              "height": 0.075,
+              "groundY": 0.64,
+              "metres": 0.7,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "garden-path-step-riser",
+          "candidates": [
+            {
+              "id": "garden-path-step-riser",
+              "weight": 1,
+              "height": 0.24834782608695646
+            }
+          ],
+          "bodyFraction": 0.34768695652173903,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "garden-path-step-riser",
+          "candidates": [
+            {
+              "id": "garden-path-step-riser",
+              "weight": 1,
+              "height": 0.24834782608695646
+            }
+          ],
+          "bodyFraction": 0.34768695652173903,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "picnic-bicycle-wheel",
+          "candidates": [
+            {
+              "id": "picnic-bicycle-wheel",
+              "weight": 1,
+              "height": 0.2863636363636364
+            }
+          ],
+          "bodyFraction": 0.400909090909091,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "wasesa": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "joglo-entry-door",
+              "height": 0.11,
+              "groundY": 0.62,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.44,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "joglo-entry-door",
+              "height": 0.11,
+              "groundY": 0.62,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "pond-path-railing",
+              "height": 0.09,
+              "groundY": 0.65,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "joglo-entry-door",
+          "candidates": [
+            {
+              "id": "joglo-entry-door",
+              "weight": 1,
+              "height": 0.15866666666666668
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "joglo-entry-door",
+          "candidates": [
+            {
+              "id": "joglo-entry-door",
+              "weight": 1,
+              "height": 0.15866666666666668
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "pond-path-railing",
+          "candidates": [
+            {
+              "id": "pond-path-railing",
+              "weight": 1,
+              "height": 0.23563636363636362
+            }
+          ],
+          "bodyFraction": 0.32989090909090907,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "riviera": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-stone-arch",
+              "height": 0.19,
+              "groundY": 0.65,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "landscapeGarden",
+          "horizonY": 0.43,
+          "footY": 0.78,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-stone-arch",
+              "height": 0.19,
+              "groundY": 0.65,
+              "metres": 2.6,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "landscapeLake",
+          "horizonY": 0.43,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "lakeside-path-wall",
+              "height": 0.09,
+              "groundY": 0.66,
+              "metres": 1.05,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "garden-stone-arch",
+          "candidates": [
+            {
+              "id": "garden-stone-arch",
+              "weight": 1,
+              "height": 0.19531468531468527
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "garden-stone-arch",
+          "candidates": [
+            {
+              "id": "garden-stone-arch",
+              "weight": 1,
+              "height": 0.19531468531468527
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "lakeside-path-wall",
+          "candidates": [
+            {
+              "id": "lakeside-path-wall",
+              "weight": 1,
+              "height": 0.22539130434782606
+            }
+          ],
+          "bodyFraction": 0.3155478260869565,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    "pramaya": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.48,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "temple-entry-door",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.48,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "temple-entry-door",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.8,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "temple-path-lantern-post",
+              "height": 0.11,
+              "groundY": 0.7,
+              "metres": 2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.30774545454545443,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.30774545454545443,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "temple-path-lantern-post",
+          "candidates": [
+            {
+              "id": "temple-path-lantern-post",
+              "weight": 1,
+              "height": 0.13090000000000004
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "garden-canvas": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-arch-clearance",
+              "height": 0.2,
+              "groundY": 0.65,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "garden-arch-clearance",
+              "height": 0.2,
+              "groundY": 0.65,
+              "metres": 2.5,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "room4",
+          "horizonY": 0.46,
+          "footY": 0.82,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "lakeside-balustrade",
+              "height": 0.085,
+              "groundY": 0.67,
+              "metres": 1,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "garden-arch-clearance",
+          "candidates": [
+            {
+              "id": "garden-arch-clearance",
+              "weight": 1,
+              "height": 0.22400000000000003
+            }
+          ],
+          "bodyFraction": 0.33066666666666683,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "garden-arch-clearance",
+          "candidates": [
+            {
+              "id": "garden-arch-clearance",
+              "weight": 1,
+              "height": 0.22400000000000003
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "lakeside-balustrade",
+          "candidates": [
+            {
+              "id": "lakeside-balustrade",
+              "weight": 1,
+              "height": 0.24479999999999996
+            }
+          ],
+          "bodyFraction": 0.32313600000000003,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    "sekar-jawa": {
+      "version": 1,
+      "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+      "scenes": {
+        "cover": {
+          "asset": "stageLandscape",
+          "horizonY": 0.48,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.81,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "temple-entry-door",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "hero": {
+          "asset": "room1",
+          "horizonY": 0.44,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.84,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "regol-gate-opening",
+              "height": 0.24,
+              "groundY": 0.66,
+              "metres": 2.8,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.32,
+            "maxBody": 0.5,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        },
+        "closing": {
+          "asset": "stageLandscape",
+          "horizonY": 0.48,
+          "footY": 0.79,
+          "footX": 0.5,
+          "screenFootY": 0.94,
+          "centerOnCamera": true,
+          "humanMetres": 1.68,
+          "landmarks": [
+            {
+              "id": "temple-entry-door",
+              "height": 0.085,
+              "groundY": 0.65,
+              "metres": 2.2,
+              "weight": 1
+            }
+          ],
+          "framing": {
+            "minBody": 0.3,
+            "maxBody": 0.45,
+            "maximumCoverage": 2.6
+          },
+          "measurementConfidence": "estimated"
+        }
+      },
+      "results": {
+        "cover": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.30774545454545443,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "regol-gate-opening",
+          "candidates": [
+            {
+              "id": "regol-gate-opening",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.94,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    }
+  }
+}

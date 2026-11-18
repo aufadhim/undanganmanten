@@ -1,0 +1,15 @@
+{
+  "mode": "Built-in image_gen",
+  "assets": [
+    {
+      "kind": "arch",
+      "prompt": "Use case: illustration-story. Asset: transparent layered foreground for hand painted Javanese wedding garden stage. Two tall weathered Javanese Hindu temple stone gate pillars at extreme LEFT and RIGHT edges, a little overhanging frangipani branch in upper corners, perspective looking forward through the gate, huge EMPTY transparent opening occupying middle 75 percent width and entire center from top to bottom. Subtle carved sandstone and restrained antique motifs; no central structure, no floor, no background landscape. Traditional delicate watercolor on warm cotton paper pigment texture inside painted objects only, visibly loose brushwork and lost edges. Muted dusty maroon, mushroom taupe, warm weathered stone, matte champagne gold, ivory. Soft moderately pale color, low contrast, no glossy digital finish, no crisp vector edges, no photographic detail. Portrait 2:3 composition. Genuine fully transparent alpha outside objects; no paper background, haze, halo or shadow. No text, watermark, borders.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-b34d3611-3744-4c5f-9f09-1590c2bc7043.png"
+    },
+    {
+      "kind": "flowers",
+      "prompt": "Use case: illustration-story. Asset: transparent layered foreground for hand painted Javanese wedding garden stage. Loose garden flower border along BOTTOM quarter and outer bottom corners only, ivory jasmine, dusty rose-maroon frangipani, muted taupe leaves, a few curving stems rise along extreme edges, center and top 80 percent completely transparent. Asymmetric hand-painted clumps rather than wreath, no pot, no scene, no floor. Traditional delicate watercolor on warm cotton paper pigment texture inside painted objects only, visibly loose brushwork and lost edges. Muted dusty maroon, mushroom taupe, warm weathered stone, matte champagne gold, ivory. Soft moderately pale color, low contrast, no glossy digital finish, no crisp vector edges, no photographic detail. Portrait 2:3 composition. Genuine fully transparent alpha outside objects; no paper background, haze, halo or shadow. No text, watermark, borders.",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-4ee5194f-5cbd-48bf-a3d3-a20d1a48633a.png"
+    }
+  ]
+}

@@ -1,3 +1,8 @@
+import plannerPublicRoutes from './routes/plannerPublicRoutes.js';
+import { searchPages, searchPageHtml, sitemapXml, robotsTxt } from './utils/searchPages.js';
+import guestDeskRoutes from './routes/guestDeskRoutes.js';
+import weddingRoutes from './routes/weddingRoutes.js';
+import {retryStorageCleanup} from './lib/storage.js';
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
@@ -15,6 +20,7 @@ import invitationRoutes from './routes/invitationRoutes.js';
 import themeRoutes from './routes/themeRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import { runExpireJob } from './jobs/expireInvitations.js';
+import { handleSlugOrBot, isSocialBot } from './controllers/openGraphController.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,9 +36,10 @@ app.use((req, res, next) => {
   res.setHeader('x-request-id', requestId);
   const startedAt = Date.now();
   res.on('finish', () => {
-    if (env.isProduction) {
+    if (env.isProduction || req.originalUrl === '/api/auth/google') {
       console.log(JSON.stringify({
-        type: 'http', requestId, method: req.method, path: req.originalUrl,
+        type: 'http', requestId, method: req.method,
+        path: req.originalUrl.replace(/(\/(?:api\/)?planner\/(?:rundown|invite)\/)[^/?]+/g, '$1[redacted]'),
         status: res.statusCode, durationMs: Date.now() - startedAt,
       }));
     }
@@ -52,7 +59,9 @@ app.use(cors({
   credentials: true,
 }));
 app.use(helmet({ contentSecurityPolicy: false, crossOriginResourcePolicy: { policy: 'cross-origin' } }));
-app.use(express.json({ limit: '2mb' }));
+app.use(express.json({ limit: '2mb', verify(req, _res, buffer) {
+  if (req.path === '/api/payments/tripay/callback') req.tripayRawBody = buffer;
+} }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
 import adminRoutes from './routes/adminRoutes.js';
@@ -75,11 +84,72 @@ app.get('/ready', async (req, res) => {
 });
 
 // 3. Routes
+app.use('/api/planner', plannerPublicRoutes);
+app.use('/api/weddings', weddingRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/invitations', invitationRoutes);
 app.use('/api/themes', themeRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/guest-desk', guestDeskRoutes);
 app.use('/api/admin', adminRoutes);
+
+// Open Graph / Social Bot Handler (WhatsApp, FB, Telegram Preview)
+app.get('/og/:slug', (req, res, next) => {
+  res.set('X-Robots-Tag', 'noindex');
+  return handleSlugOrBot(req, res, next);
+});
+const frontendDist = process.env.SERVE_FRONTEND === 'true'
+  ? path.resolve(__dirname, '../../frontend/dist')
+  : null;
+
+if (frontendDist) {
+  const indexFile = path.join(frontendDist, 'index.html');
+  if (!fs.existsSync(indexFile)) throw new Error('Build frontend belum tersedia.');
+
+  // Google Identity Services needs the SPA document to retain its sign-in popup.
+  const allowGooglePopup = (res) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    res.setHeader('Cache-Control', 'no-cache');
+  };
+  app.get('/robots.txt', (_req, res) => res.type('text/plain').send(robotsTxt));
+  app.get('/sitemap.xml', (_req, res) => res.type('application/xml').send(sitemapXml));
+  app.get(Object.keys(searchPages), (req, res) => {
+    allowGooglePopup(res);
+    const pathname = req.path === '/' ? '/' : req.path.replace(/\/$/, '').toLowerCase();
+    res.type('html').send(searchPageHtml(fs.readFileSync(indexFile, 'utf8'), pathname));
+  });
+  app.use(express.static(frontendDist, {
+    setHeaders(res, file) {
+      if (file === indexFile) allowGooglePopup(res);
+      const relative = path.relative(frontendDist, file).split(path.sep).join('/');
+      if (relative.endsWith('.html')) res.setHeader('X-Robots-Tag', 'noindex');
+      if (['sw.js', 'registerSW.js'].includes(relative) ||
+          (relative.startsWith('templates/') && /\.(html|js|css|json|svg)$/i.test(relative))) {
+        res.setHeader('Cache-Control', 'private, no-store');
+        res.setHeader('Cloudflare-CDN-Cache-Control', 'no-store');
+      }
+    },
+  }));
+  app.get('/:slug', (req, res, next) => {
+    res.set('X-Robots-Tag', 'noindex');
+    if (isSocialBot(req.get('user-agent')) || req.query.bot === '1') {
+      return handleSlugOrBot(req, res, next);
+    }
+    next();
+  });
+  app.get('*', (req, res, next) => {
+    if (/^\/(api|uploads|assets|templates|og)(\/|$)/.test(req.path) || !req.accepts('html')) return next();
+    allowGooglePopup(res);
+    if (/^\/planner\/(rundown|invite)\//.test(req.path)) {
+      res.set('Referrer-Policy', 'no-referrer');
+      res.set('Cache-Control', 'private, no-store');
+    }
+    res.set('X-Robots-Tag', 'noindex');
+    res.sendFile(indexFile);
+  });
+} else {
+  app.get('/:slug', handleSlugOrBot);
+}
 
 // 4. Global Error Handler (Penyelamat agar server tidak crash seketika jika ada error)
 app.use((err, req, res, next) => {
@@ -116,10 +186,11 @@ app.use((err, req, res, next) => {
 cron.schedule('0 2 * * *', () => {
   console.log('[cron] Menjalankan expire job...');
   runExpireJob().catch((err) => console.error('[cron] Gagal:', err));
+  retryStorageCleanup().catch(err=>console.error('[cron] Storage cleanup:',err.message));
 });
 
 const PORT = env.port;
-const HOST = env.isProduction ? '0.0.0.0' : '127.0.0.1';
+const HOST = env.isProduction && !frontendDist ? '0.0.0.0' : '127.0.0.1';
 
 const server = app.listen(PORT, HOST, () => {
   console.log(`[server] ${env.nodeEnv} berjalan di ${env.backendUrl} (port ${PORT})`);

@@ -1,0 +1,210 @@
+/* Photos and separate alpha foliage live on one GPU surface. Panels only composite opacity. */
+html,body{overflow:hidden!important;height:100%;overscroll-behavior:none}body{background:#203b2b}#hero-stage,#cover-stage{perspective:none!important;transform:none!important;background:#203b2b}.garden-renderer{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.wash,.grain,#garden,#room-veil,#shared-clouds,.world-cloud,.person-cloud,#ambient-petals{display:none!important}.chapter,.chapter.hero,.chapter.arrum,.chapter.person-chapter,.chapter.world-chapter{position:static!important;height:0!important;min-height:0!important;padding:0!important}#journey{position:fixed;inset:0;pointer-events:none;z-index:10}#hero-stage{z-index:1}.hero-visual{position:fixed;inset:0;background:none!important}.hero-visual:after{display:none}.scene-camera,.scene-layer{display:none!important}
+header .monogram,header .edition,header .menu-button{color:#fff9e8;text-shadow:0 1px 10px #18332399}.demo-tag{background:#f8f3e4d9;backdrop-filter:none}.bottom-ui,.music-toggle,#chapters{backdrop-filter:none!important}.bottom-ui{background:#faf6e9e8}.music-toggle{background:#faf6e9ed}.scene-panel[hidden]{display:none!important}.paper.scene-panel{position:fixed!important;z-index:13;left:68%;top:51%;width:min(390px,34vw);max-height:calc(100svh - 185px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b3bca1 transparent;margin:0!important;padding:30px 28px!important;border:0!important;outline:0!important;border-radius:48% 48% 24px 24px!important;box-shadow:none!important;isolation:isolate;background:radial-gradient(ellipse at 50% 45%,#fffaf0f5 0%,#fffaf0ef 57%,#fffaf0ca 83%,#fffaf077 100%)!important;opacity:var(--panel-opacity,0)!important;transform:translate(-50%,calc(-50% + var(--panel-lift,0px)))!important;transition:none!important;pointer-events:auto;contain:layout style}.scene-panel:not([hidden]){will-change:opacity,transform}.scene-panel>.kicker,.scene-panel>.person-kicker{letter-spacing:2px;font-size:7px;color:#7c8c6e}.scene-panel h2{font-size:48px;line-height:.98;margin:20px 0;color:#40563e}.scene-panel>p{color:#6b7a60}.scene-panel h3{color:#53664a}.scene-panel .placeholder,.scene-panel .mini{color:#8a957d}.paper.scene-panel#arrum-content{left:50%;top:50%;width:min(620px,calc(100% - 60px));padding:36px!important;border-radius:45% 45% 25px 25px!important}.arrum-content .arrum-meaning{font-size:27px;line-height:1.65}.arrum-content>.kicker{margin:8px 0 24px}.paper.scene-panel#bride-detail{left:72%;width:min(330px,36vw);padding:27px 15px!important;top:50%}.paper.scene-panel#groom-detail{left:28%;width:min(330px,36vw);padding:27px 15px!important;top:50%}.person-detail h2{font-size:47px}.person-detail .person-family{color:#75846b}.person-instagram{background:#f7f4e88c}.person-placeholder{color:#939d87}.hero-space-visible .hero-heading{opacity:var(--hero-ui-opacity,1)!important;translate:none!important;transform:none!important;top:15%;left:0;right:0;max-width:none;text-align:center;color:#fff8e2;text-shadow:0 2px 22px #17351e99}.hero-heading h2{font-size:83px;line-height:1.05;margin:16px 0;color:#fff9e9;letter-spacing:-2px}.hero-heading h2 span{display:inline;font-size:.58em;margin:0 8px;line-height:1;color:#ede0bc}.hero-heading h2 em{display:inline;margin:0;color:#fff9e9;font-style:normal}.hero-heading .kicker{color:#f5eace;font-size:8px}.hero-heading>p{display:none}.hero-heading .cover-date{font-size:8px;gap:16px;margin-top:14px;color:#f9edce}.hero-heading .cover-date i{background:#d5c7a3}.hero-bottom{bottom:85px;left:42px;right:42px;color:#fbf2d6}.hero-location{color:#f4e9cf;text-shadow:0 1px 8px #25412b}.hero-location strong{color:#fff9e4}.hero-next{color:#f8efdb;background:#264c30b3;border:1px solid #ebe4c455;padding:14px 18px;border-radius:30px}.hero-tools{top:auto;bottom:170px;right:32px}.hero-tools button{background:#faf4e1c9}.hero-scene-caption{display:none!important}#cover{background:#213e29}.locked .monogram,.locked .edition{color:#fff8e3}#cover:after{background:linear-gradient(#12331f75 0%,transparent 29%,transparent 61%,#14342180 100%)}#cover .cover-heading{top:12%;color:#fff7df;text-shadow:0 2px 20px #15351c}#cover h1{color:#fff9e9;font-size:74px}#cover h1 em{color:#f0e0b8}#cover .kicker,#cover .cover-date{color:#f8ecd0}#cover .cover-response{left:50%;right:auto;bottom:8%;width:300px;padding:17px 20px 13px;background:#fffaf0e8;border:1px solid #f6f0d98c;border-radius:18px;transform:translate(-50%,12px)}#cover.scene-ready .cover-response{transform:translate(-50%,0)}#cover .cover-note{color:#7b876e}#cover .cover-bottom,#cover .scene-instruction{color:#f0e5c9;text-shadow:0 1px 5px #173b22}#cover .cover-controls button{background:#f8f2dfcf;backdrop-filter:none}.returning-to-cover .scene-panel{opacity:0!important;transition:opacity .5s!important}.world-content .gallery-grid{margin:24px 0}.garden-photo img{width:100%;height:100%;object-fit:contain}.world-content .gallery-grid button>span{height:145px}.world-content .signature{font-size:43px}.scene-panel .bank-card{border-radius:12px}.scene-panel .primary{border-radius:26px}.scene-panel .guestbook{background:#fffaf038}#scene-feedback{background:#f9f5e4ed}body.is-travelling .scene-panel{scroll-behavior:auto}
+@media(min-width:900px){.hero-heading{padding-right:31%}.hero-bottom{left:10%;right:10%}.hero-tools{right:6%}.hero-next{font-size:9px}.hero-heading h2{font-size:100px}}
+@media(max-width:899px){.paper.scene-panel{left:50%;top:57%;width:min(390px,calc(100% - 56px));max-height:calc(100svh - 230px);padding:27px 22px!important}.scene-panel h2{font-size:42px}.paper.scene-panel#bride-detail{left:74%;width:185px;top:49%;padding:24px 10px!important}.paper.scene-panel#groom-detail{left:26%;width:185px;top:49%;padding:24px 10px!important}.person-detail h2{font-size:37px}.person-detail .person-family{font-size:9px}.hero-heading h2{font-size:72px}.hero-bottom{bottom:86px;left:28px;right:28px}.hero-tools{bottom:173px;right:24px}.hero-location{font-size:6px}.hero-location strong{font-size:13px}.hero-heading .cover-date{font-size:8px}.arrum-content .arrum-meaning{font-size:24px}}
+@media(max-width:420px){#cover h1{font-size:55px}#cover .cover-heading{top:14%}#cover .cover-response{width:270px;bottom:9%;padding:14px 16px 11px}.hero-heading h2{font-size:57px}.hero-heading h2 span{margin:0 3px}.hero-space-visible .hero-heading{top:17%}.hero-heading .kicker{font-size:6px;letter-spacing:2px}.hero-bottom{left:22px;right:22px;bottom:86px}.hero-location{max-width:160px}.hero-next{font-size:6px;padding:11px 12px}.paper.scene-panel{width:calc(100% - 48px);top:55%;max-height:calc(100svh - 205px);padding:24px 18px!important}.scene-panel h2{font-size:37px;margin:14px 0 16px}.paper.scene-panel#arrum-content{width:calc(100% - 40px);padding:29px 22px!important}.arrum-content .arrum-meaning{font-size:22px;line-height:1.6}.paper.scene-panel#bride-detail,.paper.scene-panel#groom-detail{width:174px;top:50%;padding:22px 8px!important}.person-detail h2{font-size:33px}.person-detail .person-family{font-size:8px}.world-content .gallery-grid button>span{height:117px}.scene-panel .cover-date{font-size:8px}.world-content .signature{font-size:39px}.scene-panel .ceremony-times strong{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.scene-panel:not([hidden]){will-change:auto}}
+.hero-heading h2{text-shadow:0 2px 14px #14321ed9,0 0 2px #244b31}.hero-location{background:none!important;border:0!important;padding:0!important;box-shadow:none!important}.hero-bottom .hero-location{color:#fff8e4}.hero-location strong{color:#fff9e7;text-shadow:0 2px 8px #16331b}
+.paper.scene-panel{visibility:visible!important}
+
+/* Handpainted watercolor theme: organic cloud banks instead of paper cards. */
+body,#hero-stage,#cover-stage,#cover{background:#dddcc9}
+.paper.scene-panel,.paper.scene-panel#arrum-content{border-radius:0!important;background:transparent!important;box-shadow:none!important;border:0!important;padding:48px 42px!important;scrollbar-width:none}
+.paper.scene-panel#bride-detail,.paper.scene-panel#groom-detail{padding:42px 24px!important;background:none!important}
+.paper.scene-panel#arrum-content{padding:65px 64px!important}
+.scene-panel h2{color:#465a43}.scene-panel>p{color:#596b50}.person-detail .person-family{color:#566b4f}.scene-panel .placeholder,.scene-panel .mini,.person-placeholder{color:#718069}
+#cover .cover-response{background:transparent;border:0;border-radius:0;width:345px;padding:34px 37px 29px;bottom:6%}
+#cover:after{background:linear-gradient(#f8f3df20,transparent 45%,#d4dbc020)}
+#cover .cover-heading,#cover h1,#cover h1 em,#cover .kicker,#cover .cover-date{color:#40553c;text-shadow:0 1px 12px #fff8e9b3}
+header .monogram,header .edition,header .menu-button,.locked .monogram,.locked .edition{color:#40553c;text-shadow:0 1px 10px #fff9e8}
+.hero-space-visible .hero-heading,.hero-heading h2,.hero-heading h2 em,.hero-heading h2 span,.hero-heading .kicker,.hero-heading .cover-date{color:#40553c;text-shadow:0 1px 15px #fff9e9c9}
+.hero-heading .cover-date i{background:#8f9e7d}.hero-bottom .hero-location,.hero-location strong{color:#40553c;text-shadow:0 1px 9px #fff8e9}
+#cover .cover-bottom,#cover .scene-instruction{color:#536547;text-shadow:0 1px 5px #fff8e9}
+@media(max-width:899px){.paper.scene-panel{padding:43px 34px!important;width:min(430px,calc(100% - 24px))}.paper.scene-panel#bride-detail,.paper.scene-panel#groom-detail{padding:38px 18px!important;width:205px}.paper.scene-panel#arrum-content{padding:51px 40px!important;width:calc(100% - 16px)}}
+@media(max-width:420px){#cover .cover-response{width:315px;padding:30px 35px 25px;bottom:5%}.paper.scene-panel{padding:42px 30px!important;width:calc(100% - 18px)}.paper.scene-panel#arrum-content{padding:48px 34px!important}.paper.scene-panel#bride-detail,.paper.scene-panel#groom-detail{width:190px;padding:37px 16px!important}.person-detail h2{font-size:31px}.arrum-content .arrum-meaning{font-size:20px}}
+
+.cloud-backdrop{position:fixed;z-index:12;max-width:none;pointer-events:none;transform:translate(-50%,calc(-50% + var(--cloud-lift,0px)));will-change:opacity,transform;object-fit:contain}
+.cloud-backdrop[hidden]{display:none!important}.returning-to-cover .cloud-backdrop{opacity:0!important;transition:opacity .5s}
+#cover .cover-response{isolation:isolate;overflow:visible}#cover .cover-response:before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:calc(100% + 45px);aspect-ratio:3/2;transform:translate(-50%,-50%);background:url('/templates/viridarium/assets/cloud-cover-v4.webp') center/contain no-repeat;pointer-events:none}
+
+/* Quiet pigment washes: no white cloud silhouettes or card edges. */
+.pigment-backdrop{background-size:100% 100%;background-repeat:no-repeat;transform:translate(-50%,calc(-50% + var(--cloud-lift,0px))) scale(var(--wash-scale,1));mask-image:radial-gradient(ellipse at center,#000 58%,#000e 76%,transparent 100%);filter:none}
+#cover .cover-response:before{width:calc(100% + 65px);height:calc(100% + 48px);aspect-ratio:auto;background-size:100% 100%;mask-image:radial-gradient(ellipse,#000 34%,#000a 62%,transparent 74%)}
+
+.scene-panel.person-detail h2{overflow-wrap:anywhere}
+@media(max-width:600px){.paper.scene-panel#arrum-content .arrum-meaning{font-size:18px;line-height:1.55}.paper.scene-panel#arrum-content{padding:32px 30px!important}.arrum-content>.kicker{margin-bottom:16px}.arrum-next{margin-top:12px}}
+
+/* Text-only action buttons; preserve music/playback controls and form values. */
+button span:empty,a span:empty{display:none!important}
+#open.primary,.scene-panel .primary{justify-content:center;gap:0}
+.hero-next,.person-next,.world-next,.arrum-next{letter-spacing:1px}
+.person-instagram span:empty,.hero-next span:empty{margin:0;padding:0}
+
+/* Soft paper wash separates the heading from painted foliage and temple details. */
+body:not(.sekar-jawa) #cover .cover-heading,
+body:not(.sekar-jawa) .hero-heading{isolation:isolate}
+body:not(.sekar-jawa) #cover .cover-heading::before,
+body:not(.sekar-jawa) .hero-heading::before{content:'';position:absolute;z-index:-1;inset:-24px -7%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(255,251,241,.94) 0%,rgba(255,251,241,.82) 30%,rgba(255,251,241,.48) 54%,rgba(255,251,241,0) 76%);filter:blur(12px)}
+body:not(.sekar-jawa) #cover .cover-heading :is(.kicker,h1,.cover-date),
+body:not(.sekar-jawa) .hero-heading :is(.kicker,h2,.cover-date){text-shadow:0 1px 10px #fffaf0}
+
+/* Compact ivory wash behind the guest greeting, without the oversized cloud asset. */
+#cover .cover-response::before{left:50%;top:50%;width:calc(100% + 4px);height:calc(100% + 12px);aspect-ratio:auto;background:radial-gradient(ellipse at center,#fffaf0f0 0%,#fffaf0d9 34%,#fffaf090 56%,#fffaf000 78%)!important;mask-image:none;filter:blur(10px);transform:translate(-50%,-50%);opacity:1}
+#cover .cover-response .guest,#cover .cover-response .cover-note{text-shadow:0 1px 7px #fffaf0}
+
+/* A translucent ivory brush of light, shared by every scene theme. */
+.cloud-backdrop.pigment-backdrop{background-image:radial-gradient(ellipse at 48% 48%,rgba(255,251,241,.87) 0%,rgba(255,251,241,.79) 43%,rgba(255,251,241,.38) 66%,rgba(255,251,241,0) 82%)!important;background-size:100% 100%;mask-image:none;filter:blur(12px)!important;border:0;box-shadow:none}
+
+/* Section navigation lives in the lower progress bar. */
+header .menu-button{display:none!important}
+#section-menu{display:grid;place-items:center;min-width:44px;min-height:44px;padding:0;background:none;border:0;color:var(--ink);font:28px/1 'DM Sans',sans-serif;letter-spacing:2px;border-radius:50%;flex-shrink:0}
+#section-menu:hover,#section-menu[aria-expanded="true"]{background:#7c8c6e15}
+#chapter-backdrop{position:fixed;inset:0;z-index:59;width:100%;height:100%;padding:0;border:0;background:#23332925;cursor:pointer}
+#chapters{top:auto;bottom:max(84px,calc(env(safe-area-inset-bottom) + 76px));left:50%;right:auto;transform:translateX(-50%);width:min(430px,calc(100% - 32px));max-height:65svh;padding:18px 22px 22px;border-radius:24px;background:#fbf8eef5;border:1px solid #d8dcc9;box-shadow:0 16px 45px #26372225;overscroll-behavior:contain;animation:section-sheet-enter .22s ease-out}
+#chapters .nav-head{position:sticky;top:-18px;background:#fbf8ee;z-index:1;padding:4px 0 8px}
+#nav-items button{min-height:44px;padding:11px 2px}
+@keyframes section-sheet-enter{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){#chapters{animation:none}}
+
+/* Direct, unobtrusive scene dots — no navigation panel over the painting. */
+.bottom-ui{left:50%!important;right:auto!important;bottom:max(14px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;width:min(440px,calc(100% - 100px));padding:0!important;gap:0!important;background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;border-radius:0!important;display:block}
+.bottom-ui>#section-count,.bottom-ui>.track,.bottom-ui>#section-label,.bottom-ui>#section-menu,.hero-bottom,.person-next,.arrum-next,.world-next{display:none!important}
+.section-dots{display:flex;align-items:center;justify-content:safe center;position:relative;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x;min-height:36px;padding:2px 0}
+.section-dots::-webkit-scrollbar{display:none}
+.section-dots .section-dot{flex:0 0 24px;width:24px;min-width:24px;height:32px;padding:0;display:grid;place-items:center;border:0;background:none;border-radius:0;cursor:pointer;box-shadow:none}
+.section-dots .section-dot::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--cms-ink,var(--ink));opacity:.48;box-shadow:0 0 0 1px #fffaf066,0 1px 5px #fffaf0cc;transition:transform .25s ease,opacity .25s ease}
+.section-dots .section-dot.is-active::before{transform:scale(1.8);opacity:1}
+.section-dots .section-dot:hover::before{opacity:1}
+.section-dots .section-dot:focus-visible{outline:1px solid var(--cms-ink,var(--ink));outline-offset:-2px;border-radius:50%}
+/* The artwork no longer needs an on-screen gesture instruction. */
+#cover .scene-instruction{display:none!important}
+
+.bottom-ui:has(.section-dots) {
+  width: min(620px, calc(100% - 24px)) !important;
+  box-sizing: border-box;
+  margin-inline: 0 !important;
+}
+.bottom-ui > .section-dots {
+  width: 100%;
+  box-sizing: border-box;
+}
+.section-dots {
+  gap: 4px;
+  padding: 5px 8px;
+  border: 1px solid #ffffff80;
+  border-radius: 19px;
+  background: #faf6ebeb;
+  box-shadow: 0 6px 24px #15201836;
+  backdrop-filter: blur(10px);
+  scroll-padding-inline: 8px;
+}
+.section-dots .section-dot {
+  flex: 0 0 68px;
+  width: 68px;
+  height: 49px;
+  align-content: center;
+  gap: 2px;
+  border-radius: 12px;
+  color: #435242;
+}
+.section-dots .section-dot::before { content: none; }
+.section-dots .section-dot:is(:hover,.is-active) { background: #e2e9d9; color: #263e2c; }
+.section-dots .section-dot:focus-visible { border-radius: 12px; }
+.section-dots .dock-icon { font: 20px/1 system-ui, sans-serif; transition: transform .2s ease; }
+.section-dots .section-dot.is-active .dock-icon { transform: translateY(-1px) scale(1.16); }
+.section-dots .dock-label {
+  display: block;
+  width: 62px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 600 10px/1.2 system-ui, sans-serif;
+  letter-spacing: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-dots .dock-icon { transition: none; }
+  .section-dots .section-dot.is-active .dock-icon { transform: none; }
+}
+
+.section-dots .dock-icon svg { display: block; width: 20px; height: 20px; }
+body:has(.bottom-ui:not([hidden]) .section-dots) #music-toggle.music-control {
+  bottom: calc(max(14px, env(safe-area-inset-bottom)) + 70px);
+}
+
+.section-dots {
+  gap: 3px;
+  padding: 6px 8px;
+  border-color: #fffaf1d9;
+  border-radius: 22px;
+  background: #fffdf5f5;
+}
+.section-dots .section-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  gap: 6px;
+  border-radius: 999px;
+}
+.section-dots .section-dot.is-active {
+  width: auto;
+  padding-inline: 11px;
+  background: #e9eddd;
+  color: #334b3a;
+}
+.section-dots .dock-icon svg { width: 24px; height: 24px; }
+.section-dots .section-dot.is-active .dock-icon { transform: none; }
+.section-dots .dock-label { display: none; width: auto; font-size: 12px; }
+
+
+#penutup #back-cover { display: none !important; }
+.section-dots .section-dot.is-active .dock-label { display: block; }
+
+/* Keep portrait tablet scenes readable, including inside the scaled Studio frame. */
+@media (min-width: 680px) and (max-aspect-ratio: 4/3) {
+  :root body.engine-landscape #journey #arrum-content.scene-panel {
+    width: min(72vw, 640px) !important;
+    max-height: calc(100svh - 150px) !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  :root body.engine-landscape #journey #arrum-content.scene-panel .arrum-meaning {
+    max-width: 54ch;
+    font-size: clamp(22px, 2.75vw, 30px) !important;
+    line-height: 1.6;
+  }
+  :root body.engine-landscape #journey #arrum-content.scene-panel > .kicker {
+    font-size: clamp(18px, 2.2vw, 24px) !important;
+  }
+  body.engine-landscape .section-dots .section-dot {
+    min-width: 54px;
+    height: 54px;
+  }
+  body.engine-landscape .section-dots .dock-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  body.engine-landscape .section-dots .dock-label {
+    font-size: 16px;
+  }
+  body.engine-landscape:has(.bottom-ui:not([hidden]) .section-dots) #music-toggle.music-control {
+    bottom: calc(max(14px, env(safe-area-inset-bottom)) + 84px);
+  }
+}
+
+@media (min-width: 680px) and (max-aspect-ratio: 4/3) {
+  :root body.engine-landscape #journey .paper.scene-panel:is(#bride-detail, #groom-detail) {
+    left: clamp(28%, var(--profile-left, 50%), 72%) !important;
+    width: min(54vw, 540px) !important;
+    max-width: none !important;
+  }
+  :root body.engine-landscape #journey .person-detail h2 {
+    font-size: clamp(36px, 4.4vw, 46px) !important;
+    text-wrap: balance;
+  }
+}

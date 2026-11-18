@@ -1,0 +1,104 @@
+{
+  "status": "art-generated",
+  "engine": 3,
+  "copiedFrom": "riviera",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 159332
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 228358
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.galleryGarden"
+      ],
+      "status": "generated",
+      "bytes": 225644
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room1",
+        "config.assets.room2",
+        "config.assets.room3",
+        "config.assets.room4",
+        "config.assets.panorama"
+      ],
+      "status": "generated",
+      "bytes": 403908
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.riverbank"
+      ],
+      "status": "generated",
+      "bytes": 207820
+    },
+    {
+      "filename": "ilustrasi8.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi8.webp",
+      "usedBy": [
+        "config.assets.landing"
+      ],
+      "status": "generated",
+      "bytes": 274634
+    },
+    {
+      "filename": "ilustrasi9.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi9.webp",
+      "usedBy": [
+        "config.assets.landscapeGarden"
+      ],
+      "status": "generated",
+      "bytes": 370646
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi10.webp",
+      "usedBy": [
+        "config.assets.landscapeRiver"
+      ],
+      "status": "generated",
+      "bytes": 372580
+    },
+    {
+      "filename": "ilustrasi11.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi11.webp",
+      "usedBy": [
+        "config.assets.landscapeBridge"
+      ],
+      "status": "generated",
+      "bytes": 363858
+    },
+    {
+      "filename": "ilustrasi12.webp",
+      "path": "/templates/sunda-parahyangan/assets/ilustrasi12.webp",
+      "usedBy": [
+        "config.assets.landscapeLake"
+      ],
+      "status": "generated",
+      "bytes": 319290
+    }
+  ],
+  "singleCouple": true
+}

@@ -31,6 +31,7 @@ export const changePasswordSchema = z.object({
 });
 
 export const createInvitationSchema = z.object({
+  weddingId: z.string().uuid().optional(),
   groomName: z.string().trim().min(1, 'Nama mempelai pria wajib diisi').max(100),
   brideName: z.string().trim().min(1, 'Nama mempelai wanita wajib diisi').max(100),
   weddingDate: z.coerce.date({ errorMap: () => ({ message: 'Tanggal pernikahan tidak valid' }) }),
@@ -57,13 +58,23 @@ const colorCategorySchema = z
   .partial();
 
 export const updateThemeSettingsSchema = z.object({
-  background: colorCategorySchema.optional(),
+  background: colorCategorySchema.extend({ envelopeDesign: z.enum(['classic', 'botanical', 'navy', 'calla', 'orchid']).optional(), envelopeColor: z.union([z.literal(""), z.string().regex(/^#[0-9a-f]{6}$/i)]).optional() }).optional(),
   bodyText: colorCategorySchema.optional(),
   button: colorCategorySchema.optional(),
   typography: z
     .object({
+      sections: z.record(z.enum(['cover','hero','quote','bride','groom','profile','countdown','events','rundown','story','gallery','dresscode','livestream','igFilter','gift','rsvp','wishes','wishList','footer']), z.object({
+        formWidth:z.number().min(.7).max(1).optional(),formGap:z.number().min(8).max(28).optional(),
+        metricsMode:z.enum(['template','custom']).optional(),
+        headingScale:z.number().min(.5).max(1.5).optional(),bodyScale:z.number().min(.75).max(1.5).optional(),
+        headingLineHeight:z.number().min(.8).max(2).optional(),bodyLineHeight:z.number().min(1).max(2.5).optional(),
+        headingLetterSpacing:z.number().min(-.08).max(.3).optional(),bodyLetterSpacing:z.number().min(-.04).max(.2).optional(),
+      })).optional(),
       fontHeading: z.string().max(100).regex(/^[\w\s'",.-]+$/u, 'Font heading tidak valid').optional(),
       fontBody: z.string().max(100).regex(/^[\w\s'",.-]+$/u, 'Font body tidak valid').optional(),
+      metricsMode:z.enum(['template','custom']).optional(),
+      headingScale:z.number().min(0.5).max(1.5).optional(),
+      bodyScale:z.number().min(0.75).max(1.5).optional(),
       headingLineHeight: z.number().min(0.8).max(2).optional(),
       bodyLineHeight: z.number().min(1).max(2.5).optional(),
       headingLetterSpacing: z.number().min(-0.08).max(0.3).optional(),
@@ -79,10 +90,18 @@ export const updateThemeSettingsSchema = z.object({
   dresscodeDetails: z.any().optional(), // Can be an object or array of objects
   igFilterUrl: z.string().max(2048).optional(),
   igFilterImageUrl: z.string().max(2048).optional().or(z.literal('')),
+  characterSettings: z.object({
+    mode:z.enum(['default','custom']),separatePose:z.boolean(),
+    cover:z.object({scale:z.number().min(.5).max(1.5),x:z.number().min(-200).max(200),y:z.number().min(-200).max(200),aspect:z.number().min(.15).max(4).optional(),anchors:z.object({bride:z.object({x:z.number().min(0).max(1),y:z.number().min(0).max(1)}),groom:z.object({x:z.number().min(0).max(1),y:z.number().min(0).max(1)})}).optional()}),
+    hero:z.object({scale:z.number().min(.5).max(1.5),x:z.number().min(-200).max(200),y:z.number().min(-200).max(200),aspect:z.number().min(.15).max(4).optional(),anchors:z.object({bride:z.object({x:z.number().min(0).max(1),y:z.number().min(0).max(1)}),groom:z.object({x:z.number().min(0).max(1),y:z.number().min(0).max(1)})}).optional()}),
+    closing:z.object({scale:z.number().min(.3).max(1.5),x:z.number().min(-300).max(300),y:z.number().min(-300).max(300)}).optional(),
+  }).optional(),
   coverType: z.string().max(50).optional(),
   coverImageUrl: z.string().max(2048).optional().or(z.literal('')),
   coverSecondImageUrl: z.string().max(2048).optional().or(z.literal('')),
-  openingAnimation: z.enum(['', 'fade', 'zoom', 'slide-down']).optional(),
+  openingAnimation: z.enum(['', 'fade', 'zoom', 'slide-down', 'camera-push']).optional(),
+  brideInstagramEnabled: z.boolean().optional(),
+  groomInstagramEnabled: z.boolean().optional(),
   brideBioEnabled: z.boolean().optional(),
   groomBioEnabled: z.boolean().optional(),
   galleryLayout: z.enum(['editorial', 'grid', 'masonry', 'carousel', 'collage', 'wall']).optional(),
@@ -112,7 +131,7 @@ export const updateCoupleProfileSchema = z.object({
 });
 
 export const upsertEventSchema = z.object({
-  type: z.enum(['akad', 'resepsi']),
+  type: z.enum(['akad', 'resepsi', 'ngunduh_mantu']),
   date: z.union([z.string().length(0).transform(() => null), z.coerce.date()]).optional().nullable(),
   startTime: z.string().max(20).optional(),
   endTime: z.string().max(20).optional(),
@@ -125,7 +144,7 @@ export const upsertEventSchema = z.object({
 });
 
 export const reorderGallerySchema = z.object({
-  items: z.array(z.object({ id: z.string(), order: z.number() })),
+  items: z.array(z.object({ id: z.string().uuid(), order: z.number().int().min(0).max(10000) })).max(100),
 });
 
 export const timelineStorySchema = z.object({
@@ -169,6 +188,12 @@ export const giftSettingsSchema = z.object({
     accountNumber: z.string().trim().min(1).max(100),
     accountHolder: z.string().trim().min(1).max(150),
   })).max(10).optional(),
+ }).superRefine((data,ctx)=>{
+  if(data.type!=='bank_transfer'&&!data.shippingAddress?.trim())ctx.addIssue({code:z.ZodIssueCode.custom,path:['shippingAddress'],message:'Alamat pengiriman wajib diisi.'});
+  if(data.type!=='address'){
+    const accounts=data.bankAccounts?.length?data.bankAccounts:[{bankName:data.bankName,accountNumber:data.accountNumber,accountHolder:data.accountHolder}];
+    if(!accounts.length||accounts.some(a=>!a.bankName?.trim()||!a.accountNumber?.trim()||!a.accountHolder?.trim()))ctx.addIssue({code:z.ZodIssueCode.custom,path:['bankAccounts'],message:'Lengkapi bank, nomor tujuan, dan nama pemilik rekening.'});
+  }
 });
 
 // Mengizinkan string kosong "" pada URL jika user menghapus link

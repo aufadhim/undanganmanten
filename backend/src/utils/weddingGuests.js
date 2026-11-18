@@ -1,0 +1,3 @@
+// Existing guest IDs remain unchanged, preserving all personal links and RSVP records.
+export function guestScope(invitation){return invitation.weddingId?{OR:[{weddingId:invitation.weddingId},{weddingId:null,invitationId:invitation.id}]}:{invitationId:invitation.id}}
+export async function exposeWeddingGuests(prisma,invitation){if(invitation?.packageType==='TRIAL'&&invitation.status==='expired')invitation={...invitation,status:'draft'};if(!invitation?.weddingId)return invitation;const guests=await prisma.guest.findMany({where:guestScope(invitation),include:{rsvp:true},orderBy:{name:'asc'}});return {...invitation,guests,_count:{...invitation._count,guests:guests.length}}}

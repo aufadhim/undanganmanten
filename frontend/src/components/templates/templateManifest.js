@@ -1,3 +1,4 @@
+import {ACTIVE_TEMPLATES} from '../../config/templateRegistry.js';
 export const REQUIRED_TEMPLATE_FEATURES = [
   'cover',
   'quote',
@@ -17,23 +18,4 @@ export const REQUIRED_TEMPLATE_FEATURES = [
   'music',
 ];
 
-export const TEMPLATE_MANIFEST = [
-  template('eternal', 'Eternal', 'eternal-wrapper'),
-  template('seraya', 'Seraya', 'seraya'),
-  template('nawasena', 'Nawasena', 'nawasena'),
-  template('isvara', 'Isvara', 'isvara'),
-  template('lanqing', 'Lanqing', 'lanqing'),
-  template('celluloid', 'Celluloid', 'atelier-celluloid'),
-  template('nocturne', 'Nocturne', 'nocturne'),
-];
-
-function template(id, name, rootClass) {
-  return {
-    id,
-    name,
-    rootClass,
-    component: `${id}/${name}Template.jsx`,
-    stylesheet: `${id}/${id}.css`,
-    features: [...REQUIRED_TEMPLATE_FEATURES],
-  };
-}
+export const TEMPLATE_MANIFEST=ACTIVE_TEMPLATES.filter(t=>t.collection==='Signature').map(t=>({id:t.id,name:t.name,rootClass:t.rootClass,component:`${t.folder}/${t.component}`,stylesheet:t.engine?null:`${t.folder}/${t.id}.css`,features:[...REQUIRED_TEMPLATE_FEATURES],engine:t.engine}));

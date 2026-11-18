@@ -1,0 +1,14 @@
+#book-exterior{position:fixed;inset:0;z-index:8;pointer-events:none;will-change:transform;background:#e9e0cf}
+#book-exterior[hidden]{display:none}
+.book-outside-painting{position:absolute;inset:0;background-position:center;background-size:cover}
+.storybook{position:absolute;left:50%;top:53%;width:min(96vw,850px);aspect-ratio:3/2;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 15px #66513c25);animation:book-arrives 2s ease both}
+.book-binding{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.book-page{position:absolute;left:53.5%;top:18%;width:37%;height:65%;overflow:hidden;border-radius:2% 3% 5% 1%;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+.book-page img{width:100%;height:100%;object-fit:cover;display:block}
+.book-inscription{position:absolute;left:10%;top:35%;width:33%;display:grid;gap:12px;text-align:center;color:#6c5745}
+.book-inscription small{font:7px 'DM Sans',sans-serif;letter-spacing:2px}.book-inscription strong{font:400 clamp(18px,4vw,36px)/1.05 'Cormorant Garamond',serif;overflow-wrap:anywhere}.book-inscription em{font:italic clamp(8px,1.8vw,14px) 'Cormorant Garamond',serif}
+
+.book-portal-webgl{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+.book-portal-webgl[hidden]{display:none}
+.portal-webgl-active .book-outside-painting,.portal-webgl-active .storybook{visibility:hidden}
+.book-page img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:none}

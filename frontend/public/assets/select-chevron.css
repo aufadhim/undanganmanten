@@ -1,0 +1,21 @@
+/* Shared by the app and the standalone invitation templates. */
+select:not([multiple]):is(:not([size]), [size="0"], [size="1"]) {
+  appearance: none !important;
+  padding-inline-end: 42px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%23788369' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-position: right 14px center !important;
+  background-repeat: no-repeat !important;
+  background-size: 12px 8px !important;
+}
+
+select:not([multiple]):is(:not([size]), [size="0"], [size="1"]):dir(rtl) {
+  background-position: left 14px center !important;
+}
+
+@media (forced-colors: active) {
+  select:not([multiple]):is(:not([size]), [size="0"], [size="1"]) {
+    appearance: auto !important;
+    background-image: none !important;
+    padding-inline-end: revert !important;
+  }
+}

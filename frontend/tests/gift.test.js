@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{normalizeGift,giftErrors}from'../src/utils/gift.js';
+const full={bankName:'BCA',accountNumber:'001234',accountHolder:'Contoh'};
+test('address mode ignores retained accounts; legacy alias is normalized',()=>{assert.equal(normalizeGift({type:'physical_gift'}).type,'address');assert.deepEqual(giftErrors({type:'address',shippingAddress:'Alamat',bankAccounts:[{}]}),{})});
+test('incomplete visible accounts are flagged instead of filtered away',()=>{const gift={type:'bank_transfer',bankAccounts:[full,{bankName:'GoPay',accountNumber:'',accountHolder:''}]};const errors=giftErrors(gift);assert.ok(errors['1.accountNumber']);assert.ok(errors['1.accountHolder']);assert.equal(gift.bankAccounts.length,2)});
+test('both requires address and account; leading zeros remain intact',()=>{assert.ok(giftErrors({type:'both',bankAccounts:[],shippingAddress:''}).shippingAddress);assert.equal(normalizeGift({...full,type:'bank_transfer'}).bankAccounts[0].accountNumber,'001234')});

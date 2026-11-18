@@ -1,3 +1,8 @@
+import StudioTabIcon from './atelier/StudioTabIcon.jsx';
+import {isImmersiveTemplate} from '../config/templateRegistry.js';
+import {pinJourneyBlocks,JOURNEY_BLOCK_ORDER} from '../../public/templates/shared/journey-route.js';
+import './typography-panel.css';
+import {useAutoSave} from '../hooks/useAutoSave.js';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { api } from '../api/client.js';
 import { useTranslation } from 'react-i18next';
@@ -5,7 +10,12 @@ import { useUI } from '../context/UIContext.jsx';
 import debounce from 'lodash.debounce';
 
 import DresscodeEditor from './DresscodeEditor.jsx';
-import { Reorder } from 'framer-motion';
+import { Reorder, useDragControls } from 'framer-motion';
+
+const blockTabs = {
+    quote: 'kutipan', profile: 'profil', events: 'acara', countdown: 'saveDate',
+    gallery: 'galeri', story: 'cerita', igFilter: 'igfilter', gift: 'hadiah', footer: 'penutup',
+};
 
 const DEFAULT_LAYOUT = [
     { id: 'cover', label: 'Cover Depan', icon: 'fa-book-open', enabled: true },
@@ -18,17 +28,32 @@ const DEFAULT_LAYOUT = [
     { id: 'story', label: 'Cerita Cinta', icon: 'fa-heart', enabled: true, nav: ['konten', 'cerita'], featureKey: 'storyEnabled' },
     { id: 'dresscode', label: 'Panduan Dresscode', icon: 'fa-shirt', enabled: true, nav: ['konten', 'dresscode'], featureKey: 'dresscodeEnabled' },
     { id: 'livestream', label: 'Live Streaming', icon: 'fa-video', enabled: true, nav: ['konten', 'livestream'], featureKey: 'livestreamEnabled' },
-    { id: 'igFilter', label: 'Filter Instagram', icon: 'fa-camera-retro', enabled: true, nav: ['konten', 'igfilter'], featureKey: 'igFilterEnabled' },
-    { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['konten', 'tamu'], featureKey: 'rsvpEnabled' },
+    { id: 'igFilter', label: 'Bingkai Foto', icon: 'fa-camera-retro', enabled: false, nav: ['konten', 'igfilter'], featureKey: 'igFilterEnabled' },
+    { id: 'rsvp', label: 'RSVP', icon: 'fa-clipboard-check', enabled: true, nav: ['konten', 'rsvp'], featureKey: 'rsvpEnabled' },
     { id: 'gift', label: 'Informasi Hadiah', icon: 'fa-gift', enabled: true, nav: ['konten', 'hadiah'], featureKey: 'giftEnabled' },
-    { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['konten', 'ucapan'], featureKey: 'wishesEnabled' },
+    { id: 'wishes', label: 'Ucapan & Doa', icon: 'fa-comment-dots', enabled: true, nav: ['konten', 'rsvp'], featureKey: 'wishesEnabled' },
     { id: 'footer', label: 'Penutup (Terima Kasih)', icon: 'fa-hands-praying', enabled: true }
 ];
 
+function SortableBlock({ item, locked, children }) {
+    const controls = useDragControls();
+    return (
+        <Reorder.Item value={item} dragListener={false} dragControls={controls} style={{ position: 'relative' }}>
+            {children(event => {
+                if (!locked) controls.start(event);
+            })}
+        </Reorder.Item>
+    );
+}
+
 export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onNavigateTab }) {
     const { toast } = useUI();
-    const [saving, setSaving] = useState(false);
-    const [items, setItems] = useState(DEFAULT_LAYOUT);
+    const immersive=isImmersiveTemplate(invitation.themeId);
+    const normalize=pinJourneyBlocks;
+    const locked=id=>id==='cover'||id==='footer';
+    const baseLayout=immersive?[...DEFAULT_LAYOUT].sort((a,b)=>JOURNEY_BLOCK_ORDER.indexOf(a.id)-JOURNEY_BLOCK_ORDER.indexOf(b.id)):DEFAULT_LAYOUT;
+
+    const [items, setItems] = useState(()=>baseLayout);
     const [expandedInline, setExpandedInline] = useState(null);
 
     
@@ -46,21 +71,21 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                         return defaultMatch ? { ...defaultMatch, enabled: saved.enabled } : saved;
                     }).filter(Boolean);
 
-                    DEFAULT_LAYOUT.forEach(def => {
+                    baseLayout.forEach(def => {
                         if (!mergedItems.find(mi => mi.id === def.id)) {
                             mergedItems.push({ ...def, enabled: def.enabled });
                         }
                     });
-                    setItems(mergedItems);
+                    setItems(normalize(mergedItems));
                 }
             } catch(e) {
                 console.error("Error parsing layoutOrder:", e);
             }
         } else {
-            // Undangan baru menampilkan semua blok bisnis secara default.
-            setItems(DEFAULT_LAYOUT);
+            // Use feature flags until the invitation has a saved block order.
+            setItems(normalize(baseLayout.map(item=>item.featureKey ? {...item,enabled:invitation.invitationFeatures?.[item.featureKey] ?? item.enabled} : item)));
         }
-    }, [invitation?.id]);
+    }, [invitation?.id,invitation?.themeId]);
 
     const updatePreview = useCallback(
         debounce((newOrder) => {
@@ -89,68 +114,47 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
             item.id === id ? { ...item, enabled: !item.enabled } : item
         );
         setItems(newItems);
+        schedule(newItems);
         updatePreview(newItems);
     };
 
     useEffect(() => () => updatePreview.cancel(), [updatePreview]);
 
-    const handleSave = async () => {
-        updatePreview.cancel();
-        setSaving(true);
-        try {
-            // Build features payload to sync them perfectly
-            const featureUpdates = {};
-            items.forEach(item => {
-                if (item.featureKey) {
-                    featureUpdates[item.featureKey] = item.enabled;
-                }
-            });
+    const {schedule,status,retry}=useAutoSave(`${invitation.id}:${invitation.themeId}`,async order=>{
+        const featureUpdates={};order.forEach(item=>{if(item.featureKey)featureUpdates[item.featureKey]=item.enabled});
+        const [theme,features]=await Promise.all([api.patch('/invitations/me/theme',{invitationId:invitation.id,layoutOrder:order},{notification:false}),api.patch('/invitations/me/features',{invitationId:invitation.id,...featureUpdates},{notification:false})]);
+        return {theme:theme.data.themeSettings,features:features.data.features};
+    },result=>{onUpdated?.({...invitation,themeSettings:{...invitation.themeSettings,...result.theme},invitationFeatures:result.features});onLivePreview?.(null)});
 
-            // Parallel save to both endpoints
-            const [themeRes, featuresRes] = await Promise.all([
-                api.patch('/invitations/me/theme', { layoutOrder: items }),
-                api.patch('/invitations/me/features', featureUpdates)
-            ]);
-
-            if (onUpdated) {
-                onUpdated({ 
-                    ...invitation, 
-                    themeSettings: { ...invitation.themeSettings, ...themeRes.data.themeSettings },
-                    invitationFeatures: featuresRes.data.features
-                });
-            }
-            toast.success('Susunan blok & fitur berhasil disimpan!');
-            if (onLivePreview) onLivePreview(null);
-        } catch (err) {
-            toast.error(err.response?.data?.error || 'Gagal menyimpan susunan blok');
-        } finally {
-            setSaving(false);
-        }
+    const applyOrder = order => {
+        const next = normalize(order);
+        setItems(next);
+        schedule(next);
+        updatePreview(next);
     };
 
     const handleReset = () => {
-        setItems(DEFAULT_LAYOUT);
-        updatePreview(DEFAULT_LAYOUT);
+        setItems(normalize(baseLayout));
+        schedule(normalize(baseLayout));
+        updatePreview(normalize(baseLayout));
     };
 
     return (
         <div className="panel-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2 className="panel-header" style={{ margin: 0 }}>Susunan & Blok Halaman</h2>
-                <button onClick={handleReset} style={{ background: 'none', border: 'none', color: '#ff4d4f', cursor: 'pointer', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px', padding: 0 }}>
+                <button onClick={handleReset} style={{ background: 'none', border: 'none', color: 'var(--ui-muted, #71845b)', cursor: 'pointer', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px', padding: 0 }}>
                     <i className="fa-solid fa-rotate-left"></i> Reset
                 </button>
             </div>
-            <p className="panel-sub" style={{ marginTop: '8px' }}>Geser (drag & drop) untuk mengatur urutan. Aktifkan sakelar (On/Off) untuk menampilkan fitur undangan, lalu klik ⚙️ untuk mengatur konten.</p>
+            <p className="panel-sub" style={{ marginTop: '8px' }}>{isImmersiveTemplate(invitation.themeId)?'Geser bagian isi untuk mengatur urutan kunjungan. Kamera mengikuti bagian yang dipilih. Sampul dan penutup tetap di tempatnya; RSVP dan ucapan tampil bersama.':'Geser blok untuk mengatur urutan. Sampul dan penutup tetap di tempatnya. Gunakan sakelar untuk menampilkan atau menyembunyikan blok.'}</p>
 
             <div className="panel-form" style={{ marginTop: '20px' }}>
-                <Reorder.Group axis="y" values={items} onReorder={(newOrder) => { setItems(newOrder); updatePreview(newOrder); }} className="sortable-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px', listStyle: 'none', padding: 0, margin: 0 }}>
-                    {items.map((item) => (
-                        <Reorder.Item 
-                            key={item.id}
-                            value={item}
-                            style={{ display: 'flex', flexDirection: 'column', gap: '0', position: 'relative' }}
-                        >
+                <p className="panel-sub" role="status">{status==='saving'?'Menyimpan pengaturan…':status==='error'?<>Pengaturan belum tersimpan. <button type="button" onClick={retry}>Coba lagi</button></>:'Pengaturan tersimpan otomatis.'}</p>
+ <Reorder.Group axis="y" values={items} onReorder={applyOrder} className="sortable-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px', listStyle: 'none', padding: 0, margin: 0 }}>
+                    {items.map(item => (
+                        <SortableBlock key={item.id} item={item} locked={locked(item.id)}>
+                        {startDrag => <>
                             <div
                                 style={{
                                     display: 'flex',
@@ -160,7 +164,7 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                                     padding: '14px 16px',
                                     border: '1px solid rgba(0,0,0,0.05)',
                                     borderRadius: expandedInline === item.id ? '8px 8px 0 0' : '8px',
-                                    cursor: 'grab',
+                                    cursor: 'default',
                                     userSelect: 'none',
                                     opacity: item.enabled ? 1 : 0.6,
                                     transition: 'all 0.2s',
@@ -168,16 +172,20 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                                 }}
                             >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                                    <i className="fa-solid fa-grip-vertical" style={{ color: '#ccc', fontSize: '14px', cursor: 'grab' }}></i>
+                                    {locked(item.id) ? <i className="fa-solid fa-lock" aria-hidden="true" /> : (
+                                        <span onPointerDown={startDrag} style={{touchAction:'none', cursor:'grab', padding:'6px'}} title="Tarik untuk menggeser">
+                                            <i className="fa-solid fa-grip-vertical" aria-hidden="true" />
+                                        </span>
+                                    )}
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: item.enabled ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
-                                        <i className={`fa-solid ${item.icon}`} style={{ width: '20px', textAlign: 'center', color: item.enabled ? 'var(--wine-deep)' : '#ccc' }}></i>
+                                        <StudioTabIcon tab={blockTabs[item.id] || item.id} />
                                         <span style={{ fontWeight: 600, fontSize: '14px' }}>{item.label}</span>
                                     </div>
                                 </div>
                                 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     {/* Edit / Gear Button */}
-                                    {(item.nav || item.inlineEditor) && (
+                                    {item.inlineEditor && (
                                         <button 
                                             onClick={() => {
                                                 if (!item.enabled) {
@@ -208,7 +216,6 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                                             <i className="fa-solid fa-gear"></i> Atur
                                         </button>
                                     )}
-
                                     {/* Toggle Switch */}
                                     <div className="toggle-switch-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                         <span style={{ fontSize: '12px', color: item.enabled ? 'var(--wine-deep)' : '#ff4d4f', fontWeight: 600, width: '22px', textAlign: 'right' }}>
@@ -218,6 +225,7 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
                                             <input 
                                                 type="checkbox" 
                                                 checked={item.enabled} 
+                                                disabled={locked(item.id)}
                                                 onChange={() => toggleItem(item.id)} 
                                             />
                                             <span className="slider round"></span>
@@ -228,31 +236,24 @@ export default function SusunanPanel({ invitation, onUpdated, onLivePreview, onN
 
                             {/* Inline Editors */}
                             {expandedInline === item.id && item.inlineEditor === 'dresscode' && item.enabled && (
-                                <div style={{ padding: '20px', background: '#fafafa', border: '1px solid rgba(0,0,0,0.05)', borderTop: 'none', borderRadius: '0 0 8px 8px' }}>
+                                <div style={{ padding: '20px', background: 'var(--ui-card, #fafafa)', border: '1px solid rgba(0,0,0,0.05)', borderTop: 'none', borderRadius: '0 0 8px 8px' }}>
                                     <DresscodeEditor invitation={invitation} onUpdated={onUpdated} />
                                 </div>
                             )}
-                        </Reorder.Item>
+                        </>}
+                        </SortableBlock>
                     ))}
                 </Reorder.Group>
 
-                <div className="panel-actions" style={{ marginTop: '30px', display: 'flex', justifyContent: 'flex-end' }}>
-                    <button className="btn-save" onClick={handleSave} disabled={saving} style={{ padding: '12px 24px', fontSize: '15px' }}>
-                        {saving ? (
-                            <span><i className="fa-solid fa-spinner fa-spin"></i> Menyimpan...</span>
-                        ) : (
-                            <span><i className="fa-solid fa-floppy-disk"></i> Simpan Susunan & Blok</span>
-                        )}
-                    </button>
-                </div>
+
             </div>
             
             <style>{`
-                .sortable-list > div:active {
+                .sortable-list > li:active {
                     cursor: grabbing !important;
                 }
                 .btn-settings-block:hover {
-                    background: #eaeaea !important;
+                    background: var(--dashboard-active, #eaeaea) !important;
                     color: var(--text-primary) !important;
                 }
             `}</style>

@@ -1,0 +1,78 @@
+
+/* Countdown, ceremony and rundown: one reading zone over the shared ivory wash. */
+:root body.template-sumba #journey :is(#countdown,#akad,#rundown) .paper.scene-panel{
+ position:fixed!important;left:50%!important;top:48%!important;width:min(460px,calc(100% - 36px))!important;
+ max-width:none!important;max-height:calc(100svh - 146px)!important;margin:0!important;padding:18px 18px!important;
+ transform:translate(-50%,calc(-50% + var(--panel-lift,0px)))!important;opacity:var(--panel-opacity,0)!important;
+ overflow:auto;overscroll-behavior:contain;text-align:center;background:none!important;border:0!important;box-shadow:none!important;
+}
+:root body.template-sumba :is(#countdown,#akad,#rundown) .paper>.kicker{font-size:11px!important;letter-spacing:0!important;line-height:1.5;text-transform:none!important;margin:0 0 12px!important}
+:root body.template-sumba :is(#countdown,#akad,#rundown) .paper>h2{font-size:34px!important;line-height:1.12;letter-spacing:-.02em;margin:0 0 14px!important;text-wrap:balance}
+:root body.template-sumba :is(#countdown,#akad,#rundown) .paper>p{font-size:11px!important;line-height:1.75;letter-spacing:0!important;margin:10px auto 16px;max-width:360px;text-transform:none!important}
+:root body.template-sumba #countdown .paper>.ornament{display:none}
+:root body.template-sumba #countdown .save-the-date-immersia{max-width:340px;width:100%;margin:0 auto}
+:root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;width:100%;margin:16px auto 0;border-block:1px solid color-mix(in srgb,currentColor 28%,transparent)}
+:root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown)>div{min-width:0;padding:12px 2px;border-right:1px solid color-mix(in srgb,currentColor 20%,transparent)}
+:root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown)>div:last-child{border-right:0}
+:root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown) strong{display:block;font-size:42px!important;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-weight:400}
+:root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown) span{display:block;font-size:11px!important;line-height:1.3;letter-spacing:0!important;text-transform:none!important;margin-top:6px}
+:root body.template-sumba #countdown .save-the-date-calendar{margin:16px auto 12px;width:100%;max-width:340px}
+:root body.template-sumba #countdown .save-the-date-month{font-size:18px!important;line-height:1.3;text-transform:none!important;letter-spacing:0!important;margin-bottom:10px}
+:root body.template-sumba #countdown .save-the-date-week{font-size:11px!important;line-height:1.4;padding-bottom:6px}
+:root body.template-sumba #countdown .save-the-date-days span{font-size:11px!important;line-height:1.2;min-height:26px}
+:root body.template-sumba #countdown .save-the-date-days span.is-selected{height:26px;min-height:26px;width:27px}
+:root body.template-sumba :is(#countdown .save-the-date-button,#countdown #calendar,#akad .event-map-button,#akad .configured){
+ display:inline-flex;align-items:center;justify-content:center;min-height:40px;max-width:100%;padding:10px 20px!important;
+ font-size:11px!important;line-height:1.4;letter-spacing:0!important;text-transform:none!important;font-weight:500;text-decoration:none;
+ border:1px solid color-mix(in srgb,currentColor 38%,transparent);border-radius:999px;
+ color:var(--cms-ink,var(--ink,#526745));background:rgba(255,253,244,.62);box-shadow:none;
+}
+:root body.template-sumba #countdown .save-the-date-button{display:flex;width:fit-content;margin:16px auto 0}
+:root body.template-sumba :is(#countdown .save-the-date-button,#countdown #calendar,#akad .event-map-button):hover{background:rgba(255,253,244,.84);filter:none}
+:root body.template-sumba #countdown .mini{display:none!important}
+:root body.template-sumba #akad :is(.event-day,.event-date){font-size:11px!important;line-height:1.6;letter-spacing:0!important;text-transform:none!important}
+:root body.template-sumba #akad .event-details{margin:18px auto 0!important;padding:16px 0!important;border-block:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+:root body.template-sumba #akad :is(.event-schedules,.ceremony-times:not(.event-details)){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
+:root body.template-sumba #akad .event-schedule{min-width:0;padding:0 6px;display:flex;flex-direction:column}
+:root body.template-sumba #akad .event-schedule+.event-schedule{border-left:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+:root body.template-sumba #akad :is(.event-schedule .event-subtitle,.ceremony-times:not(.event-details)>div>span){font-family:var(--garden-heading,'Cormorant Garamond',serif);font-size:24px!important;line-height:1.15;letter-spacing:0!important;text-transform:none!important;font-weight:500;margin:0 0 12px}
+:root body.template-sumba #akad :is(.event-time,.ceremony-times strong){font-size:13px!important;line-height:1.6;font-variant-numeric:tabular-nums;font-family:inherit;white-space:normal;margin:0 0 12px}
+:root body.template-sumba #akad :is(.event-location,.event-location p,.event-venue){font-size:11px!important;line-height:1.75;overflow-wrap:anywhere}
+:root body.template-sumba #akad .event-location p{margin:6px auto 14px!important}
+:root body.template-sumba #akad .event-venue{font-weight:600}
+:root body.template-sumba #akad .same-location>.event-location{max-width:340px;margin:20px auto 0}
+:root body.template-sumba #akad .event-schedules .event-location{display:flex;flex-direction:column;align-items:center;flex:1;width:100%}
+:root body.template-sumba #akad .event-schedules .event-map-button{margin-top:auto;padding-inline:14px!important}
+:root body.template-sumba #rundown .schedule-list{display:block;width:100%;max-width:390px;margin:18px auto 0!important;text-align:left}
+:root body.template-sumba #rundown .schedule-list>div{display:grid;grid-template-columns:minmax(92px,.85fr) minmax(0,1.45fr);gap:16px;align-items:start;padding:15px 0;border-bottom:1px solid color-mix(in srgb,currentColor 20%,transparent)}
+:root body.template-sumba #rundown .schedule-list>div:last-child{border-bottom:0}
+:root body.template-sumba #rundown .schedule-list :is(time,strong){font-family:inherit;font-size:13px!important;font-weight:500;line-height:1.6;letter-spacing:0!important;overflow-wrap:anywhere}
+:root body.template-sumba #rundown .schedule-list time{font-variant-numeric:tabular-nums;color:inherit}
+:root body.template-sumba #rundown .schedule-list strong{display:block}
+:root body.template-sumba #rundown .schedule-list small{display:block;font-size:11px!important;line-height:1.75;letter-spacing:0;margin-top:5px;white-space:pre-line;overflow-wrap:anywhere}
+:root body.template-sumba #rundown .schedule-list small:empty{display:none}
+:root body.template-sumba #rundown .schedule-list>p{font-size:11px;line-height:1.75;text-align:center}
+:root body.template-sumba :is(#countdown,#akad,#rundown) :is(.world-next,.placeholder){display:none!important}
+@media(min-width:900px){
+ :root body.template-sumba #journey :is(#countdown,#akad,#rundown) .paper.scene-panel{width:min(540px,72vw)!important;padding:24px 26px!important}
+ :root body.template-sumba #countdown .save-the-date-immersia{max-width:360px}
+ :root body.template-sumba :is(#countdown,#akad,#rundown) .paper>h2{font-size:38px!important}
+}
+@media(max-height:700px){
+ :root body.template-sumba #journey :is(#countdown,#akad,#rundown) .paper.scene-panel{top:48%!important;max-height:calc(100svh - 116px)!important;padding:12px 14px!important}
+ :root body.template-sumba :is(#countdown,#akad,#rundown) .paper>.kicker{margin-bottom:8px!important}
+ :root body.template-sumba :is(#countdown,#akad,#rundown) .paper>h2{font-size:29px!important;margin-bottom:10px!important}
+ :root body.template-sumba :is(#countdown,#akad,#rundown) .paper>p{margin:8px auto 12px}
+ :root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown)>div{padding:8px 2px}
+ :root body.template-sumba #countdown :is(.countdown,.save-the-date-countdown) strong{font-size:36px!important}
+ :root body.template-sumba #countdown .save-the-date-calendar{margin:12px auto 8px}
+ :root body.template-sumba #countdown .save-the-date-days span{min-height:22px}
+ :root body.template-sumba #countdown .save-the-date-days span.is-selected{height:22px;min-height:22px}
+ :root body.template-sumba #rundown .schedule-list>div{padding:12px 0}
+}
+@media(max-width:359px){
+ :root body.template-sumba #akad .event-schedules{gap:8px}
+ :root body.template-sumba #akad .event-schedule{padding-inline:4px}
+ :root body.template-sumba #akad .event-schedules .event-map-button{padding-inline:10px!important}
+ :root body.template-sumba #rundown .schedule-list>div{grid-template-columns:minmax(80px,.9fr) minmax(0,1.3fr);gap:12px}
+}

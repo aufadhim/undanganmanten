@@ -1,0 +1,8 @@
+.frame-editor{display:flex;flex-direction:column;gap:16px;padding-bottom:32px}.frame-editor h2,.frame-editor h3,.frame-editor p{margin:0}.frame-editor-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}.frame-editor-help{font-size:13px;line-height:1.65;color:#788367}.frame-editor-sample{padding:20px;background:#f1f1e7;border:1px solid #d8ddcb;border-radius:12px}
+/* Match the compact type scale of the other studio sidepanels. */
+.frame-editor{font-size:12px;line-height:1.85}
+.frame-editor>h2{font:500 24px/1.2 var(--font-display,serif)}
+.frame-editor>p,.frame-editor .frame-editor-help{font-size:12px;line-height:1.85}
+.frame-editor .frame-editor-sample>h3{font-size:14px;line-height:1.5;font-weight:600;margin-bottom:10px}
+.frame-editor .frame-editor-sample>.photo-frame>p{font-size:12px;line-height:1.85}
+.frame-editor .frame-editor-actions .btn{font-size:13px}

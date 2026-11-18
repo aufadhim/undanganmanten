@@ -1,29 +1,13 @@
-import React, { createContext, useContext, useState, useCallback, useRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, useSyncExternalStore } from 'react';
 import ConfirmModal from '../components/ui/ConfirmModal.jsx';
 import ToastContainer from '../components/ui/ToastContainer.jsx';
+import {notificationStore,toastApi} from '../utils/notifications.js';
 
 const UIContext = createContext();
 
 export function UIProvider({ children }) {
-  // --- Toast State ---
-  const [toasts, setToasts] = useState([]);
-  let toastIdCounter = useRef(0);
-
-  const showToast = useCallback((message, type = 'success') => {
-    const id = ++toastIdCounter.current;
-    setToasts((prev) => [...prev, { id, message, type }]);
-    
-    // Auto remove after 3s
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 3000);
-  }, []);
-
-  const toast = {
-    success: (message) => showToast(message, 'success'),
-    error: (message) => showToast(message, 'error'),
-    info: (message) => showToast(message, 'info')
-  };
+  const toasts=useSyncExternalStore(notificationStore.subscribe,notificationStore.getSnapshot);
+  const toast=toastApi;
 
   // --- Confirm Modal State ---
   const [confirmConfig, setConfirmConfig] = useState(null);
@@ -51,7 +35,7 @@ export function UIProvider({ children }) {
   return (
     <UIContext.Provider value={{ toast, confirm }}>
       {children}
-      <ToastContainer toasts={toasts} onDismiss={(id) => setToasts((prev) => prev.filter((toast) => toast.id !== id))} />
+      <ToastContainer toasts={toasts} onDismiss={toast.dismiss} />
       {confirmConfig && <ConfirmModal {...confirmConfig} />}
     </UIContext.Provider>
   );

@@ -1,0 +1,183 @@
+/* Canonical Viridarium pigment. Change these tokens to tune every active template. */
+:root{
+ --ivory-scene:radial-gradient(ellipse at 48% 48%,rgba(255,251,241,.97) 0%,rgba(255,251,241,.93) 43%,rgba(255,251,241,.58) 66%,rgba(255,251,241,0) 82%);
+ --ivory-heading:radial-gradient(ellipse at center,rgba(255,251,241,.98) 0%,rgba(255,251,241,.93) 30%,rgba(255,251,241,.65) 54%,rgba(255,251,241,0) 76%);
+ --ivory-greeting:radial-gradient(ellipse at center,#fffaf0fa 0%,#fffaf0ed 34%,#fffaf0ad 56%,#fffaf000 78%);
+ --ivory-blur:12px;--ivory-greeting-blur:10px;
+}
+/* Viridarium wash: pigment fades gradually into the painted scene. */
+:root{
+ --ivory-readable-surface:var(--ivory-scene);
+ --ivory-reading-blur:12px;
+}
+:root body #journey .cloud-backdrop.pigment-backdrop,
+:root body.engine-landscape #journey .landscape-ivory-wash{
+ background:var(--ivory-readable-surface)!important;background-size:100% 100%!important;
+ filter:blur(var(--ivory-reading-blur))!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+ -webkit-mask-composite:source-in!important;mask-composite:intersect!important;
+ border-radius:0!important;
+ border:0!important;outline:0!important;box-shadow:none!important;
+}
+/* Only the fitted bed supplies pigment; the panel must not add another white surface. */
+:root body #journey .paper.scene-panel:not(.hero-content){background:none!important;background-image:none!important;box-shadow:none!important;outline:0!important;border:0!important;text-shadow:none!important}
+:root body #cover .cover-heading,:root body #journey .hero-heading,:root body #cover .cover-response{isolation:isolate;background:none!important;border:0!important;box-shadow:none!important;overflow:visible}
+:root body #cover .cover-heading::before,:root body #journey .hero-heading::before,:root body #cover .cover-response::before{
+ content:'';position:absolute;z-index:-1;pointer-events:none;
+ inset:auto!important;left:var(--reading-wash-left,50%)!important;top:var(--reading-wash-top,-20px)!important;bottom:auto!important;right:auto!important;
+ width:var(--reading-wash-width,calc(100% + 32px))!important;height:var(--reading-wash-height,calc(100% + 40px))!important;
+ aspect-ratio:auto!important;transform:translateX(-50%)!important;translate:none!important;
+ background:var(--ivory-readable-surface)!important;filter:blur(var(--ivory-reading-blur))!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+ -webkit-mask-composite:source-in!important;mask-composite:intersect!important;
+ border-radius:0!important;opacity:1!important;
+}
+/* Original compact Viridarium heading and greeting pigments. */
+:root body #cover .cover-heading::before,:root body #journey .hero-heading::before{
+ background:var(--ivory-heading)!important;filter:blur(var(--ivory-blur))!important;
+}
+:root body #cover .cover-response::before{
+ background:var(--ivory-greeting)!important;filter:blur(var(--ivory-greeting-blur))!important;
+}
+/* Keep the top line and date inside the bright part of the cover wash. */
+:root body #cover .cover-heading::before{
+ background:radial-gradient(ellipse at center,#fffaf1 0%,#fffaf1fa 50%,#fffaf1d9 68%,#fffaf100 92%)!important;
+ filter:blur(5px)!important;
+ width:calc(var(--reading-wash-width, 100% + 32px) + 32px)!important;
+ height:calc(var(--reading-wash-height, 100% + 40px) + 24px)!important;
+ top:calc(var(--reading-wash-top, -20px) - 12px)!important;
+}
+/* Small copy must not inherit the former pale-green/white text treatment. */
+:root body #journey .paper.scene-panel :where(p,label,small,time,.kicker,.person-kicker,.person-family,.person-placeholder,.mini),
+:root body #cover .cover-heading .kicker,:root body #cover .cover-date,
+:root body #journey .hero-heading .kicker,:root body #journey .hero-heading .cover-date{
+ color:var(--cms-ink,#40553c)!important;color:color-mix(in srgb,var(--cms-ink,#40553c) 94%,#1e271d)!important;text-shadow:none!important;
+}
+:root body #cover .cover-heading,:root body #journey .hero-heading{text-shadow:none!important}
+:root body #cover .cover-response :where(p,.cover-note,#guest-name){color:var(--cms-ink,#40553c)!important;text-shadow:none!important}
+
+/* Keep opening and closing copy legible over detailed scenery. */
+:root body #journey .hero-heading::before,
+:root body #penutup .closing::before {
+  content: '';
+  position: absolute;
+  inset: -24px -18px !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(ellipse, #fffaf1 30%, #fffaf1ed 52%, #fffaf1aa 69%, transparent 89%) !important;
+  filter: blur(7px) !important;
+}
+:root body #penutup .closing { isolation: isolate; overflow: visible; }
+:root body #penutup .closing :is(h2, em, p, .signature, .cover-date),
+:root body.template-wasesa #journey .hero-heading :is(h2, em, span, p) {
+  color: #374332 !important;
+  text-shadow: none !important;
+}
+:root body:is(.template-pramaya,.template-viridarium,.template-sekar-jawa) #journey .hero-heading h2,
+:root body.template-sekar-jawa #cover .cover-heading h1 {
+  font-size: clamp(26px, 8vw, 40px) !important;
+}
+
+:root body.template-sekar-jawa #cover .cover-heading::before {
+  width: calc(100% + 22px) !important;
+  height: calc(100% + 32px) !important;
+  top: -16px !important;
+}
+
+/* Feather the closing wash independently of the text panel edges. */
+:root body #penutup .paper.closing {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+:root body #penutup .paper.closing::before {
+  inset: -32px -24px !important;
+  background: radial-gradient(ellipse at 50% 48%, #fffaf1 18%, #fffaf1e8 38%, #fffaf18c 58%, #fffaf124 73%, transparent 82%) !important;
+  mask-image: radial-gradient(ellipse, #000 45%, transparent 83%) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: blur(9px) !important;
+}
+
+/* Closing pigment fades out before reaching the bounds of its layer. */
+:root body #penutup .paper.closing::before,
+:root body.engine-landscape .landscape-ivory-wash[data-for="penutup"] {
+  background: radial-gradient(ellipse closest-side at 50% 50%, #fffaf1fa 0%, #fffaf1ed 45%, #fffaf1a6 67%, #fffaf136 84%, transparent 100%) !important;
+  mask-image: none !important;
+  filter: blur(12px) !important;
+  border-radius: 50% !important;
+}
+:root body #penutup .paper.closing::before {
+  inset: -44px -36px !important;
+}
+:root body.engine-landscape #penutup .paper.closing::before {
+  content: none !important;
+}
+
+/* Keep extra transparent room around the closing pigment without moving the text. */
+:root body #penutup .paper.closing::before,
+:root body.engine-landscape .landscape-ivory-wash[data-for="penutup"]::before {
+  content: '';
+  position: absolute;
+  inset: -100px !important;
+  pointer-events: none;
+  background: radial-gradient(ellipse closest-side, #fffaf1cc 12%, #fffaf1b8 34%, #fffaf16b 56%, #fffaf100 80%) !important;
+  filter: none !important;
+  border: 0;
+}
+:root body.engine-landscape .landscape-ivory-wash[data-for="penutup"] {
+  background: transparent !important;
+  filter: none !important;
+  overflow: visible;
+}
+:root body.engine-landscape #penutup .paper.closing::before { content: none !important; }
+
+/* Use the approved Swarnalaya closing wash across Mental Canvas engines. */
+:root body #journey :is(.pigment-backdrop,.landscape-ivory-wash)[data-for="penutup"] {
+  overflow: visible;
+  background: none !important;
+  filter: none !important;
+}
+:root body #journey :is(.pigment-backdrop,.landscape-ivory-wash)[data-for="penutup"]::before {
+  content: '';
+  position: absolute;
+  inset: -28px -44px !important;
+  background: radial-gradient(ellipse at 50% 52%, #fffaf1f5 0%, #fffaf1e8 46%, #fffaf1b8 59%, #fffaf100 71%) !important;
+  filter: blur(5px) !important;
+}
+:root body #journey #penutup .paper.closing {
+  overflow: visible !important;
+}
+:root body #journey #penutup .paper.closing::before {
+  inset: -32px -30px !important;
+  background: radial-gradient(ellipse at 50% 52%, #fffaf1f5 0%, #fffaf1e8 46%, #fffaf1b8 59%, #fffaf100 71%) !important;
+  filter: blur(5px) !important;
+}
+:root body #journey:has(:is(.pigment-backdrop,.landscape-ivory-wash)[data-for="penutup"]:not([hidden])) #penutup .paper.closing::before {
+  content: none !important;
+}
+/* Give guest wishes a wider, softly feathered reading surface. */
+:root body #journey :is(.pigment-backdrop[data-kind="form"],.landscape-ivory-wash[data-for="rsvp"]) {
+  background: none !important;
+  filter: none !important;
+  overflow: visible;
+}
+:root body #journey :is(.pigment-backdrop[data-kind="form"],.landscape-ivory-wash[data-for="rsvp"])::before {
+  content: '';
+  position: absolute;
+  inset: -34px -46px -70px;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, #fffaf1fa 0%, #fffaf1f0 62%, #fffaf1c4 79%, #fffaf100 100%);
+  filter: blur(6px);
+}
+:root body #rsvp #wish-list .wish :is(strong,p,small) {
+  color: #374332 !important;
+}
+
+/* Leave breathing room at both ends of the RSVP scroll content. */
+:root body #journey #rsvp .paper.scene-panel {
+  padding-block: 50px 90px !important;
+  scroll-padding-block: 50px 90px;
+}

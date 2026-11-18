@@ -1,0 +1,25 @@
+[
+  {
+    "path": "frontend/public/assets/gallery/dummy-gallery-video.mp4",
+    "beforeBytes": 3798392,
+    "afterBytes": 2456527,
+    "resolutionBefore": [
+      1280,
+      720
+    ],
+    "resolutionAfter": [
+      960,
+      540
+    ],
+    "codec": "h264 / CRF26",
+    "sha256Before": "b605dc3d942902638016fb8bdab7263be1d88358dfa995aa3518443c5ba9c4b8",
+    "sha256After": "5364403caabd097c5fd461cb5820080416806ead6f549a530bfb40c1ae188202"
+  },
+  {
+    "path": "garden-canvas-mobile/assets/garden-nocturne",
+    "beforeBytes": 2116844,
+    "afterBytes": 577141,
+    "durationSeconds": 48,
+    "codec": "MP3 96 kbit/s"
+  }
+]

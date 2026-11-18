@@ -1,0 +1,2 @@
+@import url('/templates/shared/gallery-layout.css');
+.ys-card-gallery .standard-gallery-root{height:clamp(320px,58svh,610px)}

@@ -1,19 +1,21 @@
 import { Router } from 'express';
 import {
+    getStorageUsage, getPublicationChecklist, changeInvitationLifecycle, duplicateInvitation,
     createInvitation,
     getMyInvitations,
     getMyPreview,
     updateMyInvitation,
     deleteInvitation,
     getPublicInvitation,
+    getPublicGalleryPhoto, getPublicInvitationMusic,
     getPublicGuest,
     recordVisit,
 } from '../controllers/invitationController.js';
 import { createCheckout } from '../controllers/paymentController.js';
 import { updateMyThemeSettings, applyThemePreset } from '../controllers/themeController.js';
-import { updateCoupleProfile, uploadCouplePhoto } from '../controllers/coupleProfileController.js';
+import { updateCoupleProfile, uploadCouplePhoto, saveProfileContent } from '../controllers/coupleProfileController.js';
 import { updateQuoteSettings } from '../controllers/quoteController.js';
-import { upsertEvent, listMyEvents, deleteEvent } from '../controllers/eventController.js';
+import { replaceEvents, upsertEvent, listMyEvents, deleteEvent, saveQuickDraft } from '../controllers/eventController.js';
 import {
     listGallery,
     uploadGalleryMedia,
@@ -29,6 +31,8 @@ import {
 } from '../controllers/timelineController.js';
 import {
     listGuests,
+    updateBrowserLock,
+    changeGuestBrowserAccess,
     addGuest,
     bulkAddGuests,
     updateGuest,
@@ -45,6 +49,7 @@ import {
     deleteWish,
     replyWish,
     updateWish,
+    submitConfirmation,
     submitOwnerPreviewRsvp,
     submitOwnerPreviewWish,
 } from '../controllers/rsvpWishController.js';
@@ -59,9 +64,11 @@ import {
     upsertLivestreamSettings,
     updateInvitationFeatures,
 } from '../controllers/settingsController.js';
+import { editableInvitation } from '../middlewares/editableInvitation.js';
 import { authenticate } from '../middlewares/auth.js';
 import { galleryUpload, imageUpload } from '../middlewares/upload.js';
 import { compressImage } from '../middlewares/compressImage.js';
+import { publicGuestAccess } from '../middlewares/publicGuestAccess.js';
 import rateLimit from 'express-rate-limit';
 
 const router = Router();
@@ -77,21 +84,28 @@ const visitLimiter = rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: 
 // ==========================================
 // 1. RUTE PUBLIK (Dapat diakses tanpa Login)
 // ==========================================
-router.get('/public/:slug', getPublicInvitation);
+router.post('/public/:slug/access', publicFormLimiter, publicGuestAccess);
+router.get('/public/:slug', publicGuestAccess, getPublicInvitation);
+router.get('/public/:slug/music', publicGuestAccess, getPublicInvitationMusic);
+router.get('/public/:slug/photos/:mediaId', publicGuestAccess, getPublicGalleryPhoto);
 router.post('/public/:slug/visit', visitLimiter, recordVisit);
-router.get('/public/:slug/guest/:guestId', getPublicGuest);
-router.post('/public/:slug/rsvp', publicFormLimiter, submitRsvp);
-router.post('/public/:slug/wishes', publicFormLimiter, submitWish);
+router.get('/public/:slug/guest/:guestId', publicGuestAccess, getPublicGuest);
+router.post('/public/:slug/confirmation', publicFormLimiter, publicGuestAccess, submitConfirmation);
+router.post('/public/:slug/rsvp', publicFormLimiter, publicGuestAccess, submitRsvp);
+router.post('/public/:slug/wishes', publicFormLimiter, publicGuestAccess, submitWish);
 
 // ==========================================
 // 2. RUTE PRIVAT (Wajib Login / Authenticate)
 // ==========================================
+
+router.use('/me', authenticate, editableInvitation);
 
 // ---------- Theme ----------
 router.patch('/me/theme', authenticate, updateMyThemeSettings);
 router.post('/me/theme/apply-preset', authenticate, applyThemePreset);
 
 // ---------- Couple Profile ----------
+router.patch('/me/profile-content', saveProfileContent);
 router.patch('/me/couple-profile', authenticate, updateCoupleProfile);
 router.post('/me/couple-profile/photo', authenticate, imageUpload.single('photo'), compressImage, uploadCouplePhoto);
 
@@ -99,8 +113,10 @@ router.post('/me/couple-profile/photo', authenticate, imageUpload.single('photo'
 router.patch('/me/quote', authenticate, updateQuoteSettings);
 
 // ---------- Events ----------
+router.patch('/me/quick-draft', saveQuickDraft);
 router.get('/me/events', authenticate, listMyEvents);
 router.post('/me/events', authenticate, upsertEvent);
+router.put('/me/events', authenticate, replaceEvents);
 router.delete('/me/events/:eventId', authenticate, deleteEvent);
 
 // ---------- Gallery ----------
@@ -117,6 +133,8 @@ router.patch('/me/timeline/:storyId', authenticate, updateTimelineStory);
 router.delete('/me/timeline/:storyId', authenticate, deleteTimelineStory);
 
 // ---------- Guests & Blast ----------
+router.patch('/me/browser-lock', updateBrowserLock);
+router.patch('/me/guests/:guestId/browser-access', changeGuestBrowserAccess);
 router.get('/me/guests', authenticate, listGuests);
 router.get('/me/guests/export', authenticate, exportGuests);
 router.post('/me/guests', authenticate, addGuest);
@@ -151,6 +169,10 @@ router.post('/', authenticate, createInvitation);               // Buat draft un
 router.get('/', authenticate, getMyInvitations);                // Ambil daftar semua undangan user
 router.get('/:id/preview', authenticate, getMyPreview);         // Preview undangan tertentu
 router.post('/:id/checkout', authenticate, createCheckout);       // Checkout per invitation
+router.get('/storage-usage', authenticate, getStorageUsage);
+router.get('/:id/publication', authenticate, getPublicationChecklist);
+router.post('/:id/lifecycle', authenticate, changeInvitationLifecycle);
+router.post('/:id/duplicate', authenticate, duplicateInvitation);
 router.patch('/:id', authenticate, updateMyInvitation);         // Update data undangan tertentu
 router.put('/:id', authenticate, updateMyInvitation);           // Alias PUT
 router.delete('/:id', authenticate, deleteInvitation);          // Hapus undangan berdasarkan ID

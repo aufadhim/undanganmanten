@@ -1,0 +1,340 @@
+{
+  "policy": {
+    "aspect": "preserved, no crop, no upscale",
+    "alphaQuality": 100,
+    "maxEdgeByRole": {
+      "background": 1600,
+      "portrait": 1400,
+      "layer": 1400,
+      "illustration": 1200,
+      "cloud": 1000,
+      "thumbnail": 640,
+      "icon": 512
+    },
+    "quality": "WebP 86 backgrounds / 84 others"
+  },
+  "beforeTotal": 29521999,
+  "afterTotal": 4443918,
+  "rows": [
+    {
+      "from": "botanical-spray.png",
+      "to": "botanical-spray.webp",
+      "kind": "illustration",
+      "beforeBytes": 2480610,
+      "afterBytes": 335452,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        800,
+        1200
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "21d5ece43e3d9f6c2bb0200bf145631c20939ebdd813ae110931a2be01061ceb",
+      "sha256After": "b2040d69892b3c6e5ff5c2002c4cafa7828395b601db57075b9c5f4d7f6d3026",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-bride-v4.png",
+      "to": "cloud-bride-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 2183200,
+      "afterBytes": 119754,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        667,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "d463d714fc6467d427b4e8b1844fcf7216d5ccba8d03aed356ba122b71d637ed",
+      "sha256After": "49970cc233ff1b3b9cbbd39f7f13f23e51a8322ac401e26fd85e2cdcc17b0366",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-closing-v4.png",
+      "to": "cloud-closing-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 1562423,
+      "afterBytes": 164604,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1000,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "ae74c27bb4c0e29186a6cc62ba1b769d7fdbbe00f27e718c5af87677b99eb7c0",
+      "sha256After": "9448a76710538abd0c06abe2baacd62490812e41b80406d5e6b0d504ca2637f5",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-cover-v4.png",
+      "to": "cloud-cover-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 1828517,
+      "afterBytes": 81882,
+      "before": [
+        1536,
+        1024
+      ],
+      "after": [
+        1000,
+        667
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "ea278c304cfbb244eee6c4a5b5f98413d1b80c02540c8aa57ff98b810995513e",
+      "sha256After": "7bbe457953fc1c8ea6c5915f497499938e3765da27b5725f31a3ded7a771fd31",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-event-v4.png",
+      "to": "cloud-event-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 2305542,
+      "afterBytes": 125694,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        667,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "6139da45b066f2dbbc0fa464d6bce51c7d8bd9e455667a84a0653f074b199323",
+      "sha256After": "37f6d98f1acc3b713e6ab82aa56d56b9a446d42f6c63e4cf10c28d7508a11024",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-form-v4.png",
+      "to": "cloud-form-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 2222051,
+      "afterBytes": 102938,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        667,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "47ba076d14686a07f8c9963676eda0f2ddd8a9cbc79f7b9ef21f8798c72c814b",
+      "sha256After": "8ee733bd48ab921e56542801053547851ba7a38eddbfef1c9e85e41ba19047f3",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-gallery-v4.png",
+      "to": "cloud-gallery-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 2024309,
+      "afterBytes": 208112,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1000,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "8745168d17eb4b281b73f02e9ad1600789a29251200d938cf00690385aafe516",
+      "sha256After": "e4982bda4a5a45161041e5dbd5d6c884ba9527cd3a2b91e7c17984d0b6832b5d",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-groom-v4.png",
+      "to": "cloud-groom-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 2119234,
+      "afterBytes": 103320,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        667,
+        1000
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "b062b014b68b4d604430ace7700241a423c75e166a1107b31c00553c6e041145",
+      "sha256After": "46dea07b9f43256f7575d595b7608c9acbdd26e6b3027707f79f2ab5b9951222",
+      "keptOriginal": false
+    },
+    {
+      "from": "cloud-quote-v4.png",
+      "to": "cloud-quote-v4.webp",
+      "kind": "cloud",
+      "beforeBytes": 1747109,
+      "afterBytes": 81396,
+      "before": [
+        1536,
+        1024
+      ],
+      "after": [
+        1000,
+        667
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "6e48c2a0234c1877a7ffa32395313d8ad52a2a11bd5d189c6b73886f74023a82",
+      "sha256After": "6e213686f3e3aa955eb54c936b11cdf7762199e072a078d6e4fb608c717b5697",
+      "keptOriginal": false
+    },
+    {
+      "from": "couple-cover-watercolor-v3.png",
+      "to": "couple-cover-watercolor-v3.webp",
+      "kind": "portrait",
+      "beforeBytes": 2703718,
+      "afterBytes": 291378,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        933,
+        1400
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "4ff9aff4f2a47b0e68f1580bbcaa14afa41cacf459b281d29185f1e5c3bc0020",
+      "sha256After": "d112d2550ce5eec8dbb5d5a702389d92b557d993398b49c91c230c9641600ccc",
+      "keptOriginal": false
+    },
+    {
+      "from": "couple-front-watercolor-v3.png",
+      "to": "couple-front-watercolor-v3.webp",
+      "kind": "portrait",
+      "beforeBytes": 2621608,
+      "afterBytes": 285024,
+      "before": [
+        1024,
+        1536
+      ],
+      "after": [
+        933,
+        1400
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "22a6b9162e602293a33dedfef4950a631542f18669c961e51f010bd0ec7bf647",
+      "sha256After": "da5c2f569a01da25fb7e13acf4153e8bc7c0a53983e2f3ef9e9829ccf901e3fc",
+      "keptOriginal": false
+    },
+    {
+      "from": "garden-entrance-watercolor-v3.jpg",
+      "to": "garden-entrance-watercolor-v3.webp",
+      "kind": "background",
+      "beforeBytes": 901788,
+      "afterBytes": 490128,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1254,
+        1254
+      ],
+      "alphaBefore": false,
+      "alphaAfter": false,
+      "sha256Before": "9912a257ed01ad0c0d8e2b5eeebd942b05f5969cc3569c3a1291b08c93b92e70",
+      "sha256After": "de1b244ee2cb50b6aa9c5f47373e8ad827cd3241499465d0442f4420127ebadc",
+      "keptOriginal": false
+    },
+    {
+      "from": "garden-foreground-watercolor-v3.png",
+      "to": "garden-foreground-watercolor-v3.webp",
+      "kind": "layer",
+      "beforeBytes": 2118561,
+      "afterBytes": 562596,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1254,
+        1254
+      ],
+      "alphaBefore": true,
+      "alphaAfter": true,
+      "sha256Before": "8bbbebece32872bf6e43ce2c8f976939083d763b30b88470471ec9fbe88f97c6",
+      "sha256After": "71d3412637c431783e08bf3d6f17b23ba847cd7fa01d9e0bc42c22bd67d91d76",
+      "keptOriginal": false
+    },
+    {
+      "from": "garden-fountain-watercolor-v3.jpg",
+      "to": "garden-fountain-watercolor-v3.webp",
+      "kind": "background",
+      "beforeBytes": 908615,
+      "afterBytes": 501480,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1254,
+        1254
+      ],
+      "alphaBefore": false,
+      "alphaAfter": false,
+      "sha256Before": "b7911a21e4fd1969ed099897d9521cca54ff3c399e673e93f455f5d679a5ac45",
+      "sha256After": "a70fcf94bc2a0e22d5ee007576df510f8cd8cb4173fff36a22b8e8ec12d1aba9",
+      "keptOriginal": false
+    },
+    {
+      "from": "garden-rosewalk-watercolor-v3.jpg",
+      "to": "garden-rosewalk-watercolor-v3.webp",
+      "kind": "background",
+      "beforeBytes": 914736,
+      "afterBytes": 508692,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1254,
+        1254
+      ],
+      "alphaBefore": false,
+      "alphaAfter": false,
+      "sha256Before": "e0706bf1ade7e9e6b2101afd2d348f6f865a0eb76777f59c0f60736b9141656c",
+      "sha256After": "0ca9890d8a14f931d28aea9835f8eec1377274d3ec180fbfeb51a1ef14f587e6",
+      "keptOriginal": false
+    },
+    {
+      "from": "garden-twilight-watercolor-v3.jpg",
+      "to": "garden-twilight-watercolor-v3.webp",
+      "kind": "background",
+      "beforeBytes": 879978,
+      "afterBytes": 481468,
+      "before": [
+        1254,
+        1254
+      ],
+      "after": [
+        1254,
+        1254
+      ],
+      "alphaBefore": false,
+      "alphaAfter": false,
+      "sha256Before": "213e356c932f63fa300363ae958a9e0f276ef99c44eea9e9b16866e1fc880290",
+      "sha256After": "cdd6f853748b704543d5be813e83fa3f42dfb5be44cb29f834d1622080ecb9c1",
+      "keptOriginal": false
+    }
+  ]
+}

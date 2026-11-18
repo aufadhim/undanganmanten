@@ -20,6 +20,15 @@ export const env = {
   midtransIsProduction: process.env.MIDTRANS_IS_PRODUCTION === 'true',
   midtransServerKey: process.env.MIDTRANS_SERVER_KEY,
   midtransClientKey: process.env.MIDTRANS_CLIENT_KEY,
+  tripay: {
+    apiKey: process.env.TRIPAY_API_KEY,
+    privateKey: process.env.TRIPAY_PRIVATE_KEY,
+    merchantCode: process.env.TRIPAY_MERCHANT_CODE,
+    method: process.env.TRIPAY_METHOD,
+    mode: process.env.TRIPAY_MODE,
+    sandboxAccounts: (process.env.TRIPAY_SANDBOX_ACCOUNTS || '').split(',').map(email => email.trim().toLowerCase()).filter(Boolean),
+  },
+  accountEmailEnabled: !isProduction || Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM),
 };
 
 requireInProduction('DATABASE_URL');
@@ -28,10 +37,6 @@ requireInProduction('FRONTEND_URL');
 requireInProduction('BACKEND_URL');
 
 if (isProduction) {
-  requireInProduction('RESEND_API_KEY');
-  requireInProduction('EMAIL_FROM');
-  requireInProduction('MIDTRANS_SERVER_KEY');
-  requireInProduction('MIDTRANS_CLIENT_KEY');
   requireInProduction('R2_ACCOUNT_ID');
   requireInProduction('R2_ACCESS_KEY_ID');
   requireInProduction('R2_SECRET_ACCESS_KEY');

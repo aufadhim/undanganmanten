@@ -1,0 +1,42 @@
+{
+  "tool": "Built-in image_gen",
+  "prompts": {
+    "regol-garden": "Use case: style-transfer. Edit target: supplied Sekar Jawa watercolor regol-garden. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Replace dominant green leaves with rich bronze, warm umber and burgundy painted foliage; maroon flowers mixed with ivory jasmine, gold light and warm parchment open central areas. Retain tropical Javanese forms, no temperate autumn scene. Deep brown wood and maroon architectural details. No dominant green or blue.   No text, logos, frame, photorealism or 3D.",
+    "pendopo-ceremony": "Use case: style-transfer. Edit target: supplied Sekar Jawa watercolor pendopo-ceremony. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Replace dominant green leaves with rich bronze, warm umber and burgundy painted foliage; maroon flowers mixed with ivory jasmine, gold light and warm parchment open central areas. Retain tropical Javanese forms, no temperate autumn scene. Deep brown wood and maroon architectural details. No dominant green or blue.   No text, logos, frame, photorealism or 3D.",
+    "jasmine-walk": "Use case: style-transfer. Edit target: supplied Sekar Jawa watercolor jasmine-walk. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Replace dominant green leaves with rich bronze, warm umber and burgundy painted foliage; maroon flowers mixed with ivory jasmine, gold light and warm parchment open central areas. Retain tropical Javanese forms, no temperate autumn scene. Deep brown wood and maroon architectural details. No dominant green or blue.   No text, logos, frame, photorealism or 3D.",
+    "lantern-garden": "Use case: style-transfer. Edit target: supplied Sekar Jawa watercolor lantern-garden. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Replace dominant green leaves with rich bronze, warm umber and burgundy painted foliage; maroon flowers mixed with ivory jasmine, gold light and warm parchment open central areas. Retain tropical Javanese forms, no temperate autumn scene. Deep brown wood and maroon architectural details. No dominant green or blue. Twilight sky dusty warm burgundy, gold lanterns, espresso shadows; luminous central pond.  No text, logos, frame, photorealism or 3D.",
+    "jasmine-canopy": "Use case: style-transfer. Edit target: supplied Sekar Jawa watercolor jasmine-canopy. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Replace dominant green leaves with rich bronze, warm umber and burgundy painted foliage; maroon flowers mixed with ivory jasmine, gold light and warm parchment open central areas. Retain tropical Javanese forms, no temperate autumn scene. Deep brown wood and maroon architectural details. No dominant green or blue.  Preserve genuine transparent alpha outside the existing silhouettes, no background, no halo, no floor. No text, logos, frame, photorealism or 3D.",
+    "couple-cover": "Use case: identity-preserve. Edit target: supplied Sekar Jawa watercolor couple-cover. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Groom beskap deep maroon with antique gold embroidery; bride warm ivory gold kebaya with restrained maroon detail, both brown sogan batik. Keep exact faces, gaze, anatomy, full bodies and poses.  Preserve genuine transparent alpha outside the existing silhouettes, no background, no halo, no floor. No text, logos, frame, photorealism or 3D.",
+    "couple-hero": "Use case: identity-preserve. Edit target: supplied Sekar Jawa watercolor couple-hero. Repaint ONLY its color palette into elegant Javanese sogan DARK CHOCOLATE BROWN, DEEP MAROON and ANTIQUE GOLD. Keep exact composition, all architecture, perspective, framing, subjects, poses, identities and watercolor cotton canvas pigment texture. Groom beskap deep maroon with antique gold embroidery; bride warm ivory gold kebaya with restrained maroon detail, both brown sogan batik. Keep exact faces, gaze, anatomy, full bodies and poses.  Preserve genuine transparent alpha outside the existing silhouettes, no background, no halo, no floor. No text, logos, frame, photorealism or 3D."
+  },
+  "assets": [
+    {
+      "name": "regol-garden",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-5c605631-de76-4d19-bcb1-0a2e8c23f02b.png"
+    },
+    {
+      "name": "pendopo-ceremony",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-f5a185ca-5303-4c19-b260-9d14d7527cf3.png"
+    },
+    {
+      "name": "jasmine-walk",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-31b55bbf-1b15-468c-97c0-eb22521234d4.png"
+    },
+    {
+      "name": "lantern-garden",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-323ef038-070a-4599-83f3-fe08a6b8d79f.png"
+    },
+    {
+      "name": "jasmine-canopy",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-4cdad168-8e52-471e-8d24-bb405af37247.png"
+    },
+    {
+      "name": "couple-cover",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-9b20e4ee-83c3-432b-9609-a96656e82163.png"
+    },
+    {
+      "name": "couple-hero",
+      "source": "/Users/auf/.codex/generated_images/01a16a39-eee7-7df1-b814-a6557115cea7/exec-561ee111-01ca-4720-8195-b18c0cd4d851.png"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+@import url('/templates/shared/guest-confirmation.css');
+
+.guest-confirmation input,.guest-confirmation select,.guest-confirmation textarea{font-family:inherit;font-size:inherit}

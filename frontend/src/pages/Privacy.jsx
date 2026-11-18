@@ -1,61 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-export default function Privacy() {
-    return (
-        <div style={{ padding: '60px 8%', maxWidth: '900px', margin: '0 auto', fontFamily: 'var(--font-ui)', color: 'var(--ink)' }}>
-            <Link to="/" style={{ color: 'var(--wine-deep)', textDecoration: 'none', marginBottom: '30px', display: 'inline-block' }}>
-                &larr; Kembali ke Beranda
-            </Link>
-            
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '40px', marginBottom: '20px' }}>Kebijakan Privasi</h1>
-            <p style={{ color: 'var(--ink-soft)', marginBottom: '40px' }}>Terakhir diperbarui: {new Date().toLocaleDateString('id-ID')}</p>
-
-            <div style={{ lineHeight: '1.8' }}>
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>1. Informasi yang Kami Kumpulkan</h2>
-                    <p>
-                        Saat Anda menggunakan layanan UndanganManten, kami mengumpulkan beberapa jenis informasi pribadi:
-                    </p>
-                    <ul>
-                        <li><strong>Data Pendaftaran:</strong> Alamat email, nama, dan nomor telepon Anda saat membuat akun.</li>
-                        <li><strong>Data Acara:</strong> Informasi detail pernikahan (nama mempelai, tanggal, lokasi) dan aset foto/video yang Anda unggah ke galeri.</li>
-                        <li><strong>Data Tamu (Pihak Ketiga):</strong> Nama dan detail kontak tamu yang Anda masukkan ke dalam sistem "Guest List" atau yang masuk melalui form RSVP. Anda menjamin bahwa Anda memiliki hak untuk memberikan data tamu Anda ke sistem kami.</li>
-                    </ul>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>2. Penggunaan Informasi</h2>
-                    <p>Kami menggunakan data Anda murni untuk menyediakan layanan utama platform ini, yaitu:</p>
-                    <ul>
-                        <li>Membuat dan menampilkan undangan digital secara publik (melalui URL/Slug).</li>
-                        <li>Mengirimkan notifikasi akun (OTP, reset password).</li>
-                        <li>Mengelola daftar tamu dan fitur RSVP atas nama Anda.</li>
-                    </ul>
-                    <p><strong>Kami tidak pernah menjual data pribadi Anda atau daftar tamu Anda kepada pihak ketiga manapun.</strong></p>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>3. Keterbukaan Informasi Publik</h2>
-                    <p>
-                        Mengingat sifat produk ini adalah "Undangan Digital Publik", informasi yang Anda masukkan terkait data mempelai, tanggal, lokasi, dan foto (galeri) akan dapat diakses oleh siapa saja yang memiliki tautan/URL undangan Anda. Mohon bijak dalam memilih informasi yang ingin Anda bagikan.
-                    </p>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>4. Keamanan Data</h2>
-                    <p>
-                        Kami menggunakan metode keamanan standar industri (seperti enkripsi kata sandi dan JWT) untuk melindungi akun Anda. Namun, tidak ada metode transmisi di internet yang 100% aman, sehingga kami tidak bisa memberikan jaminan keamanan mutlak.
-                    </p>
-                </section>
-                
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>5. Hubungi Kami</h2>
-                    <p>
-                        Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di <strong>support@undanganmanten.com</strong>.
-                    </p>
-                </section>
-            </div>
-        </div>
-    );
-}
+import DocumentLayout from '../components/atelier/DocumentLayout.jsx';
+import './guide.css';
+const sections=[
+ ['Data yang diproses','Data akun mencakup nama, email, kontak yang diberikan, serta informasi autentikasi. Data undangan mencakup profil mempelai/keluarga, acara, lokasi, ilustrasi, foto, video, musik, tautan, dan informasi hadiah yang diisi. Data tamu mencakup nama, kontak jika disediakan, kelompok, batas rombongan, RSVP, ucapan, dan catatan check-in. Transaksi mencakup pesanan, status pembayaran, serta hak paket. Statistik kunjungan dan catatan tindakan dipakai untuk pengoperasian layanan.'],
+ ['Tujuan penggunaan','Data digunakan untuk menyediakan akun, menyimpan dan menampilkan undangan, memverifikasi akun, memproses aktivasi paket, mengelola RSVP dan check-in, menyajikan analitik, serta menangani masalah dan penyalahgunaan. Data tamu tidak ditawarkan untuk dijual. Pemilik undangan bertanggung jawab memberi informasi dan memiliki dasar yang sesuai untuk memasukkan data orang lain.'],
+ ['Informasi yang terlihat oleh tamu','Setelah diterbitkan, konten undangan dapat dibuka oleh pemegang tautan selama masa aktif. Profil, acara, galeri, ucapan beserta nama pengirim, dan informasi hadiah yang diaktifkan dapat terlihat. Tombol Lihat rekening atau Lihat alamat hanya menyembunyikan tampilan awal, bukan pembatasan akses privat. Jangan memasukkan informasi yang tidak ingin dibagikan. Tautan pribadi tamu dapat memuat identitas dan akses RSVP/QR; bagikan hanya kepada penerima yang benar.'],
+ ['Akses pemilik, admin, dan petugas','Pemilik mengelola undangan serta data tamu pernikahannya. Admin memiliki akses operasional sesuai kewenangannya untuk pembayaran, dukungan, kuota, dan penanganan pelanggaran. Tautan petugas hanya membuka data minimal untuk mencari tamu serta mengelola check-in, tidak memberi akses akun pemilik atau kontak tamu. Tautan ini bisa kedaluwarsa dan dicabut. Tindakan pengelolaan tertentu dicatat dalam log audit.'],
+ ['Penyimpanan dan penyedia layanan','Data terstruktur disimpan pada database PostgreSQL yang saat ini dihosting Neon; media unggahan disimpan melalui penyimpanan objek Cloudflare R2. Google menerima data yang diperlukan untuk autentikasi jika digunakan. Pada checkout, Tripay menerima nama pelanggan, email, nomor telepon jika tersedia, rincian pesanan, dan nominal. Samavaya menerima referensi, status, biaya, serta waktu pembayaran untuk aktivasi paket, invoice, dan pemeriksaan refund. Bukti pembayaran yang dikirim ke dukungan dipakai untuk memeriksa transaksi dan memproses permintaan terkait. Jika refund harus diproses melalui transfer langsung, Samavaya menggunakan nama penerima, bank atau dompet digital, dan nomor tujuan untuk memverifikasi serta mencatat pengembalian. Samavaya tidak meminta kata sandi Google atau menyimpan data kartu pembayaran lengkap. Pemrosesan oleh penyedia tunduk pada kebijakan mereka dan dapat melibatkan infrastruktur di luar Indonesia.'],
+ ['Konten eksternal dan izin perangkat','Tautan atau pemutar YouTube, Google Maps, Instagram, livestream, serta font eksternal dapat membuat browser terhubung ke penyedianya. Penyedia dapat menerima data teknis seperti alamat IP sesuai kebijakan masing-masing. Kamera diminta saat pengguna mengaktifkan pemindaian QR; pencarian nama manual tersedia sebagai alternatif. Foto yang dipilih untuk Bingkai Foto digunakan untuk membuat hasil di browser.'],
+ ['Penyimpanan di browser','Browser menyimpan sesi masuk dan preferensi yang diperlukan untuk menggunakan layanan. Mode Coba dapat menyimpan draft lokal. Akses petugas disimpan pada sesi browser petugas. Pada perangkat bersama, keluar dari akun dan tutup akses petugas setelah digunakan; jangan meninggalkan data percobaan yang bersifat pribadi.'],
+ ['Masa simpan dan penghapusan','Draft tanpa batas dua hari bukan janji penyimpanan selamanya. Data tetap berada dalam akun dan memakai kuota sampai dihapus atau ditangani sesuai kebutuhan operasional dan hukum. Arsip serta berakhirnya masa aktif publik tidak otomatis menghapus data. Hapus permanen membuang konten desain dan menjadwalkan pembersihan media yang tidak digunakan lagi. Data pernikahan yang masih dipakai, catatan transaksi, audit, atau salinan cadangan dapat memiliki masa simpan berbeda.'],
+ ['Mengakses dan memperbaiki data','Pemilik dapat memperbaiki konten di studio, mengelola data tamu, mengekspor laporan yang tersedia, menarik publikasi, dan menghapus desain melalui dashboard. Untuk permintaan data lain atau penghapusan akun yang belum tersedia sebagai tindakan mandiri, diperlukan pemeriksaan admin dan verifikasi kepemilikan. Menghapus satu undangan tidak sama dengan menghapus seluruh akun atau pernikahan.'],
+ ['Keamanan dan pembaruan','Akses akun dan fitur dibatasi melalui autentikasi dan kewenangan. Tidak ada sistem internet yang menjamin keamanan mutlak; jaga kredensial dan segera cabut tautan petugas yang tersebar. Kebijakan diperbarui bila pemrosesan layanan berubah. Ketentuan pelindungan data yang berlaku tetap menjadi dasar pemenuhan hak pengguna.']
+];
+export default function Privacy(){return <DocumentLayout eyebrow="INFORMASI LAYANAN" title="Kebijakan Privasi" intro="Data apa yang digunakan Samavaya, siapa yang dapat melihatnya, dan bagaimana kalian mengelolanya."><div className="policy-sections"><p className="policy-date">Diperbarui 5 November 2026</p>{sections.map(([title,text],i)=><section key={title}><h2>{i+1}. {title}</h2><p>{text}</p></section>)}<p><a href="/guide">Panduan pengelolaan data dan undangan</a> · <a href="/terms">Syarat & ketentuan</a></p><p>Rujukan: <a href="https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022" target="_blank" rel="noreferrer">UU Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi</a>.</p></div></DocumentLayout>}

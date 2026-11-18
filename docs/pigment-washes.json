@@ -1,0 +1,9 @@
+{
+  "mode": "Built-in image_gen",
+  "garden": "Use case: illustration-story. Asset: translucent watercolor pigment wash behind text for romantic ivory sage botanical garden wedding invitation. One large softly irregular rounded oval field of warm ivory with very faint sage grey pigment at peripheral edges. Subtle handmade cotton canvas pigment granulation, semi-transparent quiet even center with enough coverage for readable dark text, edges dissolve gradually into genuinely transparent alpha. Portrait 2:3. No clouds, no puffs, no scallops, no card, no rectangular paper, no torn paper, no border, no objects, no lettering, no shadow, no glow, no background. Restrained delicate watercolor wash painted in overlapping broad strokes, softly asymmetrical feathered edges. Center must be plain warm light cream, not white. Actual transparent background outside wash.",
+  "sekar": "Use case: illustration-story. Asset: translucent watercolor pigment wash behind text for Javanese dark brown maroon antique gold wedding invitation. One large softly irregular rounded oval field of warm parchment beige and light tan with faint antique gold ochre pigment at peripheral edges. Subtle handmade cotton canvas pigment granulation, semi-transparent quiet even center with enough coverage for readable dark text, edges dissolve gradually into genuinely transparent alpha. Portrait 2:3. No clouds, no puffs, no scallops, no card, no rectangular paper, no torn paper, no border, no objects, no lettering, no shadow, no glow, no background. Restrained delicate watercolor wash painted in overlapping broad strokes, softly asymmetrical feathered edges. Center must be plain warm light cream, not white. Actual transparent background outside wash.",
+  "assets": [
+    "frontend/public/templates/viridarium/assets/pigment-wash-v1.webp",
+    "frontend/public/templates/sekar-jawa/assets/pigment-wash-v1.webp"
+  ]
+}

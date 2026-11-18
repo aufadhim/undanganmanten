@@ -1,64 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-export default function Terms() {
-    return (
-        <div style={{ padding: '60px 8%', maxWidth: '900px', margin: '0 auto', fontFamily: 'var(--font-ui)', color: 'var(--ink)' }}>
-            <Link to="/" style={{ color: 'var(--wine-deep)', textDecoration: 'none', marginBottom: '30px', display: 'inline-block' }}>
-                &larr; Kembali ke Beranda
-            </Link>
-            
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '40px', marginBottom: '20px' }}>Syarat & Ketentuan</h1>
-            <p style={{ color: 'var(--ink-soft)', marginBottom: '40px' }}>Terakhir diperbarui: {new Date().toLocaleDateString('id-ID')}</p>
-
-            <div style={{ lineHeight: '1.8' }}>
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>1. Penerimaan Ketentuan</h2>
-                    <p>
-                        Dengan mengakses dan menggunakan platform UndanganManten, Anda menyetujui untuk terikat oleh Syarat dan Ketentuan ini. Jika Anda tidak setuju dengan bagian manapun dari ketentuan ini, Anda tidak diperkenankan untuk menggunakan layanan kami.
-                    </p>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>2. Penggunaan Layanan</h2>
-                    <p>
-                        Layanan kami disediakan "sebagaimana adanya" untuk memfasilitasi pembuatan undangan digital. Anda setuju untuk:
-                    </p>
-                    <ul>
-                        <li>Tidak menggunakan layanan ini untuk tujuan ilegal atau tidak sah.</li>
-                        <li>Tidak mengunggah konten yang mengandung kebencian, pornografi, ancaman, kekerasan, atau melanggar hak cipta.</li>
-                        <li>Bertanggung jawab penuh atas semua aktivitas yang terjadi di bawah akun Anda.</li>
-                    </ul>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>3. Paket dan Pembayaran</h2>
-                    <p>
-                        Kami menawarkan beberapa paket (Trial, Standard, Premium). Fitur dan batasan untuk setiap paket diuraikan di halaman Harga. Transaksi yang telah berhasil dilakukan tidak dapat dikembalikan (non-refundable) kecuali jika terjadi kesalahan dari sistem kami.
-                    </p>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>4. Masa Aktif Undangan</h2>
-                    <p>
-                        Undangan digital Premium akan tetap aktif hingga 30 hari setelah tanggal pernikahan (H+30), lalu otomatis diarsipkan atau tidak dapat diakses publik.
-                    </p>
-                </section>
-
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>5. Penghentian Layanan</h2>
-                    <p>
-                        Kami berhak untuk menangguhkan atau menghentikan akun Anda kapan saja jika kami mencurigai adanya pelanggaran terhadap Syarat dan Ketentuan ini, tanpa pemberitahuan sebelumnya atau pengembalian dana.
-                    </p>
-                </section>
-                
-                <section style={{ marginBottom: '30px' }}>
-                    <h2>6. Hubungi Kami</h2>
-                    <p>
-                        Jika Anda memiliki pertanyaan tentang Syarat dan Ketentuan ini, silakan hubungi kami di <strong>support@undanganmanten.com</strong>.
-                    </p>
-                </section>
-            </div>
-        </div>
-    );
-}
+import DocumentLayout from '../components/atelier/DocumentLayout.jsx';
+import './guide.css';
+const sections=[
+ ['Akun dan penggunaan layanan','Samavaya membantu membuat undangan digital serta mengelola tamu pernikahan. Gunakan identitas dan kontak yang benar, jaga kata sandi serta kode verifikasi, dan jangan membagikan akses pemilik akun kepada petugas acara. Pengguna bertanggung jawab atas konten dan tindakan dalam akunnya.'],
+ ['Draft, Mode Coba, dan kuota','Mode Coba menyimpan percobaan pada browser dan bukan publikasi. Undangan Trial pada akun adalah draft tanpa batas dua hari, belum dapat diakses publik, dan tetap memakai kuota. Batas akun adalah 3 undangan termasuk arsip, total 150 MB media, dan 50 MB per undangan. Batas fitur lain mengikuti paket dan informasi yang ditampilkan saat pemesanan.'],
+ ['Tema, konten, dan hak penggunaan','Tema dipakai untuk undangan di layanan Samavaya. Pengguna harus memiliki hak atau izin atas foto, ilustrasi, musik, video, dan data yang diunggah. Dilarang menggunakan layanan untuk penipuan, tindakan melawan hukum, pelecehan, konten kebencian, atau pelanggaran hak pihak lain. Penggunaan tema tidak memindahkan kepemilikan desain dan aset Samavaya.'],
+ ['Kapan dana dikembalikan','Jika dua pembayaran lunas untuk pembelian yang sama, Samavaya mengembalikan pembayaran berlebih. Jika nominal yang ditagih keliru, Samavaya mengembalikan selisih yang terverifikasi. Jika kesalahan Samavaya membuat layanan berbayar gagal diberikan atau tidak lagi dapat digunakan sesuai pesanan, Samavaya mengembalikan penuh jumlah yang dibayar untuk layanan yang gagal diberikan, termasuk biaya layanan terkait. Jika hanya add-on yang terdampak, pengembalian berlaku untuk add-on tersebut dan biaya layanan terkait. Perubahan pilihan tema atau rencana acara tidak otomatis memenuhi syarat refund. Hak konsumen berdasarkan hukum yang berlaku tetap berlaku.'],
+ ['Cara mengajukan dan menerima pengembalian','Hubungi mail@samavaya.web.id dengan nomor invoice atau referensi Tripay, email akun, bukti pembayaran, dan alasan. Untuk pembayaran ganda, sertakan kedua referensi. Samavaya memeriksa status dan nominal transaksi serta memastikan pengembalian belum diproses. Jika disetujui, Samavaya memberi tahu nominal, metode, estimasi, dan dampaknya pada akses paket. Dana dikembalikan melalui kanal asal jika tersedia. Jika penyedia pembayaran mengonfirmasi bahwa pengembalian harus ditangani Samavaya, dana dapat dikirim melalui transfer setelah tujuan dikonfirmasi. Pembayaran berlebih yang dikembalikan tidak membatalkan paket yang sah.'],
+ ['Paket, pembayaran, dan aktivasi','Pembayaran baru diproses melalui Tripay. Periksa rincian harga, fitur, serta total termasuk biaya kanal sebelum membayar. Aktivasi dilakukan setelah sistem memverifikasi pembayaran berhasil atau admin memberikan aktivasi resmi. Status menunggu dan menutup jendela pembayaran bukan bukti aktivasi. Pembayaran yang sudah berhasil tidak dapat dibatalkan hanya karena perubahan pilihan desain; kendala sistem atau kesalahan transaksi perlu diperiksa admin dengan bukti pembayaran. Ketentuan ini tidak menghapus hak pengguna berdasarkan hukum yang berlaku.'],
+ ['Publikasi dan masa aktif','Aktivasi paket dan publikasi adalah dua langkah berbeda. Pemilik harus melengkapi checklist lalu menerbitkan undangan agar tautan dapat dibuka tamu. Paket berbayar aktif sampai 30 hari setelah tanggal pernikahan. Setelah masa aktif berakhir, akses publik dihentikan; data tidak otomatis dihapus atau dipindahkan ke arsip. Perubahan tanggal acara dapat memengaruhi akhir masa aktif, sehingga tanggal harus diisi dengan benar.'],
+ ['Tamu, RSVP, dan Buku Tamu QR','Data tamu dan RSVP digunakan bersama oleh desain dalam satu pernikahan. Pengguna harus berwenang memasukkan dan membagikan data tamu. Buku Tamu QR merupakan tambahan terpisah; hak aktifnya digunakan dalam pernikahan yang sama. Tautan petugas memberi akses terbatas, memiliki masa berlaku, dan dapat dicabut. Pemilik bertanggung jawab atas pihak yang menerima akses. Check-in memerlukan koneksi internet dan bukan jaminan identitas pembawa QR.'],
+ ['Hadiah dan layanan pihak ketiga','Informasi rekening dan alamat hadiah disediakan oleh pemilik undangan. Transfer hadiah langsung kepada penerima dan berbeda dari pembayaran paket Samavaya. Pengguna wajib memastikan nomor rekening, tautan Maps, YouTube, Instagram, dan livestream benar. Konten dan ketersediaan layanan pihak ketiga mengikuti kebijakan penyedianya.'],
+ ['Arsip, hapus, dan ekspor','Arsip menghentikan akses publik dan tetap memakai kuota. Pulihkan mengembalikan undangan menjadi draft. Hapus permanen tidak dapat dibatalkan dan menghapus konten desain; data tamu/RSVP yang terkait pernikahan, media yang masih dipakai desain lain, serta catatan transaksi dan audit dapat tetap tersimpan. Ekspor laporan yang diperlukan sebelum menghapus.'],
+ ['Keamanan dan pembatasan akses','Samavaya dapat membatasi akses jika ditemukan penyalahgunaan, gangguan keamanan, atau pelanggaran ketentuan. Tindakan pengelolaan tertentu dicatat untuk keperluan operasional. Layanan memerlukan browser serta koneksi yang memadai; kami tidak menjanjikan akses tanpa gangguan pada semua perangkat.'],
+ ['Perubahan dan bantuan','Ketentuan dapat diperbarui mengikuti perubahan layanan. Versi pada halaman ini menjadi rujukan saat menggunakan layanan. Untuk kendala, siapkan identitas undangan dan pesan error; jangan mengirim kata sandi, kode verifikasi, atau tautan petugas ke pihak yang tidak berwenang. Panduan menjelaskan alur penggunaan dan pemecahan masalah.']
+];
+export default function Terms(){return <DocumentLayout eyebrow="INFORMASI LAYANAN" title="Syarat & Ketentuan" intro="Ketentuan penggunaan Samavaya, dari membuat draft sampai menyambut tamu."><div className="policy-sections"><p className="policy-date">Diperbarui 5 November 2026</p>{sections.map(([title,text],i)=><section key={title}><h2>{i+1}. {title}</h2><p>{text}</p></section>)}<p><a href="/guide">Baca panduan penggunaan</a> · <a href="/privacy">Kebijakan privasi</a></p></div></DocumentLayout>}

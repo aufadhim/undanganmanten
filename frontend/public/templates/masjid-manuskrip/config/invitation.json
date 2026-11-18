@@ -1,0 +1,1713 @@
+{
+  "schemaVersion": 1,
+  "template": "garden-canvas-v1",
+  "identity": {
+    "title": "Sahifah",
+    "bride": "Alina",
+    "groom": "Raka",
+    "brideFull": "Alina Putri",
+    "groomFull": "Raka Pratama",
+    "monogram": "A & R"
+  },
+  "event": {
+    "start": "2026-12-20T08:00:00+07:00",
+    "end": "2026-12-20T14:00:00+07:00",
+    "location": "Taman Janji, Jakarta",
+    "description": "Pernikahan Alina dan Raka"
+  },
+  "links": {
+    "brideInstagram": "",
+    "groomInstagram": "",
+    "location": "",
+    "livestream": "",
+    "filter": ""
+  },
+  "gift": {
+    "bank": "",
+    "number": "",
+    "holder": ""
+  },
+  "assets": {
+    "coverCouple": "/templates/masjid-manuskrip/assets/couple-watercolor-regional.webp",
+    "heroCouple": "/templates/masjid-manuskrip/assets/couple-watercolor-regional.webp",
+    "music": "/templates/viridarium/assets/garden-nocturne.mp3",
+    "galleryCouple": "/templates/masjid-manuskrip/assets/couple-watercolor-regional.webp",
+    "galleryBouquet": "/templates/masjid-manuskrip/assets/ilustrasi4.webp",
+    "galleryGarden": "/templates/masjid-manuskrip/assets/ilustrasi5.webp",
+    "room1": "/templates/masjid-manuskrip/assets/ilustrasi5.webp",
+    "room2": "/templates/masjid-manuskrip/assets/ilustrasi4.webp",
+    "room3": "/templates/masjid-manuskrip/assets/ilustrasi6.webp",
+    "room4": "/templates/masjid-manuskrip/assets/ilustrasi7.webp",
+    "cloud_cover": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_bride": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_groom": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_quote": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_event": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_gallery": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_form": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "cloud_closing": "/templates/viridarium/assets/pigment-wash-v1.webp",
+    "outer": "/templates/masjid-manuskrip/assets/ilustrasi8.webp",
+    "book": "/templates/masjid-manuskrip/assets/ilustrasi9.webp"
+  },
+  "style": {
+    "ink": "#57483d",
+    "accent": "#a28268",
+    "musicVolume": 0.3
+  },
+  "motion": {
+    "sameRoomMs": 3600,
+    "crossRoomMs": 4400,
+    "autoplayMs": 8500
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "room": 1,
+      "title": "Hero utama"
+    },
+    {
+      "id": "janji",
+      "room": 1,
+      "title": "QS. Ar-Rum"
+    },
+    {
+      "id": "wanita",
+      "room": 1,
+      "title": "Mempelai wanita"
+    },
+    {
+      "id": "pria",
+      "room": 1,
+      "title": "Mempelai pria"
+    },
+    {
+      "id": "countdown",
+      "room": 2,
+      "title": "Countdown"
+    },
+    {
+      "id": "akad",
+      "room": 2,
+      "title": "Akad & Resepsi"
+    },
+    {
+      "id": "rundown",
+      "room": 2,
+      "title": "Rundown acara"
+    },
+    {
+      "id": "cerita",
+      "room": 3,
+      "title": "Love story"
+    },
+    {
+      "id": "galeri",
+      "room": 3,
+      "title": "Galeri"
+    },
+    {
+      "id": "dresscode",
+      "room": 3,
+      "title": "Dress code"
+    },
+    {
+      "id": "livestream",
+      "room": 3,
+      "title": "Livestream"
+    },
+    {
+      "id": "filter",
+      "room": 3,
+      "title": "Bingkai Foto"
+    },
+    {
+      "id": "gift",
+      "room": 4,
+      "title": "Gift / Amplop digital"
+    },
+    {
+      "id": "rsvp",
+      "room": 4,
+      "title": "RSVP & Ucapan"
+    },
+    {
+      "id": "penutup",
+      "room": 4,
+      "title": "Footer / Penutup"
+    }
+  ],
+  "copy": {
+    "t000": {
+      "value": "{{bride}} & {{groom}} — A Garden of Promises",
+      "group": "Umum"
+    },
+    "t001": {
+      "value": "A",
+      "group": "Header"
+    },
+    "t002": {
+      "value": "&",
+      "group": "Header"
+    },
+    "t003": {
+      "value": "R",
+      "group": "Header"
+    },
+    "t004": {
+      "value": "{{title}}",
+      "group": "Header"
+    },
+    "t005": {
+      "value": "☰",
+      "group": "Header"
+    },
+    "t006": {
+      "value": "DESIGN PREVIEW · DATA CONTOH",
+      "group": "Header"
+    },
+    "t007": {
+      "value": "THE WEDDING CELEBRATION OF",
+      "group": "cover"
+    },
+    "t008": {
+      "value": "{{bride}} ",
+      "group": "cover"
+    },
+    "t009": {
+      "value": "&",
+      "group": "cover"
+    },
+    "t010": {
+      "value": " {{groom}}",
+      "group": "cover"
+    },
+    "t011": {
+      "value": "{{day}}",
+      "group": "cover"
+    },
+    "t012": {
+      "value": "{{monthUpper}}",
+      "group": "cover"
+    },
+    "t013": {
+      "value": "{{year}}",
+      "group": "cover"
+    },
+    "t014": {
+      "value": "Kepada Yth. Bapak / Ibu / Saudara/i",
+      "group": "cover"
+    },
+    "t015": {
+      "value": "Tamu Tersayang",
+      "group": "cover"
+    },
+    "t016": {
+      "value": "Open Invitation ",
+      "group": "cover"
+    },
+    "t017": {
+      "value": "↗",
+      "group": "cover"
+    },
+    "t018": {
+      "value": "Setiap halaman, selalu tentang kita.",
+      "group": "cover"
+    },
+    "t019": {
+      "value": "↺",
+      "group": "cover"
+    },
+    "t020": {
+      "value": "Ⅱ",
+      "group": "cover"
+    },
+    "t021": {
+      "value": "GERAKKAN KURSOR / SENTUH & GESER",
+      "group": "cover"
+    },
+    "t022": {
+      "value": "PRAMAYA · KISAH DI DALAM BUKU",
+      "group": "cover"
+    },
+    "t023": {
+      "value": "ILUSTRASI PASANGAN CONTOH",
+      "group": "cover"
+    },
+    "t024": {
+      "value": "02 / THE BEGINNING OF FOREVER",
+      "group": "hero"
+    },
+    "t025": {
+      "value": "SEBUAH JANJI, TUMBUH BERSAMA",
+      "group": "hero"
+    },
+    "t026": {
+      "value": "{{bride}} ",
+      "group": "hero"
+    },
+    "t027": {
+      "value": "&",
+      "group": "hero"
+    },
+    "t028": {
+      "value": "{{groom}}",
+      "group": "hero"
+    },
+    "t029": {
+      "value": "Di antara wangi melati,",
+      "group": "hero"
+    },
+    "t030": {
+      "value": "kita merawat sebuah janji.",
+      "group": "hero"
+    },
+    "t031": {
+      "value": "{{day}} ",
+      "group": "hero"
+    },
+    "t032": {
+      "value": " {{monthUpper}} ",
+      "group": "hero"
+    },
+    "t033": {
+      "value": " {{year}}",
+      "group": "hero"
+    },
+    "t034": {
+      "value": "THE WEDDING OF",
+      "group": "hero"
+    },
+    "t035": {
+      "value": "{{brideFull}} & {{groomFull}}",
+      "group": "hero"
+    },
+    "t036": {
+      "value": "JAKARTA · INDONESIA",
+      "group": "hero"
+    },
+    "t037": {
+      "value": "QS. AR-RUM ",
+      "group": "hero"
+    },
+    "t038": {
+      "value": "↓",
+      "group": "hero"
+    },
+    "t039": {
+      "value": "↺",
+      "group": "hero"
+    },
+    "t040": {
+      "value": "Ⅱ",
+      "group": "hero"
+    },
+    "t041": {
+      "value": "❦",
+      "group": "janji"
+    },
+    "t042": {
+      "value": "QS. AR-RUM · AYAT 21",
+      "group": "janji"
+    },
+    "t043": {
+      "value": "Salah satu tanda kebesaran-Nya adalah diciptakannya pasangan bagi kalian dari sesama manusia, supaya kalian menemukan kedamaian bersamanya. Dia menumbuhkan cinta dan kasih di antara kalian. Di dalamnya terdapat tanda-tanda bagi orang yang berpikir.",
+      "group": "janji"
+    },
+    "t044": {
+      "value": "AR-RUM [30] : 21 ",
+      "group": "janji"
+    },
+    "t045": {
+      "value": "↗",
+      "group": "janji"
+    },
+    "t046": {
+      "value": "LANJUT KE MEMPELAI ",
+      "group": "janji"
+    },
+    "t047": {
+      "value": "↓",
+      "group": "janji"
+    },
+    "t048": {
+      "value": "04 — THE BRIDE",
+      "group": "wanita"
+    },
+    "t049": {
+      "value": "{{bride}} ",
+      "group": "wanita"
+    },
+    "t050": {
+      "value": "Putri",
+      "group": "wanita"
+    },
+    "t051": {
+      "value": "Putri dari",
+      "group": "wanita"
+    },
+    "t052": {
+      "value": "Bapak [Nama Ayah]",
+      "group": "wanita"
+    },
+    "t053": {
+      "value": "&",
+      "group": "wanita"
+    },
+    "t054": {
+      "value": "Ibu [Nama Ibu]",
+      "group": "wanita"
+    },
+    "t055": {
+      "value": "Instagram ",
+      "group": "wanita"
+    },
+    "t056": {
+      "value": "↗",
+      "group": "wanita"
+    },
+    "t057": {
+      "value": "Nama contoh · akun belum diisi",
+      "group": "wanita"
+    },
+    "t058": {
+      "value": "MEMPELAI PRIA ",
+      "group": "wanita"
+    },
+    "t059": {
+      "value": "↓",
+      "group": "wanita"
+    },
+    "t060": {
+      "value": "05 — THE GROOM",
+      "group": "pria"
+    },
+    "t061": {
+      "value": "{{groom}} ",
+      "group": "pria"
+    },
+    "t062": {
+      "value": "Pratama",
+      "group": "pria"
+    },
+    "t063": {
+      "value": "Putra dari",
+      "group": "pria"
+    },
+    "t064": {
+      "value": "Bapak [Nama Ayah]",
+      "group": "pria"
+    },
+    "t065": {
+      "value": "&",
+      "group": "pria"
+    },
+    "t066": {
+      "value": "Ibu [Nama Ibu]",
+      "group": "pria"
+    },
+    "t067": {
+      "value": "Instagram ",
+      "group": "pria"
+    },
+    "t068": {
+      "value": "↗",
+      "group": "pria"
+    },
+    "t069": {
+      "value": "Nama contoh · akun belum diisi",
+      "group": "pria"
+    },
+    "t070": {
+      "value": "COUNTDOWN ",
+      "group": "pria"
+    },
+    "t071": {
+      "value": "↓",
+      "group": "pria"
+    },
+    "t072": {
+      "value": "06 — COUNTING EVERY MOMENT",
+      "group": "countdown"
+    },
+    "t073": {
+      "value": "Menanti hari ",
+      "group": "countdown"
+    },
+    "t074": {
+      "value": "bersanding.",
+      "group": "countdown"
+    },
+    "t075": {
+      "value": "Kami tak sabar merayakan awal yang baru,",
+      "group": "countdown"
+    },
+    "t076": {
+      "value": "bersama orang-orang tersayang.",
+      "group": "countdown"
+    },
+    "t077": {
+      "value": "00",
+      "group": "countdown"
+    },
+    "t078": {
+      "value": "HARI",
+      "group": "countdown"
+    },
+    "t079": {
+      "value": "00",
+      "group": "countdown"
+    },
+    "t080": {
+      "value": "JAM",
+      "group": "countdown"
+    },
+    "t081": {
+      "value": "00",
+      "group": "countdown"
+    },
+    "t082": {
+      "value": "MENIT",
+      "group": "countdown"
+    },
+    "t083": {
+      "value": "00",
+      "group": "countdown"
+    },
+    "t084": {
+      "value": "DETIK",
+      "group": "countdown"
+    },
+    "t085": {
+      "value": "Simpan tanggal",
+      "group": "countdown"
+    },
+    "t086": {
+      "value": "Tanggal contoh · {{dateLong}}, {{time}} WIB",
+      "group": "countdown"
+    },
+    "t087": {
+      "value": "07 — THE CELEBRATION",
+      "group": "akad"
+    },
+    "t088": {
+      "value": "Janji & ",
+      "group": "akad"
+    },
+    "t089": {
+      "value": "Perayaan",
+      "group": "akad"
+    },
+    "t090": {
+      "value": "{{weekdayUpper}} · {{dateUpper}}",
+      "group": "akad"
+    },
+    "t091": {
+      "value": "AKAD NIKAH",
+      "group": "akad"
+    },
+    "t092": {
+      "value": "08.00 – 10.00",
+      "group": "akad"
+    },
+    "t093": {
+      "value": "WIB · Janji suci kita",
+      "group": "akad"
+    },
+    "t094": {
+      "value": "RESEPSI",
+      "group": "akad"
+    },
+    "t095": {
+      "value": "11.00 – 14.00",
+      "group": "akad"
+    },
+    "t096": {
+      "value": "WIB · Merayakan bersama",
+      "group": "akad"
+    },
+    "t097": {
+      "value": "Taman Janji",
+      "group": "akad"
+    },
+    "t098": {
+      "value": "[Nama venue & alamat lengkap]",
+      "group": "akad"
+    },
+    "t099": {
+      "value": "Jakarta, Indonesia",
+      "group": "akad"
+    },
+    "t100": {
+      "value": "Lihat lokasi ↗",
+      "group": "akad"
+    },
+    "t101": {
+      "value": "Contoh satu lokasi · jam dan tempat dapat disesuaikan",
+      "group": "akad"
+    },
+    "t102": {
+      "value": "08 — A DAY TO REMEMBER",
+      "group": "rundown"
+    },
+    "t103": {
+      "value": "Rangkaian ",
+      "group": "rundown"
+    },
+    "t104": {
+      "value": "bahagia.",
+      "group": "rundown"
+    },
+    "t105": {
+      "value": "08.00",
+      "group": "rundown"
+    },
+    "t106": {
+      "value": "Akad nikah",
+      "group": "rundown"
+    },
+    "t107": {
+      "value": "Awal sebuah janji suci",
+      "group": "rundown"
+    },
+    "t108": {
+      "value": "♡",
+      "group": "rundown"
+    },
+    "t109": {
+      "value": "10.00",
+      "group": "rundown"
+    },
+    "t110": {
+      "value": "Sesi foto keluarga",
+      "group": "rundown"
+    },
+    "t111": {
+      "value": "Mengabadikan senyum bersama",
+      "group": "rundown"
+    },
+    "t112": {
+      "value": "✧",
+      "group": "rundown"
+    },
+    "t113": {
+      "value": "11.00",
+      "group": "rundown"
+    },
+    "t114": {
+      "value": "Resepsi & ramah tamah",
+      "group": "rundown"
+    },
+    "t115": {
+      "value": "Merayakan dengan orang terkasih",
+      "group": "rundown"
+    },
+    "t116": {
+      "value": "❦",
+      "group": "rundown"
+    },
+    "t117": {
+      "value": "14.00",
+      "group": "rundown"
+    },
+    "t118": {
+      "value": "Penutup",
+      "group": "rundown"
+    },
+    "t119": {
+      "value": "Membawa pulang kenangan manis",
+      "group": "rundown"
+    },
+    "t120": {
+      "value": "☼",
+      "group": "rundown"
+    },
+    "t121": {
+      "value": "Rundown contoh · seluruh waktu dalam WIB",
+      "group": "rundown"
+    },
+    "t122": {
+      "value": "09 — HOW OUR GARDEN GREW",
+      "group": "cerita"
+    },
+    "t123": {
+      "value": "Jejak ",
+      "group": "cerita"
+    },
+    "t124": {
+      "value": "cerita.",
+      "group": "cerita"
+    },
+    "t125": {
+      "value": "2022 · BENIH PERTAMA",
+      "group": "cerita"
+    },
+    "t126": {
+      "value": "Sebuah pertemuan",
+      "group": "cerita"
+    },
+    "t127": {
+      "value": "Dari percakapan sederhana, tumbuh rasa ingin mengenal lebih dekat.",
+      "group": "cerita"
+    },
+    "t128": {
+      "value": "2024 · MULAI BERTUMBUH",
+      "group": "cerita"
+    },
+    "t129": {
+      "value": "Memilih berjalan bersama",
+      "group": "cerita"
+    },
+    "t130": {
+      "value": "Di antara banyak perjalanan, kami belajar menjadi tempat pulang satu sama lain.",
+      "group": "cerita"
+    },
+    "t131": {
+      "value": "2026 · SELAMANYA",
+      "group": "cerita"
+    },
+    "t132": {
+      "value": "Satu janji untuk berdua",
+      "group": "cerita"
+    },
+    "t133": {
+      "value": "Kini, kami siap menuliskan bab berikutnya dalam ikatan pernikahan.",
+      "group": "cerita"
+    },
+    "t134": {
+      "value": "Cerita ilustratif · akan diganti cerita mempelai",
+      "group": "cerita"
+    },
+    "t135": {
+      "value": "10 — LITTLE PIECES OF US",
+      "group": "galeri"
+    },
+    "t136": {
+      "value": "Kenangan yang ",
+      "group": "galeri"
+    },
+    "t137": {
+      "value": "bersemi.",
+      "group": "galeri"
+    },
+    "t138": {
+      "value": "Beberapa potongan kecil dari cerita kami.",
+      "group": "galeri"
+    },
+    "t139": {
+      "value": "01 / Bersama",
+      "group": "galeri"
+    },
+    "t140": {
+      "value": "02 / Mekar",
+      "group": "galeri"
+    },
+    "t141": {
+      "value": "03 / Rumah",
+      "group": "galeri"
+    },
+    "t142": {
+      "value": "Ilustrasi pengganti foto · klik untuk memperbesar",
+      "group": "galeri"
+    },
+    "t143": {
+      "value": "11 — DRESSED IN LOVE",
+      "group": "dresscode"
+    },
+    "t144": {
+      "value": "Nuansa ",
+      "group": "dresscode"
+    },
+    "t145": {
+      "value": "sogan.",
+      "group": "dresscode"
+    },
+    "t146": {
+      "value": "Warna-warna hangat untuk merayakan",
+      "group": "dresscode"
+    },
+    "t147": {
+      "value": "hari istimewa bersama kami.",
+      "group": "dresscode"
+    },
+    "t148": {
+      "value": "Sage",
+      "group": "dresscode"
+    },
+    "t149": {
+      "value": "Ivory",
+      "group": "dresscode"
+    },
+    "t150": {
+      "value": "Sand",
+      "group": "dresscode"
+    },
+    "t151": {
+      "value": "Dusty rose",
+      "group": "dresscode"
+    },
+    "t152": {
+      "value": "Sogan & melati",
+      "group": "dresscode"
+    },
+    "t153": {
+      "value": "Kenakan pakaian yang nyaman untuk suasana taman.",
+      "group": "dresscode"
+    },
+    "t154": {
+      "value": "Palet dan dress code ini merupakan contoh.",
+      "group": "dresscode"
+    },
+    "t155": {
+      "value": "12 — LOVE KNOWS NO DISTANCE",
+      "group": "livestream"
+    },
+    "t156": {
+      "value": "▷",
+      "group": "livestream"
+    },
+    "t157": {
+      "value": "Dekat dalam ",
+      "group": "livestream"
+    },
+    "t158": {
+      "value": "doa.",
+      "group": "livestream"
+    },
+    "t159": {
+      "value": "Bagi Anda yang belum dapat hadir langsung,",
+      "group": "livestream"
+    },
+    "t160": {
+      "value": "mari menjadi saksi janji kami secara virtual.",
+      "group": "livestream"
+    },
+    "t161": {
+      "value": " SIARAN BELUM DIJADWALKAN",
+      "group": "livestream"
+    },
+    "t162": {
+      "value": "{{bride}} & {{groom}}",
+      "group": "livestream"
+    },
+    "t163": {
+      "value": "{{dateLong}} · {{time}} WIB",
+      "group": "livestream"
+    },
+    "t164": {
+      "value": "Tautan livestream belum diisi ↗",
+      "group": "livestream"
+    },
+    "t165": {
+      "value": "13 — CAPTURE THE JOY",
+      "group": "filter"
+    },
+    "t166": {
+      "value": "✧",
+      "group": "filter"
+    },
+    "t167": {
+      "value": "Abadikan ",
+      "group": "filter"
+    },
+    "t168": {
+      "value": "ceritanya.",
+      "group": "filter"
+    },
+    "t169": {
+      "value": "A & R",
+      "group": "filter"
+    },
+    "t170": {
+      "value": "our garden",
+      "group": "filter"
+    },
+    "t171": {
+      "value": "of promises",
+      "group": "filter"
+    },
+    "t172": {
+      "value": "{{dateNumeric}}",
+      "group": "filter"
+    },
+    "t173": {
+      "value": "Simpan senyum dan kenangan dari hari bahagia kami.",
+      "group": "filter"
+    },
+    "t174": {
+      "value": "Bingkai Foto belum dihubungkan ↗",
+      "group": "filter"
+    },
+    "t175": {
+      "value": "Konsep visual · tautan atau alternatif bingkai perlu disiapkan",
+      "group": "filter"
+    },
+    "t176": {
+      "value": "14 — A LITTLE TOKEN OF LOVE",
+      "group": "gift"
+    },
+    "t177": {
+      "value": "Tanda ",
+      "group": "gift"
+    },
+    "t178": {
+      "value": "kasih.",
+      "group": "gift"
+    },
+    "t179": {
+      "value": "Kehadiran dan doa Anda adalah hadiah terindah.",
+      "group": "gift"
+    },
+    "t180": {
+      "value": "Bila berkenan, tanda kasih dapat disampaikan",
+      "group": "gift"
+    },
+    "t181": {
+      "value": "melalui amplop digital.",
+      "group": "gift"
+    },
+    "t182": {
+      "value": "WEDDING GIFT ",
+      "group": "gift"
+    },
+    "t183": {
+      "value": "❦",
+      "group": "gift"
+    },
+    "t184": {
+      "value": "{{bride}} & {{groom}}",
+      "group": "gift"
+    },
+    "t185": {
+      "value": "Detail rekening belum ditambahkan",
+      "group": "gift"
+    },
+    "t186": {
+      "value": "Nama bank · nomor rekening · nama pemilik",
+      "group": "gift"
+    },
+    "t187": {
+      "value": "Belum menerima pembayaran · menunggu data rekening",
+      "group": "gift"
+    },
+    "t188": {
+      "value": "15 — YOUR PRESENCE, YOUR PRAYERS",
+      "group": "rsvp"
+    },
+    "t189": {
+      "value": "Kehadiran & ",
+      "group": "rsvp"
+    },
+    "t190": {
+      "value": "doa.",
+      "group": "rsvp"
+    },
+    "t191": {
+      "value": "Satu kabar darimu, satu doa untuk kami.",
+      "group": "rsvp"
+    },
+    "t192": {
+      "value": "Nama lengkap",
+      "group": "rsvp"
+    },
+    "t193": {
+      "value": "Kehadiran",
+      "group": "rsvp"
+    },
+    "t194": {
+      "value": "Pilih kehadiran",
+      "group": "rsvp"
+    },
+    "t195": {
+      "value": "Dengan senang hati, hadir",
+      "group": "rsvp"
+    },
+    "t196": {
+      "value": "Maaf, belum bisa hadir",
+      "group": "rsvp"
+    },
+    "t197": {
+      "value": "Belum dapat memastikan",
+      "group": "rsvp"
+    },
+    "t198": {
+      "value": "Jumlah tamu",
+      "group": "rsvp"
+    },
+    "t199": {
+      "value": "1 orang",
+      "group": "rsvp"
+    },
+    "t200": {
+      "value": "2 orang",
+      "group": "rsvp"
+    },
+    "t201": {
+      "value": "Ucapan & doa ",
+      "group": "rsvp"
+    },
+    "t202": {
+      "value": "(opsional)",
+      "group": "rsvp"
+    },
+    "t203": {
+      "value": "Simpan konfirmasi & ucapan ",
+      "group": "rsvp"
+    },
+    "t204": {
+      "value": "↗",
+      "group": "rsvp"
+    },
+    "t205": {
+      "value": "Ucapan yang bersemi ",
+      "group": "rsvp"
+    },
+    "t206": {
+      "value": "↓",
+      "group": "rsvp"
+    },
+    "t207": {
+      "value": "Mode demo · konfirmasi dan ucapan hanya disimpan di browser ini",
+      "group": "rsvp"
+    },
+    "t208": {
+      "value": "16 — WITH FULL HEARTS",
+      "group": "penutup"
+    },
+    "t209": {
+      "value": "❦",
+      "group": "penutup"
+    },
+    "t210": {
+      "value": "Terima ",
+      "group": "penutup"
+    },
+    "t211": {
+      "value": "kasih.",
+      "group": "penutup"
+    },
+    "t212": {
+      "value": "Atas setiap doa, kasih, dan kehadiran Anda.",
+      "group": "penutup"
+    },
+    "t213": {
+      "value": "Sampai jumpa di pelataran bahagia kami.",
+      "group": "penutup"
+    },
+    "t214": {
+      "value": "{{bride}} & {{groom}}",
+      "group": "penutup"
+    },
+    "t215": {
+      "value": "{{day}} ",
+      "group": "penutup"
+    },
+    "t216": {
+      "value": " {{monthName}} ",
+      "group": "penutup"
+    },
+    "t217": {
+      "value": " {{year}}",
+      "group": "penutup"
+    },
+    "t218": {
+      "value": "Kembali ke sampul ↑",
+      "group": "penutup"
+    },
+    "t219": {
+      "value": "{{title}}",
+      "group": "penutup"
+    },
+    "t220": {
+      "value": "Undangan interaktif · Sebuah kisah di Prambanan",
+      "group": "penutup"
+    },
+    "t221": {
+      "value": "Our little journey",
+      "group": "penutup"
+    },
+    "t222": {
+      "value": "×",
+      "group": "penutup"
+    },
+    "t223": {
+      "value": "02 / 16",
+      "group": "penutup"
+    },
+    "t224": {
+      "value": "Quote / Janji",
+      "group": "penutup"
+    },
+    "t225": {
+      "value": "▷",
+      "group": "penutup"
+    },
+    "t226": {
+      "value": "♫",
+      "group": "penutup"
+    },
+    "t227": {
+      "value": "▷",
+      "group": "penutup"
+    },
+    "t228": {
+      "value": "×",
+      "group": "penutup"
+    }
+  },
+  "layout": {
+    "coverWidth": 361.91042342339404,
+    "coverX": -7.4183688549451,
+    "coverY": 212.8536477358954,
+    "heroWidth": 349.0240047302291,
+    "heroX": -7.154225572801162,
+    "heroY": 264.3869611234294,
+    "closingOpacity": 0,
+    "heroBrideHeadX": 0.7302929687499999,
+    "heroBrideHeadY": 0.136,
+    "heroGroomHeadX": 0.29248046875,
+    "heroGroomHeadY": 0.101,
+    "coverFootY": 0.9306640625,
+    "heroFootY": 0.9306640625,
+    "profileBodyFraming": 1,
+    "profileBodyTop": 0.0498046875,
+    "profileBodyBottom": 0.9306640625,
+    "profileBodyLeft": 0.06442166910688141,
+    "profileBodyRight": 0.9765739385065886,
+    "profileHeight": 0.7,
+    "profileFootLine": 0.9,
+    "profileEdgeInset": 0.025,
+    "closingWidth": 293.8832512930479,
+    "closingX": -6.023961227090278,
+    "closingY": 330.0036213466558,
+    "closingFootY": 0.9306640625
+  },
+  "cameras": [
+    {
+      "id": "hero",
+      "mobile": {
+        "x": 0,
+        "y": 0,
+        "z": 1280,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 0,
+        "y": 0,
+        "z": 1280,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "janji",
+      "mobile": {
+        "x": -19.322,
+        "y": -145,
+        "z": 1126,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -19.322,
+        "y": -145,
+        "z": 1126,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "wanita",
+      "mobile": {
+        "x": 285.320744921548,
+        "y": 73.31331919968642,
+        "z": 1175.9266826783319,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 745.5344586154762,
+        "y": 153.9203993303572,
+        "z": 1058.271998565051,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "pria",
+      "mobile": {
+        "x": -284.2473860968024,
+        "y": 92.94545210160493,
+        "z": 1130.0171675983902,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -755.8007500154762,
+        "y": 153.9203993303572,
+        "z": 1058.271998565051,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "countdown",
+      "mobile": {
+        "x": -16,
+        "y": -15,
+        "z": 1380,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -16,
+        "y": -15,
+        "z": 1380,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "akad",
+      "mobile": {
+        "x": 16,
+        "y": 5,
+        "z": 1280,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 16,
+        "y": 5,
+        "z": 1280,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "rundown",
+      "mobile": {
+        "x": -8,
+        "y": 20,
+        "z": 1200,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -8,
+        "y": 20,
+        "z": 1200,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "cerita",
+      "mobile": {
+        "x": -48,
+        "y": -24,
+        "z": 1300,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -48,
+        "y": -24,
+        "z": 1300,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "galeri",
+      "mobile": {
+        "x": -24,
+        "y": -12,
+        "z": 1272,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -24,
+        "y": -12,
+        "z": 1272,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "dresscode",
+      "mobile": {
+        "x": 0,
+        "y": 0,
+        "z": 1244,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 0,
+        "y": 0,
+        "z": 1244,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "livestream",
+      "mobile": {
+        "x": 24,
+        "y": 12,
+        "z": 1216,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 24,
+        "y": 12,
+        "z": 1216,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "filter",
+      "mobile": {
+        "x": 48,
+        "y": 24,
+        "z": 1188,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 48,
+        "y": 24,
+        "z": 1188,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "gift",
+      "mobile": {
+        "x": -18,
+        "y": -10,
+        "z": 1360,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": -18,
+        "y": -10,
+        "z": 1360,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "rsvp",
+      "mobile": {
+        "x": 18,
+        "y": 8,
+        "z": 1320,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 18,
+        "y": 8,
+        "z": 1320,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "penutup",
+      "mobile": {
+        "x": 0,
+        "y": -15,
+        "z": 1080,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "wide": {
+        "x": 0,
+        "y": -15,
+        "z": 1080,
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      }
+    }
+  ],
+  "composition": {
+    "version": 1,
+    "stage": "all-sections-authored",
+    "referenceViewport": {
+      "width": 390,
+      "height": 844,
+      "lens": 750
+    },
+    "targets": {
+      "cover": {
+        "center": 0.5,
+        "foot": 0.76,
+        "span": 0.42,
+        "maxWidth": 0.8
+      },
+      "hero": {
+        "center": 0.5,
+        "foot": 0.9,
+        "span": 0.54,
+        "maxWidth": 0.88
+      }
+    },
+    "art": {
+      "cover": {
+        "width": 683,
+        "height": 1024,
+        "aspect": 0.6669921875,
+        "bounds": {
+          "left": 0.06442166910688141,
+          "right": 0.9765739385065886,
+          "top": 0.0498046875,
+          "bottom": 0.9306640625
+        }
+      },
+      "hero": {
+        "width": 683,
+        "height": 1024,
+        "aspect": 0.6669921875,
+        "bounds": {
+          "left": 0.06442166910688141,
+          "right": 0.9765739385065886,
+          "top": 0.0498046875,
+          "bottom": 0.9306640625
+        }
+      }
+    },
+    "cover": {
+      "layers": {},
+      "scaleGuide": {
+        "adultHeight": 0.22477777777777783,
+        "groundY": 0.79,
+        "footLine": 0.81,
+        "minimumCoverage": 1.4236282748393472,
+        "bodyFraction": 0,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280
+        }
+      }
+    },
+    "hero": {
+      "backgroundFitScale": 0.82,
+      "foreground": {
+        "fit": null,
+        "width": 746.18676,
+        "preserveAspect": true,
+        "anchor": "bottom",
+        "x": -19.322,
+        "y": 696.1706087805,
+        "z": 110,
+        "opacity": 0
+      },
+      "viewportFill": true,
+      "scaleGuide": {
+        "adultHeight": 0.22477777777777783,
+        "groundY": 0.79,
+        "footLine": 0.84,
+        "minimumCoverage": 1.4236282748393472,
+        "bodyFraction": 0,
+        "referencePose": {
+          "x": 0,
+          "y": 0,
+          "z": 1280,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    },
+    "book": {
+      "coverPortrait": true,
+      "centerY": 0.515,
+      "widthVw": 98,
+      "page": {
+        "left": 0.535,
+        "top": 0.18,
+        "width": 0.37,
+        "height": 0.65
+      },
+      "coverBodyRatio": 0.8909220877992827
+    },
+    "intro": {
+      "quoteMs": 4000,
+      "profileMs": 5000,
+      "returnMs": 3400,
+      "quoteOpacity": 0.12,
+      "profiles": {
+        "bodyFraming": true,
+        "singlePair": true,
+        "readingColumn": "opposite-subject",
+        "mobilePanelWidth": 0.5
+      }
+    },
+    "events": {
+      "entryMs": 6200,
+      "exitMs": 5400,
+      "localMs": 4000,
+      "overviewDepth": 70,
+      "readingTop": 0.48,
+      "readingWidthMobile": 460,
+      "sameLocation": "shared-venue",
+      "rundown": "preserve-editor-order"
+    },
+    "social": {
+      "ids": [
+        "cerita",
+        "galeri",
+        "dresscode",
+        "livestream",
+        "filter"
+      ],
+      "entryMs": 6200,
+      "exitMs": 5400,
+      "localMs": 4200,
+      "overviewDepth": 60
+    },
+    "finale": {
+      "ids": [
+        "gift",
+        "rsvp",
+        "penutup"
+      ],
+      "entryMs": 6200,
+      "exitMs": 5400,
+      "localMs": 4200,
+      "overviewDepth": 60
+    },
+    "grounding": {
+      "version": 5,
+      "headingOffsetPx": 30,
+      "bodyScreenHeight": 0.58,
+      "footLine": 0.9,
+      "removeFloatingFrames": true,
+      "reference": "kolom lorong",
+      "guide": {
+        "adultHeight": 0.63,
+        "groundY": 0.87,
+        "footLine": 0.94,
+        "bodyFraction": 0.68
+      },
+      "notes": "Estimated from painted perspective; user placement offsets remain additive.",
+      "baseGuide": {
+        "adultHeight": 0.63,
+        "groundY": 0.87,
+        "horizonY": 0.45
+      },
+      "framingReference": "ludora",
+      "placements": {
+        "cover": {
+          "width": 361.91042342339404,
+          "height": 542.6006933902715,
+          "x": -7.4183688549451,
+          "y": 212.8536477358954,
+          "z": 0,
+          "footY": 0.9306640625
+        },
+        "hero": {
+          "width": 349.0240047302291,
+          "height": 523.2804990391721,
+          "x": -7.154225572801162,
+          "y": 264.3869611234294,
+          "z": 0,
+          "footY": 0.9306640625
+        },
+        "closing": {
+          "width": 293.8832512930479,
+          "height": 440.60973546717577,
+          "x": -6.023961227090278,
+          "y": 330.0036213466558,
+          "z": 0,
+          "footY": 0.9306640625
+        }
+      },
+      "calibrationViewport": {
+        "width": 390,
+        "height": 844
+      },
+      "horizontalAlignment": "visible-body-center",
+      "paintingScale": {
+        "version": 1,
+        "notes": "Manual visual estimates from original artwork; normalized image coordinates. Metres are art-direction assumptions, not surveyed dimensions.",
+        "scenes": {
+          "cover": {
+            "asset": "room1",
+            "horizonY": 0.45,
+            "footY": 0.79,
+            "footX": 0.5,
+            "screenFootY": 0.81,
+            "centerOnCamera": true,
+            "humanMetres": 1.68,
+            "landmarks": [
+              {
+                "id": "near-courtyard-arch",
+                "height": 0.34,
+                "groundY": 0.72,
+                "metres": 3.2,
+                "weight": 1
+              }
+            ],
+            "framing": {
+              "minBody": 0.32,
+              "maxBody": 0.5,
+              "maximumCoverage": 2.6
+            },
+            "measurementConfidence": "estimated"
+          },
+          "hero": {
+            "asset": "room1",
+            "horizonY": 0.45,
+            "footY": 0.79,
+            "footX": 0.5,
+            "screenFootY": 0.84,
+            "centerOnCamera": true,
+            "humanMetres": 1.68,
+            "landmarks": [
+              {
+                "id": "near-courtyard-arch",
+                "height": 0.34,
+                "groundY": 0.72,
+                "metres": 3.2,
+                "weight": 1
+              }
+            ],
+            "framing": {
+              "minBody": 0.32,
+              "maxBody": 0.5,
+              "maximumCoverage": 2.6
+            },
+            "measurementConfidence": "estimated"
+          },
+          "closing": {
+            "asset": "room4",
+            "horizonY": 0.45,
+            "footY": 0.79,
+            "footX": 0.5,
+            "screenFootY": 0.94,
+            "centerOnCamera": true,
+            "humanMetres": 1.68,
+            "landmarks": [
+              {
+                "id": "near-colonnade-opening",
+                "height": 0.32,
+                "groundY": 0.69,
+                "metres": 3.2,
+                "weight": 1
+              }
+            ],
+            "framing": {
+              "minBody": 0.3,
+              "maxBody": 0.45,
+              "maximumCoverage": 2.6
+            },
+            "measurementConfidence": "estimated"
+          }
+        },
+        "results": {
+          "cover": {
+            "reference": "near-courtyard-arch",
+            "candidates": [
+              {
+                "id": "near-courtyard-arch",
+                "weight": 1,
+                "height": 0.22477777777777783
+              }
+            ],
+            "bodyFraction": 0.33181481481481495,
+            "screenFootY": 0.81,
+            "environmentZ": -1600,
+            "characterZ": 0
+          },
+          "hero": {
+            "reference": "near-courtyard-arch",
+            "candidates": [
+              {
+                "id": "near-courtyard-arch",
+                "weight": 1,
+                "height": 0.22477777777777783
+              }
+            ],
+            "bodyFraction": 0.32,
+            "screenFootY": 0.84,
+            "environmentZ": -1600,
+            "characterZ": 0
+          },
+          "closing": {
+            "reference": "near-colonnade-opening",
+            "candidates": [
+              {
+                "id": "near-colonnade-opening",
+                "weight": 1,
+                "height": 0.23800000000000004
+              }
+            ],
+            "bodyFraction": 0.31934177215189885,
+            "screenFootY": 0.9400000000000001,
+            "environmentZ": -1600,
+            "characterZ": 0
+          }
+        }
+      }
+    },
+    "singleCouple": true,
+    "closing": {
+      "absolutePosition": true,
+      "scaleGuide": {
+        "adultHeight": 0.23800000000000004,
+        "groundY": 0.79,
+        "footLine": 0.94,
+        "minimumCoverage": 1.32,
+        "bodyFraction": 0,
+        "referencePose": {
+          "x": 0,
+          "y": -15,
+          "z": 1080,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0
+        }
+      }
+    }
+  }
+}

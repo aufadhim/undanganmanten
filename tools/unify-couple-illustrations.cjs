@@ -1,0 +1,11 @@
+const fs=require('./lib/scene-authoring-fs.cjs'),path=require('path'),root=path.resolve(__dirname,'..'),rows=require('../docs/TEMPLATE_SCAFFOLDS.json');
+const ids=[...rows.map(r=>r.id),'viridarium','sekar-jawa','pramaya','riviera','wasesa','ludora'],released=[];
+for(const id of ids){const dir=path.join(root,'frontend/public/templates',id),file=path.join(dir,'config/invitation.json'),src=path.join(root,'frontend/src/components/templates',id,'defaultConfig.json');if(!fs.existsSync(file))continue;const c=JSON.parse(fs.readFileSync(file)),old=c.assets.heroCouple;
+if(old&&old!==c.assets.coverCouple)released.push(old);c.assets.heroCouple=c.assets.coverCouple;
+c.composition??={};c.composition.singleCouple=true;
+if(c.composition.art){const before=c.composition.art.hero,after=c.composition.art.cover;if(before&&after){const scale=(before.bounds.bottom-before.bounds.top)/(after.bounds.bottom-after.bounds.top);const oldHeight=c.layout.heroWidth/before.aspect,newHeight=oldHeight*scale;c.layout.heroWidth=newHeight*after.aspect;c.layout.heroY+=oldHeight*((c.layout.heroFootY??before.bounds.bottom)-.5)-newHeight*(after.bounds.bottom-.5);c.layout.heroFootY=after.bounds.bottom;c.composition.art.hero=structuredClone(after);c.layout.heroGroomHeadX=after.bounds.left+(after.bounds.right-after.bounds.left)*.25;c.layout.heroBrideHeadX=after.bounds.left+(after.bounds.right-after.bounds.left)*.73;}}
+for(const [k,v]of Object.entries(c.assets))if(v===old&&old!==c.assets.coverCouple)c.assets[k]=c.assets.coverCouple;
+for(const p of [file,src])if(fs.existsSync(p))fs.writeFileSync(p,JSON.stringify(c,null,2)+'\n');
+const manifest=path.join(dir,'assets/manifest.json');if(fs.existsSync(manifest)){const m=JSON.parse(fs.readFileSync(manifest));m.singleCouple=true;if(m.illustrations)for(const a of m.illustrations){a.usedBy=Object.entries(c.assets).filter(([,v])=>v===a.path).map(([k])=>'config.assets.'+k);if(a.path===old&&old!==c.assets.coverCouple)a.status='superseded';}fs.writeFileSync(manifest,JSON.stringify(m,null,2)+'\n');}
+}
+fs.mkdirSync(path.join(root,'output/asset-cleanup'),{recursive:true});fs.writeFileSync(path.join(root,'output/asset-cleanup/released-couple-assets.json'),JSON.stringify([...new Set(released)],null,2)+'\n');

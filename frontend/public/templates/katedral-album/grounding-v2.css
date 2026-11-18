@@ -1,0 +1,5 @@
+/* Direct top offset: engine 3 intentionally disables CSS translate. */
+:root body.template-katedral-album #cover .cover-heading,:root body.template-katedral-album #journey .hero-heading{top:calc(10.5% + 30px)!important;translate:none!important}
+@media(min-width:900px){:root body.template-katedral-album #cover .cover-heading,:root body.template-katedral-album #journey .hero-heading{top:calc(8.5% + 30px)!important}}
+@media(max-height:700px){:root body.template-katedral-album #cover .cover-heading,:root body.template-katedral-album #journey .hero-heading{top:calc(7% + 30px)!important}}
+

@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {framePhotoRect} from '../src/utils/photoFrame.js';
+test('portrait and landscape photos fill frame without stretching',()=>{for(const [pw,ph] of [[400,800],[1200,600],[600,600]]){const r=framePhotoRect(pw,ph,600,800);assert.ok(r.width>=600&&r.height>=800);assert.equal(r.width/r.height,pw/ph);assert.equal(r.x,(600-r.width)/2);assert.equal(r.y,(800-r.height)/2)}});
+test('position sliders cannot expose empty areas within the photo rectangle',()=>{for(const z of [1,2,3])for(const x of [-1,0,1])for(const y of [-1,0,1]){const r=framePhotoRect(1000,700,600,800,z,x,y);assert.ok(r.x<=0&&r.y<=0);assert.ok(r.x+r.width>=600&&r.y+r.height>=800)}});

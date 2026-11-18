@@ -1,218 +1,34 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { api } from '../api/client';
-import { useTranslation } from 'react-i18next';
-import { useUI } from '../context/UIContext';
-import debounce from 'lodash.debounce';
-
-const FONTS = [
-    { value: "'Playfair Display', serif", label: 'Playfair Display' },
-    { value: "'Cinzel', serif", label: 'Cinzel' },
-    { value: "'Cormorant Garamond', serif", label: 'Cormorant Garamond' },
-    { value: "'Montserrat', sans-serif", label: 'Montserrat' },
-    { value: "'Lato', sans-serif", label: 'Lato' },
-    { value: "'Inter', sans-serif", label: 'Inter' },
-    { value: "'Manrope', sans-serif", label: 'Manrope' },
-    { value: "'Great Vibes', cursive", label: 'Great Vibes' },
-    { value: "'Dancing Script', cursive", label: 'Dancing Script' },
-    { value: "'Outfit', sans-serif", label: 'Outfit' },
-    { value: "'DM Serif Display', serif", label: 'DM Serif Display' },
-    { value: "'Bodoni Moda', serif", label: 'Bodoni Moda' },
-    { value: "'Libre Baskerville', serif", label: 'Libre Baskerville' },
-    { value: "'Lora', serif", label: 'Lora' },
-    { value: "'Marcellus', serif", label: 'Marcellus' },
-    { value: "'Prata', serif", label: 'Prata' },
-    { value: "'Poppins', sans-serif", label: 'Poppins' },
-    { value: "'Jost', sans-serif", label: 'Jost' },
-    { value: "'Sacramento', cursive", label: 'Sacramento' },
-    { value: "'Caveat', cursive", label: 'Caveat' },
-];
-
-const DEFAULT_TYPOGRAPHY = {
-    fontHeading: "'Playfair Display', serif",
-    fontBody: "'Manrope', sans-serif",
-    headingLineHeight: 1.15,
-    bodyLineHeight: 1.65,
-    headingLetterSpacing: 0,
-    bodyLetterSpacing: 0,
-};
-
-function RangeControl({ label, value, min, max, step, unit = '', onChange }) {
-    return (
-        <label style={{ display: 'block', marginBottom: 18 }}>
-            <span style={{ display: 'flex', justifyContent: 'space-between', gap: 12, marginBottom: 8, fontSize: 13, color: '#374151' }}>
-                <strong>{label}</strong>
-                <span style={{ fontVariantNumeric: 'tabular-nums', color: '#7a2436' }}>{Number(value).toFixed(step < 0.1 ? 2 : 1)}{unit}</span>
-            </span>
-            <input type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} style={{ width: '100%', accentColor: '#7a2436' }} />
-        </label>
-    );
-}
-
-export default function TypographyPanel({ invitation, onUpdated, onLivePreview }) {
-    const { t } = useTranslation();
-    const { toast } = useUI();
-    const [saving, setSaving] = useState(false);
-
-    const [typography, setTypography] = useState(DEFAULT_TYPOGRAPHY);
-
-    useEffect(() => {
-        if (invitation?.themeSettings?.typography) {
-            setTypography({ ...DEFAULT_TYPOGRAPHY, ...invitation.themeSettings.typography });
-        }
-    }, [invitation?.id]);
-
-    // Live preview debounce
-    const updatePreview = useMemo(
-        () => debounce((newTypo) => {
-            if (onLivePreview) {
-                onLivePreview({
-                    themeSettings: {
-                        ...invitation?.themeSettings,
-                        typography: newTypo
-                    }
-                });
-            }
-        }, 300),
-        [invitation, onLivePreview]
-    );
-
-    useEffect(() => () => updatePreview.cancel(), [updatePreview]);
-
-    const handleTypographyChange = (field, value) => {
-        const newTypo = { ...typography, [field]: value };
-        setTypography(newTypo);
-        updatePreview(newTypo);
-    };
-
-    const handleSave = async () => {
-        setSaving(true);
-        try {
-            const res = await api.patch('/invitations/me/theme', {
-                typography: typography
-            });
-            // Merge themeSettings back into invitation for the parent
-            if (onUpdated) {
-                onUpdated({ ...invitation, themeSettings: { ...invitation.themeSettings, ...res.data.themeSettings } });
-            }
-            toast.success('Pengaturan Typography berhasil disimpan');
-            if (onLivePreview) onLivePreview(null);
-        } catch (err) {
-            toast.error(err.response?.data?.error || 'Gagal menyimpan typography');
-        } finally {
-            setSaving(false);
-        }
-    };
-
-    return (
-        <div className="panel-content">
-            <div style={{ marginBottom: '24px' }}>
-                <h2 className="panel-header" style={{ margin: 0, fontSize: '1.25rem', fontWeight: '600' }}>Ubah Typography</h2>
-                <p style={{ margin: '4px 0 0 0', color: '#6b7280', fontSize: '0.9rem' }}>
-                    Sesuaikan jenis huruf, jarak baris, dan kerapatan karakter undangan Anda.
-                </p>
-            </div>
-
-            <div className="panel-form">
-                <div className="form-group" style={{ marginBottom: '32px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '600', color: '#374151', display: 'block', marginBottom: '8px' }}>Font Heading (Judul Utama)</label>
-                    <div className="select-wrapper" style={{ marginBottom: '8px' }}>
-                        <select 
-                            value={typography.fontHeading || "'Playfair Display', serif"} 
-                            onChange={(e) => handleTypographyChange('fontHeading', e.target.value)}
-                        >
-                            {FONTS.map(font => (
-                                <option key={font.value} value={font.value}>{font.label}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <p className="form-help" style={{ marginBottom: '16px', color: '#6b7280', fontSize: '0.85rem' }}>Digunakan untuk nama mempelai dan judul seksi besar.</p>
-                    
-                    <div style={{ 
-                        padding: '32px 24px', 
-                        background: 'linear-gradient(to right bottom, #ffffff, #fafaf9)', 
-                        borderRadius: '12px', 
-                        border: '1px solid #e5e7eb', 
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                        textAlign: 'center',
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}>
-                        <div style={{ position: 'absolute', top: '-10px', left: '-10px', fontSize: '120px', color: '#f3f4f6', opacity: '0.6', fontFamily: 'serif', lineHeight: '1', zIndex: '0', userSelect: 'none' }}>Aa</div>
-                        <h1 style={{ 
-                            fontFamily: typography.fontHeading, 
-                            margin: 0, 
-                            fontSize: '2.5rem', 
-                            color: '#111827', 
-                            fontWeight: 'normal',
-                            lineHeight: typography.headingLineHeight,
-                            letterSpacing: `${typography.headingLetterSpacing}em`,
-                            position: 'relative',
-                            zIndex: '1'
-                        }}>
-                            Romeo & Juliet
-                        </h1>
-                    </div>
-                </div>
-
-                <div className="form-group" style={{ marginBottom: '32px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '600', color: '#374151', display: 'block', marginBottom: '8px' }}>Font Body (Teks Isi)</label>
-                    <div className="select-wrapper" style={{ marginBottom: '8px' }}>
-                        <select 
-                            value={typography.fontBody || "'Manrope', sans-serif"} 
-                            onChange={(e) => handleTypographyChange('fontBody', e.target.value)}
-                        >
-                            {FONTS.map(font => (
-                                <option key={font.value} value={font.value}>{font.label}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <p className="form-help" style={{ marginBottom: '16px', color: '#6b7280', fontSize: '0.85rem' }}>Digunakan untuk paragraf panjang, deskripsi, informasi acara, dsb.</p>
-                    
-                    <div style={{ 
-                        padding: '32px 24px', 
-                        background: 'linear-gradient(to right bottom, #ffffff, #fafaf9)', 
-                        borderRadius: '12px', 
-                        border: '1px solid #e5e7eb', 
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}>
-                        <div style={{ position: 'absolute', top: '5px', left: '10px', fontSize: '60px', color: '#f3f4f6', opacity: '0.8', fontFamily: 'serif', lineHeight: '1', zIndex: '0', userSelect: 'none' }}>"</div>
-                        <p style={{ 
-                            fontFamily: typography.fontBody, 
-                            margin: 0, 
-                            fontSize: '1.05rem', 
-                            color: '#4b5563', 
-                            lineHeight: typography.bodyLineHeight,
-                            letterSpacing: `${typography.bodyLetterSpacing}em`,
-                            position: 'relative',
-                            zIndex: '1',
-                            textAlign: 'center'
-                        }}>
-                            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="form-group" style={{ marginBottom: 32, padding: 20, background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12 }}>
-                    <h3 style={{ margin: '0 0 6px', fontSize: 15, color: '#1f2937' }}>Jarak &amp; Kerapatan</h3>
-                    <p className="form-help" style={{ margin: '0 0 20px', color: '#6b7280', fontSize: 12 }}>Heading dan teks isi diatur terpisah agar judul dekoratif tetap cantik tanpa mengurangi keterbacaan paragraf.</p>
-                    <RangeControl label="Jarak baris heading" value={typography.headingLineHeight} min={0.8} max={2} step={0.05} onChange={(value) => handleTypographyChange('headingLineHeight', value)} />
-                    <RangeControl label="Jarak huruf heading" value={typography.headingLetterSpacing} min={-0.08} max={0.3} step={0.01} unit="em" onChange={(value) => handleTypographyChange('headingLetterSpacing', value)} />
-                    <RangeControl label="Jarak baris teks isi" value={typography.bodyLineHeight} min={1} max={2.5} step={0.05} onChange={(value) => handleTypographyChange('bodyLineHeight', value)} />
-                    <RangeControl label="Jarak huruf teks isi" value={typography.bodyLetterSpacing} min={-0.04} max={0.2} step={0.01} unit="em" onChange={(value) => handleTypographyChange('bodyLetterSpacing', value)} />
-                </div>
-
-                <div className="panel-actions" style={{ marginTop: '30px' }}>
-                    <button className="btn-save" onClick={handleSave} disabled={saving}>
-                        {saving ? (
-                            <span><i className="fa-solid fa-spinner fa-spin"></i> Menyimpan...</span>
-                        ) : (
-                            <span><i className="fa-solid fa-floppy-disk"></i> Simpan Typography</span>
-                        )}
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
+import {TYPOGRAPHY_METRICS,resolveTypographyMetrics} from '../../public/templates/shared/typography-settings.js';
+import {useEffect,useState} from 'react';
+import {api} from '../api/client.js';
+import {useAutoSave} from '../hooks/useAutoSave.js';
+import {THEME_DEFAULT_SETTINGS} from '../config/themePresets.js';
+import {ensureFontLoaded} from '../utils/fontLoader.js';
+import './typography-panel.css';
+const HEADING=['Dancing Script','Great Vibes','Tangerine','Birthstone','Hurricane','Cookie','Charm','Beau Rivage','Engagement','Explora','Alex Brush','Rochester','Allura'];
+const BODY=['Cormorant Garamond','Lora','Libre Baskerville','Playfair Display','Bodoni Moda','DM Serif Display','Fraunces','Marcellus','Bellefair'];
+const measures=TYPOGRAPHY_METRICS;
+const family=value=>String(value||'').split(',')[0].replace(/['"]/g,'').trim();
+function Range({label,value,min,max,step,onChange,percent=false,unit='',inherited=false}){return <label className="type-range"><span><strong>{label}</strong><output>{inherited?'Bawaan':percent?Math.round(value*100):Number(value).toFixed(2)}{inherited?'':percent?'%':unit}</output></span><input aria-label={label} type="range" value={value} min={min} max={max} step={step} onChange={e=>onChange(Number(e.target.value))}/></label>}
+export default function TypographyPanel({invitation,onUpdated,onLivePreview,activeSection,mode='fonts',scopeOptions}){
+ const [scope,setScope]=useState(()=>scopeOptions?.[0]||'quote');
+ useEffect(()=>{if(scopeOptions?.length)setScope(scopeOptions.includes(activeSection)?activeSection:scopeOptions[0])},[activeSection,scopeOptions?.join(',')]);
+ const scopes={cover:'Sampul',hero:'Hero',quote:'Kutipan / doa',bride:'Mempelai wanita',groom:'Mempelai pria',profile:'Profil pasangan',countdown:'Countdown',events:'Akad & resepsi',rundown:'Rundown',story:'Love story',gallery:'Galeri',dresscode:'Dress code',livestream:'Livestream',igFilter:'Bingkai Foto',gift:'Hadiah',rsvp:'Form RSVP',wishes:'Teks ucapan',wishList:'Daftar ucapan',footer:'Penutup'};
+ const preset=THEME_DEFAULT_SETTINGS[invitation.themeId]?.typography||{fontHeading:'Cormorant Garamond',fontBody:'Montserrat'};
+ const baseline={...measures,...preset,metricsMode:'template'};
+ const [typo,setTypo]=useState(()=>({...baseline,...invitation.themeSettings?.typography}));
+ useEffect(()=>{setTypo({...baseline,...invitation.themeSettings?.typography})},[invitation.id,invitation.themeId]);
+ const {schedule,status,retry}=useAutoSave(`${invitation.id}:${invitation.themeId}`,async typography=>{const {data}=await api.patch('/invitations/me/theme',{invitationId:invitation.id,typography},{notification:false});return data.themeSettings},(themeSettings)=>{onUpdated({...invitation,themeSettings:{...invitation.themeSettings,...themeSettings}});onLivePreview?.(null)});
+ useEffect(()=>{ensureFontLoaded(typo.fontHeading);ensureFontLoaded(typo.fontBody)},[typo.fontHeading,typo.fontBody]);
+ const metricValues=resolveTypographyMetrics(typo,scope);
+ const inherited=key=>metricValues.metricsMode==='template'||!Object.hasOwn(typo.sections?.[scope]||typo,key);
+ function change(key,value){const font=key.startsWith('font');const next=font?{...typo,[key]:value}:{...typo,sections:{...typo.sections,[scope]:{...typo.sections?.[scope],[key]:value,metricsMode:'custom'}}};setTypo(next);onLivePreview?.({themeSettings:{typography:next}});schedule(next)}
+ function resetAll(){const next={...typo,fontHeading:preset.fontHeading,fontBody:preset.fontBody};setTypo(next);onLivePreview?.({themeSettings:{typography:next}});schedule(next)}
+ function reset(){const next={...typo,sections:{...typo.sections,[scope]:{...measures,metricsMode:'template'}}};setTypo(next);onLivePreview?.({themeSettings:{typography:next}});schedule(next)}
+ const options=(list,current,builtin)=>[...new Set([family(builtin),family(current),...list])].filter(Boolean);
+ return <div className="panel-content typography-panel"><div className="type-panel-header"><h2 className="panel-header">{mode==='fonts'?'Jenis Huruf':'Ukuran & Jarak Teks'}</h2>{mode==='metrics'&&<button type="button" onClick={reset}>Reset bagian</button>}</div><p className="panel-sub">{mode==='fonts'?'Pilih jenis huruf untuk seluruh undangan. Ukuran dan jarak teks diatur langsung pada tab Konten.':'Atur ukuran dan jarak teks bagian ini. Perubahan tersimpan otomatis tanpa mengubah bagian lain.'}</p>
+ <p className="panel-sub" role="status">{status==='saving'?'Menyimpan pengaturan…':status==='error'?<>Pengaturan belum tersimpan. <button type="button" onClick={retry}>Coba lagi</button></>:'Pengaturan tersimpan otomatis.'}</p>
+ {mode==='metrics'&&scope==='rsvp'&&<section className="type-section"><h3>Ukuran form</h3><Range label="Lebar form" value={metricValues.formWidth??1} min={.7} max={1} step={.05} percent onChange={v=>change('formWidth',v)}/><Range label="Jarak antar isian" value={metricValues.formGap??14} min={8} max={28} step={1} unit=" px" onChange={v=>change('formGap',v)}/></section>}
+ {mode==='metrics'&&<><label className="type-font-label">Bagian yang diatur<select value={scope} onChange={e=>setScope(e.target.value)}>{(scopeOptions||Object.keys(scopes)).map(id=><option key={id} value={id}>{scopes[id]}</option>)}</select></label><p className="panel-sub">Ukuran khusus {scopes[scope]}. Bagian lain tidak ikut berubah.</p></>}{(mode==='fonts'||scope!=='quote')&&<section className="type-section"><h3>{mode==='fonts'&&invitation.themeId==='engine-4'?'Heading · Nama mempelai':'Heading · Nama & judul'}</h3><p>{mode==='fonts'?(invitation.themeId==='engine-4'?'Untuk nama di hero, profil mempelai, dan penutup.':'Untuk nama pasangan dan judul bagian.'):'Ukuran dan jarak nama atau judul pada bagian ini.'}</p>{mode==='fonts'&&<label className="type-font-label">Jenis huruf<select value={HEADING.includes(family(typo.fontHeading))?family(typo.fontHeading):family(preset.fontHeading)} onChange={e=>change('fontHeading',e.target.value)}>{options(HEADING,'',preset.fontHeading).map(font=><option key={font} value={font}>{font}{font===family(preset.fontHeading)?' · bawaan':''}</option>)}</select></label>}{mode==='fonts'&&<div className="type-sample" style={{fontFamily:typo.fontHeading,fontSize:`calc(var(--type-heading-sample, 40px) * ${metricValues.headingScale})`,lineHeight:metricValues.headingLineHeight,letterSpacing:`${metricValues.headingLetterSpacing}em`}}>{invitation.coupleProfile?.brideName||'Arunika'} &amp; {invitation.coupleProfile?.groomName||'Deva'}</div>}{mode==='metrics'&&<><Range label="Ukuran heading" value={metricValues.headingScale} min={.5} max={1.5} step={.05} percent onChange={v=>change('headingScale',v)}/><Range label="Jarak baris heading" inherited={inherited('headingLineHeight')} value={metricValues.headingLineHeight} min={.8} max={2} step={.05} onChange={v=>change('headingLineHeight',v)}/><Range label="Jarak huruf heading" inherited={inherited('headingLetterSpacing')} value={metricValues.headingLetterSpacing} min={-.08} max={.3} step={.01} unit=" em" onChange={v=>change('headingLetterSpacing',v)}/></>}</section>}
+ <section className="type-section"><h3>Body · Teks isi</h3><p>Untuk kutipan, cerita, informasi acara, dan keterangan.</p>{mode==='fonts'&&<label className="type-font-label">Jenis huruf<select value={family(typo.fontBody)} onChange={e=>change('fontBody',e.target.value)}>{options(BODY,typo.fontBody,preset.fontBody).map(font=><option key={font} value={font}>{font}{font===family(preset.fontBody)?' · bawaan':''}</option>)}</select></label>}{mode==='fonts'&&<p className="type-sample" style={{fontFamily:typo.fontBody,fontSize:`calc(var(--type-body-sample, 17px) * ${metricValues.bodyScale})`,lineHeight:metricValues.bodyLineHeight,letterSpacing:`${metricValues.bodyLetterSpacing}em`}}>Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>}{mode==='metrics'&&<><Range label="Ukuran teks isi" value={metricValues.bodyScale} min={.75} max={1.5} step={.05} percent onChange={v=>change('bodyScale',v)}/><Range label="Jarak baris teks isi" inherited={inherited('bodyLineHeight')} value={metricValues.bodyLineHeight} min={1} max={2.5} step={.05} onChange={v=>change('bodyLineHeight',v)}/><Range label="Jarak huruf teks isi" inherited={inherited('bodyLetterSpacing')} value={metricValues.bodyLetterSpacing} min={-.04} max={.2} step={.01} unit=" em" onChange={v=>change('bodyLetterSpacing',v)}/></>}</section><p className="panel-sub">{mode==='fonts'?'Periksa nama panjang dan paragraf pada pratinjau setelah mengganti font.':'100% memakai ukuran bawaan template. Reset bagian hanya mengembalikan ukuran dan jarak bagian yang dipilih.'}</p>{mode==='fonts'&&<button type="button" className="type-reset-fonts" onClick={resetAll}>Reset jenis huruf</button>}</div>
 }

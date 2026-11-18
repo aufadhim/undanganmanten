@@ -1,0 +1,25 @@
+.immersia-preview-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  text-align: center;
+  color: #465740;
+  font: 14px/1.5 Manrope, system-ui, sans-serif;
+}
+.immersia-preview-state-copy { max-width: 260px; }
+.immersia-preview-state-copy strong { display: block; font-size: 15px; }
+.immersia-preview-state-copy p { margin: 6px 0 16px; font-size: 13px; }
+.immersia-preview-state-copy button {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid #526745;
+  border-radius: 999px;
+  background: #526745;
+  color: #fffdf5;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.immersia-preview-state-copy button:focus-visible { outline: 2px solid #526745; outline-offset: 3px; }

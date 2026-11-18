@@ -1,325 +1,63 @@
+import { QRCodeSVG } from 'qrcode.react';
+import { DashboardThemeToggle } from '../components/atelier/CanvasRouteFrame.jsx';
+import { Flower } from '../components/atelier/Brand.jsx';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect, useRef } from 'react';
 import { getToken } from '../api/client.js';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
+import PaintedGarden from '../components/landing/PaintedGarden.jsx';
+import TemplateHeroPreview from '../components/landing/TemplateHeroPreview.jsx';
+import { landingContent } from '../components/landing/landingContent.js';
+import '../components/landing/canvas-landing.css';
+import {getTemplate} from '../config/templateRegistry.js';
 
-import HeroSection from '../components/landing/HeroSection.jsx';
-import HowItWorksSection from '../components/landing/HowItWorksSection.jsx';
-import FeaturesSection from '../components/landing/FeaturesSection.jsx';
-import ComparisonSection from '../components/landing/ComparisonSection.jsx';
-import PricingSection from '../components/landing/PricingSection.jsx';
-import TestimonialSection from '../components/landing/TestimonialSection.jsx';
-import FaqSection from '../components/landing/FaqSection.jsx';
-import CtaSection from '../components/landing/CtaSection.jsx';
+const ART='/assets/landing-canvas/';
 
-export default function Landing() {
-  const { t, i18n } = useTranslation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const observerRef = useRef(null);
-  const isLoggedIn = !!getToken();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll);
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('revealed');
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => observerRef.current.observe(el));
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (observerRef.current) observerRef.current.disconnect();
-    };
-  }, []);
-
-  const toggleLang = () => i18n.changeLanguage(i18n.language === 'id' ? 'en' : 'id');
-
-  const handleScrollTo = (e, id) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <div className="lp">
-      <Header />
-      
-      <HeroSection setMobileMenuOpen={setMobileMenuOpen} />
-      <HowItWorksSection />
-      <FeaturesSection />
-      <ComparisonSection />
-      <PricingSection />
-      <TestimonialSection />
-      <FaqSection />
-      <CtaSection />
-      
-      <Footer />
-
-      <style>{`
-        .lp {
-          font-family: 'Manrope', sans-serif;
-          color: var(--ink);
-          background: var(--paper);
-          overflow-x: hidden;
-        }
-
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-        .reveal.revealed { opacity: 1; transform: translateY(0); }
-
-        h1, h2, h3 { font-family: 'Fraunces', serif; color: var(--ink); }
-
-        .full { width: 100%; }
-
-        /* HERO */
-        .hero { position: relative; padding: 150px 6% 100px; min-height: 92vh; display: flex; align-items: center; }
-        .hero-grain {
-          position: absolute; inset: 0;
-          background: radial-gradient(circle at 15% 20%, rgba(185,141,70,0.12), transparent 45%),
-                      radial-gradient(circle at 85% 80%, rgba(122,36,54,0.08), transparent 50%);
-          pointer-events: none;
-        }
-        .hero-inner { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 70px; align-items: center; }
-        .hero-copy h1 { font-size: 52px; line-height: 1.14; font-weight: 600; margin: 0 0 24px; }
-        .hero-copy h1 em { font-style: italic; color: var(--wine); }
-        .hero-copy p { font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 460px; margin: 0 0 36px; }
-        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
-        .hero-proof { display: flex; align-items: center; gap: 24px; padding-top: 28px; border-top: 1px solid var(--line); }
-        .proof-stat strong { font-family: 'Fraunces', serif; font-size: 26px; display: block; }
-        .proof-stat span { font-size: 12.5px; color: var(--ink-soft); }
-        .proof-divider { width: 1px; height: 36px; background: var(--line); }
-
-        /* HERO VISUAL - invite card + wax seal + phone peek */
-        .invite-stage { position: relative; max-width: 380px; margin: 0 auto; }
-        .invite-ribbon {
-          position: absolute; top: -20px; left: 50%; transform: translateX(-50%) rotate(-3deg);
-          width: 46px; height: 90px; background: linear-gradient(180deg, var(--wine), #5c1c28);
-          clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%); z-index: 3;
-        }
-        .invite-card {
-          background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
-          padding: 10px; box-shadow: 0 30px 60px -20px rgba(24,36,32,0.35);
-          transform-origin: top center; animation: unfold 1.1s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.2s;
-        }
-        @keyframes unfold {
-          0% { transform: rotateX(-35deg) scale(0.92); opacity: 0; }
-          100% { transform: rotateX(0) scale(1); opacity: 1; }
-        }
-        .invite-card-inner {
-          border: 1.5px solid var(--gold); padding: 56px 30px; text-align: center; background: var(--paper-deep);
-        }
-        .invite-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-        .invite-names { font-family: 'Mrs Saint Delafield', cursive; font-size: 44px; color: var(--ink); line-height: 1; }
-        .invite-line { width: 40px; height: 1px; background: var(--gold); margin: 20px auto; }
-        .invite-date { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.04em; }
-
-        .wax-seal {
-          position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%);
-          width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #9c3448, var(--wine));
-          display: flex; align-items: center; justify-content: center; color: #f3d9c6; font-size: 20px;
-          box-shadow: 0 8px 18px rgba(0,0,0,0.35); z-index: 4;
-          animation: crack 0.5s ease 1.3s both;
-        }
-        @keyframes crack { 0% { transform: translate(-50%,-50%) scale(1.4); opacity: 0; } 60% { transform: translate(-50%,-50%) scale(0.92); opacity: 1; } 100% { transform: translate(-50%,-50%) scale(1); } }
-
-        .phone-peek {
-          position: absolute; bottom: -36px; right: -30px; width: 150px; height: 220px;
-          background: var(--ink); border-radius: 22px; padding: 8px;
-          box-shadow: 0 24px 50px -10px rgba(0,0,0,0.4); z-index: 2;
-          animation: peekIn 0.8s cubic-bezier(0.16,1,0.3,1) 1.6s both;
-        }
-        @keyframes peekIn { 0% { transform: translateY(30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-        .phone-peek-notch { width: 34px; height: 5px; background: rgba(255,255,255,0.15); border-radius: 4px; margin: 4px auto 6px; }
-        .phone-peek-body { background: var(--paper-deep); border-radius: 16px; height: calc(100% - 20px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; padding: 10px; }
-        .ppb-label { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
-        .ppb-names { font-family: 'Fraunces', serif; font-size: 15px; }
-        .ppb-btn { margin-top: 8px; background: var(--wine); color: #fff; font-size: 9px; font-weight: 700; padding: 6px 14px; border-radius: 12px; }
-
-        /* SECTION HEAD reusable */
-        .section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
-        .section-head h2 { font-size: 36px; font-weight: 600; line-height: 1.25; margin: 0 0 12px; }
-        .section-sub { color: var(--ink-soft); font-size: 15.5px; }
-
-        /* STEPS - Susunan Acara style */
-        .steps { padding: 130px 6%; background: var(--paper-deep); }
-        .steps-list { max-width: 640px; margin: 0 auto; position: relative; }
-        .steps-line {
-          position: absolute; left: 27px; top: 8px; bottom: 8px; width: 1px;
-          background: var(--line);
-        }
-        .steps-list .step-row:first-child .step-marker { margin-top: 0; }
-        .step-row { display: flex; gap: 26px; align-items: flex-start; padding-bottom: 52px; position: relative; }
-        .step-row:last-child { padding-bottom: 0; }
-        .step-marker {
-          width: 56px; height: 56px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--gold);
-          display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--wine); font-size: 18px;
-          position: relative; z-index: 1;
-          transform: scale(0.6); opacity: 0;
-          transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s ease;
-        }
-        .step-row.revealed .step-marker { transform: scale(1); opacity: 1; }
-        .step-body { padding-top: 6px; }
-        .step-ord {
-          font-family: 'Mrs Saint Delafield', cursive; font-size: 22px; color: var(--wine); line-height: 1; margin-bottom: 6px;
-        }
-        .step-body h3 { font-size: 20px; margin: 0 0 8px; font-weight: 600; }
-        .step-body p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.65; max-width: 420px; margin: 0; }
-
-        /* FEATURES BENTO */
-        .features { padding: 130px 6%; }
-        .bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1040px; margin: 0 auto; }
-        .bento-card {
-          background: var(--paper-deep); border-radius: 20px; padding: 34px; border: 1px solid var(--line);
-          display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
-          transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
-        }
-        .bento-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -16px rgba(24,36,32,0.2); }
-        .bento-card.wide { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 30px; }
-        .bento-copy h3 { font-size: 20px; font-weight: 600; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
-        .bento-copy p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.65; margin: 0; }
-        .wa-bubble { background: var(--paper); padding: 16px; border-radius: 14px; font-size: 13px; border: 1px solid var(--line); }
-        .rsvp-tally { display: flex; flex-direction: column; gap: 10px; }
-        .tally-row { display: flex; justify-content: space-between; background: var(--paper); padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 14px; }
-        .tally-row strong { color: var(--wine); }
-        .tally-row.muted strong { color: var(--gold); }
-        .mini-gallery { display: flex; gap: 8px; }
-        .mini-gallery span { flex: 1; height: 60px; border-radius: 8px; background: linear-gradient(135deg, var(--gold-light), var(--wine)); opacity: 0.5; }
-        .mini-gallery span:nth-child(2) { opacity: 0.75; }
-        .mini-gallery span:nth-child(3) { opacity: 1; }
-        .swatch-row { display: flex; gap: 12px; justify-content: center; }
-        .sw { width: 42px; height: 42px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-
-        /* GUESTBOOK */
-        .guestbook { padding: 130px 6%; background: var(--paper-deep); }
-        .guestbook-page {
-          max-width: 720px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
-          padding: 20px 48px; box-shadow: 0 20px 50px -20px rgba(24,36,32,0.2);
-        }
-        .signature-line { padding: 26px 0; border-bottom: 1px dashed var(--line); }
-        .signature-line:last-child { border-bottom: none; }
-        .sig-text { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin: 0 0 10px; }
-        .sig-name { font-family: 'Mrs Saint Delafield', cursive; font-size: 24px; color: var(--wine); }
-        .sig-name span { font-family: 'Manrope', sans-serif; font-size: 12px; color: var(--ink-soft); }
-
-        /* COMPARISON */
-        .comparison { padding: 130px 6%; background: var(--paper); }
-        .compare-grid {
-          display: flex; align-items: stretch; justify-content: center; gap: 24px;
-          max-width: 1000px; margin: 0 auto; position: relative;
-        }
-        .compare-col {
-          flex: 1; border-radius: 18px; padding: 40px; border: 1px solid var(--line);
-        }
-        .compare-col.old-way { background: var(--paper-deep); opacity: 0.85; transform: scale(0.96); filter: grayscale(40%); }
-        .compare-col.new-way { background: var(--paper); border: 2px solid var(--wine); box-shadow: 0 20px 40px -16px rgba(122,36,54,0.15); }
-        .cc-head { margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px dashed var(--line); position: relative; }
-        .compare-col h3 { font-size: 20px; font-weight: 600; margin: 0 0 10px; }
-        .cc-price { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 600; color: var(--ink); }
-        .new-way .cc-price { color: var(--wine); }
-        .cc-badge { position: absolute; top: 0; right: 0; background: var(--wine); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
-        .compare-col ul { list-style: none; padding: 0; margin: 0; }
-        .compare-col li { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
-        .old-way li i { color: #8a4d4d; margin-top: 4px; }
-        .new-way li i { color: var(--gold); margin-top: 4px; }
-        .compare-vs {
-          position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-          width: 50px; height: 50px; border-radius: 50%; background: var(--ink); color: var(--paper);
-          display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-weight: 600;
-          font-size: 18px; z-index: 2; border: 4px solid var(--paper);
-        }
-        @media (max-width: 768px) {
-          .compare-grid { flex-direction: column; gap: 40px; }
-          .compare-col.old-way { transform: scale(1); }
-          .compare-vs { display: none; }
-        }
-
-        /* PRICING - ticket style */
-        .pricing { padding: 130px 6%; }
-        .ticket-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: 1000px; margin: 0 auto; align-items: start; }
-        .ticket { background: var(--paper-deep); border-radius: 18px; position: relative; border: 1px solid var(--line); transition: transform 0.3s ease; }
-        .ticket:hover { transform: translateY(-6px); }
-        .ticket.highlighted { border: 2px solid var(--wine); }
-        .ticket-flag {
-          position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-          background: var(--wine); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 16px; border-radius: 20px;
-        }
-        .ticket-body { padding: 36px 28px 24px; }
-        .ticket-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; }
-        .ticket-price { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 600; margin: 8px 0 2px; }
-        .ticket-period { font-size: 12px; color: var(--ink-soft); margin-bottom: 22px; }
-        .ticket-body ul { list-style: none; padding: 0; margin: 0; }
-        .ticket-body li { font-size: 13.5px; color: var(--ink-soft); padding: 7px 0; padding-left: 20px; position: relative; }
-        .ticket-body li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 11px; }
-        .ticket-perf { height: 0; border-top: 2px dashed var(--line); margin: 0 20px; position: relative; }
-        .ticket-perf::before, .ticket-perf::after { content: ''; position: absolute; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: var(--paper); }
-        .ticket-perf::before { left: -29px; }
-        .ticket-perf::after { right: -29px; }
-        .ticket-stub { padding: 22px 28px 28px; }
-
-        /* FAQ */
-        .faq { padding: 130px 6%; }
-        .faq-list { max-width: 680px; margin: 0 auto; }
-        .faq-item {
-          border-bottom: 1px solid var(--line);
-          transition: border-color 0.3s ease;
-        }
-        .faq-item:hover { border-color: var(--gold); }
-        .faq-q {
-          width: 100%; background: none; border: none; cursor: pointer; text-align: left;
-          display: flex; align-items: center; gap: 18px; padding: 24px 0;
-        }
-        .faq-index {
-          font-family: 'Fraunces', serif; font-size: 13px; color: var(--gold); flex-shrink: 0;
-          width: 26px; padding-top: 2px;
-        }
-        .faq-q-text { flex: 1; font-size: 15.5px; font-weight: 700; color: var(--ink); }
-        .faq-chev {
-          flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--paper-deep);
-          display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--wine);
-          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.3s ease;
-        }
-        .faq-chev.open { transform: rotate(180deg); background: var(--wine); color: #fff; }
-        .faq-a-wrap {
-          display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        .faq-a-wrap.open { grid-template-rows: 1fr; }
-        .faq-a-inner { overflow: hidden; }
-        .faq-a-inner p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; margin: 0; padding: 0 44px 26px 0; padding-left: 44px; }
-
-        /* CTA SEAL */
-        .cta-seal { padding: 130px 6%; background: var(--ink); text-align: center; }
-        .cta-seal-inner { max-width: 560px; margin: 0 auto; }
-        .big-seal {
-          width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 28px;
-          background: radial-gradient(circle at 35% 30%, #9c3448, var(--wine));
-          display: flex; align-items: center; justify-content: center; color: #f3d9c6; font-size: 26px;
-          box-shadow: 0 10px 24px rgba(0,0,0,0.4);
-        }
-        .cta-seal h2 { color: var(--paper); font-size: 38px; margin: 0 0 16px; }
-        .cta-seal p { color: rgba(250,243,227,0.65); font-size: 16px; margin-bottom: 36px; }
-
-        /* RESPONSIVE */
-        @media (max-width: 980px) {
-          .hero-inner { grid-template-columns: 1fr; text-align: center; }
-          .hero-copy p { margin: 0 auto 36px; }
-          .hero-actions, .hero-proof { justify-content: center; }
-          .invite-stage { margin-top: 40px; }
-          .bento-card.wide { grid-template-columns: 1fr; }
-          .ticket-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
-        }
-        @media (max-width: 768px) {
-          .hero-copy h1 { font-size: 38px; }
-          .bento { grid-template-columns: 1fr; }
-        }
-      `}</style>
+function Title({lines}){return <>{lines.map((line,i)=><span key={line}>{i===lines.length-1?<em>{line}</em>:line}</span>)}</>}
+export default function Landing(){
+ const {i18n}=useTranslation(),english=i18n.language.startsWith('en'),copy=landingContent[english?'en':'id'],[menu,setMenu]=useState(false),[faq,setFaq]=useState(0),[selected,setSelected]=useState(0),page=useRef(null),loggedIn=!!getToken();
+ useEffect(()=>{const node=page.current;document.title='Samavaya — '+(english?'Digital Wedding Invitations':'Undangan Pernikahan Digital');document.documentElement.lang=english?'en':'id';
+  const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-seen');observer.unobserve(entry.target)}},{threshold:.08});node.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));return()=>observer.disconnect();
+ },[english]);
+ useEffect(()=>{if(!menu)return;function close(e){if(e.key==='Escape')setMenu(false)}document.addEventListener('keydown',close);return()=>document.removeEventListener('keydown',close)},[menu]);
+ const featured=['garden-canvas','pramaya','ludora'].map(getTemplate);
+ const collections=featured.map((t,i)=>[String(i+1).padStart(2,'0'),t.name,english?['Botanical · A painted garden','Nusantara · A story inside a book','Playful · A cheerful landscape'][i]:['Botanical · Taman dalam lukisan','Nusantara · Cerita di dalam buku','Playful · Perjalanan penuh keceriaan'][i],t.previewImg]);
+ const navItems = [...copy.nav.map((label, i) => [label, ['pengalaman', 'koleksi', 'cara-kerja', 'harga'][i]]), [english ? 'QR Guest Book' : 'Buku Tamu QR', 'buku-tamu-qr']];
+ const guestBook = english ? { title: 'Check guests in with a QR code', intro: 'Share a personal invitation link with each guest. At the venue, reception staff can scan the QR code or find the guest by name.', steps: ['Guests show their personal QR code', 'Staff record how many people arrive', 'Download attendance as Excel or PDF'], action: 'See how it works', sample: 'Example guest pass', guest: 'Nadira & Bagas', status: 'Check-in recorded', price: 'Optional add-on · Rp20,000' } : { title: 'Sambut tamu dengan check-in QR', intro: 'Bagikan tautan undangan pribadi ke setiap tamu. Di lokasi acara, petugas meja bisa memindai QR atau mencari nama tamu.', steps: ['Tamu menunjukkan QR pribadinya', 'Petugas mencatat jumlah orang yang hadir', 'Unduh rekap Excel atau laporan PDF'], action: 'Lihat cara kerjanya', sample: 'Contoh kartu tamu', guest: 'Nadira & Bagas', status: 'Kehadiran tercatat', price: 'Tambahan opsional · Rp20.000' };
+ return <div ref={page} className="canvas-landing" id="atas">
+  <a className="cl-skip" href="#konten">{english?'Skip to content':'Langsung ke konten'}</a>
+  <header className="cl-header"><Link to="/" className="cl-brand" aria-label="Samavaya"><Flower/><span>samavaya<i>SEBUAH KABAR BAHAGIA</i></span></Link>
+   <nav className="cl-nav" aria-label={english?'Main navigation':'Navigasi utama'}>{navItems.map(([label, anchor])=><a key={anchor} href={'#'+anchor}>{label}</a>)}</nav>
+   <div className="cl-header-actions"><DashboardThemeToggle className="cl-theme-toggle" english={english}/><button className="cl-language" type="button" onClick={()=>i18n.changeLanguage(english?'id':'en')} aria-label={english?'Ganti bahasa ke Indonesia':'Switch to English'}>{english?'EN':'ID'}<span>⌄</span></button><Link className="cl-login" to={loggedIn?'/dashboard':'/login'}>{loggedIn?copy.dashboard:copy.login}</Link><Link className="cl-button cl-small" to={loggedIn?'/dashboard':'/signup'}>{copy.start}</Link><button className="cl-menu-toggle" type="button" aria-controls="cl-mobile-nav" aria-expanded={menu} aria-label={menu?copy.closeMenu:copy.menu} onClick={()=>setMenu(!menu)}>{menu?'×':'☰'}</button></div>
+   {menu&&<nav className="cl-mobile-nav" id="cl-mobile-nav" aria-label={english?'Mobile navigation':'Navigasi seluler'}>{navItems.map(([label, anchor])=><a key={anchor} href={'#'+anchor} onClick={()=>setMenu(false)}>{label}</a>)}<Link to={loggedIn?'/dashboard':'/login'} onClick={()=>setMenu(false)}>{loggedIn?copy.dashboard:copy.login}</Link>{!loggedIn&&<Link to='/signup' onClick={()=>setMenu(false)}>{copy.start}</Link>}</nav>}
+  </header>
+  <main id="konten">
+   <section className="cl-hero" aria-labelledby="cl-hero-title"><div className="cl-hero-copy"><p className="cl-kicker"><span/> {copy.eyebrow}</p><h1 id="cl-hero-title"><Title lines={copy.headline}/></h1><p className="cl-intro">{copy.intro}</p><div className="cl-hero-actions"><Link to="/sandbox" className="cl-button">{copy.try}</Link><a href="#pengalaman" className="cl-text-link sam-action-link">{copy.explore}</a></div><p className="cl-note">{copy.note}</p></div><div className="cl-hero-art"><PaintedGarden english={english}/></div><div className="cl-hero-bottom"><Flower/><span>{copy.scroll}</span><a href="#pengalaman" aria-label={copy.explore}>{copy.explore}</a></div></section>
+   <section className="cl-promise cl-section" id="pengalaman" aria-labelledby="cl-promise-title"><div className="cl-promise-heading" data-reveal><p className="cl-kicker">{copy.promiseKicker}</p><h2 id="cl-promise-title"><Title lines={copy.promiseTitle}/></h2></div><div className="cl-promise-copy" data-reveal><p>{copy.promiseBody}</p><div className="cl-promise-list">{copy.promiseItems.map(([n,title,desc])=><article key={n}><span>{n}</span><div><h3>{title}</h3><p>{desc}</p></div></article>)}</div></div><Flower className="cl-promise-flower"/></section>
+   <section className="cl-collection cl-section" id="koleksi" aria-labelledby="cl-collection-title"><div className="cl-section-head" data-reveal><div><p className="cl-kicker">{copy.collectionKicker}</p><h2 id="cl-collection-title"><Title lines={copy.collectionTitle}/></h2></div><div><p>{copy.collectionBody}</p><Link to="/sandbox" className="cl-text-link sam-action-link">{copy.collectionLink}</Link></div></div><div className="cl-studies" aria-label={copy.studies}>{collections.map(([num,title,palette,file],i)=><button className={`cl-study ${i===selected?'is-selected':''}`} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)} key={file}><div className="cl-study-art"><TemplateHeroPreview theme={featured[i]}/><span>{num}</span></div><div className="cl-study-caption"><h3>{title}</h3><p>{palette}</p><span className="cl-study-selection" aria-hidden="true"/></div></button>)}</div><p className="cl-study-note">{copy.studies}</p><div className="cl-palette" aria-live="polite"><span>{collections[selected][1]}</span><Link className="cl-text-link sam-action-link" to={'/sandbox?theme='+featured[selected].id}>{english?'Try this design':'Coba desain ini'}</Link><span>{collections[selected][2]}</span></div></section>
+   <section className="cl-features cl-section" id="fitur" aria-labelledby="cl-features-title"><div className="cl-feature-heading" data-reveal><Flower/><p className="cl-kicker">{copy.featureKicker}</p><h2 id="cl-features-title"><Title lines={copy.featureTitle}/></h2><p>{copy.featureBody}</p></div><div className="cl-feature-list">{copy.features.map(([icon,title,body])=><article key={title} data-reveal><span className="cl-feature-icon" aria-hidden="true">{icon}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
+   <section className="cl-guestbook cl-section" id="buku-tamu-qr" aria-labelledby="cl-guestbook-title">
+    <div className="cl-guestbook-copy">
+     <p className="cl-kicker">{guestBook.price}</p>
+     <h2 id="cl-guestbook-title">{guestBook.title}</h2>
+     <p>{guestBook.intro}</p>
+     <ol>{guestBook.steps.map(step => <li key={step}>{step}</li>)}</ol>
+     <a className="cl-button" href="/undangan/buku-tamu-qr">{guestBook.action}</a>
     </div>
-  );
+    <div className="cl-guestbook-art">
+     <div className="cl-guestbook-pass">
+      <Flower aria-hidden="true" />
+      <p>{guestBook.sample}</p><strong>{guestBook.guest}</strong>
+      <QRCodeSVG value="Samavaya — contoh kartu tamu" size={104} title={guestBook.sample} />
+      <span><span aria-hidden="true">✓</span> {guestBook.status}</span>
+     </div>
+    </div>
+   </section>
+   <section className="cl-steps cl-section" id="cara-kerja" aria-labelledby="cl-steps-title"><div data-reveal><p className="cl-kicker">{copy.stepsKicker}</p><h2 id="cl-steps-title">{copy.stepsTitle}</h2></div><ol>{copy.steps.map(([title,body],i)=><li key={title} data-reveal><span>0{i+1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol></section>
+   <section className="cl-pricing cl-section" id="harga" aria-labelledby="cl-price-title"><div className="cl-price-copy" data-reveal><p className="cl-kicker">{copy.priceKicker}</p><h2 id="cl-price-title"><Title lines={copy.priceTitle}/></h2><p>{copy.priceBody}</p><Link to="/sandbox" className="cl-button">{copy.priceAction}</Link><p className="cl-price-addon">{copy.addon}</p></div><div className="cl-price-options" data-reveal>{[{name:copy.standard,desc:copy.standardDesc,amount:'99.000',features:copy.standardFeatures},{name:copy.premium,desc:copy.premiumDesc,amount:'129.000',features:copy.premiumFeatures}].map((plan,i)=><article className={i?'is-premium':''} key={i}><div className="cl-plan-heading"><Flower/><h3>{plan.name}</h3></div><p>{plan.desc}</p><strong><small>Rp</small>{plan.amount}</strong><ul>{plan.features.map(f=><li key={f}><span aria-hidden="true">✓</span>{f}</li>)}</ul><Link to="/sandbox" aria-label={(english?'Try ':'Coba ')+plan.name}>{english?'Explore':'Jelajahi'}</Link></article>)}</div></section>
+   <section className="cl-faq cl-section" aria-labelledby="cl-faq-title"><div data-reveal><p className="cl-kicker">{copy.faqKicker}</p><h2 id="cl-faq-title">{copy.faqTitle}</h2></div><div className="cl-faq-list">{copy.faqs.map(([question,answer],i)=><article key={i} className={faq===i?'is-open':''}><h3><button type="button" id={'cl-question-'+i} aria-expanded={faq===i} aria-controls={'cl-answer-'+i} onClick={()=>setFaq(faq===i?-1:i)}><span className="cl-faq-number">0{i+1}</span>{question}<span className="cl-faq-plus" aria-hidden="true">{faq===i?'−':'+'}</span></button></h3><div id={'cl-answer-'+i} aria-labelledby={'cl-question-'+i} hidden={faq!==i}><p>{answer}</p></div></article>)}</div></section>
+   <section className="cl-closing"><img src={ART+'foliage.webp'} alt="" loading="lazy" decoding="async"/><div data-reveal><Flower/><p className="cl-kicker">{copy.closingKicker}</p><h2><Title lines={copy.closingTitle}/></h2><p>{copy.closingBody}</p><Link to={loggedIn?'/dashboard':'/signup'} className="cl-button">{copy.closingAction}</Link></div></section>
+  </main>
+  <footer className="cl-footer"><div className="cl-footer-top"><div><Link to="/" className="cl-brand"><Flower/><span>samavaya</span></Link><p>{copy.footerDesc}</p></div><div><h3>{copy.footerProduct}</h3><Link to="/sandbox">{copy.footerLinks[0]}</Link><a href="/undangan/harga">{copy.footerLinks[1]}</a><a href="/undangan/contoh">{copy.top==='Back to top'?'Invitation examples':'Contoh undangan'}</a><a href="/undangan/buku-tamu-qr">{copy.top==='Back to top'?'QR guest book':'Buku Tamu QR'}</a></div><div><h3>{copy.footerHelp}</h3><Link to="/guide">{copy.footerLinks[2]}</Link><Link to="/terms">{copy.footerLinks[3]}</Link><Link to="/privacy">{copy.footerLinks[4]}</Link><Link to="/contact">{copy.top==='Back to top'?'Contact':'Kontak'}</Link></div></div><div className="cl-footer-bottom"><span>© {new Date().getFullYear()} Samavaya</span><span>{copy.copyright}</span><a href="#atas">{copy.top} </a></div></footer>
+ </div>
 }

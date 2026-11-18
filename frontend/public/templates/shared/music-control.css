@@ -1,0 +1,123 @@
+button.floating-music-btn.music-control {
+    position: fixed;
+    z-index: 1100;
+    right: var(--music-right, 15px);
+    bottom: var(--music-bottom, 15px);
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0;
+    border: 1px solid #ffffff36;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    box-shadow: 0 4px 18px #271e1522;
+    animation: none !important;
+    transition: opacity .3s, transform .2s;
+    color: var(--music-ink, #fff);
+    background: var(--music-color, #7c8c6e)
+}
+
+button.music-control[hidden],
+button.music-control.is-hidden {
+    display: none !important
+}
+
+button.music-control:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px
+}
+
+button.music-control:hover {
+    transform: scale(1.04)
+}
+
+.music-control-wave {
+    position: relative;
+    z-index: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: 18px
+}
+
+.is-playing .music-control-wave {
+    display: flex
+}
+
+.music-control-wave i {
+    display: block;
+    width: 3px;
+    height: 17px;
+    border-radius: 999px;
+    background: currentColor;
+    transform-origin: center;
+    animation: invitation-music-wave 1.8s cubic-bezier(.45, 0, .55, 1) infinite;
+    will-change: transform
+}
+
+.music-control-wave i:nth-child(1) {
+    height: 12px;
+    animation-delay: -.35s;
+    animation-duration: 1.9s
+}
+
+.music-control-wave i:nth-child(2) {
+    height: 17px;
+    animation-delay: -1.1s;
+    animation-duration: 2.1s
+}
+
+.music-control-wave i:nth-child(3) {
+    height: 15px;
+    animation-delay: -.7s;
+    animation-duration: 1.8s
+}
+
+.music-control-wave i:nth-child(4) {
+    height: 11px;
+    animation-delay: -1.4s;
+    animation-duration: 2s
+}
+
+.music-control-play {
+    position: relative;
+    z-index: 1;
+    width: 21px;
+    height: 21px;
+    margin-left: 2px
+}
+
+.is-playing .music-control-play {
+    display: none
+}
+
+@keyframes invitation-music-wave {
+
+    0%,
+    100% {
+        transform: scaleY(.5)
+    }
+
+    25% {
+        transform: scaleY(.78)
+    }
+
+    50% {
+        transform: scaleY(1)
+    }
+
+    75% {
+        transform: scaleY(.68)
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .music-control * {
+        animation: none !important
+    }
+}

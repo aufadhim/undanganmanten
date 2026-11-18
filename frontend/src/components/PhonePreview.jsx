@@ -1,14 +1,15 @@
-import { lazy, Suspense } from 'react';
+import LoadingScreen from './atelier/LoadingScreen.jsx';
+import {TEMPLATE_LOADERS} from '../config/templateLoaders.generated.js';
+import {isImmersiveTemplate} from '../config/templateRegistry.js';
+import TypographyRuntime from './TypographyRuntime.jsx';
+import PreviewErrorBoundary from './PreviewErrorBoundary.jsx';
+import { lazy, Suspense, useEffect } from 'react';
 import SplitViewLayout from './SplitViewLayout.jsx';
+import { ensureFontLoaded } from '../utils/fontLoader.js';
 
 
-const EternalTemplate = lazy(() => import('./templates/eternal/EternalTemplate.jsx'));
-const SerayaTemplate = lazy(() => import('./templates/seraya/SerayaTemplate.jsx'));
-const NawasenaTemplate = lazy(() => import('./templates/nawasena/NawasenaTemplate.jsx'));
-const IsvaraTemplate = lazy(() => import('./templates/isvara/IsvaraTemplate.jsx'));
-const LanqingTemplate = lazy(() => import('./templates/lanqing/LanqingTemplate.jsx'));
-const CelluloidTemplate = lazy(() => import('./templates/celluloid/CelluloidTemplate.jsx'));
-const NocturneTemplate = lazy(() => import('./templates/nocturne/NocturneTemplate.jsx'));
+const TemplateComponents=Object.fromEntries(Object.entries(TEMPLATE_LOADERS).map(([id,load])=>[id,lazy(load)]));
+const EternalTemplate=TemplateComponents.eternal;
 
 function parseLayoutOrder(value) {
     if (Array.isArray(value)) return value;
@@ -21,59 +22,34 @@ function parseLayoutOrder(value) {
     }
 }
 
-export default function PhonePreview({ invitation, previewGuest, editorPreview = false }) {
-    if (!invitation) return null;
+function PhonePreviewContent({ invitation, previewGuest, editorPreview = false, previewMode }) {
 
     const profile = invitation?.coupleProfile || {};
     const theme = invitation?.themeSettings || {};
     const typo = theme?.typography || {};
-    
-    const layoutOrder = parseLayoutOrder(theme?.layoutOrder);
 
-    let template = null;
+    useEffect(() => {
+        if (typo.fontHeading) ensureFontLoaded(typo.fontHeading);
+        if (typo.fontBody) ensureFontLoaded(typo.fontBody);
+    }, [typo.fontHeading, typo.fontBody]);
     
-    if (invitation?.themeId === 'nocturne') {
-        template = <NocturneTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'celluloid') {
-        template = <CelluloidTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'lanqing') {
-        template = <LanqingTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'isvara') {
-        template = <IsvaraTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'nawasena') {
-        template = <NawasenaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'seraya') {
-        template = <SerayaTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else if (invitation?.themeId === 'eternal') {
-        template = <EternalTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview} />;
-    } else {
-        template = <EternalTemplate invitation={{ ...invitation, themeId: 'eternal' }} previewGuest={previewGuest} editorPreview={editorPreview} />;
+    if (!invitation) return null;
+    const SelectedTemplate=TemplateComponents[invitation.themeId];
+    if (SelectedTemplate && isImmersiveTemplate(invitation.themeId)) {
+        const preview = <Suspense fallback={<LoadingScreen compact label={editorPreview ? 'Mempersiapkan cerita kalian…' : 'Memuat undangan…'} />}><SelectedTemplate invitation={invitation} previewGuest={previewGuest} editorPreview={editorPreview}/></Suspense>;
+        return !editorPreview || previewMode === 'desktop'
+            ? <SplitViewLayout invitation={invitation}>{preview}</SplitViewLayout>
+            : preview;
     }
+    const layoutOrder = invitation.themeId === 'engine-4' ? [] : parseLayoutOrder(theme?.layoutOrder).filter(item=>item && typeof item === 'object' && typeof item.id === 'string');
+
+    const SignatureTemplate=SelectedTemplate||EternalTemplate;
+    const template=<SignatureTemplate invitation={SelectedTemplate?invitation:{...invitation,themeId:'eternal'}} previewGuest={previewGuest} editorPreview={editorPreview}/>;
 
     return (
         <div className="phone-preview-wrapper">
             {/* Dynamic CSS Injection */}
             <style>{`
-                /* Typography Overrides */
-                .split-view-container {
-                    --font-heading: ${typo.fontHeading || "'Playfair Display', serif"};
-                    --font-body: ${typo.fontBody || "'Manrope', sans-serif"};
-                    --typo-heading-line-height: ${typo.headingLineHeight ?? 1.15};
-                    --typo-body-line-height: ${typo.bodyLineHeight ?? 1.65};
-                    --typo-heading-letter-spacing: ${typo.headingLetterSpacing ?? 0}em;
-                    --typo-body-letter-spacing: ${typo.bodyLetterSpacing ?? 0}em;
-                }
-
-                :is(.nocturne, .atelier, .lanqing, .isvara, .nawasena, .seraya, .eternal-wrapper) :is(h1, h2, h3, h4, h5, h6) {
-                    line-height: var(--typo-heading-line-height) !important;
-                    letter-spacing: var(--typo-heading-letter-spacing) !important;
-                }
-
-                :is(.nocturne, .atelier, .lanqing, .isvara, .nawasena, .seraya, .eternal-wrapper) :is(p, li) {
-                    line-height: var(--typo-body-line-height) !important;
-                    letter-spacing: var(--typo-body-letter-spacing) !important;
-                }
-                
                 /* Layout Order & Visibility (Dynamic) */
                 ${layoutOrder.map((item, idx) => `
                     .template-wrapper-dynamic [data-section="${item.id}"] {
@@ -84,10 +60,12 @@ export default function PhonePreview({ invitation, previewGuest, editorPreview =
             `}</style>
 
             <SplitViewLayout invitation={invitation}>
-                <Suspense fallback={<div className="loading-screen">Memuat desain...</div>}>
-                    {template}
+                <Suspense fallback={<LoadingScreen compact label="Memuat desain…" />}>
+                    <TypographyRuntime typography={typo}>{template}</TypographyRuntime>
                 </Suspense>
             </SplitViewLayout>
         </div>
     );
 }
+
+export default function PhonePreview(props){return <PreviewErrorBoundary resetKey={`${props.invitation?.id}:${props.invitation?.themeId}`}><PhonePreviewContent {...props}/></PreviewErrorBoundary>}

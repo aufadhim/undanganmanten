@@ -1,60 +1,90 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import LangSwitcher from '../components/LangSwitcher.jsx';
-
-export default function Guide() {
-  const { t } = useTranslation();
-
-  return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '60px 20px', fontFamily: 'Inter, sans-serif', color: '#2d3436' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
-        <Link to="/" style={{ color: '#1f3a5f', textDecoration: 'none', fontWeight: 600 }}>
-          <i className="fa-solid fa-arrow-left" style={{ marginRight: 8 }}></i> {t('dashboard.back_home')}
-        </Link>
-        <LangSwitcher style={{ background: '#f5f5f5', color: '#1f3a5f', borderColor: '#ddd' }} />
-      </div>
-      
-      <h1 style={{ fontFamily: 'Playfair Display, serif', color: '#1f3a5f', marginBottom: 20 }}>Buku Panduan Pengguna</h1>
-      <p style={{ opacity: 0.8, marginBottom: 40 }}>Langkah demi langkah menggunakan UndanganManten.</p>
-
-      <div style={{ lineHeight: 1.6, display: 'flex', flexDirection: 'column', gap: 30 }}>
-        
-        <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
-          <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-user-plus" style={{ marginRight: 10 }}></i>1. Membuat Akun & Memulai</h3>
-          <p>
-            Untuk memulai, klik tombol <strong>Buat Undangan</strong> di halaman depan. Isi alamat email dan kata sandi Anda. Kami akan mengirimkan kode OTP ke email Anda untuk memverifikasi keaslian akun. Setelah masuk, Anda siap membuat undangan pertama Anda!
-          </p>
-        </div>
-
-        <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
-          <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-pen-to-square" style={{ marginRight: 10 }}></i>2. Mengisi Profil & Acara</h3>
-          <p>
-            Di halaman Dashboard, arahkan ke tab <strong>Profil</strong> untuk mengisi nama mempelai pria dan wanita beserta fotonya. Kemudian, di tab <strong>Acara</strong>, Anda bisa menambahkan detail waktu dan lokasi (seperti Akad dan Resepsi). Pastikan memasukkan lokasi peta agar tamu mudah mencari.
-          </p>
-        </div>
-
-        <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
-          <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-wand-magic-sparkles" style={{ marginRight: 10 }}></i>3. Memilih Tema & Warna</h3>
-          <p>
-            Buka tab <strong>Warna</strong> (atau Tema) untuk mengubah nuansa undangan Anda. Anda bisa memilih warna latar belakang, warna teks, hingga gaya font (Tipografi). Setiap perubahan akan langsung terlihat di Preview HP sebelah kanan.
-          </p>
-        </div>
-
-        <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
-          <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-users" style={{ marginRight: 10 }}></i>4. Mengelola Tamu & WA Blast</h3>
-          <p>
-            Di tab <strong>Tamu</strong>, Anda bisa mendaftarkan nama dan nomor WhatsApp tamu. Setelah diisi, klik tombol <strong>Copy WA</strong>. Teks sapaan dan link otomatis disiapkan untuk Anda, sehingga Anda tinggal Paste (Tempel) di aplikasi WhatsApp. Link unik ini memastikan setiap tamu tidak bisa mewakilkan RSVP tamu lain.
-          </p>
-        </div>
-
-        <div style={{ padding: 20, background: '#fdfcf0', borderRadius: 12, border: '1px solid #f4eee0' }}>
-          <h3 style={{ color: '#1f3a5f', marginTop: 0 }}><i className="fa-solid fa-credit-card" style={{ marginRight: 10 }}></i>5. Upgrade Paket</h3>
-          <p>
-            Akun Anda dimulai dengan paket Trial (2 hari). Jika puas, buka tab <strong>Paket</strong> dan pilih Standard/Premium. Pembayaran dilakukan via Midtrans (GoPay, QRIS, atau transfer bank). Masa aktif undangan Anda otomatis diperpanjang hingga H+30 hari acara.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  );
-}
+import LoadingScreen from '../components/atelier/LoadingScreen.jsx';
+import { SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '../config/support.js';
+import {lazy,Suspense,useState} from 'react';
+const GuideGuestBookDemo=lazy(()=>import('./GuideGuestBookDemo.jsx'));
+const GuidePractice=lazy(()=>import('./GuidePractice.jsx'));
+import {Link} from 'react-router-dom';
+import DocumentLayout from '../components/atelier/DocumentLayout.jsx';
+import './guide.css';
+const topics=[
+ {id:'mulai',title:'Mulai, akun, dan Mode Coba',items:[
+ ['Apa bedanya Mode Coba dan akun?','Mode Coba di /sandbox dipakai untuk mencoba tema dan mengisi contoh tanpa menerbitkan undangan. Simpan undangan ke akun agar dapat dikelola dari dashboard. Data Mode Coba berada di browser; jangan mengandalkannya sebagai salinan permanen.'],
+ ['Bagaimana membuat undangan?','Daftar atau masuk menggunakan email atau Google. Jika diminta, selesaikan verifikasi email. Buka Undangan, pilih Buat undangan, lalu isi tema awal, nama panggilan kedua mempelai, dan tanggal. Lengkapi nama lengkap dan keluarga di studio.'],
+ ['Mengapa ada pernikahan dan undangan?','Pernikahan adalah ruang pengelolaan tamu dan RSVP. Undangan adalah desain yang dibagikan. Beberapa desain dalam pernikahan yang sama memakai daftar tamu dan RSVP bersama; media, konten, serta aktivasi paket tetap terkait desain masing-masing.'],
+ ['Berapa batas undangan dan media?','Satu akun dapat menyimpan maksimal 3 undangan, termasuk arsip dan undangan berbayar. Kuota media akun 150 MB dan maksimal 50 MB per undangan. Mengarsipkan tidak membebaskan slot atau storage. Hapus permanen hanya jika sudah yakin tidak memerlukan datanya.']
+ ]},
+ {id:'studio',title:'Studio: tema, musik, dan tulisan',items:[
+ ['Apa yang diatur di Desain?','Pilih tema dari kategori yang tersedia. Immersia memiliki ilustrasi dan perjalanan kamera yang mengikuti karakter tema, sedangkan Signature memiliki susunan visual tersendiri. Tipografi mengatur jenis huruf heading dan isi secara keseluruhan. Palet warna hanya tersedia pada tema yang mendukungnya.'],
+ ['Bagaimana mengatur ukuran teks?','Buka Konten dan pilih bagian yang ingin diubah. Ukuran & Jarak Teks mengatur heading, teks isi, jarak baris, dan jarak huruf bagian tersebut. Reset bagian mengembalikan ukuran dan jarak bagian itu ke bawaan tema; Reset jenis huruf di Desain mengembalikan font keseluruhan.'],
+ ['Kapan harus menyimpan?','Pratinjau berubah langsung saat kamu mengedit, tetapi itu belum selalu berarti data sudah tersimpan. Untuk konten, tekan Simpan konten atau Simpan perubahan pada bilah simpan. Pengaturan yang bertuliskan tersimpan otomatis tidak memerlukan tombol simpan terpisah. Tunggu status tersimpan. Jika muncul Coba lagi, gunakan tombol itu sebelum menutup halaman.'],
+ ['Bagaimana memakai susunan blok?','Aktifkan atau matikan bagian yang diperlukan dan geser pegangannya untuk mengubah urutan. Perjalanan undangan mengikuti bagian yang aktif. Periksa hasil setelah mengubah urutan atau tema.'],
+ ['Bagaimana mengganti musik?','Buka Desain → Musik, atau Musik & Visual pada tema Signature. Unggah audio maksimal 8 MB atau gunakan musik bawaan. Musik mulai setelah tamu membuka undangan; tombol musik digunakan untuk jeda dan putar. Saat tamu berpindah tab atau aplikasi, musik dijeda.'],
+ ['Bagaimana memeriksa tampilan?','Gunakan pilihan perangkat di atas pratinjau. Tombol muat ulang pratinjau hanya memuat ulang undangan, bukan seluruh studio. Navigasi undangan Immersia memakai scroll, usapan, atau menu bagian di bawah. Periksa kembali di HP asli sebelum dibagikan.']
+ ]},
+ {id:'pasangan',title:'Profil dan ilustrasi pasangan',items:[
+ ['Bagaimana mengisi profil?','Konten → Profil & Mempelai memuat nama panggilan, nama lengkap, nama ayah dan ibu, Instagram, serta bio bila diaktifkan. Periksa kedua profil di pratinjau dan simpan konten. Username Instagram dapat diisi dengan @nama atau tautan profil.'],
+ ['Apa pilihan gambar pada Immersia?','Pilih karakter bawaan atau unggah ilustrasi sendiri. Gunakan PNG/WebP transparan maksimal 5 MB agar menyatu dengan ilustrasi latar. Satu ilustrasi pasangan digunakan pada sampul dan hero untuk menjaga kesinambungan perjalanan. Fitur membuat ilustrasi AI dari foto tidak tersedia di aplikasi.'],
+ ['Bagaimana mengatur posisi pasangan?','Gunakan slider besar karakter, kiri/kanan, dan atas/bawah untuk penempatan yang sedang diatur. Posisi sampul, hero, dan penutup dapat berbeda meskipun memakai gambar yang sama. Perubahan terlihat di pratinjau; akhiri dengan Simpan konten. Reset posisi mengembalikan penempatan bawaan.'],
+ ['Untuk apa penanda kepala?','Penanda wanita dan pria pada Hero membantu menentukan arah kamera menuju masing-masing profil. Tandai pada ilustrasi yang dipakai, lalu cek profil wanita dan pria. Penanda ini bukan pemotong foto dan tidak memerlukan unggahan figur terpisah.'],
+ ['Bagaimana jika memakai foto JPG biasa?','Pada Signature, gunakan input Foto sampul/Foto hero di Desain → Musik & Visual dan foto masing-masing mempelai di Konten. Foto ditampilkan sesuai bingkai/layout tema. JPG berlatar tidak otomatis diubah menjadi ilustrasi transparan; siapkan ilustrasi sendiri jika memilih Immersia.']
+ ]},
+ {id:'konten',title:'Acara dan bagian undangan',items:[
+ ['Apa beda Simpan Tanggal dan Informasi Acara?','Simpan Tanggal mengatur bagian countdown/kalender. Informasi Acara mengatur tanggal, jam mulai dan selesai, lokasi, alamat, dan Google Maps untuk akad serta resepsi. Pastikan tanggal pernikahan dan detail acara saling sesuai.'],
+ ['Bagaimana jika tempat akad dan resepsi sama?','Gunakan pilihan tempat resepsi sama dengan akad. Lokasi dan alamat cukup diisi sekali; jam masing-masing acara tetap berbeda. Jika tempatnya berbeda, isi detail keduanya. Tempel tautan Google Maps dari menu Bagikan.'],
+ ['Bagaimana mengatur rundown dan cerita?','Tambahkan item rundown lalu geser untuk mengubah urutan. Pada Cerita Cinta, pilih cerita singkat atau perjalanan beberapa bab. Isi tanggal, judul, dan cerita tiap bab; periksa tombol sebelumnya/berikutnya pada tampilan tamu.'],
+ ['Bagaimana mengisi dress code, livestream, dan bingkai foto?','Dress code memuat arahan busana dan warna. Livestream memakai tautan siaran yang kamu siapkan sendiri. Bingkai Foto memakai PNG/WebP transparan; tamu dapat menambahkan foto dan mengunduh hasilnya. Bingkai Foto bukan filter AR Instagram dan tidak dibuat otomatis. Matikan bagian yang belum diperlukan.'],
+ ['Bagaimana menampilkan informasi hadiah?','Pilih Rekening, Bingkisan, atau Keduanya. Lengkapi bank, nomor rekening dan pemilik, atau alamat penerima. Detail dibuka setelah tamu memilih untuk melihatnya. Tombol sembunyikan bukan pengamanan privat; jangan mengisi data yang tidak ingin diakses pemegang tautan. Transfer hadiah dilakukan ke rekening penerima, bukan melalui pembayaran paket Samavaya.'],
+ ['Bagaimana menata penutup?','Isi ucapan terima kasih dan atur ukuran serta posisi pasangan di tab Penutup. Teks berada di atas agar pasangan bisa ditempatkan pada pijakan bawah. Footer Samavaya menjadi identitas pembuat layanan.']
+ ]},
+ {id:'galeri',title:'Galeri foto dan video',items:[
+ ['Bagaimana mengunggah media?','Unggah beberapa foto JPG, PNG, WebP, atau GIF maksimal 5 MB per file. Video MP4/MOV maksimal 10 MB per file. Kuota jumlah mengikuti paket: Trial/Standard hingga 10, Premium hingga 30 media. Batas storage tetap berlaku.'],
+ ['Bagaimana menangani video besar?','Video tidak otomatis diperkecil oleh aplikasi. Untuk video prewedding besar, unggah ke YouTube dengan visibilitas Tidak Publik (Unlisted), lalu tambahkan melalui Tautan YouTube. Siapa pun yang memiliki tautannya dapat menonton; jangan memakai Private jika ingin diputar tamu.'],
+ ['Apa pilihan layout galeri?','Editorial, Grid Rapi, Masonry, Slideshow, Collage, dan Wall Board tersedia melalui Tampilan galeri. Foto dan video punya area terpisah; video tampil di bawah foto. Klik media untuk membuka lightbox yang sama. Slideshow memiliki navigasi geser/panah; layout lain menyesuaikan ruang bagian.'],
+ ['Kenapa unggahan belum terlihat?','Perhatikan toast mengunggah/menyimpan. Tunggu proses selesai sebelum berpindah layout atau menutup editor. Jika muncul kegagalan, cek ukuran file, format, koneksi, kuota, lalu ulangi. Simpan konten bila diminta.']
+ ]},
+ {id:'ngunduh-mantu',title:'Undangan Ngunduh Mantu',items:[
+ ['Bagaimana membuat undangan Ngunduh Mantu?','Buka undangan yang akan digunakan, lalu pilih Studio → Konten → Informasi Acara → Jenis acara → Ngunduh Mantu. Isi tanggal, waktu, nama lokasi, dan alamat. Klik Simpan konten. Jika undangan sudah berisi akad atau resepsi, konfirmasi akan muncul sebelum acara sebelumnya dihapus dari undangan itu.'],
+ ['Tanggal mana yang dipakai pada sampul?','Setelah simpan, tanggal Ngunduh Mantu menjadi tanggal utama undangan. Buka Simpan Tanggal dan cocokkan tanggal serta jam mulai sebelum terbit.']
+ ]},
+ {id:'publikasi',title:'Draft, aktivasi paket, dan publikasi',items:[
+ ['Apakah draft punya batas dua hari?','Tidak. Trial adalah draft yang dapat disiapkan sebelum membayar dan tidak berakhir otomatis setelah dua hari. Trial belum dapat diterbitkan untuk tamu. Data tetap memakai slot undangan dan kuota storage akun.'],
+ ['Bagaimana agar tautan bisa dibuka tamu?','Di daftar Undangan, buka Siapkan & Terbitkan. Ikuti tombol utama untuk melengkapi data atau memilih paket dan membayar. Setelah paket aktif, kembali ke checklist dan tekan Terbitkan undangan. Setelah terbit, gunakan Salin tautan atau Kelola tamu untuk membagikan tautan pribadi.'],
+ ['Bagaimana cara bayar dan mengunduh invoice?','Pilih paket dan add-on di Paket & Pembayaran, lalu selesaikan pembayaran pada halaman Tripay. Kembali ke dashboard. Setelah pembayaran terverifikasi, buka Riwayat Transaksi → Lihat Invoice → Cetak atau simpan PDF.'],
+ ['Bagaimana cara meminta refund?','Hubungi Kontak Samavaya dengan nomor invoice atau referensi Tripay, email akun, bukti bayar, dan alasan. Sertakan kedua referensi untuk pembayaran ganda. Setelah transaksi diverifikasi, Samavaya memberi kabar tentang keputusan, nominal, cara pengembalian, dan estimasinya. Pengembalian dilakukan melalui kanal asal jika tersedia atau transfer ke tujuan terverifikasi jika ditangani langsung oleh Samavaya. Lihat Syarat & Ketentuan untuk kriteria persetujuan.'],
+ ['Bagaimana jika pembayaran masih menunggu?','Periksa transaksi di Paket & Pembayaran dan tunggu status berhasil dari sistem. Jangan membuat pembayaran ulang hanya karena menutup jendela pembayaran. Jika pembayaran sudah dilakukan tetapi belum diperbarui, simpan bukti transaksi untuk pemeriksaan admin.'],
+ ['Apa arti setiap status?','Draft: masih disiapkan dan tidak publik. Terbit: dapat diakses tamu selama paket aktif. Masa aktif berakhir: masa akses paket berbayar lewat. Diarsipkan: disimpan di arsip dan tidak dapat dibuka publik. Paket berbayar berlaku sampai 30 hari setelah tanggal pernikahan.'],
+ ['Apa beda tarik publikasi, arsip, dan hapus?','Tarik publikasi mengembalikan undangan terbit ke draft. Arsip memindahkan desain ke tab Arsip dan tetap memakai kuota. Pulihkan mengembalikannya sebagai draft. Hapus permanen membuang desain dan konten; tidak bisa dibatalkan. Tamu/RSVP pernikahan serta riwayat transaksi tidak otomatis dihapus bersama satu desain.'],
+ ['Apakah mengganti tema menghapus isi?','Tema menggunakan konten undangan yang sama. Periksa ulang pemotongan gambar, panjang nama, ukuran tulisan, dan posisi pasangan setelah berganti tema. Mengganti desain bukan membuat undangan atau aktivasi paket baru.']
+ ]},
+ {id:'pembayaran',title:'Metode pembayaran dan invoice',items:[
+ ['Bagaimana memilih paket?','Pilih undangan yang benar di bagian atas dashboard. Buka Paket & Pembayaran atau tekan Pilih paket & bayar dari Siapkan & Terbitkan. Standard Rp99.000 mencakup hingga 10 media dan 100 tamu. Premium Rp129.000 mencakup hingga 30 media tanpa batas jumlah tamu dari paket. Centang Buku Tamu QR jika butuh check-in QR, dengan biaya tambahan Rp20.000. Periksa total dan biaya layanan pada tagihan.'],
+ ['Apa fungsi Lanjut ke pembayaran dan Lihat cara bayar?','Lanjut ke pembayaran membuat tagihan. Lihat cara bayar membuka ulang instruksi untuk tagihan yang sudah ada. Pilih QRIS, virtual account, gerai ritel, atau dompet digital yang tersedia. Untuk QRIS, pindai kode dengan aplikasi bank atau dompet digital. Untuk virtual account atau gerai, gunakan kode bayar. Untuk dompet digital, buka instruksi Tripay. Selesaikan sebelum tagihan kedaluwarsa. Jika QR tampil di HP yang sama, gunakan impor gambar QR bila aplikasi pembayaran mendukungnya. Periksa nama penerima dan nominal sebelum konfirmasi.'],
+ ['Apa fungsi Periksa status?','Periksa status mengambil pembaruan untuk transaksi pada baris itu. Menunggu pembayaran berarti pembayaran belum terkonfirmasi. Setelah dana terdebit, gunakan tagihan yang sama dan periksa status sebelum mencoba membayar lagi. Jika tagihan kedaluwarsa dan dana sudah terdebit, hubungi Kontak Samavaya dengan nomor referensi dan bukti pembayaran.'],
+ ['Apa yang terjadi setelah Dibayar?','Pembayaran riil yang terverifikasi mengaktifkan paket. Buka Lihat invoice di Riwayat transaksi, lalu pilih Cetak atau simpan PDF. Untuk membagikan undangan, kembali ke Siapkan & Terbitkan dan tekan Terbitkan undangan. Label Simulasi menandai transaksi uji dan invoice uji.']
+ ]},
+ {id:'tombol-studio',title:'Tombol dan kontrol Studio',items:[
+ ['Bagaimana mengganti tema?','Buka Undangan → Edit undangan → Desain → Tema. Cari nama tema atau pilih kategori, lalu tekan Ganti Desain. Periksa sampul, nama panjang, gambar, dan posisi pasangan di pratinjau.'],
+ ['Bagaimana memakai tombol di atas pratinjau?','Mobile, iPad, iPad Pro, dan Desktop mengganti ukuran bingkai. Muat Ulang mengembalikan pratinjau ke sampul. ID membuka pilihan bahasa antarmuka. Ikon matahari atau bulan mengganti tema antarmuka. Undangan Saya kembali ke daftar, sedangkan Siapkan publikasi membuka checklist.'],
+ ['Bagaimana mengedit konten?','Buka Konten, pilih tab seperti Kutipan / Doa, Profil & Mempelai, Informasi Acara, Galeri, Hadiah, atau Penutup. Isi kolom yang muncul dan periksa pratinjau. Tekan Simpan konten untuk menyimpan perubahan pada bagian itu. Aktifkan bagian yang ingin ditampilkan lewat Desain → Susunan Blok.'],
+ ['Untuk apa tombol tambah, hapus, reset, dan pegangan geser?','Tambah membuat baris baru untuk bagian seperti rundown, cerita, atau rekening. Hapus membuang item yang dipilih. Reset bagian pada tipografi mengembalikan ukuran dan jarak teks bagian tersebut ke bawaan tema. Pegangan geser mengubah urutan item. Periksa status simpan setelah selesai.'],
+ ['Apa fungsi tombol pada kartu undangan?','Edit undangan membuka Studio. Pratinjau membuka tampilan undangan untuk diperiksa. Duplikat membuat draft dari desain dan konten yang sama. Setelah terbit, Salin tautan menyalin URL umum, Lihat undangan membuka URL tersebut, dan Tarik publikasi menutup akses publik. Kelola tamu membuka daftar tamu untuk pernikahan terkait.']
+ ]},
+ {id:'tamu',title:'Tamu, RSVP, ucapan, dan analitik',items:[
+ ['Di mana mengelola tamu?','Keluar dari studio ke dashboard pernikahan → Tamu & RSVP. Tambahkan tamu secara manual atau impor CSV/Excel sesuai contoh format pada halaman. Isi nama, nomor WhatsApp bila ada, kelompok, dan batas jumlah orang. Standard mendukung 100 tamu; Premium tidak membatasi jumlah tamu melalui paket.'],
+ ['Bagaimana mengirim undangan?','Salin tautan pribadi dari daftar tamu atau buka WhatsApp dengan pesan yang disiapkan. Membuka WhatsApp bukan bukti pesan sudah dikirim atau dibaca. Tautan pribadi memuat identitas tamu, sehingga jangan dibagikan ke orang lain.'],
+ ['Bagaimana tamu mengisi RSVP?','Aktifkan RSVP melalui Susunan & Blok dan atur tampilan teks/form melalui Konten → RSVP & Ucapan. Tamu memakai tautan pribadi, memilih kehadiran, jumlah orang sesuai batas, dan ucapan opsional. Daftar tamu dan RSVP dipakai bersama dalam satu pernikahan.'],
+ ['Bagaimana ucapan ditampilkan?','Ucapan dan nama pengirim dapat tampil pada undangan bagi pemegang tautan jika bagian ucapan diaktifkan. Atur ukurannya di Konten dan kelola ucapan melalui halaman Tamu & RSVP. Pratinjau hanya mensimulasikan pengiriman.'],
+ ['Apa yang dibaca di Analitik?','Lihat kunjungan, undangan dibuka, status konfirmasi, perkiraan orang hadir, dan check-in aktual. RSVP Hadir adalah rencana kehadiran, bukan check-in. Jumlah orang dapat berbeda dari jumlah undangan/keluarga. Gunakan ekspor laporan untuk rekap.']
+ ]},
+ {id:'qr',title:'Buku tamu QR dan akses petugas',items:[
+ ['Bagaimana alur tamu dari tautan sampai check-in?','Di Undangan & WhatsApp, salin tautan pribadi dan kirim ke tamu. Tamu membuka undangan, masuk ke RSVP, lalu memilih kehadiran. Di bagian yang sama, tamu bisa menunjukkan QR pribadinya. Petugas memindai QR dan memilih jumlah orang yang datang. Jika QR yang sama dipindai lagi, layar menampilkan Sudah hadir dan tombol Catat dinonaktifkan.'],
+ ['Kapan QR bisa digunakan?','Buku Tamu QR adalah tambahan berbayar yang diaktifkan dari Paket & Pembayaran, terpisah dari paket dasar. Haknya dipakai bersama dalam pernikahan yang sama. Periksa status aktif sebelum hari acara.'],
+ ['Bagaimana tamu mendapat QR?','Gunakan tautan pribadi tamu pada undangan yang sudah diterbitkan. QR terkait data tamu tersebut; QR bukan pengganti aktivasi/publikasi dan bukan undangan umum yang boleh dipakai semua orang.'],
+ ['Bagaimana petugas melakukan check-in?','Buka Tamu & RSVP → Buku tamu & QR. Pemilik akun dapat memindai QR atau mencari nama secara manual, memilih jumlah orang yang benar-benar datang, lalu konfirmasi. Check-in ganda ditolak; kesalahan dapat dibatalkan. Kamera memerlukan izin browser dan koneksi internet.'],
+ ['Apakah petugas harus memakai akun pemilik?','Tidak. Buat tautan akses petugas dari bagian Buku tamu & QR, tentukan nama serta durasinya, lalu salin tautan saat muncul. Petugas hanya mengelola check-in, tidak dapat mengedit undangan, pembayaran, atau kontak tamu. Cabut akses setelah selesai. Jangan membagikan tautan ke publik.']
+ ]}
+];
+export default function Guide(){const[query,setQuery]=useState('');const needle=query.trim().toLocaleLowerCase('id');const visible=topics.map(t=>({...t,items:t.items.filter(x=>!needle||[t.title,...x].join(' ').toLocaleLowerCase('id').includes(needle))})).filter(t=>t.items.length);
+return <DocumentLayout eyebrow="PUSAT BANTUAN SAMAVAYA" title={<>Dari draft pertama,<br/><em>hingga tamu tiba.</em></>} intro="Panduan studio, publikasi, pembayaran, dan pengelolaan tamu dalam satu tempat.">
+<div className="sam-guide"><p className="guide-flow">Buat draft → Lengkapi & simpan → Aktivasi paket → Terbitkan → Bagikan tautan</p><label className="guide-search">Cari panduan<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Contoh: simpan, ilustrasi, QR, video…"/></label><nav className="guide-toc" aria-label="Topik panduan">{topics.map(t=><a key={t.id} href={'#'+t.id} onClick={()=>setQuery('')}>{t.title}</a>)}</nav>{!visible.length&&<p role="status">Panduan tidak ditemukan. Coba kata lain.</p>}{visible.map(t=><section id={t.id} key={t.id} className="guide-topic"><h2>{t.title}</h2>{['pembayaran','tombol-studio','ngunduh-mantu'].includes(t.id)&&<Suspense fallback={<LoadingScreen compact label="Memuat latihan…" />}><GuidePractice topic={t.id}/></Suspense>}{t.id==="qr"&&<Suspense fallback={<LoadingScreen compact label="Memuat demo…" />}><GuideGuestBookDemo /></Suspense>}{t.items.map(([q,a])=><details key={q} open={needle?true:undefined}><summary>{q}</summary><p>{a}</p></details>)}</section>)}<aside className="guide-help"><h2>Masih mengalami kendala?</h2><p>Catat nama bagian, nama tema, waktu kejadian, dan pesan error. Sertakan screenshot tanpa kata sandi, kode verifikasi, tautan petugas, atau data rekening lengkap saat meminta bantuan kepada admin.</p><p><a href={SUPPORT_WHATSAPP} target="_blank" rel="noopener noreferrer">WhatsApp Bantuan Samavaya · 0851-2805-0685</a><br/><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p><Link className="lp-btn-seal" to="/dashboard">Buka dashboard</Link></aside></div>
+</DocumentLayout>}

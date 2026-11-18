@@ -1,3 +1,6 @@
+import { DashboardThemeToggle } from '../components/atelier/CanvasRouteFrame.jsx';
+import Brand from '../components/atelier/Brand.jsx';
+import AuthArtwork from '../components/atelier/AuthArtwork.jsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api/client.js';
@@ -27,16 +30,14 @@ export default function ForgotPassword() {
 
     return (
         <div className="auth-screen">
-            <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10 }}>
+            <div className="atelier-auth-language">
+                <DashboardThemeToggle />
                 <LangSwitcher style={{ background: 'var(--auth-paper)', color: 'var(--auth-ink)', borderColor: 'var(--auth-line)' }} />
             </div>
 
             <div className="auth-left">
                 <div className="auth-card">
-                    <div className="auth-brand">
-                        <img src="/logo.png" alt="UndanganManten Logo" style={{ height: 22, marginRight: 8 }} />
-                        UNDANGANMANTEN
-                    </div>
+                    <Brand className="auth-brand"/>
                     <h1 className="auth-title">Lupa password?</h1>
                     <p className="auth-subtitle">Masukkan email akunmu. Kami akan mengirim tautan untuk membuat password baru.</p>
 
@@ -68,11 +69,11 @@ export default function ForgotPassword() {
                     )}
 
                     <p className="auth-switch">
-                        <Link to="/login">← Kembali ke login</Link>
+                        <Link className="sam-action-link" to="/login"> Kembali ke login</Link>
                     </p>
                 </div>
             </div>
-            <div className="auth-right" aria-hidden="true" />
+            <AuthArtwork/>
         </div>
     );
 }

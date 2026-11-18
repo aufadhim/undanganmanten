@@ -1,0 +1,62 @@
+/* Layered motion stays inside the closed cover; every shape is noninteractive. */
+.live-cover-host{isolation:isolate}
+.live-cover-copy{z-index:4!important}
+.cover-ambience{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.2s;--ca-petal:#d7b9a0;--ca-light:#fff5d8;--ca-bough-width:45%}
+.cover-ambience.is-ready{opacity:1}
+.cover-ambience.is-dormant{opacity:0;transition:opacity .35s}
+.cover-ambience.is-paused *{animation-play-state:paused!important}
+.live-cover-host:not(.live-cover-ready) .live-cover-copy{opacity:0;pointer-events:none}
+.live-cover-ready .live-cover-copy :is(h1,.kicker,.cover-date){animation:cover-live-copy-in 1.8s .35s both}
+.live-cover-ready .cover-response,.live-cover-ready .cover-guest,.live-cover-ready .seraya-opening-copy>strong{animation:cover-live-copy-in 1.6s .85s both}
+.cover-ambience[data-skin=java]{--ca-petal:#c8a08d;--ca-light:#f2d5a0}
+.cover-ambience[data-skin=temple]{--ca-petal:#d4b99a;--ca-light:#fff0c8;--ca-bough-width:40%}
+.cover-ambience[data-skin=ivory]{--ca-petal:#d2c7ac;--ca-light:#fff6d9}
+.cover-ambience[data-skin=editorial]{--ca-petal:#b6a08b;--ca-light:#f4dfb4}
+.cover-ambient-corner{position:absolute;width:var(--ca-bough-width);aspect-ratio:2/3;opacity:.86;animation:cover-live-bough-enter 4.4s cubic-bezier(.2,.65,.25,1) both}
+.cover-ambient-sprig{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;transform-origin:var(--ca-origin);animation:cover-live-sway 8s ease-in-out infinite alternate;will-change:rotate}
+.cover-ambient-sprig.is-frame{background-size:200% 200%}
+.cover-ambient-corner.tl{left:-9%;top:-5%;--ca-enter-x:12vw;--ca-enter-y:7vh;--ca-origin:0% 0%;mask-image:linear-gradient(90deg,#000 85%,transparent),linear-gradient(#000 85%,transparent);mask-composite:intersect}
+.cover-ambient-corner.tr{right:-9%;top:-5%;--ca-enter-x:-12vw;--ca-enter-y:7vh;--ca-origin:100% 0%;mask-image:linear-gradient(270deg,#000 85%,transparent),linear-gradient(#000 85%,transparent);mask-composite:intersect}
+.cover-ambient-corner.bl{left:-10%;bottom:-5%;--ca-enter-x:10vw;--ca-enter-y:-6vh;--ca-origin:0% 100%;mask-image:linear-gradient(90deg,#000 85%,transparent),linear-gradient(0deg,#000 85%,transparent);mask-composite:intersect}
+.cover-ambient-corner.br{right:-10%;bottom:-5%;--ca-enter-x:-10vw;--ca-enter-y:-6vh;--ca-origin:100% 100%;mask-image:linear-gradient(270deg,#000 85%,transparent),linear-gradient(0deg,#000 85%,transparent);mask-composite:intersect}
+.tl .cover-ambient-sprig{background-position:left top;scale:-1 -1}
+.tr .cover-ambient-sprig{background-position:right top;scale:1 -1;animation-delay:-3s}
+.bl .cover-ambient-sprig{background-position:left bottom;scale:-1 1;animation-duration:10s}
+.br .cover-ambient-sprig{background-position:right bottom;animation-delay:-5s}
+.cover-ambient-sprig.is-frame{scale:1}
+.cover-ambient-ray{position:absolute;left:calc(5% + var(--ca-ray)*23%);top:-30%;width:24%;height:145%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ca-light) 32%,transparent),transparent);transform-origin:top;rotate:24deg;opacity:0;animation:cover-live-rays 15s calc(var(--ca-ray)*-4s) ease-in-out infinite alternate}
+.cover-ambient-petal{position:absolute;top:-12%;width:var(--ca-size);height:calc(var(--ca-size)*1.5);border-radius:75% 25% 65% 35%;background:var(--ca-petal);opacity:0;will-change:transform;animation:cover-live-petals var(--ca-duration) var(--ca-delay) linear infinite}
+.cover-ambient-mote{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--ca-light);box-shadow:0 0 5px var(--ca-light);opacity:0;animation:cover-live-motes var(--ca-duration) var(--ca-delay) ease-in-out infinite}
+.cover-ambient-flight{position:absolute;left:-15%;top:var(--ca-top);width:var(--ca-bird-size);height:var(--ca-bird-size);animation:cover-live-bird-flight var(--ca-flight) var(--ca-delay) linear infinite;opacity:0;will-change:transform}
+.cover-ambient-flight.reverse{animation-direction:reverse}
+.cover-ambient-flight.reverse .cover-ambient-bird{scale:-1 1}
+.cover-ambient-bird{width:100%;height:100%;background-size:300% 100%;background-repeat:no-repeat;animation:cover-live-bird-wings .9s steps(1,end) infinite}
+.cover-ambient-butterfly{position:absolute;left:14%;top:48%;width:29px;animation:cover-live-butterfly 21s -5s ease-in-out infinite;will-change:transform}
+.cover-ambient-butterfly.flight-1{left:77%;top:74%;width:22px;animation-duration:29s;animation-delay:-18s;animation-direction:reverse}
+.cover-ambient-butterfly img{display:block;width:100%;height:auto;animation:cover-live-butterfly-wings .7s ease-in-out infinite alternate}
+.cover-ambience[data-skin=ivory] .cover-ambient-butterfly{filter:grayscale(1);opacity:.65}
+.cover-ambient-drape{position:absolute;top:-8%;width:37%;height:116%;background:linear-gradient(90deg,transparent,#f6ecda44,#fff6e935,transparent);border-radius:48%;opacity:.6;transform-origin:top;animation:cover-live-drape 9s ease-in-out infinite alternate}
+.cover-ambient-drape.left{left:-24%;rotate:-9deg}.cover-ambient-drape.right{right:-24%;rotate:9deg;animation-delay:-4s}
+.cover-ambience[data-skin=editorial] .cover-ambient-drape{background:linear-gradient(90deg,transparent,#c3b19b2b,transparent);border-radius:0;width:35%;rotate:18deg}
+.cover-ambience[data-skin=editorial] .cover-ambient-petal{border-radius:0;height:calc(var(--ca-size)*1.4);opacity:.4}
+@keyframes cover-live-copy-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes cover-live-bough-enter{from{translate:var(--ca-enter-x) var(--ca-enter-y);scale:1.25;opacity:1}to{translate:0 0;scale:1;opacity:.86}}
+@keyframes cover-live-sway{from{rotate:-1.8deg}to{rotate:2.3deg}}
+@keyframes cover-live-rays{from{translate:-7vw 0;opacity:.08;rotate:19deg}to{translate:8vw 0;opacity:.28;rotate:29deg}}
+@keyframes cover-live-petals{0%{transform:translate3d(0,-8vh,0) rotate(0);opacity:0}10%,80%{opacity:.58}100%{transform:translate3d(var(--ca-drift),116vh,0) rotate(var(--ca-turn));opacity:0}}
+@keyframes cover-live-motes{0%,100%{opacity:0;translate:0 12px}45%{opacity:.6;translate:12px -22px}70%{opacity:.3;translate:-8px -34px}}
+@keyframes cover-live-bird-wings{0%,100%{background-position:0% 50%}25%,75%{background-position:50% 50%}50%{background-position:100% 50%}}
+@keyframes cover-live-bird-flight{0%{transform:translate(-10vw,0) scale(.7);opacity:0}10%,85%{opacity:.8}35%{transform:translate(45vw,-4vh) rotate(4deg) scale(.9)}65%{transform:translate(90vw,3vh) rotate(-3deg) scale(1)}100%{transform:translate(145vw,-2vh) scale(.7);opacity:0}}
+@keyframes cover-live-butterfly{0%,100%{transform:translate(0,0) rotate(-9deg)}22%{transform:translate(24vw,-13vh) rotate(12deg)}48%{transform:translate(51vw,2vh) rotate(-5deg)}73%{transform:translate(15vw,21vh) rotate(10deg)}}
+@keyframes cover-live-butterfly-wings{from{transform:perspective(130px) rotateY(-24deg) scaleX(.92)}to{transform:perspective(130px) rotateY(12deg) scaleX(1)}}
+@keyframes cover-live-drape{from{transform:translateX(-3%) skewY(-2deg)}to{transform:translateX(7%) skewY(2deg)}}
+@media(prefers-reduced-motion:reduce){.cover-ambience{display:none!important}.live-cover-host .live-cover-copy{opacity:1!important;pointer-events:auto}.live-cover-host .live-cover-copy *{animation:none!important}}
+.cover-ambience:not(.is-ready) *{animation-play-state:paused!important}
+/* Soap bubbles are a theme opt-in, not a global effect. */
+.cover-ambience[data-skin=playful]{--ca-petal:#d7a28b;--ca-light:#fff0bd}
+.cover-ambient-bubble{position:absolute;bottom:-70px;width:var(--bubble-size);aspect-ratio:1;border-radius:50%;border:1px solid #fff8;box-shadow:inset 2px 1px 4px #ffffff9c,inset -2px -1px 3px #adc4da66,0 0 4px #fff2;background:radial-gradient(circle at 28% 22%,#fff9 0 3%,transparent 12%),radial-gradient(circle at 68% 78%,#e9aeb142,transparent 46%);animation:cover-live-bubble var(--bubble-duration) var(--bubble-delay) linear infinite;will-change:transform}
+@keyframes cover-live-bubble{0%{opacity:0;transform:translate3d(0,0,0) scale(.75)}8%{opacity:.7}45%{transform:translate3d(calc(20px * var(--bubble-drift)),-52vh,0) scale(.94)}90%{opacity:.55}100%{opacity:0;transform:translate3d(calc(-24px * var(--bubble-drift)),-112vh,0) scale(1.1)}}
+/* Screen-sized decorations must not grow into giant flowers on wide previews. */
+.cover-ambience[data-skin]{--ca-bough-width:min(30%,180px)}
+.cover-ambient-corner.tl,.cover-ambient-corner.bl{left:max(-9%,-36px)}
+.cover-ambient-corner.tr,.cover-ambient-corner.br{right:max(-9%,-36px)}

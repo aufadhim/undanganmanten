@@ -1,0 +1,26 @@
+
+/* Final reading group: shared disclosure, confirmation and brand components. */
+:root body.template-banjar #journey #gift .paper.scene-panel{position:fixed!important;left:50%!important;top:46%!important;width:min(460px,calc(100% - 36px))!important;max-width:none!important;max-height:calc(100svh - 140px)!important;padding:18px!important;margin:0!important;transform:translate(-50%,calc(-50% + var(--panel-lift,0px)))!important;opacity:var(--panel-opacity,0)!important;overflow:auto;overscroll-behavior:contain;box-sizing:border-box;text-align:center}
+:root body.template-banjar :is(#gift,#rsvp,#penutup) .paper>h2{font-size:34px!important;line-height:1.12;letter-spacing:-.02em;margin:10px 0 16px!important;text-wrap:balance}
+:root body.template-banjar :is(#gift,#rsvp) .paper>.kicker{font-size:11px!important;line-height:1.5;letter-spacing:0!important;text-transform:none!important;margin:0 0 10px!important}
+:root body.template-banjar :is(#gift,#rsvp,#penutup) .paper>p,:root body.template-banjar .gift-details,:root body.template-banjar .guest-confirmation{font-size:11px!important;line-height:1.8;letter-spacing:0!important;text-transform:none!important}
+:root body.template-banjar :is(#gift,#rsvp,#penutup) :is(.placeholder,.world-next,.paper>.ornament){display:none!important}
+:root body.template-banjar #gift .gift-details-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:20px}
+:root body.template-banjar #gift .gift-details-reveal{max-height:none;overflow:visible;padding:4px 0 12px}
+:root body.template-banjar #gift .gift-details-reveal h3{font-size:18px;line-height:1.3}
+:root body.template-banjar :is(.gift-details button,.guest-confirmation button,#back-cover){min-height:40px;padding:10px 18px;font-size:11px!important;line-height:1.4;letter-spacing:0!important;text-transform:none!important;border:1px solid color-mix(in srgb,currentColor 38%,transparent);border-radius:999px;color:var(--cms-ink,var(--ink,#526745));background:rgba(255,253,244,.65);box-shadow:none;text-decoration:none}
+:root body.template-banjar #journey #rsvp .paper.scene-panel{left:50%!important;top:max(66px,8svh)!important;width:calc(100% - 24px)!important;max-width:900px!important;height:calc(100svh - max(66px,8svh) - 76px)!important;max-height:none!important;padding:14px 18px 28px!important;transform:translate(-50%,var(--panel-lift,0px))!important;opacity:var(--panel-opacity,0)!important;overflow:auto;overscroll-behavior:contain;box-sizing:border-box}
+:root body.template-banjar #rsvp .immersia-confirmation{max-height:none;overflow:visible}
+:root body.template-banjar #rsvp .guest-confirmation-wishes{max-height:none;overflow:visible;padding-bottom:24px}
+:root body.template-banjar #rsvp .guest-confirmation :is(input,select,textarea){font-size:12px!important;line-height:1.5;min-height:40px}
+:root body.template-banjar #rsvp .guest-confirmation textarea{min-height:90px}
+:root body.template-banjar #rsvp .guest-confirmation-wishes article{padding:16px 0}
+:root body.template-banjar #rsvp .guest-confirmation-wishes article p{font-size:11px!important;line-height:1.8}
+:root body.template-banjar #rsvp .confirmation-subtitle{margin:0 0 20px!important;text-align:center}
+:root body.template-banjar #journey #penutup .paper.scene-panel{position:fixed!important;left:50%!important;top:max(66px,8svh)!important;width:min(520px,calc(100% - 32px))!important;height:auto!important;max-height:43svh!important;padding:8px 16px!important;margin:0!important;transform:translate(-50%,var(--panel-lift,0px))!important;opacity:var(--panel-opacity,0)!important;display:flex;flex-direction:column;align-items:center;gap:8px;overflow:auto;box-sizing:border-box;text-align:center}
+:root body.template-banjar #penutup .paper.scene-panel>*{margin:0!important}
+:root body.template-banjar #penutup .paper>.kicker,:root body.template-banjar #penutup .mini{display:none!important}
+:root body.template-banjar #penutup .signature{font-size:28px!important;line-height:1.15;text-wrap:balance}
+:root body.template-banjar #penutup .cover-date{font-size:11px!important;line-height:1.5;letter-spacing:0!important;text-transform:none!important}
+:root body.template-banjar #penutup #closing-brand{font-size:11px!important;letter-spacing:0!important;margin-top:4px!important}
+@media(max-height:700px){:root body.template-banjar :is(#gift,#rsvp,#penutup) .paper>h2{font-size:29px!important}:root body.template-banjar #journey #penutup .paper.scene-panel{max-height:43svh!important;gap:5px;padding:6px 12px!important}:root body.template-banjar #penutup .signature{font-size:24px!important}:root body.template-banjar #penutup #back-cover{min-height:32px;padding:6px 14px}}

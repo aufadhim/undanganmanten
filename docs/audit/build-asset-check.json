@@ -1,0 +1,5 @@
+{
+  "literalReferences": 113,
+  "missing": {},
+  "scope": "Literal asset URLs in built JS/CSS/HTML; dynamically built filenames require separate review."
+}

@@ -1,0 +1,2 @@
+/* Readability washes: fade the backing, never blur the type or the artwork. */
+:is(.eternal-wrapper .quote-content,.seraya-quote,.nw-intro>.nw-reveal){background:radial-gradient(ellipse at 50% 50%,rgba(255,251,241,.85) 0%,rgba(255,251,241,.68) 45%,rgba(255,251,241,.25) 68%,transparent 85%)!important;box-shadow:none!important;border-color:transparent!important;backdrop-filter:none!important}

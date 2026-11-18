@@ -1,146 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { api } from '../api/client.js';
+import React,{useEffect,useState} from 'react';
+import {api} from '../api/client.js';
 import Button from './ui/Button.jsx';
-import { useUI } from '../context/UIContext.jsx';
-
-export default function DresscodeEditor({ invitation, onUpdated, onLivePreview }) {
-    const themeSettings = invitation?.themeSettings || {};
-    
-    // Default structure for dresscode details
-    const defaultDetails = {
-        title: 'Kami mengharapkan kehadiran Anda dengan mengenakan palet warna berikut.',
-        items: [
-            { icon: 'men', title: 'Men', desc: 'Garden', colors: ['#AABBCC', '#DDEEFF'] },
-            { icon: 'women', title: 'Women', desc: 'Garden Party', colors: ['#AABBCC', '#DDEEFF'] }
-        ]
-    };
-
-    const [details, setDetails] = useState(
-        themeSettings.dresscodeDetails ? themeSettings.dresscodeDetails : defaultDetails
-    );
-    const [saving, setSaving] = useState(false);
-    const { toast } = useUI();
-
-    useEffect(() => {
-        onLivePreview?.({ themeSettings: { ...themeSettings, dresscodeDetails: details } });
-    }, [details]);
-
-    const handleSave = async () => {
-        setSaving(true);
-        try {
-            const res = await api.patch('/themes/me', {
-                invitationId: invitation.id,
-                dresscodeDetails: details
-            });
-            onUpdated({
-                ...invitation,
-                themeSettings: res.data.themeSettings
-            });
-            toast.success('Pengaturan Dresscode berhasil disimpan!');
-        } catch (err) {
-            console.error(err);
-            toast.error(err.response?.data?.error || 'Gagal menyimpan pengaturan dresscode');
-        } finally {
-            setSaving(false);
-        }
-    };
-
-    const updateItem = (index, field, value) => {
-        const newItems = [...details.items];
-        newItems[index] = { ...newItems[index], [field]: value };
-        setDetails({ ...details, items: newItems });
-    };
-
-    const addColor = (index) => {
-        const newItems = [...details.items];
-        newItems[index].colors.push('#CCCCCC');
-        setDetails({ ...details, items: newItems });
-    };
-
-    const updateColor = (itemIndex, colorIndex, val) => {
-        const newItems = [...details.items];
-        newItems[itemIndex].colors[colorIndex] = val;
-        setDetails({ ...details, items: newItems });
-    };
-
-    const removeColor = (itemIndex, colorIndex) => {
-        const newItems = [...details.items];
-        newItems[itemIndex].colors = newItems[itemIndex].colors.filter((_, i) => i !== colorIndex);
-        setDetails({ ...details, items: newItems });
-    };
-
-    return (
-        <div style={{ marginTop: '16px', padding: '16px', background: '#f8f9fa', borderRadius: '12px', border: '1px solid #e9ecef' }}>
-            {details.items.map((item, idx) => (
-                <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '8px', border: '1px solid #ddd', marginBottom: '12px' }}>
-                    <div style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>
-                        <div style={{ flex: 1 }}>
-                            <label className="field-label">Kategori (Cth: Pria/Men)</label>
-                            <input 
-                                type="text" 
-                                className="text-input" 
-                                value={item.title}
-                                onChange={(e) => updateItem(idx, 'title', e.target.value)}
-                            />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <label className="field-label">Deskripsi Tambahan</label>
-                            <input 
-                                type="text" 
-                                className="text-input" 
-                                value={item.desc}
-                                onChange={(e) => updateItem(idx, 'desc', e.target.value)}
-                            />
-                        </div>
-                        <div style={{ width: '100px' }}>
-                            <label className="field-label">Ikon</label>
-                            <select 
-                                className="text-input" 
-                                value={item.icon}
-                                onChange={(e) => updateItem(idx, 'icon', e.target.value)}
-                            >
-                                <option value="men">Jas (Pria)</option>
-                                <option value="women">Gaun (Wanita)</option>
-                                <option value="none">Tanpa Ikon</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="field-label">Palet Warna (Klik warna untuk ubah)</label>
-                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                            {item.colors.map((c, cIdx) => (
-                                <div key={cIdx} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                                    <input 
-                                        type="color" 
-                                        value={c}
-                                        onChange={(e) => updateColor(idx, cIdx, e.target.value)}
-                                        style={{ width: '36px', height: '36px', padding: 0, border: 'none', borderRadius: '6px', cursor: 'pointer' }}
-                                    />
-                                    <button 
-                                        onClick={() => removeColor(idx, cIdx)}
-                                        style={{ position: 'absolute', top: '-8px', right: '-8px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '18px', height: '18px', fontSize: '10px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    >
-                                        <i className="fa-solid fa-times"></i>
-                                    </button>
-                                </div>
-                            ))}
-                            <button 
-                                onClick={() => addColor(idx)}
-                                style={{ width: '36px', height: '36px', background: '#f0f0f0', border: '1px dashed #ccc', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                            >
-                                <i className="fa-solid fa-plus" style={{ color: '#888' }}></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            ))}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                <Button variant="primary" onClick={handleSave} isLoading={saving}>
-                    Simpan Dresscode
-                </Button>
-            </div>
-        </div>
-    );
+import {useUI} from '../context/UIContext.jsx';
+import {normalizeDresscode} from '../utils/dresscode.js';
+import './dresscode-editor.css';
+export default function DresscodeEditor({invitation,onUpdated,onLivePreview}){
+ const initial=()=>normalizeDresscode(invitation?.themeSettings?.dresscodeDetails,invitation?.themeSettings?.dresscodeText||'');
+ const [details,setDetails]=useState(initial),[saving,setSaving]=useState(false);const {toast}=useUI();
+ useEffect(()=>{setDetails(initial())},[invitation?.id]);
+ const change=d=>{setDetails(d);onLivePreview?.({themeSettings:{...invitation.themeSettings,dresscodeDetails:d}})};
+ const itemChange=(i,patch)=>change({...details,items:details.items.map((x,j)=>j===i?{...x,...patch}:x)});
+ const modeChange=mode=>change({...details,mode,items:mode==='shared'?[{...details.items[0],title:'Semua tamu'}]:[{...details.items[0],title:'Pria'},details.items[1]||{title:'Wanita',desc:'',colors:[],colorLabels:[]}]});
+ const save=async()=>{setSaving(true);try{const res=await api.patch('/themes/me',{invitationId:invitation.id,dresscodeDetails:details});onUpdated?.({...invitation,themeSettings:res.data.themeSettings})}catch(e){toast.error(e.response?.data?.error||'Gagal menyimpan dress code')}finally{setSaving(false)}};
+ return <div className="dress-editor"><h2>Dress Code</h2><label className="field-label" htmlFor="dress-intro">Arahan pakaian</label><textarea id="dress-intro" className="text-input" rows={3} value={details.title} placeholder="Batik atau kebaya dengan nuansa earth tone." onChange={e=>change({...details,title:e.target.value})}/><div className="dress-editor-modes" role="group" aria-label="Kategori tamu">{[['shared','Semua tamu'],['separate','Pria & wanita']].map(([v,label])=><Button key={v} variant={details.mode===v?'primary':'secondary'} aria-pressed={details.mode===v} onClick={()=>modeChange(v)}>{label}</Button>)}</div>
+ {details.items.map((x,i)=><section className="dress-editor-group" key={i}><h3>{details.mode==='shared'?'Warna pilihan':x.title}</h3>{details.mode==='separate'&&<><label className="field-label">Kategori<input className="text-input" value={x.title} onChange={e=>itemChange(i,{title:e.target.value})}/></label></>}<label className="field-label">Pakaian (opsional)<input className="text-input" value={x.desc} placeholder="Contoh: Batik lengan panjang" onChange={e=>itemChange(i,{desc:e.target.value})}/></label><div className="dress-editor-colors">{x.colors.map((c,j)=><div className="dress-editor-color" key={j}><input type="color" value={c} aria-label={`Warna ${j+1} ${x.title}`} onChange={e=>itemChange(i,{colors:x.colors.map((v,k)=>j===k?e.target.value:v)})}/><input className="text-input" value={x.colorLabels[j]||''} aria-label={`Nama warna ${j+1} ${x.title}`} placeholder="Nama warna (opsional)" maxLength={30} onChange={e=>itemChange(i,{colorLabels:x.colors.map((_,k)=>j===k?e.target.value:x.colorLabels[k]||'')})}/><Button variant="ghost" onClick={()=>itemChange(i,{colors:x.colors.filter((_,k)=>k!==j),colorLabels:x.colors.map((_,k)=>x.colorLabels[k]||'').filter((_,k)=>k!==j)})}>Hapus</Button></div>)}</div><Button variant="secondary" disabled={x.colors.length>=6} onClick={()=>itemChange(i,{colors:[...x.colors,'#c4b49a'],colorLabels:[...x.colors.map((_,j)=>x.colorLabels[j]||''),'']})}>Tambah warna</Button></section>)}
+ <label className="field-label" htmlFor="dress-note">Catatan (opsional)</label><textarea id="dress-note" className="text-input" rows={2} value={details.note} placeholder="Contoh: Hindari warna putih." onChange={e=>change({...details,note:e.target.value})}/><Button saveAction fullWidth isLoading={saving} onClick={save}>Simpan konten</Button></div>;
 }

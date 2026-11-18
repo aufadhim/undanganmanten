@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {storyPresentation} from '../public/templates/shared/story-layout.js';
+const stories=[{title:'Pertemuan',description:'Pertama'},{title:'Lamaran',description:'Kedua'}];
+test('short story hides chapters without removing their data',()=>{const data={features:{timelineEnabled:false},stories,mainStory:'Kisah kami'};assert.deepEqual(storyPresentation(data),{mode:'short',text:'Kisah kami'});assert.equal(data.stories.length,2)});
+test('journey shows only chapters while keeping the alternative narrative',()=>{const data={features:{timelineEnabled:true},stories,mainStory:'Kisah kami'};assert.deepEqual(storyPresentation(data),{mode:'journey',chapters:stories});assert.equal(data.mainStory,'Kisah kami')});
+test('legacy content without mode chooses available story type',()=>{assert.equal(storyPresentation({mainStory:'Kisah kami'}).mode,'short');assert.equal(storyPresentation({stories}).mode,'journey')});
+import {resolvePreviewStory} from '../src/config/dummyStory.js';
+test('Signature templates follow selected story mode without inventing preview content',()=>{assert.deepEqual(resolvePreviewStory('Narasi',stories,true,false),{mainStory:'Narasi',timeline:[]});assert.deepEqual(resolvePreviewStory('Narasi',stories,true,true),{mainStory:'',timeline:stories});assert.deepEqual(resolvePreviewStory('',[],true,true),{mainStory:'',timeline:[]})});

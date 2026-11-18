@@ -1,0 +1,74 @@
+.btn[data-ui-button] {
+  --button-bg: #faf8ef;
+  --button-text: #34482e;
+  --button-line: #9da990;
+  --button-hover: #e5ebdc;
+  --button-hover-text: var(--button-text);
+  --button-focus: #53694a;
+}
+.btn[data-ui-button="primary"] {
+  --button-bg: #536343;
+  --button-text: #fffdf5;
+  --button-line: #536343;
+  --button-hover: #405238;
+}
+.btn[data-ui-button="ghost"] {
+  --button-bg: transparent;
+  --button-line: transparent;
+}
+.btn[data-ui-button="danger"] {
+  --button-bg: #fcf4f1;
+  --button-text: #8b302e;
+  --button-line: #bd8279;
+  --button-hover: #f1dcd7;
+}
+:is(.dashboard-dark,.auth-dark,.landing-dark) .btn[data-ui-button] {
+  --button-bg: #252f26;
+  --button-text: #edf2e6;
+  --button-line: #61705e;
+  --button-hover: #394939;
+  --button-focus: #bacfab;
+}
+:is(.dashboard-dark,.auth-dark,.landing-dark) .btn[data-ui-button="primary"] {
+  --button-bg: #aabd9a;
+  --button-text: #202a1d;
+  --button-line: #aabd9a;
+  --button-hover: #c4d5b5;
+}
+:is(.dashboard-dark,.auth-dark,.landing-dark) .btn[data-ui-button="danger"] {
+  --button-bg: #392724;
+  --button-text: #ffd1c8;
+  --button-line: #a46860;
+  --button-hover: #543330;
+}
+:is(.dashboard-dark,.auth-dark,.landing-dark) .btn[data-ui-button="ghost"] {
+  --button-bg: transparent;
+  --button-line: transparent;
+}
+.btn[data-ui-button],
+.atelier-app .btn[data-ui-button][class] {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-line);
+}
+.btn[data-ui-button]:not(:disabled):is(:hover,:focus-visible),
+.atelier-app .btn[data-ui-button][class]:not(:disabled):is(:hover,:focus-visible) {
+  background: var(--button-hover);
+  color: var(--button-hover-text);
+  transform: none;
+}
+.btn[data-ui-button]:focus-visible {
+  outline: 2px solid var(--button-focus);
+  outline-offset: 3px;
+}
+.btn[data-ui-button]:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+.atelier-app .dashboard-theme-toggle:is(:hover,:focus-visible),
+.atelier-app .stage-topbar-device-switch button:is(:hover,:focus-visible) {
+  background: var(--paper-deep);
+  color: var(--ink);
+}
+.atelier-app .library-card-actions .library-primary:is(:hover,:focus-visible),
+.atelier-app .workspace-page button.workspace-primary:is(:hover,:focus-visible) {
+  background: #405238;
+  color: #fffdf5;
+}

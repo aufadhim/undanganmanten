@@ -4,10 +4,6 @@ const ACTIVE_TEMPLATES = [
   ['eternal', '.eternal-wrapper'],
   ['seraya', '.seraya'],
   ['nawasena', '.nawasena'],
-  ['isvara', '.isvara'],
-  ['lanqing', '.lanqing'],
-  ['celluloid', '.atelier-celluloid'],
-  ['nocturne', '.nocturne'],
 ];
 
 for (const [themeId, rootSelector] of ACTIVE_TEMPLATES) {

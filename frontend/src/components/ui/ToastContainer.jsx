@@ -1,87 +1,13 @@
 import React from 'react';
-
-export default function ToastContainer({ toasts, onDismiss }) {
-  if (!toasts || toasts.length === 0) return null;
-
-  return (
-    <div className="ui-toast-container">
-      {toasts.map((toast) => (
-        <div key={toast.id} className={`ui-toast ui-toast-${toast.type}`}>
-          <div className="ui-toast-icon">
-            {toast.type === 'success' && <i className="fa-solid fa-circle-check"></i>}
-            {toast.type === 'error' && <i className="fa-solid fa-circle-exclamation"></i>}
-            {toast.type === 'info' && <i className="fa-solid fa-circle-info"></i>}
-          </div>
-          <div className="ui-toast-message">{toast.message}</div>
-          <button className="ui-toast-close" onClick={() => onDismiss?.(toast.id)} aria-label="Tutup notifikasi"><i className="fa-solid fa-xmark"></i></button>
-          <span className="ui-toast-progress" />
-        </div>
-      ))}
-
-      <style>{`
-        .ui-toast-container {
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          z-index: 10000;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          pointer-events: none; /* Allows clicking through the container */
-          align-items: stretch;
-        }
-
-        .ui-toast {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          background: #ffffff;
-          min-width: min(360px, calc(100vw - 40px));
-          max-width: 440px;
-          padding: 15px 44px 15px 16px;
-          border-radius: 14px;
-          box-shadow: 0 18px 50px -18px rgba(24, 36, 32, 0.45);
-          pointer-events: auto;
-          animation: uiToastSlideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          border: 1px solid rgba(0,0,0,0.05);
-          overflow: hidden;
-          position: relative;
-        }
-
-        .ui-toast-success .ui-toast-icon { color: #10b981; }
-        .ui-toast-error .ui-toast-icon { color: #ef4444; }
-        .ui-toast-info .ui-toast-icon { color: #3b82f6; }
-
-        .ui-toast-icon {
-          font-size: 16px;
-          display: flex;
-        }
-
-        .ui-toast-message {
-          font-family: 'Manrope', sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--ink, #182420);
-        }
-        .ui-toast-close { position: absolute; right: 10px; top: 10px; width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgba(0,0,0,.05); color: #655f59; cursor: pointer; }
-        .ui-toast-progress { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: currentColor; opacity: .45; transform-origin: left; animation: uiToastProgress 3s linear forwards; }
-        .ui-toast-success { color: #10b981; border-left: 4px solid #10b981; }
-        .ui-toast-error { color: #ef4444; border-left: 4px solid #ef4444; }
-        .ui-toast-info { color: #3b82f6; border-left: 4px solid #3b82f6; }
-
-        @keyframes uiToastSlideDown {
-          0% {
-            opacity: 0;
-            transform: translateY(-20px) scale(0.9);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        @keyframes uiToastProgress { to { transform: scaleX(0); } }
-        @media (max-width: 520px) { .ui-toast-container { left: 12px; right: 12px; top: 12px; } .ui-toast { min-width: 0; } }
-      `}</style>
-    </div>
-  );
+export default function ToastContainer({toasts,onDismiss}){
+ if(!toasts?.length)return null;
+ return <div className="ui-toast-container" aria-label="Notifikasi">{toasts.map(t=><div key={t.id} className={`ui-toast ui-toast-${t.type}`} role={t.type==='error'?'alert':'status'} aria-live={t.type==='error'?'assertive':'polite'} aria-atomic="true"><span className="ui-toast-icon" aria-hidden="true">{t.type==='loading'?<span className="ui-toast-spinner"/>:t.type==='success'?'✓':t.type==='error'?'!':'i'}</span><div className="ui-toast-copy"><div className="ui-toast-message">{t.message}</div>{t.progress!=null&&t.type==='loading'&&<progress max="100" value={t.progress}/>}{t.action&&<button type="button" className="ui-toast-action" onClick={t.action.onClick}>{t.action.label}</button>}</div>{t.type!=='loading'&&<button type="button" className="ui-toast-close" onClick={()=>onDismiss?.(t.id)} aria-label="Tutup notifikasi">×</button>}</div>)}<style>{`
+ .ui-toast-container{position:fixed;top:20px;right:20px;z-index:2147483500;display:flex;flex-direction:column;gap:10px;pointer-events:none;width:min(380px,calc(100vw - 32px));max-height:calc(100dvh - 40px);overflow-y:auto;padding:2px}
+ .ui-toast{display:flex;align-items:flex-start;gap:12px;box-sizing:border-box;width:100%;padding:16px 40px 16px 16px;border:1px solid #d7dbc9;border-left:4px solid #879574;border-radius:10px;background:#fffdf5;box-shadow:0 8px 28px #28332026;color:#526345;position:relative;pointer-events:auto;animation:uiToastEnter .2s ease-out}
+ .ui-toast-error{border-left-color:#a26457;color:#884e43;background:#fff9f3}.ui-toast-icon{display:grid;place-items:center;flex-shrink:0;width:19px;height:20px;font:600 17px/1 sans-serif}.ui-toast-copy{min-width:0;flex:1}.ui-toast-message{font:500 13px/1.6 'DM Sans',sans-serif;overflow-wrap:anywhere;color:inherit}.ui-toast-copy progress{width:100%;height:4px;margin-top:10px;accent-color:#82936e}
+ .ui-toast-close{position:absolute;right:7px;top:8px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;font:20px/1 sans-serif}.ui-toast-action{display:inline-block;margin-top:9px;padding:5px 9px;border:1px solid currentColor;border-radius:5px;background:transparent;color:inherit;font-size:12px;cursor:pointer}
+ .ui-toast-spinner{display:block;width:14px;height:14px;border:2px solid #cdd4bd;border-top-color:#71845b;border-radius:50%;animation:uiToastSpin .85s linear infinite}
+ @keyframes uiToastSpin{to{transform:rotate(360deg)}}@keyframes uiToastEnter{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+ @media(max-width:520px){.ui-toast-container{left:12px;right:12px;top:12px;width:auto;max-height:calc(100dvh - 24px)}}@media(prefers-reduced-motion:reduce){.ui-toast{animation:none}}
+ `}</style></div>
 }

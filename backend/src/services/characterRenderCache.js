@@ -1,0 +1,3 @@
+/** Bounded in-process reuse of authorized, immutable upload render results. */
+const entries=new Map();let bytes=0;const MAX_BYTES=16*1024*1024,TTL=10*60*1000;
+export async function cachedCharacterRender(key,create){const hit=entries.get(key);if(hit&&hit.until>Date.now()){entries.delete(key);entries.set(key,hit);return hit.value}if(hit){bytes-=hit.bytes;entries.delete(key)}const value=await create(),size=Buffer.byteLength(value,'utf16le');if(size>MAX_BYTES)return value;while(bytes+size>MAX_BYTES&&entries.size){const first=entries.keys().next().value;bytes-=entries.get(first).bytes;entries.delete(first)}entries.set(key,{value,bytes:size,until:Date.now()+TTL});bytes+=size;return value;}

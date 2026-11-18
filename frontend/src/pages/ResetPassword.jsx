@@ -1,3 +1,6 @@
+import { DashboardThemeToggle } from '../components/atelier/CanvasRouteFrame.jsx';
+import Brand from '../components/atelier/Brand.jsx';
+import AuthArtwork from '../components/atelier/AuthArtwork.jsx';
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { api } from '../api/client.js';
@@ -39,22 +42,20 @@ export default function ResetPassword() {
 
     return (
         <div className="auth-screen">
-            <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10 }}>
+            <div className="atelier-auth-language">
+                <DashboardThemeToggle />
                 <LangSwitcher style={{ background: 'var(--auth-paper)', color: 'var(--auth-ink)', borderColor: 'var(--auth-line)' }} />
             </div>
 
             <div className="auth-left">
                 <div className="auth-card">
-                    <div className="auth-brand">
-                        <img src="/logo.png" alt="UndanganManten Logo" style={{ height: 22, marginRight: 8 }} />
-                        UNDANGANMANTEN
-                    </div>
+                    <Brand className="auth-brand"/>
                     <h1 className="auth-title">Buat password baru</h1>
 
                     {!token ? (
                         <div>
                             <div className="form-error" role="alert">Tautan reset password tidak valid atau tidak lengkap.</div>
-                            <p className="auth-switch"><Link to="/forgot-password">Minta tautan baru</Link></p>
+                            <p className="auth-switch"><Link className="sam-action-link" to="/forgot-password">Minta tautan baru</Link></p>
                         </div>
                     ) : completed ? (
                         <div>
@@ -82,7 +83,7 @@ export default function ResetPassword() {
                     )}
                 </div>
             </div>
-            <div className="auth-right" aria-hidden="true" />
+            <AuthArtwork/>
         </div>
     );
 }

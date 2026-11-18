@@ -17,3 +17,12 @@ frontend/test-results/
 
 # Referensi desain hasil unduhan; bukan bagian runtime aplikasi.
 contoh template/
+
+# Local audit / generated caches
+__pycache__/
+*.py[cod]
+output/
+
+# Temporary local renders and audit files
+/tmp/
+

@@ -1,144 +1,27 @@
-import { useEffect, useState } from 'react';
-import { api } from '../api/client.js';
+import {useEffect,useRef,useState} from 'react';
+import {Reorder,useDragControls} from 'framer-motion';
+import {api} from '../api/client.js';
 import Button from './ui/Button.jsx';
-import { useUI } from '../context/UIContext.jsx';
-
-export default function RundownEditor({ invitation, onUpdated, onLivePreview }) {
-    const rundowns = invitation.rundowns || [];
-    const [adding, setAdding] = useState(false);
-    const [newTime, setNewTime] = useState('');
-    const [newActivity, setNewActivity] = useState('');
-    const [saving, setSaving] = useState(false);
-    
-    const [rundownEnabled, setRundownEnabled] = useState(invitation?.invitationFeatures?.rundownEnabled || false);
-    const { toast, confirm } = useUI();
-
-    useEffect(() => {
-        if (!onLivePreview) return;
-
-        const hasDraft = adding && (newTime.trim() || newActivity.trim());
-        const draft = hasDraft ? [{
-            id: 'rundown-live-draft',
-            time: newTime || '--:--',
-            activity: newActivity || 'Kegiatan baru',
-            order: rundowns.length,
-            isPreviewDraft: true,
-        }] : [];
-
-        onLivePreview({ rundowns: [...rundowns, ...draft] });
-    }, [invitation.rundowns, adding, newTime, newActivity, onLivePreview]);
-
-    async function handleAdd() {
-        if (!newTime || !newActivity) return toast.error('Waktu dan kegiatan wajib diisi');
-        setSaving(true);
-        try {
-            const res = await api.post('/invitations/me/rundowns', {
-                time: newTime,
-                activity: newActivity,
-                order: rundowns.length
-            });
-            const newRundown = res.data.rundown;
-            onUpdated({
-                ...invitation,
-                rundowns: [...rundowns, newRundown]
-            });
-            setNewTime('');
-            setNewActivity('');
-            setAdding(false);
-        } catch (err) {
-            console.error(err);
-            toast.error('Gagal menambah rundown');
-        } finally {
-            setSaving(false);
-        }
-    }
-
-    async function handleDelete(id) {
-        const isConfirmed = await confirm('Hapus Kegiatan', 'Hapus kegiatan ini?');
-        if (!isConfirmed) return;
-        try {
-            await api.delete(`/invitations/me/rundowns/${id}`);
-            onUpdated({
-                ...invitation,
-                rundowns: rundowns.filter(r => r.id !== id)
-            });
-            toast.success('Rundown berhasil dihapus');
-        } catch (err) {
-            console.error(err);
-            toast.error('Gagal menghapus rundown');
-        }
-    }
-
-    // Handle Toggle Rundown On/Off
-    async function handleToggleRundown() {
-        const checked = !rundownEnabled;
-        setRundownEnabled(checked);
-        try {
-            await api.patch('/invitations/me/features', { rundownEnabled: checked });
-            const updatedFeatures = { ...invitation.invitationFeatures, rundownEnabled: checked };
-            onUpdated({ ...invitation, invitationFeatures: updatedFeatures });
-            if (onLivePreview) {
-                onLivePreview({ invitationFeatures: updatedFeatures });
-            }
-        } catch (err) {
-            console.error(err);
-            setRundownEnabled(!checked); // revert
-            toast.error(err.response?.data?.error || 'Gagal mengubah pengaturan fitur Rundown.');
-        }
-    }
-
-    return (
-        <div className="section-block">
-            <div className="section-title">
-                Rundown Acara
-            </div>
-
-            <div className="stack">
-                {rundowns.length === 0 ? (
-                    <div style={{ padding: '16px', background: '#f9f9f9', textAlign: 'center', borderRadius: '8px', color: '#888', fontSize: '13px' }}>
-                        Belum ada kegiatan.
-                    </div>
-                ) : (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                        {rundowns.map((r, i) => (
-                            <div key={r.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#fff', border: '1px solid #eee', padding: '12px', borderRadius: '8px' }}>
-                                <div style={{ background: 'var(--wine-deep)', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontSize: '13px', fontWeight: 600 }}>
-                                    {r.time}
-                                </div>
-                                <div style={{ flex: 1, fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
-                                    {r.activity}
-                                </div>
-                                <Button variant="secondary" onClick={() => handleDelete(r.id)} style={{ padding: '6px 10px', color: 'red', border: 'none', background: '#fce8e8' }}>
-                                    <i className="fa-solid fa-trash"></i>
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {adding ? (
-                    <div style={{ background: '#f4f5f7', padding: '16px', borderRadius: '8px', marginTop: '8px' }}>
-                        <div className="grid-2">
-                            <div>
-                                <span className="field-label">Waktu (Misal: 08:00 - 10:00)</span>
-                                <input className="text-input" value={newTime} onChange={e => setNewTime(e.target.value)} placeholder="08:00" />
-                            </div>
-                            <div>
-                                <span className="field-label">Kegiatan (Misal: Akad Nikah)</span>
-                                <input className="text-input" value={newActivity} onChange={e => setNewActivity(e.target.value)} placeholder="Akad Nikah" />
-                            </div>
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', justifyContent: 'flex-end' }}>
-                            <Button variant="secondary" onClick={() => setAdding(false)}>Batal</Button>
-                            <Button variant="primary" onClick={handleAdd} isLoading={saving}>Simpan Kegiatan</Button>
-                        </div>
-                    </div>
-                ) : (
-                    <Button variant="secondary" onClick={() => setAdding(true)} style={{ marginTop: '8px', borderStyle: 'dashed' }}>
-                        <i className="fa-solid fa-plus" style={{ marginRight: '8px' }}></i> Tambah Kegiatan
-                    </Button>
-                )}
-            </div>
-        </div>
-    );
+import {useUI} from '../context/UIContext.jsx';
+import {parseRundownTime,formatRundownTime,moveRundown} from '../utils/rundown.js';
+import './rundown-editor.css';
+const blank=()=>({start:'',end:'',activity:'',description:'',original:'',timeEdited:false});
+function RundownRow({item,expanded,onOpen,disabled,onDrop,onKeyboard,children}){
+ const controls=useDragControls();
+ return <Reorder.Item as="li" value={item.id} dragListener={false} dragControls={controls} onDragEnd={onDrop} className="rundown-sortable" whileDrag={{zIndex:10,boxShadow:'0 8px 24px #44543b22'}}>
+ <div className="rundown-row-heading"><button type="button" className="rundown-drag-handle" aria-label={`Geser kegiatan ${item.activity}`} disabled={disabled} onPointerDown={e=>{if(!disabled)controls.start(e)}} onKeyDown={e=>{if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();onKeyboard(e.key==='ArrowUp'?-1:1)}}}><svg width="12" height="20" viewBox="0 0 12 20" fill="currentColor" aria-hidden="true">{[4,10,16].flatMap(y=>[3,9].map(x=><circle key={`${x}-${y}`} cx={x} cy={y} r="1.7"/>))}</svg></button><button type="button" className="rundown-row-toggle" aria-expanded={expanded} disabled={disabled} onClick={onOpen}><time>{item.time}</time><strong>{item.activity}</strong><span aria-hidden="true">{expanded?'−':'⌄'}</span></button></div>{expanded&&children}
+ </Reorder.Item>
+}
+export default function RundownEditor({invitation,onUpdated,onLivePreview}){
+ const [orderDraft,setOrderDraft]=useState(null),orderRef=useRef(null);const savedItems=invitation.rundowns||[];const items=orderDraft?orderDraft.map(id=>savedItems.find(r=>r.id===id)).filter(Boolean):savedItems;const [openId,setOpenId]=useState(null),[form,setForm]=useState(blank),[busy,setBusy]=useState(false);const {toast,confirm}=useUI();
+ function payload(){return {time:form.timeEdited||!form.original?formatRundownTime(form.start,form.end):form.original,activity:form.activity.trim(),description:form.description.trim()}}
+ useEffect(()=>{let next=items;if(openId&&(form.activity||form.start||form.description)){const edited={...payload(),id:openId};next=openId==='new'?[...items,{...edited,order:Math.max(-1,...items.map(r=>r.order??0))+1}]:items.map(r=>r.id===openId?{...r,...edited}:r)}onLivePreview?.({rundowns:next})},[invitation.rundowns,orderDraft,form,openId,onLivePreview]);
+ function open(item){if(busy)return;const id=item?.id||'new';if(openId===id){setOpenId(null);setForm(blank());return}setOpenId(id);setForm(item?{...parseRundownTime(item.time),activity:item.activity||'',description:item.description||'',timeEdited:false}:blank())}
+ async function save(e){e.preventDefault();const data=payload();if(!data.time||!data.activity)return toast.error('Isi waktu mulai dan nama kegiatan.');if(form.end&&form.start&&form.end<=form.start&&(form.timeEdited||!form.original))return toast.error('Jam selesai harus setelah jam mulai.');setBusy(true);try{const index=items.findIndex(r=>r.id===openId),res=openId==='new'?await api.post('/invitations/me/rundowns',{...data,order:Math.max(-1,...items.map(r=>r.order??0))+1}):await api.patch(`/invitations/me/rundowns/${openId}`,{...data,order:items[index]?.order??index});const next=openId==='new'?[...items,res.data.rundown]:items.map(r=>r.id===openId?res.data.rundown:r);setOpenId(null);setForm(blank());onUpdated({...invitation,rundowns:next});toast.success('Kegiatan tersimpan.')}catch(e){toast.error(e.response?.data?.error||'Kegiatan belum tersimpan.')}finally{setBusy(false)}}
+ function reorder(ids){orderRef.current=ids;setOrderDraft(ids)}
+ async function persistOrder(){const ids=orderRef.current;if(!ids||busy)return;if(ids.every((id,i)=>savedItems[i]?.id===id)){orderRef.current=null;setOrderDraft(null);return}const next=ids.map((id,order)=>({...savedItems.find(r=>r.id===id),order}));setBusy(true);try{await api.post('/invitations/me/rundowns/reorder',{items:next.map(({id,order})=>({id,order}))});onUpdated({...invitation,rundowns:next});toast.success('Urutan tersimpan.')}catch(e){toast.error(e.response?.data?.error||'Urutan belum tersimpan.')}finally{orderRef.current=null;setOrderDraft(null);setBusy(false)}}
+ function keyboardMove(id,step){const next=moveRundown(items,id,step);if(next===items||busy)return;reorder(next.map(r=>r.id));persistOrder()}
+ async function remove(){if(!await confirm('Hapus kegiatan','Hapus kegiatan ini dari rundown?'))return;setBusy(true);try{await api.delete(`/invitations/me/rundowns/${openId}`);onUpdated({...invitation,rundowns:items.filter(r=>r.id!==openId)});setOpenId(null);setForm(blank())}catch(e){toast.error(e.response?.data?.error||'Kegiatan belum dapat dihapus.')}finally{setBusy(false)}}
+ function editor(){return <form className="rundown-form" onSubmit={save}><div className="rundown-time-fields"><label>Jam mulai<input className="text-input" type="time" required={!form.original} value={form.start} disabled={busy} onChange={e=>setForm({...form,start:e.target.value,timeEdited:true})}/></label><label>Jam selesai <small>(opsional)</small><input className="text-input" type="time" value={form.end} disabled={busy} onChange={e=>setForm({...form,end:e.target.value,timeEdited:true})}/></label></div>{form.original&&!form.start&&<p>Waktu sebelumnya: {form.original}</p>}<label>Kegiatan<input className="text-input" required maxLength={150} value={form.activity} disabled={busy} onChange={e=>setForm({...form,activity:e.target.value})} placeholder="Akad"/></label><label>Keterangan <small>(opsional)</small><textarea className="text-area" rows={3} maxLength={1000} value={form.description} disabled={busy} onChange={e=>setForm({...form,description:e.target.value})} placeholder="Informasi tambahan untuk tamu…"/></label>{openId!=='new'&&<><Button type="button" variant="danger" fullWidth disabled={busy} onClick={remove}>Hapus kegiatan</Button></>}<div className="rundown-form-actions"><Button type="button" variant="secondary" disabled={busy} onClick={()=>{setOpenId(null);setForm(blank())}}>Batal</Button><Button type="submit" isLoading={busy}>Simpan kegiatan</Button></div></form>}
+ return <div className="panel-content rundown-editor"><h2 className="panel-header">Rundown Acara</h2><p className="panel-sub">Atur waktu kegiatan. Geser pegangan titik untuk mengubah urutan.</p><div className="rundown-items">{!items.length&&openId!=='new'&&<p className="rundown-empty">Belum ada kegiatan.</p>}<Reorder.Group as="ul" axis="y" values={items.map(r=>r.id)} onReorder={reorder} className="rundown-sortable-list">{items.map(item=><RundownRow key={item.id} item={item} expanded={openId===item.id} onOpen={()=>open(item)} disabled={busy} onDrop={persistOrder} onKeyboard={step=>keyboardMove(item.id,step)}>{editor()}</RundownRow>)}</Reorder.Group>{openId==='new'?<section className="rundown-item"><h3>Kegiatan baru</h3>{editor()}</section>:<Button variant="secondary" fullWidth disabled={busy} onClick={()=>open(null)}>Tambah kegiatan</Button>}</div></div>
 }

@@ -1,0 +1,14 @@
+{
+  "publicBeforeBytes": 297749037,
+  "publicAfterBytes": 209993090,
+  "publicFilesBefore": 671,
+  "publicFilesAfter": 366,
+  "removedFiles": 798,
+  "removedBytes": 233823936,
+  "buildBeforeBytes": 301478288,
+  "buildAfterBytes": 213722180,
+  "removedSourceFiles": 21,
+  "browserThemesChecked": 9,
+  "allDeferredImagesForcedToLoad": false,
+  "workingFolderAfterWithoutInstalledDependenciesOrBuildBytes": 454980785
+}

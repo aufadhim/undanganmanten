@@ -1,0 +1,2 @@
+import React from 'react';import {createRoot} from 'react-dom/client';import ViridariumTemplate from '../../src/components/templates/viridarium/ViridariumTemplate.jsx';
+createRoot(document.getElementById('root')).render(<div style={{width:390,height:844,position:'relative'}}><ViridariumTemplate invitation={{id:'date-qa',themeId:'garden-canvas',weddingDate:'2026-12-05',coupleProfile:{brideName:'A',groomName:'B'},themeSettings:{characterSettings:{mode:'default'}}}}/></div>);

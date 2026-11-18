@@ -2,13 +2,14 @@ import { prisma } from '../lib/prisma.js';
 import { z } from 'zod';
 
 const rundownSchema = z.object({
-  time: z.string().min(1, 'Waktu wajib diisi'),
-  activity: z.string().min(1, 'Kegiatan wajib diisi'),
-  order: z.number().optional().default(0),
+  time: z.string().trim().min(1, 'Waktu wajib diisi').max(100),
+  activity: z.string().trim().min(1, 'Kegiatan wajib diisi').max(150),
+  description: z.string().trim().max(1000).optional(),
+  order: z.number().int().min(0).max(10000).optional().default(0),
 });
 
 export const bulkRundownSchema = z.object({
-  items: z.array(z.object({ id: z.string(), order: z.number() })),
+  items: z.array(z.object({ id: z.string().uuid(), order: z.number().int().min(0).max(10000) })).max(100),
 });
 
 async function getInvitation(req) {
@@ -94,14 +95,15 @@ export async function reorderRundowns(req, res) {
     const invitation = await getInvitation(req);
     if (!invitation) return res.status(404).json({ error: 'Undangan tidak ditemukan.' });
 
-    const updates = parsed.data.items.map(item =>
-      prisma.rundown.update({
-        where: { id: item.id },
-        data: { order: item.order },
-      })
-    );
-
-    await prisma.$transaction(updates);
+    const items=parsed.data.items;
+    if(new Set(items.map(i=>i.id)).size!==items.length||new Set(items.map(i=>i.order)).size!==items.length)return res.status(400).json({error:'Urutan kegiatan tidak valid.'});
+    const valid=await prisma.$transaction(async tx=>{
+      const rows=await tx.rundown.findMany({where:{invitationId:invitation.id},select:{id:true}});
+      if(rows.length!==items.length||!items.every(item=>rows.some(r=>r.id===item.id)))return false;
+      for(const item of items)await tx.rundown.updateMany({where:{id:item.id,invitationId:invitation.id},data:{order:item.order}});
+      return true;
+    });
+    if(!valid)return res.status(409).json({error:'Daftar kegiatan berubah. Muat ulang sebelum mengatur urutan.'});
     return res.json({ message: 'Urutan rundown diperbarui' });
   } catch (err) {
     console.error('Error reorderRundowns:', err);

@@ -1,0 +1,1983 @@
+{
+  "referenceViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "templates": [
+    {
+      "id": "melayu-balairung",
+      "name": "Swarnalaya",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "courtyard-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.2525943396226416
+            },
+            {
+              "id": "courtyard-railing",
+              "weight": 0.8,
+              "height": 0.25620000000000004
+            }
+          ],
+          "bodyFraction": 0.3782000000000002,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.19397368421052635
+            },
+            {
+              "id": "near-railing",
+              "weight": 0.8,
+              "height": 0.26639999999999997
+            }
+          ],
+          "bodyFraction": 0.3552000000000002,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-railing",
+          "candidates": [
+            {
+              "id": "stair-riser",
+              "weight": 0.2,
+              "height": 0.2525943396226416
+            },
+            {
+              "id": "courtyard-railing",
+              "weight": 0.8,
+              "height": 0.25620000000000004
+            }
+          ],
+          "bodyFraction": 0.3381840000000001,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "melayu-hikayat",
+      "name": "Hikayat",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "front-pavilion-railing",
+          "candidates": [
+            {
+              "id": "front-pavilion-railing",
+              "weight": 1,
+              "height": 0.2117818181818182
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "front-pavilion-railing",
+          "candidates": [
+            {
+              "id": "front-pavilion-railing",
+              "weight": 1,
+              "height": 0.2117818181818182
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-veranda-railing",
+          "candidates": [
+            {
+              "id": "near-veranda-railing",
+              "weight": 1,
+              "height": 0.24640000000000004
+            }
+          ],
+          "bodyFraction": 0.3306126582278482,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "sunda-pendopo",
+      "name": "Paseban",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.2558769230769231
+            }
+          ],
+          "bodyFraction": 0.3777230769230771,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.2636307692307693
+            }
+          ],
+          "bodyFraction": 0.3515076923076925,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "pendopo-column-clearance",
+          "candidates": [
+            {
+              "id": "pendopo-column-clearance",
+              "weight": 1,
+              "height": 0.22507692307692306
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "sunda-parahyangan",
+      "name": "Halimun",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.21419999999999997
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.21419999999999997
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-bamboo-path-railing",
+          "candidates": [
+            {
+              "id": "near-bamboo-path-railing",
+              "weight": 1,
+              "height": 0.21992727272727272
+            }
+          ],
+          "bodyFraction": 0.3078981818181818,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "bali-pekarangan",
+      "name": "Paduraksa",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "courtyard-gate-door",
+          "candidates": [
+            {
+              "id": "courtyard-gate-door",
+              "weight": 1,
+              "height": 0.2424347826086957
+            }
+          ],
+          "bodyFraction": 0.3416126482213439,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.2618
+            }
+          ],
+          "bodyFraction": 0.34906666666666675,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-gate-door",
+          "candidates": [
+            {
+              "id": "courtyard-gate-door",
+              "weight": 1,
+              "height": 0.21286956521739134
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "bali-subak",
+      "name": "Terasering",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.23317241379310352
+            }
+          ],
+          "bodyFraction": 0.3284381338742394,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.23317241379310352
+            }
+          ],
+          "bodyFraction": 0.3284381338742394,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "path-stone-wall",
+          "candidates": [
+            {
+              "id": "path-stone-wall",
+              "weight": 1,
+              "height": 0.2176
+            }
+          ],
+          "bodyFraction": 0.30463999999999997,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "banjar",
+      "name": "Lanting",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "near-stilt-house-railing",
+          "candidates": [
+            {
+              "id": "near-stilt-house-railing",
+              "weight": 1,
+              "height": 0.21097674418604648
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-stilt-house-railing",
+          "candidates": [
+            {
+              "id": "near-stilt-house-railing",
+              "weight": 1,
+              "height": 0.21097674418604648
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "wooden-jetty-railing",
+          "candidates": [
+            {
+              "id": "wooden-jetty-railing",
+              "weight": 1,
+              "height": 0.2728363636363636
+            }
+          ],
+          "bodyFraction": 0.3819709090909091,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "dayak",
+      "name": "Sylvatica",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "longhouse-railing",
+          "candidates": [
+            {
+              "id": "longhouse-railing",
+              "weight": 1,
+              "height": 0.30492000000000014
+            }
+          ],
+          "bodyFraction": 0.4501200000000004,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "longhouse-railing",
+          "candidates": [
+            {
+              "id": "longhouse-railing",
+              "weight": 1,
+              "height": 0.30492000000000014
+            }
+          ],
+          "bodyFraction": 0.4065600000000004,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-longhouse-railing",
+          "candidates": [
+            {
+              "id": "near-longhouse-railing",
+              "weight": 1,
+              "height": 0.2312
+            }
+          ],
+          "bodyFraction": 0.3102177215189874,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "bugis-makassar",
+      "name": "Phinisi",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "raised-house-stair-rise",
+          "candidates": [
+            {
+              "id": "raised-house-stair-rise",
+              "weight": 1,
+              "height": 0.2542702702702703
+            }
+          ],
+          "bodyFraction": 0.3753513513513515,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "front-house-railing",
+          "candidates": [
+            {
+              "id": "front-house-railing",
+              "weight": 1,
+              "height": 0.24802105263157898
+            }
+          ],
+          "bodyFraction": 0.3306947368421054,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "raised-house-door",
+          "candidates": [
+            {
+              "id": "raised-house-door",
+              "weight": 1,
+              "height": 0.22718181818181823
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "toraja",
+      "name": "Lignum",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "near-stone-retaining-wall",
+          "candidates": [
+            {
+              "id": "near-stone-retaining-wall",
+              "weight": 1,
+              "height": 0.2512924187725632
+            }
+          ],
+          "bodyFraction": 0.37095547533092676,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-stone-retaining-wall",
+          "candidates": [
+            {
+              "id": "near-stone-retaining-wall",
+              "weight": 1,
+              "height": 0.2512924187725632
+            }
+          ],
+          "bodyFraction": 0.3350565583634178,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "stone-courtyard-wall",
+          "candidates": [
+            {
+              "id": "stone-courtyard-wall",
+              "weight": 1,
+              "height": 0.24640000000000004
+            }
+          ],
+          "bodyFraction": 0.3306126582278482,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "sumba",
+      "name": "Savana",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "near-dry-stone-wall",
+          "candidates": [
+            {
+              "id": "near-dry-stone-wall",
+              "weight": 1,
+              "height": 0.2543805668016195
+            }
+          ],
+          "bodyFraction": 0.35613279352226734,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-dry-stone-wall",
+          "candidates": [
+            {
+              "id": "near-dry-stone-wall",
+              "weight": 1,
+              "height": 0.2543805668016195
+            }
+          ],
+          "bodyFraction": 0.35613279352226734,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-stone-wall",
+          "candidates": [
+            {
+              "id": "near-stone-wall",
+              "weight": 1,
+              "height": 0.24336842105263162
+            }
+          ],
+          "bodyFraction": 0.34071578947368425,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "flores",
+      "name": "Floraison",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.26133333333333325
+            }
+          ],
+          "bodyFraction": 0.36586666666666656,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "terrace-stone-wall",
+          "candidates": [
+            {
+              "id": "terrace-stone-wall",
+              "weight": 1,
+              "height": 0.26133333333333325
+            }
+          ],
+          "bodyFraction": 0.36586666666666656,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-garden-wall",
+          "candidates": [
+            {
+              "id": "near-garden-wall",
+              "weight": 1,
+              "height": 0.22909090909090907
+            }
+          ],
+          "bodyFraction": 0.3207272727272727,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "maluku",
+      "name": "Nirwana",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2492307692307693
+            }
+          ],
+          "bodyFraction": 0.3679120879120881,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2492307692307693
+            }
+          ],
+          "bodyFraction": 0.33230769230769264,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "veranda-column-clearance",
+          "candidates": [
+            {
+              "id": "veranda-column-clearance",
+              "weight": 1,
+              "height": 0.2556521739130435
+            }
+          ],
+          "bodyFraction": 0.34302696752889383,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "papua",
+      "name": "Arunika",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "path-low-stone-wall",
+          "candidates": [
+            {
+              "id": "path-low-stone-wall",
+              "weight": 1,
+              "height": 0.2812173913043478
+            }
+          ],
+          "bodyFraction": 0.40403478260869574,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "path-low-stone-wall",
+          "candidates": [
+            {
+              "id": "path-low-stone-wall",
+              "weight": 1,
+              "height": 0.2812173913043478
+            }
+          ],
+          "bodyFraction": 0.40403478260869574,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "shore-path-wall",
+          "candidates": [
+            {
+              "id": "shore-path-wall",
+              "weight": 1,
+              "height": 0.23556363636363634
+            }
+          ],
+          "bodyFraction": 0.3297890909090909,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "minangkabau",
+      "name": "Pusaka",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "rumah-gadang-entry-porch",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry-porch",
+              "weight": 1,
+              "height": 0.21420000000000006
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "rumah-gadang-entry",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry",
+              "weight": 1,
+              "height": 0.20668421052631583
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "rumah-gadang-entry",
+          "candidates": [
+            {
+              "id": "rumah-gadang-entry",
+              "weight": 1,
+              "height": 0.16398086124401912
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "masjid-taman",
+      "name": "Mihrab",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "courtyard-near-arch",
+          "candidates": [
+            {
+              "id": "courtyard-near-arch",
+              "weight": 1,
+              "height": 0.22276800000000008
+            }
+          ],
+          "bodyFraction": 0.32884800000000025,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.2490352941176471
+            }
+          ],
+          "bodyFraction": 0.33204705882352964,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "courtyard-near-arch",
+          "candidates": [
+            {
+              "id": "courtyard-near-arch",
+              "weight": 1,
+              "height": 0.23609600000000003
+            }
+          ],
+          "bodyFraction": 0.31164672000000015,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "masjid-manuskrip",
+      "name": "Sahifah",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "near-courtyard-arch",
+          "candidates": [
+            {
+              "id": "near-courtyard-arch",
+              "weight": 1,
+              "height": 0.22477777777777783
+            }
+          ],
+          "bodyFraction": 0.33181481481481495,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-courtyard-arch",
+          "candidates": [
+            {
+              "id": "near-courtyard-arch",
+              "weight": 1,
+              "height": 0.22477777777777783
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-colonnade-opening",
+          "candidates": [
+            {
+              "id": "near-colonnade-opening",
+              "weight": 1,
+              "height": 0.23800000000000004
+            }
+          ],
+          "bodyFraction": 0.31934177215189885,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "katedral",
+      "name": "Aureole",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "courtyard-side-arch",
+          "candidates": [
+            {
+              "id": "courtyard-side-arch",
+              "weight": 1,
+              "height": 0.20889473684210527
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "cloister-side-arch",
+          "candidates": [
+            {
+              "id": "cloister-side-arch",
+              "weight": 1,
+              "height": 0.20705999999999997
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "cathedral-side-door",
+          "candidates": [
+            {
+              "id": "cathedral-side-door",
+              "weight": 1,
+              "height": 0.147
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "katedral-album",
+      "name": "Canticle",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.2665600000000001
+            }
+          ],
+          "bodyFraction": 0.39349333333333364,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.2665600000000001
+            }
+          ],
+          "bodyFraction": 0.3554133333333336,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "cloister-door",
+          "candidates": [
+            {
+              "id": "cloister-door",
+              "weight": 1,
+              "height": 0.24510315789473677
+            }
+          ],
+          "bodyFraction": 0.32887259160559623,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "taman-tionghoa",
+      "name": "Lianhua",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.24933333333333332
+            }
+          ],
+          "bodyFraction": 0.3680634920634922,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.29580000000000006
+            }
+          ],
+          "bodyFraction": 0.3944000000000003,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "moon-gate-clearance",
+          "candidates": [
+            {
+              "id": "moon-gate-clearance",
+              "weight": 1,
+              "height": 0.24933333333333332
+            }
+          ],
+          "bodyFraction": 0.32912,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "peranakan",
+      "name": "Porcelaine",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "front-house-door",
+          "candidates": [
+            {
+              "id": "front-house-door",
+              "weight": 1,
+              "height": 0.20063999999999996
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "front-house-door",
+          "candidates": [
+            {
+              "id": "front-house-door",
+              "weight": 1,
+              "height": 0.20063999999999996
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "side-house-door",
+          "candidates": [
+            {
+              "id": "side-house-door",
+              "weight": 1,
+              "height": 0.2188421052631579
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "chateau",
+      "name": "Orangerie",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "chateau-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "weight": 1,
+              "height": 0.24266666666666672
+            }
+          ],
+          "bodyFraction": 0.33973333333333333,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "chateau-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "chateau-terrace-balustrade",
+              "weight": 1,
+              "height": 0.24266666666666672
+            }
+          ],
+          "bodyFraction": 0.33973333333333333,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "near-terrace-balustrade",
+          "candidates": [
+            {
+              "id": "near-terrace-balustrade",
+              "weight": 1,
+              "height": 0.2312
+            }
+          ],
+          "bodyFraction": 0.32368,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "edinburgh",
+      "name": "Glenmore",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "near-house-door",
+          "candidates": [
+            {
+              "id": "near-house-door",
+              "weight": 1,
+              "height": 0.23800000000000004
+            }
+          ],
+          "bodyFraction": 0.3332000000000001,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "near-house-door",
+          "candidates": [
+            {
+              "id": "near-house-door",
+              "weight": 1,
+              "height": 0.23800000000000004
+            }
+          ],
+          "bodyFraction": 0.3332000000000001,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "street-stone-wall",
+          "candidates": [
+            {
+              "id": "street-stone-wall",
+              "weight": 1,
+              "height": 0.23603305785123962
+            }
+          ],
+          "bodyFraction": 0.3304462809917355,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "paris",
+      "name": "Reverie",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2286666666666667
+            }
+          ],
+          "bodyFraction": 0.3375555555555558,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2286666666666667
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.2448
+            }
+          ],
+          "bodyFraction": 0.3284658227848101,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "london",
+      "name": "Mayfair",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.23800000000000002
+            }
+          ],
+          "bodyFraction": 0.3513333333333335,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.23800000000000002
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.84,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "terrace-balustrade",
+          "candidates": [
+            {
+              "id": "terrace-balustrade",
+              "weight": 1,
+              "height": 0.25704
+            }
+          ],
+          "bodyFraction": 0.34488911392405064,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "elegant-ivory",
+      "name": "Alabaster",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "garden-balustrade",
+          "candidates": [
+            {
+              "id": "garden-balustrade",
+              "weight": 1,
+              "height": 0.22848
+            }
+          ],
+          "bodyFraction": 0.3372800000000001,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "courtyard-door",
+          "candidates": [
+            {
+              "id": "courtyard-door",
+              "weight": 1,
+              "height": 0.25630769230769235
+            }
+          ],
+          "bodyFraction": 0.34174358974359,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "garden-balustrade",
+          "candidates": [
+            {
+              "id": "garden-balustrade",
+              "weight": 1,
+              "height": 0.22848
+            }
+          ],
+          "bodyFraction": 0.3015936000000001,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "elegant-velvet",
+      "name": "Velours",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "vaulted-near-arch",
+          "candidates": [
+            {
+              "id": "vaulted-near-arch",
+              "weight": 1,
+              "height": 0.2448
+            }
+          ],
+          "bodyFraction": 0.3613714285714287,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "vaulted-near-arch",
+          "candidates": [
+            {
+              "id": "vaulted-near-arch",
+              "weight": 1,
+              "height": 0.2448
+            }
+          ],
+          "bodyFraction": 0.32640000000000025,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "balcony-balustrade",
+          "candidates": [
+            {
+              "id": "balcony-balustrade",
+              "weight": 1,
+              "height": 0.2618000000000001
+            }
+          ],
+          "bodyFraction": 0.3512759493670887,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "kaligrafi",
+      "name": "Vellum",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "near-stone-arch",
+          "candidates": [
+            {
+              "id": "near-stone-arch",
+              "weight": 1,
+              "height": 0.26261052631578946
+            }
+          ],
+          "bodyFraction": 0.38766315789473693,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "near-stone-arch",
+          "candidates": [
+            {
+              "id": "near-stone-arch",
+              "weight": 1,
+              "height": 0.26261052631578946
+            }
+          ],
+          "bodyFraction": 0.3501473684210528,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "stone-bench-height",
+          "candidates": [
+            {
+              "id": "stone-bench-height",
+              "weight": 1,
+              "height": 0.24834782608695646
+            }
+          ],
+          "bodyFraction": 0.3332261970280682,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "cinema",
+      "name": "Cinematique",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.2432888888888889
+            }
+          ],
+          "bodyFraction": 0.3591407407407409,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.26842105263157895
+            }
+          ],
+          "bodyFraction": 0.3578947368421054,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "theatre-entry-door",
+          "candidates": [
+            {
+              "id": "theatre-entry-door",
+              "weight": 1,
+              "height": 0.2115555555555555
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "kingdom",
+      "name": "Sovereign",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "castle-entrance",
+          "candidates": [
+            {
+              "id": "castle-entrance",
+              "weight": 1,
+              "height": 0.23520000000000002
+            }
+          ],
+          "bodyFraction": 0.3472000000000002,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "castle-entrance",
+          "candidates": [
+            {
+              "id": "castle-entrance",
+              "weight": 1,
+              "height": 0.23520000000000002
+            }
+          ],
+          "bodyFraction": 0.3199999999999999,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "castle-balustrade",
+          "candidates": [
+            {
+              "id": "castle-balustrade",
+              "weight": 1,
+              "height": 0.24802105263157898
+            }
+          ],
+          "bodyFraction": 0.3327877415056629,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "sabana",
+      "name": "Meadow",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.2326153846153846
+            }
+          ],
+          "bodyFraction": 0.32566153846153845,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.2326153846153846
+            }
+          ],
+          "bodyFraction": 0.32566153846153845,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "foreground-grass-clump",
+          "candidates": [
+            {
+              "id": "foreground-grass-clump",
+              "weight": 1,
+              "height": 0.23659171597633144
+            }
+          ],
+          "bodyFraction": 0.33122840236686396,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "urban-editorial",
+      "name": "Promenade",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "street-bollard",
+          "candidates": [
+            {
+              "id": "street-bollard",
+              "weight": 1,
+              "height": 0.22175999999999998
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "street-bollard",
+          "candidates": [
+            {
+              "id": "street-bollard",
+              "weight": 1,
+              "height": 0.22175999999999998
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "plaza-near-railing",
+          "candidates": [
+            {
+              "id": "plaza-near-railing",
+              "weight": 1,
+              "height": 0.18899999999999995
+            }
+          ],
+          "bodyFraction": 0.29999999999999993,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "mural",
+      "name": "Chromatica",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "studio-chair-back",
+          "candidates": [
+            {
+              "id": "studio-chair-back",
+              "weight": 1,
+              "height": 0.34059789473684215
+            }
+          ],
+          "bodyFraction": 0.4115384615384615,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "studio-chair-back",
+          "candidates": [
+            {
+              "id": "studio-chair-back",
+              "weight": 1,
+              "height": 0.3501473684210527
+            }
+          ],
+          "bodyFraction": 0.4230769230769231,
+          "screenFootY": 0.8274217584113416,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "studio-sofa-back",
+          "candidates": [
+            {
+              "id": "studio-sofa-back",
+              "weight": 1,
+              "height": 0.26214241486068107
+            }
+          ],
+          "bodyFraction": 0.36699938080495353,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "monokrom",
+      "name": "Nocturne",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.24818181818181814
+            }
+          ],
+          "bodyFraction": 0.32972727272727265,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.24818181818181814
+            }
+          ],
+          "bodyFraction": 0.3403636363636363,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "studio-window-panel",
+          "candidates": [
+            {
+              "id": "studio-window-panel",
+              "weight": 1,
+              "height": 0.26269090909090903
+            }
+          ],
+          "bodyFraction": 0.37151999999999985,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "ludora",
+      "name": "Ludora",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "garden-path-step-riser",
+          "candidates": [
+            {
+              "id": "garden-path-step-riser",
+              "weight": 1,
+              "height": 0.23990399999999992
+            }
+          ],
+          "bodyFraction": 0.3358655999999999,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "garden-path-step-riser",
+          "candidates": [
+            {
+              "id": "garden-path-step-riser",
+              "weight": 1,
+              "height": 0.23990399999999992
+            }
+          ],
+          "bodyFraction": 0.3358655999999999,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "picnic-bicycle-wheel",
+          "candidates": [
+            {
+              "id": "picnic-bicycle-wheel",
+              "weight": 1,
+              "height": 0.24436363636363637
+            }
+          ],
+          "bodyFraction": 0.3421090909090909,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "wasesa",
+      "name": "Wasesa",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "joglo-entry-door",
+          "candidates": [
+            {
+              "id": "joglo-entry-door",
+              "weight": 1,
+              "height": 0.12981818181818186
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "joglo-entry-door",
+          "candidates": [
+            {
+              "id": "joglo-entry-door",
+              "weight": 1,
+              "height": 0.12981818181818186
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "pond-path-railing",
+          "candidates": [
+            {
+              "id": "pond-path-railing",
+              "weight": 1,
+              "height": 0.23563636363636362
+            }
+          ],
+          "bodyFraction": 0.32989090909090907,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "riviera",
+      "name": "Riviera",
+      "engine": 3,
+      "scenes": {
+        "cover": {
+          "reference": "garden-stone-arch",
+          "candidates": [
+            {
+              "id": "garden-stone-arch",
+              "weight": 1,
+              "height": 0.21538461538461537
+            }
+          ],
+          "bodyFraction": 0.3528822055137845,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "hero": {
+          "reference": "garden-stone-arch",
+          "candidates": [
+            {
+              "id": "garden-stone-arch",
+              "weight": 1,
+              "height": 0.21538461538461537
+            }
+          ],
+          "bodyFraction": 0.3528822055137845,
+          "screenFootY": 0.84,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        },
+        "closing": {
+          "reference": "lakeside-path-wall",
+          "candidates": [
+            {
+              "id": "lakeside-path-wall",
+              "weight": 1,
+              "height": 0.23033043478260867
+            }
+          ],
+          "bodyFraction": 0.32246260869565213,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": -1800
+        }
+      }
+    },
+    {
+      "id": "pramaya",
+      "name": "Pramaya",
+      "engine": 2,
+      "scenes": {
+        "cover": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.1331590909090909
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.1331590909090909
+            }
+          ],
+          "bodyFraction": 0.32,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "temple-path-lantern-post",
+          "candidates": [
+            {
+              "id": "temple-path-lantern-post",
+              "weight": 1,
+              "height": 0.13090000000000004
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.9400000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "garden-canvas",
+      "name": "Viridarium",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "garden-arch-clearance",
+          "candidates": [
+            {
+              "id": "garden-arch-clearance",
+              "weight": 1,
+              "height": 0.22343999999999997
+            }
+          ],
+          "bodyFraction": 0.32984,
+          "screenFootY": 0.81,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "garden-arch-clearance",
+          "candidates": [
+            {
+              "id": "garden-arch-clearance",
+              "weight": 1,
+              "height": 0.22343999999999997
+            }
+          ],
+          "bodyFraction": 0.32000000000000006,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "near-path-stone-edging",
+          "candidates": [
+            {
+              "id": "near-path-stone-edging",
+              "weight": 1,
+              "height": 0.10147878787878788
+            }
+          ],
+          "bodyFraction": 0.3171212121212124,
+          "screenFootY": 0.8700000000000001,
+          "environmentZ": -1600,
+          "characterZ": 0
+        }
+      }
+    },
+    {
+      "id": "sekar-jawa",
+      "name": "Sogan",
+      "engine": 1,
+      "scenes": {
+        "cover": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.30774545454545443,
+          "screenFootY": 0.81,
+          "environmentZ": -2200,
+          "characterZ": 0
+        },
+        "hero": {
+          "reference": "regol-gate-opening",
+          "candidates": [
+            {
+              "id": "regol-gate-opening",
+              "weight": 1,
+              "height": 0.26775000000000004
+            }
+          ],
+          "bodyFraction": 0.3570000000000002,
+          "screenFootY": 0.8399999999999999,
+          "environmentZ": -1600,
+          "characterZ": 0
+        },
+        "closing": {
+          "reference": "temple-entry-door",
+          "candidates": [
+            {
+              "id": "temple-entry-door",
+              "weight": 1,
+              "height": 0.11836363636363634
+            }
+          ],
+          "bodyFraction": 0.3,
+          "screenFootY": 0.8699999999999999,
+          "environmentZ": -2200,
+          "characterZ": 0
+        }
+      }
+    }
+  ]
+}

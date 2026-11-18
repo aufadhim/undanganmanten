@@ -1,0 +1,75 @@
+{
+  "status": "art-generated",
+  "engine": 1,
+  "copiedFrom": "sekar-jawa",
+  "illustrations": [
+    {
+      "filename": "ilustrasi1.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi1.webp",
+      "usedBy": [
+        "config.assets.coverCouple",
+        "config.assets.heroCouple",
+        "config.assets.galleryCouple"
+      ],
+      "status": "generated",
+      "bytes": 163816
+    },
+    {
+      "filename": "ilustrasi3.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi3.webp",
+      "usedBy": [
+        "config.assets.foreground",
+        "config.assets.galleryBouquet"
+      ],
+      "status": "generated",
+      "bytes": 193680
+    },
+    {
+      "filename": "ilustrasi4.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi4.webp",
+      "usedBy": [
+        "config.assets.galleryGarden",
+        "config.assets.room3"
+      ],
+      "status": "generated",
+      "bytes": 193554
+    },
+    {
+      "filename": "ilustrasi5.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi5.webp",
+      "usedBy": [
+        "config.assets.room1"
+      ],
+      "status": "generated",
+      "bytes": 220204
+    },
+    {
+      "filename": "ilustrasi6.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi6.webp",
+      "usedBy": [
+        "config.assets.room2"
+      ],
+      "status": "generated",
+      "bytes": 170198
+    },
+    {
+      "filename": "ilustrasi7.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi7.webp",
+      "usedBy": [
+        "config.assets.room4"
+      ],
+      "status": "generated",
+      "bytes": 172790
+    },
+    {
+      "filename": "ilustrasi10.webp",
+      "path": "/templates/melayu-balairung/assets/ilustrasi10.webp",
+      "usedBy": [
+        "config.assets.stageLandscape"
+      ],
+      "status": "generated",
+      "bytes": 204892
+    }
+  ],
+  "singleCouple": true
+}

@@ -64,3 +64,17 @@ Test E2E lengkap memakai database terpisah melalui `TEST_DATABASE_URL`; jangan a
 - Isi semua secret dari secret manager platform, bukan dari file yang di-commit.
 
 Urutan dan pemeriksaan produksi lengkap tersedia di [PRODUCTION_CHECKLIST.md](./PRODUCTION_CHECKLIST.md).
+
+## Audit & persiapan perombakan
+
+Hasil audit 26 Oktober 2026 tersedia di [docs/AUDIT_PEMBERSIHAN_2026-10-26.md](docs/AUDIT_PEMBERSIHAN_2026-10-26.md).
+
+Jalankan `npm run audit:assets` untuk inventaris aset, atau `npm run check:assets` setelah build untuk memeriksa URL gambar literal. Daftar pembersihan dan mekanisme pemulihan ada di laporan tersebut.
+
+Optimasi gambar untuk HP dilanjutkan pada 27 Oktober 2026. Lihat [laporan optimasi aset mobile](docs/OPTIMASI_ASET_MOBILE_2026-10-27.md) untuk batas resolusi, hasil penghematan, dan pemetaan URL gambar WebP.
+
+## Registry template
+
+Nama, kategori, engine, thumbnail, preset, dan status template diedit di `shared/template-registry.json`. Jalankan `npm run registry:sync` setelah mengubahnya. Dev/build menyinkronkan otomatis; berkas `*.generated.js` tidak diedit manual. Lihat [panduan registry](docs/TEMPLATE_REGISTRY.md).
+
+Konfigurasi adegan Immersia diedit di `shared/template-scenes/<folder>.json`; hasil editor/runtime dibuat otomatis oleh `npm run templates:sync`. Lihat [sumber adegan](docs/TEMPLATE_SCENE_SOURCES.md).
